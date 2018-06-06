@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+media_folder: static/assets
+public_folder: /assets
+collections:
+  - name: page
+    label: Pages
+    label_singular: Page
+    folder: _collections/pages
+    create: true
+    fields:
+      - { name: title, label: Page title }
+      - name: template
+        label: Page template
+        widget: select
+        options:
+          - { label: Default, value: default-page }
+          - { label: Documents, value: documents-page }
+      - { name: body, label: Page content, widget: "markdown" }
