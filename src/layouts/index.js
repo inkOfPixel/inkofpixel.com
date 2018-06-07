@@ -7,19 +7,17 @@ import styled, { injectGlobal } from "styled-components";
 import Link from "gatsby-link";
 import Header from "components/Header";
 import Footer from "components/Footer";
-import PhoneNumber from "components/PhoneNumber";
 import CookieBar from "components/CookieBar";
-import backgroundImage from "images/Fiber4Retelit - Background.jpg";
-import favicon from "images/Fiber4Retelit - Favicon.png";
+import favicon from "images/inkOfPixel - Favicon.png";
 
 injectGlobal`
-  @import url("https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto+Condensed:300,400,700");
+ @import url("https://use.typekit.net/zrn4omm.css");
   body {
-    font-family: "Roboto Condensed", sans-serif;
+    font-family: "Europa", sans-serif;
     color: #161338;
   }
   h1 {
-    font-family: "Playfair Display", serif;
+    font-family: "Europa", sans-serif;
   }
   p {
     margin: 0;
@@ -51,40 +49,39 @@ class TemplateWrapper extends Component<Props> {
       <Container>
         <Helmet>
           <link rel="icon" href={favicon} type="image/png" />
-          <title>Fiber4Retelit</title>
+          <title>inkOfPixel</title>
           <meta
             name="description"
-            content="Crediamo che occorra cambiare passo nella gestione affinché Retelit possa fare un salto dimensionale e qualitativo"
+            content="We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring 
+      them to life, this is the right place.
+      "
           />
           <meta
             name="keywords"
-            content="retelit,fiber,ICT,technology,telecomunication,legal,finance"
+            content="shopify,react,gatsby,webapp,app,sofware"
           />
           <meta property="og:url" content="/" />
-          <meta
-            property="og:title"
-            content="Fiber4Retelit - Rendiamo Retelit leader dei servizi ICT alle imprese"
-          />
+          <meta property="og:title" content="inkOfPixel" />
           <meta
             property="og:description"
-            content="Crediamo che occorra cambiare passo nella gestione affinché Retelit possa fare un salto dimensionale e qualitativo"
+            content="We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring 
+      them to life, this is the right place.
+      "
           />
-          {/* <meta property="og:image" content={ogImage} /> */}
+          {/* <meta property="
+      og: image " content={ogImage} /> */}
         </Helmet>
         <Header />
-        <Background />
         {children()}
-        <PhoneNumber />
         <Footer />
         <CookieBar>
           {accept => (
             <Bar>
               <Text>
                 Questo sito utilizza i cookie per garantire una migliore
-                esperienza utente. Continuando la navigazione accetti la nostra{" "}
-                <StyledLink to="/privacy-policy">cookies policy</StyledLink>
+                esperienza utente.Continuando la navigazione accetti la nostra
+                <StyledLink to="/privacy-policy"> cookies policy </StyledLink>
               </Text>
-
               <button onClick={accept} />
             </Bar>
           )}
@@ -95,24 +92,6 @@ class TemplateWrapper extends Component<Props> {
 }
 
 const Container = styled.div``;
-
-const Background = styled.div`
-  position: fixed;
-  left: 0;
-  top: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-image: url("${backgroundImage}");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
-  z-index: -2;
-  opacity: 0.5;
-    @media (max-width: 1000px) {
-        background-size: cover;
-    }
-`;
 
 const Bar = styled.div`
   background-color: #fff;

@@ -4,7 +4,8 @@ import React, { type Node, Component, Fragment } from "react";
 import { slide as SlideMenu } from "react-burger-menu";
 import styled from "styled-components";
 import Link from "gatsby-link";
-import logo from "images/Fiber4Retelit - Logo.svg";
+import logo from "images/inkOfPixel - Logo.svg";
+import Wrapper from "components/Wrapper";
 
 type Props = {};
 type State = {
@@ -31,10 +32,9 @@ class Header extends Component<Props, State> {
     return (
       <Fragment>
         <MobileMenuContainer>
-          <Logo to="/">
-            <Icon src={logo} alt="Fiber 4.0 logo" />
-            <Wordmark>Fiber 4.0</Wordmark>
-          </Logo>
+          <LogoLink to="/">
+            <LogoImage src={logo} alt="Fiber 4.0 logo" />
+          </LogoLink>
           <MobileMenu
             right
             isOpen={isMobileMenuOpen}
@@ -69,29 +69,21 @@ class Header extends Component<Props, State> {
         </MobileMenuContainer>
         <DesktopMenuContainer>
           <Wrapper>
-            <Logo to="/">
-              <Icon src={logo} alt="Fiber 4.0 logo" />
-              <Wordmark>Fiber 4.0</Wordmark>
-            </Logo>
+            <LogoLink to="/">
+              <LogoImage src={logo} alt="inkOfPixel logo" />
+            </LogoLink>
             <List>
               <ListItem>
-                <Link to="/english-version">English version</Link>
+                <Link to="#">Services</Link>
               </ListItem>
               <ListItem>
-                <Link to="/documenti">Documenti</Link>
+                <Link to="#">Projects</Link>
               </ListItem>
-              <ListItem className="button secondary">
-                <a
-                  href="/assets/fiber-4.0-prospetto-informativo.pdf"
-                  target="_blank"
-                >
-                  Prospetto informativo
-                </a>
+              <ListItem>
+                <Link to="#">Why Us?</Link>
               </ListItem>
-              <ListItem className="button primary">
-                <a href="assets/fiber-4.0-modulo-di-delega.pdf" target="_blank">
-                  Modulo di delega
-                </a>
+              <ListItem>
+                <Link to="#">Contacts</Link>
               </ListItem>
             </List>
           </Wrapper>
@@ -105,41 +97,19 @@ const DesktopMenuContainer = styled.header`
   @media (max-width: 899px) {
     display: none;
   }
-  position: fixed;
-  top: 0;
+  position: absolute;
   z-index: 100;
   width: 100%;
   height: 160px;
-  background: rgba(255, 255, 255, 0.95);
-`;
-const Wrapper = styled.div`
-  width: 960px;
-  margin: 0 auto;
-  position: relative;
-  @media (max-width: 1000px) {
-    width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
-    box-sizing: border-box;
-  }
-  @media (max-width: 600px) {
-    width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
 `;
 
-const Logo = styled(Link)`
+const LogoLink = styled(Link)`
   position: absolute;
   display: block;
   left: 0px;
   font-size: 22px;
-  color: #4840bb;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  top: 24px;
-  @media (max-width: 1000px) {
+  top: 58px;
+  @media (max-width: 1260px) {
     left: 40px;
   }
   @media (max-width: 600px) {
@@ -147,20 +117,13 @@ const Logo = styled(Link)`
   }
 `;
 
-const Icon = styled.div.attrs({
+const LogoImage = styled.div.attrs({
   children: ({ src, alt }) => <img src={src} alt={alt} />
 })`
-  width: 50px;
+  width: 185px;
   img {
     width: 100%;
   }
-`;
-
-const Wordmark = styled.div`
-  position: absolute;
-  width: 100px;
-  top: 45px;
-  left: 58px;
 `;
 
 const List = styled.ul`
@@ -169,7 +132,7 @@ const List = styled.ul`
   right: 0px;
   top: 60px;
   margin: 0;
-  @media (max-width: 1000px) {
+  @media (max-width: 1260px) {
     right: 40px;
   }
 `;
@@ -189,6 +152,7 @@ ListItem = styled(ListItem)`
     text-decoration: none;
     position: relative;
     transition: all 300ms;
+    font-weight: 700;
     &::before {
       background: #161338;
       opacity: 0;
@@ -208,29 +172,6 @@ ListItem = styled(ListItem)`
       }
     }
   }
-  &.button {
-    a {
-      padding: 12px 20px;
-      &::before {
-        display: none;
-      }
-    }
-    &.primary a {
-      border: 1px solid #4840bb;
-      background-color: #4840bb;
-      color: #fff;
-      &:hover {
-        background-color: #3f38a3;
-      }
-    }
-    &.secondary a {
-      color: #4840bb;
-      border: 1px solid #4840bb;
-      &:hover {
-        background-color: rgba(72, 64, 187, 0.2);
-      }
-    }
-  }
 `;
 
 const MobileMenuContainer = styled.div`
@@ -238,7 +179,7 @@ const MobileMenuContainer = styled.div`
     display: none;
   }
   height: 160px;
-  ${Logo} {
+  ${LogoLink} {
     top: 60px;
   }
   /* Position and sizing of burger button */
