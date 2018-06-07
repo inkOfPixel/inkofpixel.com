@@ -9,34 +9,30 @@ type Props = {
   data: {}
 };
 
-console.log(React.version);
-
-const IndexPage = ({ data }: Props) => (
-  <Page>
-    <Section className="Hero">
-      <Wrapper>
-        <HeroIllustration src={illustration} />
-        <Title>
-          Great websites<br />
-          for great entrepreneurs
-        </Title>
-        <Subtitle>
-          We design, build and deploy websites that sell and help you grow your
-          business worldwide.
-        </Subtitle>
-      </Wrapper>
-    </Section>
-    <Section className="Services">
-      <Wrapper>
-        <Title>Master in Shopify</Title>
-        <Subtitle>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Subtitle>
-      </Wrapper>
-    </Section>
-  </Page>
-);
+const IndexPage = ({ data }: Props) => {
+  const { edges: sections } = data.allHomePageJson;
+  return (
+    <Page>
+      {console.log(data)}
+      <Section className="Hero">
+        <Wrapper>
+          <HeroIllustration src={illustration} />
+          <Title>{sections[0].node.hero_title}</Title>
+          <Subtitle>{sections[0].node.hero_subtitle}</Subtitle>
+        </Wrapper>
+      </Section>
+      <Section className="Services">
+        <Wrapper>
+          <Title>Master in Shopify</Title>
+          <Subtitle>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Subtitle>
+        </Wrapper>
+      </Section>
+    </Page>
+  );
+};
 
 const Page = styled.div`
   padding-top: 160px;
@@ -140,3 +136,16 @@ const Section = styled.section`
 `;
 
 export default IndexPage;
+
+export const query = graphql`
+  query HomePageQuery {
+    allHomePageJson {
+      edges {
+        node {
+          hero_title
+          hero_subtitle
+        }
+      }
+    }
+  }
+`;

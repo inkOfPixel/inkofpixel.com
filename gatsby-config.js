@@ -14,6 +14,14 @@ module.exports = {
         name: "pages"
       }
     },
+    "gatsby-transformer-json",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/home-page`,
+        name: "home-page"
+      }
+    },
     "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-google-analytics`,
