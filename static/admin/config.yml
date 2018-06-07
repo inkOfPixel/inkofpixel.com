@@ -23,11 +23,25 @@ collections:
     editor:
       preview: false
     files:
-      - name: general
+      - name: hero
         label: Hero
         file: _site/home-page/hero.json
         description: Hero Settings
         fields:
           - {label: Title, name: hero_title, widget: text}
           - {label: Subtitle, name: hero_subtitle, widget: text}
+      - name: services
+        label: Services
+        file: _site/home-page/services.json
+        description: Hero Settings
+        fields:
+          - {label: Title, name: service_title, widget: text}
+          - {label: Description, name: service_description, widget: text}
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            field:
+              - {label: Image, name: image, widget: image}
+              - {label: Title, name: title, widget: string}
+              - {label: Description, name: description, widget: text}
       
