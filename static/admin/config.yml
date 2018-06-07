@@ -24,9 +24,10 @@ collections:
       preview: false
     files:
       - name: "general"
-        label: "Site Settings"
-        file: "_data/settings.json"
-        description: "General Site Settings"
+        label: "Hero"
+        file: "_site/home-page/hero.json"
+        description: "Hero Settings"
         fields:
-          - {label: "Global title", name: "site_title", widget: "string"}
+          - {label: "Title", name: "hero_title", widget: "text"}
+          - {label: "Subtitle", name: "hero_subtitle", widget: "text"}
       
