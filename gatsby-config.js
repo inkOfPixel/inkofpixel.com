@@ -10,11 +10,11 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        path: `${__dirname}/_collections/pages`,
+        path: `${__dirname}/_site/pages`,
         name: "pages"
       }
     },
-
+    "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -28,9 +28,7 @@ module.exports = {
         // Avoids sending pageview hits from custom paths
         exclude: ["/preview/**", "/do-not-track/me/too/"]
       }
-    },
-
-    "gatsby-transformer-remark"
+    }
   ],
   pathPrefix: "/assets"
 };

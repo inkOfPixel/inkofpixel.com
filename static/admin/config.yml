@@ -6,7 +6,7 @@ collections:
   - name: page
     label: Pages
     label_singular: Page
-    folder: _collections/pages
+    folder: _site/pages
     create: true
     fields:
       - { name: title, label: Page title }
