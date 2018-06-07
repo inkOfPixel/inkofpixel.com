@@ -1,4 +1,4 @@
-# Retelit CDA Campaign website
+# inkOfPixel Website
 
 This repo contains the source code powering [TBD](https://example.com)
 
