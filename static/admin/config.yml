@@ -17,3 +17,16 @@ collections:
           - { label: Default, value: default-page }
           - { label: Documents, value: documents-page }
       - { name: body, label: Page content, widget: "markdown" }
+  - name: "settings"
+    label: "Settings"
+    delete: false # Prevent users from deleting documents in this collection
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Site Settings"
+        file: "_data/settings.json"
+        description: "General Site Settings"
+        fields:
+          - {label: "Global title", name: "site_title", widget: "string"}
+      
