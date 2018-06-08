@@ -1,5 +1,21 @@
 {
   "services_title": "Master in Shopify e non solo",
-  "services_description":
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  "services_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "services_main_list": [
+    {
+      "image": "/assets/inkofpixel - services_setup.svg",
+      "title": "Setup",
+      "description": "We will help you launch your business online or seamlessly migrate your shop from another platform"
+    },
+    {
+      "image": "/assets/inkofpixel - services_design.svg",
+      "title": "Design",
+      "description": "We will tweak a template or craft a design from scratch to create your beautiful online store."
+    },
+    {
+      "image": "/assets/inkofpixel - services_web developer.svg",
+      "title": "Web Developer",
+      "description": "We turn big ideas into fully-functioning shops with theme modifications and custom apps."
+    }
+  ]
 }
