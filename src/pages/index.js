@@ -35,6 +35,26 @@ const IndexPage = ({ data }: Props) => {
               </li>
             ))}
           </ul>
+          <Subtitle className="secondary">
+            {services.services_description}
+          </Subtitle>
+          <ul className="secondaryServicesList">
+            {services.services_secondary_list.map(item => (
+              <li key={item.title}>
+                <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                <div className="content">
+                  <p className="title">{item.title}</p>
+                  <p className="description">{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Wrapper>
+      </Section>
+      <Section className="Projects">
+        <Wrapper>
+          <Title>{services.services_title}</Title>
+          <Subtitle>{services.services_description}</Subtitle>
         </Wrapper>
       </Section>
     </Page>
@@ -117,6 +137,8 @@ const Section = styled.section`
   &.Services {
     margin-top: 200px;
     background-color: rgb(245, 245, 245);
+    padding-top: 30px;
+    padding-bottom: 200px;
     &:before,
     &:after {
       display: block;
@@ -139,13 +161,16 @@ const Section = styled.section`
     }
     ${Title} {
       text-align: center;
-      padding-top: 30px;
+      color: #7589f4;
     }
     ${Subtitle} {
       text-align: center;
       width: 70%;
       margin: 0 auto;
       padding-bottom: 60px;
+      &.secondary {
+        padding-top: 60px;
+      }
     }
     .primaryServicesList {
       list-style: none;
@@ -179,7 +204,79 @@ const Section = styled.section`
         }
       }
     }
+    .secondaryServicesList {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+      li {
+        background-color: #fff;
+        margin: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 30px;
+        flex: 1 1 0;
+        img {
+          width: 160px;
+        }
+        .content {
+          padding-left: 30px;
+          .title {
+            font-weight: 700;
+            font-size: 20px;
+            padding-bottom: 20px;
+            padding-top: 20px;
+          }
+          .description {
+            font-size: 14px;
+            line-height: 1.6em;
+          }
+        }
+      }
+    }
   }
+  &.Projects {
+    margin-top: 0px;
+    background-color: #fff;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    &:before,
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+      height: 500px;
+      width: 100%;
+    }
+    &:before {
+      z-index: 1;
+      top: -100px;
+      transform: skewY(-4deg);
+      background-color: #FE5A6D;
+    }
+    &:after {
+      z-index: 2;
+      top: -70px;
+      transform: skewY(-5deg);
+      background-color: #fff;
+    }
+    ${Title} {
+      text-align: center;
+      color: #FE5A6D;
+    }
+    ${Subtitle} {
+      text-align: center;
+      width: 70%;
+      margin: 0 auto;
+      padding-bottom: 60px;
+      &.secondary {
+        padding-top: 60px;
+      }
+    }
 `;
 
 export default IndexPage;
@@ -200,6 +297,12 @@ export const query = graphql`
           services_title
           services_description
           services_primary_list {
+            image
+            title
+            description
+          }
+          services_sub_description
+          services_secondary_list {
             image
             title
             description

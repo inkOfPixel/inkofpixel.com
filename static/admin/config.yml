@@ -3,20 +3,6 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 collections:
-  - name: page
-    label: Pages
-    label_singular: Page
-    folder: _site/pages
-    create: true
-    fields:
-      - { name: title, label: Page title }
-      - name: template
-        label: Page template
-        widget: select
-        options:
-          - { label: Default, value: default-page }
-          - { label: Documents, value: documents-page }
-      - { name: body, label: Page content, widget: markdown }
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
@@ -52,4 +38,36 @@ collections:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
+  - name: page
+    label: Pages
+    label_singular: Page
+    folder: _site/pages
+    create: true
+    fields:
+      - { name: title, label: Page title }
+      - { name: seoTitle, label: SEO Page title, widget: string }
+      - { name: seoDescription, label: SEO Description, widget: text }
+      - name: template
+        label: Page template
+        widget: select
+        options:
+          - { label: Default, value: default-page }
+          - { label: Documents, value: documents-page }
+      - { name: body, label: Page content, widget: markdown }
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: _site/projects
+    create: true
+    fields:
+      - { name: title, label: Project title }
+      - { name: seoTitle, label: SEO Project title, widget: string }
+      - { name: seoDescription, label: SEO Description, widget: text }
+      - name: template
+        label: Page template
+        widget: select
+        options:
+          - { label: Default, value: default-page }
+          - { label: Documents, value: documents-page }
+      - { name: body, label: Page content, widget: markdown }
       
