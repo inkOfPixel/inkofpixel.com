@@ -1,7 +1,8 @@
 ---
-title: test
-seoTitle: asd
-seoDescription: asd
+title: D1 Milano
+seoTitle: D1 Milano website | inkOfPixel
+seoDescription: Lorem ipsum
+featuredImage: /assets/d1 milano.jpg
 template: project
 ---
 
