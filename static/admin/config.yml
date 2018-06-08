@@ -43,8 +43,8 @@ collections:
         file: _site/home-page/projects.json
         description: Projects
         fields:
-          - {label: Title, name: servicesTitle, widget: string}
-          - {label: Description, name: servicesDescription, widget: text}
+          - {label: Title, name: projectsTitle, widget: string}
+          - {label: Description, name: projectsDescription, widget: text}
   - name: page
     label: Pages
     label_singular: Page
