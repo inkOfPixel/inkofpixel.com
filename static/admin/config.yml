@@ -41,7 +41,7 @@ collections:
             name: "services_primary_list"
             widget: "list"
             fields:
-              - {label: Image, name: image, widget: image}
               - {label: Title, name: title, widget: string}
+              - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
       
