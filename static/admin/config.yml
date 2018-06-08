@@ -38,7 +38,7 @@ collections:
           - {label: Title, name: services_title, widget: string}
           - {label: Description, name: services_description, widget: text}
           - label: "Services"
-            name: "services_main_list"
+            name: "services_primary_list"
             widget: "list"
             fields:
               - {label: Image, name: image, widget: image}

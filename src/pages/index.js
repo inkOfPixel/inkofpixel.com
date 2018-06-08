@@ -25,10 +25,16 @@ const IndexPage = ({ data }: Props) => {
       <Section className="Services">
         <Wrapper>
           <Title>{services.services_title}</Title>
-          <Subtitle>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Subtitle>
+          <Subtitle>{services.services_description}</Subtitle>
+          <ul className="primaryServicesList">
+            {services.services_primary_list.map(item => (
+              <li key={item.title}>
+                <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                <p>{item.title}</p>
+                <p>{item.description}</p>
+              </li>
+            ))}
+          </ul>
         </Wrapper>
       </Section>
     </Page>
@@ -131,7 +137,25 @@ const Section = styled.section`
       transform: skewY(5deg);
       background-color: rgb(245, 245, 245);
     }
-    ${Wrapper} {
+    .primaryServicesList {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+      li {
+        background-color: #fff;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 30px;
+        img {
+          width: 160px;
+        }
+      }
     }
   }
 `;
@@ -153,6 +177,11 @@ export const query = graphql`
         node {
           services_title
           services_description
+          services_primary_list {
+            image
+            title
+            description
+          }
         }
       }
     }
