@@ -53,7 +53,7 @@ collections:
               name: project
               widget: relation
               collection: projects
-              displayFields: ["excerpt"]
+              displayFields: ["title"]
               searchFields: ["title", "body"]
               valueField: excerpt
   - name: page
