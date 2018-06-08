@@ -30,8 +30,8 @@ const IndexPage = ({ data }: Props) => {
             {services.services_primary_list.map(item => (
               <li key={item.title}>
                 <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                <p>{item.title}</p>
-                <p>{item.description}</p>
+                <p className="title">{item.title}</p>
+                <p className="description">{item.description}</p>
               </li>
             ))}
           </ul>
@@ -137,6 +137,16 @@ const Section = styled.section`
       transform: skewY(5deg);
       background-color: rgb(245, 245, 245);
     }
+    ${Title} {
+      text-align: center;
+      padding-top: 30px;
+    }
+    ${Subtitle} {
+      text-align: center;
+      width: 70%;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
     .primaryServicesList {
       list-style: none;
       display: flex;
@@ -152,8 +162,20 @@ const Section = styled.section`
         align-items: center;
         box-sizing: border-box;
         padding: 30px;
+        flex: 1 1 0;
         img {
           width: 160px;
+        }
+        .title {
+          font-weight: 700;
+          font-size: 20px;
+          padding-bottom: 20px;
+          padding-top: 20px;
+        }
+        .description {
+          font-size: 14px;
+          text-align: center;
+          line-height: 1.6em;
         }
       }
     }

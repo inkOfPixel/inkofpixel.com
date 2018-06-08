@@ -44,4 +44,12 @@ collections:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
+          - {label: Description, name: services_sub_description, widget: text}
+          - label: "Secondary Services"
+            name: "services_secondary_list"
+            widget: "list"
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Image, name: image, widget: image}
+              - {label: Description, name: description, widget: text}
       
