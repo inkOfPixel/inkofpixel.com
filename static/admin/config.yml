@@ -73,6 +73,6 @@ collections:
         label: Page template
         widget: select
         options:
-          - { label: Default, value: project }
+          - { label: Default, value: project, widget: hidden }
       - { name: body, label: Page content, widget: markdown }
       
