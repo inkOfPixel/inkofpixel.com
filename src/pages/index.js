@@ -53,8 +53,8 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Projects">
         <Wrapper>
-          <Title>{services.servicesTitle}</Title>
-          <Subtitle>{services.servicesDescription}</Subtitle>
+          <Title>{projects.projectsTitle}</Title>
+          <Subtitle>{projects.projectsDescription}</Subtitle>
         </Wrapper>
       </Section>
     </Page>
@@ -309,6 +309,16 @@ export const query = graphql`
             title
             description
           }
+        }
+      }
+    }
+    projects: allHomePageJson(
+      filter: { fields: { name: { eq: "projects" } } }
+    ) {
+      edges {
+        node {
+          projectsTitle
+          projectsDescription
         }
       }
     }

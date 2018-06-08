@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Retelit CDA Campaign"
+    title: "inkOfPixel"
   },
   plugins: [
     "gatsby-plugin-react-next",

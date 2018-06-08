@@ -1,6 +1,6 @@
 {
-  "name": "retelit-cda-campaign",
-  "description": "Website of the campaign for the new Retelit CDA",
+  "name": "inkofpixel",
+  "description": "Website of inkOfPixel",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
@@ -23,15 +23,15 @@
     "react-helmet": "5.2.0",
     "styled-components": "3.2.5"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "remote-dev": "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "remote-dev":
+      "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
+    "format":
+      "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

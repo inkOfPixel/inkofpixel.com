@@ -38,6 +38,13 @@ collections:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
+      - name: projects
+        label: Projects
+        file: _site/home-page/projects.json
+        description: Projects
+        fields:
+          - {label: Title, name: servicesTitle, widget: string}
+          - {label: Description, name: servicesDescription, widget: text}
   - name: page
     label: Pages
     label_singular: Page
