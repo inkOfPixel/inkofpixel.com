@@ -18,16 +18,16 @@ const IndexPage = ({ data }: Props) => {
       <Section className="Hero">
         <Wrapper>
           <HeroIllustration src={illustration} />
-          <Title dangerouslySetInnerHTML={{ __html: hero.hero_title }} />
-          <Subtitle>{hero.hero_subtitle}</Subtitle>
+          <Title dangerouslySetInnerHTML={{ __html: hero.heroTitle }} />
+          <Subtitle>{hero.heroSubtitle}</Subtitle>
         </Wrapper>
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>{services.services_title}</Title>
-          <Subtitle>{services.services_description}</Subtitle>
+          <Title>{services.servicesTitle}</Title>
+          <Subtitle>{services.servicesDescription}</Subtitle>
           <ul className="primaryServicesList">
-            {services.services_primary_list.map(item => (
+            {services.servicesPrimaryList.map(item => (
               <li key={item.title}>
                 <img src={item.image} alt={`${item.title} inkOfPixel`} />
                 <p className="title">{item.title}</p>
@@ -36,10 +36,10 @@ const IndexPage = ({ data }: Props) => {
             ))}
           </ul>
           <Subtitle className="secondary">
-            {services.services_description}
+            {services.servicesDescription}
           </Subtitle>
           <ul className="secondaryServicesList">
-            {services.services_secondary_list.map(item => (
+            {services.serviceSecondaryList.map(item => (
               <li key={item.title}>
                 <img src={item.image} alt={`${item.title} inkOfPixel`} />
                 <div className="content">
@@ -53,8 +53,8 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Projects">
         <Wrapper>
-          <Title>{services.services_title}</Title>
-          <Subtitle>{services.services_description}</Subtitle>
+          <Title>{services.servicesTitle}</Title>
+          <Subtitle>{services.servicesDescription}</Subtitle>
         </Wrapper>
       </Section>
     </Page>
@@ -283,26 +283,28 @@ export default IndexPage;
 
 export const query = graphql`
   query HomePageQuery {
-    hero: allHomePageJson(filter: { hero_title: { ne: null } }) {
+    hero: allHomePageJson(filter: { fields: { name: { eq: "hero" } } }) {
       edges {
         node {
-          hero_title
-          hero_subtitle
+          heroTitle
+          heroSubtitle
         }
       }
     }
-    services: allHomePageJson(filter: { services_title: { ne: null } }) {
+    services: allHomePageJson(
+      filter: { fields: { name: { eq: "services" } } }
+    ) {
       edges {
         node {
-          services_title
-          services_description
-          services_primary_list {
+          servicesTitle
+          servicesDescription
+          servicesPrimaryList {
             image
             title
             description
           }
-          services_sub_description
-          services_secondary_list {
+          servicesSubDescription
+          serviceSecondaryList {
             image
             title
             description

@@ -43,6 +43,11 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
           : `/${fileNode.sourceInstanceName}${slug}`
     });
   }
+  const parent = getNode(node.parent);
+  if (parent && parent.internal.mediaType === "application/json") {
+    const name = parent.name;
+    createNodeField({ node, name: "name", value: name });
+  }
 };
 
 exports.createPages = ({ graphql, boundActionCreators }) => {

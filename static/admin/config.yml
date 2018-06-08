@@ -14,25 +14,25 @@ collections:
         file: _site/home-page/hero.json
         description: Hero Settings
         fields:
-          - {label: Title, name: hero_title, widget: text}
-          - {label: Subtitle, name: hero_subtitle, widget: text}
+          - {label: Title, name: heroTitle, widget: text}
+          - {label: Subtitle, name: heroSubtitle, widget: text}
       - name: services
         label: Services
         file: _site/home-page/services.json
         description: Services
         fields:
-          - {label: Title, name: services_title, widget: string}
-          - {label: Description, name: services_description, widget: text}
+          - {label: Title, name: servicesTitle, widget: string}
+          - {label: Description, name: servicesDescription, widget: text}
           - label: "Services"
-            name: "services_primary_list"
+            name: "servicesPrimaryList"
             widget: "list"
             fields:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
-          - {label: Description, name: services_sub_description, widget: text}
+          - {label: Description, name: servicesSubDescription, widget: text}
           - label: "Secondary Services"
-            name: "services_secondary_list"
+            name: "serviceSecondaryList"
             widget: "list"
             fields:
               - {label: Title, name: title, widget: string}
