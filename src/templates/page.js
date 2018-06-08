@@ -3,19 +3,19 @@
 import React from "react";
 
 export default ({ data }) => {
-  const page = data.markdownRemark;
+  const project = data.markdownRemark;
   return (
     <Page>
       <Wrapper>
-        <Title>{page.frontmatter.title}</Title>
-        <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} />
+        <Title>{project.frontmatter.title}</Title>
+        <RichTextEditor dangerouslySetInnerHTML={{ __html: project.html }} />
       </Wrapper>
     </Page>
   );
 };
 
 export const query = graphql`
-  query DefaultPageQuery($slug: String!) {
+  query ProjectQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
