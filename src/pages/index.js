@@ -10,22 +10,21 @@ type Props = {
 };
 
 const IndexPage = ({ data }: Props) => {
-  const { edges: sections } = data.allHomePageJson;
+  const hero = data.hero.edges[0].node;
+  const services = data.services.edges[0].node;
   return (
     <Page>
       {console.log(data)}
       <Section className="Hero">
         <Wrapper>
           <HeroIllustration src={illustration} />
-          <Title
-            dangerouslySetInnerHTML={{ __html: sections[0].node.hero_title }}
-          />
-          <Subtitle>{sections[0].node.hero_subtitle}</Subtitle>
+          <Title dangerouslySetInnerHTML={{ __html: hero.hero_title }} />
+          <Subtitle>{hero.hero_subtitle}</Subtitle>
         </Wrapper>
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>{sections[1].node.services_title}</Title>
+          <Title>{services.services_title}</Title>
           <Subtitle>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
