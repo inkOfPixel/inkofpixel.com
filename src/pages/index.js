@@ -18,14 +18,14 @@ const IndexPage = ({ data }: Props) => {
         <Wrapper>
           <HeroIllustration src={illustration} />
           <Title
-            dangerouslySetInnerHTML={{ __html: sections[1].node.hero_title }}
+            dangerouslySetInnerHTML={{ __html: sections[0].node.hero_title }}
           />
-          <Subtitle>{sections[1].node.hero_subtitle}</Subtitle>
+          <Subtitle>{sections[0].node.hero_subtitle}</Subtitle>
         </Wrapper>
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>{sections[0].node.services_title}</Title>
+          <Title>{sections[1].node.services_title}</Title>
           <Subtitle>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -141,12 +141,19 @@ export default IndexPage;
 
 export const query = graphql`
   query HomePageQuery {
-    allHomePageJson {
+    hero: allHomePageJson(filter: { hero_title: { ne: null } }) {
       edges {
         node {
           hero_title
           hero_subtitle
+        }
+      }
+    }
+    services: allHomePageJson(filter: { services_title: { ne: null } }) {
+      edges {
+        node {
           services_title
+          services_description
         }
       }
     }
