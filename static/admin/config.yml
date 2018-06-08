@@ -55,7 +55,7 @@ collections:
               collection: projects
               displayFields: ["title"]
               searchFields: ["title", "body"]
-              valueFields: ["title", "excerpt"]
+              valueField: title
   - name: page
     label: Pages
     label_singular: Page
