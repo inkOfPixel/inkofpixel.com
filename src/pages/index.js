@@ -12,7 +12,7 @@ type Props = {
 const IndexPage = ({ data }: Props) => {
   const hero = data.hero.edges[0].node;
   const services = data.services.edges[0].node;
-  const projects = data.projects.edges[0].node;
+  // const projects = data.projects.edges[0].node;
   return (
     <Page>
       {console.log(data)}
@@ -54,8 +54,8 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Projects">
         <Wrapper>
-          <Title>{projects.projectsTitle}</Title>
-          <Subtitle>{projects.projectsDescription}</Subtitle>
+          {/* <Title>{projects.projectsTitle}</Title>
+          <Subtitle>{projects.projectsDescription}</Subtitle> */}
         </Wrapper>
       </Section>
     </Page>
@@ -313,15 +313,16 @@ export const query = graphql`
         }
       }
     }
-    projects: allHomePageJson(
-      filter: { fields: { name: { eq: "projects" } } }
-    ) {
-      edges {
-        node {
-          projectsTitle
-          projectsDescription
-        }
-      }
-    }
   }
 `;
+
+// projects: allHomePageJson(
+//       filter: { fields: { name: { eq: "projects" } } }
+//     ) {
+//       edges {
+//         node {
+//           projectsTitle
+//           projectsDescription
+//         }
+//       }
+//     }
