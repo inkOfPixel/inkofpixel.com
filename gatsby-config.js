@@ -14,6 +14,13 @@ module.exports = {
         name: "pages"
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/projects`,
+        name: "projects"
+      }
+    },
     "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
