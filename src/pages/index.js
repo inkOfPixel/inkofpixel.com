@@ -12,6 +12,7 @@ type Props = {
 const IndexPage = ({ data }: Props) => {
   const hero = data.hero.edges[0].node;
   const services = data.services.edges[0].node;
+  const projects = data.projects.edges[0].node;
   return (
     <Page>
       {console.log(data)}
