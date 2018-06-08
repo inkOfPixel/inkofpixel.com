@@ -53,9 +53,9 @@ collections:
               name: project
               widget: relation
               collection: projects
-              displayFields: ["title"]
+              displayFields: ["excerpt"]
               searchFields: ["title", "body"]
-              valueField: title
+              valueField: excerpt
   - name: page
     label: Pages
     label_singular: Page
