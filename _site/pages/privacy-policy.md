@@ -1,6 +1,6 @@
 ---
 title: Privacy policy
-template: default-page
+template: page
 ---
 
 **INFORMATIVA CLIENTI IN MATERIA DI PROTEZIONE DEI DATI PERSONALI**

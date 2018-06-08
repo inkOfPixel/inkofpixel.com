@@ -51,8 +51,7 @@ collections:
         label: Page template
         widget: select
         options:
-          - { label: Default, value: default-page }
-          - { label: Documents, value: documents-page }
+          - { label: Default, value: page }
       - { name: body, label: Page content, widget: markdown }
   - name: projects
     label: Projects
@@ -67,7 +66,6 @@ collections:
         label: Page template
         widget: select
         options:
-          - { label: Default, value: default-page }
-          - { label: Documents, value: documents-page }
+          - { label: Default, value: project }
       - { name: body, label: Page content, widget: markdown }
       

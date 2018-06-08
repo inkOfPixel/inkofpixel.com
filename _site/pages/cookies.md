@@ -1,6 +1,6 @@
 ---
 title: Cookies
-template: default-page
+template: page
 ---
 
 **Informativa estesa sui Cookies**

@@ -29,6 +29,19 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const fileNode = getNode(node.parent);
     const slug = createFilePath({ node, getNode });
     createNodeField({ node, name: "slug", value: slug });
+    createNodeField({
+      node,
+      name: "collection",
+      value: fileNode.sourceInstanceName
+    });
+    createNodeField({
+      node,
+      name: "path",
+      value:
+        fileNode.sourceInstanceName === "pages"
+          ? slug
+          : `/${fileNode.sourceInstanceName}${slug}`
+    });
   }
 };
 
@@ -42,6 +55,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             node {
               fields {
                 slug
+                path
               }
               frontmatter {
                 template
@@ -53,9 +67,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         const { template } = node.frontmatter;
-
         createPage({
-          path: node.fields.slug,
+          path: node.fields.path,
           component: path.resolve(`./src/templates/${template}.js`),
           context: {
             slug: node.fields.slug
