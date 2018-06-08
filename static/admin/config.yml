@@ -45,6 +45,13 @@ collections:
         fields:
           - {label: Title, name: projectsTitle, widget: string}
           - {label: Description, name: projectsDescription, widget: text}
+          - label: "Featured Projects"
+            name: "featuredProjects"
+            widget: "relationKitchenSinkPost"
+            collection: "projects"
+            displayFields: ["title", "date"]
+            searchFields: ["title", "body"]
+            valueField: "title"
   - name: page
     label: Pages
     label_singular: Page
@@ -75,4 +82,5 @@ collections:
         widget: hidden
         value: project
       - { name: body, label: Page content, widget: markdown }
+     
       
