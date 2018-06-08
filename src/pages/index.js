@@ -17,13 +17,15 @@ const IndexPage = ({ data }: Props) => {
       <Section className="Hero">
         <Wrapper>
           <HeroIllustration src={illustration} />
-          <Title>{sections[0].node.hero_title}</Title>
-          <Subtitle>{sections[0].node.hero_subtitle}</Subtitle>
+          <Title
+            dangerouslySetInnerHTML={{ __html: sections[1].node.hero_title }}
+          />
+          <Subtitle>{sections[1].node.hero_subtitle}</Subtitle>
         </Wrapper>
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>Master in Shopify</Title>
+          <Title>{sections[0].node.services_title}</Title>
           <Subtitle>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -144,6 +146,8 @@ export const query = graphql`
         node {
           hero_title
           hero_subtitle
+          services_title
+          services_description
         }
       }
     }
