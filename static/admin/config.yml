@@ -31,9 +31,9 @@ collections:
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
           - {label: Description, name: servicesSubDescription, widget: text}
-          - label: "Secondary Services"
-            name: "serviceSecondaryList"
-            widget: "list"
+          - label: Secondary Services
+            name: serviceSecondaryList
+            widget: list
             fields:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
@@ -45,13 +45,17 @@ collections:
         fields:
           - {label: Title, name: projectsTitle, widget: string}
           - {label: Description, name: projectsDescription, widget: text}
-          - label: "Featured Projects"
-            name: "featuredProjects"
-            widget: "relation"
-            collection: "projects"
-            displayFields: ["title", "date"]
-            searchFields: ["title", "body"]
-            valueField: "title"
+          - label: Featured Projects
+            name: featuredProjecs
+            widget: "list"
+            fields:
+            - label: Project
+              name: project
+              widget: relation
+              collection: projects
+              displayFields: [title]
+              searchFields: [title, body]
+              valueField: [title, image]
   - name: page
     label: Pages
     label_singular: Page
@@ -76,6 +80,7 @@ collections:
       - { name: title, label: Project title }
       - { name: seoTitle, label: SEO Project title, widget: string }
       - { name: seoDescription, label: SEO Description, widget: text }
+      - { name: excerpt, label: Excerpt, widget: text }
       - { name: featuredImage, label: Featured image, widget: image }
       - name: template
         label: Page template
