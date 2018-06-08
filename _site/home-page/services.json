@@ -1,7 +1,6 @@
 {
-  "service_title": "Master in Shopify e non solo",
-  "service_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "services": [
-    "a"
-  ]
+  "services_title": "Master in Shopify e non solo",
+  "services_description":
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "services": ["a"]
 }

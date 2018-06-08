@@ -147,7 +147,6 @@ export const query = graphql`
           hero_title
           hero_subtitle
           services_title
-          services_description
         }
       }
     }
