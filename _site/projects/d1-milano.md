@@ -12,6 +12,7 @@ excerpt: >-
   growing brands in the luxury industry and has been featured by Forbes in the
   list of Top 10 Startups Redefining Italian Fashion.
 featuredImage: /assets/d1 milano.jpg
+logo: /assets/inkofpixel - project logo_d1 milano.svg
 template: project
 ---
 
