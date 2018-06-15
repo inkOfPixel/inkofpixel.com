@@ -58,8 +58,19 @@ const IndexPage = ({ data }: Props) => {
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
                 <div className="content">
-                  <p className="title">{item.frontmatter.title}</p>
+                  <img
+                    src={item.frontmatter.logo}
+                    alt={`${item.frontmatter.title} logo`}
+                  />
+                  <p className="description">{item.frontmatter.excerpt}</p>
+                  <a href={item.fields.path}>Discover More</a>
                 </div>
+                <div
+                  className="featuredImage"
+                  style={{
+                    backgroundImage: `url('${item.frontmatter.featuredImage}')`
+                  }}
+                />
               </li>
             ))}
           </ul>
@@ -285,6 +296,62 @@ const Section = styled.section`
         padding-top: 60px;
       }
     }
+    .featuredProjectsList {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      width: calc(100% + 30px);
+      margin-left: -15px;
+      li {
+        margin: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        flex: 1 1 0;
+        width: 50%;
+        justify-content: space-between;
+        background-color: rgb(245,245,245);
+          width: 100%;
+        img {
+          width: 300px;
+          display: block;
+          margin: 0 auto;
+        }
+        .content {
+          width: 100%;
+          padding: 30px 0 60px 0;
+          box-sizing: border-box;
+          text-align: center;
+          position: relative;
+          .description {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 30px;
+            font-size: 14px;
+            line-height: 1.8em;
+          }
+         
+        }
+        .featuredImage{
+          width: 100%;
+          height: 300px;
+          background-size: cover;
+          position: relative;
+           &::after{
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            background-color: rgb(245,245,245);
+            content: "";
+              top: -40px;
+              right: 0;
+              transform: skewY(2deg);
+          }
+        }
+      }
+    }
 `;
 
 export default IndexPage;
@@ -335,6 +402,10 @@ export const query = graphql`
                 title
                 excerpt
                 featuredImage
+                logo
+              }
+              fields {
+                path
               }
             }
           }
