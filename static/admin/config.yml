@@ -14,25 +14,25 @@ collections:
         file: _site/home-page/hero.json
         description: Hero Settings
         fields:
-          - {label: Title, name: heroTitle, widget: text}
-          - {label: Subtitle, name: heroSubtitle, widget: text}
+          - {label: Title, name: title, widget: text}
+          - {label: Subtitle, name: subtitle, widget: text}
       - name: services
         label: Services
         file: _site/home-page/services.json
         description: Services
         fields:
-          - {label: Title, name: servicesTitle, widget: string}
-          - {label: Description, name: servicesDescription, widget: text}
+          - {label: Title, name: title, widget: string}
+          - {label: Description, name: description, widget: text}
           - label: "Services"
-            name: "servicesPrimaryList"
+            name: "primaryList"
             widget: "list"
             fields:
               - {label: Title, name: title, widget: string}
               - {label: Image, name: image, widget: image}
               - {label: Description, name: description, widget: text}
-          - {label: Description, name: servicesSubDescription, widget: text}
+          - {label: Description, name: subDescription, widget: text}
           - label: Secondary Services
-            name: serviceSecondaryList
+            name: secondaryList
             widget: list
             fields:
               - {label: Title, name: title, widget: string}
@@ -43,8 +43,8 @@ collections:
         file: _site/home-page/projects.json
         description: Projects
         fields:
-          - {label: Title, name: projectsTitle, widget: string}
-          - {label: Description, name: projectsDescription, widget: text}
+          - {label: Title, name: title, widget: string}
+          - {label: Description, name: description, widget: text}
           - label: Featured Projects
             name: featuredProjects
             widget: "list"
@@ -82,6 +82,7 @@ collections:
       - { name: seoDescription, label: SEO Description, widget: text }
       - { name: excerpt, label: Excerpt, widget: text }
       - { name: featuredImage, label: Featured image, widget: image }
+      - { name: logo, label: Logo, widget: image }
       - name: template
         label: Page template
         widget: select

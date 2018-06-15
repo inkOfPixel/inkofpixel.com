@@ -1,8 +1,8 @@
 {
-  "servicesTitle": "Master in Shopify e non solo",
-  "servicesDescription":
+  "title": "Master in Shopify e non solo",
+  "description":
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "servicesPrimaryList": [
+  "primaryList": [
     {
       "title": "Setup",
       "image": "/assets/inkofpixel - services_setup.svg",
@@ -28,9 +28,9 @@
         "We help you attract customers and boost sales by building brand awareness, optimizing SEO, and launching social media campaigns."
     }
   ],
-  "servicesSubDescription":
+  "subDescription":
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "serviceSecondaryList": [
+  "secondaryList": [
     {
       "title": "Mobile App",
       "image": "/assets/inkofpixel - services_app.svg",

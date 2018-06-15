@@ -19,16 +19,16 @@ const IndexPage = ({ data }: Props) => {
       <Section className="Hero">
         <Wrapper>
           <HeroIllustration src={illustration} />
-          <Title dangerouslySetInnerHTML={{ __html: hero.heroTitle }} />
-          <Subtitle>{hero.heroSubtitle}</Subtitle>
+          <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
+          <Subtitle>{hero.subtitle}</Subtitle>
         </Wrapper>
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>{services.servicesTitle}</Title>
-          <Subtitle>{services.servicesDescription}</Subtitle>
+          <Title>{services.ttle}</Title>
+          <Subtitle>{services.description}</Subtitle>
           <ul className="primaryServicesList">
-            {services.servicesPrimaryList.map(item => (
+            {services.primaryList.map(item => (
               <li key={item.title}>
                 <img src={item.image} alt={`${item.title} inkOfPixel`} />
                 <p className="title">{item.title}</p>
@@ -36,11 +36,9 @@ const IndexPage = ({ data }: Props) => {
               </li>
             ))}
           </ul>
-          <Subtitle className="secondary">
-            {services.servicesDescription}
-          </Subtitle>
+          <Subtitle className="secondary">{services.description}</Subtitle>
           <ul className="secondaryServicesList">
-            {services.serviceSecondaryList.map(item => (
+            {services.secondaryList.map(item => (
               <li key={item.title}>
                 <img src={item.image} alt={`${item.title} inkOfPixel`} />
                 <div className="content">
@@ -54,8 +52,8 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Projects">
         <Wrapper>
-          <Title>{projects.projectsTitle}</Title>
-          <Subtitle>{projects.projectsDescription}</Subtitle>
+          <Title>{projects.title}</Title>
+          <Subtitle>{projects.description}</Subtitle>
           <ul className="featuredProjectsList">
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
@@ -296,8 +294,8 @@ export const query = graphql`
     hero: allHomePageJson(filter: { fields: { name: { eq: "hero" } } }) {
       edges {
         node {
-          heroTitle
-          heroSubtitle
+          title
+          subtitle
         }
       }
     }
@@ -306,15 +304,15 @@ export const query = graphql`
     ) {
       edges {
         node {
-          servicesTitle
-          servicesDescription
-          servicesPrimaryList {
+          title
+          description
+          primaryList {
             image
             title
             description
           }
-          servicesSubDescription
-          serviceSecondaryList {
+          subDescription
+          secondaryList {
             image
             title
             description
@@ -327,8 +325,8 @@ export const query = graphql`
     ) {
       edges {
         node {
-          projectsTitle
-          projectsDescription
+          title
+          description
           fields {
             name
             featuredProjects {
