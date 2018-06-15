@@ -56,6 +56,15 @@ const IndexPage = ({ data }: Props) => {
         <Wrapper>
           <Title>{projects.projectsTitle}</Title>
           <Subtitle>{projects.projectsDescription}</Subtitle>
+          <ul className="featuredProjectsList">
+            {projects.fields.featuredProjects.map(item => (
+              <li key={item.frontmatter.title}>
+                <div className="content">
+                  <p className="title">{item.frontmatter.title}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Wrapper>
       </Section>
     </Page>
@@ -320,6 +329,17 @@ export const query = graphql`
         node {
           projectsTitle
           projectsDescription
+          fields {
+            name
+            featuredProjects {
+              id
+              frontmatter {
+                title
+                excerpt
+                featuredImage
+              }
+            }
+          }
         }
       }
     }

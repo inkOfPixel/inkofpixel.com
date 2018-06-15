@@ -46,7 +46,7 @@ collections:
           - {label: Title, name: projectsTitle, widget: string}
           - {label: Description, name: projectsDescription, widget: text}
           - label: Featured Projects
-            name: featuredProjecs
+            name: featuredProjects
             widget: "list"
             fields:
             - label: Project

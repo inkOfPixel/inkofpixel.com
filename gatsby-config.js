@@ -21,7 +21,6 @@ module.exports = {
         name: "projects"
       }
     },
-    "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -29,6 +28,7 @@ module.exports = {
         name: "home-page"
       }
     },
+    "gatsby-transformer-json",
     "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-google-analytics`,

@@ -84,3 +84,36 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     });
   });
 };
+
+exports.setFieldsOnGraphQLNodeType = ({
+  boundActionCreators,
+  getNodes,
+  getNode
+}) => {
+  const { createNodeField } = boundActionCreators;
+
+  const projectsSection = getNodes().find(node => {
+    return (
+      node.internal.type === "HomePageJson" && node.fields.name === "projects"
+    );
+  });
+
+  if (projectsSection) {
+    if (Array.isArray(projectsSection.featuredProjects)) {
+      const featuredProjectsTitles = projectsSection.featuredProjects.map(
+        project => project.project
+      );
+      const featuredProjectsMarkdownNodes = getNodes().filter(
+        markdownNode =>
+          markdownNode.internal.type === "MarkdownRemark" &&
+          markdownNode.fields.collection === "projects" &&
+          featuredProjectsTitles.includes(markdownNode.frontmatter.title)
+      );
+      createNodeField({
+        node: projectsSection,
+        name: "featuredProjects",
+        value: featuredProjectsMarkdownNodes
+      });
+    }
+  }
+};
