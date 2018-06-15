@@ -84,8 +84,9 @@ collections:
       - { name: featuredImage, label: Featured image, widget: image }
       - name: template
         label: Page template
-        widget: hidden
-        value: project
+        widget: select
+        options:
+          - { label: Default, value: page }
       - { name: body, label: Page content, widget: markdown }
      
       
