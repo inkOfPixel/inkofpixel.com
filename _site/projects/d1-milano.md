@@ -1,6 +1,6 @@
 ---
 title: D1 Milano
-seoTitle: D1 Milano | inkOfPixel
+seoTitle: asd
 seoDescription: >-
   D1 Milano is a luxury fashion accessory brand born in Milan during the 2013
   Edition of Milano Fashion Week. The company is considered one of the fastest
