@@ -25,7 +25,7 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Services">
         <Wrapper>
-          <Title>{services.ttle}</Title>
+          <Title>{services.title}</Title>
           <Subtitle>{services.description}</Subtitle>
           <ul className="primaryServicesList">
             {services.primaryList.map(item => (
@@ -106,8 +106,13 @@ const Subtitle = styled.p`
   margin: 0;
   padding-top: 30px;
   font-weight: 700;
+  width: 50%;
   @media (max-width: 700px) {
     font-size: 20px;
+    width: 70%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
@@ -139,6 +144,7 @@ const Section = styled.section`
     z-index: 10;
   }
   &.Hero {
+    overflow: hidden;
     padding-top: 100px;
     padding-bottom: 140px;
     ${Title} {
@@ -146,11 +152,6 @@ const Section = styled.section`
     }
     ${Subtitle} {
       color: #161338;
-      width: 50%;
-
-      @media (max-width: 700px) {
-        width: 70%;
-      }
     }
   }
   &.Services {
@@ -184,7 +185,6 @@ const Section = styled.section`
     }
     ${Subtitle} {
       text-align: center;
-      width: 70%;
       margin: 0 auto;
       padding-bottom: 60px;
       &.secondary {
@@ -198,6 +198,12 @@ const Section = styled.section`
       padding: 0;
       width: calc(100% + 20px);
       margin-left: -10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      @media (max-width: 600px) {
+        width: calc(100% + 60px);
+        margin-left: -30px;
+      }
       li {
         background-color: #fff;
         margin: 10px;
@@ -206,7 +212,18 @@ const Section = styled.section`
         align-items: center;
         box-sizing: border-box;
         padding: 30px;
-        flex: 1 1 0;
+
+        width: calc(25% - 20px);
+        @media (max-width: 1100px) {
+          width: calc(33.33% - 20px);
+        }
+        @media (max-width: 800px) {
+          width: calc(50% - 20px);
+        }
+        @media (max-width: 500px) {
+          width: calc(100% - 20px);
+        }
+
         img {
           width: 160px;
         }
@@ -230,6 +247,11 @@ const Section = styled.section`
       padding: 0;
       width: calc(100% + 20px);
       margin-left: -10px;
+      flex-wrap: wrap;
+      @media (max-width: 600px) {
+        width: calc(100% + 60px);
+        margin-left: -30px;
+      }
       li {
         background-color: #fff;
         margin: 10px;
@@ -238,12 +260,23 @@ const Section = styled.section`
         align-items: center;
         box-sizing: border-box;
         padding: 30px;
-        flex: 1 1 0;
+        width: calc(50% - 20px);
+        @media (max-width: 900px) {
+          width: calc(100% - 20px);
+        }
+        @media (max-width: 500px) {
+          flex-direction: column;
+        }
+
         img {
           width: 160px;
         }
         .content {
           padding-left: 30px;
+          @media (max-width: 500px) {
+            padding-left: 0;
+            text-align: center;
+          }
           .title {
             font-weight: 700;
             font-size: 20px;
@@ -275,7 +308,7 @@ const Section = styled.section`
       z-index: 1;
       top: -100px;
       transform: skewY(-4deg);
-      background-color: #FE5A6D;
+      background-color: #fe5a6d;
     }
     &:after {
       z-index: 2;
@@ -285,11 +318,10 @@ const Section = styled.section`
     }
     ${Title} {
       text-align: center;
-      color: #FE5A6D;
+      color: #fe5a6d;
     }
     ${Subtitle} {
       text-align: center;
-      width: 70%;
       margin: 0 auto;
       padding-bottom: 60px;
       &.secondary {
@@ -303,55 +335,88 @@ const Section = styled.section`
       padding: 0;
       width: calc(100% + 30px);
       margin-left: -15px;
+      flex-wrap: wrap;
+      @media (max-width: 600px) {
+        width: calc(100% + 80px);
+        margin-left: -40px;
+      }
       li {
         margin: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
-        flex: 1 1 0;
-        width: 50%;
+        width: calc(50% - 30px);
         justify-content: space-between;
-        background-color: rgb(245,245,245);
-          width: 100%;
-        img {
-          width: 300px;
-          display: block;
-          margin: 0 auto;
+        background-color: rgb(245, 245, 245);
+        @media (max-width: 900px) {
+          width: calc(100% - 30px);
+          flex-direction: row;
         }
-        .content {
+        @media (max-width: 700px) {
+          flex-direction: column;
+        }
+      }
+      img {
+        width: 300px;
+        display: block;
+        margin: 0 auto;
+      }
+      .content {
+        width: 100%;
+        padding: 30px 0 60px 0;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+        .description {
           width: 100%;
-          padding: 30px 0 60px 0;
           box-sizing: border-box;
-          text-align: center;
-          position: relative;
-          .description {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 0 30px;
-            font-size: 14px;
-            line-height: 1.8em;
-          }
-         
+          padding: 0 30px;
+          font-size: 14px;
+          line-height: 1.8em;
         }
-        .featuredImage{
-          width: 100%;
+      }
+      .featuredImage {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        position: relative;
+        background-position: center;
+        @media (max-width: 900px) {
+          height: 100%;
+        }
+        @media (max-width: 700px) {
           height: 300px;
-          background-size: cover;
-          position: relative;
-           &::after{
-            position: absolute;
+        }
+        &::after {
+          position: absolute;
+          height: 50px;
+          width: 100%;
+          background-color: rgb(245, 245, 245);
+          content: "";
+          top: -40px;
+          left: 0;
+          transform: skewY(2deg);
+          @media (max-width: 900px) {
+            height: 100%;
+            width: 50px;
+            top: 0;
+            left: -40px;
+            transform: skewY(0deg);
+            transform: skewX(2deg);
+          }
+          @media (max-width: 700px) {
             height: 50px;
             width: 100%;
-            background-color: rgb(245,245,245);
-            content: "";
-              top: -40px;
-              right: 0;
-              transform: skewY(2deg);
+            top: -40px;
+            left: 0;
+            transform: skewY(2deg);
+            transform: skewX(0deg);
           }
         }
       }
     }
+  }
 `;
 
 export default IndexPage;
