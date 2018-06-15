@@ -86,7 +86,7 @@ collections:
         label: Page template
         widget: select
         options:
-          - { label: Default, value: page }
+          - { label: Default, value: project }
       - { name: body, label: Page content, widget: markdown }
      
       
