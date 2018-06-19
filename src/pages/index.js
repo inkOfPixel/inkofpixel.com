@@ -83,7 +83,12 @@ const IndexPage = ({ data }: Props) => {
         <Wrapper>
           <Title>{services.title}</Title>
           <Subtitle>{services.description}</Subtitle>
-          <form name="contact" method="POST" netlify>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
             <p>
               <label>
                 Your Name: <input type="text" name="name" />
