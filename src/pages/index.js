@@ -91,29 +91,26 @@ const IndexPage = ({ data }: Props) => {
             data-netlify-honeypot="bot-field"
           >
             <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden">
+            <div className="row hidden">
               <label>
                 Don’t fill this out if you're human: <input name="bot-field" />
               </label>
-            </p>
-            <p>
-              <label>
-                Your Name: <input type="text" name="name" />
-              </label>
-            </p>
-            <p>
-              <label>
-                Your Email: <input type="email" name="email" />
-              </label>
-            </p>
-            <p>
-              <label>
-                Message: <textarea name="message" />
-              </label>
-            </p>
-            <p>
+            </div>
+            <div className="row">
+              <label for="name">Name</label>
+              <input type="text" name="name" />
+            </div>
+            <div className="row">
+              <label for="email">Email</label>
+              <input type="email" name="email" />
+            </div>
+            <div className="row">
+              <label for="message">Message</label>
+              <textarea name="message" />
+            </div>
+            <div className="row submit">
               <button type="submit">Send</button>
-            </p>
+            </div>
           </form>
         </Wrapper>
       </Section>
@@ -509,11 +506,50 @@ const Section = styled.section`
       }
     }
     form{
-      width: 600px;
+      width: 400px;
       display: block;
       margin: 0 auto;
+      @media (max-width: 460px){
+
+        width: 100%;
+      }
       .hidden{
         display: none;
+      }
+      .row{
+        width: 100%;
+        padding-bottom: 20px;
+        label{
+          display: block;
+          padding-bottom: 10px;
+        }
+        textarea,
+        input{
+          width: 100%;
+          background-color: #fff;
+          border: none;
+        }
+        input{
+          height: 40px;
+          padding: 0 10px;
+          box-sizing: border-box;
+        }
+        textarea{
+          height: 100px;
+ box-sizing: border-box;
+ padding: 10px;
+        }
+        &.submit{
+          text-align: right;
+        }
+        button{
+          width:200px;
+          display: inline-block;
+          height: 40px;
+          background-color: #161338;
+          color: #fff;
+          border: none;
+        }
       }
     }
 `;
