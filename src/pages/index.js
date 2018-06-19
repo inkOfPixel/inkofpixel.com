@@ -88,7 +88,6 @@ const IndexPage = ({ data }: Props) => {
             method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            action="/form-success"
           >
             <p class="hidden">
               <label>
