@@ -42,29 +42,15 @@ class Header extends Component<Props, State> {
             customCrossIcon={<CrossIcon />}
             customBurgerIcon={<BurgerIcon />}
           >
-            <MobileLink to="/" onClick={this.toggleMenu}>
-              Home
+            <MobileLink to="#Services" onClick={this.toggleMenu}>
+              Services
             </MobileLink>
-            <MobileLink to="/english-version" onClick={this.toggleMenu}>
-              English version
+            <MobileLink to="#Projects" onClick={this.toggleMenu}>
+              Porjects
             </MobileLink>
-            <MobileLink to="/documenti" onClick={this.toggleMenu}>
-              Documenti
+            <MobileLink to="#Contacts" onClick={this.toggleMenu}>
+              Contacs
             </MobileLink>
-            <ResourceLink
-              href="/assets/fiber-4.0-prospetto-informativo.pdf"
-              onClick={this.toggleMenu}
-              target="_blank"
-            >
-              Prospetto informativo
-            </ResourceLink>
-            <ResourceLink
-              href="assets/fiber-4.0-modulo-di-delega.pdf"
-              onClick={this.toggleMenu}
-              target="_blank"
-            >
-              Modulo di delega
-            </ResourceLink>
           </MobileMenu>
         </MobileMenuContainer>
         <DesktopMenuContainer>
@@ -74,16 +60,13 @@ class Header extends Component<Props, State> {
             </LogoLink>
             <List>
               <ListItem>
-                <Link to="#">Services</Link>
+                <Link to="#Services">Services</Link>
               </ListItem>
               <ListItem>
-                <Link to="#">Projects</Link>
+                <Link to="#Projects">Projects</Link>
               </ListItem>
               <ListItem>
-                <Link to="#">Why Us?</Link>
-              </ListItem>
-              <ListItem>
-                <Link to="#">Contacts</Link>
+                <Link to="#Contacts">Contacts</Link>
               </ListItem>
             </List>
           </Wrapper>

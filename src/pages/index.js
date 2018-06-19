@@ -4,6 +4,7 @@ import React, { Fragment } from "react";
 import styled from "styled-components";
 import Wrapper from "components/Wrapper";
 import illustration from "images/inkOfPixel - Hero - Illustration.svg";
+import Link from "gatsby-link";
 
 type Props = {
   data: {}
@@ -23,7 +24,7 @@ const IndexPage = ({ data }: Props) => {
           <Subtitle>{hero.subtitle}</Subtitle>
         </Wrapper>
       </Section>
-      <Section className="Services">
+      <Section className="Services" id="Sevices">
         <Wrapper>
           <Title>{services.title}</Title>
           <Subtitle>{services.description}</Subtitle>
@@ -50,7 +51,7 @@ const IndexPage = ({ data }: Props) => {
           </ul>
         </Wrapper>
       </Section>
-      <Section className="Projects">
+      <Section className="Projects" id="Projects">
         <Wrapper>
           <Title>{projects.title}</Title>
           <Subtitle>{projects.description}</Subtitle>
@@ -63,7 +64,9 @@ const IndexPage = ({ data }: Props) => {
                     alt={`${item.frontmatter.title} logo`}
                   />
                   <p className="description">{item.frontmatter.excerpt}</p>
-                  <a href={item.fields.path}>Discover More</a>
+                  <Link className="projectLink" to={item.fields.path}>
+                    Discover More
+                  </Link>
                 </div>
                 <div
                   className="featuredImage"
@@ -76,12 +79,48 @@ const IndexPage = ({ data }: Props) => {
           </ul>
         </Wrapper>
       </Section>
+      <Section className="Contacts" id="Contacts">
+        <Wrapper>
+          <Title>{services.title}</Title>
+          <Subtitle>{services.description}</Subtitle>
+          <form name="contact" method="POST" netlify>
+            <p>
+              <label>
+                Your Name: <input type="text" name="name" />
+              </label>
+            </p>
+            <p>
+              <label>
+                Your Email: <input type="email" name="email" />
+              </label>
+            </p>
+            <p>
+              <label>
+                Your Role:{" "}
+                <select name="role[]" multiple>
+                  <option value="leader">Leader</option>
+                  <option value="follower">Follower</option>
+                </select>
+              </label>
+            </p>
+            <p>
+              <label>
+                Message: <textarea name="message" />
+              </label>
+            </p>
+            <p>
+              <button type="submit">Send</button>
+            </p>
+          </form>
+        </Wrapper>
+      </Section>
     </Page>
   );
 };
 
 const Page = styled.div`
   padding-top: 160px;
+  overflow: hidden;
   @media (max-width: 899px) {
     padding-top: 20px;
   }
@@ -107,6 +146,7 @@ const Subtitle = styled.p`
   padding-top: 30px;
   font-weight: 700;
   width: 50%;
+  line-height: 1.4em;
   @media (max-width: 700px) {
     font-size: 20px;
     width: 70%;
@@ -139,12 +179,12 @@ const HeroIllustration = styled.div.attrs({
 
 const Section = styled.section`
   width: 100%;
+
   position: relative;
   ${Wrapper} {
     z-index: 10;
   }
   &.Hero {
-    overflow: hidden;
     padding-top: 100px;
     padding-bottom: 140px;
     ${Title} {
@@ -375,6 +415,17 @@ const Section = styled.section`
           font-size: 14px;
           line-height: 1.8em;
         }
+        .projectLink {
+          color: #161338;
+          font-weight: 700;
+          margin-top: 20px;
+          display: inline-block;
+          text-decoration: none;
+          transition: all 0.3s;
+          &:hover {
+            color: #7589f4;
+          }
+        }
       }
       .featuredImage {
         width: 100%;
@@ -417,6 +468,43 @@ const Section = styled.section`
       }
     }
   }
+  &.Contacts {
+    margin-top: 200px;
+    background-color: rgb(245, 245, 245);
+    padding-top: 30px;
+    padding-bottom: 200px;
+    &:before,
+    &:after {
+      display: block;
+      content: "";
+      position: absolute;
+      height: 500px;
+      width: 100%;
+    }
+    &:before {
+      z-index: 1;
+      top: -100px;
+      transform: skewY(4deg);
+      background-color: #7589f4;
+    }
+    &:after {
+      z-index: 2;
+      top: -70px;
+      transform: skewY(5deg);
+      background-color: rgb(245, 245, 245);
+    }
+    ${Title} {
+      text-align: center;
+      color: #7589f4;
+    }
+    ${Subtitle} {
+      text-align: center;
+      margin: 0 auto;
+      padding-bottom: 60px;
+      &.secondary {
+        padding-top: 60px;
+      }
+    }
 `;
 
 export default IndexPage;
