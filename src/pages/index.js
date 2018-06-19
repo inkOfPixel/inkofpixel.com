@@ -85,7 +85,7 @@ const IndexPage = ({ data }: Props) => {
           <Subtitle>{services.description}</Subtitle>
           <form
             name="contact"
-            method="POST"
+            method="post"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             action="/form-success"
