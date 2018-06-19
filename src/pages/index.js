@@ -14,6 +14,7 @@ const IndexPage = ({ data }: Props) => {
   const hero = data.hero.edges[0].node;
   const services = data.services.edges[0].node;
   const projects = data.projects.edges[0].node;
+  const contacts = data.contacts.edges[0].node;
   return (
     <Page>
       {console.log(data)}
@@ -81,8 +82,8 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Contacts" id="Contacts">
         <Wrapper>
-          <Title>{services.title}</Title>
-          <Subtitle>{services.description}</Subtitle>
+          <Title>{contacts.title}</Title>
+          <Subtitle>{contacts.description}</Subtitle>
           <form
             name="contact"
             method="post"
@@ -505,6 +506,14 @@ const Section = styled.section`
       padding-bottom: 60px;
       &.secondary {
         padding-top: 60px;
+      }
+    }
+    form{
+      width: 600px;
+      display: block;
+      margin: 0 auto;
+      .hidden{
+        display: none;
       }
     }
 `;
