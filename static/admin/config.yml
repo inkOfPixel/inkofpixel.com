@@ -56,6 +56,14 @@ collections:
               displayFields: ["title"]
               searchFields: ["title", "body"]
               valueField: title
+      - name: contacts
+        label: Contacts
+        file: _site/home-page/contacts.json
+        description: Contancts
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Description, name: description, widget: text}
+         
   - name: page
     label: Pages
     label_singular: Page

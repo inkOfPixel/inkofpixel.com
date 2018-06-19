@@ -567,5 +567,15 @@ export const query = graphql`
         }
       }
     }
+    contacts: allHomePageJson(
+      filter: { fields: { name: { eq: "contacts" } } }
+    ) {
+      edges {
+        node {
+          title
+          description
+        }
+      }
+    }
   }
 `;
