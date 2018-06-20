@@ -196,7 +196,7 @@ const Section = styled.section`
   }
   &.Services {
     margin-top: 200px;
-    background-color: rgb(245, 245, 245);
+    background-color: #E5E8F4;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -217,7 +217,7 @@ const Section = styled.section`
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: rgb(245, 245, 245);
+      background-color: #E5E8F4;
     }
     ${Title} {
       text-align: center;
@@ -388,7 +388,7 @@ const Section = styled.section`
         box-sizing: border-box;
         width: calc(50% - 30px);
         justify-content: space-between;
-        background-color: rgb(245, 245, 245);
+        background-color: #FEEAEC;
         @media (max-width: 900px) {
           width: calc(100% - 30px);
           flex-direction: row;
@@ -443,7 +443,7 @@ const Section = styled.section`
           position: absolute;
           height: 50px;
           width: 100%;
-          background-color: rgb(245, 245, 245);
+          background-color: #FEEAEC;
           content: "";
           top: -40px;
           left: 0;
@@ -470,7 +470,7 @@ const Section = styled.section`
   }
   &.Contacts {
     margin-top: 200px;
-    background-color: rgb(245, 245, 245);
+    background-color: #E5E8F4;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -491,7 +491,7 @@ const Section = styled.section`
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: rgb(245, 245, 245);
+      background-color: #E5E8F4;
     }
     ${Title} {
       text-align: center;
