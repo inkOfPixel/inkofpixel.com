@@ -25,7 +25,7 @@ const IndexPage = ({ data }: Props) => {
           <HeroIllustration src={illustration} />
         </Wrapper>
       </Section>
-      <Section className="Services" id="Sevices">
+      <Section className="Services" id="Services">
         <Wrapper>
           <Title>{services.title}</Title>
           <Subtitle>{services.description}</Subtitle>
