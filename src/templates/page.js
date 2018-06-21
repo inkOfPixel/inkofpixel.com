@@ -25,13 +25,7 @@ export const query = graphql`
   }
 `;
 
-const Page = styled.div`
-  padding-bottom: 100px;
-  padding-top: 160px;
-  @media (max-width: 899px) {
-    padding-top: 60px;
-  }
-`;
+const Page = styled.div``;
 
 const Title = styled.h1`
   padding-bottom: 40px;
