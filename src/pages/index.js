@@ -20,9 +20,9 @@ const IndexPage = ({ data }: Props) => {
       {console.log(data)}
       <Section className="Hero">
         <Wrapper>
-          <HeroIllustration src={illustration} />
           <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
           <Subtitle>{hero.subtitle}</Subtitle>
+          <HeroIllustration src={illustration} />
         </Wrapper>
       </Section>
       <Section className="Services" id="Sevices">
@@ -169,8 +169,19 @@ const HeroIllustration = styled.div.attrs({
     width: 680px;
   }
   @media (max-width: 900px) {
-    opacity: 0.5;
-    right: -300px;
+    position: relative;
+    left: 10%;
+    width: 80%;
+    top: 0px;
+  }
+  @media (max-width: 600px) {
+    top: 40px;
+    left: 5%;
+    width: 100%;
+  }
+  @media (max-width: 500px) {
+    left: 5%;
+    width: 120%;
   }
   img {
     width: 100%;
@@ -187,6 +198,9 @@ const Section = styled.section`
   &.Hero {
     padding-top: 100px;
     padding-bottom: 140px;
+    @media (max-width:900px){
+      padding-bottom: 50px;
+    }
     ${Title} {
       color: #7589f4;
     }
@@ -196,7 +210,7 @@ const Section = styled.section`
   }
   &.Services {
     margin-top: 200px;
-    background-color: #E5E8F4;
+    background-color: #fff;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -211,17 +225,17 @@ const Section = styled.section`
       z-index: 1;
       top: -100px;
       transform: skewY(4deg);
-      background-color: #7589f4;
+      background-color: #FFCF58;
     }
     &:after {
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: #E5E8F4;
+      background-color: #fff;
     }
     ${Title} {
       text-align: center;
-      color: #7589f4;
+      color: #FFCF58;
     }
     ${Subtitle} {
       text-align: center;
@@ -246,6 +260,7 @@ const Section = styled.section`
       }
       li {
         background-color: #fff;
+        border: 4px solid #161338;
         margin: 10px;
         display: flex;
         flex-direction: column;
@@ -294,6 +309,7 @@ const Section = styled.section`
       }
       li {
         background-color: #fff;
+        border: 4px solid #161338;
         margin: 10px;
         display: flex;
         flex-direction: row;
@@ -388,7 +404,8 @@ const Section = styled.section`
         box-sizing: border-box;
         width: calc(50% - 30px);
         justify-content: space-between;
-        background-color: #FEEAEC;
+        background-color: #fff;
+        border: 4px solid #161338;
         @media (max-width: 900px) {
           width: calc(100% - 30px);
           flex-direction: row;
@@ -443,11 +460,12 @@ const Section = styled.section`
           position: absolute;
           height: 50px;
           width: 100%;
-          background-color: #FEEAEC;
+          background-color: #fff;
           content: "";
           top: -40px;
           left: 0;
           transform: skewY(2deg);
+          border-bottom: 4px solid #161338;
           @media (max-width: 900px) {
             height: 100%;
             width: 50px;
@@ -470,7 +488,7 @@ const Section = styled.section`
   }
   &.Contacts {
     margin-top: 200px;
-    background-color: #E5E8F4;
+    background-color: #fff;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -491,7 +509,7 @@ const Section = styled.section`
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: #E5E8F4;
+      background-color: #fff;
     }
     ${Title} {
       text-align: center;
@@ -528,6 +546,8 @@ const Section = styled.section`
           width: 100%;
           background-color: #fff;
           border: none;
+          border-radius: none;
+          border: 4px solid #161338;
         }
         input{
           height: 40px;
