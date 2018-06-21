@@ -1,10 +1,26 @@
 // @flow
 
 import React, { Fragment } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Wrapper from "components/Wrapper";
-import illustration from "images/inkOfPixel - Hero - Illustration.svg";
 import Link from "gatsby-link";
+import mainIllustration from "images/heroIllustration/main-illustration.svg";
+import illustration00 from "images/heroIllustration/illustration00.svg";
+import illustration01 from "images/heroIllustration/illustration01.svg";
+import illustration02 from "images/heroIllustration/illustration02.svg";
+import illustration03 from "images/heroIllustration/illustration03.svg";
+import illustration04 from "images/heroIllustration/illustration04.svg";
+import illustration05 from "images/heroIllustration/illustration05.svg";
+import illustration06 from "images/heroIllustration/illustration06.svg";
+import illustration07 from "images/heroIllustration/illustration07.svg";
+import illustration08 from "images/heroIllustration/illustration08.svg";
+import illustration09 from "images/heroIllustration/illustration09.svg";
+import illustration10 from "images/heroIllustration/illustration10.svg";
+import illustration11 from "images/heroIllustration/illustration11.svg";
+import illustration12 from "images/heroIllustration/illustration12.svg";
+import illustration13 from "images/heroIllustration/illustration13.svg";
+import illustration14 from "images/heroIllustration/illustration14.svg";
+import illustration15 from "images/heroIllustration/illustration15.svg";
 
 type Props = {
   data: {}
@@ -22,8 +38,65 @@ const IndexPage = ({ data }: Props) => {
         <Wrapper>
           <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
           <Subtitle>{hero.subtitle}</Subtitle>
-          <HeroIllustration src={illustration} />
         </Wrapper>
+        <HeroIllustration>
+          <Wrapper>
+            <div className="mainIllustration">
+              <img src={mainIllustration} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration00">
+              <img src={illustration00} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration01">
+              <img src={illustration01} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration02">
+              <img src={illustration02} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration03">
+              <img src={illustration01} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration03">
+              <img src={illustration03} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration04">
+              <img src={illustration04} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration05">
+              <img src={illustration05} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration06">
+              <img src={illustration06} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration07">
+              <img src={illustration07} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration08">
+              <img src={illustration08} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration09">
+              <img src={illustration09} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration10">
+              <img src={illustration10} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration11">
+              <img src={illustration11} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration12">
+              <img src={illustration12} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration13">
+              <img src={illustration13} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration14">
+              <img src={illustration14} alt="inkofpixel logo" />
+            </div>
+            <div className="illustration illustration15">
+              <img src={illustration15} alt="inkofpixel logo" />
+            </div>
+          </Wrapper>
+        </HeroIllustration>
       </Section>
       <Section className="Services" id="Services">
         <Wrapper>
@@ -119,11 +192,7 @@ const IndexPage = ({ data }: Props) => {
 };
 
 const Page = styled.div`
-  padding-top: 160px;
   overflow: hidden;
-  @media (max-width: 899px) {
-    padding-top: 20px;
-  }
 `;
 
 const Title = styled.h2`
@@ -147,6 +216,7 @@ const Subtitle = styled.p`
   font-weight: 700;
   width: 50%;
   line-height: 1.4em;
+
   @media (max-width: 700px) {
     font-size: 20px;
     width: 70%;
@@ -156,35 +226,129 @@ const Subtitle = styled.p`
   }
 `;
 
-const HeroIllustration = styled.div.attrs({
-  children: ({ src, alt }) => <img src={src} alt={alt} />
-})`
-  width: 700px;
+const show = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const HeroIllustration = styled.div`
   position: absolute;
-  z-index: -1;
-  right: -100px;
-  top: -100px;
-  @media (max-width: 1200px) {
-    right: -200px;
-    width: 680px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: -2;
+  .illustration {
+    position: absolute;
+    animation: ${show} 1s ease-in forwards;
+    opacity: 0;
   }
-  @media (max-width: 900px) {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    top: 0px;
+  .mainIllustration {
+    width: 1080px;
+    top: 100px;
+    right: -250px;
+    position: absolute;
   }
-  @media (max-width: 600px) {
-    top: 40px;
-    left: 5%;
-    width: 100%;
+  .illustration00 {
+    width: 200px;
+    left: 100px;
+    top: 150px;
+    animation-delay: 9000ms;
   }
-  @media (max-width: 500px) {
-    left: 5%;
-    width: 120%;
+  .illustration01 {
+    width: 160px;
+    left: 275px;
+    top: 150px;
+    animation-delay: 11800ms;
   }
-  img {
-    width: 100%;
+  .illustration02 {
+    width: 250px;
+    left: 265px;
+    top: 212px;
+    animation-delay: 8400ms;
+  }
+  .illustration03 {
+    width: 36px;
+    left: 440px;
+    top: 160px;
+    animation-delay: 11200ms;
+  }
+  .illustration04 {
+    width: 80px;
+    left: 505px;
+    top: 156px;
+    animation-delay: 10700ms;
+  }
+  .illustration05 {
+    width: 185px;
+    left: 475px;
+    top: 200px;
+    animation-delay: 7800ms;
+  }
+  .illustration06 {
+    width: 130px;
+    left: 566px;
+    top: 220px;
+
+    animation-delay: 7200ms;
+  }
+  .illustration07 {
+    width: 60px;
+    left: 647px;
+    top: 294px;
+    animation-delay: 9500ms;
+  }
+  .illustration08 {
+    width: 80px;
+    left: 636px;
+    top: 334px;
+    animation-delay: 10000ms;
+  }
+  .illustration09 {
+    width: 50px;
+    left: 685px;
+    top: 262px;
+    animation-delay: 2000ms;
+  }
+  .illustration10 {
+    width: 50px;
+    left: 711px;
+    top: 182px;
+    animation-delay: 2500ms;
+  }
+  .illustration11 {
+    width: 70px;
+    left: 755px;
+    top: 154px;
+    animation-delay: 3000ms;
+  }
+  .illustration12 {
+    width: 80px;
+    left: 736px;
+    top: 275px;
+    animation-delay: 3600ms;
+  }
+  .illustration13 {
+    width: 70px;
+    left: 805px;
+    top: 247px;
+    animation-delay: 4100ms;
+  }
+  .illustration14 {
+    width: 140px;
+    left: 925px;
+    top: 173px;
+    animation-delay: 5500ms;
+  }
+  .illustration15 {
+    width: 60px;
+    left: 996px;
+    top: 271px;
+    animation-delay: 5000ms;
   }
 `;
 
@@ -196,13 +360,13 @@ const Section = styled.section`
     z-index: 10;
   }
   &.Hero {
-    padding-top: 100px;
-    padding-bottom: 140px;
+    padding-top: 300px;
+    padding-bottom: 200px;
     @media (max-width:900px){
       padding-bottom: 50px;
     }
     ${Title} {
-      color: #7589f4;
+      color: #473CE7;
     }
     ${Subtitle} {
       color: #161338;
@@ -225,7 +389,7 @@ const Section = styled.section`
       z-index: 1;
       top: -100px;
       transform: skewY(4deg);
-      background-color: #FFCF58;
+      background-color: #473CE7;
     }
     &:after {
       z-index: 2;
@@ -235,7 +399,7 @@ const Section = styled.section`
     }
     ${Title} {
       text-align: center;
-      color: #FFCF58;
+      color:#473CE7;
     }
     ${Subtitle} {
       text-align: center;
