@@ -337,7 +337,7 @@ const Section = styled.section`
             font-weight: 700;
             font-size: 20px;
             padding-bottom: 20px;
-            padding-top: 20px;
+            padding-top: 0px;
           }
           .description {
             font-size: 14px;
