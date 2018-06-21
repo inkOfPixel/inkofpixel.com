@@ -33,7 +33,7 @@ class Header extends Component<Props, State> {
       <Fragment>
         <MobileMenuContainer>
           <LogoLink to="/">
-            <LogoImage src={logo} alt="Fiber 4.0 logo" />
+            <LogoImage src={logo} alt="inkofpixel logo" />
           </LogoLink>
           <MobileMenu
             right
