@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
-import mainIllustration from "images/heroIllustration/main-illustration.png";
+import mainIllustration from "images/heroIllustration/main-illustration.svg";
 import illustration00 from "images/heroIllustration/illustration00.svg";
 import illustration01 from "images/heroIllustration/illustration01.svg";
 import illustration02 from "images/heroIllustration/illustration02.svg";
