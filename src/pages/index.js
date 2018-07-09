@@ -377,7 +377,7 @@ const Section = styled.section`
   }
   &.Services {
     margin-top: 200px;
-    background-color: #fff;
+    background-color: #F3F3F3;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -398,7 +398,7 @@ const Section = styled.section`
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: #fff;
+      background-color: #F3F3F3;
     }
     ${Title} {
       text-align: center;
@@ -427,7 +427,6 @@ const Section = styled.section`
       }
       li {
         background-color: #fff;
-        border: 4px solid #161338;
         margin: 10px;
         display: flex;
         flex-direction: column;
@@ -476,7 +475,6 @@ const Section = styled.section`
       }
       li {
         background-color: #fff;
-        border: 4px solid #161338;
         margin: 10px;
         display: flex;
         flex-direction: row;
@@ -531,7 +529,7 @@ const Section = styled.section`
       z-index: 1;
       top: -100px;
       transform: skewY(-4deg);
-      background-color: #fe5a6d;
+      background-color: #473CE7;
     }
     &:after {
       z-index: 2;
@@ -541,7 +539,7 @@ const Section = styled.section`
     }
     ${Title} {
       text-align: center;
-      color: #fe5a6d;
+      color: #473CE7;
     }
     ${Subtitle} {
       text-align: center;
@@ -632,7 +630,7 @@ const Section = styled.section`
           top: -40px;
           left: 0;
           transform: skewY(2deg);
-          border-bottom: 4px solid #161338;
+
           @media (max-width: 900px) {
             height: 100%;
             width: 50px;
@@ -655,7 +653,7 @@ const Section = styled.section`
   }
   &.Contacts {
     margin-top: 200px;
-    background-color: #fff;
+    background-color: #F3F3F3;
     padding-top: 30px;
     padding-bottom: 200px;
     &:before,
@@ -670,17 +668,17 @@ const Section = styled.section`
       z-index: 1;
       top: -100px;
       transform: skewY(4deg);
-      background-color: #7589f4;
+      background-color: #473CE7;
     }
     &:after {
       z-index: 2;
       top: -70px;
       transform: skewY(5deg);
-      background-color: #fff;
+      background-color: #F3F3F3;
     }
     ${Title} {
       text-align: center;
-      color: #7589f4;
+      color: #473CE7;
     }
     ${Subtitle} {
       text-align: center;
@@ -714,7 +712,6 @@ const Section = styled.section`
           background-color: #fff;
           border: none;
           border-radius: none;
-          border: 4px solid #161338;
         }
         input{
           height: 40px;
