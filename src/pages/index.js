@@ -4,7 +4,7 @@ import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
-import mainIllustration from "images/heroIllustration/main-illustration.svg";
+import mainIllustration from "images/heroIllustration/main-illustration.png";
 import illustration00 from "images/heroIllustration/illustration00.svg";
 import illustration01 from "images/heroIllustration/illustration01.svg";
 import illustration02 from "images/heroIllustration/illustration02.svg";
@@ -252,6 +252,9 @@ const HeroIllustration = styled.div`
     top: 100px;
     right: -250px;
     position: absolute;
+    img {
+      width: 100%;
+    }
   }
   .illustration00 {
     width: 200px;
