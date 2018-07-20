@@ -242,16 +242,45 @@ const HeroIllustration = styled.div`
   height: 100%;
   top: 0;
   z-index: -2;
+  @media (max-width: 900px) {
+    position: relative;
+  }
   .illustration {
     position: absolute;
     animation: ${show} 1s ease-in forwards;
     opacity: 0;
+    @media (max-width: 1200px) {
+      display: none;
+    }
   }
   .mainIllustration {
     width: 1080px;
     top: 100px;
     right: -250px;
     position: absolute;
+    @media (max-width: 1200px) {
+      width: 1000px;
+      right: -150px;
+      top: 170px;
+    }
+    @media (max-width: 1000px) {
+      width: 900px;
+      right: -200px;
+    }
+    @media (max-width: 900px) {
+      position: relative;
+      top: -200px;
+      left: 0;
+      width: 130%;
+      margin-bottom: -200px;
+    }
+    @media (max-width: 600px) {
+      position: relative;
+      top: 0px;
+      left: 0;
+      width: 130%;
+      margin-bottom: -100px;
+    }
     img {
       width: 100%;
     }
@@ -367,6 +396,7 @@ const Section = styled.section`
     padding-bottom: 200px;
     @media (max-width:900px){
       padding-bottom: 50px;
+      padding-top: 100px;
     }
     ${Title} {
       color: #473CE7;
@@ -569,8 +599,7 @@ const Section = styled.section`
         box-sizing: border-box;
         width: calc(50% - 30px);
         justify-content: space-between;
-        background-color: #fff;
-        border: 4px solid #161338;
+        background-color: #F3F3F3;
         @media (max-width: 900px) {
           width: calc(100% - 30px);
           flex-direction: row;
@@ -625,7 +654,7 @@ const Section = styled.section`
           position: absolute;
           height: 50px;
           width: 100%;
-          background-color: #fff;
+          background-color: #F3F3F3;
           content: "";
           top: -40px;
           left: 0;
