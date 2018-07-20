@@ -135,7 +135,7 @@ ListItem = styled(ListItem)`
     text-decoration: none;
     position: relative;
     transition: all 300ms;
-    font-weight: 700;
+    font-weight: 400;
     &::before {
       background: #161338;
       opacity: 0;

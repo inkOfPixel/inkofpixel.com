@@ -12,9 +12,12 @@ import favicon from "images/inkOfPixel - Favicon.png";
 
 injectGlobal`
  @import url("https://use.typekit.net/zrn4omm.css");
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500');
+
+
   body {
-    font-family: "Europa", sans-serif;
-    color: #161338;
+    font-family: 'Roboto Mono', monospace;
+    color: #000;
   }
   h1 {
     font-family: "Europa", sans-serif;
@@ -91,7 +94,9 @@ class TemplateWrapper extends Component<Props> {
   }
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  overflow: hidden;
+`;
 
 const Bar = styled.div`
   background-color: #fff;

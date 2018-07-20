@@ -1,9 +1,8 @@
 // @flow
 
 import React, { Fragment } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Wrapper from "components/Wrapper";
-import illustration from "images/inkOfPixel - Hero - Illustration.svg";
 import Link from "gatsby-link";
 
 type Props = {
@@ -22,7 +21,14 @@ const IndexPage = ({ data }: Props) => {
         <Wrapper>
           <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
           <Subtitle>{hero.subtitle}</Subtitle>
-          <HeroIllustration src={illustration} />
+          <HeroIllustration>
+            <div className="drop drop01" />
+            <div className="drop drop02" />
+            <div className="drop drop03" />
+            <div className="drop drop04" />
+            <div className="drop drop05" />
+            <div className="drop drop06" />
+          </HeroIllustration>
         </Wrapper>
       </Section>
       <Section className="Services" id="Services">
@@ -120,14 +126,13 @@ const IndexPage = ({ data }: Props) => {
 
 const Page = styled.div`
   padding-top: 160px;
-  overflow: hidden;
   @media (max-width: 899px) {
     padding-top: 20px;
   }
 `;
 
 const Title = styled.h2`
-  font-size: 50px;
+  font-size: 46px;
   padding: 0;
   margin: 0;
   font-weight: 700;
@@ -140,11 +145,11 @@ const Title = styled.h2`
 `;
 
 const Subtitle = styled.p`
-  font-size: 24px;
+  font-size: 20px;
   padding: 0;
   margin: 0;
   padding-top: 30px;
-  font-weight: 700;
+  font-weight: 400;
   width: 50%;
   line-height: 1.4em;
   @media (max-width: 700px) {
@@ -156,36 +161,135 @@ const Subtitle = styled.p`
   }
 `;
 
-const HeroIllustration = styled.div.attrs({
-  children: ({ src, alt }) => <img src={src} alt={alt} />
-})`
-  width: 700px;
+const rotate = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+const bordertl = keyframes`
+  0%, 100% { border-top-left-radius: 50%; }
+  25% { border-top-left-radius: 90px;}
+  50% { border-top-left-radius: 40%; }
+  75% { border-top-left-radius: 45%; }
+`;
+
+const bordertr = keyframes`
+  0%, 100% { border-top-right-radius: 50%;}
+  25% { border-top-right-radius: 49%;}
+  50% { border-top-right-radius: 50%px;}
+  75% { border-top-right-radius: 35%px;}
+`;
+
+const borderbr = keyframes`
+  0%, 100% { border-bottom-right-radius: 50%; }
+  25% { border-bottom-right-radius: 45%;}
+  50% { border-bottom-right-radius: 47%;}
+  75% { border-bottom-right-radius: 48%;}
+`;
+
+const borderbl = keyframes`
+  0%, 100% { border-bottom-left-radius: 50%; }
+  25% { border-bottom-left-radius: 48%; }
+  50% { border-bottom-left-radius: 48%; }
+  75% { border-bottom-left-radius: 45%;}
+`;
+
+const HeroIllustration = styled.div`
+  width: 100%;
   position: absolute;
   z-index: -1;
-  right: -100px;
-  top: -100px;
-  @media (max-width: 1200px) {
+  left: 0;
+  top: 0;
+  .drop{
+    position: absolute;
+    radius: 50%;
+  }
+  .drop01 {
+
+    top: -200px;
     right: -200px;
-    width: 680px;
+    width:600px;
+    height: 600px;
+    background-color: #f8f1ff;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
   }
-  @media (max-width: 900px) {
-    position: relative;
-    left: 10%;
-    width: 80%;
-    top: 0px;
+  .drop02 {
+    top: 200px;
+    right: 500px;
+    width: 280px;
+    height: 280px;
+    background-color: #ffefe4;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
   }
-  @media (max-width: 600px) {
-    top: 40px;
-    left: 5%;
-    width: 100%;
+  .drop03 {
+    top: 130px;
+    left: -60px;
+    width: 150px;
+    height: 150px;
+    background-color: #f8f1ff;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
   }
-  @media (max-width: 500px) {
-    left: 5%;
-    width: 120%;
+  .drop04 {
+    top: -100px;
+    left: 400px;
+    width: 100px;
+    height: 100px;
+    background-color: #e8fbf6;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
   }
-  img {
-    width: 100%;
+  .drop05 {
+    top: 250px;
+    left: 230px;
+    width: 60px;
+    height: 60px;
+    background-color: #e8fbf6;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
   }
+  .drop06 {
+    top: -20px;
+    left: 230px;
+    width: 60px;
+    height: 60px;
+    background-color: #fff7df;
+    animation: 
+      3s ${bordertl} linear infinite, 
+      4s ${bordertr} linear infinite,
+      5.6s ${borderbl} linear infinite, 
+      3.3s ${borderbr} linear infinite,
+      3.6s ${rotate} linear infinite, 
+      2s hover ease-in-out infinite;
+  }
+}
 `;
 
 const Section = styled.section`
@@ -202,10 +306,14 @@ const Section = styled.section`
       padding-bottom: 50px;
     }
     ${Title} {
-      color: #7589f4;
+      color: #000;
+      font-family: Europa;
     }
     ${Subtitle} {
-      color: #161338;
+      color: #000;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 2em;
     }
   }
   &.Services {
@@ -213,26 +321,6 @@ const Section = styled.section`
     background-color: #fff;
     padding-top: 30px;
     padding-bottom: 200px;
-    &:before,
-    &:after {
-      display: block;
-      content: "";
-      position: absolute;
-      height: 500px;
-      width: 100%;
-    }
-    &:before {
-      z-index: 1;
-      top: -100px;
-      transform: skewY(4deg);
-      background-color: #FFCF58;
-    }
-    &:after {
-      z-index: 2;
-      top: -70px;
-      transform: skewY(5deg);
-      background-color: #fff;
-    }
     ${Title} {
       text-align: center;
       color: #FFCF58;
@@ -352,26 +440,6 @@ const Section = styled.section`
     background-color: #fff;
     padding-top: 30px;
     padding-bottom: 100px;
-    &:before,
-    &:after {
-      display: block;
-      content: "";
-      position: absolute;
-      height: 500px;
-      width: 100%;
-    }
-    &:before {
-      z-index: 1;
-      top: -100px;
-      transform: skewY(-4deg);
-      background-color: #fe5a6d;
-    }
-    &:after {
-      z-index: 2;
-      top: -70px;
-      transform: skewY(-5deg);
-      background-color: #fff;
-    }
     ${Title} {
       text-align: center;
       color: #fe5a6d;
