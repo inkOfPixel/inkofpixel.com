@@ -5,6 +5,7 @@ seoDescription: asda
 excerpt: >-
   REWOP is an Italian brand of sunglasses that are entirely handmade in Italy,
   with the use of the highest quality materials. 
+type: Ecommerce
 featuredImage: /assets/rewop milano.jpg
 heroImage: /assets/rewop milano.jpg
 template: project
