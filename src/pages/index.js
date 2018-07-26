@@ -319,6 +319,7 @@ const Section = styled.section`
   &.Hero {
     padding-top: 300px;
     padding-bottom: 400px;
+    overflow: hidden;
     @media (max-width: 900px) {
       padding-top: 200px;
       padding-bottom: 300px;
