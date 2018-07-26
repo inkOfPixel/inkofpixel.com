@@ -91,7 +91,7 @@ const LogoLink = styled(Link)`
   display: block;
   left: 0px;
   font-size: 22px;
-  top: 58px;
+  top: 53px;
   @media (max-width: 1260px) {
     left: 40px;
   }
@@ -136,6 +136,7 @@ ListItem = styled(ListItem)`
     position: relative;
     transition: all 300ms;
     font-weight: 400;
+    font-size: 14px;
     &::before {
       background: #161338;
       opacity: 0;

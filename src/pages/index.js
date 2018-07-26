@@ -33,35 +33,47 @@ const IndexPage = ({ data }: Props) => {
       </Section>
       <Section className="Services" id="Services">
         <Wrapper>
-          <Title>{services.title}</Title>
-          <Subtitle>{services.description}</Subtitle>
-          <ul className="primaryServicesList">
-            {services.primaryList.map(item => (
-              <li key={item.title}>
-                <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                <p className="title">{item.title}</p>
-                <p className="description">{item.description}</p>
-              </li>
-            ))}
-          </ul>
-          <Subtitle className="secondary">{services.description}</Subtitle>
-          <ul className="secondaryServicesList">
-            {services.secondaryList.map(item => (
-              <li key={item.title}>
-                <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                <div className="content">
+          <SectionTitle>Service</SectionTitle>
+          <Flexbox>
+            <Heading>
+              <Title>{services.title}</Title>
+              <Subtitle>{services.description}</Subtitle>
+            </Heading>
+            <ServiceList>
+              {services.primaryList.map(item => (
+                <li key={item.title}>
+                  <div className="icon">
+                    <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                  </div>
                   <p className="title">{item.title}</p>
                   <p className="description">{item.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ServiceList>
+          </Flexbox>
+          <Flexbox>
+            <Heading>
+              <Title>{services.title}</Title>
+              <Subtitle>{services.description}</Subtitle>
+            </Heading>
+            <ServiceList className="secondaryServicesList">
+              {services.secondaryList.map(item => (
+                <li key={item.title}>
+                  <div className="icon">
+                    <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                  </div>
+                  <p className="title">{item.title}</p>
+                  <p className="description">{item.description}</p>
+                </li>
+              ))}
+            </ServiceList>
+          </Flexbox>
         </Wrapper>
       </Section>
       <Section className="Projects" id="Projects">
         <Wrapper>
+          <SectionTitle>Projects</SectionTitle>
           <Title>{projects.title}</Title>
-          <Subtitle>{projects.description}</Subtitle>
           <ul className="featuredProjectsList">
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
@@ -131,11 +143,22 @@ const Page = styled.div`
   }
 `;
 
+const Flexbox = styled.div`
+  display: flex;
+`;
+
+const Heading = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Title = styled.h2`
   font-size: 46px;
   padding: 0;
   margin: 0;
   font-weight: 700;
+  font-family: Europa;
+  line-height: 1.1em;
   @media (max-width: 700px) {
     font-size: 40px;
   }
@@ -145,25 +168,43 @@ const Title = styled.h2`
 `;
 
 const Subtitle = styled.p`
-  font-size: 20px;
+  font-size: 14px;
   padding: 0;
   margin: 0;
-  padding-top: 30px;
   font-weight: 400;
-  width: 50%;
-  line-height: 1.4em;
+  line-height: 1.8em;
   @media (max-width: 700px) {
-    font-size: 20px;
-    width: 70%;
+    font-size: 14px;
   }
-  @media (max-width: 600px) {
-    width: 100%;
+`;
+
+const SectionTitle = styled.p`
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  width: 100%;
+  padding-bottom: 30px;
+  &::before {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 60px;
+    background-color: #000;
+    position: absolute;
+    top: 7px;
+    left: -68px;
   }
 `;
 
 const rotate = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+`;
+
+const rotateInverse = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 `;
 
 const bordertl = keyframes`
@@ -205,7 +246,6 @@ const HeroIllustration = styled.div`
     radius: 50%;
   }
   .drop01 {
-
     top: -200px;
     right: -200px;
     width:600px;
@@ -292,145 +332,97 @@ const HeroIllustration = styled.div`
 }
 `;
 
+const ServiceList = styled.ul`
+  width: calc(100% - 550px);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-top: 30px;
+  justify-content: center;
+`;
+
 const Section = styled.section`
   width: 100%;
-
   position: relative;
   ${Wrapper} {
     z-index: 10;
   }
   &.Hero {
-    padding-top: 100px;
-    padding-bottom: 140px;
+    padding-top: 130px;
+    padding-bottom: 400px;
     @media (max-width:900px){
       padding-bottom: 50px;
     }
-    ${Title} {
-      color: #000;
-      font-family: Europa;
-    }
     ${Subtitle} {
-      color: #000;
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 2em;
+      width: 50%;
+      padding-top: 20px;
+      font-size: 16px;
     }
   }
   &.Services {
-    margin-top: 200px;
     background-color: #fff;
-    padding-top: 30px;
-    padding-bottom: 200px;
-    ${Title} {
-      text-align: center;
-      color: #FFCF58;
+    padding-bottom: 150px;
+    ${SectionTitle}{
+      color: #8152BC; 
+      &::before{
+        background-color: #8152BC;
+      }
+    }
+    ${Heading}{
+      width: 400px;
+      margin-right: 150px;
     }
     ${Subtitle} {
-      text-align: center;
-      margin: 0 auto;
-      padding-bottom: 60px;
+      padding-top: 20px;
+      color: #949494;
       &.secondary {
         padding-top: 60px;
       }
     }
-    .primaryServicesList {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-      width: calc(100% + 20px);
-      margin-left: -10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      @media (max-width: 600px) {
-        width: calc(100% + 60px);
-        margin-left: -30px;
-      }
+    ${ServiceList} {
       li {
         background-color: #fff;
-        border: 4px solid #161338;
         margin: 10px;
         display: flex;
         flex-direction: column;
-        align-items: center;
         box-sizing: border-box;
-        padding: 30px;
-
-        width: calc(25% - 20px);
-        @media (max-width: 1100px) {
-          width: calc(33.33% - 20px);
-        }
-        @media (max-width: 800px) {
-          width: calc(50% - 20px);
-        }
-        @media (max-width: 500px) {
-          width: calc(100% - 20px);
-        }
-
-        img {
-          width: 160px;
+        padding-bottom: 40px;
+        .icon{
+          height: 100px;
+          width: 100px;
+          radius: 50%;
+          background-color: #f8f1ff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 15px;
+          animation: 
+            3s ${bordertl} linear infinite, 
+            4s ${bordertr} linear infinite,
+            5.6s ${borderbl} linear infinite, 
+            3.3s ${borderbr} linear infinite,
+            3.6s ${rotate} linear infinite, 
+            2s hover ease-in-out infinite;
+          img {
+            width: 80px;
+            position: absolute;
+            animation: 3.6s ${rotateInverse} linear infinite, 
+      2s hover ease-in-out infinite;
+          }
         }
         .title {
           font-weight: 700;
+          font-family: Europa;
           font-size: 20px;
           padding-bottom: 20px;
           padding-top: 20px;
+          letter-spacing: 0.04em;
         }
         .description {
           font-size: 14px;
-          text-align: center;
           line-height: 1.6em;
-        }
-      }
-    }
-    .secondaryServicesList {
-      list-style: none;
-      display: flex;
-      margin: 0;
-      padding: 0;
-      width: calc(100% + 20px);
-      margin-left: -10px;
-      flex-wrap: wrap;
-      @media (max-width: 600px) {
-        width: calc(100% + 60px);
-        margin-left: -30px;
-      }
-      li {
-        background-color: #fff;
-        border: 4px solid #161338;
-        margin: 10px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        box-sizing: border-box;
-        padding: 30px;
-        width: calc(50% - 20px);
-        @media (max-width: 900px) {
-          width: calc(100% - 20px);
-        }
-        @media (max-width: 500px) {
-          flex-direction: column;
-        }
-
-        img {
-          width: 160px;
-        }
-        .content {
-          padding-left: 30px;
-          @media (max-width: 500px) {
-            padding-left: 0;
-            text-align: center;
-          }
-          .title {
-            font-weight: 700;
-            font-size: 20px;
-            padding-bottom: 20px;
-            padding-top: 0px;
-          }
-          .description {
-            font-size: 14px;
-            line-height: 1.6em;
-          }
+          color: #949494;
         }
       }
     }
@@ -438,11 +430,17 @@ const Section = styled.section`
   &.Projects {
     margin-top: 0px;
     background-color: #fff;
-    padding-top: 30px;
-    padding-bottom: 100px;
-    ${Title} {
-      text-align: center;
-      color: #fe5a6d;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    background-color: #EAF7F7;
+    ${SectionTitle}{
+      color: #05C3B6; 
+      &::before{
+        background-color: #05C3B6;
+      }
+    }
+    ${Title}{
+      padding-bottom: 100px;
     }
     ${Subtitle} {
       text-align: center;
@@ -473,7 +471,6 @@ const Section = styled.section`
         width: calc(50% - 30px);
         justify-content: space-between;
         background-color: #fff;
-        border: 4px solid #161338;
         @media (max-width: 900px) {
           width: calc(100% - 30px);
           flex-direction: row;
