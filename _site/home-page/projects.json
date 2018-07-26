@@ -1,13 +1,15 @@
 {
   "title": "Progetti in evidenza",
-  "description":
-    "Abbiamo riportato qui alcuni case studies del progetti dai noi sviluppati, se hai bisogno di sapere altri nostri progetti e vuoi conoscere meglio inkOfPixel non esitare a scriverci\n",
+  "description": "Abbiamo riportato qui alcuni case studies del progetti dai noi sviluppati, se hai bisogno di sapere altri nostri progetti e vuoi conoscere meglio inkOfPixel non esitare a scriverci\n",
   "featuredProjects": [
     {
       "project": "D1 Milano"
     },
     {
       "project": "STIMM"
+    },
+    {
+      "project": "Rewop Milano"
     }
   ]
 }
