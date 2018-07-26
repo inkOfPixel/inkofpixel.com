@@ -77,22 +77,24 @@ const IndexPage = ({ data }: Props) => {
           <ul className="featuredProjectsList">
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
-                <div className="content">
-                  <div
-                    className="featuredImage"
-                    style={{
-                      backgroundImage: `url('${
-                        item.frontmatter.featuredImage
-                      }')`
-                    }}
-                  />
-                  <div className="info">
-                    <p className="title">{item.frontmatter.title}</p>
-                    <p className="description">{item.frontmatter.excerpt}</p>
+                <Link to={item.fields.path}>
+                  <div className="content">
+                    <div
+                      className="featuredImage"
+                      style={{
+                        backgroundImage: `url('${
+                          item.frontmatter.featuredImage
+                        }')`
+                      }}
+                    />
+                    <div className="info">
+                      <p className="title">{item.frontmatter.title}</p>
+                      <p className="description">{item.frontmatter.excerpt}</p>
+                    </div>
                   </div>
-                </div>
-                <Link className="projectLink" to={item.fields.path}>
-                  Discover More
+                  <div className="projectLink" to={item.fields.path}>
+                    Discover More
+                  </div>
                 </Link>
               </li>
             ))}
@@ -159,7 +161,7 @@ const SectionTitle = styled.p`
     display: block;
     height: 2px;
     width: 60px;
-    background-color: #000;
+    background-color: #161338;
     position: absolute;
     top: 7px;
     left: -68px;
@@ -474,11 +476,17 @@ const Section = styled.section`
       li {
         margin: 15px;
         display: flex;
-        flex-direction: column;
         box-sizing: border-box;
         width: calc(33.33% - 30px);
         background-color: #fff;
-        justify-content: space-between;
+        a {
+          flex-direction: column;
+          box-sizing: border-box;
+          display: flex;
+          text-decoration: none;
+          justify-content: space-between;
+          height: 100%;
+        }
         @media (max-width: 1000px) {
           width: calc(50% - 30px);
           &:nth-child(3) {
@@ -514,6 +522,7 @@ const Section = styled.section`
             font-size: 20px;
             padding-bottom: 20px;
             letter-spacing: 0.04em;
+            color: #161338;
           }
           .description {
             font-size: 14px;
