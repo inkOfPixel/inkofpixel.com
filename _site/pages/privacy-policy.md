@@ -7,7 +7,7 @@ template: page
 
 ai sensi dell'art. 13 del Decreto Legislativo 30 giugno 2003, n. 196 (di seguito "**Codice della Privacy**")
 
-La pagina web _https://www.fiber4retelit.it_ (di seguito, l'"**Applicazione**") di proprietà e gestita dalla società **Fiber 4.0 S.p.A.**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964, (di seguito, per brevità, la "**Società**"), in qualità di Titolare del trattamento, si impegna costantemente per tutelare la privacy on-line dei suoi utenti.
+La pagina web _https://www.inkofpixel.com_ (di seguito, l'"**Applicazione**") di proprietà e gestita dalla società **inkOfPixel Srl**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2081233, c.f. e p.iva 09287730965, (di seguito, per brevità, la "**Società**"), in qualità di Titolare del trattamento, si impegna costantemente per tutelare la privacy on-line dei suoi utenti.
 
 Questo documento le permetterà di conoscere la nostra politica sulla privacy.
 
@@ -69,7 +69,7 @@ d. soggetti delegati e/o incaricati da OI di svolgere attività strettamente cor
 
 **5. Titolare del trattamento**
 
-Il Titolare del trattamento dei dati personali è la società **Fiber 4.0 S.p.A.**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964.
+Il Titolare del trattamento dei dati personali è la società **inkOfPixel Srl**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964.
 
 **6\. Luogo e Tempi di conservazione**
 
@@ -101,4 +101,4 @@ Il Titolare del Trattamento si riserva il diritto di apportare modifiche alla pr
 
 **_Questa informativa privacy riguarda esclusivamente questa Applicazione._**
 
-_Ultimo aggiornamento: 15 aprile 2018_
+_Ultimo aggiornamento: 26 Luglio 2018_

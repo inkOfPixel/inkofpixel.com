@@ -5,9 +5,9 @@ template: page
 
 **Informativa estesa sui Cookies**
 
-**Applicazione gestita da Fiber 4.0**
+**Applicazione gestita da inkOfPixel**
 
-La presente Cookie Policy è relativa alla pagina web _https://www.fiber4retelit.it_ (di seguito, l'"**Applicazione**") di proprietà e gestita dalla società **Fiber 4.0 S.p.A.**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964, (di seguito, per brevità, la "**Società**" o "**Fiber 4.0**").
+La presente Cookie Policy è relativa alla pagina web _https://www.inkofpixel.com_ (di seguito, l'"**Applicazione**") di proprietà e gestita dalla società **inkOfPixel Srl**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2081233, c.f. e p.iva 09287730965, (di seguito, per brevità, la "**Società**" o "**inkOfPixel**").
 
 Per permettere all'Applicazione di riconoscere i propri utenti, vengono utilizzati appositi Cookies. I Cookies sono piccole porzioni di dati che permettono di confrontare i nuovi visitatori e di capire come gli utenti navigano nell'Applicazione. Vengono utilizzati i dati raccolti grazie ai Cookies per rendere più efficiente la navigazione. I Cookies non registrano alcuna informazione personale degli utenti e gli eventuali dati identificabili non vengono memorizzati. L'Utente può configurare in qualsiasi momento il proprio browser in modo che rifiuti i Cookies o segnali l'eventuale invio di un Cookie. A tal fine, ciascun Utente può trovare le informazioni necessarie a disabilitare i Cookies nelle funzioni del proprio browser. La disattivazione in alcuni siti web della funzione Cookies può impedire in alcuni casi il funzionamento corretto della stessa pagina web.
 
@@ -23,7 +23,7 @@ I Cookies di terzi sono impostati da un dominio differente da quello visitato da
 
 * _Cookies di sessione:_
 
-I c.d. Cookies di sessione sono memorizzati temporaneamente e vengono cancellati quando l'Utente chiude il browser. Se l'Utente si registra all'Applicazione, può utilizzare Cookies che raccolgono dati personali al fine di identificare l'Utente in occasione di visite successive e di facilitare l'accesso - login all'Applicazione (per esempio conservando username e password dell'Utente) e la navigazione sullo stesso. Inoltre FIBER 4.0 utilizza i Cookies per finalità di amministrazione del sistema. L'Applicazione potrebbe contenere link ad altri siti. FIBER 4.0 non ha alcun accesso o controllo su Cookies, web bacon e altre tecnologie di tracciamento usate sui siti di terzi cui l'Utente può accedere dal Applicazione, sulla disponibilità, su qualsiasi contenuto e materiale che è pubblicato o ottenuto attraverso tali siti e sulle relative modalità di trattamento dei dati personali; FIBER 4.0 a questo proposito, considerata la mole di tali siti terzi, declina espressamente ogni relativa responsabilità. L'Utente dovrebbe verificare la privacy policy dei siti di terzi cui accede dal Applicazione per conoscere le condizioni applicabili al trattamento dei dati personali poiché la Privacy Policy di FIBER 4.0 si applica solo all'Applicazione come sopra definita.
+I c.d. Cookies di sessione sono memorizzati temporaneamente e vengono cancellati quando l'Utente chiude il browser. Se l'Utente si registra all'Applicazione, può utilizzare Cookies che raccolgono dati personali al fine di identificare l'Utente in occasione di visite successive e di facilitare l'accesso - login all'Applicazione (per esempio conservando username e password dell'Utente) e la navigazione sullo stesso. Inoltre inkOfPixel Spa utilizza i Cookies per finalità di amministrazione del sistema. L'Applicazione potrebbe contenere link ad altri siti. inkOfPixel Spa non ha alcun accesso o controllo su Cookies, web bacon e altre tecnologie di tracciamento usate sui siti di terzi cui l'Utente può accedere dal Applicazione, sulla disponibilità, su qualsiasi contenuto e materiale che è pubblicato o ottenuto attraverso tali siti e sulle relative modalità di trattamento dei dati personali; inkOfPixel Spa a questo proposito, considerata la mole di tali siti terzi, declina espressamente ogni relativa responsabilità. L'Utente dovrebbe verificare la privacy policy dei siti di terzi cui accede dal Applicazione per conoscere le condizioni applicabili al trattamento dei dati personali poiché la Privacy Policy di inkOfPixel Spa si applica solo all'Applicazione come sopra definita.
 
 * _Cookies persistenti:_
 
@@ -71,10 +71,10 @@ Fermo restando quanto precede, il Titolare informa che l'Utente può avvalersi d
 
 **_Titolare del Trattamento dei Dati:_**
 
-*Titolare del trattamento è *Il Titolare del trattamento dei dati personali è la società **Fiber 4.0 S.p.A.**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964*.*
+*Titolare del trattamento è *Il Titolare del trattamento dei dati personali è la società **inkOfPixel Spa**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva 10195730964*.*
 
 Dal momento che l'installazione di Cookies e di altri sistemi di tracciamento operata da terze parti tramite i servizi utilizzati all'interno di questa Applicazione non può essere tecnicamente controllata dal Titolare, ogni riferimento specifico a Cookies e sistemi di tracciamento installati da terze parti è da considerarsi indicativo. Per ottenere informazioni complete, consulta la privacy policy degli eventuali servizi terzi elencati in questo documento.
 
 Vista l'oggettiva complessità legata all'identificazione delle tecnologie basate sui Cookies ed alla loro integrazione molto stretta con il funzionamento del web, l'Utente è invitato a contattare il Titolare qualora volesse ricevere qualunque approfondimento relativo all'utilizzo dei Cookie stessi e ad eventuali utilizzi degli stessi -- ad esempio ad opera di terzi -- effettuati tramite questo Applicazione.
 
-Ultimo aggiornamento: _15 aprile 2018_
+Ultimo aggiornamento: _26 Luglio 2018_

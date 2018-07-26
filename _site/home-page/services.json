@@ -1,34 +1,42 @@
 {
-  "title": "Master in Shopify e non solo",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "title": "Shopify...",
+  "description":
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "primaryList": [
     {
       "title": "Setup",
       "image": "/assets/inkofpixel - services_setup.svg",
-      "description": "We will help you launch your business online or seamlessly migrate your shop from another platform"
+      "description":
+        "We will help you launch your business online or seamlessly migrate your shop from another platform"
     },
     {
       "title": "Design",
       "image": "/assets/inkofpixel - services_design.svg",
-      "description": "We will tweak a template or craft a design from scratch to create your beautiful online store."
+      "description":
+        "We will tweak a template or craft a design from scratch to create your beautiful online store."
     },
     {
       "title": "Web Developer",
       "image": "/assets/inkofpixel - services_web developer.svg",
-      "description": "We turn big ideas into fully-functioning shops with theme modifications and custom apps."
+      "description":
+        "We turn big ideas into fully-functioning shops with theme modifications and custom apps."
     }
   ],
-  "subDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "subTitle": "...and",
+  "subDescription":
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   "secondaryList": [
     {
       "title": "Mobile App",
       "image": "/assets/inkofpixel - services_app.svg",
-      "description": "We will tweak a template or craft a design from scratch to create your beautiful online store."
+      "description":
+        "We will tweak a template or craft a design from scratch to create your beautiful online store."
     },
     {
       "title": "Web App",
       "image": "/assets/inkofpixel - services_web app.svg",
-      "description": "We will tweak a template or craft a design from scratch to create your beautiful online store."
+      "description":
+        "We will tweak a template or craft a design from scratch to create your beautiful online store."
     }
   ]
 }

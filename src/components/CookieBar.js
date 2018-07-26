@@ -11,8 +11,8 @@ const CookierBar = () => (
       <Bar>
         <Text>
           Questo sito utilizza i cookie per garantire una migliore esperienza
-          utente.Continuando la navigazione accetti la nostra
-          <StyledLink to="/privacy-policy"> cookies policy </StyledLink>
+          utente. Continuando la navigazione accetti la nostra
+          <StyledLink to="/cookies"> cookies policy </StyledLink>
         </Text>
         <button onClick={accept} />
       </Bar>

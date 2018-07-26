@@ -60,8 +60,9 @@ const Wrapper = styled.div`
 const RichTextEditor = styled.div`
   overflow: hidden;
   p {
-    line-height: 1.3em;
-    padding-bottom: 15px;
+    line-height: 1.6em;
+    font-size: 14px;
+    padding-bottom: 20px;
   }
   h2 {
   }

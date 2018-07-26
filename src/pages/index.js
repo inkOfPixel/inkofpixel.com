@@ -53,13 +53,13 @@ const IndexPage = ({ data }: Props) => {
           </Flexbox>
           <Flexbox>
             <Heading className="secondary">
-              <Title>{services.title}</Title>
-              <Subtitle>{services.description}</Subtitle>
+              <Title>{services.subTitle}</Title>
+              <Subtitle>{services.subDescription}</Subtitle>
             </Heading>
             <ServiceList className="secondaryServicesList">
               {services.secondaryList.map(item => (
                 <li key={item.title}>
-                  <div className="icon">
+                  <div className="icon secondary">
                     <img src={item.image} alt={`${item.title} inkOfPixel`} />
                   </div>
                   <p className="title">{item.title}</p>
@@ -381,11 +381,26 @@ const Section = styled.section`
         flex-direction: column;
         box-sizing: border-box;
         padding-bottom: 40px;
+        &:nth-child(1) {
+          .icon {
+            background-color: #f8f1ff;
+          }
+        }
+        &:nth-child(2) {
+          .icon {
+            background-color: #e8fbf6;
+          }
+        }
+        &:nth-child(3) {
+          .icon {
+            background-color: #fff7df;
+          }
+        }
         .icon {
           height: 100px;
           width: 100px;
           radius: 50%;
-          background-color: #f8f1ff;
+
           display: flex;
           justify-content: center;
           align-items: center;
@@ -394,6 +409,9 @@ const Section = styled.section`
             4s ${bordertr} linear infinite, 5.6s ${borderbl} linear infinite,
             3.3s ${borderbr} linear infinite, 3.6s ${rotate} linear infinite,
             2s hover ease-in-out infinite;
+          &.secondary {
+            background-color: #ffefe4;
+          }
           img {
             width: 80px;
             position: absolute;
@@ -559,6 +577,7 @@ export const query = graphql`
             title
             description
           }
+          subTitle
           subDescription
           secondaryList {
             image
