@@ -52,7 +52,7 @@ const IndexPage = ({ data }: Props) => {
             </ServiceList>
           </Flexbox>
           <Flexbox>
-            <Heading>
+            <Heading className="secondary">
               <Title>{services.title}</Title>
               <Subtitle>{services.description}</Subtitle>
             </Heading>
@@ -78,70 +78,41 @@ const IndexPage = ({ data }: Props) => {
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
                 <div className="content">
-                  <img
-                    src={item.frontmatter.logo}
-                    alt={`${item.frontmatter.title} logo`}
+                  <div
+                    className="featuredImage"
+                    style={{
+                      backgroundImage: `url('${
+                        item.frontmatter.featuredImage
+                      }')`
+                    }}
                   />
-                  <p className="description">{item.frontmatter.excerpt}</p>
-                  <Link className="projectLink" to={item.fields.path}>
-                    Discover More
-                  </Link>
+                  <div className="info">
+                    <p className="title">{item.frontmatter.title}</p>
+                    <p className="description">{item.frontmatter.excerpt}</p>
+                  </div>
                 </div>
-                <div
-                  className="featuredImage"
-                  style={{
-                    backgroundImage: `url('${item.frontmatter.featuredImage}')`
-                  }}
-                />
+                <Link className="projectLink" to={item.fields.path}>
+                  Discover More
+                </Link>
               </li>
             ))}
           </ul>
         </Wrapper>
       </Section>
-      <Section className="Contacts" id="Contacts">
+      <Section className="About" id="About">
         <Wrapper>
-          <Title>{contacts.title}</Title>
-          <Subtitle>{contacts.description}</Subtitle>
-          <form
-            name="contact"
-            method="post"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-          >
-            <input type="hidden" name="form-name" value="contact" />
-            <div className="row hidden">
-              <label>
-                Don’t fill this out if you're human: <input name="bot-field" />
-              </label>
-            </div>
-            <div className="row">
-              <label for="name">Name</label>
-              <input type="text" name="name" />
-            </div>
-            <div className="row">
-              <label for="email">Email</label>
-              <input type="email" name="email" />
-            </div>
-            <div className="row">
-              <label for="message">Message</label>
-              <textarea name="message" />
-            </div>
-            <div className="row submit">
-              <button type="submit">Send</button>
-            </div>
-          </form>
+          <SectionTitle>About Us</SectionTitle>
+          <Title>
+            We’re an experience design agency that builds brands, platforms, &
+            eCommerce flagships that help businesses succeed in digital culture
+          </Title>
         </Wrapper>
       </Section>
     </Page>
   );
 };
 
-const Page = styled.div`
-  padding-top: 160px;
-  @media (max-width: 899px) {
-    padding-top: 20px;
-  }
-`;
+const Page = styled.div``;
 
 const Flexbox = styled.div`
   display: flex;
@@ -159,7 +130,7 @@ const Title = styled.h2`
   font-weight: 700;
   font-family: Europa;
   line-height: 1.1em;
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     font-size: 40px;
   }
   @media (max-width: 600px) {
@@ -333,12 +304,11 @@ const HeroIllustration = styled.div`
 `;
 
 const ServiceList = styled.ul`
-  width: calc(100% - 550px);
   list-style: none;
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding-top: 30px;
+  padding: 0;
   justify-content: center;
 `;
 
@@ -349,36 +319,61 @@ const Section = styled.section`
     z-index: 10;
   }
   &.Hero {
-    padding-top: 130px;
+    padding-top: 300px;
     padding-bottom: 400px;
-    @media (max-width:900px){
-      padding-bottom: 50px;
+    @media (max-width: 900px) {
+      padding-top: 200px;
+      padding-bottom: 300px;
     }
     ${Subtitle} {
       width: 50%;
       padding-top: 20px;
-      font-size: 16px;
+
+      @media (max-width: 800px) {
+        width: 70%;
+      }
+      @media (max-width: 600px) {
+        width: 100%;
+      }
     }
   }
   &.Services {
     background-color: #fff;
     padding-bottom: 150px;
-    ${SectionTitle}{
-      color: #8152BC; 
-      &::before{
-        background-color: #8152BC;
+    ${SectionTitle} {
+      color: #8152bc;
+      &::before {
+        background-color: #8152bc;
       }
     }
-    ${Heading}{
-      width: 400px;
+    ${Flexbox} {
+      @media (max-width: 750px) {
+        flex-direction: column;
+      }
+    }
+    ${Heading} {
+      flex: 0 0 400px;
       margin-right: 150px;
+      @media (max-width: 1000px) {
+        flex: 0 0 320px;
+        margin-right: 100px;
+      }
+      @media (max-width: 1000px) {
+        flex: 0 0 300px;
+        margin-right: 80px;
+      }
+      @media (max-width: 750px) {
+        flex: 0 0 auto;
+        padding-bottom: 50px;
+        margin: 0;
+        &.secondary {
+          padding-top: 50px;
+        }
+      }
     }
     ${Subtitle} {
       padding-top: 20px;
       color: #949494;
-      &.secondary {
-        padding-top: 60px;
-      }
     }
     ${ServiceList} {
       li {
@@ -388,7 +383,7 @@ const Section = styled.section`
         flex-direction: column;
         box-sizing: border-box;
         padding-bottom: 40px;
-        .icon{
+        .icon {
           height: 100px;
           width: 100px;
           radius: 50%;
@@ -397,18 +392,15 @@ const Section = styled.section`
           justify-content: center;
           align-items: center;
           margin-bottom: 15px;
-          animation: 
-            3s ${bordertl} linear infinite, 
-            4s ${bordertr} linear infinite,
-            5.6s ${borderbl} linear infinite, 
-            3.3s ${borderbr} linear infinite,
-            3.6s ${rotate} linear infinite, 
+          animation: 3s ${bordertl} linear infinite,
+            4s ${bordertr} linear infinite, 5.6s ${borderbl} linear infinite,
+            3.3s ${borderbr} linear infinite, 3.6s ${rotate} linear infinite,
             2s hover ease-in-out infinite;
           img {
             width: 80px;
             position: absolute;
-            animation: 3.6s ${rotateInverse} linear infinite, 
-      2s hover ease-in-out infinite;
+            animation: 3.6s ${rotateInverse} linear infinite,
+              2s hover ease-in-out infinite;
           }
         }
         .title {
@@ -421,7 +413,7 @@ const Section = styled.section`
         }
         .description {
           font-size: 14px;
-          line-height: 1.6em;
+          line-height: 1.8em;
           color: #949494;
         }
       }
@@ -432,14 +424,14 @@ const Section = styled.section`
     background-color: #fff;
     padding-top: 150px;
     padding-bottom: 150px;
-    background-color: #EAF7F7;
-    ${SectionTitle}{
-      color: #05C3B6; 
-      &::before{
-        background-color: #05C3B6;
+    background-color: #eaf7f7;
+    ${SectionTitle} {
+      color: #05c3b6;
+      &::before {
+        background-color: #05c3b6;
       }
     }
-    ${Title}{
+    ${Title} {
       padding-bottom: 100px;
     }
     ${Subtitle} {
@@ -458,54 +450,29 @@ const Section = styled.section`
       width: calc(100% + 30px);
       margin-left: -15px;
       flex-wrap: wrap;
-      @media (max-width: 600px) {
-        width: calc(100% + 80px);
-        margin-left: -40px;
+      @media (max-width: 750px) {
+        width: 100%;
+        margin-left: 0;
       }
       li {
         margin: 15px;
         display: flex;
         flex-direction: column;
-        align-items: center;
         box-sizing: border-box;
-        width: calc(50% - 30px);
-        justify-content: space-between;
+        width: calc(33.33% - 30px);
         background-color: #fff;
-        @media (max-width: 900px) {
-          width: calc(100% - 30px);
-          flex-direction: row;
+        justify-content: space-between;
+        @media (max-width: 1000px) {
+          width: calc(50% - 30px);
+          &:nth-child(3) {
+            display: none;
+          }
         }
-        @media (max-width: 700px) {
-          flex-direction: column;
-        }
-      }
-      img {
-        width: 300px;
-        display: block;
-        margin: 0 auto;
-      }
-      .content {
-        width: 100%;
-        padding: 30px 0 60px 0;
-        box-sizing: border-box;
-        text-align: center;
-        position: relative;
-        .description {
+        @media (max-width: 750px) {
           width: 100%;
-          box-sizing: border-box;
-          padding: 0 30px;
-          font-size: 14px;
-          line-height: 1.8em;
-        }
-        .projectLink {
-          color: #161338;
-          font-weight: 700;
-          margin-top: 20px;
-          display: inline-block;
-          text-decoration: none;
-          transition: all 0.3s;
-          &:hover {
-            color: #7589f4;
+          margin: 15px 0;
+          &:nth-child(3) {
+            display: block;
           }
         }
       }
@@ -515,128 +482,59 @@ const Section = styled.section`
         background-size: cover;
         position: relative;
         background-position: center;
-        @media (max-width: 900px) {
-          height: 100%;
-        }
-        @media (max-width: 700px) {
-          height: 300px;
-        }
-        &::after {
-          position: absolute;
-          height: 50px;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        .info {
           width: 100%;
-          background-color: #fff;
-          content: "";
-          top: -40px;
-          left: 0;
-          transform: skewY(2deg);
-          border-bottom: 4px solid #161338;
-          @media (max-width: 900px) {
-            height: 100%;
-            width: 50px;
-            top: 0;
-            left: -40px;
-            transform: skewY(0deg);
-            transform: skewX(2deg);
+          padding: 30px;
+          box-sizing: border-box;
+          position: relative;
+          .title {
+            font-weight: 700;
+            font-family: Europa;
+            font-size: 20px;
+            padding-bottom: 20px;
+            letter-spacing: 0.04em;
           }
-          @media (max-width: 700px) {
-            height: 50px;
-            width: 100%;
-            top: -40px;
-            left: 0;
-            transform: skewY(2deg);
-            transform: skewX(0deg);
+          .description {
+            font-size: 14px;
+            line-height: 1.6em;
+            color: #949494;
           }
+        }
+      }
+      .projectLink {
+        color: #05c3b6;
+        display: inline-block;
+        text-decoration: none;
+        transition: all 0.3s;
+        margin: 0 30px 30px 30px;
+        &:hover {
+          color: #7589f4;
         }
       }
     }
   }
-  &.Contacts {
-    margin-top: 200px;
+  &.About {
     background-color: #fff;
-    padding-top: 30px;
+    padding-top: 200px;
     padding-bottom: 200px;
-    &:before,
-    &:after {
-      display: block;
-      content: "";
-      position: absolute;
-      height: 500px;
-      width: 100%;
-    }
-    &:before {
-      z-index: 1;
-      top: -100px;
-      transform: skewY(4deg);
-      background-color: #7589f4;
-    }
-    &:after {
-      z-index: 2;
-      top: -70px;
-      transform: skewY(5deg);
-      background-color: #fff;
+    ${SectionTitle} {
+      color: #8152bc;
+      &::before {
+        background-color: #8152bc;
+      }
     }
     ${Title} {
-      text-align: center;
-      color: #7589f4;
-    }
-    ${Subtitle} {
-      text-align: center;
-      margin: 0 auto;
-      padding-bottom: 60px;
-      &.secondary {
-        padding-top: 60px;
-      }
-    }
-    form{
-      width: 400px;
-      display: block;
-      margin: 0 auto;
-      @media (max-width: 460px){
-
+      width: 80%;
+      line-height: 1.2em;
+      @media (max-width: 700px) {
         width: 100%;
       }
-      .hidden{
-        display: none;
-      }
-      .row{
-        width: 100%;
-        padding-bottom: 20px;
-        label{
-          display: block;
-          padding-bottom: 10px;
-        }
-        textarea,
-        input{
-          width: 100%;
-          background-color: #fff;
-          border: none;
-          border-radius: none;
-          border: 4px solid #161338;
-        }
-        input{
-          height: 40px;
-          padding: 0 10px;
-          box-sizing: border-box;
-        }
-        textarea{
-          height: 100px;
- box-sizing: border-box;
- padding: 10px;
-        }
-        &.submit{
-          text-align: right;
-        }
-        button{
-          width:200px;
-          display: inline-block;
-          height: 40px;
-          background-color: #161338;
-          color: #fff;
-          border: none;
-        }
-      }
     }
+  }
 `;
 
 export default IndexPage;

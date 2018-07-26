@@ -4,7 +4,7 @@ import React, { type Node, Component, Fragment } from "react";
 import { slide as SlideMenu } from "react-burger-menu";
 import styled from "styled-components";
 import Link from "gatsby-link";
-import logo from "images/inkOfPixel - Logo.svg";
+import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
 
 type Props = {};
@@ -31,32 +31,10 @@ class Header extends Component<Props, State> {
     const { isMobileMenuOpen } = this.state;
     return (
       <Fragment>
-        <MobileMenuContainer>
-          <LogoLink to="/">
-            <LogoImage src={logo} alt="Fiber 4.0 logo" />
-          </LogoLink>
-          <MobileMenu
-            right
-            isOpen={isMobileMenuOpen}
-            onStateChange={this.handleMobileMenuStateChange}
-            customCrossIcon={<CrossIcon />}
-            customBurgerIcon={<BurgerIcon />}
-          >
-            <MobileLink to="#Services" onClick={this.toggleMenu}>
-              Services
-            </MobileLink>
-            <MobileLink to="#Projects" onClick={this.toggleMenu}>
-              Porjects
-            </MobileLink>
-            <MobileLink to="#Contacts" onClick={this.toggleMenu}>
-              Contacs
-            </MobileLink>
-          </MobileMenu>
-        </MobileMenuContainer>
         <DesktopMenuContainer>
           <Wrapper>
             <LogoLink to="/">
-              <LogoImage src={logo} alt="inkOfPixel logo" />
+              <Logo />
             </LogoLink>
             <List>
               <ListItem>
@@ -77,9 +55,6 @@ class Header extends Component<Props, State> {
 }
 
 const DesktopMenuContainer = styled.header`
-  @media (max-width: 899px) {
-    display: none;
-  }
   position: absolute;
   z-index: 100;
   width: 100%;
@@ -90,7 +65,6 @@ const LogoLink = styled(Link)`
   position: absolute;
   display: block;
   left: 0px;
-  font-size: 22px;
   top: 53px;
   @media (max-width: 1260px) {
     left: 40px;
@@ -117,6 +91,9 @@ const List = styled.ul`
   margin: 0;
   @media (max-width: 1260px) {
     right: 40px;
+  }
+  @media (max-width: 899px) {
+    display: none;
   }
 `;
 
