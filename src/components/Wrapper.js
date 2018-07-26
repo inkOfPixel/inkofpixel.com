@@ -14,6 +14,10 @@ const Wrapper = styled.div`
     padding-right: 40px;
     box-sizing: border-box;
   }
+  @media (max-width: 700px) {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
 `;
 
 export default Wrapper;
