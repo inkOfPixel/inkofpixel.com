@@ -89,6 +89,7 @@ collections:
       - { name: seoTitle, label: SEO Project title, widget: string }
       - { name: seoDescription, label: SEO Description, widget: text }
       - { name: excerpt, label: Excerpt, widget: text }
+      - { name: type, label: Type Project, widget: string }
       - { name: featuredImage, label: Featured image, widget: image }
       - { name: heroImage, label: Hero image, widget: image }
       - name: template
