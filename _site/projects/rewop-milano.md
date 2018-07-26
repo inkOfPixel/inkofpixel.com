@@ -16,6 +16,6 @@ REWOP is an Italian brand of sunglasses that are entirely handmade in Italy, wit
 
 Since REWOP wanted to operate their business on the Web they contacted us to help them design and create their eCommerce from scratch.
 
-![](/assets/rewop milano.jpg)
+![prova](/assets/rewop milano.jpg)
 
 Since REWOP wanted to operate their business on the Web they contacted us to help them design and create their eCommerce from scratch.
