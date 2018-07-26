@@ -1,15 +1,19 @@
 // @flow
 
 import React from "react";
+import styled from "styled-components";
+import Page from "components/Page";
 
 export default ({ data }) => {
   const project = data.markdownRemark;
   return (
     <Page>
-      <Wrapper>
-        <Title>{project.frontmatter.title}</Title>
-        <RichTextEditor dangerouslySetInnerHTML={{ __html: project.html }} />
-      </Wrapper>
+      <OuterWrapper>
+        <Wrapper>
+          <Title>{project.frontmatter.title}</Title>
+          <RichTextEditor dangerouslySetInnerHTML={{ __html: project.html }} />
+        </Wrapper>
+      </OuterWrapper>
     </Page>
   );
 };
@@ -25,7 +29,7 @@ export const query = graphql`
   }
 `;
 
-const Page = styled.div`
+const OuterWrapper = styled.div`
   padding-bottom: 100px;
   padding-top: 160px;
   @media (max-width: 899px) {
@@ -91,5 +95,3 @@ const RichTextEditor = styled.div`
     margin-bottom: 50px;
   }
 `;
-
-import styled from "styled-components";

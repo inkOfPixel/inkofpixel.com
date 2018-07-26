@@ -38,13 +38,13 @@ class Header extends Component<Props, State> {
             </LogoLink>
             <List>
               <ListItem>
-                <Link to="#Services">Services</Link>
+                <Link to="/#Services">Services</Link>
               </ListItem>
               <ListItem>
-                <Link to="#Projects">Projects</Link>
+                <Link to="/#Projects">Projects</Link>
               </ListItem>
               <ListItem>
-                <Link to="#Contacts">Contacts</Link>
+                <Link to="/#Contacts">Contacts</Link>
               </ListItem>
             </List>
           </Wrapper>
@@ -69,17 +69,8 @@ const LogoLink = styled(Link)`
   @media (max-width: 1260px) {
     left: 40px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     left: 20px;
-  }
-`;
-
-const LogoImage = styled.div.attrs({
-  children: ({ src, alt }) => <img src={src} alt={alt} />
-})`
-  width: 185px;
-  img {
-    width: 100%;
   }
 `;
 
@@ -108,14 +99,14 @@ ListItem = styled(ListItem)`
     margin: 0 0px 0 10px;
     padding: 12px 10px;
     letter-spacing: 0.02em;
-    color: #161338;
+    color: ${props => props.theme.navigationColor};
     text-decoration: none;
     position: relative;
     transition: all 300ms;
     font-weight: 400;
     font-size: 14px;
     &::before {
-      background: #161338;
+      background: ${props => props.theme.navigationColor};
       opacity: 0;
       bottom: -1px;
       content: "";

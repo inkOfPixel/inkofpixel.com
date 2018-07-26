@@ -2,6 +2,7 @@
 
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
+import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 
@@ -16,7 +17,6 @@ const IndexPage = ({ data }: Props) => {
   const contacts = data.contacts.edges[0].node;
   return (
     <Page>
-      {console.log(data)}
       <Section className="Hero">
         <Wrapper>
           <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
@@ -111,8 +111,6 @@ const IndexPage = ({ data }: Props) => {
     </Page>
   );
 };
-
-const Page = styled.div``;
 
 const Flexbox = styled.div`
   display: flex;

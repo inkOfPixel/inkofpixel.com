@@ -14,7 +14,7 @@ class Footer extends Component<Props> {
       <Container id="Contacts">
         <Wrapper>
           <Flexbox>
-            <Logo color="#fff" />
+            <Logo />
             <div className="contact">
               <div className="caption">
                 We collaborate with ambitious brands and people;
@@ -58,6 +58,9 @@ const Flexbox = styled.div`
   display: flex;
   @media (max-width: 850px) {
     flex-direction: column;
+  }
+  ${Logo} {
+    fill: #fff;
   }
   .contact {
     padding-left: 100px;

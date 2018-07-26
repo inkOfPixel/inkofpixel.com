@@ -4,12 +4,11 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-  className: string,
-  color: string
+  className: string
 };
 
-const Logo = ({ className, color = "#000" }: Props) => (
-  <svg className={className} viewBox="0 0 554 150" fill={color}>
+let Logo = ({ className }: Props) => (
+  <svg className={className} viewBox="0 0 554 150">
     <path d="M119.42,67.93,149.81,37.5,112.36,0,82,30.43a10,10,0,0,1-14.13,0L37.45,0,0,37.5,30.39,67.93a10,10,0,0,1,0,14.14L0,112.5,37.45,150l30.39-30.43a10,10,0,0,1,14.13,0L112.36,150l37.45-37.5L119.42,82.07A10,10,0,0,1,119.42,67.93ZM82,105.43a10,10,0,0,1-14.13,0L44.52,82.07a10,10,0,0,1,0-14.14L67.84,44.57a10,10,0,0,1,14.13,0L105.3,67.93a10,10,0,0,1,0,14.14Z" />
     <path d="M186.77,38.2V30.7h5.89v7.5Zm0,62.5v-50h5.89v50Z" />
     <path d="M212.33,100.7h-5.89v-50h5.89v3.7a33.31,33.31,0,0,1,16.28-4.7q10,0,13.34,5.3t3.34,19.4v26.3h-6v-26q0-11.51-2.2-15.55t-9.39-4a27.9,27.9,0,0,0-7.34,1,31,31,0,0,0-5.94,2.15l-2.1,1Z" />
@@ -24,7 +23,16 @@ const Logo = ({ className, color = "#000" }: Props) => (
   </svg>
 );
 
-export default styled(Logo)`
+Logo = styled(Logo)`
   width: 200px;
   height: 54px;
+  fill: ${props => props.theme.navigationColor};
 `;
+
+Logo.defaultProps = {
+  theme: {
+    navigationColor: "#161338"
+  }
+};
+
+export default Logo;

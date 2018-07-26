@@ -29,11 +29,16 @@ module.exports = {
       }
     },
     "gatsby-transformer-json",
-    "gatsby-transformer-remark",
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: []
+      }
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-117532371-1",
+        trackingId: "UA-28251380-1",
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
