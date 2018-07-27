@@ -126,7 +126,7 @@ const RichTextEditor = styled.div`
       display: block;
       width: 1200px;
       margin-left: -250px;
-      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
       @media (max-width: 1260px) {
         width: calc(100vw - 80px);
         margin-left: calc((-100vw + 780px) / 2);
