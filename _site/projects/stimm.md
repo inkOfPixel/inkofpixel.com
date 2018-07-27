@@ -7,7 +7,7 @@ seoDescription: >-
 excerpt: >-
   STIMM felt held back by their old Magento website. We gave them freedom and
   functionality with a brand new custom Shopify site.
-type: 'Ecommerce, Management, Consulting'
+type: 'Ecommerce, Integrations, Consulting'
 featuredImage: /assets/inkofpixel_stimm_featured_image.jpg
 heroImage: /assets/inkofpixel_stimm_hero.jpg
 template: project
