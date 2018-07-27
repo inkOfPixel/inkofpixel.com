@@ -22,13 +22,13 @@ STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that create
 
 STIMM were in need of a platform that help them transform and grow toward a true multichannel business. We proposed Shopify to satisfy both their offline and online needs, as Shopify offers also a POS solution for offline sales. The first step was to move away from their old Magento website which was slow, difficult to navigate and expensive to keep up. Replatforming to Shopify led to a more performant website, better and faster admin and more insights into their data. 
 
-![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
+![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_customize.jpg)
 
 ## A challenging redesign
 
 The existing STIMM website was starting to look its age and presented several user experience flaws. We collaborated with STIMM to identify a new redesign the better fit their brand values, that a clearly represented by their unique brick and mortar stores. 
 
-![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
+![inkOfPixel - STIMM Redesign](/assets/inkofpixel_stimm_structure.jpg)
 
 ## Perfect product pages
 
@@ -40,7 +40,7 @@ When designing a fashion online shopping experience it's imperative to communica
 
 Having a catalog with several thousands products, STIMM presents a unique challenge when it comes to proving a great navigation experience. We designed for them a brand new search with [Algolia](https://www.algolia.com/) that provides best in class search performance and the flexibility of tuning search results to improve conversions.
 
-![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
+![inkOfPixel - STIMM Algolia search shopify](/assets/inkofpixel_stimm_algolia_search.jpg)
 
 ## The results
 
