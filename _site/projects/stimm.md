@@ -24,15 +24,15 @@ STIMM were in need of a platform that help them transform and grow toward a true
 
 ![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
 
-## Perfect product pages
-
-When designing a fashion online shopping experience it's imperative to communicate the quality and the details of the product so that the potential costumer can be confident about how the product it's gonna look like. We crafted an easy to scan product page that presents the product and all the details necessary to complete the purchase. We designed also zoom magnification for images so that the customer can have a better look on the product.  
-
-![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
-
 ## A challenging redesign
 
 The existing STIMM website was starting to look its age and presented several user experience flaws. We collaborated with STIMM to identify a new redesign the better fit their brand values, that a clearly represented by their unique brick and mortar stores. 
+
+![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
+
+## Perfect product pages
+
+When designing a fashion online shopping experience it's imperative to communicate the quality and the details of the product so that the potential costumer can be confident about how the product it's gonna look like. We crafted an easy to scan product page that presents the product and all the details necessary to complete the purchase. We designed also zoom magnification for images so that the customer can have a better look on the product.  
 
 ![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_product_detail.png)
 
