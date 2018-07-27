@@ -112,8 +112,6 @@ const IndexPage = ({ data }: Props) => {
             We’re an experience design agency that builds brands, platforms, &
             eCommerce flagships that help businesses succeed in digital culture
           </DisplayText>
-          <Splash color="#f8f1ff" size="100px" />
-          <Splash color="#ffefe4">Hello</Splash>
         </Wrapper>
       </Section>
     </Page>
