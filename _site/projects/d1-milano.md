@@ -2,11 +2,11 @@
 title: D1 Milano
 seoTitle: D1 Milano | inkOfPixel
 seoDescription: >-
-  D1 Milano approached us looking for a fast, beautiful and functional new
-  website. The result outperformed their expectations.
+  D1 Milano approached us to build a brand new Shopify Plus e-commerce. The
+  result outperformed their expectations.
 excerpt: >-
-  D1 Milano approached us looking for a fast, beautiful and functional new
-  website. The result outperformed their expectations.
+  D1 Milano approached us to build a brand new Shopify Plus e-commerce. The
+  result outperformed their expectations.
 type: ECOMMERCE
 featuredImage: /assets/inkofpixel_d1_milano_featured.jpg
 heroImage: /assets/inkofpixel_d1_milano_hero.jpg
