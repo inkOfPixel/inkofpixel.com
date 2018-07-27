@@ -3,12 +3,10 @@ title: D1 Milano
 seoTitle: D1 Milano | inkOfPixel
 seoDescription: >-
   D1 Milano approached us looking for a fast, beautiful and functional new
-  website. We gave them a brand new Shopify Plus store. The result outperformed
-  their expectations.
+  website. The result outperformed their expectations.
 excerpt: >-
   D1 Milano approached us looking for a fast, beautiful and functional new
-  website. We gave them a brand new Shopify Plus store. The result outperformed
-  their expectations.
+  website. The result outperformed their expectations.
 type: ECOMMERCE
 featuredImage: /assets/inkofpixel_d1_milano_featured.jpg
 heroImage: /assets/inkofpixel_d1_milano_hero.jpg
@@ -42,4 +40,4 @@ We helped D1 Milano launching the project shadow watch by designing and building
 
 ## The results
 
-Three months after the launch of the new site D1 Milano had as much revenues as the whole previous year. Since then sales keep growing at a fast-pace, with a **10x increase year on year**.
+We gave D1 Milano a bran new Shopify Plus site. Three months after the launch revenues already matched the whole revenue of the previous year. Since then sales keep growing at a fast-pace, with a **10x increase year on year**.
