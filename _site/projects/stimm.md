@@ -12,13 +12,15 @@ featuredImage: /assets/inkofpixel_stimm_featured_image.jpg
 heroImage: /assets/inkofpixel_stimm_hero.jpg
 template: project
 ---
-dashdaksdhjals dasojdoasdkashdjasbidhasoijdnas
+STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that creates unique and contemporary looks.
 
 ![inkOfPixel - STIMM Man Page](/assets/inkofpixel_stimm_man_page.png)
 
-Lorem ipsum
+## Moving away from Magento
 
-![inkOfPixel - STIMM Catalog](/assets/inkofpixel_stimm_women_dresses.png)
+
+
+##  
 
 asdsadjasofdas fabsiuhfas dgfsfdioa<f DFOASJFAS OJASF
 
