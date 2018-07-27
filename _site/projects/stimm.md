@@ -12,7 +12,7 @@ featuredImage: /assets/inkofpixel_stimm_featured_image.jpg
 heroImage: /assets/inkofpixel_stimm_hero.jpg
 template: project
 ---
-[STIMM](https://stimm.com) - Shopping Therapy In My Mind - is a multi-brand concept store that creates unique and contemporary looks.
+STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that creates unique and contemporary looks.
 
 > Ironic approach to fashion. Real contemporary style. Therapy of my moods.
 
