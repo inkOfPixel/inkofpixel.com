@@ -17,7 +17,7 @@ class Footer extends Component<Props> {
             <Logo />
             <div className="contact">
               <div className="caption">
-                We collaborate with ambitious brands and people;
+                We collaborate with ambitious brands and entrepreneurs.
                 <br />
                 We’d love to build something great together.
               </div>

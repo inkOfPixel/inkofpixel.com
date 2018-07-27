@@ -108,10 +108,13 @@ const IndexPage = ({ data }: Props) => {
       <Section className="About" id="about">
         <Wrapper>
           <SectionTitle>About Us</SectionTitle>
-          <DisplayText>
-            We’re an experience design agency that builds brands, platforms, &
-            eCommerce flagships that help businesses succeed in digital culture
-          </DisplayText>
+          <DisplayText>We are engineers, designers and scientists.</DisplayText>
+          <Subtitle>
+            We use state of the art technologies, embrace change and never stop
+            learning.
+            <br />If you’re looking for new ideas and talented people to bring
+            them to life, you’ve come to the right place.
+          </Subtitle>
         </Wrapper>
       </Section>
     </Page>
