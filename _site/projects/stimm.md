@@ -2,12 +2,12 @@
 title: STIMM
 seoTitle: STIMM | inkOfPixel
 seoDescription: >-
-  Sull'e-commerce STIMM trovi una selezione di brand affermati ed emergenti.
-  Scopri il mood casual, nuovi stili e colori della collezione P/E 2018!
+  STIMM felt held back by their old Magento website. We gave them freedom and
+  functionality with a brand new custom Shopify site.
 excerpt: >-
-  sull'e-commerce STIMM trovi una selezione di brand affermati ed emergenti.
-  Scopri il mood casual, nuovi stili e colori della collezione P/E 2018!
-type: 'Ecommerce, Management, it support'
+  STIMM felt held back by their old Magento website. We gave them freedom and
+  functionality with a brand new custom Shopify site.
+type: 'Ecommerce, Management, Consulting'
 featuredImage: /assets/inkofpixel_stimm_featured_image.jpg
 heroImage: /assets/inkofpixel_stimm_hero.jpg
 template: project
