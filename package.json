@@ -27,7 +27,8 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "start": "gatsby develop",
+    "dev": "yarn start",
     "remote-dev":
       "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
     "format":
