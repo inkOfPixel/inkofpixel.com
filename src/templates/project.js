@@ -121,6 +121,30 @@ const RichTextEditor = styled.div`
     @media (max-width: 800px) {
       width: 100%;
     }
+    a {
+      font-weight: 700;
+      color: inherit;
+      position: relative;
+      text-decoration: none;
+      transition: 0.3s all;
+      &::after {
+        transition: 0.3s all;
+        content: "";
+        height: 2px;
+        width: calc(100% + 6px);
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        left: -3px;
+        background-color: #161338;
+      }
+      &:hover {
+        color: #05c3b6;
+        &::after {
+          background-color: #05c3b6;
+        }
+      }
+    }
     img {
       width: 100%;
       display: block;
