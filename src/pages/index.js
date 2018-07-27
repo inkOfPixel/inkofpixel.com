@@ -2,6 +2,7 @@
 
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
+import ScrollableAnchor from "react-scrollable-anchor";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
@@ -32,91 +33,101 @@ const IndexPage = ({ data }: Props) => {
           </HeroIllustration>
         </Wrapper>
       </Section>
-      <Section className="Services" id="services">
-        <Wrapper>
-          <SectionTitle>Service</SectionTitle>
-          <Flexbox>
-            <Heading>
-              <DisplayText>{services.title}</DisplayText>
-              <Subtitle>{services.description}</Subtitle>
-            </Heading>
-            <ServiceList>
-              {services.primaryList.map((item, index) => (
-                <li key={item.title}>
-                  <Splash
-                    color={["#f8f1ff", "#e8fbf6", "#fff7df"][index]}
-                    size="100px"
-                  >
-                    <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                  </Splash>
-                  <p className="title">{item.title}</p>
-                  <p className="description">{item.description}</p>
-                </li>
-              ))}
-            </ServiceList>
-          </Flexbox>
-          <Flexbox>
-            <Heading className="secondary">
-              <DisplayText>{services.subTitle}</DisplayText>
-              <Subtitle>{services.subDescription}</Subtitle>
-            </Heading>
-            <ServiceList className="secondaryServicesList">
-              {services.secondaryList.map(item => (
-                <li key={item.title}>
-                  <Splash color="#ffefe4" size="100px">
-                    <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                  </Splash>
-                  <p className="title">{item.title}</p>
-                  <p className="description">{item.description}</p>
-                </li>
-              ))}
-            </ServiceList>
-          </Flexbox>
-        </Wrapper>
-      </Section>
-      <Section className="Work" id="work">
-        <Wrapper>
-          <SectionTitle>Our Work</SectionTitle>
-          <DisplayText>{projects.title}</DisplayText>
-          <ul className="featuredProjectsList">
-            {projects.fields.featuredProjects.map(item => (
-              <li key={item.frontmatter.title}>
-                <Link to={item.fields.path}>
-                  <div className="content">
-                    <div
-                      className="featuredImage"
-                      style={{
-                        backgroundImage: `url('${
-                          item.frontmatter.featuredImage
-                        }')`
-                      }}
-                    />
-                    <div className="info">
-                      <p className="title">{item.frontmatter.title}</p>
-                      <p className="description">{item.frontmatter.excerpt}</p>
+      <ScrollableAnchor id="services">
+        <Section className="Services">
+          <Wrapper>
+            <SectionTitle>Service</SectionTitle>
+            <Flexbox>
+              <Heading>
+                <DisplayText>{services.title}</DisplayText>
+                <Subtitle>{services.description}</Subtitle>
+              </Heading>
+              <ServiceList>
+                {services.primaryList.map((item, index) => (
+                  <li key={item.title}>
+                    <Splash
+                      color={["#f8f1ff", "#e8fbf6", "#fff7df"][index]}
+                      size="100px"
+                    >
+                      <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                    </Splash>
+                    <p className="title">{item.title}</p>
+                    <p className="description">{item.description}</p>
+                  </li>
+                ))}
+              </ServiceList>
+            </Flexbox>
+            <Flexbox>
+              <Heading className="secondary">
+                <DisplayText>{services.subTitle}</DisplayText>
+                <Subtitle>{services.subDescription}</Subtitle>
+              </Heading>
+              <ServiceList className="secondaryServicesList">
+                {services.secondaryList.map(item => (
+                  <li key={item.title}>
+                    <Splash color="#ffefe4" size="100px">
+                      <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                    </Splash>
+                    <p className="title">{item.title}</p>
+                    <p className="description">{item.description}</p>
+                  </li>
+                ))}
+              </ServiceList>
+            </Flexbox>
+          </Wrapper>
+        </Section>
+      </ScrollableAnchor>
+      <ScrollableAnchor id="work">
+        <Section className="Work">
+          <Wrapper>
+            <SectionTitle>Our Work</SectionTitle>
+            <DisplayText>{projects.title}</DisplayText>
+            <ul className="featuredProjectsList">
+              {projects.fields.featuredProjects.map(item => (
+                <li key={item.frontmatter.title}>
+                  <Link to={item.fields.path}>
+                    <div className="content">
+                      <div
+                        className="featuredImage"
+                        style={{
+                          backgroundImage: `url('${
+                            item.frontmatter.featuredImage
+                          }')`
+                        }}
+                      />
+                      <div className="info">
+                        <p className="title">{item.frontmatter.title}</p>
+                        <p className="description">
+                          {item.frontmatter.excerpt}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="projectLink" to={item.fields.path}>
-                    Discover More
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Wrapper>
-      </Section>
-      <Section className="About" id="about">
-        <Wrapper>
-          <SectionTitle>About Us</SectionTitle>
-          <DisplayText>We are engineers, designers and scientists.</DisplayText>
-          <Subtitle>
-            We use state of the art technologies, embrace change and never stop
-            learning.
-            <br />If you’re looking for new ideas and talented people to bring
-            them to life, you’ve come to the right place.
-          </Subtitle>
-        </Wrapper>
-      </Section>
+                    <div className="projectLink" to={item.fields.path}>
+                      Discover More
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Wrapper>
+        </Section>
+      </ScrollableAnchor>
+      <ScrollableAnchor id="about">
+        <Section className="About">
+          <Wrapper>
+            <SectionTitle>About Us</SectionTitle>
+            <DisplayText>
+              We are engineers, designers and scientists.
+            </DisplayText>
+            <Subtitle>
+              We use state of the art technologies, embrace change and never
+              stop learning.
+              <br />If you’re looking for new ideas and talented people to bring
+              them to life, you’ve come to the right place.
+            </Subtitle>
+          </Wrapper>
+        </Section>
+      </ScrollableAnchor>
     </Page>
   );
 };

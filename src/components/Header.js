@@ -38,13 +38,13 @@ class Header extends Component<Props, State> {
             </LogoLink>
             <List>
               <ListItem>
-                <Link to="/#services">Services</Link>
+                <PageAnchorLink to="#services">Services</PageAnchorLink>
               </ListItem>
               <ListItem>
-                <Link to="/#work">Our Work</Link>
+                <PageAnchorLink to="#work">Our Work</PageAnchorLink>
               </ListItem>
               <ListItem>
-                <Link to="/#contacts">Contacts</Link>
+                <PageAnchorLink to="#contacts">Contacts</PageAnchorLink>
               </ListItem>
             </List>
           </Wrapper>
@@ -73,6 +73,10 @@ const LogoLink = styled(Link)`
     left: 20px;
   }
 `;
+
+const PageAnchorLink = styled.a.attrs({
+  href: props => props.to
+})``;
 
 const List = styled.ul`
   list-style: none;
@@ -233,13 +237,13 @@ const MobileMenu = styled(SlideMenu)`
   top: 0;
 `;
 
-const MobileLink = styled(Link)`
-  display: inline-block;
-  color: #161338;
-  text-decoration: none;
-  font-size: 24px;
-  padding-bottom: 30px;
-`;
+// const MobileLink = styled(Link)`
+//   display: inline-block;
+//   color: #161338;
+//   text-decoration: none;
+//   font-size: 24px;
+//   padding-bottom: 30px;
+// `;
 
 const ResourceLink = styled.a`
   display: inline-block;

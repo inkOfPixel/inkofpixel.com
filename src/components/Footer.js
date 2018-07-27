@@ -2,6 +2,7 @@
 
 import React, { type Node, Component } from "react";
 import styled from "styled-components";
+import ScrollableAnchor from "react-scrollable-anchor";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 import Logo from "components/Logo";
@@ -11,36 +12,38 @@ type Props = {};
 class Footer extends Component<Props> {
   render() {
     return (
-      <Container id="contacts">
-        <Wrapper>
-          <Flexbox>
-            <Logo />
-            <div className="contact">
-              <div className="caption">
-                We collaborate with ambitious brands and entrepreneurs.
-                <br />
-                We’d love to build something great together.
+      <ScrollableAnchor id="contacts">
+        <Container>
+          <Wrapper>
+            <Flexbox>
+              <Logo />
+              <div className="contact">
+                <div className="caption">
+                  We collaborate with ambitious brands and entrepreneurs.
+                  <br />
+                  We’d love to build something great together.
+                </div>
+                <a
+                  className="mail"
+                  href="mailto:info@inkofpixel.com"
+                  target="_top"
+                >
+                  info@inkofpixel.com
+                </a>
               </div>
-              <a
-                className="mail"
-                href="mailto:info@inkofpixel.com"
-                target="_top"
-              >
-                info@inkofpixel.com
-              </a>
-            </div>
-          </Flexbox>
-          <BottomLine>
-            <p className="copyright">
-              © 2018 inkOfPixel Srl. All rights reserved.
-            </p>
-            <p className="companyInfo">
-              Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
-              Number 09287730965 • REA MI - 2081233
-            </p>
-          </BottomLine>
-        </Wrapper>
-      </Container>
+            </Flexbox>
+            <BottomLine>
+              <p className="copyright">
+                © 2018 inkOfPixel Srl. All rights reserved.
+              </p>
+              <p className="companyInfo">
+                Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
+                Number 09287730965 • REA MI - 2081233
+              </p>
+            </BottomLine>
+          </Wrapper>
+        </Container>
+      </ScrollableAnchor>
     );
   }
 }
