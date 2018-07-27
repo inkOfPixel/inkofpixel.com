@@ -14,13 +14,13 @@ template: project
 ---
 STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that creates unique and contemporary looks.
 
+> Ironic approach to fashion. Real contemporary style. Therapy of my moods.
+
 ![inkOfPixel - STIMM Man Page](/assets/inkofpixel_stimm_man_page.png)
 
 ## Moving away from Magento
 
-
-
-##  
+## 
 
 asdsadjasofdas fabsiuhfas dgfsfdioa<f DFOASJFAS OJASF
 
