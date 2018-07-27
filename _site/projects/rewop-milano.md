@@ -18,11 +18,13 @@ REWOP is an Italian brand of sunglasses that are entirely handmade in Italy, wit
 
 ## The challenge
 
-Rewop is an anagram of "power", and reflects the strength, freshness and dynamicity that characterize the brand. It was imperative whilst modernising their e‑commerce that we designed a website that respect these values.
+Rewop is an anagram of "power", and reflects the strength, freshness and dynamicity that characterize the brand. It was imperative that we designed a website that respect these values while being fast and easy to navigate.
 
 ![prova](/assets/rewop-milano.jpg)
 
-We went through a brainstorming phase during which we proposed mockups and discussed with them until we reached the final result. 
+## A new mobile experience
+
+The theme we worked on was carefully chosen to provide a sleek mobile experience, and we made sure that everything was just as good as the desktop experience.
 
 ## A brand new store locator
 
@@ -30,8 +32,8 @@ REWOP operates also offline through a global network of resellers. As such they 
 
 ## Website performances
 
-With their old e-commerce REWOP was sufferring from slow page load times, as pages took more than 10 seconds to load. With their new Shopify we saw a 3x page speed improvements that immediately led to an increase of sales.
+With their old e-commerce REWOP was suffering from slow page load times, as pages took more than 10 seconds to load. With their new Shopify we saw a 3x page speed improvements that immediately led to an increase of sales.
 
 ## The results
 
-A unique look and feel that convey REWOP brand values and highlights .
+A unique look and feel that convey REWOP brand values and highlights unique look of their "Made in Italy" sunglasses. A new Shopify site that loads fast and simplifies the path for growth.
