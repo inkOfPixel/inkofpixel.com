@@ -517,7 +517,6 @@ export const query = graphql`
                 title
                 excerpt
                 featuredImage
-                logo
               }
               fields {
                 path
