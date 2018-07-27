@@ -174,12 +174,23 @@ const RichTextEditor = styled.div`
     }
   }
   blockquote {
+    padding: 60px 40px;
+    background-color: #eaf7f7;
+    width: 700px;
+    margin: 30px auto;
+    box-sizing: border-box;
+    position: relative;
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
     p {
-      padding: 60px 40px;
-      background-color: #eaf7f7;
+      width: 100%;
       position: relative;
       color: #03635d;
       font-weight: 700;
+      font-style: italic;
+      padding: 0;
       &:before,
       &:after {
         content: "“";
@@ -192,13 +203,25 @@ const RichTextEditor = styled.div`
       }
       &:before {
         content: "“";
-        top: 40px;
-        left: 0px;
+        top: -10px;
+        left: -30px;
       }
       &:after {
         content: "”";
-        bottom: -8px;
+        bottom: -50px;
         right: 0;
+      }
+    }
+    ul {
+      list-style: none;
+      bottom: 0;
+      right: 0;
+      padding-top: 60px;
+      text-align: right;
+      li {
+        color: #03635d;
+        font-size: 14px;
+        margin-bottom: -20px;
       }
     }
   }
