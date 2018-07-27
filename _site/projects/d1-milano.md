@@ -18,10 +18,7 @@ D1 Milano is a luxury fashion accessory brand born in Milan during the 2013 Edit
 
 > With strong shapes, a competitive price point, attention to details and aesthetics, D1 Milano produces unconventionally Italian Products that represent our strong Italian heritage.
 >
-> \
->
->
-> - Dario Spallone, CEO of D1 Milano
+> * Dario Spallone, CEO of D1 Milano
 
 ![inkOfPixel - D1 Milano Home Page](/assets/inkofpixel_d1_milano_hero_website.jpg)
 
@@ -43,4 +40,6 @@ We helped D1 Milano launching the project shadow watch by designing and building
 
 ![inkOfPixel - D1 Milano Store Locator](/assets/inkofpixel_d1_milano_store_locator.jpg)
 
-## A sleek mobile experience
+## The results
+
+Three months after the launch of the new site D1 Milano had as much revenues as the whole previous year. Since then sales keep growing at a fast-pace, with a 10x increase year on year.
