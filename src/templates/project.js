@@ -151,12 +151,31 @@ const RichTextEditor = styled.div`
   }
   blockquote {
     p {
-      border-left: 4px solid #05c3b6;
-      padding: 30px 20px;
+      padding: 60px 40px;
       background-color: #eaf7f7;
       position: relative;
       color: #03635d;
       font-weight: 700;
+      &:before,
+      &:after {
+        content: "“";
+        display: block;
+        position: absolute;
+        color: #05c3b6;
+        opacity: 0.4;
+        font-size: 90px;
+        font-weight: 400;
+      }
+      &:before {
+        content: "“";
+        top: 40px;
+        left: 0px;
+      }
+      &:after {
+        content: "”";
+        bottom: -8px;
+        right: 0;
+      }
     }
   }
   table {
