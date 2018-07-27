@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
+import Splash from "components/Splash";
 
 type Props = {
   data: {}
@@ -19,32 +20,35 @@ const IndexPage = ({ data }: Props) => {
     <Page>
       <Section className="Hero">
         <Wrapper>
-          <Title dangerouslySetInnerHTML={{ __html: hero.title }} />
+          <Slogan dangerouslySetInnerHTML={{ __html: hero.title }} />
           <Subtitle>{hero.subtitle}</Subtitle>
           <HeroIllustration>
-            <div className="drop drop01" />
-            <div className="drop drop02" />
-            <div className="drop drop03" />
-            <div className="drop drop04" />
-            <div className="drop drop05" />
-            <div className="drop drop06" />
+            <Splash className="splash01" color="#f8f1ff" size="600px" />
+            <Splash className="splash02" color="#ffefe4" size="280px" />
+            <Splash className="splash03" color="#f8f1ff" size="150px" />
+            <Splash className="splash04" color="#e8fbf6" size="100px" />
+            <Splash className="splash05" color="#e8fbf6" size="60px" />
+            <Splash className="splash06" color="#fff7df" size="60px" />
           </HeroIllustration>
         </Wrapper>
       </Section>
-      <Section className="Services" id="Services">
+      <Section className="Services" id="services">
         <Wrapper>
           <SectionTitle>Service</SectionTitle>
           <Flexbox>
             <Heading>
-              <Title>{services.title}</Title>
+              <DisplayText>{services.title}</DisplayText>
               <Subtitle>{services.description}</Subtitle>
             </Heading>
             <ServiceList>
-              {services.primaryList.map(item => (
+              {services.primaryList.map((item, index) => (
                 <li key={item.title}>
-                  <div className="icon">
+                  <Splash
+                    color={["#f8f1ff", "#e8fbf6", "#fff7df"][index]}
+                    size="100px"
+                  >
                     <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                  </div>
+                  </Splash>
                   <p className="title">{item.title}</p>
                   <p className="description">{item.description}</p>
                 </li>
@@ -53,15 +57,15 @@ const IndexPage = ({ data }: Props) => {
           </Flexbox>
           <Flexbox>
             <Heading className="secondary">
-              <Title>{services.subTitle}</Title>
+              <DisplayText>{services.subTitle}</DisplayText>
               <Subtitle>{services.subDescription}</Subtitle>
             </Heading>
             <ServiceList className="secondaryServicesList">
               {services.secondaryList.map(item => (
                 <li key={item.title}>
-                  <div className="icon secondary">
+                  <Splash color="#ffefe4" size="100px">
                     <img src={item.image} alt={`${item.title} inkOfPixel`} />
-                  </div>
+                  </Splash>
                   <p className="title">{item.title}</p>
                   <p className="description">{item.description}</p>
                 </li>
@@ -70,10 +74,10 @@ const IndexPage = ({ data }: Props) => {
           </Flexbox>
         </Wrapper>
       </Section>
-      <Section className="Projects" id="Projects">
+      <Section className="Work" id="work">
         <Wrapper>
-          <SectionTitle>Projects</SectionTitle>
-          <Title>{projects.title}</Title>
+          <SectionTitle>Our Work</SectionTitle>
+          <DisplayText>{projects.title}</DisplayText>
           <ul className="featuredProjectsList">
             {projects.fields.featuredProjects.map(item => (
               <li key={item.frontmatter.title}>
@@ -101,13 +105,15 @@ const IndexPage = ({ data }: Props) => {
           </ul>
         </Wrapper>
       </Section>
-      <Section className="About" id="About">
+      <Section className="About" id="about">
         <Wrapper>
           <SectionTitle>About Us</SectionTitle>
-          <Title>
+          <DisplayText>
             We’re an experience design agency that builds brands, platforms, &
             eCommerce flagships that help businesses succeed in digital culture
-          </Title>
+          </DisplayText>
+          <Splash color="#f8f1ff" size="100px" />
+          <Splash color="#ffefe4">Hello</Splash>
         </Wrapper>
       </Section>
     </Page>
@@ -123,7 +129,22 @@ const Heading = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h2`
+const Slogan = styled.h2`
+  font-size: 46px;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-family: Europa;
+  line-height: 1.1em;
+  @media (max-width: 900px) {
+    font-size: 40px;
+  }
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+`;
+
+const DisplayText = styled.p`
   font-size: 46px;
   padding: 0;
   margin: 0;
@@ -149,8 +170,9 @@ const Subtitle = styled.p`
   }
 `;
 
-const SectionTitle = styled.p`
+const SectionTitle = styled.h2`
   font-size: 14px;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   position: relative;
@@ -168,137 +190,38 @@ const SectionTitle = styled.p`
   }
 `;
 
-const rotate = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
-
-const rotateInverse = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-`;
-
-const bordertl = keyframes`
-  0%, 100% { border-top-left-radius: 50%; }
-  25% { border-top-left-radius: 90px;}
-  50% { border-top-left-radius: 40%; }
-  75% { border-top-left-radius: 45%; }
-`;
-
-const bordertr = keyframes`
-  0%, 100% { border-top-right-radius: 50%;}
-  25% { border-top-right-radius: 49%;}
-  50% { border-top-right-radius: 50%px;}
-  75% { border-top-right-radius: 35%px;}
-`;
-
-const borderbr = keyframes`
-  0%, 100% { border-bottom-right-radius: 50%; }
-  25% { border-bottom-right-radius: 45%;}
-  50% { border-bottom-right-radius: 47%;}
-  75% { border-bottom-right-radius: 48%;}
-`;
-
-const borderbl = keyframes`
-  0%, 100% { border-bottom-left-radius: 50%; }
-  25% { border-bottom-left-radius: 48%; }
-  50% { border-bottom-left-radius: 48%; }
-  75% { border-bottom-left-radius: 45%;}
-`;
-
 const HeroIllustration = styled.div`
   width: 100%;
   position: absolute;
   z-index: -1;
   left: 0;
   top: 0;
-  .drop{
+  ${Splash} {
     position: absolute;
-    radius: 50%;
   }
-  .drop01 {
+  .splash01 {
     top: -200px;
     right: -200px;
-    width:600px;
-    height: 600px;
-    background-color: #f8f1ff;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
-  .drop02 {
+  .splash02 {
     top: 200px;
     right: 500px;
-    width: 280px;
-    height: 280px;
-    background-color: #ffefe4;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
-  .drop03 {
+  .splash03 {
     top: 130px;
     left: -60px;
-    width: 150px;
-    height: 150px;
-    background-color: #f8f1ff;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
-  .drop04 {
+  .splash04 {
     top: -100px;
     left: 400px;
-    width: 100px;
-    height: 100px;
-    background-color: #e8fbf6;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
-  .drop05 {
+  .splash05 {
     top: 250px;
     left: 230px;
-    width: 60px;
-    height: 60px;
-    background-color: #e8fbf6;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
-  .drop06 {
+  .splash06 {
     top: -20px;
     left: 230px;
-    width: 60px;
-    height: 60px;
-    background-color: #fff7df;
-    animation: 
-      3s ${bordertl} linear infinite, 
-      4s ${bordertr} linear infinite,
-      5.6s ${borderbl} linear infinite, 
-      3.3s ${borderbr} linear infinite,
-      3.6s ${rotate} linear infinite, 
-      2s hover ease-in-out infinite;
   }
 }
 `;
@@ -399,27 +322,9 @@ const Section = styled.section`
             background-color: #fff7df;
           }
         }
-        .icon {
-          height: 100px;
-          width: 100px;
-          radius: 50%;
-
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 15px;
-          animation: 3s ${bordertl} linear infinite,
-            4s ${bordertr} linear infinite, 5.6s ${borderbl} linear infinite,
-            3.3s ${borderbr} linear infinite, 3.6s ${rotate} linear infinite,
-            2s hover ease-in-out infinite;
-          &.secondary {
-            background-color: #ffefe4;
-          }
+        ${Splash} {
           img {
             width: 80px;
-            position: absolute;
-            animation: 3.6s ${rotateInverse} linear infinite,
-              2s hover ease-in-out infinite;
           }
         }
         .title {
@@ -438,7 +343,7 @@ const Section = styled.section`
       }
     }
   }
-  &.Projects {
+  &.Work {
     margin-top: 0px;
     background-color: #fff;
     padding-top: 150px;
@@ -450,7 +355,7 @@ const Section = styled.section`
         background-color: #05c3b6;
       }
     }
-    ${Title} {
+    ${DisplayText} {
       padding-bottom: 100px;
     }
     ${Subtitle} {
@@ -553,7 +458,7 @@ const Section = styled.section`
         background-color: #8152bc;
       }
     }
-    ${Title} {
+    ${DisplayText} {
       width: 80%;
       line-height: 1.2em;
       @media (max-width: 700px) {

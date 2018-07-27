@@ -8,6 +8,10 @@ injectGlobal`
  @import url("https://use.typekit.net/zrn4omm.css");
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500');
 
+  * {
+    margin: 0;
+    padding: 0;
+  }
 
   body {
     font-family: 'Roboto Mono', monospace;

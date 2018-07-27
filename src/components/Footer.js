@@ -11,7 +11,7 @@ type Props = {};
 class Footer extends Component<Props> {
   render() {
     return (
-      <Container id="Contacts">
+      <Container id="contacts">
         <Wrapper>
           <Flexbox>
             <Logo />

@@ -38,13 +38,13 @@ class Header extends Component<Props, State> {
             </LogoLink>
             <List>
               <ListItem>
-                <Link to="/#Services">Services</Link>
+                <Link to="/#services">Services</Link>
               </ListItem>
               <ListItem>
-                <Link to="/#Projects">Projects</Link>
+                <Link to="/#work">Our Work</Link>
               </ListItem>
               <ListItem>
-                <Link to="/#Contacts">Contacts</Link>
+                <Link to="/#contacts">Contacts</Link>
               </ListItem>
             </List>
           </Wrapper>
