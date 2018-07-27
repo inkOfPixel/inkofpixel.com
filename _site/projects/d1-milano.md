@@ -37,6 +37,10 @@ We built a custom Shopify app to better integrate with their logistic in order t
 
 ![inkOfPixel - D1 Milano Product Page](/assets/inkofpixel_d1_milano_product.jpg)
 
-We are now continuously working with D1 Milano team to improve their workflow even further and help them keep up with their fast-paced growth.
+## Limited edition product pages
+
+We helped D1 Milano launching the project shadow watch by designing and building an outstanding product page. The page included a count-down to create hype before product launch and a password protection to allow only user with a special code obtained through a newsletter subscription to buy the product.
 
 ![inkOfPixel - D1 Milano Store Locator](/assets/inkofpixel_d1_milano_store_locator.jpg)
+
+## A sleek mobile experience
