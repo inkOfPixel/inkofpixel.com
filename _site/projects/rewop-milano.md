@@ -2,13 +2,11 @@
 title: Rewop Milano
 seoTitle: Rewop Milano | inkOfPixel
 seoDescription: >-
-  REWOP is an Italian brand of sunglasses that are entirely handmade in Italy,
-  with the use of the highest quality materials. 
+  REWOP needed to refresh their old non-performing WooCommerce store. We helped
+  them crafting a whole new experience.
 excerpt: >-
-  REWOP is an Italian brand of sunglasses that are entirely handmade in Italy,
-  with the use of the highest quality materials. 
-
-  REWOP needed to re
+  REWOP needed to refresh their old non-performing WooCommerce store. We helped
+  them crafting a whole new experience.
 type: Ecommerce
 featuredImage: /assets/rewop-milano.jpg
 heroImage: /assets/rewop-milano.jpg
