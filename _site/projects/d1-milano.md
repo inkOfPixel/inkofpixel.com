@@ -36,7 +36,7 @@ We built a custom Shopify app to better integrate with their logistic in order t
 
 We helped D1 Milano launching the project shadow watch by designing and building an outstanding product page. The page included a count-down to create hype before product launch and a password protection to allow only user with a special code obtained through a newsletter subscription to buy the product.
 
-![inkOfPixel - D1 Milano Store Locator](/assets/inkofpixel_d1_milano_store_locator.jpg)
+![inkOfPixel - D1 Milano Project Shadow](/assets/inkofpixel_d1_milano_project_shadow.jpg)
 
 ## The results
 
