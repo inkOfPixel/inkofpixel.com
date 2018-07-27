@@ -111,16 +111,17 @@ const Title = styled.h2`
 const RichTextEditor = styled.div`
   padding: 50px 0;
   p {
-    line-height: 1.3em;
+    line-height: 1.8em;
+    padding-top: 30px;
     padding-bottom: 30px;
     width: 700px;
     font-size: 14px;
     margin: 0 auto;
+    box-sizing: border-box;
     @media (max-width: 800px) {
       width: 100%;
     }
     img {
-      margin: 20px 0;
       width: 100%;
       display: block;
       width: 1200px;
@@ -137,6 +138,26 @@ const RichTextEditor = styled.div`
     }
   }
   h2 {
+    padding-top: 30px;
+    width: 700px;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    margin: 0 auto;
+    font-family: Europa, sans-serif;
+    box-sizing: border-box;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+  blockquote {
+    p {
+      border-left: 4px solid #05c3b6;
+      padding: 30px 20px;
+      background-color: #eaf7f7;
+      position: relative;
+      color: #03635d;
+      font-weight: 700;
+    }
   }
   table {
     margin-top: 20px;
