@@ -14,7 +14,7 @@ featuredImage: /assets/inkofpixel_d1_milano_featured.jpg
 heroImage: /assets/inkofpixel_d1_milano_hero.jpg
 template: project
 ---
-D1 Milano is a luxury fashion accessory brand born in Milan during the 2013 Edition of Milano Fashion Week. The company is considered one of the fastest growing brands in the luxury industry and has been featured by Forbes in the list "Top 10 Startups Redefining Italian Fashion".
+[D1 Milano](https://d1milano.com) is a luxury fashion accessory brand born in Milan during the 2013 Edition of Milano Fashion Week. The company is considered one of the fastest growing brands in the luxury industry and has been featured by Forbes in the list "Top 10 Startups Redefining Italian Fashion".
 
 > With strong shapes, a competitive price point, attention to details and aesthetics, D1 Milano produces unconventionally Italian Products that represent our strong Italian heritage.
 >
@@ -42,4 +42,4 @@ We helped D1 Milano launching the project shadow watch by designing and building
 
 ## The results
 
-Three months after the launch of the new site D1 Milano had as much revenues as the whole previous year. Since then sales keep growing at a fast-pace, with a 10x increase year on year.
+Three months after the launch of the new site D1 Milano had as much revenues as the whole previous year. Since then sales keep growing at a fast-pace, with a **10x increase year on year**.
