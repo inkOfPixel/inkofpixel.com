@@ -235,7 +235,30 @@ const HeroIllustration = styled.div`
     top: -20px;
     left: 230px;
   }
-}
+  @media (max-width: 1100px) {
+    .splash05 {
+      display: none;
+    }
+  }
+  @media (max-width: 900px) {
+    .splash04 {
+      display: none;
+    }
+    .splash02 {
+      display: none;
+    }
+  }
+  @media (max-width: 7200px) {
+    .splash06 {
+      display: none;
+    }
+  }
+    @media (max-width: 500px) {
+    .splash03 {
+      display: none;
+    }
+  }
+  }
 `;
 
 const ServiceList = styled.ul`
@@ -473,6 +496,14 @@ const Section = styled.section`
     ${DisplayText} {
       width: 80%;
       line-height: 1.2em;
+      @media (max-width: 700px) {
+        width: 100%;
+      }
+    }
+    ${Subtitle} {
+      width: 80%;
+      padding-top: 20px;
+
       @media (max-width: 700px) {
         width: 100%;
       }
