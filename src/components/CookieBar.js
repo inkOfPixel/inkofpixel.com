@@ -10,8 +10,8 @@ const CookierBar = () => (
     {accept => (
       <Bar>
         <Text>
-          Questo sito utilizza i cookie per garantire una migliore esperienza
-          utente. Continuando la navigazione accetti la nostra
+          inkOfPixel uses cookies to ensure that we give you the best experience
+          on our website. By browsing you agree to our
           <StyledLink to="/cookies"> cookies policy </StyledLink>
         </Text>
         <button onClick={accept} />
