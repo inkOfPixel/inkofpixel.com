@@ -9,6 +9,14 @@ collections:
     editor:
       preview: false
     files:
+      - name: general
+        label: General
+        file: _site/home-page/general.json
+        description: General Settings
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: SEO Description, name: seoDescription, widget: text}
+          - {label: Image, name: image, widget: image}
       - name: hero
         label: Hero
         file: _site/home-page/hero.json
