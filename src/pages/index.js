@@ -248,16 +248,18 @@ const HeroIllustration = styled.div`
       display: none;
     }
   }
-  @media (max-width: 7200px) {
+  @media (max-width: 720px) {
     .splash06 {
       display: none;
     }
   }
-    @media (max-width: 500px) {
+  @media (max-width: 500px) {
     .splash03 {
       display: none;
     }
-  }
+    .splash01 {
+      right: -120px;
+    }
   }
 `;
 

@@ -55,8 +55,6 @@ Splash = styled(Splash).attrs({
   speed: () => `${random(5, 12).toFixed(2)}s`
 })`
   position: relative;
-  radius: 50%;
-
   width: ${props => props.size};
   height: ${props => props.size};
   background-color: ${props => props.color};
@@ -64,16 +62,14 @@ Splash = styled(Splash).attrs({
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
     ${() => random(3, 6)}s linear infinite ${borderbr},
-    ${props => props.speed} linear infinite ${rotate},
-    2s hover ease-in-out infinite;
+    ${props => props.speed} linear infinite ${rotate};
   & > .content {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    animation: ${props => props.speed} ${rotateInverse} linear infinite,
-      2s hover ease-in-out infinite;
+    animation: ${props => props.speed} ${rotateInverse} linear infinite;
   }
 `;
 
