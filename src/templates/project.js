@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
+import Img from "gatsby-image";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
@@ -23,17 +24,16 @@ export default ({ data }) => {
           content={page.frontmatter.seoDescription}
         />
       </Helmet>
-      <Hero
-        style={{
-          backgroundImage: `url('${page.frontmatter.heroImage}')`
-        }}
-      >
-        <Wrapper>
-          <Heading>
-            <ProjectType>{page.frontmatter.type}</ProjectType>
-            <Title>{page.frontmatter.title}</Title>
-          </Heading>
-        </Wrapper>
+      <Hero>
+        <Img sizes={page.frontmatter.heroImage.childImageSharp.sizes} />
+        <HeroContent>
+          <Wrapper>
+            <Heading>
+              <ProjectType>{page.frontmatter.type}</ProjectType>
+              <Title>{page.frontmatter.title}</Title>
+            </Heading>
+          </Wrapper>
+        </HeroContent>
       </Hero>
       <Wrapper>
         <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} />
@@ -48,8 +48,13 @@ export const query = graphql`
       html
       frontmatter {
         title
-        featuredImage
-        heroImage
+        heroImage {
+          childImageSharp {
+            sizes(maxWidth: 1200) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
         type
         seoTitle
       }
@@ -66,7 +71,21 @@ const Hero = styled.div`
   ${Wrapper} {
     height: 100%;
   }
+  .gatsby-image-outer-wrapper {
+    height: 100%;
+  }
+  .gatsby-image-wrapper {
+    height: 100%;
+  }
 `;
+
+const HeroContent = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`;
+
 const Heading = styled.div`
   position: absolute;
   top: 50%;
@@ -145,19 +164,19 @@ const RichTextEditor = styled.div`
         }
       }
     }
-    img {
-      width: 100%;
+    .gatsby-resp-image-wrapper {
       display: block;
-      width: 1200px;
-      margin-left: -250px;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+      width: 100vw !important;
+      max-width: 1200px !important;
+      margin-left: -250px !important;
       @media (max-width: 1260px) {
-        width: calc(100vw - 80px);
-        margin-left: calc((-100vw + 780px) / 2);
+        width: calc(100vw - 80px) !important;
+        margin-left: calc((-100vw + 780px) / 2) !important;
       }
       @media (max-width: 800px) {
-        width: 100%;
-        margin-left: 0;
+        width: 100% !important;
+        margin-left: 0 !important;
       }
     }
   }

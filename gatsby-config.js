@@ -7,6 +7,15 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-netlify-cms",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/static/assets`,
+        name: "assets"
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -29,14 +38,27 @@ module.exports = {
       }
     },
     "gatsby-transformer-json",
+    "gatsby-plugin-netlify-cms-paths",
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: "gatsby-transformer-remark",
       options: {
-        plugins: []
+        plugins: [
+          "gatsby-plugin-netlify-cms-paths",
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 2400,
+              linkImagesToOriginal: false
+            }
+          }
+        ]
       }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: "UA-28251380-1",
         // Puts tracking script in the head instead of the body
