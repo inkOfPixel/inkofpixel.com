@@ -3,6 +3,7 @@
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import ScrollableAnchor from "react-scrollable-anchor";
+import Img from "gatsby-image";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
@@ -87,13 +88,10 @@ const IndexPage = ({ data }: Props) => {
                 <li key={item.frontmatter.title}>
                   <Link to={item.fields.path}>
                     <div className="content">
-                      <div
-                        className="featuredImage"
-                        style={{
-                          backgroundImage: `url('${
-                            item.frontmatter.featuredImage
-                          }')`
-                        }}
+                      <Img
+                        sizes={
+                          item.frontmatter.featuredImage.childImageSharp.sizes
+                        }
                       />
                       <div className="info">
                         <p className="title">{item.frontmatter.title}</p>
@@ -248,16 +246,18 @@ const HeroIllustration = styled.div`
       display: none;
     }
   }
-  @media (max-width: 7200px) {
+  @media (max-width: 720px) {
     .splash06 {
       display: none;
     }
   }
-    @media (max-width: 500px) {
+  @media (max-width: 500px) {
     .splash03 {
       display: none;
     }
-  }
+    .splash01 {
+      right: -120px;
+    }
   }
 `;
 
@@ -441,12 +441,11 @@ const Section = styled.section`
           }
         }
       }
-      .featuredImage {
-        width: 100%;
+      .gatsby-image-outer-wrapper {
         height: 300px;
-        background-size: cover;
-        position: relative;
-        background-position: center;
+        .gatsby-image-wrapper {
+          height: 100%;
+        }
       }
       .content {
         display: flex;
@@ -559,7 +558,13 @@ export const query = graphql`
               frontmatter {
                 title
                 excerpt
-                featuredImage
+                featuredImage {
+                  childImageSharp {
+                    sizes(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpSizes
+                    }
+                  }
+                }
               }
               fields {
                 path
