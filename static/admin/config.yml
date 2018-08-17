@@ -92,7 +92,7 @@ collections:
   - name: page-it
     label: Pages (IT)
     label_singular: Page (IT)
-    folder: _site/pages
+    folder: _site/pages/it
     create: true
     extension: it.md
     format: frontmatter
