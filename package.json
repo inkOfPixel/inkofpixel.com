@@ -17,7 +17,7 @@
     "gatsby-source-filesystem": "1.5.39",
     "gatsby-transformer-json": "1.0.20",
     "gatsby-transformer-remark": "1.7.44",
-    "netlify-cms": "1.0.21",
+    "netlify-cms": "1.9.3",
     "normalize.css": "8.0.0",
     "react": "16.4.2",
     "react-animate-height": "2.0.4",
