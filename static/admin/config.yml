@@ -12,7 +12,14 @@ collections:
         label: Home Page
         file: "_site/content/home.json"
         fields:
-          - { label: Title, name: title, widget: string }
+          - label: Locale
+            name: locale
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                options: ["en", "it"]
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
