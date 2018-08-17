@@ -4,6 +4,15 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 collections:
+  - name: demo
+    label: Demo
+    delete: false
+    files:
+      - name: home
+        label: Home Page
+        file: "_site/content/home.json"
+        fields:
+          - { label: Title, name: title, widget: string }
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
