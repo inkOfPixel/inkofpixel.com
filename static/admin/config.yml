@@ -4,13 +4,13 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 collections:
-  - name: demo
-    label: Demo
+  - name: static-pages
+    label: Static Pages
     delete: false
     files:
       - name: home
         label: Home Page
-        file: "_site/content/home.json"
+        file: "_site/static-pages/home.json"
         fields:
           - label: Locale
             name: locale
@@ -21,8 +21,8 @@ collections:
                 widget: select
                 options: ["en", "it"]
               - { label: Title, name: title, widget: string }
-              - label: General
-                name: general
+              - label: SEO
+                name: seo
                 widget: object
                 fields:
                   - {
@@ -31,6 +31,12 @@ collections:
                       widget: text,
                     }
                   - { label: Image, name: image, widget: image }
+              - label: Hero
+                name: hero
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: text }
+                  - { label: Subtitle, name: subtitle, widget: text }
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
