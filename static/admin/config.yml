@@ -94,6 +94,8 @@ collections:
     label_singular: Page (IT)
     folder: _site/pages/it
     create: true
+    extension: it.md
+    format: frontmatter
     fields:
       - { name: title, label: Titolo }
       - { name: seoTitle, label: Titolo SEO, widget: string }
