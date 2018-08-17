@@ -1,6 +1,6 @@
 ---
 title: en
-seoTitle: demo en
+seoTitle: hello
 seoDescription: here a demo en
 ---
 
