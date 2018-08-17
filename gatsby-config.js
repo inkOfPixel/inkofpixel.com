@@ -37,6 +37,13 @@ module.exports = {
         name: "home-page"
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/static-pages`,
+        name: "static-pages"
+      }
+    },
     "gatsby-transformer-json",
     "gatsby-plugin-netlify-cms-paths",
     {

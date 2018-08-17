@@ -4,6 +4,19 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 collections:
+  - label: Demo Page
+    name: demo-page
+    label_singular: Demo Page
+    folder: _site/demo
+    create: true
+    fields:
+      - label: Language
+        name: title
+        widget: select
+        options: ["en", "it"]
+      - { name: seoTitle, label: SEO Page title, widget: string }
+      - { name: seoDescription, label: SEO Description, widget: text }
+
   - name: static-pages
     label: Static Pages
     delete: false
