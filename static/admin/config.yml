@@ -62,6 +62,23 @@ collections:
                       - { label: Title, name: title, widget: string }
                       - { label: Image, name: image, widget: image }
                       - { label: Description, name: description, widget: text }
+              - label: Projects
+                name: projects
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - label: Featured Projects
+                    name: featuredProjects
+                    widget: list
+                    fields:
+                      - label: Project
+                        name: project
+                        widget: relation
+                        collection: projects
+                        displayFields: ["title"]
+                        searchFields: ["title", "body"]
+                        valueField: title
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
