@@ -58,12 +58,8 @@ collections:
                       - { label: Title, name: title, widget: string }
                       - { label: Image, name: image, widget: image }
                       - { label: Description, name: description, widget: text }
-                      - { label: Title, name: subTitle, widget: text }
-                      - {
-                          label: Description,
-                          name: subDescription,
-                          widget: text,
-                        }
+                  - { label: Title, name: subTitle, widget: text }
+                  - { label: Description, name: subDescription, widget: text }
                   - label: Secondary Services
                     name: secondaryList
                     widget: list
