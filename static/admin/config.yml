@@ -79,6 +79,12 @@ collections:
                         displayFields: ["title"]
                         searchFields: ["title", "body"]
                         valueField: title
+              - label: Contacts
+                name: contacts
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
   - name: home-page
     label: Home Page
     delete: false # Prevent users from deleting documents in this collection
