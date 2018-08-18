@@ -50,7 +50,14 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
+exports.createPages = context => {
+  return Promise.all([
+    createMarkdownPages(context),
+    createStaticPages(context)
+  ]);
+};
+
+function createMarkdownPages({ graphql, boundActionCreators }) {
   const { createPage } = boundActionCreators;
   return new Promise((resolve, reject) => {
     graphql(`
@@ -83,7 +90,46 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       resolve();
     });
   });
-};
+}
+
+function createStaticPages({ graphql, boundActionCreators }) {
+  const { createPage } = boundActionCreators;
+  return new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allStaticPagesJson {
+          edges {
+            node {
+              template
+              fields {
+                name
+              }
+              locales {
+                language
+                url
+              }
+            }
+          }
+        }
+      }
+    `).then(result => {
+      result.data.allStaticPagesJson.edges.forEach(({ node }) => {
+        const { template, locales } = node;
+        locales.forEach(locale => {
+          createPage({
+            path: path.join("/", locale.language, locale.url),
+            component: path.resolve(`./src/templates/${template}.js`),
+            context: {
+              name: node.fields.name,
+              locale: locale.language
+            }
+          });
+        });
+      });
+      resolve();
+    });
+  });
+}
 
 exports.setFieldsOnGraphQLNodeType = ({
   boundActionCreators,

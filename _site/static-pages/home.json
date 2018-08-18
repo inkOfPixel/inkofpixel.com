@@ -1,6 +1,6 @@
 {
   "template": "home",
-  "locale": [
+  "locales": [
     {
       "language": "en",
       "title": "inkOfPixel",
