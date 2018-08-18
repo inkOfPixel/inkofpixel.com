@@ -141,9 +141,9 @@ collections:
           - { label: Title, name: title, widget: string }
           - { label: Description, name: description, widget: text }
 
-  - name: page
-    label: Pages
+  - label: Pages
     label_singular: Page
+    name: page
     folder: _site/pages
     create: true
     fields:
@@ -156,24 +156,9 @@ collections:
         options:
           - { label: Default, value: page }
       - { name: body, label: Page content, widget: markdown }
-  - name: page-it
-    label: Pages (IT)
-    label_singular: Page (IT)
-    folder: _site/pages/it
-    create: true
-    fields:
-      - { name: title, label: Titolo }
-      - { name: seoTitle, label: Titolo SEO, widget: string }
-      - { name: seoDescription, label: Descrizione SEO, widget: text }
-      - name: template
-        label: Page template
-        widget: select
-        options:
-          - { label: Default, value: page }
-      - { name: body, label: Page content, widget: markdown }
-  - name: projects
-    label: Projects
+  - label: Projects
     label_singular: Project
+    name: projects
     folder: _site/projects
     create: true
     fields:
