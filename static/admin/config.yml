@@ -12,6 +12,10 @@ collections:
         label: Home Page
         file: "_site/static-pages/home.json"
         fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: home
           - label: Locale
             name: locale
             widget: list
