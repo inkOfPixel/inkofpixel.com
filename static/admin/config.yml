@@ -4,20 +4,6 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 collections:
-  - label: Settings
-    name: settings
-    delete: false
-    files:
-      - label: General
-        name: general
-        file: "_site/settings/general.json"
-        fields:
-          - label: Default language
-            name: defaultLanguage
-            default: en
-            options:
-              - { label: English, value: en }
-              - { label: Italian, value: it }
   - name: static-pages
     label: Static Pages
     delete: false
@@ -203,3 +189,18 @@ collections:
         options:
           - { label: Default, value: project }
       - { name: body, label: Page content, widget: markdown }
+  - label: Settings
+    name: settings
+    delete: false
+    files:
+      - label: General
+        name: general
+        file: "_site/settings/general.json"
+        fields:
+          - label: Default language
+            name: defaultLanguage
+            widget: select
+            default: en
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
