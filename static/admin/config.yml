@@ -23,7 +23,9 @@ collections:
               - label: Language
                 name: language
                 widget: select
-                options: ["en", "it"]
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
               - { label: Title, name: title, widget: string }
               - label: SEO
                 name: seo
