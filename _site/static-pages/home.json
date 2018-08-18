@@ -8,7 +8,30 @@
       "hero": {
         "title": "Great websites</br> for great entrepreneurs",
         "subtitle": "We design, build and deploy websites that sell and help you grow your business worldwide."
-      }
+      },
+      "services": [
+        {
+          "groupTitle": "New e-commerces, replatforming, consulting",
+          "groupDescription": "We are Shopify partners that help ambitious entrepreneurs to sell more using Shopify. We can help you create a brand new site, boost your e-commerce performances and user experience, develop custom integrations with your supply chain and improve your workflow.",
+          "serviceList": [
+            {
+              "title": "Setup",
+              "image": "/assets/inkofpixel - services_setup.svg",
+              "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+            },
+            {
+              "title": "Themes",
+              "image": "/assets/inkofpixel - services_design.svg",
+              "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+            },
+            {
+              "title": "Shopify Apps",
+              "image": "/assets/inkofpixel - services_web developer.svg",
+              "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
