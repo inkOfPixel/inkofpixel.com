@@ -47,22 +47,17 @@ collections:
                   - { label: Subtitle, name: subtitle, widget: text }
               - label: Services
                 name: services
-                widget: object
+                widget: list
                 fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Description, name: description, widget: text }
-                  - label: "Services"
-                    name: "primaryList"
+                  - { label: Group Title, name: groupTitle, widget: string }
+                  - {
+                      label: Group Description,
+                      name: groupDescription,
+                      widget: text,
+                    }
+                  - label: Services group
+                    name: "serviceList"
                     widget: "list"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Image, name: image, widget: image }
-                      - { label: Description, name: description, widget: text }
-                  - { label: Title, name: subTitle, widget: text }
-                  - { label: Description, name: subDescription, widget: text }
-                  - label: Secondary Services
-                    name: secondaryList
-                    widget: list
                     fields:
                       - { label: Title, name: title, widget: string }
                       - { label: Image, name: image, widget: image }
