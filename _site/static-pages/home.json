@@ -81,6 +81,87 @@
         "description":
           "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
       }
+    },
+    {
+      "language": "it",
+      "title": "inkOfPixel",
+      "url": "/",
+      "seo": {
+        "seoDescription":
+          "We design, build and deploy websites that sell and help you grow your business worldwide."
+      },
+      "hero": {
+        "title": "Great websites</br> for great entrepreneurs",
+        "subtitle":
+          "We design, build and deploy websites that sell and help you grow your business worldwide."
+      },
+      "services": [
+        {
+          "groupTitle": "New e-commerces, replatforming, consulting",
+          "groupDescription":
+            "We are Shopify partners that help ambitious entrepreneurs to sell more using Shopify. We can help you create a brand new site, boost your e-commerce performances and user experience, develop custom integrations with your supply chain and improve your workflow.",
+          "serviceList": [
+            {
+              "title": "Setup",
+              "image": "/assets/inkofpixel - services_setup.svg",
+              "description":
+                "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+            },
+            {
+              "title": "Themes",
+              "image": "/assets/inkofpixel - services_design.svg",
+              "description":
+                "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+            },
+            {
+              "title": "Shopify Apps",
+              "image": "/assets/inkofpixel - services_web developer.svg",
+              "description":
+                "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+            }
+          ]
+        },
+        {
+          "groupTitle": "...and more",
+          "groupDescription":
+            "We have in-house the expertise to design and build web platforms and mobile native experiences. Whether you have an idea, or you need a custom software we can make it happen.",
+          "serviceList": [
+            {
+              "title": "Mobile App",
+              "image": "/assets/inkofpixel - services_app.svg",
+              "description":
+                "We design and build cross platform mobile apps to offer unique native experiences."
+            },
+            {
+              "title": "Web App",
+              "image": "/assets/inkofpixel - services_web app.svg",
+              "description":
+                "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
+            }
+          ]
+        }
+      ],
+      "projects": {
+        "title": "Some of our clients..",
+        "description":
+          "Abbiamo riportato qui alcuni case studies del progetti dai noi sviluppati, se hai bisogno di sapere altri nostri progetti e vuoi conoscere meglio inkOfPixel non esitare a scriverci\n",
+        "featuredProjects": [
+          {
+            "project": "D1 Milano"
+          },
+          {
+            "project": "STIMM"
+          },
+          {
+            "project": "Rewop Milano"
+          }
+        ]
+      },
+      "contacts": {
+        "title": "Contacts",
+        "description":
+          "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
+      }
     }
   ]
 }
