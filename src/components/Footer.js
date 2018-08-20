@@ -7,10 +7,26 @@ import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 import Logo from "components/Logo";
 
-type Props = {};
+type Props = {
+  locale: string,
+  navigation: {
+    language: Array<{
+      locale: string,
+      url: string
+    }>
+  }
+};
 
 class Footer extends Component<Props> {
+  static defaultProps = {
+    locale: "en",
+    navigation: {
+      language: [{ locale: "en", url: "/" }, { locale: "it", url: "/it" }]
+    }
+  };
+
   render() {
+    const { locale, navigation } = this.props;
     return (
       <ScrollableAnchor id="contacts">
         <Container>
@@ -31,6 +47,19 @@ class Footer extends Component<Props> {
                   info@inkofpixel.com
                 </a>
               </div>
+            </Flexbox>
+            <Flexbox>
+              <LanguageNavigation>
+                {navigation.language.map(item => (
+                  <Link
+                    key={item.locale}
+                    to={item.url}
+                    className={item.locale === locale ? "selected" : ""}
+                  >
+                    {item.locale}
+                  </Link>
+                ))}
+              </LanguageNavigation>
             </Flexbox>
             <BottomLine>
               <p className="copyright">
@@ -108,13 +137,44 @@ const Flexbox = styled.div`
     }
   }
 `;
+
 const BottomLine = styled.div`
    {
-    padding-top: 100px;
+    padding-top: 50px;
     font-size: 13px;
     line-height: 1.4em;
     .copyright {
       padding-bottom: 15px;
+    }
+  }
+`;
+
+const LanguageNavigation = styled.nav`
+  margin-top: 40px;
+  a {
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 20px;
+    &::before {
+      background: #fff;
+      opacity: 0;
+      bottom: -4px;
+      content: "";
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      width: 0%;
+      transition: all 300ms;
+      transform: translateX(-50%) translateY(0);
+    }
+    &:hover,
+    &.selected {
+      &::before {
+        opacity: 1;
+        width: 100%;
+      }
     }
   }
 `;

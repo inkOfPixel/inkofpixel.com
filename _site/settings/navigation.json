@@ -18,6 +18,25 @@
           }
         ]
       }
+    },
+    {
+      "language": "it",
+      "main": {
+        "links": [
+          {
+            "label": "Servizi",
+            "url": "/#services"
+          },
+          {
+            "label": "Progetti",
+            "url": "/#work"
+          },
+          {
+            "label": "Contatti",
+            "url": "/#contacts"
+          }
+        ]
+      }
     }
   ]
 }

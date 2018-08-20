@@ -12,10 +12,18 @@ import favicon from "images/inkOfPixel - Favicon.png";
 type Props = {
   children: Node,
   theme: Object,
+  locale: string,
+  defaultLocale: string,
   navigation: any
 };
 
-const Page = ({ children, theme, navigation }: Props) => (
+const Page = ({
+  children,
+  theme,
+  navigation,
+  locale,
+  defaultLocale
+}: Props) => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <Helmet>
@@ -42,9 +50,13 @@ const Page = ({ children, theme, navigation }: Props) => (
         {/* <meta property="
       og: image " content={ogImage} /> */}
       </Helmet>
-      <Header navigation={navigation} />
+      <Header
+        navigation={navigation}
+        locale={locale}
+        defaultLocale={defaultLocale}
+      />
       {children}
-      <Footer />
+      <Footer locale={locale} navigation={navigation} />
       <CookieBar />
     </Fragment>
   </ThemeProvider>

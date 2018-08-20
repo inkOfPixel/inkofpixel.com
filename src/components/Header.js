@@ -8,8 +8,9 @@ import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
 
 type Props = {
+  locale: string,
+  defaultLocale: string,
   navigation: {
-    home: string,
     main: Array<{
       label: string,
       href: string
@@ -23,12 +24,13 @@ type State = {
 
 class Header extends Component<Props, State> {
   static defaultProps = {
+    locale: "en",
+    defaultLocale: "en",
     navigation: {
-      home: "/",
       main: [
-        { label: "Services", href: "/#services" },
-        { label: "Our Work", href: "/#work" },
-        { label: "Contacts", href: "/#contacts" }
+        { label: "Services", url: "/#services" },
+        { label: "Our Work", url: "/#work" },
+        { label: "Contacts", url: "/#contacts" }
       ]
     }
   };
@@ -49,18 +51,18 @@ class Header extends Component<Props, State> {
 
   render() {
     const { isMobileMenuOpen } = this.state;
-    const { navigation } = this.props;
+    const { navigation, locale, defaultLocale } = this.props;
     return (
       <Fragment>
         <DesktopMenuContainer>
           <Wrapper>
-            <LogoLink to={navigation.home}>
+            <LogoLink to={locale === defaultLocale ? "" : `/${locale}`}>
               <Logo />
             </LogoLink>
             <List>
               {navigation.main.map(item => (
                 <ListItem key={item.label}>
-                  <PageAnchorLink to={item.href}>{item.label}</PageAnchorLink>
+                  <PageAnchorLink to={item.url}>{item.label}</PageAnchorLink>
                 </ListItem>
               ))}
             </List>

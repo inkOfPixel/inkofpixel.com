@@ -13,21 +13,26 @@ import simplePathJoin from "utils/simplePathJoin";
 
 export default ({ data, pathContext }) => {
   const { locale } = pathContext;
-  const { staticPagesJson, site, settingsJson } = data;
-  const { defaultLanguage } = settingsJson;
+  const { staticPagesJson, site, generalSettings, navigation } = data;
+  const { defaultLanguage } = generalSettings;
   const home = data.staticPagesJson;
   const currentHome = home.locales.find(loc => loc.language === locale);
   const { featuredProjects } = home.fields;
+  const currentNavigation = navigation.locales.find(
+    loc => loc.language === locale
+  );
   return (
     <Page
       locale={locale}
       navigation={{
-        home: "/",
-        main: [
-          { label: "Services!", href: "/#services" },
-          { label: "Our Work", href: "/#work" },
-          { label: "Contacts", href: "/#contacts" }
-        ]
+        main: currentNavigation.main.links,
+        language: home.locales.map(loc => ({
+          locale: loc.language,
+          url:
+            loc.language !== defaultLanguage
+              ? simplePathJoin("/", loc.language, loc.url)
+              : loc.url
+        }))
       }}
     >
       <Helmet>
@@ -35,16 +40,16 @@ export default ({ data, pathContext }) => {
         <meta name="description" content={currentHome.seo.description} />
         <meta property="og:title" content={currentHome.title} />
         <meta property="og:description" content={currentHome.seo.description} />
-        {home.locales.map(locale => (
+        {home.locales.map(loc => (
           <link
-            key={locale.language}
+            key={loc.language}
             rel="alternate"
             href={simplePathJoin(
               site.siteMetadata.origin,
-              locale.language !== defaultLanguage ? locale.language : "",
-              locale.url
+              loc.language !== defaultLanguage ? loc.language : "",
+              loc.url
             )}
-            hreflang={locale.language}
+            hreflang={loc.language}
           />
         ))}
       </Helmet>
@@ -159,8 +164,19 @@ export const query = graphql`
         origin
       }
     }
-    settingsJson(fields: { name: { eq: "general" } }) {
+    generalSettings: settingsJson(fields: { name: { eq: "general" } }) {
       defaultLanguage
+    }
+    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
+      locales {
+        language
+        main {
+          links {
+            label
+            url
+          }
+        }
+      }
     }
     staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
