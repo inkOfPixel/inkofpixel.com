@@ -11,151 +11,159 @@ import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
 import simplePathJoin from "utils/simplePathJoin";
 
-export default ({ data, pathContext }) => {
-  const { locale } = pathContext;
-  const { staticPagesJson, site, generalSettings, navigation } = data;
-  const { defaultLanguage } = generalSettings;
-  const home = data.staticPagesJson;
-  const currentHome = home.locales.find(loc => loc.language === locale);
-  const { featuredProjects } = home.fields;
-  const currentNavigation = navigation.locales.find(
-    loc => loc.language === locale
-  );
-  return (
-    <Page
-      locale={locale}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: home.locales.map(loc => ({
-          locale: loc.language,
-          url:
-            loc.language !== defaultLanguage
-              ? simplePathJoin("/", loc.language, loc.url)
-              : loc.url
-        }))
-      }}
-    >
-      <Helmet>
-        <title>{currentHome.title}</title>
-        <meta name="description" content={currentHome.seo.description} />
-        <meta property="og:title" content={currentHome.title} />
-        <meta property="og:description" content={currentHome.seo.description} />
-        {home.locales.map(loc => (
-          <link
-            key={loc.language}
-            rel="alternate"
-            href={simplePathJoin(
-              site.siteMetadata.origin,
-              loc.language !== defaultLanguage ? loc.language : "",
-              loc.url
-            )}
-            hreflang={loc.language}
+type Props = {};
+
+export default class Home extends React.Component<Props> {
+  render() {
+    const { data, pathContext } = this.props;
+    const { locale } = pathContext;
+    const { staticPagesJson, site, generalSettings, navigation } = data;
+    const { defaultLanguage } = generalSettings;
+    const home = data.staticPagesJson;
+    const currentHome = home.locales.find(loc => loc.language === locale);
+    const { featuredProjects } = home.fields;
+    const currentNavigation = navigation.locales.find(
+      loc => loc.language === locale
+    );
+    return (
+      <Page
+        locale={locale}
+        navigation={{
+          main: currentNavigation.main.links,
+          language: home.locales.map(loc => ({
+            locale: loc.language,
+            url:
+              loc.language !== defaultLanguage
+                ? simplePathJoin("/", loc.language, loc.url)
+                : loc.url
+          }))
+        }}
+      >
+        <Helmet>
+          <title>{currentHome.title}</title>
+          <meta name="description" content={currentHome.seo.description} />
+          <meta property="og:title" content={currentHome.title} />
+          <meta
+            property="og:description"
+            content={currentHome.seo.description}
           />
-        ))}
-      </Helmet>
-      <Section className="Hero">
-        <Wrapper>
-          <Slogan
-            dangerouslySetInnerHTML={{ __html: currentHome.hero.title }}
-          />
-          <Subtitle>{currentHome.hero.subtitle}</Subtitle>
-          <HeroIllustration>
-            <Splash className="splash01" color="#f8f1ff" size="600px" />
-            <Splash className="splash02" color="#ffefe4" size="280px" />
-            <Splash className="splash03" color="#f8f1ff" size="150px" />
-            <Splash className="splash04" color="#e8fbf6" size="100px" />
-            <Splash className="splash05" color="#e8fbf6" size="60px" />
-            <Splash className="splash06" color="#fff7df" size="60px" />
-          </HeroIllustration>
-        </Wrapper>
-      </Section>
-      <ScrollableAnchor id="services">
-        <Section className="Services">
+          {home.locales.map(loc => (
+            <link
+              key={loc.language}
+              rel="alternate"
+              href={simplePathJoin(
+                site.siteMetadata.origin,
+                loc.language !== defaultLanguage ? loc.language : "",
+                loc.url
+              )}
+              hreflang={loc.language}
+            />
+          ))}
+        </Helmet>
+        <Section className="Hero">
           <Wrapper>
-            <SectionTitle>Service</SectionTitle>
-            {currentHome.services.map((serviceGroup, groupIndex) => (
-              <Flexbox key={groupIndex}>
-                <Heading>
-                  <DisplayText>{serviceGroup.groupTitle}</DisplayText>
-                  <Subtitle>{serviceGroup.groupDescription}</Subtitle>
-                </Heading>
-                <ServiceList>
-                  {serviceGroup.serviceList.map((item, index) => (
-                    <li key={item.title}>
-                      <Splash
-                        color={
-                          groupIndex === 0
-                            ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
-                            : "#ffefe4"
-                        }
-                        size="100px"
-                      >
-                        <img
-                          src={item.image}
-                          alt={`${item.title} inkOfPixel`}
-                        />
-                      </Splash>
-                      <p className="title">{item.title}</p>
-                      <p className="description">{item.description}</p>
-                    </li>
-                  ))}
-                </ServiceList>
-              </Flexbox>
-            ))}
+            <Slogan
+              dangerouslySetInnerHTML={{ __html: currentHome.hero.title }}
+            />
+            <Subtitle>{currentHome.hero.subtitle}</Subtitle>
+            <HeroIllustration>
+              <Splash className="splash01" color="#f8f1ff" size="600px" />
+              <Splash className="splash02" color="#ffefe4" size="280px" />
+              <Splash className="splash03" color="#f8f1ff" size="150px" />
+              <Splash className="splash04" color="#e8fbf6" size="100px" />
+              <Splash className="splash05" color="#e8fbf6" size="60px" />
+              <Splash className="splash06" color="#fff7df" size="60px" />
+            </HeroIllustration>
           </Wrapper>
         </Section>
-      </ScrollableAnchor>
-      <ScrollableAnchor id="work">
-        <Section className="Work">
-          <Wrapper>
-            <SectionTitle>Our Work</SectionTitle>
-            <DisplayText>{currentHome.projects.title}</DisplayText>
-            <ul className="featuredProjectsList">
-              {featuredProjects.map(item => (
-                <li key={item.frontmatter.title}>
-                  <Link to={item.fields.path}>
-                    <div className="content">
-                      <Img
-                        sizes={
-                          item.frontmatter.featuredImage.childImageSharp.sizes
-                        }
-                      />
-                      <div className="info">
-                        <p className="title">{item.frontmatter.title}</p>
-                        <p className="description">
-                          {item.frontmatter.excerpt}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="projectLink" to={item.fields.path}>
-                      Discover More
-                    </div>
-                  </Link>
-                </li>
+        <ScrollableAnchor id="services">
+          <Section className="Services">
+            <Wrapper>
+              <SectionTitle>Service</SectionTitle>
+              {currentHome.services.map((serviceGroup, groupIndex) => (
+                <Flexbox key={groupIndex}>
+                  <Heading>
+                    <DisplayText>{serviceGroup.groupTitle}</DisplayText>
+                    <Subtitle>{serviceGroup.groupDescription}</Subtitle>
+                  </Heading>
+                  <ServiceList>
+                    {serviceGroup.serviceList.map((item, index) => (
+                      <li key={item.title}>
+                        <Splash
+                          color={
+                            groupIndex === 0
+                              ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
+                              : "#ffefe4"
+                          }
+                          size="100px"
+                        >
+                          <img
+                            src={item.image}
+                            alt={`${item.title} inkOfPixel`}
+                          />
+                        </Splash>
+                        <p className="title">{item.title}</p>
+                        <p className="description">{item.description}</p>
+                      </li>
+                    ))}
+                  </ServiceList>
+                </Flexbox>
               ))}
-            </ul>
-          </Wrapper>
-        </Section>
-      </ScrollableAnchor>
-      <ScrollableAnchor id="about">
-        <Section className="About">
-          <Wrapper>
-            <SectionTitle>About Us</SectionTitle>
-            <DisplayText>
-              We are engineers, designers and scientists.
-            </DisplayText>
-            <Subtitle>
-              We use state of the art technologies, embrace change and never
-              stop learning.
-              <br />If you’re looking for new ideas and talented people to bring
-              them to life, you’ve come to the right place.
-            </Subtitle>
-          </Wrapper>
-        </Section>
-      </ScrollableAnchor>
-    </Page>
-  );
-};
+            </Wrapper>
+          </Section>
+        </ScrollableAnchor>
+        <ScrollableAnchor id="work">
+          <Section className="Work">
+            <Wrapper>
+              <SectionTitle>Our Work</SectionTitle>
+              <DisplayText>{currentHome.projects.title}</DisplayText>
+              <ul className="featuredProjectsList">
+                {featuredProjects.map(item => (
+                  <li key={item.frontmatter.title}>
+                    <Link to={item.fields.path}>
+                      <div className="content">
+                        <Img
+                          sizes={
+                            item.frontmatter.featuredImage.childImageSharp.sizes
+                          }
+                        />
+                        <div className="info">
+                          <p className="title">{item.frontmatter.title}</p>
+                          <p className="description">
+                            {item.frontmatter.excerpt}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="projectLink" to={item.fields.path}>
+                        Discover More
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Wrapper>
+          </Section>
+        </ScrollableAnchor>
+        <ScrollableAnchor id="about">
+          <Section className="About">
+            <Wrapper>
+              <SectionTitle>About Us</SectionTitle>
+              <DisplayText>
+                We are engineers, designers and scientists.
+              </DisplayText>
+              <Subtitle>
+                We use state of the art technologies, embrace change and never
+                stop learning.
+                <br />If you’re looking for new ideas and talented people to
+                bring them to life, you’ve come to the right place.
+              </Subtitle>
+            </Wrapper>
+          </Section>
+        </ScrollableAnchor>
+      </Page>
+    );
+  }
+}
 
 export const query = graphql`
   query HomeQuery($name: String!) {

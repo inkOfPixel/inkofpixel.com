@@ -7,6 +7,7 @@ import defaultTheme from "themes/default.json";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import CookieBar from "components/CookieBar";
+import LanguageBanner from "containers/LanguageBanner";
 import favicon from "images/inkOfPixel - Favicon.png";
 
 type Props = {
@@ -50,6 +51,7 @@ const Page = ({
         {/* <meta property="
       og: image " content={ogImage} /> */}
       </Helmet>
+      <LanguageBanner />
       <Header
         navigation={navigation}
         locale={locale}
