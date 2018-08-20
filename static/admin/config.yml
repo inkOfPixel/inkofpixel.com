@@ -130,3 +130,30 @@ collections:
             options:
               - { label: English, value: en }
               - { label: Italian, value: it }
+      - label: Navigation
+        name: navigation
+        file: "_site/settings/navigation.json"
+        fields:
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - label: Main navigation
+                name: main
+                widget: object
+                fields:
+                  - label: Links
+                    name: links
+                    widget: list
+                    fields:
+                      - label: Label
+                        name: label
+                      - label: URL
+                        name: url

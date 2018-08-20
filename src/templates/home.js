@@ -19,7 +19,17 @@ export default ({ data, pathContext }) => {
   const currentHome = home.locales.find(loc => loc.language === locale);
   const { featuredProjects } = home.fields;
   return (
-    <Page>
+    <Page
+      locale={locale}
+      navigation={{
+        home: "/",
+        main: [
+          { label: "Services!", href: "/#services" },
+          { label: "Our Work", href: "/#work" },
+          { label: "Contacts", href: "/#contacts" }
+        ]
+      }}
+    >
       <Helmet>
         <title>{currentHome.title}</title>
         <meta name="description" content={currentHome.seo.description} />

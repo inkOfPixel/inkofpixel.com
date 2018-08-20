@@ -7,12 +7,32 @@ import Link from "gatsby-link";
 import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
 
-type Props = {};
+type Props = {
+  navigation: {
+    home: string,
+    main: Array<{
+      label: string,
+      href: string
+    }>
+  }
+};
+
 type State = {
   isMobileMenuOpen: boolean
 };
 
 class Header extends Component<Props, State> {
+  static defaultProps = {
+    navigation: {
+      home: "/",
+      main: [
+        { label: "Services", href: "/#services" },
+        { label: "Our Work", href: "/#work" },
+        { label: "Contacts", href: "/#contacts" }
+      ]
+    }
+  };
+
   state = {
     isMobileMenuOpen: false
   };
@@ -29,23 +49,20 @@ class Header extends Component<Props, State> {
 
   render() {
     const { isMobileMenuOpen } = this.state;
+    const { navigation } = this.props;
     return (
       <Fragment>
         <DesktopMenuContainer>
           <Wrapper>
-            <LogoLink to="/">
+            <LogoLink to={navigation.home}>
               <Logo />
             </LogoLink>
             <List>
-              <ListItem>
-                <PageAnchorLink to="/#services">Services</PageAnchorLink>
-              </ListItem>
-              <ListItem>
-                <PageAnchorLink to="/#work">Our Work</PageAnchorLink>
-              </ListItem>
-              <ListItem>
-                <PageAnchorLink to="/#contacts">Contacts</PageAnchorLink>
-              </ListItem>
+              {navigation.main.map(item => (
+                <ListItem key={item.label}>
+                  <PageAnchorLink to={item.href}>{item.label}</PageAnchorLink>
+                </ListItem>
+              ))}
             </List>
           </Wrapper>
         </DesktopMenuContainer>
