@@ -97,6 +97,12 @@ function createStaticPages({ graphql, boundActionCreators }) {
   return new Promise((resolve, reject) => {
     graphql(`
       {
+        settingsJson(fields: { name: { eq: "general" } }) {
+          fields {
+            name
+          }
+          defaultLanguage
+        }
         allStaticPagesJson {
           edges {
             node {
@@ -113,11 +119,16 @@ function createStaticPages({ graphql, boundActionCreators }) {
         }
       }
     `).then(result => {
-      result.data.allStaticPagesJson.edges.forEach(({ node }) => {
+      const { allStaticPagesJson, settingsJson } = result.data;
+      const defaultLocale = settingsJson.defaultLanguage;
+      allStaticPagesJson.edges.forEach(({ node }) => {
         const { template, locales } = node;
         locales.forEach(locale => {
           createPage({
-            path: path.join("/", locale.language, locale.url),
+            path:
+              locale.language === defaultLocale
+                ? path.join("/", locale.url)
+                : path.join("/", locale.language, locale.url),
             component: path.resolve(`./src/templates/${template}.js`),
             context: {
               name: node.fields.name,
@@ -138,28 +149,30 @@ exports.setFieldsOnGraphQLNodeType = ({
 }) => {
   const { createNodeField } = boundActionCreators;
 
-  const projectsSection = getNodes().find(node => {
+  const homeNode = getNodes().find(node => {
     return (
-      node.internal.type === "HomePageJson" && node.fields.name === "projects"
+      node.internal.type === "StaticPagesJson" && node.fields.name === "home"
     );
   });
 
-  if (projectsSection) {
-    if (Array.isArray(projectsSection.featuredProjects)) {
-      const featuredProjectsTitles = projectsSection.featuredProjects.map(
-        project => project.project
-      );
-      const featuredProjectsMarkdownNodes = getNodes().filter(
-        markdownNode =>
-          markdownNode.internal.type === "MarkdownRemark" &&
-          markdownNode.fields.collection === "projects" &&
-          featuredProjectsTitles.includes(markdownNode.frontmatter.title)
-      );
-      createNodeField({
-        node: projectsSection,
-        name: "featuredProjects",
-        value: featuredProjectsMarkdownNodes
-      });
-    }
+  if (homeNode) {
+    homeNode.locales.forEach(homeLocale => {
+      if (Array.isArray(homeLocale.projects.featuredProjects)) {
+        const featuredProjectsTitles = homeLocale.projects.featuredProjects.map(
+          ({ project }) => project
+        );
+        const featuredProjectsMarkdownNodes = getNodes().filter(
+          markdownNode =>
+            markdownNode.internal.type === "MarkdownRemark" &&
+            markdownNode.fields.collection === "projects" &&
+            featuredProjectsTitles.includes(markdownNode.frontmatter.title)
+        );
+        createNodeField({
+          node: homeNode,
+          name: "featuredProjects",
+          value: featuredProjectsMarkdownNodes
+        });
+      }
+    });
   }
 };
