@@ -9,22 +9,34 @@ import Helmet from "react-helmet";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
+import simplePathJoin from "utils/simplePathJoin";
 
 export default ({ data, pathContext }) => {
   const { locale } = pathContext;
+  const { staticPagesJson, site, settingsJson } = data;
+  const { defaultLanguage } = settingsJson;
   const home = data.staticPagesJson;
   const currentHome = home.locales.find(loc => loc.language === locale);
   const { featuredProjects } = home.fields;
   return (
     <Page>
       <Helmet>
-        <title>inkOfPixel io</title>
-        <meta
-          name="description"
-          content="We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring 
-      them to life, this is the right place.
-      "
-        />
+        <title>{currentHome.title}</title>
+        <meta name="description" content={currentHome.seo.description} />
+        <meta property="og:title" content={currentHome.title} />
+        <meta property="og:description" content={currentHome.seo.description} />
+        {home.locales.map(locale => (
+          <link
+            key={locale.language}
+            rel="alternate"
+            href={simplePathJoin(
+              site.siteMetadata.origin,
+              locale.language !== defaultLanguage ? locale.language : "",
+              locale.url
+            )}
+            hreflang={locale.language}
+          />
+        ))}
       </Helmet>
       <Section className="Hero">
         <Wrapper>
@@ -132,6 +144,14 @@ export default ({ data, pathContext }) => {
 
 export const query = graphql`
   query HomeQuery($name: String!) {
+    site {
+      siteMetadata {
+        origin
+      }
+    }
+    settingsJson(fields: { name: { eq: "general" } }) {
+      defaultLanguage
+    }
     staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
@@ -154,6 +174,11 @@ export const query = graphql`
       }
       locales {
         language
+        url
+        title
+        seo {
+          description
+        }
         hero {
           title
           subtitle

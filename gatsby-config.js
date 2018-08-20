@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: "inkOfPixel"
+    title: "inkOfPixel",
+    origin: "https://inkofpixel.com"
   },
   plugins: [
     "gatsby-plugin-react-next",
