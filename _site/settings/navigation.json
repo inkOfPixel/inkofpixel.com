@@ -1,1 +1,22 @@
-{}
+{
+  "locales": [
+    {
+      "main": {
+        "links": [
+          {
+            "label": "Services",
+            "url": "/#services"
+          },
+          {
+            "label": "Our Work",
+            "url": "/#work"
+          },
+          {
+            "label": "Contacts",
+            "url": "/#contacts"
+          }
+        ]
+      }
+    }
+  ]
+}
