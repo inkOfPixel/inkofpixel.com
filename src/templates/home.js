@@ -5,6 +5,7 @@ import styled from "styled-components";
 import ScrollableAnchor from "react-scrollable-anchor";
 import Img from "gatsby-image";
 import Link from "gatsby-link";
+import Helmet from "react-helmet";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
@@ -16,6 +17,15 @@ export default ({ data, pathContext }) => {
   const { featuredProjects } = home.fields;
   return (
     <Page>
+      <Helmet>
+        <title>inkOfPixel io</title>
+        <meta
+          name="description"
+          content="We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring 
+      them to life, this is the right place.
+      "
+        />
+      </Helmet>
       <Section className="Hero">
         <Wrapper>
           <Slogan
