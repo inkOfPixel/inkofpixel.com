@@ -6,47 +6,56 @@
       "title": "inkOfPixel",
       "url": "/",
       "seo": {
-        "seoDescription": "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place."
+        "description":
+          "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place."
       },
       "hero": {
         "title": "Great websites</br> for great entrepreneurs",
-        "subtitle": "We design, build and deploy websites that sell and help you grow your business worldwide."
+        "subtitle":
+          "We design, build and deploy websites that sell and help you grow your business worldwide."
       },
       "services": [
         {
           "groupTitle": "New e-commerces, replatforming, consulting",
-          "groupDescription": "We are Shopify partners that help ambitious entrepreneurs to sell more using Shopify. We can help you create a brand new site, boost your e-commerce performances and user experience, develop custom integrations with your supply chain and improve your workflow.",
+          "groupDescription":
+            "We are Shopify partners that help ambitious entrepreneurs to sell more using Shopify. We can help you create a brand new site, boost your e-commerce performances and user experience, develop custom integrations with your supply chain and improve your workflow.",
           "serviceList": [
             {
               "title": "Setup",
               "image": "/assets/inkofpixel - services_setup.svg",
-              "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+              "description":
+                "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
             },
             {
               "title": "Themes",
               "image": "/assets/inkofpixel - services_design.svg",
-              "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+              "description":
+                "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
             },
             {
               "title": "Shopify Apps",
               "image": "/assets/inkofpixel - services_web developer.svg",
-              "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+              "description":
+                "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
             }
           ]
         },
         {
           "groupTitle": "...and more",
-          "groupDescription": "We have in-house the expertise to design and build web platforms and mobile native experiences. Whether you have an idea, or you need a custom software we can make it happen.",
+          "groupDescription":
+            "We have in-house the expertise to design and build web platforms and mobile native experiences. Whether you have an idea, or you need a custom software we can make it happen.",
           "serviceList": [
             {
               "title": "Mobile App",
               "image": "/assets/inkofpixel - services_app.svg",
-              "description": "We design and build cross platform mobile apps to offer unique native experiences."
+              "description":
+                "We design and build cross platform mobile apps to offer unique native experiences."
             },
             {
               "title": "Web App",
               "image": "/assets/inkofpixel - services_web app.svg",
-              "description": "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
+              "description":
+                "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
             }
           ]
         }
@@ -68,7 +77,8 @@
       },
       "contacts": {
         "title": "Contacts",
-        "description": "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
+        "description":
+          "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
       }
     },
     {
@@ -76,47 +86,56 @@
       "title": "inkOfPixel",
       "url": "/",
       "seo": {
-        "seoDescription": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
+        "seoDescription":
+          "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
       },
       "hero": {
         "title": "Great websites</br> for great entrepreneurs",
-        "subtitle": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
+        "subtitle":
+          "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
       },
       "services": [
         {
           "groupTitle": "Nuovi e-commerces, cambio di piattaforma, consulenza",
-          "groupDescription": "Siamo partner Shopify e aiutiamo commercianti e imprenditori ambiziosi a vendere di più tramite Shopify. Ti aiutiamo creando il tuo nuovo sito, migliorando le prestazioni e l'esperienza utente e sviluppando integrazioni con la logistica per ottimizzare il tuo flusso di lavoro.",
+          "groupDescription":
+            "Siamo partner Shopify e aiutiamo commercianti e imprenditori ambiziosi a vendere di più tramite Shopify. Ti aiutiamo creando il tuo nuovo sito, migliorando le prestazioni e l'esperienza utente e sviluppando integrazioni con la logistica per ottimizzare il tuo flusso di lavoro.",
           "serviceList": [
             {
               "title": "Setup",
               "image": "/assets/inkofpixel - services_setup.svg",
-              "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+              "description":
+                "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
             },
             {
               "title": "Themes",
               "image": "/assets/inkofpixel - services_design.svg",
-              "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+              "description":
+                "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
             },
             {
               "title": "Shopify Apps",
               "image": "/assets/inkofpixel - services_web developer.svg",
-              "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+              "description":
+                "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
             }
           ]
         },
         {
           "groupTitle": "...and more",
-          "groupDescription": "We have in-house the expertise to design and build web platforms and mobile native experiences. Whether you have an idea, or you need a custom software we can make it happen.",
+          "groupDescription":
+            "We have in-house the expertise to design and build web platforms and mobile native experiences. Whether you have an idea, or you need a custom software we can make it happen.",
           "serviceList": [
             {
               "title": "Mobile App",
               "image": "/assets/inkofpixel - services_app.svg",
-              "description": "We design and build cross platform mobile apps to offer unique native experiences."
+              "description":
+                "We design and build cross platform mobile apps to offer unique native experiences."
             },
             {
               "title": "Web App",
               "image": "/assets/inkofpixel - services_web app.svg",
-              "description": "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
+              "description":
+                "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
             }
           ]
         }
@@ -138,7 +157,8 @@
       },
       "contacts": {
         "title": "Contacts",
-        "description": "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
+        "description":
+          "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi\n"
       }
     }
   ]

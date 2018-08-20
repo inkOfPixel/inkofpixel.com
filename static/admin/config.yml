@@ -33,11 +33,7 @@ collections:
                 name: seo
                 widget: object
                 fields:
-                  - {
-                      label: SEO Description,
-                      name: seoDescription,
-                      widget: text,
-                    }
+                  - { label: SEO Description, name: description, widget: text }
                   - { label: Image, name: image, widget: image }
               - label: Hero
                 name: hero
