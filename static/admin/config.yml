@@ -102,6 +102,7 @@ collections:
     folder: _site/projects
     create: true
     fields:
+      - { name: title, label: Project title }
       - label: Page template
         name: template
         widget: select
@@ -117,7 +118,6 @@ collections:
             options:
               - { label: English, value: en }
               - { label: Italian, value: it }
-          - { name: title, label: Project title }
           - { name: seoTitle, label: SEO Project title, widget: string }
           - { name: seoDescription, label: SEO Description, widget: text }
           - { name: excerpt, label: Excerpt, widget: text }
