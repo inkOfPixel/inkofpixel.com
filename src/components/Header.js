@@ -59,13 +59,26 @@ class Header extends Component<Props, State> {
             <LogoLink to={locale === defaultLocale ? "" : `/${locale}`}>
               <Logo />
             </LogoLink>
-            <List>
-              {navigation.main.map(item => (
-                <ListItem key={item.label}>
-                  <PageAnchorLink to={item.url}>{item.label}</PageAnchorLink>
-                </ListItem>
-              ))}
-            </List>
+            <RightBarItems>
+              <List>
+                {navigation.main.map(item => (
+                  <ListItem key={item.label}>
+                    <PageAnchorLink to={item.url}>{item.label}</PageAnchorLink>
+                  </ListItem>
+                ))}
+              </List>
+              <LanguageNavigation>
+                {navigation.language.map(item => (
+                  <Link
+                    key={item.locale}
+                    to={item.url}
+                    className={item.locale === locale ? "selected" : ""}
+                  >
+                    {item.locale}
+                  </Link>
+                ))}
+              </LanguageNavigation>
+            </RightBarItems>
           </Wrapper>
         </DesktopMenuContainer>
       </Fragment>
@@ -97,12 +110,17 @@ const PageAnchorLink = styled.a.attrs({
   href: props => props.to
 })``;
 
-const List = styled.ul`
-  list-style: none;
+const RightBarItems = styled.div`
   position: absolute;
   right: 0px;
   top: 60px;
   margin: 0;
+  display: flex;
+  align-items: baseline;
+`;
+
+const List = styled.ul`
+  list-style: none;
   @media (max-width: 1260px) {
     right: 40px;
   }
@@ -270,6 +288,37 @@ const ResourceLink = styled.a`
   text-decoration: none;
   font-size: 24px;
   padding-bottom: 30px;
+`;
+
+const LanguageNavigation = styled.nav`
+  margin-left: 40px;
+  a {
+    color: #161338;
+    position: relative;
+    font-size: 13px;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 20px;
+    &::before {
+      background: #161338;
+      opacity: 0;
+      bottom: -4px;
+      content: "";
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      width: 0%;
+      transition: all 300ms;
+      transform: translateX(-50%) translateY(0);
+    }
+    &:hover,
+    &.selected {
+      &::before {
+        opacity: 1;
+        width: 100%;
+      }
+    }
+  }
 `;
 
 export default Header;

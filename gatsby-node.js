@@ -10,7 +10,15 @@ const { createFilePath } = require("gatsby-source-filesystem");
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
   presets: babelrc.presets.concat(["flow"]),
-  plugins: babelrc.plugins.concat(["babel-plugin-styled-components"])
+  plugins: babelrc.plugins.concat([
+    "babel-plugin-styled-components",
+    [
+      "react-intl",
+      {
+        messagesDir: "./src/translations/extractedMessages/"
+      }
+    ]
+  ])
 });
 
 exports.modifyWebpackConfig = ({ config, stage }) => {

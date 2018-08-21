@@ -7,26 +7,10 @@ import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 import Logo from "components/Logo";
 
-type Props = {
-  locale: string,
-  navigation: {
-    language: Array<{
-      locale: string,
-      url: string
-    }>
-  }
-};
+type Props = {};
 
 class Footer extends Component<Props> {
-  static defaultProps = {
-    locale: "en",
-    navigation: {
-      language: [{ locale: "en", url: "/" }, { locale: "it", url: "/it" }]
-    }
-  };
-
   render() {
-    const { locale, navigation } = this.props;
     return (
       <ScrollableAnchor id="contacts">
         <Container>
@@ -47,19 +31,6 @@ class Footer extends Component<Props> {
                   info@inkofpixel.com
                 </a>
               </div>
-            </Flexbox>
-            <Flexbox>
-              <LanguageNavigation>
-                {navigation.language.map(item => (
-                  <Link
-                    key={item.locale}
-                    to={item.url}
-                    className={item.locale === locale ? "selected" : ""}
-                  >
-                    {item.locale}
-                  </Link>
-                ))}
-              </LanguageNavigation>
             </Flexbox>
             <BottomLine>
               <p className="copyright">

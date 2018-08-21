@@ -6,6 +6,7 @@ import ScrollableAnchor from "react-scrollable-anchor";
 import Img from "gatsby-image";
 import Link from "gatsby-link";
 import Helmet from "react-helmet";
+import { FormattedMessage } from "react-intl";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
@@ -79,7 +80,12 @@ export default class Home extends React.Component<Props> {
         <ScrollableAnchor id="services">
           <Section className="Services">
             <Wrapper>
-              <SectionTitle>Service</SectionTitle>
+              <SectionTitle>
+                <FormattedMessage
+                  id="home.serviceSection.title"
+                  defaultMessage="Services"
+                />
+              </SectionTitle>
               {currentHome.services.map((serviceGroup, groupIndex) => (
                 <Flexbox key={groupIndex}>
                   <Heading>
@@ -115,7 +121,12 @@ export default class Home extends React.Component<Props> {
         <ScrollableAnchor id="work">
           <Section className="Work">
             <Wrapper>
-              <SectionTitle>Our Work</SectionTitle>
+              <SectionTitle>
+                <FormattedMessage
+                  id="home.projectsSection.title"
+                  defaultMessage="Our Work"
+                />
+              </SectionTitle>
               <DisplayText>{currentHome.projects.title}</DisplayText>
               <ul className="featuredProjectsList">
                 {featuredProjects.map(item => (
@@ -147,15 +158,26 @@ export default class Home extends React.Component<Props> {
         <ScrollableAnchor id="about">
           <Section className="About">
             <Wrapper>
-              <SectionTitle>About Us</SectionTitle>
+              <SectionTitle>
+                <FormattedMessage
+                  id="home.about.title"
+                  defaultMessage="About us"
+                />
+              </SectionTitle>
               <DisplayText>
-                We are engineers, designers and scientists.
+                <FormattedMessage
+                  id="home.about.heading"
+                  defaultMessage="We are engineers, designers and scientists."
+                />
               </DisplayText>
               <Subtitle>
-                We use state of the art technologies, embrace change and never
-                stop learning.
-                <br />If you’re looking for new ideas and talented people to
-                bring them to life, you’ve come to the right place.
+                <FormattedMessage
+                  id="home.about.description"
+                  defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
+                  values={{
+                    newLine: <br />
+                  }}
+                />
               </Subtitle>
             </Wrapper>
           </Section>
