@@ -11,9 +11,13 @@ type Props = {
   locale: string,
   defaultLocale: string,
   navigation: {
-    main: Array<{
+    main?: Array<{
       label: string,
       href: string
+    }>,
+    language?: Array<{
+      locale: string,
+      url: string
     }>
   }
 };
@@ -26,13 +30,7 @@ class Header extends Component<Props, State> {
   static defaultProps = {
     locale: "en",
     defaultLocale: "en",
-    navigation: {
-      main: [
-        { label: "Services", url: "/#services" },
-        { label: "Our Work", url: "/#work" },
-        { label: "Contacts", url: "/#contacts" }
-      ]
-    }
+    navigation: {}
   };
 
   state = {
@@ -61,22 +59,26 @@ class Header extends Component<Props, State> {
             </LogoLink>
             <RightBarItems>
               <List>
-                {navigation.main.map(item => (
-                  <ListItem key={item.label}>
-                    <PageAnchorLink to={item.url}>{item.label}</PageAnchorLink>
-                  </ListItem>
-                ))}
+                {navigation.main &&
+                  navigation.main.map(item => (
+                    <ListItem key={item.label}>
+                      <PageAnchorLink to={item.url}>
+                        {item.label}
+                      </PageAnchorLink>
+                    </ListItem>
+                  ))}
               </List>
               <LanguageNavigation>
-                {navigation.language.map(item => (
-                  <Link
-                    key={item.locale}
-                    to={item.url}
-                    className={item.locale === locale ? "selected" : ""}
-                  >
-                    {item.locale}
-                  </Link>
-                ))}
+                {navigation.language &&
+                  navigation.language.map(item => (
+                    <Link
+                      key={item.locale}
+                      to={item.url}
+                      className={item.locale === locale ? "selected" : ""}
+                    >
+                      {item.locale}
+                    </Link>
+                  ))}
               </LanguageNavigation>
             </RightBarItems>
           </Wrapper>
@@ -129,9 +131,13 @@ const List = styled.ul`
   }
 `;
 
-let ListItem = ({ children, className }) => (
-  <li className={className}>{children}</li>
-);
+let ListItem = ({
+  children,
+  className
+}: {
+  children: Node,
+  className?: string
+}) => <li className={className}>{children}</li>;
 
 ListItem = styled(ListItem)`
   display: inline-block;

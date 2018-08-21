@@ -12,37 +12,44 @@ import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
 import simplePathJoin from "utils/simplePathJoin";
 
-type Props = {};
+type Props = {
+  data: Object,
+  pathContext: {
+    locale: string
+  }
+};
 
 export default class Home extends React.Component<Props> {
   render() {
     const { data, pathContext } = this.props;
-    const { locale } = pathContext;
+    const { locale: pageLocale } = pathContext;
     const { staticPagesJson, site, generalSettings, navigation } = data;
     const { defaultLanguage } = generalSettings;
     const home = data.staticPagesJson;
-    const currentHome = home.locales.find(loc => loc.language === locale);
+    const currentHome = home.locales.find(
+      locale => locale.language === pageLocale
+    );
     const { featuredProjects } = home.fields;
     const currentNavigation = navigation.locales.find(
-      loc => loc.language === locale
+      locale => locale.language === pageLocale
     );
     return (
       <Page
-        locale={locale}
+        locale={pageLocale}
         navigation={{
           main: currentNavigation.main.links.map(link => ({
             ...link,
             url:
-              locale === defaultLanguage
+              pageLocale === defaultLanguage
                 ? link.url
-                : simplePathJoin("/", locale, link.url)
+                : simplePathJoin("/", pageLocale, link.url)
           })),
-          language: home.locales.map(loc => ({
-            locale: loc.language,
+          language: home.locales.map(locale => ({
+            locale: locale.language,
             url:
-              loc.language === defaultLanguage
-                ? loc.url
-                : simplePathJoin("/", loc.language, loc.url)
+              locale.language === defaultLanguage
+                ? locale.url
+                : simplePathJoin("/", locale.language, locale.url)
           }))
         }}
       >
@@ -54,16 +61,16 @@ export default class Home extends React.Component<Props> {
             property="og:description"
             content={currentHome.seo.description}
           />
-          {home.locales.map(loc => (
+          {home.locales.map(locale => (
             <link
-              key={loc.language}
+              key={locale.language}
               rel="alternate"
               href={simplePathJoin(
                 site.siteMetadata.origin,
-                loc.language !== defaultLanguage ? loc.language : "",
-                loc.url
+                locale.language !== defaultLanguage ? locale.language : "",
+                locale.url
               )}
-              hreflang={loc.language}
+              hreflang={locale.language}
             />
           ))}
         </Helmet>
