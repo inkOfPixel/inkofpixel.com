@@ -30,13 +30,19 @@ export default class Home extends React.Component<Props> {
       <Page
         locale={locale}
         navigation={{
-          main: currentNavigation.main.links,
+          main: currentNavigation.main.links.map(link => ({
+            ...link,
+            url:
+              locale === defaultLanguage
+                ? link.url
+                : simplePathJoin("/", locale, link.url)
+          })),
           language: home.locales.map(loc => ({
             locale: loc.language,
             url:
-              loc.language !== defaultLanguage
-                ? simplePathJoin("/", loc.language, loc.url)
-                : loc.url
+              loc.language === defaultLanguage
+                ? loc.url
+                : simplePathJoin("/", loc.language, loc.url)
           }))
         }}
       >
@@ -174,9 +180,7 @@ export default class Home extends React.Component<Props> {
                 <FormattedMessage
                   id="home.about.description"
                   defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
-                  values={{
-                    newLine: <br />
-                  }}
+                  values={{ newLine: <br /> }}
                 />
               </Subtitle>
             </Wrapper>

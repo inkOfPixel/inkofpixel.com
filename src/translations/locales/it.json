@@ -1,4 +1,10 @@
 {
+  "footer.companyInfo":
+    "Capitale sociale €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • Partita IVA numero 09287730965 • REA MI - 2081233",
+  "footer.contacts.description":
+    "Collaboriamo con brand e imprenditori ambiziosi.{newLine}Costruiamo qualcosa di grande insieme.",
+  "footer.copyright":
+    "© {year} inkOfPixel Srl. Tutti i diritti sono riservati.",
   "home.about.description":
     "Utilizziamo tecnologie che rappresentano lo stato dell'arte, ci piace cambiare e guardare le cose da nuovi punti di vista e non smettiamo mai di imparare.{newLine}Se cerchi nuove idee e persone che siano capaci di realizzarle, sei nel posto giusto.",
   "home.about.heading": "Siamo ingegneri, designer e scienziati.",

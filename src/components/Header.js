@@ -39,7 +39,7 @@ class Header extends Component<Props, State> {
     isMobileMenuOpen: false
   };
 
-  handleMobileMenuStateChange = ({ isOpen }) => {
+  handleMobileMenuStateChange = ({ isOpen }: any) => {
     this.setState(() => ({ isMobileMenuOpen: isOpen }));
   };
 

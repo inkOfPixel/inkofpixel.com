@@ -3,13 +3,14 @@
 import React, { type Node, Component } from "react";
 import styled from "styled-components";
 import ScrollableAnchor from "react-scrollable-anchor";
+import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 import Logo from "components/Logo";
 
 type Props = {};
 
-class Footer extends Component<Props> {
+export default class Footer extends Component<Props> {
   render() {
     return (
       <ScrollableAnchor id="contacts">
@@ -19,9 +20,11 @@ class Footer extends Component<Props> {
               <Logo />
               <div className="contact">
                 <div className="caption">
-                  We collaborate with ambitious brands and entrepreneurs.
-                  <br />
-                  We’d love to build something great together.
+                  <FormattedMessage
+                    id="footer.contacts.description"
+                    defaultMessage="We collaborate with ambitious brands and entrepreneurs.{newLine}We’d love to build something great together."
+                    values={{ newLine: <br /> }}
+                  />
                 </div>
                 <a
                   className="mail"
@@ -34,11 +37,18 @@ class Footer extends Component<Props> {
             </Flexbox>
             <BottomLine>
               <p className="copyright">
-                © 2018 inkOfPixel Srl. All rights reserved.
+                <FormattedMessage
+                  id="footer.copyright"
+                  defaultMessage="© {year} inkOfPixel Srl. All rights reserved."
+                  values={{ year: new Date().getFullYear() }}
+                />
               </p>
               <p className="companyInfo">
-                Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
-                Number 09287730965 • REA MI - 2081233
+                <FormattedMessage
+                  id="footer.companyInfo"
+                  defaultMessage="Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
+                Number 09287730965 • REA MI - 2081233"
+                />
               </p>
             </BottomLine>
           </Wrapper>
@@ -149,5 +159,3 @@ const LanguageNavigation = styled.nav`
     }
   }
 `;
-
-export default Footer;
