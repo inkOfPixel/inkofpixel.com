@@ -52,15 +52,15 @@ export const query = graphql`
       html
       frontmatter {
         title
-        heroImage {
-          childImageSharp {
-            sizes(maxWidth: 1200) {
-              ...GatsbyImageSharpSizes
-            }
-          }
-        }
-        type
-        seoTitle
+        # heroImage {
+        #   childImageSharp {
+        #     sizes(maxWidth: 1200) {
+        #       ...GatsbyImageSharpSizes
+        #     }
+        #   }
+        # }
+        # type
+        # seoTitle
       }
     }
   }

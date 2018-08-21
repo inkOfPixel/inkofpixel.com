@@ -46,12 +46,12 @@ module.exports = {
       }
     },
     "gatsby-transformer-json",
-    "gatsby-plugin-netlify-cms-paths",
+    "gatsby-plugin-netlify-markdown-paths",
     {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          "gatsby-plugin-netlify-cms-paths",
+          "gatsby-plugin-netlify-markdown-paths",
           {
             resolve: "gatsby-remark-images",
             options: {

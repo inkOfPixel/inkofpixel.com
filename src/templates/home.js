@@ -226,17 +226,6 @@ export const query = graphql`
           fields {
             path
           }
-          frontmatter {
-            title
-            excerpt
-            featuredImage {
-              childImageSharp {
-                sizes(maxWidth: 1200, maxHeight: 600) {
-                  ...GatsbyImageSharpSizes
-                }
-              }
-            }
-          }
         }
       }
       locales {

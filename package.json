@@ -25,19 +25,20 @@
     "react-dom": "16.4.2",
     "react-helmet": "5.2.0",
     "react-intl": "2.4.0",
+    "react-markdown": "3.4.1",
     "react-scrollable-anchor": "0.6.1",
     "styled-components": "3.4.2"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
     "dev": "yarn start",
-    "remote-dev":
-      "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "remote-dev": "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update:translations": "node ./translationRunner.js",
     "update:types": "flow-typed install -s"

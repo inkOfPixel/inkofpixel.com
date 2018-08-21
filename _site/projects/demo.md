@@ -1,5 +1,5 @@
 ---
-title: Demo
+title: D1 Milano
 template: project
 locales:
   - body: |-
@@ -23,4 +23,3 @@ locales:
     seoTitle: Demo
     type: demo
 ---
-
