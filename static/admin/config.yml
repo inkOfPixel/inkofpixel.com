@@ -102,19 +102,29 @@ collections:
     folder: _site/projects
     create: true
     fields:
-      - { name: title, label: Project title }
-      - { name: seoTitle, label: SEO Project title, widget: string }
-      - { name: seoDescription, label: SEO Description, widget: text }
-      - { name: excerpt, label: Excerpt, widget: text }
-      - { name: type, label: Type Project, widget: string }
-      - { name: featuredImage, label: Featured image, widget: image }
-      - { name: heroImage, label: Hero image, widget: image }
-      - name: template
-        label: Page template
+      - label: Page template
+        name: template
         widget: select
         options:
           - { label: Default, value: project }
-      - { name: body, label: Page content, widget: markdown }
+      - label: Locales
+        name: locales
+        widget: list
+        fields:
+          - label: Language
+            name: language
+            widget: select
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+          - { name: title, label: Project title }
+          - { name: seoTitle, label: SEO Project title, widget: string }
+          - { name: seoDescription, label: SEO Description, widget: text }
+          - { name: excerpt, label: Excerpt, widget: text }
+          - { name: type, label: Type Project, widget: string }
+          - { name: featuredImage, label: Featured image, widget: image }
+          - { name: heroImage, label: Hero image, widget: image }
+          - { name: body, label: Page content, widget: markdown }
   - label: Settings
     name: settings
     delete: false

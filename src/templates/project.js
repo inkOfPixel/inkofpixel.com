@@ -8,7 +8,11 @@ import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
 
-export default ({ data }) => {
+type Props = {
+  data: Object
+};
+
+export default ({ data }: Props) => {
   const page = data.markdownRemark;
   return (
     <Page theme={projectTheme}>
