@@ -45,10 +45,18 @@ export default ({ data, pathContext }: Props) => {
       }}
     >
       <Helmet>
-        <title>{page.seoTitle}</title>
+        <title>{page.seoTitle} | inkOfPixel</title>
         <meta property="description" content={page.seoDescription} />
         <meta property="og:title" content={page.seoTitle} />
         <meta property="og:description" content={page.seoDescription} />
+        {locales.map(locale => (
+          <link
+            key={locale.language}
+            rel="alternate"
+            href={locale.path}
+            hreflang={locale.language}
+          />
+        ))}
       </Helmet>
       <Hero>
         <Img sizes={page.heroImage.childImageSharp.sizes} />
