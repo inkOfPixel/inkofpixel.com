@@ -3,15 +3,55 @@
 import React from "react";
 import styled from "styled-components";
 import Page from "components/Page";
+import Markdown from "react-markdown";
+import Helmet from "react-helmet";
 
-export default ({ data }) => {
-  const project = data.markdownRemark;
+type Props = {
+  data: Object,
+  pathContext: {
+    slug: string,
+    locale: string
+  }
+};
+
+export default ({ data, pathContext }: Props) => {
+  const { markdownRemark, navigation } = data;
+  const { title, locales } = markdownRemark.fields.frontmatter;
+  const page = locales.find(locale => locale.language === pathContext.locale);
+  const currentNavigation = navigation.locales.find(
+    locale => locale.language === pathContext.locale
+  );
+  console.log(page);
   return (
-    <Page>
+    <Page
+      locale={page.language}
+      navigation={{
+        main: currentNavigation.main.links,
+        language: locales.map(locale => ({
+          locale: locale.language,
+          url: locale.path
+        }))
+      }}
+    >
+      <Helmet>
+        <title>{page.seo.title} | inkOfPixel</title>
+        <meta name="description" content={page.seo.description} />
+        <meta property="og:title" content={page.seo.title} />
+        <meta property="og:url" content={page.path} />
+        <meta property="og:description" content={page.seo.description} />
+        {locales.map(locale => (
+          <link
+            key={locale.language}
+            rel="alternate"
+            href={locale.path}
+            hreflang={locale.language}
+          />
+        ))}
+      </Helmet>
       <OuterWrapper>
         <Wrapper>
-          <Title>{project.frontmatter.title}</Title>
-          <RichTextEditor dangerouslySetInnerHTML={{ __html: project.html }} />
+          <Title>{title}</Title>
+          <RichText source={page.body} />
         </Wrapper>
       </OuterWrapper>
     </Page>
@@ -19,11 +59,32 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query ProjectQuery($slug: String!) {
+  query PageQuery($slug: String!) {
+    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
+      locales {
+        language
+        main {
+          links {
+            label
+            url
+          }
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
+      fields {
+        frontmatter {
+          title
+          locales {
+            language
+            path
+            seo {
+              title
+              description
+            }
+            body
+          }
+        }
       }
     }
   }
@@ -57,7 +118,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const RichTextEditor = styled.div`
+const RichText = styled(Markdown)`
   overflow: hidden;
   p {
     line-height: 1.6em;

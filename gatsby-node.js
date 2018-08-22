@@ -6,7 +6,6 @@ j* Implement Gatsby's Node APIs in this file.
 
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
-const generalSettings = require("./_site/settings/general.json");
 
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
@@ -33,33 +32,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 };
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  // parseProjectNodes({ node, getNode, boundActionCreators });
   const { createNodeField } = boundActionCreators;
-  // if (node.internal.type === "MarkdownRemark") {
-  // const fileNode = getNode(node.parent);
-  // createNodeField({
-  //   node,
-  //   name: "collection",
-  //   value: fileNode.sourceInstanceName
-  // });
-  // if (fileNode.sourceInstanceName === "pages") {
-  //   const slug = createFilePath({ node, getNode });
-  //   createNodeField({ node, name: "slug", value: slug });
-  //   createNodeField({
-  //     node,
-  //     name: "collection",
-  //     value: fileNode.sourceInstanceName
-  //   });
-  //   createNodeField({
-  //     node,
-  //     name: "path",
-  //     value:
-  //       fileNode.sourceInstanceName === "pages"
-  //         ? slug
-  //         : `/${fileNode.sourceInstanceName}${slug}`
-  //   });
-  // }
-  // }
   const parent = getNode(node.parent);
   if (parent && parent.internal.mediaType === "application/json") {
     const name = parent.name;
@@ -70,89 +43,6 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 exports.createPages = context => {
   return Promise.all([createStaticPages(context)]);
 };
-
-function createMarkdownPages({ graphql, boundActionCreators }) {
-  const { createPage } = boundActionCreators;
-  return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
-                path
-              }
-              frontmatter {
-                template
-              }
-            }
-          }
-        }
-      }
-    `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        const { template } = node.frontmatter;
-        createPage({
-          path: node.fields.path,
-          component: path.resolve(`./src/templates/${template}.js`),
-          context: {
-            slug: node.fields.slug
-          }
-        });
-      });
-      resolve();
-    });
-  });
-}
-
-function createProjectPages({ graphql, boundActionCreators }) {
-  const { createPage } = boundActionCreators;
-  return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        settingsJson(fields: { name: { eq: "general" } }) {
-          defaultLanguage
-        }
-        allMarkdownRemark(
-          filter: { fields: { collection: { eq: "projects" } } }
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-                frontmatter {
-                  template
-                  locales {
-                    language
-                    path
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `).then(result => {
-      const { allMarkdownRemark, settingsJson } = result.data;
-      const defaultLocale = settingsJson.defaultLanguage;
-      allMarkdownRemark.edges.forEach(({ node }) => {
-        const { template, locales } = node.fields.frontmatter;
-        locales.forEach(locale => {
-          createPage({
-            path: locale.path,
-            component: path.resolve(`./src/templates/${template}.js`),
-            context: {
-              slug: node.fields.slug,
-              locale: locale.language
-            }
-          });
-        });
-      });
-      resolve();
-    });
-  });
-}
 
 function createStaticPages({ graphql, boundActionCreators }) {
   const { createPage } = boundActionCreators;

@@ -66,8 +66,9 @@ class Page extends React.Component<Props, State> {
                 name="keywords"
                 content="shopify,e-commerce,webapp,app,sofware,react,gatsby"
               />
-              <meta property="og:url" content="/" />
               <meta property="og:title" content="inkOfPixel" />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content="/" />
               <meta
                 property="og:description"
                 content="We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring 

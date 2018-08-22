@@ -19,9 +19,8 @@ type Props = {
 };
 
 export default ({ data, pathContext }: Props) => {
-  const { markdownRemark, navigation, generalSettings } = data;
+  const { markdownRemark, navigation } = data;
   const { title, locales } = markdownRemark.fields.frontmatter;
-  const { defaultLanguage } = generalSettings;
   const page = locales.find(locale => locale.language === pathContext.locale);
   const currentNavigation = navigation.locales.find(
     locale => locale.language === pathContext.locale
@@ -40,8 +39,10 @@ export default ({ data, pathContext }: Props) => {
     >
       <Helmet>
         <title>{page.seoTitle} | inkOfPixel</title>
-        <meta property="description" content={page.seoDescription} />
+        <meta name="description" content={page.seoDescription} />
         <meta property="og:title" content={page.seoTitle} />
+        <meta property="og:image " content={page.heroImage.publicURL} />
+        <meta property="og:url" content={page.path} />
         <meta property="og:description" content={page.seoDescription} />
         {locales.map(locale => (
           <link
@@ -72,9 +73,6 @@ export default ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query DefaultPageQuery($slug: String!) {
-    generalSettings: settingsJson(fields: { name: { eq: "general" } }) {
-      defaultLanguage
-    }
     navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
       locales {
         language
@@ -96,6 +94,7 @@ export const query = graphql`
             path
             body
             heroImage {
+              publicURL
               childImageSharp {
                 sizes(maxWidth: 1200) {
                   ...GatsbyImageSharpSizes

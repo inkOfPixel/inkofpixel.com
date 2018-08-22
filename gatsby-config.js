@@ -1,4 +1,5 @@
 const path = require("path");
+const generalSettings = require("./_site/settings/general.json");
 
 module.exports = {
   siteMetadata: {
@@ -53,7 +54,7 @@ module.exports = {
       resolve: "gatsby-plugin-markdown-locales",
       options: {
         name: "projects",
-        defaultLocale: "en",
+        defaultLocale: generalSettings.defaultLanguage,
         getPath: ({ node, locale, defaultLocale, slug }) => {
           const basePathByLocale = {
             en: "/projects",
@@ -69,7 +70,15 @@ module.exports = {
       resolve: "gatsby-plugin-markdown-locales",
       options: {
         name: "pages",
-        defaultLocale: "en"
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const currentLocale = node.frontmatter.locales.find(
+            loc => loc.language === locale
+          );
+          return locale === defaultLocale
+            ? path.join("/", currentLocale.handle || slug)
+            : path.join("/", locale, currentLocale.handle || slug);
+        }
       }
     },
     {
