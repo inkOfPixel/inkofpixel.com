@@ -31,13 +31,7 @@ export default ({ data, pathContext }: Props) => {
       theme={projectTheme}
       locale={page.language}
       navigation={{
-        main: currentNavigation.main.links.map(link => ({
-          ...link,
-          url:
-            pathContext.locale === defaultLanguage
-              ? link.url
-              : simplePathJoin("/", page.language, link.url)
-        })),
+        main: currentNavigation.main.links,
         language: locales.map(locale => ({
           locale: locale.language,
           url: locale.path

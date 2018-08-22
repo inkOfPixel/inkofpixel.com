@@ -37,13 +37,7 @@ export default class Home extends React.Component<Props> {
       <Page
         locale={pageLocale}
         navigation={{
-          main: currentNavigation.main.links.map(link => ({
-            ...link,
-            url:
-              pageLocale === defaultLanguage
-                ? link.url
-                : simplePathJoin("/", pageLocale, link.url)
-          })),
+          main: currentNavigation.main.links,
           language: home.locales.map(locale => ({
             locale: locale.language,
             url:

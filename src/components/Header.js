@@ -13,7 +13,7 @@ type Props = {
   navigation: {
     main?: Array<{
       label: string,
-      href: string
+      url: string
     }>,
     language?: Array<{
       locale: string,
