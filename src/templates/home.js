@@ -561,6 +561,10 @@ const Section = styled.section`
         box-sizing: border-box;
         width: calc(33.33% - 30px);
         background-color: #fff;
+        transition: 500ms all;
+        &:hover {
+          box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+        }
         a {
           flex-direction: column;
           box-sizing: border-box;
