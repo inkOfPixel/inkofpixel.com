@@ -202,6 +202,7 @@ locales:
       opera di terzi -- effettuati tramite questo Applicazione.
 
       Ultimo aggiornamento: _26 Luglio 2018_
+    handle: /cookie-policy
     language: en
     seo:
       description: Informativa sui cookie utlizzati da inkofpixel.com
@@ -406,6 +407,7 @@ locales:
       opera di terzi -- effettuati tramite questo Applicazione.
 
       Ultimo aggiornamento: _26 Luglio 2018_
+    handle: /cookie-policy
     language: it
     seo:
       description: Informativa sui cookie utlizzati da inkofpixel.com
