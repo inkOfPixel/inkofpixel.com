@@ -14,14 +14,13 @@ type Props = {
   data: Object,
   pathContext: {
     slug: string,
-    locale: string,
-    projectsBasePath: { [locale: string]: string }
+    locale: string
   }
 };
 
 export default ({ data, pathContext }: Props) => {
   const { markdownRemark, navigation, generalSettings } = data;
-  const { title, locales } = markdownRemark.frontmatter;
+  const { title, locales } = markdownRemark.fields.frontmatter;
   const { defaultLanguage } = generalSettings;
   const page = locales.find(locale => locale.language === pathContext.locale);
   const currentNavigation = navigation.locales.find(
@@ -41,19 +40,7 @@ export default ({ data, pathContext }: Props) => {
         })),
         language: locales.map(locale => ({
           locale: locale.language,
-          url:
-            locale.language === defaultLanguage
-              ? simplePathJoin(
-                  "/",
-                  pathContext.projectsBasePath[locale.language],
-                  markdownRemark.fields.slug
-                )
-              : simplePathJoin(
-                  "/",
-                  locale.language,
-                  pathContext.projectsBasePath[locale.language],
-                  markdownRemark.fields.slug
-                )
+          url: locale.path
         }))
       }}
     >
@@ -100,21 +87,22 @@ export const query = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       fields {
         slug
-      }
-      frontmatter {
-        title
-        locales {
-          language
-          body
-          heroImage {
-            childImageSharp {
-              sizes(maxWidth: 1200) {
-                ...GatsbyImageSharpSizes
+        frontmatter {
+          title
+          locales {
+            language
+            path
+            body
+            heroImage {
+              childImageSharp {
+                sizes(maxWidth: 1200) {
+                  ...GatsbyImageSharpSizes
+                }
               }
             }
+            type
+            seoTitle
           }
-          type
-          seoTitle
         }
       }
     }

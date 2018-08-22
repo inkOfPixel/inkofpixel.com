@@ -143,12 +143,13 @@ export default class Home extends React.Component<Props> {
               <DisplayText>{currentHome.projects.title}</DisplayText>
               <ul className="featuredProjectsList">
                 {featuredProjects.map(item => {
-                  const currentItem = item.frontmatter.locales.find(
+                  const frontmatter = item.fields.frontmatter;
+                  const currentItem = frontmatter.locales.find(
                     locale => locale.language === pathContext.locale
                   );
                   return (
-                    <li key={item.frontmatter.title}>
-                      <Link to={item.fields.path}>
+                    <li key={frontmatter.title}>
+                      <Link to={currentItem.path}>
                         <div className="content">
                           <Img
                             sizes={
@@ -156,12 +157,15 @@ export default class Home extends React.Component<Props> {
                             }
                           />
                           <div className="info">
-                            <p className="title">{item.frontmatter.title}</p>
+                            <p className="title">{frontmatter.title}</p>
                             <p className="description">{currentItem.excerpt}</p>
                           </div>
                         </div>
-                        <div className="projectLink" to={item.fields.path}>
-                          Discover More
+                        <div className="projectLink">
+                          <FormattedMessage
+                            id="home.projectsSection.discoverMore"
+                            defaultMessage="Discover more"
+                          />
                         </div>
                       </Link>
                     </li>
@@ -227,17 +231,17 @@ export const query = graphql`
         name
         featuredProjects {
           fields {
-            path
-          }
-          frontmatter {
-            title
-            locales {
-              language
-              excerpt
-              featuredImage {
-                childImageSharp {
-                  sizes(maxWidth: 1200, maxHeight: 600) {
-                    ...GatsbyImageSharpSizes
+            frontmatter {
+              title
+              locales {
+                language
+                path
+                excerpt
+                featuredImage {
+                  childImageSharp {
+                    sizes(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpSizes
+                    }
                   }
                 }
               }

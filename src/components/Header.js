@@ -299,14 +299,14 @@ const ResourceLink = styled.a`
 const LanguageNavigation = styled.nav`
   margin-left: 40px;
   a {
-    color: #161338;
+    color: ${props => props.theme.navigationColor};
     position: relative;
     font-size: 13px;
     text-decoration: none;
     text-transform: uppercase;
     margin-right: 20px;
     &::before {
-      background: #161338;
+      background: ${props => props.theme.navigationColor};
       opacity: 0;
       bottom: -4px;
       content: "";

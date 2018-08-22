@@ -6,6 +6,7 @@ j* Implement Gatsby's Node APIs in this file.
 
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
+const generalSettings = require("./_site/settings/general.json");
 
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
@@ -32,29 +33,72 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 };
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+  parseProjectNodes({ node, getNode, boundActionCreators });
   const { createNodeField } = boundActionCreators;
   if (node.internal.type === "MarkdownRemark") {
     const fileNode = getNode(node.parent);
-    const slug = createFilePath({ node, getNode });
-    createNodeField({ node, name: "slug", value: slug });
-    createNodeField({
-      node,
-      name: "collection",
-      value: fileNode.sourceInstanceName
-    });
-    createNodeField({
-      node,
-      name: "path",
-      value:
-        fileNode.sourceInstanceName === "pages"
-          ? slug
-          : `/${fileNode.sourceInstanceName}${slug}`
-    });
+    if (fileNode.sourceInstanceName === "pages") {
+      const slug = createFilePath({ node, getNode });
+      createNodeField({ node, name: "slug", value: slug });
+      createNodeField({
+        node,
+        name: "collection",
+        value: fileNode.sourceInstanceName
+      });
+      createNodeField({
+        node,
+        name: "path",
+        value:
+          fileNode.sourceInstanceName === "pages"
+            ? slug
+            : `/${fileNode.sourceInstanceName}${slug}`
+      });
+    }
   }
   const parent = getNode(node.parent);
   if (parent && parent.internal.mediaType === "application/json") {
     const name = parent.name;
     createNodeField({ node, name: "name", value: name });
+  }
+};
+
+const parseProjectNodes = ({ node, getNode, boundActionCreators }) => {
+  const { defaultLanguage } = generalSettings;
+  const projectsBasePath = {
+    en: "/projects",
+    it: "/progetti"
+  };
+  const { createNodeField } = boundActionCreators;
+  if (node.internal.type === "MarkdownRemark") {
+    const fileNode = getNode(node.parent);
+    if (fileNode.sourceInstanceName === "projects") {
+      const slug = createFilePath({ node, getNode });
+      createNodeField({ node, name: "slug", value: slug });
+      createNodeField({
+        node,
+        name: "collection",
+        value: fileNode.sourceInstanceName
+      });
+      createNodeField({
+        node,
+        name: "frontmatter",
+        value: {
+          ...node.frontmatter,
+          locales: node.frontmatter.locales.map(locale => ({
+            ...locale,
+            path:
+              locale.language === defaultLanguage
+                ? path.join("/", projectsBasePath[locale.language], slug)
+                : path.join(
+                    "/",
+                    locale.language,
+                    projectsBasePath[locale.language],
+                    slug
+                  )
+          }))
+        }
+      });
+    }
   }
 };
 
@@ -112,12 +156,12 @@ function createProjectPages({ graphql, boundActionCreators }) {
             node {
               fields {
                 slug
-                path
-              }
-              frontmatter {
-                template
-                locales {
-                  language
+                frontmatter {
+                  template
+                  locales {
+                    language
+                    path
+                  }
                 }
               }
             }
@@ -127,28 +171,15 @@ function createProjectPages({ graphql, boundActionCreators }) {
     `).then(result => {
       const { allMarkdownRemark, settingsJson } = result.data;
       const defaultLocale = settingsJson.defaultLanguage;
-      const projectsBasePath = {
-        en: "/projects",
-        it: "/progetti"
-      };
       allMarkdownRemark.edges.forEach(({ node }) => {
-        const { template, locales } = node.frontmatter;
+        const { template, locales } = node.fields.frontmatter;
         locales.forEach(locale => {
           createPage({
-            path:
-              locale.language === defaultLocale
-                ? path.join(projectsBasePath[locale.language], node.fields.slug)
-                : path.join(
-                    "/",
-                    locale.language,
-                    projectsBasePath[locale.language],
-                    node.fields.slug
-                  ),
+            path: locale.path,
             component: path.resolve(`./src/templates/${template}.js`),
             context: {
               slug: node.fields.slug,
-              locale: locale.language,
-              projectsBasePath
+              locale: locale.language
             }
           });
         });
