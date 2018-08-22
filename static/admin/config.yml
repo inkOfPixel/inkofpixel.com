@@ -88,14 +88,28 @@ collections:
     create: true
     fields:
       - { name: title, label: Page title }
-      - { name: seoTitle, label: SEO Page title, widget: string }
-      - { name: seoDescription, label: SEO Description, widget: text }
-      - name: template
-        label: Page template
+      - label: Page template
+        name: template
         widget: select
         options:
           - { label: Default, value: page }
-      - { name: body, label: Page content, widget: markdown }
+      - label: Locales
+        name: locales
+        widget: list
+        fields:
+          - label: Language
+            name: language
+            widget: select
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { name: title, label: SEO title, widget: string }
+              - { name: description, label: SEO Description, widget: text }
+          - { name: body, label: Page content, widget: markdown }
   - label: Projects
     label_singular: Project
     name: projects

@@ -1,7 +1,8 @@
 {
-  "name": "gatsby-plugin-netlify-markdown-paths",
+  "name": "gatsby-plugin-markdown-locales",
   "version": "0.0.1",
-  "description": "A Gatsby plugin to for transforming markdown path into Gasby friendly paths",
+  "description":
+    "A Gatsby plugin to for transforming markdown path into Gasby friendly paths",
   "main": "gatsby-node.js",
   "author": "Massimo De Marchi <massimo@inkofpixel.com>",
   "license": "MIT",
