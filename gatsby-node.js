@@ -33,28 +33,33 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 };
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  parseProjectNodes({ node, getNode, boundActionCreators });
+  // parseProjectNodes({ node, getNode, boundActionCreators });
   const { createNodeField } = boundActionCreators;
-  if (node.internal.type === "MarkdownRemark") {
-    const fileNode = getNode(node.parent);
-    if (fileNode.sourceInstanceName === "pages") {
-      const slug = createFilePath({ node, getNode });
-      createNodeField({ node, name: "slug", value: slug });
-      createNodeField({
-        node,
-        name: "collection",
-        value: fileNode.sourceInstanceName
-      });
-      createNodeField({
-        node,
-        name: "path",
-        value:
-          fileNode.sourceInstanceName === "pages"
-            ? slug
-            : `/${fileNode.sourceInstanceName}${slug}`
-      });
-    }
-  }
+  // if (node.internal.type === "MarkdownRemark") {
+  // const fileNode = getNode(node.parent);
+  // createNodeField({
+  //   node,
+  //   name: "collection",
+  //   value: fileNode.sourceInstanceName
+  // });
+  // if (fileNode.sourceInstanceName === "pages") {
+  //   const slug = createFilePath({ node, getNode });
+  //   createNodeField({ node, name: "slug", value: slug });
+  //   createNodeField({
+  //     node,
+  //     name: "collection",
+  //     value: fileNode.sourceInstanceName
+  //   });
+  //   createNodeField({
+  //     node,
+  //     name: "path",
+  //     value:
+  //       fileNode.sourceInstanceName === "pages"
+  //         ? slug
+  //         : `/${fileNode.sourceInstanceName}${slug}`
+  //   });
+  // }
+  // }
   const parent = getNode(node.parent);
   if (parent && parent.internal.mediaType === "application/json") {
     const name = parent.name;
@@ -62,48 +67,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
-const parseProjectNodes = ({ node, getNode, boundActionCreators }) => {
-  const { defaultLanguage } = generalSettings;
-  const projectsBasePath = {
-    en: "/projects",
-    it: "/progetti"
-  };
-  const { createNodeField } = boundActionCreators;
-  if (node.internal.type === "MarkdownRemark") {
-    const fileNode = getNode(node.parent);
-    if (fileNode.sourceInstanceName === "projects") {
-      const slug = createFilePath({ node, getNode });
-      createNodeField({ node, name: "slug", value: slug });
-      createNodeField({
-        node,
-        name: "collection",
-        value: fileNode.sourceInstanceName
-      });
-      createNodeField({
-        node,
-        name: "frontmatter",
-        value: {
-          ...node.frontmatter,
-          locales: node.frontmatter.locales.map(locale => ({
-            ...locale,
-            path:
-              locale.language === defaultLanguage
-                ? path.join("/", projectsBasePath[locale.language], slug)
-                : path.join(
-                    "/",
-                    locale.language,
-                    projectsBasePath[locale.language],
-                    slug
-                  )
-          }))
-        }
-      });
-    }
-  }
-};
-
 exports.createPages = context => {
-  return Promise.all([createProjectPages(context), createStaticPages(context)]);
+  return Promise.all([createStaticPages(context)]);
 };
 
 function createMarkdownPages({ graphql, boundActionCreators }) {

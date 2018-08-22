@@ -49,7 +49,6 @@
     "babel-preset-flow": "6.23.0",
     "flow-bin": "0.79.0",
     "flow-typed": "2.5.1",
-    "gatsby-plugin-netlify-cms-paths": "1.0.1",
     "gatsby-plugin-react-next": "1.0.11",
     "gatsby-plugin-sharp": "1.6.48",
     "gatsby-remark-relative-images": "0.1.2",

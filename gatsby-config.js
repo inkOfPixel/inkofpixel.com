@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   siteMetadata: {
     title: "inkOfPixel",
@@ -17,13 +19,13 @@ module.exports = {
         name: "assets"
       }
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        path: `${__dirname}/_site/pages`,
-        name: "pages"
-      }
-    },
+    // {
+    //   resolve: "gatsby-source-filesystem",
+    //   options: {
+    //     path: `${__dirname}/_site/pages`,
+    //     name: "pages"
+    //   }
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -47,6 +49,22 @@ module.exports = {
     },
     "gatsby-transformer-json",
     "gatsby-plugin-netlify-markdown-paths",
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "projects",
+        defaultLocale: "en",
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const basePathByLocale = {
+            en: "/projects",
+            it: "/progetti"
+          };
+          return locale === defaultLocale
+            ? path.join("/", basePathByLocale[locale], slug)
+            : path.join("/", locale, basePathByLocale[locale], slug);
+        }
+      }
+    },
     {
       resolve: "gatsby-transformer-remark",
       options: {

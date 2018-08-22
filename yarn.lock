@@ -3264,10 +3264,6 @@ es6-iterator@^2.0.1, es6-iterator@~2.0.3:
     es5-ext "^0.10.35"
     es6-symbol "^3.1.1"
 
-es6-promise@^2.0.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-2.3.0.tgz#96edb9f2fdb01995822b263dd8aadab6748181bc"
-
 es6-promise@^3.0.2:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
@@ -4086,14 +4082,6 @@ gatsby-plugin-google-analytics@1.0.31:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-1.0.31.tgz#eaf16e1809461b10badf12c05038c429745783c0"
   dependencies:
     babel-runtime "^6.26.0"
-
-gatsby-plugin-netlify-cms-paths@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms-paths/-/gatsby-plugin-netlify-cms-paths-1.0.1.tgz#bcfa67ef7d67d9d94ed00da2eb4f309dd6f73c16"
-  dependencies:
-    babel-runtime "^6.26.0"
-    read-yaml-promise "^1.0.2"
-    unist-util-select "^1.5.0"
 
 gatsby-plugin-netlify-cms@2.0.1:
   version "2.0.1"
@@ -5914,13 +5902,6 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
 js-yaml@^3.10.0, js-yaml@^3.5.2:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
-  dependencies:
-    argparse "^1.0.7"
-    esprima "^4.0.0"
-
-js-yaml@^3.8.2:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -9054,20 +9035,6 @@ read-pkg@^2.0.0:
     load-json-file "^2.0.0"
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
-
-read-yaml-promise@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/read-yaml-promise/-/read-yaml-promise-1.0.2.tgz#604b6113f27f773790f4a7462d0427305ed0647b"
-  dependencies:
-    es6-promise "^2.0.0"
-    read-yaml "^1.0.0"
-
-read-yaml@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/read-yaml/-/read-yaml-1.1.0.tgz#0d273ac0c95be92230dc0d4c4c4f5b8960a336d6"
-  dependencies:
-    extend-shallow "^2.0.1"
-    js-yaml "^3.8.2"
 
 read@^1.0.7:
   version "1.0.7"
