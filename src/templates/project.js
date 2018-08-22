@@ -8,20 +8,55 @@ import Markdown from "react-markdown";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
+import simplePathJoin from "utils/simplePathJoin";
 
 type Props = {
   data: Object,
   pathContext: {
     slug: string,
-    locale: string
+    locale: string,
+    projectsBasePath: { [locale: string]: string }
   }
 };
 
 export default ({ data, pathContext }: Props) => {
-  const { title, locales } = data.markdownRemark.frontmatter;
+  const { markdownRemark, navigation, generalSettings } = data;
+  const { title, locales } = markdownRemark.frontmatter;
+  const { defaultLanguage } = generalSettings;
   const page = locales.find(locale => locale.language === pathContext.locale);
+  const currentNavigation = navigation.locales.find(
+    locale => locale.language === pathContext.locale
+  );
   return (
-    <Page theme={projectTheme} locale={page.language}>
+    <Page
+      theme={projectTheme}
+      locale={page.language}
+      navigation={{
+        main: currentNavigation.main.links.map(link => ({
+          ...link,
+          url:
+            pathContext.locale === defaultLanguage
+              ? link.url
+              : simplePathJoin("/", page.language, link.url)
+        })),
+        language: locales.map(locale => ({
+          locale: locale.language,
+          url:
+            locale.language === defaultLanguage
+              ? simplePathJoin(
+                  "/",
+                  pathContext.projectsBasePath[locale.language],
+                  markdownRemark.fields.slug
+                )
+              : simplePathJoin(
+                  "/",
+                  locale.language,
+                  pathContext.projectsBasePath[locale.language],
+                  markdownRemark.fields.slug
+                )
+        }))
+      }}
+    >
       <Helmet>
         <title>{page.seoTitle}</title>
         <meta property="description" content={page.seoDescription} />
@@ -41,7 +76,6 @@ export default ({ data, pathContext }: Props) => {
       </Hero>
       <Wrapper>
         <RichText source={page.body} />
-        {/* <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} /> */}
       </Wrapper>
     </Page>
   );
@@ -49,7 +83,24 @@ export default ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query DefaultPageQuery($slug: String!) {
+    generalSettings: settingsJson(fields: { name: { eq: "general" } }) {
+      defaultLanguage
+    }
+    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
+      locales {
+        language
+        main {
+          links {
+            label
+            url
+          }
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
         title
         locales {
@@ -172,19 +223,19 @@ const RichText = styled(Markdown)`
         }
       }
     }
-    .gatsby-resp-image-wrapper {
+    img {
+      width: 100%;
       display: block;
+      width: 1200px;
+      margin-left: -250px;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-      width: 100vw !important;
-      max-width: 1200px !important;
-      margin-left: -250px !important;
       @media (max-width: 1260px) {
-        width: calc(100vw - 80px) !important;
-        margin-left: calc((-100vw + 780px) / 2) !important;
+        width: calc(100vw - 80px);
+        margin-left: calc((-100vw + 780px) / 2);
       }
       @media (max-width: 800px) {
-        width: 100% !important;
-        margin-left: 0 !important;
+        width: 100%;
+        margin-left: 0;
       }
     }
   }

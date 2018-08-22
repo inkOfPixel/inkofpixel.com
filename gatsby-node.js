@@ -147,7 +147,8 @@ function createProjectPages({ graphql, boundActionCreators }) {
             component: path.resolve(`./src/templates/${template}.js`),
             context: {
               slug: node.fields.slug,
-              locale: locale.language
+              locale: locale.language,
+              projectsBasePath
             }
           });
         });
