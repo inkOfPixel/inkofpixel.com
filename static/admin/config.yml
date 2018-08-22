@@ -103,6 +103,10 @@ collections:
             options:
               - { label: English, value: en }
               - { label: Italian, value: it }
+          - label: Page handle
+            name: handle
+            widget: string
+            required: false
           - label: SEO
             name: seo
             widget: object

@@ -19,13 +19,13 @@ module.exports = {
         name: "assets"
       }
     },
-    // {
-    //   resolve: "gatsby-source-filesystem",
-    //   options: {
-    //     path: `${__dirname}/_site/pages`,
-    //     name: "pages"
-    //   }
-    // },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/pages`,
+        name: "pages"
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -63,6 +63,13 @@ module.exports = {
             ? path.join("/", basePathByLocale[locale], slug)
             : path.join("/", locale, basePathByLocale[locale], slug);
         }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "pages",
+        defaultLocale: "en"
       }
     },
     {
