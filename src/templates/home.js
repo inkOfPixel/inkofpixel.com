@@ -155,8 +155,9 @@ export default class Home extends React.Component<Props> {
                             <p className="description">{currentItem.excerpt}</p>
                           </div>
                         </div>
-                        <div className="projectLink">
+                        <div className="discoverMore">
                           <FormattedMessage
+                            className="pippo"
                             id="home.projectsSection.discoverMore"
                             defaultMessage="Discover more"
                           />
@@ -616,7 +617,7 @@ const Section = styled.section`
           }
         }
       }
-      .projectLink {
+      .discoverMore {
         color: #05c3b6;
         display: inline-block;
         text-decoration: none;
