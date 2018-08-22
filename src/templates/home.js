@@ -142,28 +142,31 @@ export default class Home extends React.Component<Props> {
               </SectionTitle>
               <DisplayText>{currentHome.projects.title}</DisplayText>
               <ul className="featuredProjectsList">
-                {featuredProjects.map(item => (
-                  <li key={item.frontmatter.title}>
-                    <Link to={item.fields.path}>
-                      <div className="content">
-                        <Img
-                          sizes={
-                            item.frontmatter.featuredImage.childImageSharp.sizes
-                          }
-                        />
-                        <div className="info">
-                          <p className="title">{item.frontmatter.title}</p>
-                          <p className="description">
-                            {item.frontmatter.excerpt}
-                          </p>
+                {featuredProjects.map(item => {
+                  const currentItem = item.frontmatter.locales.find(
+                    locale => locale.language === pathContext.locale
+                  );
+                  return (
+                    <li key={item.frontmatter.title}>
+                      <Link to={item.fields.path}>
+                        <div className="content">
+                          <Img
+                            sizes={
+                              currentItem.featuredImage.childImageSharp.sizes
+                            }
+                          />
+                          <div className="info">
+                            <p className="title">{item.frontmatter.title}</p>
+                            <p className="description">{currentItem.excerpt}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="projectLink" to={item.fields.path}>
-                        Discover More
-                      </div>
-                    </Link>
-                  </li>
-                ))}
+                        <div className="projectLink" to={item.fields.path}>
+                          Discover More
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </Wrapper>
           </Section>
@@ -225,6 +228,20 @@ export const query = graphql`
         featuredProjects {
           fields {
             path
+          }
+          frontmatter {
+            title
+            locales {
+              language
+              excerpt
+              featuredImage {
+                childImageSharp {
+                  sizes(maxWidth: 1200, maxHeight: 600) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+            }
           }
         }
       }
