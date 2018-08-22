@@ -59,10 +59,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 };
 
 exports.createPages = context => {
-  return Promise.all([
-    createMarkdownPages(context),
-    createStaticPages(context)
-  ]);
+  return Promise.all([createProjectPages(context), createStaticPages(context)]);
 };
 
 function createMarkdownPages({ graphql, boundActionCreators }) {
@@ -93,6 +90,66 @@ function createMarkdownPages({ graphql, boundActionCreators }) {
           context: {
             slug: node.fields.slug
           }
+        });
+      });
+      resolve();
+    });
+  });
+}
+
+function createProjectPages({ graphql, boundActionCreators }) {
+  const { createPage } = boundActionCreators;
+  return new Promise((resolve, reject) => {
+    graphql(`
+      {
+        settingsJson(fields: { name: { eq: "general" } }) {
+          defaultLanguage
+        }
+        allMarkdownRemark(
+          filter: { fields: { collection: { eq: "projects" } } }
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+                path
+              }
+              frontmatter {
+                template
+                locales {
+                  language
+                }
+              }
+            }
+          }
+        }
+      }
+    `).then(result => {
+      const { allMarkdownRemark, settingsJson } = result.data;
+      const defaultLocale = settingsJson.defaultLanguage;
+      const projectsBasePath = {
+        en: "/projects",
+        it: "/progetti"
+      };
+      allMarkdownRemark.edges.forEach(({ node }) => {
+        const { template, locales } = node.frontmatter;
+        locales.forEach(locale => {
+          createPage({
+            path:
+              locale.language === defaultLocale
+                ? path.join(projectsBasePath[locale.language], node.fields.slug)
+                : path.join(
+                    "/",
+                    locale.language,
+                    projectsBasePath[locale.language],
+                    node.fields.slug
+                  ),
+            component: path.resolve(`./src/templates/${template}.js`),
+            context: {
+              slug: node.fields.slug,
+              locale: locale.language
+            }
+          });
         });
       });
       resolve();

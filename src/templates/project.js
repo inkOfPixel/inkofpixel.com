@@ -4,43 +4,44 @@ import React from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import Img from "gatsby-image";
+import Markdown from "react-markdown";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
 
 type Props = {
-  data: Object
+  data: Object,
+  pathContext: {
+    slug: string,
+    locale: string
+  }
 };
 
-export default ({ data }: Props) => {
-  const page = data.markdownRemark;
+export default ({ data, pathContext }: Props) => {
+  const { title, locales } = data.markdownRemark.frontmatter;
+  const page = locales.find(locale => locale.language === pathContext.locale);
   return (
-    <Page theme={projectTheme}>
+    <Page theme={projectTheme} locale={page.language}>
       <Helmet>
-        <title>{page.frontmatter.seoTitle}</title>
-        <meta
-          property="description"
-          content={page.frontmatter.seoDescription}
-        />
-        <meta property="og:title" content={page.frontmatter.title} />
-        <meta
-          property="og:description"
-          content={page.frontmatter.seoDescription}
-        />
+        <title>{page.seoTitle}</title>
+        <meta property="description" content={page.seoDescription} />
+        <meta property="og:title" content={page.seoTitle} />
+        <meta property="og:description" content={page.seoDescription} />
       </Helmet>
       <Hero>
-        <Img sizes={page.frontmatter.heroImage.childImageSharp.sizes} />
+        <Img sizes={page.heroImage.childImageSharp.sizes} />
         <HeroContent>
           <Wrapper>
             <Heading>
-              <ProjectType>{page.frontmatter.type}</ProjectType>
-              <Title>{page.frontmatter.title}</Title>
+              <ProjectType>{page.type}</ProjectType>
+              <Title>{title}</Title>
             </Heading>
           </Wrapper>
         </HeroContent>
       </Hero>
       <Wrapper>
-        <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} />
+        <RichText source={page.body} />
+        {/* <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} /> */}
       </Wrapper>
     </Page>
   );
@@ -49,18 +50,21 @@ export default ({ data }: Props) => {
 export const query = graphql`
   query DefaultPageQuery($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
       frontmatter {
         title
-        # heroImage {
-        #   childImageSharp {
-        #     sizes(maxWidth: 1200) {
-        #       ...GatsbyImageSharpSizes
-        #     }
-        #   }
-        # }
-        # type
-        # seoTitle
+        locales {
+          language
+          body
+          heroImage {
+            childImageSharp {
+              sizes(maxWidth: 1200) {
+                ...GatsbyImageSharpSizes
+              }
+            }
+          }
+          type
+          seoTitle
+        }
       }
     }
   }
@@ -131,7 +135,7 @@ const Title = styled.h2`
   }
 `;
 
-const RichTextEditor = styled.div`
+const RichText = styled(Markdown)`
   padding: 50px 0;
   p {
     line-height: 1.8em;
