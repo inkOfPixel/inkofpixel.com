@@ -84,23 +84,23 @@
       },
       "services": [
         {
-          "groupTitle": "Nuovi e-commerces, cambio di piattaforma, consulenza",
+          "groupTitle": "Nuovi e-commerce, cambio di piattaforma, consulenza",
           "groupDescription": "Siamo partner Shopify e aiutiamo commercianti e imprenditori ambiziosi a vendere di più tramite Shopify. Ti aiutiamo creando il tuo nuovo sito, migliorando le prestazioni e l'esperienza utente e sviluppando integrazioni con la logistica per ottimizzare il tuo flusso di lavoro.",
           "serviceList": [
             {
               "title": "Setup",
               "image": "/assets/inkofpixel - services_setup.svg",
-              "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+              "description": "Ti aiuteremo a lanciare il tuo business online tramite Shopify o a migrare il tuo negozio online da altre piattaforme e ti daremo tutto il supporto necessario per configurare il tuo store con successo."
             },
             {
-              "title": "Themes",
+              "title": "Temi",
               "image": "/assets/inkofpixel - services_design.svg",
-              "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+              "description": "Possiamo configurare un tema da te scelto oppure creare da zero un tema su misura per soddisfare tutte le tue esigenze."
             },
             {
-              "title": "Shopify Apps",
+              "title": "Applicazioni Shopify",
               "image": "/assets/inkofpixel - services_web developer.svg",
-              "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+              "description": "Creiamo applicazioni Shopify su misura per migliorare il tuo flusso di lavoro e integrare il tuo negozio online con servizi di terze parti."
             }
           ]
         },
