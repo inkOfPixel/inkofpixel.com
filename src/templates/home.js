@@ -23,7 +23,7 @@ export default class Home extends React.Component<Props> {
   render() {
     const { data, pathContext } = this.props;
     const { locale: pageLocale } = pathContext;
-    const { staticPagesJson, site, navigation } = data;
+    const { staticPagesJson, site, navigation, cookiePolicy } = data;
     const { origin } = site.siteMetadata;
     const home = data.staticPagesJson;
     const currentHome = home.fields.locales.find(
@@ -41,7 +41,10 @@ export default class Home extends React.Component<Props> {
           language: home.fields.locales.map(locale => ({
             locale: locale.language,
             url: locale.path
-          }))
+          })),
+          cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
+            locale => locale.language === pathContext.locale
+          ).path
         }}
       >
         <Helmet>
@@ -211,6 +214,16 @@ export const query = graphql`
           links {
             label
             url
+          }
+        }
+      }
+    }
+    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
+      fields {
+        frontmatter {
+          locales {
+            language
+            path
           }
         }
       }

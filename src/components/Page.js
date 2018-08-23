@@ -60,8 +60,6 @@ class Page extends React.Component<Props, State> {
       them to life, this is the right place.
       "
               />
-              {/* <meta property="
-      og: image " content={ogImage} /> */}
             </Helmet>
             <Header
               navigation={navigation}
@@ -70,7 +68,7 @@ class Page extends React.Component<Props, State> {
             />
             {children}
             <Footer />
-            <CookieBar />
+            <CookieBar cookiePolicyURL={navigation.cookiePolicy} />
           </Fragment>
         </ThemeProvider>
       </IntlProvider>

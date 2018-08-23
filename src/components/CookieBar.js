@@ -3,18 +3,27 @@
 import React, { type Node, Component } from "react";
 import styled from "styled-components";
 import Link from "gatsby-link";
+import { FormattedMessage } from "react-intl";
 import Cookie from "components/Cookie";
 
-const CookierBar = () => (
+type Props = {
+  cookiePolicyURL: string
+};
+
+const CookierBar = ({ cookiePolicyURL = "/cookie-policy" }: Props) => (
   <Cookie>
-    {accept => (
+    {answer => (
       <Bar>
         <Text>
-          inkOfPixel uses cookies to ensure that we give you the best experience
-          on our website. By browsing you agree to our
-          <StyledLink to="/cookies"> cookies policy </StyledLink>
+          <FormattedMessage
+            id="cookie.message"
+            defaultMessage="We use cookies to ensure that we give you the best experience
+          on our website. Read our"
+          />
+          <StyledLink to={cookiePolicyURL}> cookies policy </StyledLink>
+          <Button onClick={() => answer(true)}>OK</Button>
         </Text>
-        <button onClick={accept} />
+        <CloseButton onClick={() => answer(false)} />
       </Bar>
     )}
   </Cookie>
@@ -28,38 +37,53 @@ const Bar = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  button {
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: #161338;
+  border-radius: 2px;
+  color: #fff;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 500ms all;
+  &:hover {
+    background-color: #7589f4;
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  &::before {
+    content: "";
+    background-color: red;
+    height: 2px;
+    width: 80%;
+    display: block;
+    transform: rotate(45deg);
     position: absolute;
-    right: 10px;
-    top: 10px;
-    background: transparent;
-    border: none;
-    height: 30px;
-    width: 30px;
-    padding: 0;
-    &:hover {
-      cursor: pointer;
-    }
-    &::before {
-      content: "";
-      background-color: red;
-      height: 2px;
-      width: 80%;
-      display: block;
-      transform: rotate(45deg);
-      position: absolute;
-      background-color: #161338;
-    }
-    &::after {
-      content: "";
-      background-color: red;
-      height: 2px;
-      width: 80%;
-      display: block;
-      transform: rotate(-45deg);
-      position: absolute;
-      background-color: #161338;
-    }
+    background-color: #161338;
+  }
+  &::after {
+    content: "";
+    background-color: red;
+    height: 2px;
+    width: 80%;
+    display: block;
+    transform: rotate(-45deg);
+    position: absolute;
+    background-color: #161338;
   }
 `;
 
