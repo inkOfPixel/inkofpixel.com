@@ -2,7 +2,7 @@
 title: STIMM
 template: project
 locales:
-  - body: >
+  - body: >-
       STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that
       creates unique and contemporary looks.
 
@@ -11,7 +11,7 @@ locales:
       moods.
 
 
-      ![inkOfPixel - STIMM Man Page](/assets/inkofpixel_stimm_man_page.png)
+      ![STIMM men site section](/assets/inkofpixel_stimm_man_page.png)
 
 
       ## Moving away from Magento
@@ -26,7 +26,8 @@ locales:
       faster admin and more insights into their data. 
 
 
-      ![inkOfPixel - STIMM Product page](/assets/inkofpixel_stimm_customize.jpg)
+      ![Shopify admin for STIMM Product
+      page](/assets/inkofpixel_stimm_customize.jpg)
 
 
       ## A challenging redesign
@@ -38,7 +39,8 @@ locales:
       by their unique brick and mortar stores. 
 
 
-      ![inkOfPixel - STIMM Redesign](/assets/inkofpixel_stimm_structure.jpg)
+      ![A mockup from STIMM website
+      redesign](/assets/inkofpixel_stimm_structure.jpg)
 
 
       ## Perfect product pages
@@ -53,7 +55,7 @@ locales:
       on the product.  
 
 
-      ![inkOfPixel - STIMM Product
+      ![An example of STIMM product
       page](/assets/inkofpixel_stimm_product_detail.png)
 
 
@@ -68,8 +70,8 @@ locales:
       conversions.
 
 
-      ![inkOfPixel - STIMM Algolia search
-      shopify](/assets/inkofpixel_stimm_algolia_search.jpg)
+      ![Algolia search page of STIMM
+      website](/assets/inkofpixel_stimm_algolia_search.jpg)
 
 
       ## The results
