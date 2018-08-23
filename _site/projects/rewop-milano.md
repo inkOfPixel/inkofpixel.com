@@ -134,14 +134,14 @@ locales:
       Shopify che carica velocemente e spiana la strada per far crescere il
       business.
     excerpt: >-
-      REWOP aveva bisogno di aggiornare il loro vecchio store WooCommerce non
+      REWOP aveva bisogno di aggiornare il vecchio store WooCommerce non
       performante. Li abbiamo aiutati a creare un'esperienza completamente
       nuova.
     featuredImage: /assets/inkofpixel_rewop_milano_featured_image.jpg
     heroImage: /assets/inkofpixel_rewop_milano_hero.jpg
     language: it
     seoDescription: >-
-      REWOP aveva bisogno di aggiornare il loro vecchio store WooCommerce non
+      REWOP aveva bisogno di aggiornare il vecchio store WooCommerce non
       performante. Li abbiamo aiutati a creare un'esperienza completamente
       nuova.
     seoTitle: Rewop Milano
