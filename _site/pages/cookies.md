@@ -211,9 +211,7 @@ locales:
       **Informativa estesa sui Cookies**
 
 
-
       **Applicazione gestita da inkOfPixel**
-
 
 
       La presente Cookie Policy è relativa alla pagina web
@@ -238,7 +236,6 @@ locales:
       pagina web.
 
 
-
       **Tipologie di Cookies utilizzati**
 
 
@@ -255,7 +252,6 @@ locales:
       * _Cookies funzionali:_
         Questi Cookies servono a riconoscere un Utente che torna a visitare l'Applicazione. Permettono di personalizzare i contenuti e ricordate le preferenze (ad esempio, la lingua selezionata o la regione). Questi Cookies non raccolgono informazioni che possono identificare l'Utente. Tutte le informazioni raccolte sono anonime.
 
-
       **Alcune delle finalità di installazione dei Cookies potrebbero, inoltre,
       necessitare del consenso dell'Utente. Le tipologie di attività relative ai
       Cookies possono essere così definite:**
@@ -268,9 +264,9 @@ locales:
          Questa Applicazione utilizza Cookies per salvare le preferenze di navigazione ed ottimizzare l'esperienza di navigazione dell'Utente. Fra questi Cookies rientrano, ad esempio, quelli per impostare la lingua e la valuta o per la gestione di statistiche da parte del Titolare dell'Applicazione.
 
 
+
       **Altre tipologie di Cookies o strumenti terzi che potrebbero farne
       utilizzo**
-
 
 
       Alcuni dei servizi elencati di seguito raccolgono statistiche in forma
@@ -342,7 +338,7 @@ locales:
       documento.
 
 
-      _**Titolare del Trattamento dei Dati:**_
+      **_Titolare del Trattamento dei Dati:_**
 
 
       _Titolare del trattamento è _Il Titolare del trattamento dei dati
