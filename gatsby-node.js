@@ -27,6 +27,9 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
     resolve: {
       root: path.resolve(__dirname, "./src"),
       extensions: ["", ".js", ".jsx", ".json"]
+    },
+    module: {
+      noParse: /node_modules\/netlify-cms\/dist\/cms.js/
     }
   });
   return config;
