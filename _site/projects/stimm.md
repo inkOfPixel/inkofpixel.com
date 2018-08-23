@@ -175,15 +175,15 @@ locales:
       STIMM. Il e-commerce Shopify è il punto di partenza per l'ambizioso
       progetto di diventare un vero business omni-channel.
     excerpt: >-
-      STIMM si sentiva penalizzato dal loro vecchio e-commerce Magento. Abbiamo
-      dato loro maggiore flessibilità e funzionalità con un nuovo sito Shopify
+      STIMM era penalizzato dal vecchio e-commerce Magento. Abbiamo dato loro
+      maggiore flessibilità e funzionalità con un nuovo sito Shopify
       personalizzato.
     featuredImage: /assets/inkofpixel_stimm_featured_image.jpg
     heroImage: /assets/inkofpixel_stimm_hero.jpg
     language: it
     seoDescription: >-
-      STIMM si sentiva penalizzato dal loro vecchio e-commerce Magento. Abbiamo
-      dato loro maggiore flessibilità e funzionalità con un nuovo sito Shopify
+      STIMM era penalizzato dal vecchio e-commerce Magento. Abbiamo dato loro
+      maggiore flessibilità e funzionalità con un nuovo sito Shopify
       personalizzato.
     seoTitle: STIMM
     type: 'E-commerce, Integrazioni, Consulenza'
