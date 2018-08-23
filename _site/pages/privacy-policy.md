@@ -5,6 +5,8 @@ locales:
   - body: >-
       **INFORMATIVA CLIENTI IN MATERIA DI PROTEZIONE DEI DATI PERSONALI**
 
+
+
       ai sensi dell'art. 13 del Decreto Legislativo 30 giugno 2003, n. 196 (di
       seguito "**Codice della Privacy**")
 
@@ -36,31 +38,38 @@ locales:
       improntati ai principi di correttezza, liceità e trasparenza e di tutela
       della sua riservatezza e dei suoi diritti.
 
-      **Tipologie di Dati raccolti e salvataggio Dati**: E' possibile accedere
-      al Sito senza che all'utente venga richiesto il conferimento di alcun dato
-      personale. Le procedure software e il sistema informatico preposto al
-      funzionamento dei siti web acquisiscono, nel corso del loro normale
-      esercizio, alcuni dati la cui trasmissione è implicita nell'uso dei
-      protocolli di comunicazione di Internet. Queste informazioni non sono
-      raccolte per essere associate a soggetti interessati identificati, ma che
-      per loro stessa natura potrebbero, attraverso elaborazioni ed associazioni
-      con dati detenuti dal Titolare o da terzi, permettere di identificare gli
-      utenti. In questa categoria di dati rientrano gli indirizzi IP o i nomi a
-      dominio dei computer utilizzati dagli utenti che si connettono al sito,
-      gli indirizzi in notazione URI (_Uniform Resource Identifier_) delle
-      risorse richieste, l'orario della richiesta, il metodo utilizzato nel
-      sottoporre la richiesta al server, la dimensione del file ottenuto in
-      risposta, il codice numerico indicante lo stato della risposta data dal
-      server (buon fine, errore, ecc.), le sezioni dell'Applicazione visitate,
-      il tipo di _device_ utilizzato, la nazione da cui ci si connette ed altri
-      parametri relativi al sistema operativo e all'ambiente informatico
-      dell'utente. I dati potrebbero essere utilizzati per l'accertamento di
-      responsabilità in caso di ipotetici reati informatici ai danni
-      dell'Applicazione.
+
+      **Tipologie di Dati raccolti e salvataggio Dati**: 
+
+
+      E' possibile accedere al Sito senza che all'utente venga richiesto il
+      conferimento di alcun dato personale. Le procedure software e il sistema
+      informatico preposto al funzionamento dei siti web acquisiscono, nel corso
+      del loro normale esercizio, alcuni dati la cui trasmissione è implicita
+      nell'uso dei protocolli di comunicazione di Internet. Queste informazioni
+      non sono raccolte per essere associate a soggetti interessati
+      identificati, ma che per loro stessa natura potrebbero, attraverso
+      elaborazioni ed associazioni con dati detenuti dal Titolare o da terzi,
+      permettere di identificare gli utenti. In questa categoria di dati
+      rientrano gli indirizzi IP o i nomi a dominio dei computer utilizzati
+      dagli utenti che si connettono al sito, gli indirizzi in notazione URI
+      (_Uniform Resource Identifier_) delle risorse richieste, l'orario della
+      richiesta, il metodo utilizzato nel sottoporre la richiesta al server, la
+      dimensione del file ottenuto in risposta, il codice numerico indicante lo
+      stato della risposta data dal server (buon fine, errore, ecc.), le sezioni
+      dell'Applicazione visitate, il tipo di _device_ utilizzato, la nazione da
+      cui ci si connette ed altri parametri relativi al sistema operativo e
+      all'ambiente informatico dell'utente. I dati potrebbero essere utilizzati
+      per l'accertamento di responsabilità in caso di ipotetici reati
+      informatici ai danni dell'Applicazione.
+
 
       **1.** **Finalità del trattamento**
 
+
+
       Il trattamento che il Titolare intende effettuare ha le seguenti finalità:
+
 
       * navigazione sul presente sito internet;
 
@@ -70,7 +79,10 @@ locales:
       * attività amministrativo-contabili in genere e per l'adempimento degli
       obblighi di legge.
 
+
       **2. Modalità del trattamento**
+
+
 
       L'invio volontario ed esplicito di posta elettronica agli indirizzi
       indicati nei differenti canali di accesso di questo sito comporta la
@@ -100,7 +112,10 @@ locales:
       I dati saranno altresì gestiti e protetti in ambienti il cui accesso è
       sotto costante controllo.
 
+
       **3. Facoltatività del consenso**
+
+
 
       A parte quanto specificato per i dati di navigazione, il conferimento dei
       dati personali da parte dell'interessato è da ritenersi facoltativo. Il
@@ -115,7 +130,10 @@ locales:
       loro stessa natura potrebbero, attraverso elaborazioni ed associazioni con
       dati detenuti da terzi, permettere di identificare gli utenti.
 
+
       **4. Comunicazione dei dati personali**
+
+
 
       I suoi dati personali potranno essere comunicati a:
 
@@ -143,14 +161,20 @@ locales:
       che la riguardano, tale ipotesi non costituisce diffusione da parte del
       titolare del trattamento.
 
+
       **5. Titolare del trattamento**
+
+
 
       Il Titolare del trattamento dei dati personali è la società **inkOfPixel
       Srl**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta
       presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva
       10195730964.
 
-      **6\. Luogo e Tempi di conservazione**
+
+      **6. Luogo e Tempi di conservazione**
+
+
 
       I Dati sono trattati presso le sedi operative del Titolare ed in ogni
       altro luogo in cui le parti coinvolte nel trattamento siano localizzate.
@@ -161,14 +185,21 @@ locales:
       finalità descritte in questo documento. L'Utente può sempre chiedere
       l'interruzione del Trattamento o la cancellazione dei Dati.
 
-      **7\. Cookie Policy**
+
+      **7. Cookie Policy**
+
 
       **Questa Applicazione fa utilizzo di Cookies. Per saperne di più e per
       un'informativa dettagliata, puoi consultare la Cookie Policy.**
 
+
       **Ulteriori informazioni sul trattamento**
 
+
+
       **Difesa in giudizio**
+
+
 
       a. I Dati Personali dell'Utente possono essere utilizzati per la difesa da
       parte del Titolare in giudizio o nelle fasi propedeutiche alla sua
@@ -178,11 +209,13 @@ locales:
       b. L'Utente dichiara di essere consapevole che il Titolare potrebbe essere
       richiesto di rivelare i Dati su richiesta delle pubbliche autorità.
 
+
       **Informative specifiche**: Su richiesta dell'Utente, in aggiunta alle
       informazioni contenute in questa privacy policy, questa Applicazione
       potrebbe fornire all'Utente delle informative aggiuntive e contestuali
       riguardanti servizi specifici, o la raccolta ed il trattamento di Dati
       Personali.
+
 
       **Log di sistema e manutenzione**: Per necessità legate al funzionamento
       ed alla manutenzione, questa Applicazione e gli eventuali servizi terzi da
@@ -190,12 +223,16 @@ locales:
       registrano le interazioni e che possono contenere anche Dati Personali,
       quali l'indirizzo IP Utente.
 
+
       **Informazioni non contenute in questa policy: **Maggiori informazioni in
       relazione al trattamento dei Dati Personali potranno essere richieste in
       qualsiasi momento al Titolare del Trattamento utilizzando le informazioni
       di contatto.
 
+
       **Modifiche a questa privacy policy**
+
+
 
       Il Titolare del Trattamento si riserva il diritto di apportare modifiche
       alla presente privacy policy in qualunque momento dandone pubblicità agli
@@ -208,8 +245,11 @@ locales:
       precedente privacy policy continuerà ad applicarsi ai Dati Personali sino
       a quel momento raccolti.
 
-      **_Questa informativa privacy riguarda esclusivamente questa
-      Applicazione._**
+
+      _**Questa informativa privacy riguarda esclusivamente questa
+      Applicazione.**_
+
+
 
       _Ultimo aggiornamento: 26 Luglio 2018_
     language: en
@@ -219,6 +259,8 @@ locales:
   - body: >-
       **INFORMATIVA CLIENTI IN MATERIA DI PROTEZIONE DEI DATI PERSONALI**
 
+
+
       ai sensi dell'art. 13 del Decreto Legislativo 30 giugno 2003, n. 196 (di
       seguito "**Codice della Privacy**")
 
@@ -250,31 +292,38 @@ locales:
       improntati ai principi di correttezza, liceità e trasparenza e di tutela
       della sua riservatezza e dei suoi diritti.
 
-      **Tipologie di Dati raccolti e salvataggio Dati**: E' possibile accedere
-      al Sito senza che all'utente venga richiesto il conferimento di alcun dato
-      personale. Le procedure software e il sistema informatico preposto al
-      funzionamento dei siti web acquisiscono, nel corso del loro normale
-      esercizio, alcuni dati la cui trasmissione è implicita nell'uso dei
-      protocolli di comunicazione di Internet. Queste informazioni non sono
-      raccolte per essere associate a soggetti interessati identificati, ma che
-      per loro stessa natura potrebbero, attraverso elaborazioni ed associazioni
-      con dati detenuti dal Titolare o da terzi, permettere di identificare gli
-      utenti. In questa categoria di dati rientrano gli indirizzi IP o i nomi a
-      dominio dei computer utilizzati dagli utenti che si connettono al sito,
-      gli indirizzi in notazione URI (_Uniform Resource Identifier_) delle
-      risorse richieste, l'orario della richiesta, il metodo utilizzato nel
-      sottoporre la richiesta al server, la dimensione del file ottenuto in
-      risposta, il codice numerico indicante lo stato della risposta data dal
-      server (buon fine, errore, ecc.), le sezioni dell'Applicazione visitate,
-      il tipo di _device_ utilizzato, la nazione da cui ci si connette ed altri
-      parametri relativi al sistema operativo e all'ambiente informatico
-      dell'utente. I dati potrebbero essere utilizzati per l'accertamento di
-      responsabilità in caso di ipotetici reati informatici ai danni
-      dell'Applicazione.
+
+      **Tipologie di Dati raccolti e salvataggio Dati**: 
+
+
+      E' possibile accedere al Sito senza che all'utente venga richiesto il
+      conferimento di alcun dato personale. Le procedure software e il sistema
+      informatico preposto al funzionamento dei siti web acquisiscono, nel corso
+      del loro normale esercizio, alcuni dati la cui trasmissione è implicita
+      nell'uso dei protocolli di comunicazione di Internet. Queste informazioni
+      non sono raccolte per essere associate a soggetti interessati
+      identificati, ma che per loro stessa natura potrebbero, attraverso
+      elaborazioni ed associazioni con dati detenuti dal Titolare o da terzi,
+      permettere di identificare gli utenti. In questa categoria di dati
+      rientrano gli indirizzi IP o i nomi a dominio dei computer utilizzati
+      dagli utenti che si connettono al sito, gli indirizzi in notazione URI
+      (_Uniform Resource Identifier_) delle risorse richieste, l'orario della
+      richiesta, il metodo utilizzato nel sottoporre la richiesta al server, la
+      dimensione del file ottenuto in risposta, il codice numerico indicante lo
+      stato della risposta data dal server (buon fine, errore, ecc.), le sezioni
+      dell'Applicazione visitate, il tipo di _device_ utilizzato, la nazione da
+      cui ci si connette ed altri parametri relativi al sistema operativo e
+      all'ambiente informatico dell'utente. I dati potrebbero essere utilizzati
+      per l'accertamento di responsabilità in caso di ipotetici reati
+      informatici ai danni dell'Applicazione.
+
 
       **1.** **Finalità del trattamento**
 
+
+
       Il trattamento che il Titolare intende effettuare ha le seguenti finalità:
+
 
       * navigazione sul presente sito internet;
 
@@ -284,7 +333,10 @@ locales:
       * attività amministrativo-contabili in genere e per l'adempimento degli
       obblighi di legge.
 
+
       **2. Modalità del trattamento**
+
+
 
       L'invio volontario ed esplicito di posta elettronica agli indirizzi
       indicati nei differenti canali di accesso di questo sito comporta la
@@ -314,7 +366,10 @@ locales:
       I dati saranno altresì gestiti e protetti in ambienti il cui accesso è
       sotto costante controllo.
 
+
       **3. Facoltatività del consenso**
+
+
 
       A parte quanto specificato per i dati di navigazione, il conferimento dei
       dati personali da parte dell'interessato è da ritenersi facoltativo. Il
@@ -329,7 +384,10 @@ locales:
       loro stessa natura potrebbero, attraverso elaborazioni ed associazioni con
       dati detenuti da terzi, permettere di identificare gli utenti.
 
+
       **4. Comunicazione dei dati personali**
+
+
 
       I suoi dati personali potranno essere comunicati a:
 
@@ -357,14 +415,20 @@ locales:
       che la riguardano, tale ipotesi non costituisce diffusione da parte del
       titolare del trattamento.
 
+
       **5. Titolare del trattamento**
+
+
 
       Il Titolare del trattamento dei dati personali è la società **inkOfPixel
       Srl**, con sede legale in Milano (MI), Piazza Castello, n. 26, iscritta
       presso il Registro delle Imprese di Milano al n. 2512510, c.f. e p.iva
       10195730964.
 
-      **6\. Luogo e Tempi di conservazione**
+
+      **6. Luogo e Tempi di conservazione**
+
+
 
       I Dati sono trattati presso le sedi operative del Titolare ed in ogni
       altro luogo in cui le parti coinvolte nel trattamento siano localizzate.
@@ -375,14 +439,21 @@ locales:
       finalità descritte in questo documento. L'Utente può sempre chiedere
       l'interruzione del Trattamento o la cancellazione dei Dati.
 
-      **7\. Cookie Policy**
+
+      **7. Cookie Policy**
+
 
       **Questa Applicazione fa utilizzo di Cookies. Per saperne di più e per
       un'informativa dettagliata, puoi consultare la Cookie Policy.**
 
+
       **Ulteriori informazioni sul trattamento**
 
+
+
       **Difesa in giudizio**
+
+
 
       a. I Dati Personali dell'Utente possono essere utilizzati per la difesa da
       parte del Titolare in giudizio o nelle fasi propedeutiche alla sua
@@ -392,11 +463,13 @@ locales:
       b. L'Utente dichiara di essere consapevole che il Titolare potrebbe essere
       richiesto di rivelare i Dati su richiesta delle pubbliche autorità.
 
+
       **Informative specifiche**: Su richiesta dell'Utente, in aggiunta alle
       informazioni contenute in questa privacy policy, questa Applicazione
       potrebbe fornire all'Utente delle informative aggiuntive e contestuali
       riguardanti servizi specifici, o la raccolta ed il trattamento di Dati
       Personali.
+
 
       **Log di sistema e manutenzione**: Per necessità legate al funzionamento
       ed alla manutenzione, questa Applicazione e gli eventuali servizi terzi da
@@ -404,12 +477,16 @@ locales:
       registrano le interazioni e che possono contenere anche Dati Personali,
       quali l'indirizzo IP Utente.
 
+
       **Informazioni non contenute in questa policy: **Maggiori informazioni in
       relazione al trattamento dei Dati Personali potranno essere richieste in
       qualsiasi momento al Titolare del Trattamento utilizzando le informazioni
       di contatto.
 
+
       **Modifiche a questa privacy policy**
+
+
 
       Il Titolare del Trattamento si riserva il diritto di apportare modifiche
       alla presente privacy policy in qualunque momento dandone pubblicità agli
@@ -422,8 +499,11 @@ locales:
       precedente privacy policy continuerà ad applicarsi ai Dati Personali sino
       a quel momento raccolti.
 
-      **_Questa informativa privacy riguarda esclusivamente questa
-      Applicazione._**
+
+      _**Questa informativa privacy riguarda esclusivamente questa
+      Applicazione.**_
+
+
 
       _Ultimo aggiornamento: 26 Luglio 2018_
     language: it
