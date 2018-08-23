@@ -210,7 +210,11 @@ locales:
   - body: >-
       **Informativa estesa sui Cookies**
 
+
+
       **Applicazione gestita da inkOfPixel**
+
+
 
       La presente Cookie Policy è relativa alla pagina web
       _https://www.inkofpixel.com_ (di seguito, l'"**Applicazione**") di
@@ -233,92 +237,41 @@ locales:
       Cookies può impedire in alcuni casi il funzionamento corretto della stessa
       pagina web.
 
+
+
       **Tipologie di Cookies utilizzati**
 
+
       * _Cookies di prima parte:_
-
-      I Cookies di prima parte (ovvero i Cookies che appartengono
-      all'Applicazione dell'editore che li ha creati) sono impostati
-      dall'Applicazione visitata dall'Utente, il cui indirizzo compare nella
-      finestra URL. L'utilizzo di tali Cookies ci permette di far funzionare
-      l'Applicazione in modo efficiente e di tracciare i modelli di
-      comportamento dei visitatori.
-
+        I Cookies di prima parte (ovvero i Cookies che appartengono all'Applicazione dell'editore che li ha creati) sono impostati dall'Applicazione visitata dall'Utente, il cui indirizzo compare nella finestra URL. L'utilizzo di tali Cookies ci permette di far funzionare l'Applicazione in modo efficiente e di tracciare i modelli di comportamento dei visitatori.
       * _Cookies di terze parti:_
-
-      I Cookies di terzi sono impostati da un dominio differente da quello
-      visitato dall'Utente. Se un Utente visita un'Applicazione e una società
-      diversa invia l'informazione sfruttando quell'Applicazione, si è in
-      presenza di Cookies di terze parti.
-
+        I Cookies di terzi sono impostati da un dominio differente da quello visitato dall'Utente. Se un Utente visita un'Applicazione e una società diversa invia l'informazione sfruttando quell'Applicazione, si è in presenza di Cookies di terze parti.
       * _Cookies di sessione:_
-
-      I c.d. Cookies di sessione sono memorizzati temporaneamente e vengono
-      cancellati quando l'Utente chiude il browser. Se l'Utente si registra
-      all'Applicazione, può utilizzare Cookies che raccolgono dati personali al
-      fine di identificare l'Utente in occasione di visite successive e di
-      facilitare l'accesso - login all'Applicazione (per esempio conservando
-      username e password dell'Utente) e la navigazione sullo stesso. Inoltre
-      inkOfPixel Spa utilizza i Cookies per finalità di amministrazione del
-      sistema. L'Applicazione potrebbe contenere link ad altri siti. inkOfPixel
-      Spa non ha alcun accesso o controllo su Cookies, web bacon e altre
-      tecnologie di tracciamento usate sui siti di terzi cui l'Utente può
-      accedere dal Applicazione, sulla disponibilità, su qualsiasi contenuto e
-      materiale che è pubblicato o ottenuto attraverso tali siti e sulle
-      relative modalità di trattamento dei dati personali; inkOfPixel Spa a
-      questo proposito, considerata la mole di tali siti terzi, declina
-      espressamente ogni relativa responsabilità. L'Utente dovrebbe verificare
-      la privacy policy dei siti di terzi cui accede dal Applicazione per
-      conoscere le condizioni applicabili al trattamento dei dati personali
-      poiché la Privacy Policy di inkOfPixel Spa si applica solo
-      all'Applicazione come sopra definita.
-
+        I c.d. Cookies di sessione sono memorizzati temporaneamente e vengono cancellati quando l'Utente chiude il browser. Se l'Utente si registra all'Applicazione, può utilizzare Cookies che raccolgono dati personali al fine di identificare l'Utente in occasione di visite successive e di facilitare l'accesso - login all'Applicazione (per esempio conservando username e password dell'Utente) e la navigazione sullo stesso. Inoltre inkOfPixel Spa utilizza i Cookies per finalità di amministrazione del sistema. L'Applicazione potrebbe contenere link ad altri siti. inkOfPixel Spa non ha alcun accesso o controllo su Cookies, web bacon e altre tecnologie di tracciamento usate sui siti di terzi cui l'Utente può accedere dal Applicazione, sulla disponibilità, su qualsiasi contenuto e materiale che è pubblicato o ottenuto attraverso tali siti e sulle relative modalità di trattamento dei dati personali; inkOfPixel Spa a questo proposito, considerata la mole di tali siti terzi, declina espressamente ogni relativa responsabilità. L'Utente dovrebbe verificare la privacy policy dei siti di terzi cui accede dal Applicazione per conoscere le condizioni applicabili al trattamento dei dati personali poiché la Privacy Policy di inkOfPixel Spa si applica solo all'Applicazione come sopra definita.
       * _Cookies persistenti:_
-
-      I Cookies persistenti sono memorizzati sul dispositivo degli utenti tra le
-      sessioni del browser, consentendo di ricordare le preferenze o le azioni
-      dell'Utente in un'Applicazione. Possono essere utilizzati per diversi
-      scopi, ad esempio per ricordare le preferenze e le scelte quando si
-      utilizza l'Applicazione.
-
+        I Cookies persistenti sono memorizzati sul dispositivo degli utenti tra le sessioni del browser, consentendo di ricordare le preferenze o le azioni dell'Utente in un'Applicazione. Possono essere utilizzati per diversi scopi, ad esempio per ricordare le preferenze e le scelte quando si utilizza l'Applicazione.
       * _Cookies essenziali:_
-
-      Questi Cookies sono strettamente necessari per il funzionamento
-      dell'Applicazione. Senza l'uso di tali Cookies alcune parti
-      dell'Applicazione non funzionerebbero. Comprendono, ad esempio, i Cookies
-      che consentono di accedere in aree protette dell'Applicazione. Questi
-      Cookies non raccolgono informazioni per scopi di marketing e non possono
-      essere disattivati.
-
+        Questi Cookies sono strettamente necessari per il funzionamento dell'Applicazione. Senza l'uso di tali Cookies alcune parti dell'Applicazione non funzionerebbero. Comprendono, ad esempio, i Cookies che consentono di accedere in aree protette dell'Applicazione. Questi Cookies non raccolgono informazioni per scopi di marketing e non possono essere disattivati.
       * _Cookies funzionali:_
+        Questi Cookies servono a riconoscere un Utente che torna a visitare l'Applicazione. Permettono di personalizzare i contenuti e ricordate le preferenze (ad esempio, la lingua selezionata o la regione). Questi Cookies non raccolgono informazioni che possono identificare l'Utente. Tutte le informazioni raccolte sono anonime.
 
-      Questi Cookies servono a riconoscere un Utente che torna a visitare
-      l'Applicazione. Permettono di personalizzare i contenuti e ricordate le
-      preferenze (ad esempio, la lingua selezionata o la regione). Questi
-      Cookies non raccolgono informazioni che possono identificare l'Utente.
-      Tutte le informazioni raccolte sono anonime.
 
       **Alcune delle finalità di installazione dei Cookies potrebbero, inoltre,
       necessitare del consenso dell'Utente. Le tipologie di attività relative ai
       Cookies possono essere così definite:**
 
+
       1. **Attività strettamente necessarie al funzionamento**
-
-      Questa Applicazione utilizza Cookies per salvare la sessione dell'Utente e
-      per svolgere altre attività strettamente necessarie al funzionamento dello
-      stesso, ad esempio in relazione alla distribuzione del traffico.
-
+         Questa Applicazione utilizza Cookies per salvare la sessione dell'Utente e per svolgere altre attività strettamente necessarie al funzionamento dello stesso, ad esempio in relazione alla distribuzione del traffico.
       2. **Attività di salvataggio delle preferenze, ottimizzazione e
       statistica**
+         Questa Applicazione utilizza Cookies per salvare le preferenze di navigazione ed ottimizzare l'esperienza di navigazione dell'Utente. Fra questi Cookies rientrano, ad esempio, quelli per impostare la lingua e la valuta o per la gestione di statistiche da parte del Titolare dell'Applicazione.
 
-      Questa Applicazione utilizza Cookies per salvare le preferenze di
-      navigazione ed ottimizzare l'esperienza di navigazione dell'Utente. Fra
-      questi Cookies rientrano, ad esempio, quelli per impostare la lingua e la
-      valuta o per la gestione di statistiche da parte del Titolare
-      dell'Applicazione.
 
       **Altre tipologie di Cookies o strumenti terzi che potrebbero farne
       utilizzo**
+
+
 
       Alcuni dei servizi elencati di seguito raccolgono statistiche in forma
       aggregata e potrebbero non richiedere il consenso dell'Utente o potrebbero
@@ -331,7 +284,9 @@ locales:
       dell'Utente. Per informazioni dettagliate in merito, si consiglia di
       consultare le Privacy Policy dei servizi elencati.
 
+
       **Visualizzazione di contenuti da piattaforme esterne**
+
 
       Questi servizi permettono di visualizzare contenuti ospitati su
       piattaforme esterne direttamente dalle pagine di questa Applicazione e di
@@ -341,7 +296,9 @@ locales:
       che, anche nel caso gli Utenti non utilizzino il servizio, lo stesso
       raccolga dati di traffico relativi alle pagine in cui è installato.
 
+
       **Come posso controllare l'installazione di Cookies?**
+
 
       La maggior parte dei browser accetta automaticamente i Cookies, ma
       l'Utente normalmente può modificare le impostazioni per disabilitare tale
@@ -384,12 +341,14 @@ locales:
       utilizzare tale risorsa in aggiunta alle informazioni fornite dal presente
       documento.
 
-      **_Titolare del Trattamento dei Dati:_**
 
-      *Titolare del trattamento è *Il Titolare del trattamento dei dati
+      _**Titolare del Trattamento dei Dati:**_
+
+
+      _Titolare del trattamento è _Il Titolare del trattamento dei dati
       personali è la società **inkOfPixel Spa**, con sede legale in Milano (MI),
       Piazza Castello, n. 26, iscritta presso il Registro delle Imprese di
-      Milano al n. 2512510, c.f. e p.iva 10195730964*.*
+      Milano al n. 2512510, c.f. e p.iva 10195730964_._
 
       Dal momento che l'installazione di Cookies e di altri sistemi di
       tracciamento operata da terze parti tramite i servizi utilizzati
