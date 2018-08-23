@@ -2,7 +2,7 @@
 title: Rewop Milano
 template: project
 locales:
-  - body: >
+  - body: >-
       > The only thing we have changed is the way to see something.
 
 
@@ -18,16 +18,15 @@ locales:
       a website that respect these values while being fast and easy to navigate.
 
 
-      ![inkOfPixel - Rewop Milano Home
-      Page](/assets/inkofpixel_rewop_milano_home.jpg)
+      ![Rewop Milano Home Page](/assets/inkofpixel_rewop_milano_home.jpg)
 
 
       ## A new mobile experience
 
 
-      The theme we worked on was carefully chosen to provide a sleek mobile
-      experience, and we made sure that everything was just as good as the
-      desktop experience.
+      The Shopify theme we worked on was carefully chosen to provide a sleek
+      mobile experience, and we made sure that everything was just as good as
+      the desktop experience.
 
 
       ## A brand new store locator
@@ -39,8 +38,8 @@ locales:
       achieve this goal we crafted a whole new store locator experience.
 
 
-      ![inkOfPixel - Rewop Milano store
-      locator](/assets/inkofpixel_rewop_milano_store_locator.jpg)
+      ![Rewop Milano store locator
+      page](/assets/inkofpixel_rewop_milano_store_locator.jpg)
 
 
       ## Website performances
@@ -51,8 +50,7 @@ locales:
       a 3x page speed improvements that immediately led to an increase of sales.
 
 
-      ![inkOfPixel - Rewop Milano
-      Catalog](/assets/inkofpixel_rewop_milano_catalog.jpg)
+      ![Rewop Milano Catalog page](/assets/inkofpixel_rewop_milano_catalog.jpg)
 
 
       ## The results
