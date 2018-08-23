@@ -28,7 +28,7 @@ collections:
                   - { label: English, value: en }
                   - { label: Italian, value: it }
               - { label: Title, name: title, widget: string }
-              - { label: URL, name: url, widget: string, default: / }
+              - { label: Path, name: path, widget: string, default: / }
               - label: SEO
                 name: seo
                 widget: object

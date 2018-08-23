@@ -32,21 +32,6 @@ class Page extends React.Component<Props, State> {
     theme: defaultTheme
   };
 
-  state = {
-    inferredLocale: this.props.locale
-  };
-
-  componentDidMount() {
-    const inferredLocale =
-      (window.navigator.languages && window.navigator.languages[0]) ||
-      navigator.language ||
-      navigator.userLanguage ||
-      this.state.inferredLocale;
-    if (inferredLocale !== this.state.inferredLocale) {
-      this.setState({ inferredLocale });
-    }
-  }
-
   render() {
     const { children, theme, navigation, locale, defaultLocale } = this.props;
     return (

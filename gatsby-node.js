@@ -6,6 +6,7 @@ j* Implement Gatsby's Node APIs in this file.
 
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
+const generalSettings = require("./_site/settings/general.json");
 
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
@@ -34,6 +35,23 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
   const parent = getNode(node.parent);
+  if (node.internal.type === "StaticPagesJson") {
+    createNodeField({
+      node,
+      name: "locales",
+      value: node.locales.map(locale => ({
+        ...locale,
+        path:
+          locale.language === generalSettings.defaultLanguage
+            ? path.join("/", typeof locale.path === "string" ? locale.path : "")
+            : path.join(
+                "/",
+                locale.language,
+                typeof locale.path === "string" ? locale.path : ""
+              )
+      }))
+    });
+  }
   if (parent && parent.internal.mediaType === "application/json") {
     const name = parent.name;
     createNodeField({ node, name: "name", value: name });
@@ -61,10 +79,10 @@ function createStaticPages({ graphql, boundActionCreators }) {
               template
               fields {
                 name
-              }
-              locales {
-                language
-                url
+                locales {
+                  language
+                  path
+                }
               }
             }
           }
@@ -74,13 +92,13 @@ function createStaticPages({ graphql, boundActionCreators }) {
       const { allStaticPagesJson, settingsJson } = result.data;
       const defaultLocale = settingsJson.defaultLanguage;
       allStaticPagesJson.edges.forEach(({ node }) => {
-        const { template, locales } = node;
+        const {
+          template,
+          fields: { locales }
+        } = node;
         locales.forEach(locale => {
           createPage({
-            path:
-              locale.language === defaultLocale
-                ? path.join("/", locale.url)
-                : path.join("/", locale.language, locale.url),
+            path: locale.path,
             component: path.resolve(`./src/templates/${template}.js`),
             context: {
               name: node.fields.name,

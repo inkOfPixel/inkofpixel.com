@@ -23,10 +23,10 @@ export default class Home extends React.Component<Props> {
   render() {
     const { data, pathContext } = this.props;
     const { locale: pageLocale } = pathContext;
-    const { staticPagesJson, site, generalSettings, navigation } = data;
-    const { defaultLanguage } = generalSettings;
+    const { staticPagesJson, site, navigation } = data;
+    const { origin } = site.siteMetadata;
     const home = data.staticPagesJson;
-    const currentHome = home.locales.find(
+    const currentHome = home.fields.locales.find(
       locale => locale.language === pageLocale
     );
     const { featuredProjects } = home.fields;
@@ -38,12 +38,9 @@ export default class Home extends React.Component<Props> {
         locale={pageLocale}
         navigation={{
           main: currentNavigation.main.links,
-          language: home.locales.map(locale => ({
+          language: home.fields.locales.map(locale => ({
             locale: locale.language,
-            url:
-              locale.language === defaultLanguage
-                ? locale.url
-                : simplePathJoin("/", locale.language, locale.url)
+            url: locale.path
           }))
         }}
       >
@@ -52,18 +49,18 @@ export default class Home extends React.Component<Props> {
           <meta name="description" content={currentHome.seo.description} />
           <meta property="og:title" content={currentHome.title} />
           <meta
+            property="og:url"
+            content={simplePathJoin(origin, currentHome.path)}
+          />
+          <meta
             property="og:description"
             content={currentHome.seo.description}
           />
-          {home.locales.map(locale => (
+          {home.fields.locales.map(locale => (
             <link
               key={locale.language}
               rel="alternate"
-              href={simplePathJoin(
-                site.siteMetadata.origin,
-                locale.language !== defaultLanguage ? locale.language : "",
-                locale.url
-              )}
+              href={simplePathJoin(origin, locale.path)}
               hreflang={locale.language}
             />
           ))}
@@ -207,9 +204,6 @@ export const query = graphql`
         origin
       }
     }
-    generalSettings: settingsJson(fields: { name: { eq: "general" } }) {
-      defaultLanguage
-    }
     navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
       locales {
         language
@@ -224,6 +218,31 @@ export const query = graphql`
     staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
+        locales {
+          language
+          path
+          title
+          seo {
+            description
+          }
+          hero {
+            title
+            subtitle
+          }
+          services {
+            groupTitle
+            groupDescription
+            serviceList {
+              title
+              image
+              description
+            }
+          }
+          projects {
+            title
+            description
+          }
+        }
         featuredProjects {
           fields {
             frontmatter {
@@ -242,31 +261,6 @@ export const query = graphql`
               }
             }
           }
-        }
-      }
-      locales {
-        language
-        url
-        title
-        seo {
-          description
-        }
-        hero {
-          title
-          subtitle
-        }
-        services {
-          groupTitle
-          groupDescription
-          serviceList {
-            title
-            image
-            description
-          }
-        }
-        projects {
-          title
-          description
         }
       }
     }

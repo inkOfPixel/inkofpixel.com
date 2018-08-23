@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Page from "components/Page";
 import Markdown from "react-markdown";
 import Helmet from "react-helmet";
+import simplePathJoin from "utils/simplePathJoin";
 
 type Props = {
   data: Object,
@@ -15,13 +16,13 @@ type Props = {
 };
 
 export default ({ data, pathContext }: Props) => {
-  const { markdownRemark, navigation } = data;
+  const { markdownRemark, navigation, site } = data;
+  const { origin } = site.siteMetadata;
   const { title, locales } = markdownRemark.fields.frontmatter;
   const page = locales.find(locale => locale.language === pathContext.locale);
   const currentNavigation = navigation.locales.find(
     locale => locale.language === pathContext.locale
   );
-  console.log(page);
   return (
     <Page
       locale={page.language}
@@ -37,13 +38,13 @@ export default ({ data, pathContext }: Props) => {
         <title>{page.seo.title} | inkOfPixel</title>
         <meta name="description" content={page.seo.description} />
         <meta property="og:title" content={page.seo.title} />
-        <meta property="og:url" content={page.path} />
+        <meta property="og:url" content={simplePathJoin(origin, page.path)} />
         <meta property="og:description" content={page.seo.description} />
         {locales.map(locale => (
           <link
             key={locale.language}
             rel="alternate"
-            href={locale.path}
+            href={simplePathJoin(origin, locale.path)}
             hreflang={locale.language}
           />
         ))}
@@ -60,6 +61,11 @@ export default ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query PageQuery($slug: String!) {
+    site {
+      siteMetadata {
+        origin
+      }
+    }
     navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
       locales {
         language
