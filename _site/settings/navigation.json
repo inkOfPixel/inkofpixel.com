@@ -25,15 +25,15 @@
         "links": [
           {
             "label": "Servizi",
-            "url": "/#services"
+            "url": "/it/#services"
           },
           {
             "label": "Progetti",
-            "url": "/#work"
+            "url": "/it/#work"
           },
           {
             "label": "Contatti",
-            "url": "/#contacts"
+            "url": "/it/#contacts"
           }
         ]
       }
