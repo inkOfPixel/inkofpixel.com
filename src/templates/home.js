@@ -569,9 +569,13 @@ const Section = styled.section`
         box-sizing: border-box;
         width: calc(33.33% - 30px);
         background-color: #fff;
-        transition: 500ms all;
+        transition: 800ms all;
         &:hover {
           box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+          transform: scale(1.01, 1.01);
+          .discoverMore {
+            color: #7589f4;
+          }
         }
         a {
           flex-direction: column;
@@ -594,44 +598,44 @@ const Section = styled.section`
             display: block;
           }
         }
-      }
-      .gatsby-image-outer-wrapper {
-        height: 300px;
-        .gatsby-image-wrapper {
-          height: 100%;
-        }
-      }
-      .content {
-        display: flex;
-        flex-direction: column;
-        .info {
-          width: 100%;
-          padding: 30px;
-          box-sizing: border-box;
-          position: relative;
-          .title {
-            font-weight: 700;
-            font-family: Europa;
-            font-size: 20px;
-            padding-bottom: 20px;
-            letter-spacing: 0.04em;
-            color: #161338;
-          }
-          .description {
-            font-size: 14px;
-            line-height: 1.6em;
-            color: #949494;
+        .gatsby-image-outer-wrapper {
+          height: 300px;
+          .gatsby-image-wrapper {
+            height: 100%;
           }
         }
-      }
-      .discoverMore {
-        color: #05c3b6;
-        display: inline-block;
-        text-decoration: none;
-        transition: all 0.3s;
-        margin: 0 30px 30px 30px;
-        &:hover {
-          color: #7589f4;
+        .content {
+          display: flex;
+          flex-direction: column;
+          .info {
+            width: 100%;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            .title {
+              font-weight: 700;
+              font-family: Europa;
+              font-size: 20px;
+              padding-bottom: 20px;
+              letter-spacing: 0.04em;
+              color: #161338;
+            }
+            .description {
+              font-size: 14px;
+              line-height: 1.6em;
+              color: #949494;
+            }
+          }
+        }
+        .discoverMore {
+          color: #05c3b6;
+          display: inline-block;
+          text-decoration: none;
+          transition: all 0.3s;
+          margin: 0 30px 30px 30px;
+          &:hover {
+            color: #7589f4;
+          }
         }
       }
     }
