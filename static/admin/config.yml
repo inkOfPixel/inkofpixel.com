@@ -1,6 +1,5 @@
 backend:
   name: git-gateway
-  branch: multi-language
 media_folder: static/assets
 public_folder: /assets
 collections:
