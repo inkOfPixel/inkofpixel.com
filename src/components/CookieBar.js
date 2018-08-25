@@ -23,7 +23,10 @@ const CookierBar = ({ cookiePolicyURL = "/cookie-policy" }: Props) => (
           <StyledLink to={cookiePolicyURL}> cookies policy </StyledLink>
           <Button onClick={() => answer(true)}>OK</Button>
         </Text>
-        <CloseButton onClick={() => answer(false)} />
+        <CloseButton
+          onClick={() => answer(false)}
+          aria-label="Close cookie policy message banner"
+        />
       </Bar>
     )}
   </Cookie>

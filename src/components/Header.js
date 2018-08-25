@@ -4,6 +4,7 @@ import React, { type Node, Component, Fragment } from "react";
 import { slide as SlideMenu } from "react-burger-menu";
 import styled from "styled-components";
 import Link from "gatsby-link";
+import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
 import GooeyMenu from "components/GooeyMenu";
@@ -57,6 +58,12 @@ class Header extends Component<Props, State> {
           <Wrapper>
             <LogoLink to={locale === defaultLocale ? "" : `/${locale}`}>
               <Logo />
+              <AssistiveText>
+                <FormattedMessage
+                  id="header.logo.assistiveText"
+                  defaultMessage="Link to home page"
+                />
+              </AssistiveText>
             </LogoLink>
             <RightBarItems>
               <List>
@@ -93,6 +100,14 @@ class Header extends Component<Props, State> {
     );
   }
 }
+
+const AssistiveText = styled.span`
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+`;
 
 const DesktopMenuContainer = styled.header`
   position: absolute;

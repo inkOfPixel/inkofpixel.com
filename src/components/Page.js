@@ -39,6 +39,7 @@ class Page extends React.Component<Props, State> {
         <ThemeProvider theme={theme}>
           <Fragment>
             <Helmet>
+              <html lang={locale} />
               <link rel="icon" href={favicon} type="image/png" />
               <title>inkOfPixel</title>
               <meta
