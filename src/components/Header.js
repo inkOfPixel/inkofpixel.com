@@ -25,7 +25,7 @@ type Props = {
 };
 
 type State = {
-  isMobileMenuOpen: boolean
+  languageMenuOpen: boolean
 };
 
 class Header extends Component<Props, State> {
@@ -36,21 +36,17 @@ class Header extends Component<Props, State> {
   };
 
   state = {
-    isMobileMenuOpen: false
+    languageMenuOpen: false
   };
 
-  handleMobileMenuStateChange = ({ isOpen }: any) => {
-    this.setState(() => ({ isMobileMenuOpen: isOpen }));
-  };
-
-  toggleMenu = () => {
-    this.setState(prevState => ({
-      isMobileMenuOpen: !prevState.isMobileMenuOpen
-    }));
+  handleToggleLanguageMenu = (open: boolean) => {
+    this.setState({
+      languageMenuOpen: open
+    });
   };
 
   render() {
-    const { isMobileMenuOpen } = this.state;
+    const { languageMenuOpen } = this.state;
     const { navigation, locale, defaultLocale } = this.props;
     return (
       <Fragment>
@@ -81,11 +77,14 @@ class Header extends Component<Props, State> {
                 color="#fff"
                 backgroundColor="#161338"
                 size={50}
+                open={languageMenuOpen}
+                onToggle={this.handleToggleLanguageMenu}
               >
                 {navigation.language &&
                   navigation.language.map(item => (
                     <Link
                       key={item.locale}
+                      onClick={() => this.handleToggleLanguageMenu(false)}
                       to={item.url}
                       className={item.locale === locale ? "selected" : ""}
                     >
@@ -325,9 +324,11 @@ const LanguageNavigation = styled(GooeyMenu)`
   a {
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 13px;
   }
   .selected {
     text-transform: uppercase;
+    font-size: 13px;
   }
 `;
 

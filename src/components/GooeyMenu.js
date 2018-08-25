@@ -13,7 +13,7 @@ type Props = {
   size: number,
   spacing: number,
   open: boolean,
-  onToggleOpen?: Function
+  onToggle?: Function
 };
 
 type State = {
@@ -45,8 +45,8 @@ class GooeyMenu extends React.Component<Props, State> {
   };
 
   handleToggleMenu = (event: Event) => {
-    if (this.isControlled() && this.props.onToggleOpen) {
-      this.props.onToggleOpen(event.currentTarget.checked);
+    if (this.isControlled() && this.props.onToggle) {
+      this.props.onToggle(event.currentTarget.checked);
     } else {
       this.setState({ open: event.currentTarget.checked });
     }
