@@ -1,3 +1,7 @@
 {
-  "navigationColor": "#161338"
+  "navigationColor": "#161338",
+  "languageSelector": {
+    "color": "#fff",
+    "backgroundColor": "#161338"
+  }
 }

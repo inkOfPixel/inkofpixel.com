@@ -2,7 +2,7 @@
 
 import React, { type Node, Component, Fragment } from "react";
 import { slide as SlideMenu } from "react-burger-menu";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import Link from "gatsby-link";
 import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
@@ -74,8 +74,10 @@ class Header extends Component<Props, State> {
               </List>
               <LanguageNavigation
                 renderLabel={() => <span className="selected">{locale}</span>}
-                color="#fff"
-                backgroundColor="#161338"
+                color={this.props.theme.languageSelector.color}
+                backgroundColor={
+                  this.props.theme.languageSelector.backgroundColor
+                }
                 size={50}
                 open={languageMenuOpen}
                 onToggle={this.handleToggleLanguageMenu}
@@ -332,4 +334,4 @@ const LanguageNavigation = styled(GooeyMenu)`
   }
 `;
 
-export default Header;
+export default withTheme(Header);
