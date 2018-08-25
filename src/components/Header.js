@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Link from "gatsby-link";
 import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
+import GooeyMenu from "components/GooeyMenu";
 
 type Props = {
   locale: string,
@@ -68,7 +69,12 @@ class Header extends Component<Props, State> {
                     </ListItem>
                   ))}
               </List>
-              <LanguageNavigation>
+              <LanguageNavigation
+                renderLabel={() => <span className="selected">{locale}</span>}
+                color="#fff"
+                backgroundColor="#161338"
+                size={50}
+              >
                 {navigation.language &&
                   navigation.language.map(item => (
                     <Link
@@ -114,7 +120,7 @@ const PageAnchorLink = styled.a.attrs({
 
 const RightBarItems = styled.div`
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 60px;
   margin: 0;
   display: flex;
@@ -296,34 +302,17 @@ const ResourceLink = styled.a`
   padding-bottom: 30px;
 `;
 
-const LanguageNavigation = styled.nav`
+const LanguageNavigation = styled(GooeyMenu)`
   margin-left: 40px;
+  @media (max-width: 1260px) {
+    margin-right: 40px;
+  }
   a {
-    color: ${props => props.theme.navigationColor};
-    position: relative;
-    font-size: 13px;
     text-decoration: none;
     text-transform: uppercase;
-    margin-right: 20px;
-    &::before {
-      background: ${props => props.theme.navigationColor};
-      opacity: 0;
-      bottom: -4px;
-      content: "";
-      height: 2px;
-      left: 50%;
-      position: absolute;
-      width: 0%;
-      transition: all 300ms;
-      transform: translateX(-50%) translateY(0);
-    }
-    &:hover,
-    &.selected {
-      &::before {
-        opacity: 1;
-        width: 100%;
-      }
-    }
+  }
+  .selected {
+    text-transform: uppercase;
   }
 `;
 
