@@ -1,111 +1,187 @@
 backend:
   name: git-gateway
+  branch: multi-language
 media_folder: static/assets
 public_folder: /assets
 collections:
-  - name: home-page
-    label: Home Page
-    delete: false # Prevent users from deleting documents in this collection
-    editor:
-      preview: false
+  - name: static-pages
+    label: Static Pages
+    delete: false
     files:
-      - name: general
-        label: General
-        file: _site/home-page/general.json
-        description: General Settings
+      - name: home
+        label: Home Page
+        file: "_site/static-pages/home.json"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: SEO Description, name: seoDescription, widget: text}
-          - {label: Image, name: image, widget: image}
-      - name: hero
-        label: Hero
-        file: _site/home-page/hero.json
-        description: Hero Settings
-        fields:
-          - {label: Title, name: title, widget: text}
-          - {label: Subtitle, name: subtitle, widget: text}
-      - name: services
-        label: Services
-        file: _site/home-page/services.json
-        description: Services
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: text}
-          - label: "Services"
-            name: "primaryList"
-            widget: "list"
-            fields:
-              - {label: Title, name: title, widget: string}
-              - {label: Image, name: image, widget: image}
-              - {label: Description, name: description, widget: text}
-          - {label: Title, name: subTitle, widget: text}
-          - {label: Description, name: subDescription, widget: text}
-          - label: Secondary Services
-            name: secondaryList
+          - label: Template
+            name: template
+            widget: hidden
+            default: home
+          - label: Locales
+            name: locales
             widget: list
             fields:
-              - {label: Title, name: title, widget: string}
-              - {label: Image, name: image, widget: image}
-              - {label: Description, name: description, widget: text}
-      - name: projects
-        label: Projects
-        file: _site/home-page/projects.json
-        description: Projects
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: text}
-          - label: Featured Projects
-            name: featuredProjects
-            widget: "list"
-            fields:
-            - label: Project
-              name: project
-              widget: relation
-              collection: projects
-              displayFields: ["title"]
-              searchFields: ["title", "body"]
-              valueField: title
-      - name: contacts
-        label: Contacts
-        file: _site/home-page/contacts.json
-        description: Contancts
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Description, name: description, widget: text}
-         
-  - name: page
-    label: Pages
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+              - label: Hero
+                name: hero
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: text }
+                  - { label: Subtitle, name: subtitle, widget: text }
+              - label: Services
+                name: services
+                widget: list
+                fields:
+                  - { label: Group Title, name: groupTitle, widget: string }
+                  - {
+                      label: Group Description,
+                      name: groupDescription,
+                      widget: text,
+                    }
+                  - label: Services group
+                    name: "serviceList"
+                    widget: "list"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Image, name: image, widget: image }
+                      - { label: Description, name: description, widget: text }
+              - label: Projects
+                name: projects
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - label: Featured Projects
+                    name: featuredProjects
+                    widget: list
+                    fields:
+                      - label: Project
+                        name: project
+                        widget: relation
+                        collection: projects
+                        displayFields: ["title"]
+                        searchFields: ["title", "body"]
+                        valueField: title
+              - label: Contacts
+                name: contacts
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+  - label: Pages
     label_singular: Page
+    name: page
     folder: _site/pages
     create: true
     fields:
       - { name: title, label: Page title }
-      - { name: seoTitle, label: SEO Page title, widget: string }
-      - { name: seoDescription, label: SEO Description, widget: text }
-      - name: template
-        label: Page template
+      - label: Page template
+        name: template
         widget: select
         options:
           - { label: Default, value: page }
-      - { name: body, label: Page content, widget: markdown }
-  - name: projects
-    label: Projects
+      - label: Locales
+        name: locales
+        widget: list
+        fields:
+          - label: Language
+            name: language
+            widget: select
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+          - label: Page handle
+            name: handle
+            widget: string
+            required: false
+          - label: SEO
+            name: seo
+            widget: object
+            fields:
+              - { name: title, label: SEO title, widget: string }
+              - { name: description, label: SEO Description, widget: text }
+          - { name: body, label: Page content, widget: markdown }
+  - label: Projects
     label_singular: Project
+    name: projects
     folder: _site/projects
     create: true
     fields:
       - { name: title, label: Project title }
-      - { name: seoTitle, label: SEO Project title, widget: string }
-      - { name: seoDescription, label: SEO Description, widget: text }
-      - { name: excerpt, label: Excerpt, widget: text }
-      - { name: type, label: Type Project, widget: string }
-      - { name: featuredImage, label: Featured image, widget: image }
-      - { name: heroImage, label: Hero image, widget: image }
-      - name: template
-        label: Page template
+      - label: Page template
+        name: template
         widget: select
         options:
           - { label: Default, value: project }
-      - { name: body, label: Page content, widget: markdown }
-     
-      
+      - label: Locales
+        name: locales
+        widget: list
+        fields:
+          - label: Language
+            name: language
+            widget: select
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+          - { name: seoTitle, label: SEO Project title, widget: string }
+          - { name: seoDescription, label: SEO Description, widget: text }
+          - { name: excerpt, label: Excerpt, widget: text }
+          - { name: type, label: Type Project, widget: string }
+          - { name: featuredImage, label: Featured image, widget: image }
+          - { name: heroImage, label: Hero image, widget: image }
+          - { name: body, label: Page content, widget: markdown }
+  - label: Settings
+    name: settings
+    delete: false
+    files:
+      - label: General
+        name: general
+        file: "_site/settings/general.json"
+        fields:
+          - label: Default language
+            name: defaultLanguage
+            widget: select
+            default: en
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+      - label: Navigation
+        name: navigation
+        file: "_site/settings/navigation.json"
+        fields:
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - label: Main navigation
+                name: main
+                widget: object
+                fields:
+                  - label: Links
+                    name: links
+                    widget: list
+                    fields:
+                      - label: Label
+                        name: label
+                      - label: URL
+                        name: url

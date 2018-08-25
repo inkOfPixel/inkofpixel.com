@@ -1,6 +1,10 @@
+const path = require("path");
+const generalSettings = require("./_site/settings/general.json");
+
 module.exports = {
   siteMetadata: {
-    title: "inkOfPixel"
+    title: "inkOfPixel",
+    origin: "https://inkofpixel.com"
   },
   plugins: [
     "gatsby-plugin-react-next",
@@ -33,17 +37,55 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        path: `${__dirname}/_site/home-page`,
+        path: `${__dirname}/_site/settings`,
         name: "home-page"
       }
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/static-pages`,
+        name: "static-pages"
+      }
+    },
     "gatsby-transformer-json",
-    "gatsby-plugin-netlify-cms-paths",
+    "gatsby-plugin-netlify-markdown-paths",
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "projects",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const basePathByLocale = {
+            en: "/projects",
+            it: "/progetti"
+          };
+          return locale === defaultLocale
+            ? path.join("/", basePathByLocale[locale], slug)
+            : path.join("/", locale, basePathByLocale[locale], slug);
+        }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "pages",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const currentLocale = node.frontmatter.locales.find(
+            loc => loc.language === locale
+          );
+          return locale === defaultLocale
+            ? path.join("/", currentLocale.handle || slug)
+            : path.join("/", locale, currentLocale.handle || slug);
+        }
+      }
+    },
     {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
-          "gatsby-plugin-netlify-cms-paths",
+          "gatsby-plugin-netlify-markdown-paths",
           {
             resolve: "gatsby-remark-images",
             options: {

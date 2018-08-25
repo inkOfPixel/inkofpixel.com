@@ -6,11 +6,20 @@ j* Implement Gatsby's Node APIs in this file.
 
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
+const generalSettings = require("./_site/settings/general.json");
 
 exports.modifyBabelrc = ({ babelrc }) => ({
   ...babelrc,
   presets: babelrc.presets.concat(["flow"]),
-  plugins: babelrc.plugins.concat(["babel-plugin-styled-components"])
+  plugins: babelrc.plugins.concat([
+    "babel-plugin-styled-components",
+    [
+      "react-intl",
+      {
+        messagesDir: "./src/translations/extractedMessages/"
+      }
+    ]
+  ])
 });
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
@@ -18,6 +27,9 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
     resolve: {
       root: path.resolve(__dirname, "./src"),
       extensions: ["", ".js", ".jsx", ".json"]
+    },
+    module: {
+      noParse: /node_modules\/netlify-cms\/dist\/cms.js/
     }
   });
   return config;
@@ -25,65 +37,83 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
-  if (node.internal.type === "MarkdownRemark") {
-    const fileNode = getNode(node.parent);
-    const slug = createFilePath({ node, getNode });
-    createNodeField({ node, name: "slug", value: slug });
+  const parent = getNode(node.parent);
+  if (node.internal.type === "StaticPagesJson") {
     createNodeField({
       node,
-      name: "collection",
-      value: fileNode.sourceInstanceName
-    });
-    createNodeField({
-      node,
-      name: "path",
-      value:
-        fileNode.sourceInstanceName === "pages"
-          ? slug
-          : `/${fileNode.sourceInstanceName}${slug}`
+      name: "locales",
+      value: node.locales.map(locale => ({
+        ...locale,
+        path:
+          locale.language === generalSettings.defaultLanguage
+            ? path.join("/", typeof locale.path === "string" ? locale.path : "")
+            : path.join(
+                "/",
+                locale.language,
+                typeof locale.path === "string" ? locale.path : ""
+              )
+      }))
     });
   }
-  const parent = getNode(node.parent);
   if (parent && parent.internal.mediaType === "application/json") {
     const name = parent.name;
     createNodeField({ node, name: "name", value: name });
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
+exports.createPages = context => {
+  return Promise.all([createStaticPages(context)]);
+};
+
+function createStaticPages({ graphql, boundActionCreators }) {
   const { createPage } = boundActionCreators;
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allMarkdownRemark {
+        settingsJson(fields: { name: { eq: "general" } }) {
+          fields {
+            name
+          }
+          defaultLanguage
+        }
+        allStaticPagesJson {
           edges {
             node {
+              template
               fields {
-                slug
-                path
-              }
-              frontmatter {
-                template
+                name
+                locales {
+                  language
+                  path
+                }
               }
             }
           }
         }
       }
     `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        const { template } = node.frontmatter;
-        createPage({
-          path: node.fields.path,
-          component: path.resolve(`./src/templates/${template}.js`),
-          context: {
-            slug: node.fields.slug
-          }
+      const { allStaticPagesJson, settingsJson } = result.data;
+      const defaultLocale = settingsJson.defaultLanguage;
+      allStaticPagesJson.edges.forEach(({ node }) => {
+        const {
+          template,
+          fields: { locales }
+        } = node;
+        locales.forEach(locale => {
+          createPage({
+            path: locale.path,
+            component: path.resolve(`./src/templates/${template}.js`),
+            context: {
+              name: node.fields.name,
+              locale: locale.language
+            }
+          });
         });
       });
       resolve();
     });
   });
-};
+}
 
 exports.setFieldsOnGraphQLNodeType = ({
   boundActionCreators,
@@ -92,28 +122,30 @@ exports.setFieldsOnGraphQLNodeType = ({
 }) => {
   const { createNodeField } = boundActionCreators;
 
-  const projectsSection = getNodes().find(node => {
+  const homeNode = getNodes().find(node => {
     return (
-      node.internal.type === "HomePageJson" && node.fields.name === "projects"
+      node.internal.type === "StaticPagesJson" && node.fields.name === "home"
     );
   });
 
-  if (projectsSection) {
-    if (Array.isArray(projectsSection.featuredProjects)) {
-      const featuredProjectsTitles = projectsSection.featuredProjects.map(
-        project => project.project
-      );
-      const featuredProjectsMarkdownNodes = getNodes().filter(
-        markdownNode =>
-          markdownNode.internal.type === "MarkdownRemark" &&
-          markdownNode.fields.collection === "projects" &&
-          featuredProjectsTitles.includes(markdownNode.frontmatter.title)
-      );
-      createNodeField({
-        node: projectsSection,
-        name: "featuredProjects",
-        value: featuredProjectsMarkdownNodes
-      });
-    }
+  if (homeNode) {
+    homeNode.locales.forEach(homeLocale => {
+      if (Array.isArray(homeLocale.projects.featuredProjects)) {
+        const featuredProjectsTitles = homeLocale.projects.featuredProjects.map(
+          ({ project }) => project
+        );
+        const featuredProjectsMarkdownNodes = getNodes().filter(
+          markdownNode =>
+            markdownNode.internal.type === "MarkdownRemark" &&
+            markdownNode.fields.collection === "projects" &&
+            featuredProjectsTitles.includes(markdownNode.frontmatter.title)
+        );
+        createNodeField({
+          node: homeNode,
+          name: "featuredProjects",
+          value: featuredProjectsMarkdownNodes
+        });
+      }
+    });
   }
 };

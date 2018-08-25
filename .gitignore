@@ -75,3 +75,5 @@ tags
 .cache
 /public
 .DS_Store
+
+/src/translations/extractedMessages

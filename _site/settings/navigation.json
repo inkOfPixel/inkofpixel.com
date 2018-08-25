@@ -1,0 +1,42 @@
+{
+  "locales": [
+    {
+      "language": "en",
+      "main": {
+        "links": [
+          {
+            "label": "Services",
+            "url": "/#services"
+          },
+          {
+            "label": "Our Work",
+            "url": "/#work"
+          },
+          {
+            "label": "Contacts",
+            "url": "/#contacts"
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "main": {
+        "links": [
+          {
+            "label": "Servizi",
+            "url": "/it/#services"
+          },
+          {
+            "label": "Progetti",
+            "url": "/it/#work"
+          },
+          {
+            "label": "Contatti",
+            "url": "/it/#contacts"
+          }
+        ]
+      }
+    }
+  ]
+}
