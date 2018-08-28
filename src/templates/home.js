@@ -157,8 +157,7 @@ export default class Home extends React.Component<Props> {
                         </div>
                         <div className="discoverMore">
                           <FormattedMessage
-                            className="pippo"
-                            id="home.projectsSection.discoverMore"
+                            id="projectCard.discoverMore"
                             defaultMessage="Discover more"
                           />
                         </div>

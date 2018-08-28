@@ -2,52 +2,160 @@
 
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
+import { FormattedMessage } from "react-intl";
+import Link from "gatsby-link";
+import Img from "gatsby-image";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
-import Link from "gatsby-link";
 
 type Props = {
-  data: {}
+  data: Object,
+  pathContext: {
+    locale: string
+  }
 };
 
-const ProjectsPage = ({ data }: Props) => {
-  const projects = data.allMarkdownRemark.edges;
+const ProjectsPage = ({ data, pathContext }: Props) => {
+  const { locale: pageLocale } = pathContext;
+  const { site, navigation, cookiePolicy, page } = data;
+  const currentPage = page.fields.locales.find(
+    locale => locale.language === pageLocale
+  );
+  const currentNavigation = navigation.locales.find(
+    locale => locale.language === pageLocale
+  );
+  const projects = data.projects.edges.map(
+    ({ node }) => node.fields.frontmatter
+  );
   return (
-    <Page>
+    <Page
+      locale={pageLocale}
+      navigation={{
+        main: currentNavigation.main.links,
+        language: page.fields.locales.map(locale => ({
+          locale: locale.language,
+          url: locale.path
+        })),
+        cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
+          locale => locale.language === pathContext.locale
+        ).path
+      }}
+    >
       <Wrapper>
         <Spacer />
-        <PageTitle>Projects</PageTitle>
+        <PageTitle>{currentPage.title}</PageTitle>
         <ProjectsList>
-          {projects.map(project => (
-            <Project>
-              <ProjectDescription>
-                <ProjectTitle>{project.node.frontmatter.title}</ProjectTitle>
-                <ProjectType>{project.node.frontmatter.type}</ProjectType>
-                <ProjectExcerpt>
-                  {project.node.frontmatter.excerpt}
-                </ProjectExcerpt>
-                <ProjectLink>
-                  <Link to={project.node.fields.path}>See More</Link>
-                </ProjectLink>
-              </ProjectDescription>
+          {projects.map(project => {
+            const currentItem = project.locales.find(
+              locale => locale.language === pageLocale
+            );
+            return (
+              <ProjectListItem key={currentItem.path}>
+                <ProjectDescription>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectType>{currentItem.type}</ProjectType>
+                  <ProjectExcerpt>{currentItem.excerpt}</ProjectExcerpt>
+                  <ProjectLink>
+                    <Link to={currentItem.path}>
+                      <FormattedMessage
+                        id="projectCard.discoverMore"
+                        defaultMessage="Discover more"
+                      />
+                    </Link>
+                  </ProjectLink>
+                </ProjectDescription>
 
-              <ProjectImage>
-                <Link
-                  to={project.node.fields.path}
-                  style={{
-                    backgroundImage: `url('${
-                      project.node.frontmatter.featuredImage
-                    }')`
-                  }}
-                />
-              </ProjectImage>
-            </Project>
-          ))}
+                <ProjectFeaturedImageWrapper>
+                  <Link to={currentItem.path}>
+                    <Img
+                      sizes={currentItem.featuredImage.childImageSharp.sizes}
+                    />
+                  </Link>
+                </ProjectFeaturedImageWrapper>
+              </ProjectListItem>
+            );
+          })}
         </ProjectsList>
       </Wrapper>
     </Page>
   );
 };
+
+export const query = graphql`
+  query ProjectsPageQuery($name: String!) {
+    site {
+      siteMetadata {
+        origin
+      }
+    }
+    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
+      locales {
+        language
+        main {
+          links {
+            label
+            url
+          }
+        }
+      }
+    }
+    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
+      fields {
+        frontmatter {
+          locales {
+            language
+            path
+          }
+        }
+      }
+    }
+    page: staticPagesJson(fields: { name: { eq: $name } }) {
+      fields {
+        name
+        locales {
+          language
+          path
+          title
+          seo {
+            description
+          }
+        }
+      }
+    }
+    projects: allMarkdownRemark(
+      sort: { fields: [frontmatter___priority], order: ASC }
+      filter: {
+        fields: {
+          collection: { eq: "projects" }
+          frontmatter: { published: { eq: true } }
+        }
+      }
+    ) {
+      edges {
+        node {
+          fields {
+            frontmatter {
+              title
+              locales {
+                language
+                path
+                type
+                excerpt
+                featuredImage {
+                  childImageSharp {
+                    sizes(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpSizes
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const Spacer = styled.div`
   width: 100%;
@@ -78,7 +186,7 @@ const ProjectsList = styled.ul`
   padding: 60px 0;
 `;
 
-const Project = styled.li`
+const ProjectListItem = styled.li`
   display: flex;
   &:not(:first-child) {
     margin-top: 60px;
@@ -101,7 +209,7 @@ const ProjectDescription = styled.div`
     padding: 20px;
   }
 `;
-const ProjectImage = styled.div`
+const ProjectFeaturedImageWrapper = styled.div`
   width: 60%;
   height: 350px;
   @media (max-width: 900px) {
@@ -181,23 +289,3 @@ const ProjectLink = styled.div`
 `;
 
 export default ProjectsPage;
-
-// export const query = graphql`
-//   query ProjectsPageQuery {
-//     allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
-//       edges {
-//         node {
-//           frontmatter {
-//             title
-//             excerpt
-//             featuredImage
-//             type
-//           }
-//           fields {
-//             path
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
