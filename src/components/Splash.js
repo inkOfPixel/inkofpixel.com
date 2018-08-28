@@ -3,6 +3,10 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
+const random = (min: number, max: number): number => {
+  return Math.random() * (max - min) + min;
+};
+
 const rotate = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -15,7 +19,7 @@ const rotateInverse = keyframes`
 
 const bordertl = keyframes`
   0%, 100% { border-top-left-radius: 50%; }
-  25% { border-top-left-radius: 90px;}
+  25% { border-top-left-radius: 80%;}
   50% { border-top-left-radius: 40%; }
   75% { border-top-left-radius: 45%; }
 `;
@@ -23,8 +27,8 @@ const bordertl = keyframes`
 const bordertr = keyframes`
   0%, 100% { border-top-right-radius: 50%;}
   25% { border-top-right-radius: 49%;}
-  50% { border-top-right-radius: 50%px;}
-  75% { border-top-right-radius: 35%px;}
+  50% { border-top-right-radius: 50%;}
+  75% { border-top-right-radius: 35%;}
 `;
 
 const borderbr = keyframes`
@@ -47,24 +51,25 @@ let Splash = ({ className, children }: Props) => (
   </div>
 );
 
-Splash = styled(Splash)`
+Splash = styled(Splash).attrs({
+  speed: () => `${random(5, 12).toFixed(2)}s`
+})`
   position: relative;
-  radius: 50%;
-
   width: ${props => props.size};
   height: ${props => props.size};
   background-color: ${props => props.color};
-  animation: 3s ${bordertl} linear infinite, 4s ${bordertr} linear infinite,
-    5.6s ${borderbl} linear infinite, 3.3s ${borderbr} linear infinite,
-    3.6s ${rotate} linear infinite, 2s hover ease-in-out infinite;
+  animation: ${() => random(3, 6)}s linear infinite ${bordertl},
+    ${() => random(3, 6)}s linear infinite ${bordertr},
+    ${() => random(3, 6)}s linear infinite ${borderbl},
+    ${() => random(3, 6)}s linear infinite ${borderbr},
+    ${props => props.speed} linear infinite ${rotate};
   & > .content {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    animation: 3.6s ${rotateInverse} linear infinite,
-      2s hover ease-in-out infinite;
+    animation: ${props => props.speed} ${rotateInverse} linear infinite;
   }
 `;
 

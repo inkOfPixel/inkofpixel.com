@@ -2,57 +2,113 @@
 
 import React, { type Node, Component, Fragment } from "react";
 import { slide as SlideMenu } from "react-burger-menu";
-import styled from "styled-components";
+import styled, { withTheme } from "styled-components";
 import Link from "gatsby-link";
+import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
+import GooeyMenu from "components/GooeyMenu";
 
-type Props = {};
+type Props = {
+  locale: string,
+  defaultLocale: string,
+  navigation: {
+    main?: Array<{
+      label: string,
+      url: string
+    }>,
+    language?: Array<{
+      locale: string,
+      url: string
+    }>
+  }
+};
+
 type State = {
-  isMobileMenuOpen: boolean
+  languageMenuOpen: boolean
 };
 
 class Header extends Component<Props, State> {
+  static defaultProps = {
+    locale: "en",
+    defaultLocale: "en",
+    navigation: {}
+  };
+
   state = {
-    isMobileMenuOpen: false
+    languageMenuOpen: false
   };
 
-  handleMobileMenuStateChange = ({ isOpen }) => {
-    this.setState(() => ({ isMobileMenuOpen: isOpen }));
-  };
-
-  toggleMenu = () => {
-    this.setState(prevState => ({
-      isMobileMenuOpen: !prevState.isMobileMenuOpen
-    }));
+  handleToggleLanguageMenu = (open: boolean) => {
+    this.setState({
+      languageMenuOpen: open
+    });
   };
 
   render() {
-    const { isMobileMenuOpen } = this.state;
+    const { languageMenuOpen } = this.state;
+    const { navigation, locale, defaultLocale } = this.props;
     return (
       <Fragment>
         <DesktopMenuContainer>
           <Wrapper>
-            <LogoLink to="/">
+            <LogoLink to={locale === defaultLocale ? "" : `/${locale}`}>
               <Logo />
+              <AssistiveText>
+                <FormattedMessage
+                  id="header.logo.assistiveText"
+                  defaultMessage="Link to home page"
+                />
+              </AssistiveText>
             </LogoLink>
-            <List>
-              <ListItem>
-                <PageAnchorLink to="#services">Services</PageAnchorLink>
-              </ListItem>
-              <ListItem>
-                <PageAnchorLink to="#work">Our Work</PageAnchorLink>
-              </ListItem>
-              <ListItem>
-                <PageAnchorLink to="#contacts">Contacts</PageAnchorLink>
-              </ListItem>
-            </List>
+            <RightBarItems>
+              <List>
+                {navigation.main &&
+                  navigation.main.map(item => (
+                    <ListItem key={item.label}>
+                      <PageAnchorLink to={item.url}>
+                        {item.label}
+                      </PageAnchorLink>
+                    </ListItem>
+                  ))}
+              </List>
+              <LanguageNavigation
+                renderLabel={() => <span className="selected">{locale}</span>}
+                color={this.props.theme.languageSelector.color}
+                backgroundColor={
+                  this.props.theme.languageSelector.backgroundColor
+                }
+                size={50}
+                open={languageMenuOpen}
+                onToggle={this.handleToggleLanguageMenu}
+              >
+                {navigation.language &&
+                  navigation.language.map(item => (
+                    <Link
+                      key={item.locale}
+                      onClick={() => this.handleToggleLanguageMenu(false)}
+                      to={item.url}
+                      className={item.locale === locale ? "selected" : ""}
+                    >
+                      {item.locale}
+                    </Link>
+                  ))}
+              </LanguageNavigation>
+            </RightBarItems>
           </Wrapper>
         </DesktopMenuContainer>
       </Fragment>
     );
   }
 }
+
+const AssistiveText = styled.span`
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  top: -10px;
+`;
 
 const DesktopMenuContainer = styled.header`
   position: absolute;
@@ -78,12 +134,17 @@ const PageAnchorLink = styled.a.attrs({
   href: props => props.to
 })``;
 
-const List = styled.ul`
-  list-style: none;
+const RightBarItems = styled.div`
   position: absolute;
-  right: 0px;
+  right: 0;
   top: 60px;
   margin: 0;
+  display: flex;
+  align-items: baseline;
+`;
+
+const List = styled.ul`
+  list-style: none;
   @media (max-width: 1260px) {
     right: 40px;
   }
@@ -92,9 +153,13 @@ const List = styled.ul`
   }
 `;
 
-let ListItem = ({ children, className }) => (
-  <li className={className}>{children}</li>
-);
+let ListItem = ({
+  children,
+  className
+}: {
+  children: Node,
+  className?: string
+}) => <li className={className}>{children}</li>;
 
 ListItem = styled(ListItem)`
   display: inline-block;
@@ -253,4 +318,20 @@ const ResourceLink = styled.a`
   padding-bottom: 30px;
 `;
 
-export default Header;
+const LanguageNavigation = styled(GooeyMenu)`
+  margin-left: 40px;
+  @media (max-width: 1260px) {
+    margin-right: 40px;
+  }
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  .selected {
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+`;
+
+export default withTheme(Header);

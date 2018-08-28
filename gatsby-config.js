@@ -1,12 +1,25 @@
+const path = require("path");
+const generalSettings = require("./_site/settings/general.json");
+
 module.exports = {
   siteMetadata: {
-    title: "inkOfPixel"
+    title: "inkOfPixel",
+    origin: "https://inkofpixel.com"
   },
   plugins: [
     "gatsby-plugin-react-next",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-netlify-cms",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/static/assets`,
+        name: "assets"
+      }
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -24,19 +37,70 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        path: `${__dirname}/_site/home-page`,
+        path: `${__dirname}/_site/settings`,
         name: "home-page"
       }
     },
-    "gatsby-transformer-json",
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        plugins: []
+        path: `${__dirname}/_site/static-pages`,
+        name: "static-pages"
+      }
+    },
+    "gatsby-transformer-json",
+    "gatsby-plugin-netlify-markdown-paths",
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "projects",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const basePathByLocale = {
+            en: "/projects",
+            it: "/progetti"
+          };
+          return locale === defaultLocale
+            ? path.join("/", basePathByLocale[locale], slug)
+            : path.join("/", locale, basePathByLocale[locale], slug);
+        }
       }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "pages",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const currentLocale = node.frontmatter.locales.find(
+            loc => loc.language === locale
+          );
+          return locale === defaultLocale
+            ? path.join("/", currentLocale.handle || slug)
+            : path.join("/", locale, currentLocale.handle || slug);
+        }
+      }
+    },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          "gatsby-plugin-netlify-markdown-paths",
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 2400,
+              linkImagesToOriginal: false
+            }
+          }
+        ]
+      }
+    },
+    {
+      resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: "UA-28251380-1",
         // Puts tracking script in the head instead of the body

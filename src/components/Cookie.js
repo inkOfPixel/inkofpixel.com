@@ -4,36 +4,38 @@ import React, { type Node, Component } from "react";
 import styled from "styled-components";
 
 type Props = {
-  children: (accept: Function) => Node
+  children: (answer: (boolean) => void) => Node
 };
 
 type State = {
-  accepted: boolean
+  accepted: ?boolean
 };
 
 class Cookie extends Component<Props, State> {
   state = {
-    accepted: true
+    accepted: undefined
   };
 
   componentDidMount() {
-    const accepted =
-      typeof window.localStorage.getItem("acceptsCookies") === "string";
-    if (accepted !== this.state.accepted) {
-      this.setState(() => ({ accepted }));
+    const storedValue = window.localStorage.getItem("acceptsCookies");
+    if (storedValue) {
+      const accepted = Boolean(storedValue);
+      if (accepted !== this.state.accepted) {
+        this.setState(() => ({ accepted }));
+      }
     }
   }
 
-  accept = () => {
-    window.localStorage.setItem("acceptsCookies", "yes");
-    this.setState(() => ({ accepted: true }));
+  answer = (accepted: boolean) => {
+    window.localStorage.setItem("acceptsCookies", String(accepted));
+    this.setState(() => ({ accepted }));
   };
 
   render() {
-    if (this.state.accepted) {
+    if (typeof this.state.accepted === "boolean") {
       return null;
     }
-    return this.props.children(this.accept);
+    return this.props.children(this.answer);
   }
 }
 

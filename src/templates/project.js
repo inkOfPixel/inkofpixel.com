@@ -3,40 +3,70 @@
 import React from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
+import Img from "gatsby-image";
+import Markdown from "react-markdown";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
+import simplePathJoin from "utils/simplePathJoin";
 
-export default ({ data }) => {
-  const page = data.markdownRemark;
+type Props = {
+  data: Object,
+  pathContext: {
+    slug: string,
+    locale: string
+  }
+};
+
+export default ({ data, pathContext }: Props) => {
+  const { markdownRemark, navigation, site } = data;
+  const { origin } = site.siteMetadata;
+  const { title, locales } = markdownRemark.fields.frontmatter;
+  const page = locales.find(locale => locale.language === pathContext.locale);
+  const currentNavigation = navigation.locales.find(
+    locale => locale.language === pathContext.locale
+  );
   return (
-    <Page theme={projectTheme}>
+    <Page
+      theme={projectTheme}
+      locale={page.language}
+      navigation={{
+        main: currentNavigation.main.links,
+        language: locales.map(locale => ({
+          locale: locale.language,
+          url: locale.path
+        }))
+      }}
+    >
       <Helmet>
-        <title>{page.frontmatter.seoTitle}</title>
-        <meta
-          property="description"
-          content={page.frontmatter.seoDescription}
-        />
-        <meta property="og:title" content={page.frontmatter.title} />
-        <meta
-          property="og:description"
-          content={page.frontmatter.seoDescription}
-        />
+        <title>{page.seoTitle} | inkOfPixel</title>
+        <meta name="description" content={page.seoDescription} />
+        <meta property="og:title" content={page.seoTitle} />
+        <meta property="og:image " content={page.heroImage.publicURL} />
+        <meta property="og:url" content={simplePathJoin(origin, page.path)} />
+        <meta property="og:description" content={page.seoDescription} />
+        {locales.map(locale => (
+          <link
+            key={locale.language}
+            rel="alternate"
+            href={simplePathJoin(origin, locale.path)}
+            hreflang={locale.language}
+          />
+        ))}
       </Helmet>
-      <Hero
-        style={{
-          backgroundImage: `url('${page.frontmatter.heroImage}')`
-        }}
-      >
-        <Wrapper>
-          <Heading>
-            <ProjectType>{page.frontmatter.type}</ProjectType>
-            <Title>{page.frontmatter.title}</Title>
-          </Heading>
-        </Wrapper>
+      <Hero>
+        <Img sizes={page.heroImage.childImageSharp.sizes} />
+        <HeroContent>
+          <Wrapper>
+            <Heading>
+              <ProjectType>{page.type}</ProjectType>
+              <Title>{title}</Title>
+            </Heading>
+          </Wrapper>
+        </HeroContent>
       </Hero>
       <Wrapper>
-        <RichTextEditor dangerouslySetInnerHTML={{ __html: page.html }} />
+        <RichText source={page.body} />
       </Wrapper>
     </Page>
   );
@@ -44,14 +74,44 @@ export default ({ data }) => {
 
 export const query = graphql`
   query DefaultPageQuery($slug: String!) {
+    site {
+      siteMetadata {
+        origin
+      }
+    }
+    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
+      locales {
+        language
+        main {
+          links {
+            label
+            url
+          }
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        title
-        featuredImage
-        heroImage
-        type
-        seoTitle
+      fields {
+        slug
+        frontmatter {
+          title
+          locales {
+            language
+            path
+            body
+            heroImage {
+              publicURL
+              childImageSharp {
+                sizes(maxWidth: 1200) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
+            type
+            seoTitle
+            seoDescription
+          }
+        }
       }
     }
   }
@@ -66,7 +126,21 @@ const Hero = styled.div`
   ${Wrapper} {
     height: 100%;
   }
+  .gatsby-image-outer-wrapper {
+    height: 100%;
+  }
+  .gatsby-image-wrapper {
+    height: 100%;
+  }
 `;
+
+const HeroContent = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+`;
+
 const Heading = styled.div`
   position: absolute;
   top: 50%;
@@ -108,7 +182,7 @@ const Title = styled.h2`
   }
 `;
 
-const RichTextEditor = styled.div`
+const RichText = styled(Markdown)`
   padding: 50px 0;
   p {
     line-height: 1.8em;
