@@ -2,11 +2,13 @@
 
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
+import Helmet from "react-helmet";
 import { FormattedMessage } from "react-intl";
 import Link from "gatsby-link";
 import Img from "gatsby-image";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
+import simplePathJoin from "utils/simplePathJoin";
 
 type Props = {
   data: Object,
@@ -18,6 +20,7 @@ type Props = {
 const ProjectsPage = ({ data, pathContext }: Props) => {
   const { locale: pageLocale } = pathContext;
   const { site, navigation, cookiePolicy, page } = data;
+  const { origin } = site.siteMetadata;
   const currentPage = page.fields.locales.find(
     locale => locale.language === pageLocale
   );
@@ -41,6 +44,25 @@ const ProjectsPage = ({ data, pathContext }: Props) => {
         ).path
       }}
     >
+      <Helmet>
+        <title>{currentPage.title} | inkOfPixel</title>
+        <meta name="description" content={currentPage.seo.description} />
+        <meta property="og:title" content={currentPage.title} />
+        {/* @TODO: @mmarcon here I need the image to be uploaded on CMS.. I'll wait for it before enabling this <meta property="og:image " content={page.heroImage.publicURL} /> */}
+        <meta
+          property="og:url"
+          content={simplePathJoin(origin, currentPage.path)}
+        />
+        <meta property="og:description" content={currentPage.seo.description} />
+        {page.fields.locales.map(locale => (
+          <link
+            key={locale.language}
+            rel="alternate"
+            href={simplePathJoin(origin, locale.path)}
+            hreflang={locale.language}
+          />
+        ))}
+      </Helmet>
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
