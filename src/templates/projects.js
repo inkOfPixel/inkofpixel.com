@@ -7,7 +7,7 @@ import Wrapper from "components/Wrapper";
 import Link from "gatsby-link";
 
 type Props = {
-  data: Object
+  data: {}
 };
 
 const ProjectsPage = ({ data }: Props) => {
