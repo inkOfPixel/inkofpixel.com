@@ -89,6 +89,22 @@ collections:
             name: template
             widget: hidden
             default: projects
+          - label: "Priority"
+            name: "priority"
+            widget: "select"
+            options:
+              - { label: "Highest", value: "ORD" }
+              - { label: "Higher", value: "CDG" }
+              - { label: "high", value: "HND" }
+              - { label: "medium", value: "HND" }
+              - { label: "low", value: "HND" }
+              - { label: "lowest", value: "HND" }
+          - {
+              label: "Published",
+              name: "published",
+              widget: "boolean",
+              default: true,
+            }
           - label: Locales
             name: locales
             widget: list
