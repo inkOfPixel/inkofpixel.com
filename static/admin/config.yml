@@ -156,6 +156,7 @@ collections:
       - label: "Priority"
         name: "priority"
         widget: "select"
+        default: 0
         options:
           - { label: "lowest", value: 0 }
           - { label: "low", value: 1 }
