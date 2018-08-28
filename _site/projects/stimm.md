@@ -1,7 +1,7 @@
 ---
 title: STIMM
 template: project
-priority: '2'
+priority: '3'
 published: true
 locales:
   - body: >-
