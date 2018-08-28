@@ -7,6 +7,14 @@
       "seo": {
         "description": "We present some of our projects and case studies, so you can learn what we have done, what we are doing and how it's like to collaborate with us."
       }
+    },
+    {
+      "language": "it",
+      "title": "Progetti",
+      "path": "/progetti",
+      "seo": {
+        "description": "Presentiamo alcuni dei nostri progetti e casi di studio che raccontano quello che abbiamo fatto, quello che facciamo e come collaboriamo con i nostri clienti."
+      }
     }
   ]
 }
