@@ -156,14 +156,14 @@ collections:
       - label: "Priority"
         name: "priority"
         widget: "select"
-        default: 0
+        default: "0"
         options:
-          - { label: "Lowest", value: 5 }
-          - { label: "Low", value: 4 }
-          - { label: "Medium", value: 3 }
-          - { label: "High", value: 2 }
-          - { label: "Higher", value: 1 }
-          - { label: "Highest", value: 0 }
+          - { label: "Lowest", value: "5" }
+          - { label: "Low", value: "4" }
+          - { label: "Medium", value: "3" }
+          - { label: "High", value: "2" }
+          - { label: "Higher", value: "1" }
+          - { label: "Highest", value: "0" }
       - {
           label: "Published",
           name: "published",
