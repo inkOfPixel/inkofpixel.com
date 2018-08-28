@@ -158,12 +158,12 @@ collections:
         widget: "select"
         default: 0
         options:
-          - { label: "Lowest", value: 0 }
-          - { label: "Low", value: 1 }
-          - { label: "Medium", value: 2 }
-          - { label: "High", value: 3 }
-          - { label: "Higher", value: 4 }
-          - { label: "Highest", value: 5 }
+          - { label: "Lowest", value: 5 }
+          - { label: "Low", value: 4 }
+          - { label: "Medium", value: 3 }
+          - { label: "High", value: 2 }
+          - { label: "Higher", value: 1 }
+          - { label: "Highest", value: 0 }
       - {
           label: "Published",
           name: "published",
