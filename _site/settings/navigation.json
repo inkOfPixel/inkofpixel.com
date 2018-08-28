@@ -10,7 +10,7 @@
           },
           {
             "label": "Our Work",
-            "url": "/#work"
+            "url": "/projects"
           },
           {
             "label": "Contacts",
@@ -29,7 +29,7 @@
           },
           {
             "label": "Progetti",
-            "url": "/it/#work"
+            "url": "/it/progetti"
           },
           {
             "label": "Contatti",
