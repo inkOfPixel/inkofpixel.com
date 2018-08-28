@@ -1,7 +1,7 @@
 ---
 title: D1 Milano
 template: project
-priority: '3'
+priority: '2'
 published: true
 locales:
   - body: >-
