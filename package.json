@@ -9,18 +9,16 @@
     "gatsby-image": "1.0.55",
     "gatsby-link": "1.6.46",
     "gatsby-plugin-google-analytics": "1.0.31",
+    "gatsby-plugin-markdown-locales": "file:./plugins/gatsby-plugin-markdown-locales",
     "gatsby-plugin-netlify": "1.0.21",
     "gatsby-plugin-netlify-cms": "2.0.1",
+    "gatsby-plugin-netlify-markdown-paths": "file:./plugins/gatsby-plugin-netlify-markdown-paths",
     "gatsby-plugin-react-helmet": "2.0.11",
     "gatsby-plugin-styled-components": "2.0.11",
     "gatsby-remark-images": "1.5.67",
     "gatsby-source-filesystem": "1.5.39",
     "gatsby-transformer-json": "1.0.20",
     "gatsby-transformer-remark": "1.7.44",
-    "gatsby-plugin-markdown-locales":
-      "file:./plugins/gatsby-plugin-markdown-locales",
-    "gatsby-plugin-netlify-markdown-paths":
-      "file:./plugins/gatsby-plugin-netlify-markdown-paths",
     "netlify-cms": "1.9.3",
     "normalize.css": "8.0.0",
     "react": "16.4.2",
@@ -33,16 +31,16 @@
     "react-scrollable-anchor": "0.6.1",
     "styled-components": "3.4.2"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
     "dev": "yarn start",
-    "remote-dev":
-      "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
-    "format":
-      "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "remote-dev": "export CHOKIDAR_USEPOLLING=1; gatsby develop -H lab00.inkofpixel.com",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update:translations": "node ./translationRunner.js",
     "update:types": "flow-typed install -s"
@@ -51,6 +49,7 @@
     "babel-plugin-react-intl": "2.4.0",
     "babel-plugin-styled-components": "1.5.1",
     "babel-preset-flow": "6.23.0",
+    "chalk": "2.4.1",
     "flow-bin": "0.79.0",
     "flow-typed": "2.5.1",
     "gatsby-plugin-react-next": "1.0.11",

@@ -182,22 +182,22 @@ const ProjectLink = styled.div`
 
 export default ProjectsPage;
 
-export const query = graphql`
-  query ProjectsPageQuery {
-    allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
-      edges {
-        node {
-          frontmatter {
-            title
-            excerpt
-            featuredImage
-            type
-          }
-          fields {
-            path
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query ProjectsPageQuery {
+//     allMarkdownRemark(filter: { fields: { collection: { eq: "projects" } } }) {
+//       edges {
+//         node {
+//           frontmatter {
+//             title
+//             excerpt
+//             featuredImage
+//             type
+//           }
+//           fields {
+//             path
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;

@@ -5,6 +5,7 @@ j* Implement Gatsby's Node APIs in this file.
  */
 
 const path = require("path");
+const chalk = require("chalk");
 const { createFilePath } = require("gatsby-source-filesystem");
 const generalSettings = require("./_site/settings/general.json");
 
@@ -38,7 +39,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
   const parent = getNode(node.parent);
-  if (node.internal.type === "StaticPagesJson") {
+  if (node.internal.type === "StaticPagesJson" && node.template) {
     createNodeField({
       node,
       name: "locales",
@@ -99,16 +100,24 @@ function createStaticPages({ graphql, boundActionCreators }) {
           template,
           fields: { locales }
         } = node;
-        locales.forEach(locale => {
-          createPage({
-            path: locale.path,
-            component: path.resolve(`./src/templates/${template}.js`),
-            context: {
-              name: node.fields.name,
-              locale: locale.language
-            }
+        if (locales) {
+          locales.forEach(locale => {
+            createPage({
+              path: locale.path,
+              component: path.resolve(`./src/templates/${template}.js`),
+              context: {
+                name: node.fields.name,
+                locale: locale.language
+              }
+            });
           });
-        });
+        } else {
+          console.warn(
+            chalk.yellow(
+              `Warning: locales are missing on StaticPage with id ${node.id}`
+            )
+          );
+        }
       });
       resolve();
     });
