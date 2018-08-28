@@ -158,10 +158,10 @@ collections:
         widget: "select"
         default: 0
         options:
-          - { label: "lowest", value: 0 }
-          - { label: "low", value: 1 }
-          - { label: "medium", value: 2 }
-          - { label: "high", value: 3 }
+          - { label: "Lowest", value: 0 }
+          - { label: "Low", value: 1 }
+          - { label: "Medium", value: 2 }
+          - { label: "High", value: 3 }
           - { label: "Higher", value: 4 }
           - { label: "Highest", value: 5 }
       - {
