@@ -1,6 +1,8 @@
 ---
 title: D1 Milano
 template: project
+priority: '3'
+published: true
 locales:
   - body: >-
       [D1 Milano](https://d1milano.com) is a luxury fashion accessory brand born
