@@ -1,6 +1,8 @@
 ---
 title: STIMM
 template: project
+priority: '2'
+published: true
 locales:
   - body: >-
       STIMM - Shopping Therapy In My Mind - is a multi-brand concept store that
