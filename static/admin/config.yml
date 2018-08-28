@@ -89,22 +89,6 @@ collections:
             name: template
             widget: hidden
             default: projects
-          - label: "Priority"
-            name: "priority"
-            widget: "select"
-            options:
-              - { label: "Highest", value: "ORD" }
-              - { label: "Higher", value: "CDG" }
-              - { label: "high", value: "HND" }
-              - { label: "medium", value: "HND" }
-              - { label: "low", value: "HND" }
-              - { label: "lowest", value: "HND" }
-          - {
-              label: "Published",
-              name: "published",
-              widget: "boolean",
-              default: true,
-            }
           - label: Locales
             name: locales
             widget: list
@@ -169,6 +153,22 @@ collections:
         widget: select
         options:
           - { label: Default, value: project }
+      - label: "Priority"
+        name: "priority"
+        widget: "select"
+        options:
+          - { label: "lowest", value: 0 }
+          - { label: "low", value: 1 }
+          - { label: "medium", value: 2 }
+          - { label: "high", value: 3 }
+          - { label: "Higher", value: 4 }
+          - { label: "Highest", value: 5 }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: true,
+        }
       - label: Locales
         name: locales
         widget: list
