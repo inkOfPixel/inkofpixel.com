@@ -6,7 +6,8 @@
       "title": "inkOfPixel",
       "path": "/",
       "seo": {
-        "description": "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place."
+        "description": "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
       },
       "hero": {
         "title": "Great websites</br> for great entrepreneurs",
@@ -76,7 +77,8 @@
       "title": "inkOfPixel",
       "path": "/",
       "seo": {
-        "description": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
+        "description": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
       },
       "hero": {
         "title": "E-commerce</br>per imprenditori ambiziosi",

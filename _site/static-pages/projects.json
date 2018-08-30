@@ -6,7 +6,8 @@
       "title": "Projects",
       "path": "/projects",
       "seo": {
-        "description": "Some of our projects and case studies, so you can learn what we have done, what we are doing and how it's like to collaborate with us."
+        "description": "Some of our projects and case studies, so you can learn what we have done, what we are doing and how it's like to collaborate with us.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
       }
     },
     {
@@ -14,7 +15,8 @@
       "title": "Progetti",
       "path": "/progetti",
       "seo": {
-        "description": "Alcuni dei nostri progetti e casi di studio che raccontano quello che abbiamo fatto, quello che facciamo e come collaboriamo con i nostri clienti."
+        "description": "Alcuni dei nostri progetti e casi di studio che raccontano quello che abbiamo fatto, quello che facciamo e come collaboriamo con i nostri clienti.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
       }
     }
   ]
