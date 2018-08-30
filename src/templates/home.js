@@ -572,9 +572,6 @@ const Section = styled.section`
         &:hover {
           box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
           transform: scale(1.01, 1.01);
-          .discoverMore {
-            color: #7589f4;
-          }
         }
         a {
           flex-direction: column;
@@ -632,8 +629,9 @@ const Section = styled.section`
           text-decoration: none;
           transition: all 0.3s;
           margin: 0 30px 30px 30px;
+          font-size: 14px;
           &:hover {
-            color: #7589f4;
+            color: #161338;
           }
         }
       }

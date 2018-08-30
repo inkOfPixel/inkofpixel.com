@@ -233,9 +233,14 @@ const ProjectDescription = styled.div`
 `;
 const ProjectFeaturedImageWrapper = styled.div`
   width: 60%;
-  height: 350px;
   @media (max-width: 900px) {
     width: 100%;
+  }
+  .gatsby-image-wrapper {
+    height: 350px;
+    @media (max-width: 500px) {
+      height: 250px;
+    }
   }
   a {
     width: 100%;
@@ -285,17 +290,15 @@ const ProjectLink = styled.div`
     font-size: 14px;
     width: calc(100% + 60px);
     padding-right: 60px;
-    @media (max-width: 900px) {
-      display: inline-block;
-      width: auto;
-      padding-right: 0;
-    }
+    display: inline-block;
+    width: auto;
+    padding-right: 0;
     &::before {
       background: #161338;
       opacity: 0;
       bottom: -1px;
       content: "";
-      height: 2px;
+      height: 1px;
       left: 0;
       position: absolute;
       width: 0%;
