@@ -1,6 +1,8 @@
 ---
 title: Rewop Milano
 template: project
+priority: '3'
+published: true
 locales:
   - body: >-
       > The only thing we have changed is the way to see something.
