@@ -48,7 +48,7 @@ const ProjectsPage = ({ data, pathContext }: Props) => {
         <title>{currentPage.title} | inkOfPixel</title>
         <meta name="description" content={currentPage.seo.description} />
         <meta property="og:title" content={currentPage.title} />
-        {/* @TODO: @mmarcon here I need the image to be uploaded on CMS.. I'll wait for it before enabling this <meta property="og:image " content={page.heroImage.publicURL} /> */}
+        <meta property="og:image " content={currentPage.seo.image} />
         <meta
           property="og:url"
           content={simplePathJoin(origin, currentPage.path)}
@@ -140,6 +140,7 @@ export const query = graphql`
           title
           seo {
             description
+            image
           }
         }
       }
