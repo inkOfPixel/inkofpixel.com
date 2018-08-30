@@ -62,7 +62,9 @@ const ContactsPage = ({ data, pathContext }: Props) => {
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
-        <form
+        <Intro>Drop us a line</Intro>
+
+        <Form
           name="contact"
           method="post"
           data-netlify="true"
@@ -89,7 +91,7 @@ const ContactsPage = ({ data, pathContext }: Props) => {
           <div className="row submit">
             <button type="submit">Send</button>
           </div>
-        </form>
+        </Form>
       </Wrapper>
     </Page>
   );
@@ -144,7 +146,7 @@ const Spacer = styled.div`
   width: 100%;
   height: 200px;
 `;
-const PageTitle = styled.h2`
+const PageTitle = styled.h1`
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -161,6 +163,27 @@ const PageTitle = styled.h2`
     top: 7px;
     left: -68px;
     background-color: #05c3b6;
+  }
+`;
+
+const Intro = styled.h2`
+  font-size: 46px;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-family: Europa;
+  line-height: 1.1em;
+  @media (max-width: 900px) {
+    font-size: 40px;
+  }
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+`;
+
+const Form = styled.form`
+  .hidden {
+    display: none;
   }
 `;
 
