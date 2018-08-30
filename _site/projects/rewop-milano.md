@@ -1,7 +1,7 @@
 ---
 title: Rewop Milano
 template: project
-priority: '3'
+priority: '5'
 published: true
 locales:
   - body: >-
