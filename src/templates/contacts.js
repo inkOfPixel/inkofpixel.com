@@ -8,6 +8,9 @@ import Link from "gatsby-link";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import simplePathJoin from "utils/simplePathJoin";
+import TextareaAutosize from "react-autosize-textarea";
+import { default as BaseSplash } from "components/Splash";
+import { default as BaseIcon } from "react-simple-icons";
 
 type Props = {
   data: Object,
@@ -82,20 +85,48 @@ const ContactsPage = ({ data, pathContext }: Props) => {
             </FormField>
             <FormField className="half">
               <label for="name">Name</label>
-              <input type="text" name="name" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Peter Smith"
+                required
+              />
               <span class="focus-border" />
             </FormField>
             <FormField className="half">
               <label for="email">Email</label>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                name="email"
+                placeholder="example@yourdomain.com"
+                required
+              />
+              <span class="focus-border" />
             </FormField>
             <FormField>
               <label for="message">Message</label>
-              <textarea name="message" />
+              <TextareaAutosize
+                name="message"
+                placeholder="Hi there..."
+                required
+              />
+              <span class="focus-border" />
             </FormField>
-            <button type="submit">Send</button>
+            <SendButton type="submit">Send</SendButton>
           </Form>
         </Flexbox>
+        <Socials>
+          <SocialLink href="https://twitter.com/inkofpixel">
+            <Splash className="twitter" size="60px">
+              <Icon name="twitter" />
+            </Splash>
+          </SocialLink>
+          <SocialLink href="https://www.facebook.com/inkOfPixel/">
+            <Splash className="facebook" size="60px">
+              <Icon name="facebook" />
+            </Splash>
+          </SocialLink>
+        </Socials>
       </Wrapper>
     </Page>
   );
@@ -153,6 +184,9 @@ const Spacer = styled.div`
 
 const Flexbox = styled.div`
   display: flex;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const Info = styled.div`
@@ -160,7 +194,14 @@ const Info = styled.div`
   flex-direction: column;
   margin-right: 150px;
   flex: 0 0 400px;
-  margin-right: 150px;
+  @media (max-width: 1150px) {
+    flex: 0 0 300px;
+    margin-right: 80px;
+  }
+  @media (max-width: 800px) {
+    flex: 0 0 100%;
+    margin-right: 0;
+  }
 `;
 const PageTitle = styled.h1`
   font-size: 14px;
@@ -219,18 +260,30 @@ const Mail = styled.p`
 `;
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-grow: 1;
+  padding-top: 30px;
+  padding-bottom: 80px;
+  @media (max-width: 800px) {
+    margin: 80px -10px 0 -10px;
+  }
 `;
+
 const FormField = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  display: inline-block;
   margin: 10px;
-  flex-wrap: wrap;
+  width: calc(100% - 20px);
+  position: relative;
   &.half {
     width: calc(50% - 20px);
+    @media (max-width: 950px) {
+      width: calc(100% - 20px);
+    }
+    @media (max-width: 800px) {
+      width: calc(50% - 20px);
+    }
+    @media (max-width: 600px) {
+      width: calc(100% - 20px);
+    }
   }
   &.hidden {
     display: none;
@@ -242,25 +295,108 @@ const FormField = styled.div`
     letter-spacing: 0.1em;
     position: relative;
     width: 100%;
+    display: block;
   }
-  input {
+  input,
+  textarea {
     border: none;
     position: relative;
     outline: none;
     border-bottom: 1px solid #949494;
-  }
-  input ~ .focus-border {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: #161338;
-    transition: 0.4s;
-  }
-  input:focus ~ .focus-border {
     width: 100%;
-    transition: 0.4s;
+    min-height: 40px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    display: block;
+    resize: none;
+    line-height: 1.4em;
+    ~ .focus-border {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #161338;
+      transition: 0.4s;
+    }
+    &:focus {
+      ~ .focus-border {
+        width: 100%;
+        transition: 0.4s;
+      }
+    }
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+`;
+
+const SendButton = styled.button`
+  border: 1px solid #161338;
+  color: #161338;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  min-width: 200px;
+  height: 40px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  margin: 40px 10px 10px 10px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+  &::after {
+    background: #161338;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+  }
+  &:hover:after {
+    width: 100%;
+  }
+`;
+
+const Socials = styled.div`
+  width: 100%;
+  text-align: right;
+  margin-bottom: 120px;
+`;
+
+const SocialLink = styled.a`
+  display: inline-block;
+  margin: 5px;
+`;
+
+const Icon = styled(BaseIcon)`
+  fill: #fff;
+`;
+
+const Splash = styled(BaseSplash)`
+  transition: 0.3s all;
+  &.twitter {
+    background-color: rgba(29, 161, 242, 0.7);
+    &:hover {
+      background-color: rgba(29, 161, 242, 1);
+    }
+  }
+  &.facebook {
+    background-color: rgba(59, 89, 152, 0.7);
+    &:hover {
+      background-color: rgba(59, 89, 152, 1);
+    }
   }
 `;
 
