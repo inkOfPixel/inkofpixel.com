@@ -1,1 +1,17 @@
-{}
+{
+  "email": "hello@inkofpixel.com",
+  "socials": [
+    {
+      "title": "Twitter",
+      "link": "https://twitter.com/inkofpixel"
+    },
+    {
+      "title": "Facebook",
+      "link": "https://www.facebook.com/inkOfPixel/"
+    },
+    {
+      "title": "Github",
+      "link": "https://github.com/inkOfPixel"
+    }
+  ]
+}
