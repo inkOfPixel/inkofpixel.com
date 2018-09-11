@@ -21,7 +21,7 @@ type Props = {
 
 const ContactsPage = ({ data, pathContext }: Props) => {
   const { locale: pageLocale } = pathContext;
-  const { site, navigation, cookiePolicy, page } = data;
+  const { contacts, site, navigation, cookiePolicy, page } = data;
   const { origin } = site.siteMetadata;
   const currentPage = page.fields.locales.find(
     locale => locale.language === pageLocale
@@ -69,7 +69,9 @@ const ContactsPage = ({ data, pathContext }: Props) => {
             <PageTitle>{currentPage.title}</PageTitle>
             <Intro>{currentPage.intro}</Intro>
             <Subtitle>{currentPage.subtitle}</Subtitle>
-            <Mail>hi@inkofpixel.com</Mail>
+            <Mail href={`mailto:${contacts.email}`} data-rel="external">
+              {contacts.email}
+            </Mail>
           </Info>
           <Form
             name="contact"
@@ -141,30 +143,17 @@ const ContactsPage = ({ data, pathContext }: Props) => {
           </Form>
         </Flexbox>
         <Socials>
-          <SocialLink
-            href="https://twitter.com/inkofpixel"
-            alt="inkOfPixel Twitter"
-          >
-            <Splash className="twitter" size="60px">
-              <Icon name="twitter" />
-            </Splash>
-          </SocialLink>
-          <SocialLink
-            href="https://www.facebook.com/inkOfPixel/"
-            alt="inkOfPixel Facebook"
-          >
-            <Splash className="facebook" size="60px">
-              <Icon name="facebook" />
-            </Splash>
-          </SocialLink>
-          <SocialLink
-            href="https://github.com/inkOfPixel"
-            alt="inkOfPixel Github"
-          >
-            <Splash className="github" size="60px">
-              <Icon name="github" />
-            </Splash>
-          </SocialLink>
+          {contacts.socials.map(social => (
+            <SocialLink
+              key={social.title}
+              href={social.link}
+              alt={`${social.title} account of inkOfPixel`}
+            >
+              <Splash className={social.iconHandle} size="60px">
+                <Icon name={social.iconHandle} />
+              </Splash>
+            </SocialLink>
+          ))}
         </Socials>
       </Wrapper>
     </Page>
@@ -194,6 +183,7 @@ export const query = graphql`
       socials {
         title
         link
+        iconHandle
       }
     }
     cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
@@ -297,7 +287,7 @@ const Subtitle = styled.p`
   padding-top: 20px;
 `;
 
-const Mail = styled.p`
+const Mail = styled.a`
   font-size: 14px;
   padding: 0;
   margin: 0;
@@ -305,6 +295,11 @@ const Mail = styled.p`
   line-height: 1.8em;
   color: #949494;
   padding-top: 60px;
+  text-decoration: none;
+  display: inline-block;
+  &:hover {
+    color: #161338;
+  }
 `;
 
 const Form = styled.form`
