@@ -236,14 +236,11 @@ collections:
         file: "_site/settings/contacts.json"
         fields:
           - label: Socials
-            name: social
-            widget: object
+            name: socials
+            widget: list
             fields:
-              widget: list
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Link, name: url, widget: string }
-          
+              - { label: Title, name: title, widget: string }
+              - { label: Link, name: url, widget: string }
       - label: Navigation
         name: navigation
         file: "_site/settings/navigation.json"
