@@ -235,12 +235,14 @@ collections:
         name: contacts
         file: "_site/settings/contacts.json"
         fields:
+          - { label: Email, name: email, widget: string }
           - label: Socials
             name: socials
             widget: list
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Link, name: link, widget: string }
+
       - label: Navigation
         name: navigation
         file: "_site/settings/navigation.json"
