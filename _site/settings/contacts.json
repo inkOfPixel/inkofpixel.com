@@ -3,15 +3,18 @@
   "socials": [
     {
       "title": "Twitter",
-      "link": "https://twitter.com/inkofpixel"
+      "link": "https://twitter.com/inkofpixel",
+      "iconHandle": "twitter"
     },
     {
       "title": "Facebook",
-      "link": "https://www.facebook.com/inkOfPixel/"
+      "link": "https://www.facebook.com/inkOfPixel/",
+      "iconHandle": "facebook"
     },
     {
       "title": "Github",
-      "link": "https://github.com/inkOfPixel"
+      "link": "https://github.com/inkOfPixel",
+      "iconHandle": "github"
     }
   ]
 }
