@@ -242,6 +242,7 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Link, name: link, widget: string }
+              - { label: Icon Handle, name: iconHandle, widget: string }
 
       - label: Navigation
         name: navigation

@@ -67,8 +67,8 @@ const ContactsPage = ({ data, pathContext }: Props) => {
         <Flexbox>
           <Info>
             <PageTitle>{currentPage.title}</PageTitle>
-            <Intro>Let's talk</Intro>
-            <Subtitle>Ask us anything or just say hi...</Subtitle>
+            <Intro>{currentPage.intro}</Intro>
+            <Subtitle>{currentPage.subtitle}</Subtitle>
             <Mail>hi@inkofpixel.com</Mail>
           </Info>
           <Form
@@ -189,6 +189,13 @@ export const query = graphql`
         }
       }
     }
+    contacts: settingsJson(fields: { name: { eq: "contacts" } }) {
+      email
+      socials {
+        title
+        link
+      }
+    }
     cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
       fields {
         frontmatter {
@@ -210,6 +217,8 @@ export const query = graphql`
             description
             image
           }
+          intro
+          subtitle
         }
       }
     }
