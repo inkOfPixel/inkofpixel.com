@@ -135,6 +135,8 @@ collections:
                 fields:
                   - { label: SEO Description, name: description, widget: text }
                   - { label: Image, name: image, widget: image }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
   - label: Pages
     label_singular: Page
     name: page
@@ -229,6 +231,19 @@ collections:
             options:
               - { label: English, value: en }
               - { label: Italian, value: it }
+      - label: Contacts
+        name: contacts
+        file: "_site/settings/contacts.json"
+        fields:
+          - label: Socials
+            name: social
+            widget: object
+            fields:
+              widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Link, name: url, widget: string }
+          
       - label: Navigation
         name: navigation
         file: "_site/settings/navigation.json"

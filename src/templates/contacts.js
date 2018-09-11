@@ -84,46 +84,85 @@ const ContactsPage = ({ data, pathContext }: Props) => {
               </label>
             </FormField>
             <FormField className="half">
-              <label for="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Peter Smith"
-                required
-              />
-              <span class="focus-border" />
+              <label htmlFor="name">
+                <FormattedMessage
+                  id="contacts.form.name"
+                  defaultMessage="Name"
+                />
+              </label>
+              <FormattedMessage
+                id="contacts.form.namePlaceholder"
+                defaultMessage="Peter Smith"
+              >
+                {txt => (
+                  <input type="text" name="name" placeholder={txt} required />
+                )}
+              </FormattedMessage>
+              <span className="focus-border" />
             </FormField>
             <FormField className="half">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="example@yourdomain.com"
-                required
-              />
-              <span class="focus-border" />
+              <label htmlFor="email">
+                <FormattedMessage
+                  id="contacts.form.email"
+                  defaultMessage="Email"
+                />
+              </label>
+
+              <FormattedMessage
+                id="contacts.form.emailPlaceholder"
+                defaultMessage="example@yourdomain.com"
+              >
+                {txt => (
+                  <input type="email" name="email" placeholder={txt} required />
+                )}
+              </FormattedMessage>
+              <span className="focus-border" />
             </FormField>
             <FormField>
-              <label for="message">Message</label>
-              <TextareaAutosize
-                name="message"
-                placeholder="Hi there..."
-                required
-              />
-              <span class="focus-border" />
+              <label htmlFor="message">
+                <FormattedMessage
+                  id="contacts.form.message"
+                  defaultMessage="Message"
+                />
+              </label>
+              <FormattedMessage
+                id="contacts.form.messagePlaceholder"
+                defaultMessage="Hi there..."
+              >
+                {txt => (
+                  <TextareaAutosize name="message" placeholder={txt} required />
+                )}
+              </FormattedMessage>
+              <span className="focus-border" />
             </FormField>
-            <SendButton type="submit">Send</SendButton>
+            <SendButton type="submit">
+              <FormattedMessage id="contacts.form.send" defaultMessage="Send" />
+            </SendButton>
           </Form>
         </Flexbox>
         <Socials>
-          <SocialLink href="https://twitter.com/inkofpixel">
+          <SocialLink
+            href="https://twitter.com/inkofpixel"
+            alt="inkOfPixel Twitter"
+          >
             <Splash className="twitter" size="60px">
               <Icon name="twitter" />
             </Splash>
           </SocialLink>
-          <SocialLink href="https://www.facebook.com/inkOfPixel/">
+          <SocialLink
+            href="https://www.facebook.com/inkOfPixel/"
+            alt="inkOfPixel Facebook"
+          >
             <Splash className="facebook" size="60px">
               <Icon name="facebook" />
+            </Splash>
+          </SocialLink>
+          <SocialLink
+            href="https://github.com/inkOfPixel"
+            alt="inkOfPixel Github"
+          >
+            <Splash className="github" size="60px">
+              <Icon name="github" />
             </Splash>
           </SocialLink>
         </Socials>
@@ -396,6 +435,13 @@ const Splash = styled(BaseSplash)`
     background-color: rgba(59, 89, 152, 0.7);
     &:hover {
       background-color: rgba(59, 89, 152, 1);
+    }
+  }
+
+  &.github {
+    background-color: rgba(24, 23, 23, 0.7);
+    &:hover {
+      background-color: rgba(24, 23, 23, 1);
     }
   }
 `;
