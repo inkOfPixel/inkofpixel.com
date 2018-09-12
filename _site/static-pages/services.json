@@ -1,6 +1,7 @@
 {
   "locales": [
     {
+      "language": "en",
       "title": "Services",
       "path": "/services",
       "seo": {
