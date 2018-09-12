@@ -21,7 +21,7 @@ type Props = {
 
 const ServicesPage = ({ data, pathContext }: Props) => {
   const { locale: pageLocale } = pathContext;
-  const { contacts, site, navigation, cookiePolicy, page } = data;
+  const { services, site, navigation, cookiePolicy, page } = data;
   const { origin } = site.siteMetadata;
   const currentPage = page.fields.locales.find(
     locale => locale.language === pageLocale
@@ -64,16 +64,11 @@ const ServicesPage = ({ data, pathContext }: Props) => {
       </Helmet>
       <Wrapper>
         <Spacer />
-        <Flexbox>
-          <Info>
-            <PageTitle>{currentPage.title}</PageTitle>
-            <Intro>{currentPage.intro}</Intro>
-            <Subtitle>{currentPage.subtitle}</Subtitle>
-            <Mail href={`mailto:${contacts.email}`} data-rel="external">
-              {contacts.email}
-            </Mail>
-          </Info>
-        </Flexbox>
+        <Info>
+          <PageTitle>{currentPage.title}</PageTitle>
+          <Intro>{currentPage.intro}</Intro>
+          <Subtitle>{currentPage.subtitle}</Subtitle>
+        </Info>
       </Wrapper>
     </Page>
   );
@@ -95,14 +90,6 @@ export const query = graphql`
             url
           }
         }
-      }
-    }
-    contacts: settingsJson(fields: { name: { eq: "contacts" } }) {
-      email
-      socials {
-        title
-        link
-        iconHandle
       }
     }
     cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
@@ -147,17 +134,9 @@ const Flexbox = styled.div`
 `;
 
 const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 150px;
-  flex: 0 0 400px;
-  @media (max-width: 1150px) {
-    flex: 0 0 300px;
-    margin-right: 80px;
-  }
-  @media (max-width: 800px) {
-    flex: 0 0 100%;
-    margin-right: 0;
+  width: 80%;
+  @media (max-width: 700px) {
+    width: 100%;
   }
 `;
 const PageTitle = styled.h1`
@@ -188,6 +167,8 @@ const Intro = styled.h2`
   font-weight: 700;
   font-family: Europa;
   line-height: 1.1em;
+
+  line-height: 1.2em;
   @media (max-width: 900px) {
     font-size: 40px;
   }

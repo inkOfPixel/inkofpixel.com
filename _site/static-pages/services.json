@@ -1,4 +1,5 @@
 {
+  "template": "services",
   "locales": [
     {
       "language": "en",

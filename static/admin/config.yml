@@ -166,6 +166,17 @@ collections:
                   - { label: Image, name: image, widget: image }
               - { label: Intro, name: intro, widget: string }
               - { label: Subtitle, name: subtitle, widget: string }
+              - label: Services
+                name: services
+                widget: list
+                fields:
+                  - label: Service
+                    name: "service"
+                    widget: "list"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Image, name: image, widget: image }
+                      - { label: Description, name: description, widget: text }
   - label: Pages
     label_singular: Page
     name: page
