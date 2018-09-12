@@ -1,1 +1,14 @@
-{}
+{
+  "locales": [
+    {
+      "title": "Services | inkOfPixel",
+      "path": "/services",
+      "seo": {
+        "description": "Lorem ipsum",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "In a digital-led and experience driven economy, clients engage us to help them envision and create their future.",
+      "subtitle": "As a strategic partner we craft digital-first brand programs, interactive experiences, and eCommerce flagships that differentiate and resonate in today’s consumer-centric, ever changing business environment."
+    }
+  ]
+}
