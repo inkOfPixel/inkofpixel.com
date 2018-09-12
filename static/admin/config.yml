@@ -137,6 +137,35 @@ collections:
                   - { label: Image, name: image, widget: image }
               - { label: Intro, name: intro, widget: string }
               - { label: Subtitle, name: subtitle, widget: string }
+      - name: services
+        label: Services Page
+        file: "_site/static-pages/services.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: contacts
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
   - label: Pages
     label_singular: Page
     name: page
