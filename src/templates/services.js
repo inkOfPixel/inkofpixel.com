@@ -78,7 +78,6 @@ const ServicesPage = ({ data, pathContext }: Props) => {
                       ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
                       : "#ffefe4"
                   }
-                  size="180px"
                 >
                   <img src={item.image} alt={`${item.title} inkOfPixel`} />
                 </Splash>
@@ -104,7 +103,7 @@ const ServicesPage = ({ data, pathContext }: Props) => {
                                 ? ["#8152BC", "#05C3B6", "#F6BC00"][index]
                                 : "#FD7241"
                             }
-                            size={20}
+                            size={18}
                             stroke-linecap="square"
                             stroke-width="3"
                           />
@@ -243,21 +242,43 @@ const Subtitle = styled.p`
   padding-top: 20px;
 `;
 const ServiceList = styled.ul`
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 const Service = styled.li`
   display: flex;
-  padding: 60px 0;
+  padding: 50px 0;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 const ServiceIcon = styled.div`
   flex: 0 0 400px;
   padding-top: 30px;
+  @media (max-width: 900px) {
+    flex: 0 0 280px;
+  }
+  @media (max-width: 700px) {
+    flex: 0 0 auto;
+  }
   ${Splash} {
     margin: 0 auto;
+    height: 180px;
+    width: 180px;
     img {
       width: 100px;
+    }
+    @media (max-width: 900px) {
+      height: 140px;
+      width: 140px;
+      img {
+        width: 80px;
+      }
+    }
+    @media (max-width: 700px) {
+      margin: 0;
+      margin-bottom: 30px;
     }
   }
 `;
@@ -308,6 +329,13 @@ const CheckContainer = styled.div`
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
+  }
+  @media (max-width: 500px) {
+    height: 24px;
+    width: 24px;
+    flex: 0 0 24px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 `;
 
