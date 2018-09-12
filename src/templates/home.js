@@ -117,6 +117,9 @@ export default class Home extends React.Component<Props> {
                         </Splash>
                         <p className="title">{item.title}</p>
                         <p className="description">{item.description}</p>
+                        <a className="link" to={item.link}>
+                          Discover More
+                        </a>
                       </li>
                     ))}
                   </ServiceList>
@@ -624,14 +627,27 @@ const Section = styled.section`
           }
         }
         .discoverMore {
-          color: #05c3b6;
+          color: #161338;
           display: inline-block;
           text-decoration: none;
           transition: all 0.3s;
           margin: 0 30px 30px 30px;
           font-size: 14px;
-          &:hover {
+          transition: 0.4s;
+          &::after {
+            content: "→";
+            display: inline-block;
+            font-size: 16px;
+            padding-left: 10px;
+            transition: 0.4s;
             color: #161338;
+          }
+          &:hover {
+            color: #05c3b6;
+            &::after {
+              padding-left: 20px;
+              color: #05c3b6;
+            }
           }
         }
       }
