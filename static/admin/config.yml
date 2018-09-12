@@ -170,12 +170,12 @@ collections:
                 name: services
                 widget: object
                 - label: Service
-                    name: "service"
-                    widget: "list"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Image, name: image, widget: image }
-                      - { label: Description, name: description, widget: text }
+                  name: "service"
+                  widget: "list"
+                  fields:
+                    - { label: Title, name: title, widget: string }
+                    - { label: Image, name: image, widget: image }
+                    - { label: Description, name: description, widget: text }
   - label: Pages
     label_singular: Page
     name: page
