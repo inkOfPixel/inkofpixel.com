@@ -168,9 +168,8 @@ collections:
               - { label: Subtitle, name: subtitle, widget: string }
               - label: Services
                 name: services
-                widget: list
-                fields:
-                  - label: Service
+                widget: object
+                - label: Service
                     name: "service"
                     widget: "list"
                     fields:
