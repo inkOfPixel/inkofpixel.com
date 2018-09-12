@@ -166,21 +166,18 @@ collections:
                   - { label: Image, name: image, widget: image }
               - { label: Intro, name: intro, widget: string }
               - { label: Subtitle, name: subtitle, widget: string }
-              - label: Services
-                name: services
-                widget: object
+              - label: Services List
+                name: servicesList
+                widget: list
                 fields:
-                  - label: Service
-                    name: "service"
-                    widget: "list"
+                  - { label: Title, name: title, widget: string }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Description, name: description, widget: text }
+                  - label: Points
+                    name: points
+                    widget: list
                     fields:
                       - { label: Title, name: title, widget: string }
-                      - { label: Image, name: image, widget: image }
-                      - {
-                          label: Description,
-                          name: description,
-                          widget: markdown,
-                        }
   - label: Pages
     label_singular: Page
     name: page

@@ -3,14 +3,12 @@
 import React, { Fragment } from "react";
 import styled, { keyframes } from "styled-components";
 import Helmet from "react-helmet";
-import { FormattedMessage } from "react-intl";
 import Link from "gatsby-link";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import simplePathJoin from "utils/simplePathJoin";
-import TextareaAutosize from "react-autosize-textarea";
-import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
+import Splash from "components/Splash";
+import Markdown from "react-markdown";
 
 type Props = {
   data: Object,
@@ -21,7 +19,7 @@ type Props = {
 
 const ServicesPage = ({ data, pathContext }: Props) => {
   const { locale: pageLocale } = pathContext;
-  const { services, site, navigation, cookiePolicy, page } = data;
+  const { site, navigation, cookiePolicy, page } = data;
   const { origin } = site.siteMetadata;
   const currentPage = page.fields.locales.find(
     locale => locale.language === pageLocale
@@ -69,6 +67,32 @@ const ServicesPage = ({ data, pathContext }: Props) => {
           <Intro>{currentPage.intro}</Intro>
           <Subtitle>{currentPage.subtitle}</Subtitle>
         </Info>
+        <ServiceList>
+          {currentPage.servicesList.map((item, index) => (
+            <Service key={item.title}>
+              <ServiceIcon>
+                <Splash
+                  color={
+                    index < 3
+                      ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
+                      : "#ffefe4"
+                  }
+                  size="180px"
+                >
+                  <img src={item.image} alt={`${item.title} inkOfPixel`} />
+                </Splash>
+              </ServiceIcon>
+              <ServiceText>
+                <ServiceTitle className="title">{item.title}</ServiceTitle>
+                <RichText source={item.description} />
+                {item.points &&
+                  item.points.map((subitem, pointIndex) => (
+                    <Points key={pointIndex}>{subitem.title}</Points>
+                  ))}
+              </ServiceText>
+            </Service>
+          ))}
+        </ServiceList>
       </Wrapper>
     </Page>
   );
@@ -115,6 +139,14 @@ export const query = graphql`
           }
           intro
           subtitle
+          servicesList {
+            title
+            image
+            description
+            points {
+              title
+            }
+          }
         }
       }
     }
@@ -186,5 +218,45 @@ const Subtitle = styled.p`
   color: #949494;
   padding-top: 20px;
 `;
+const ServiceList = styled.ul`
+  margin-top: 100px;
+`;
+
+const Service = styled.li`
+  display: flex;
+`;
+
+const ServiceIcon = styled.div`
+  flex: 0 0 400px;
+  padding-top: 30px;
+  ${Splash} {
+    margin: 0 auto;
+    img {
+      width: 100px;
+    }
+  }
+`;
+
+const ServiceText = styled.div``;
+const ServiceTitle = styled.h3`
+  font-weight: 700;
+  font-family: Europa;
+  font-size: 20px;
+  padding-bottom: 20px;
+  letter-spacing: 0.04em;
+`;
+const RichText = styled(Markdown)`
+  font-size: 14px;
+  line-height: 1.8em;
+  color: #949494;
+  p {
+    padding-bottom: 10px;
+  }
+  strong {
+    font-weight: 600;
+  }
+`;
+
+const Points = styled.div``;
 
 export default ServicesPage;

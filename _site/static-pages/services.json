@@ -11,35 +11,50 @@
       },
       "intro": "In a digital-led and experience driven economy, clients engage us to help them envision and create their future.",
       "subtitle": "As a strategic partner we craft digital-first brand programs, interactive experiences, and eCommerce flagships that differentiate and resonate in today’s consumer-centric, ever changing business environment.",
-      "services": {
-        "service": [
-          {
-            "title": "Setup",
-            "image": "/assets/inkofpixel - services_setup.svg",
-            "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
-          },
-          {
-            "title": "Themes",
-            "image": "/assets/inkofpixel - services_design.svg",
-            "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
-          },
-          {
-            "title": "Shopify Apps",
-            "image": "/assets/inkofpixel - services_web developer.svg",
-            "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
-          },
-          {
-            "title": "Mobile App",
-            "image": "/assets/inkofpixel - services_app.svg",
-            "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
-          },
-          {
-            "title": "Web App",
-            "image": "/assets/inkofpixel - services_web app.svg",
-            "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
-          }
-        ]
-      }
+      "servicesList": [
+        {
+          "title": "Setup",
+          "image": "/assets/inkofpixel - services_setup.svg",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends",
+          "points": [
+            {
+              "title": "Setup"
+            },
+            {
+              "title": "Setup"
+            },
+            {
+              "title": "Setup"
+            },
+            {
+              "title": "Setup"
+            },
+            {
+              "title": "Setup"
+            }
+          ]
+        },
+        {
+          "title": "Themes",
+          "image": "/assets/inkofpixel - services_design.svg",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
+        },
+        {
+          "title": "Shopify Apps",
+          "image": "/assets/inkofpixel - services_web developer.svg",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
+        },
+        {
+          "title": "Mobile App",
+          "image": "/assets/inkofpixel - services_app.svg",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
+        },
+        {
+          "title": "Web App",
+          "image": "/assets/inkofpixel - services_web app.svg",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\n* Fully customize your online store\n* Add new sales channels in seconds\n* Manage unlimited products and inventory\n* Fulfill orders in a single step\n* Track sales and growth trends"
+        }
+      ]
     }
   ]
 }
