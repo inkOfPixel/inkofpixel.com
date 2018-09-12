@@ -9,6 +9,7 @@ import Wrapper from "components/Wrapper";
 import simplePathJoin from "utils/simplePathJoin";
 import Splash from "components/Splash";
 import Markdown from "react-markdown";
+import { Check } from "react-feather";
 
 type Props = {
   data: Object,
@@ -85,10 +86,33 @@ const ServicesPage = ({ data, pathContext }: Props) => {
               <ServiceText>
                 <ServiceTitle className="title">{item.title}</ServiceTitle>
                 <RichText source={item.description} />
-                {item.points &&
-                  item.points.map((subitem, pointIndex) => (
-                    <Points key={pointIndex}>{subitem.title}</Points>
-                  ))}
+                <ServicePoints>
+                  {item.points &&
+                    item.points.map((subitem, pointIndex) => (
+                      <Point key={pointIndex}>
+                        <CheckContainer
+                          style={{
+                            backgroundColor:
+                              index < 3
+                                ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
+                                : "#ffefe4"
+                          }}
+                        >
+                          <Check
+                            color={
+                              index < 3
+                                ? ["#8152BC", "#05C3B6", "#F6BC00"][index]
+                                : "#FD7241"
+                            }
+                            size={20}
+                            stroke-linecap="square"
+                            stroke-width="3"
+                          />
+                        </CheckContainer>
+                        <PointTitle>{subitem.title}</PointTitle>
+                      </Point>
+                    ))}
+                </ServicePoints>
               </ServiceText>
             </Service>
           ))}
@@ -224,6 +248,7 @@ const ServiceList = styled.ul`
 
 const Service = styled.li`
   display: flex;
+  padding: 60px 0;
 `;
 
 const ServiceIcon = styled.div`
@@ -257,6 +282,39 @@ const RichText = styled(Markdown)`
   }
 `;
 
-const Points = styled.div``;
+const ServicePoints = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 40px;
+`;
+const Point = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+`;
+
+const CheckContainer = styled.div`
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
+  position: relative;
+  flex: 0 0 30px;
+  margin-left: 30px;
+  margin-right: 20px;
+  svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+`;
+
+const PointTitle = styled.li`
+  font-size: 14px;
+  line-height: 1.8em;
+  color: #949494;
+`;
 
 export default ServicesPage;
