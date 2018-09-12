@@ -18,31 +18,77 @@
           "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
           "points": [
             {
-              "title": "organizing (and/or importing) your product information, pricing and photos"
+              "title": "Organize (and/or import) your product information, pricing and photos"
             },
             {
-              "title": "selecting one of our beautiful themes"
+              "title": "Select and Install one of Shopify theme"
             },
             {
-              "title": "setting up your site’s structure, homepage and navigation"
+              "title": "Setting up your site’s structure, homepage and navigation"
             },
             {
-              "title": "helping with basic domains and payments configuration"
+              "title": "Helping with domains and payments configuration"
             },
             {
-              "title": "training you to operate and maintain your store"
+              "title": "Training you to operate and maintain your store"
+            },
+            {
+              "title": "Find the app that's right for you and install it"
             }
           ]
         },
         {
           "title": "Themes",
           "image": "/assets/inkofpixel - services_design.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
+          "points": [
+            {
+              "title": "UX/UI Desing"
+            },
+            {
+              "title": "Develop theme from scratch"
+            },
+            {
+              "title": "Implement custom UI and animation"
+            },
+            {
+              "title": "Implement solution to your store to solve problem (eg. advance search, custom filter...)"
+            }
+          ]
         },
         {
           "title": "Shopify Apps",
           "image": "/assets/inkofpixel - services_web developer.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
+          "points": [
+            {
+              "title": "Shopify apps for getting outside pricing feeds"
+            },
+            {
+              "title": "Shopify apps for order & customer management"
+            },
+            {
+              "title": "Shopify apps for marketing and re-targeting"
+            },
+            {
+              "title": "Shopify apps for integration with custom inventory systems"
+            },
+            {
+              "title": "API or third party integration based Shopify apps"
+            },
+            {
+              "title": "Shopify apps for getting outside pricing feeds Custom functionality based Shopify apps"
+            },
+            {
+              "title": "Shopify ERP integration apps"
+            },
+            {
+              "title": "Shopify apps for third party website integration"
+            },
+            {
+              "title": "Apps for custom item features & custom Shopify themes"
+            }
+          ]
         },
         {
           "title": "Mobile App",
