@@ -1,23 +1,13 @@
-// @flow
-
-export default (...args): string => {
-  const [first, ...others] = args;
-  const prefix = /^\/*/;
-  const suffix = /\/*$/;
-  const components = others
-    .map(component =>
-      component
+export default (...args) => {
+  const prefix = /^\/+/;
+  const suffix = /\/+$/;
+  const origin = /(https:\/\/[^\/]+)(\/+)$/;
+  const joinedPath = args
+    .reduce((path, component) => {
+      return `${path.trim().replace(suffix, "")}/${component
         .trim()
-        .replace(prefix, "")
-        .replace(suffix, "")
-    )
-    .filter(component => component.length > 0);
-  return (
-    first
-      .trim()
-      .replace(prefix, "")
-      .replace(suffix, "") +
-    "/" +
-    components.join("/")
-  );
+        .replace(prefix, "")}`;
+    })
+    .replace(origin, "$1");
+  return joinedPath;
 };
