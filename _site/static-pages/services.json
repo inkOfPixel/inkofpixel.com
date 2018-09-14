@@ -15,7 +15,7 @@
         {
           "title": "Setup",
           "image": "/assets/inkofpixel - services_setup.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
+          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
           "points": [
             {
               "title": "Organize (and/or import) your product information, pricing and photos"
@@ -40,7 +40,7 @@
         {
           "title": "Themes",
           "image": "/assets/inkofpixel - services_design.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
+          "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store.",
           "points": [
             {
               "title": "UX/UI Design"
@@ -59,7 +59,7 @@
         {
           "title": "Shopify Apps",
           "image": "/assets/inkofpixel - services_web developer.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.",
+          "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties.",
           "points": [
             {
               "title": "Shopify apps for getting outside pricing feeds"
@@ -93,12 +93,50 @@
         {
           "title": "Mobile App",
           "image": "/assets/inkofpixel - services_app.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+          "description": "We design and build cross platform mobile apps to offer unique native experiences."
         },
         {
           "title": "Web App",
           "image": "/assets/inkofpixel - services_web app.svg",
-          "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work.\n\nWe will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+          "description": "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "title": "Servizi",
+      "path": "/servizi",
+      "seo": {
+        "description": "Lorem ipsum",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "In un'economia guidata dal digitale e dall'esperienza, i clienti ci coinvolgono per aiutarli a immaginare e creare il loro futuro.",
+      "subtitle": "In qualità di partner strategico, realizziamo programmi di brand digitali, esperienze interattive e flagships di eCommerce che si differenziano e risuonano nell'attuale ambiente di business, incentrato sul consumatore e in continua evoluzione.",
+      "servicesList": [
+        {
+          "title": "Setup",
+          "image": "/assets/inkofpixel - services_setup.svg",
+          "description": "Ti aiuteremo a lanciare il tuo business online tramite Shopify o a migrare il tuo negozio online da altre piattaforme e ti daremo tutto il supporto necessario per configurare il tuo store con successo."
+        },
+        {
+          "title": "Temi",
+          "image": "/assets/inkofpixel - services_design.svg",
+          "description": "Possiamo configurare un tema da te scelto oppure creare da zero un tema su misura per soddisfare tutte le tue esigenze."
+        },
+        {
+          "title": "Applicazioni Shopify",
+          "image": "/assets/inkofpixel - services_web developer.svg",
+          "description": "Creiamo applicazioni Shopify su misura per migliorare il tuo flusso di lavoro e integrare il tuo negozio online con servizi di terze parti."
+        },
+        {
+          "title": "Applicazioni mobile",
+          "image": "/assets/inkofpixel - services_app.svg",
+          "description": "Progettiamo e costruiamo applicazioni mobile sia per Android che per iOS per poter fornire la miglior esperienza nativa possibile."
+        },
+        {
+          "title": "Applicazioni web",
+          "image": "/assets/inkofpixel - services_web app.svg",
+          "description": "Grazie alla nostra esperienza nello sviluppo full-stack creiamo piattaforme su misura utilizzando tecnologie allo stato dell'arte.\nNecessiti di un gestionale su misura? Hai un'idea di startup? Ti aiuteremo nella realizzazione del tuo progetto."
         }
       ]
     }
