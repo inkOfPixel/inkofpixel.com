@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "1.5.39",
     "gatsby-transformer-json": "1.0.20",
     "gatsby-transformer-remark": "1.7.44",
+    "lodash": "4.17.11",
     "netlify-cms": "1.9.3",
     "normalize.css": "8.0.0",
     "react": "16.4.2",

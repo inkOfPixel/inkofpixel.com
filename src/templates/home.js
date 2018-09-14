@@ -118,7 +118,10 @@ export default class Home extends React.Component<Props> {
                         <p className="title">{item.title}</p>
                         <p className="description">{item.description}</p>
                         <a className="link" to={item.link}>
-                          Discover More
+                          <FormattedMessage
+                            id="home.serviceSection.discoverMore"
+                            defaultMessage="Discover more"
+                          />
                         </a>
                       </li>
                     ))}
@@ -493,7 +496,7 @@ const Section = styled.section`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        padding-bottom: 40px;
+        padding-bottom: 60px;
         &:nth-child(1) {
           .icon {
             background-color: #f8f1ff;
@@ -526,6 +529,30 @@ const Section = styled.section`
           font-size: 14px;
           line-height: 1.8em;
           color: #949494;
+        }
+        .link {
+          color: #161338;
+          display: inline-block;
+          text-decoration: none;
+          transition: all 0.3s;
+          margin-top: 20px;
+          font-size: 14px;
+          transition: 0.4s;
+          &::after {
+            content: "→";
+            display: inline-block;
+            font-size: 16px;
+            padding-left: 10px;
+            transition: 0.4s;
+            color: #161338;
+          }
+          &:hover {
+            color: #05c3b6;
+            &::after {
+              padding-left: 20px;
+              color: #05c3b6;
+            }
+          }
         }
       }
     }

@@ -10,6 +10,7 @@ import simplePathJoin from "utils/simplePathJoin";
 import Splash from "components/Splash";
 import Markdown from "react-markdown";
 import { Check } from "react-feather";
+import { kebabCase } from "lodash";
 
 type Props = {
   data: Object,
@@ -70,7 +71,7 @@ const ServicesPage = ({ data, pathContext }: Props) => {
         </Info>
         <ServiceList>
           {currentPage.servicesList.map((item, index) => (
-            <Service key={item.title}>
+            <Service key={item.title} id={kebabCase(item.title)}>
               <ServiceIcon>
                 <Splash
                   color={
@@ -104,8 +105,8 @@ const ServicesPage = ({ data, pathContext }: Props) => {
                                 : "#FD7241"
                             }
                             size={18}
-                            stroke-linecap="square"
-                            stroke-width="3"
+                            strokeLinecap="square"
+                            strokeWidth="3"
                           />
                         </CheckContainer>
                         <PointTitle>{subitem.title}</PointTitle>
@@ -339,7 +340,7 @@ const CheckContainer = styled.div`
   }
 `;
 
-const PointTitle = styled.li`
+const PointTitle = styled.p`
   font-size: 14px;
   line-height: 1.8em;
   color: #949494;
