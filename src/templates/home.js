@@ -117,12 +117,12 @@ export default class Home extends React.Component<Props> {
                         </Splash>
                         <p className="title">{item.title}</p>
                         <p className="description">{item.description}</p>
-                        <a className="link" to={item.link}>
+                        <Link className="link" to={item.link}>
                           <FormattedMessage
                             id="home.serviceSection.discoverMore"
                             defaultMessage="Discover more"
                           />
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ServiceList>
@@ -254,6 +254,7 @@ export const query = graphql`
               title
               image
               description
+              link
             }
           }
           projects {

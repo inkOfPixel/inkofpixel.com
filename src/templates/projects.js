@@ -279,36 +279,26 @@ const ProjectExcerpt = styled.div`
 
 const ProjectLink = styled.div`
   a {
-    padding-top: 20px;
-    padding-bottom: 6px;
-    display: block;
     color: #161338;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    position: relative;
-    transition: all 300ms;
-    font-weight: 400;
-    font-size: 14px;
-    width: calc(100% + 60px);
-    padding-right: 60px;
     display: inline-block;
-    width: auto;
-    padding-right: 0;
-    &::before {
-      background: #161338;
-      opacity: 0;
-      bottom: -1px;
-      content: "";
-      height: 1px;
-      left: 0;
-      position: absolute;
-      width: 0%;
-      transition: all 300ms;
+    text-decoration: none;
+    transition: all 0.3s;
+    margin-top: 20px;
+    font-size: 14px;
+    transition: 0.4s;
+    &::after {
+      content: "→";
+      display: inline-block;
+      font-size: 16px;
+      padding-left: 10px;
+      transition: 0.4s;
+      color: #161338;
     }
     &:hover {
-      &::before {
-        opacity: 1;
-        width: 100%;
+      color: #05c3b6;
+      &::after {
+        padding-left: 20px;
+        color: #05c3b6;
       }
     }
   }
