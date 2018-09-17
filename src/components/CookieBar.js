@@ -43,15 +43,38 @@ const Bar = styled.div`
 `;
 
 const Button = styled.button`
-  border: none;
   background-color: #161338;
-  border-radius: 2px;
   color: #fff;
   padding: 5px 15px;
   cursor: pointer;
   transition: 500ms all;
+  border: 1px solid #161338;
+  color: #161338;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
   &:hover {
-    background-color: #7589f4;
+    color: #fff;
+  }
+  &::after {
+    background: #161338;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+  }
+  &:hover:after {
+    width: 100%;
   }
 `;
 
@@ -62,8 +85,8 @@ const CloseButton = styled.button`
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  height: 30px;
-  width: 30px;
+  height: 24px;
+  width: 24px;
   padding: 0;
   &:hover {
     cursor: pointer;
