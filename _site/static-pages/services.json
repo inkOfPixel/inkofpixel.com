@@ -107,11 +107,11 @@
       "title": "Servizi",
       "path": "/servizi",
       "seo": {
-        "description": "Lorem ipsum",
+        "description": "Vuoi vendere online o hai un'idea che vuoi sviluppare? Scegli inkOfPixel come partner tecnologico per sviluppare il tuo ecommerce.",
         "image": "/assets/inkofpixel-featured-image.jpg"
       },
-      "intro": "In un'economia guidata dal digitale e dall'esperienza, i clienti ci coinvolgono per aiutarli a immaginare e creare il loro futuro.",
-      "subtitle": "In qualità di partner strategico, realizziamo programmi di brand digitali, esperienze interattive e flagships di eCommerce che si differenziano e risuonano nell'attuale ambiente di business, incentrato sul consumatore e in continua evoluzione.",
+      "intro": "In un'economia guidata dal commercio elettronico e dal digitale, i clienti ci coinvolgono per aiutarli a immaginare e creare il loro futuro.",
+      "subtitle": "In qualità di partner tecnologico, realizziamo la tua vetrina per vendere online i tuoi prodotti, creiamo la soluzione migliore per le tue esigenze. Il nostro obiettivo è che tu abbia le tecnologie che il tuo competitor sta pensando.",
       "servicesList": [
         {
           "title": "Setup",
