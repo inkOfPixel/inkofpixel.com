@@ -25,7 +25,7 @@
         "links": [
           {
             "label": "Servizi",
-            "url": "/it/services"
+            "url": "/it/servizi"
           },
           {
             "label": "Progetti",
@@ -33,7 +33,7 @@
           },
           {
             "label": "Contatti",
-            "url": "/it/contacts"
+            "url": "/it/contatti"
           }
         ]
       }
