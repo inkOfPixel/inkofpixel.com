@@ -117,27 +117,103 @@
           "title": "Setup",
           "image": "/assets/inkofpixel - services_setup.svg",
           "description": "Pronto a far diventare il Mondo il tuo cliente?\nTi aiuteremo ad avere **i tuoi prodotti acquistabili online** da qualsiasi device. Attraverso Shopify potrai gestire il catalogo della tua attività e mostrare  tutti i tuoi clienti la tua potenzialità. Potrai **vendere su Instagram, Facebook** e moltissimi altri marketplace.\n\nGrazie a temi già presenti i Shopify sarà facile trovare quello che più si addice alle tue esigenze e configurarlo nel migliore dei modi.",
-          "points": []
+          "points": [
+            {
+              "title": "**Organizzare e importare le informazioni** dei prodotti, prezzi e foto"
+            },
+            {
+              "title": "**Selezionare e installare un tema** dallo [Store Shopify](https://themes.shopify.com/?ref=inkofpixel&utm_campaign=themes)"
+            },
+            {
+              "title": "**Impostare la struttura del sito**, dell'home page e la navigazione"
+            },
+            {
+              "title": "**Configurazione dominio**, certificato **SSL** e **sistemi di pagamento **(Stripe, Paypal ecc)"
+            },
+            {
+              "title": "**Formazione** per gestire al meglio il tuo store"
+            },
+            {
+              "title": "Ricerca, installazione e configurazione di **app** esistenti nell [App Store Shopify](https://apps.shopify.com/?ref=inkofpixel&utm_campaign=apps)"
+            }
+          ]
         },
         {
           "title": "Temi",
           "image": "/assets/inkofpixel - services_design.svg",
-          "description": "I temi che sono presenti nello store Shopify non sono di tuo gradimento? Necessiti di un'esperienza utente super personalizzata? oppure hai un catalogo con molto prodotti che un tema semplice non ne facilita l'utilizzo? \nNessuna paura, possiamo sviluppare assieme un **sito completamente custom**, sfruttando comunque tutte le potenzialità di Shopify.\n\nDecideremo passo per passo ogni singolo dettaglio del sito, partendo dalla ricerca delle migliori soluzioni per vendere e **comunicare al meglio il tuo brand**. La definizione dell'esperienza utente (UX), mockup grafici (UI) e lo sviluppo con le tecnologie più avanzate presenti sul mercato."
+          "description": "I temi che sono presenti nello store Shopify non sono di tuo gradimento? Necessiti di un'esperienza utente super personalizzata? oppure hai un catalogo con molto prodotti che un tema semplice non ne facilita l'utilizzo? \nNessuna paura, possiamo sviluppare assieme un **sito completamente custom**, sfruttando comunque tutte le potenzialità di Shopify.\n\nDecideremo passo per passo ogni singolo dettaglio del sito, partendo dalla ricerca delle migliori soluzioni per vendere e **comunicare al meglio il tuo brand**. La definizione dell'esperienza utente (UX), mockup grafici (UI) e lo sviluppo con le tecnologie più avanzate presenti sul mercato.",
+          "points": [
+            {
+              "title": "**UX/UI** Design"
+            },
+            {
+              "title": "**Sviluppo tema custom** da zero"
+            },
+            {
+              "title": "**Implementazione di mockup** grafici sviluppati e animazioni personalizzate"
+            },
+            {
+              "title": "**Sviluppo di funzionalità** per il tuo store (es: ricerca avanzata, filtri personalizzabili ..)"
+            }
+          ]
         },
         {
           "title": "Applicazioni Shopify",
           "image": "/assets/inkofpixel - services_web developer.svg",
-          "description": "Il tuo business richiede una **particolare funzionalità** che non può essere risolta attraverso le applicazioni esistenti dell'App Store di Shopify. Possiamo ragionare assieme per capire i tuoi requisiti e sviluppare quello che più si **adatta al tuo business**.\nLe possibilità sono infinite."
+          "description": "Il tuo business richiede una **particolare funzionalità** che non può essere risolta attraverso le applicazioni esistenti dell'App Store di Shopify. Possiamo ragionare assieme per capire i tuoi requisiti e sviluppare quello che più si **adatta al tuo business**.\nLe possibilità sono infinite.",
+          "points": [
+            {
+              "title": "App per connettere Shopify al **tuo gestionale**"
+            },
+            {
+              "title": "App per la visualizzazione di **report personalizzati**"
+            },
+            {
+              "title": "App per **gestire meglio i dati** dei tuoi prodotti (Metafield manager)"
+            },
+            {
+              "title": "App per integrazione di **servizi di terze parti**"
+            },
+            {
+              "title": "... e molto altro"
+            }
+          ]
         },
         {
           "title": "Applicazioni mobile",
           "image": "/assets/inkofpixel - services_app.svg",
-          "description": "Possiamo realizzare il tuo ecommerce su mobile con un'esperienza completamente nativa sia per **iOS e Android**.\nNon ti interessa vendere online ma ti serve un'app con altre funzionalità, **progettiamo e costruiamo applicazioni mobile** di qualsiasi genere."
+          "description": "Possiamo realizzare il tuo ecommerce su mobile con un'esperienza completamente nativa sia per **iOS e Android**.\nNon ti interessa vendere online ma ti serve un'app con altre funzionalità, **progettiamo e costruiamo applicazioni mobile** di qualsiasi genere.",
+          "points": [
+            {
+              "title": "Sviluppo di una soluzione **ecommerce nativa**"
+            },
+            {
+              "title": "Applicazione di **presentazione catalogo**"
+            },
+            {
+              "title": "Connessione con **sistemi di pagamento**"
+            },
+            {},
+            {
+              "title": "**UX/UI** Design"
+            }
+          ]
         },
         {
           "title": "Applicazioni web",
           "image": "/assets/inkofpixel - services_web app.svg",
-          "description": "Grazie alla nostra esperienza nello sviluppo full-stack creiamo **piattaforme su misura** utilizzando tecnologie allo stato dell'arte.\nNecessiti di un gestionale su misura? Hai un'idea di startup? Ti aiuteremo nella realizzazione del tuo progetto.\nPossiamo fare al caso tuo anche se hai bisogno di una **consulenza** di sviluppo, di UX o delle modifiche alla tuo attuale sito. Vai nella sezione contatti e scrivici quello di cui hai bisogno."
+          "description": "Grazie alla nostra esperienza nello sviluppo full-stack creiamo **piattaforme su misura** utilizzando tecnologie allo stato dell'arte.\nNecessiti di un gestionale su misura? Hai un'idea di startup? Ti aiuteremo nella realizzazione del tuo progetto.\nPossiamo fare al caso tuo anche se hai bisogno di una **consulenza** di sviluppo, di UX o delle modifiche alla tuo attuale sito. Vai nella sezione contatti e scrivici quello di cui hai bisogno.",
+          "points": [
+            {
+              "title": "**UX/UI** Design"
+            },
+            {
+              "title": "Sviluppo piattaforme in **React**"
+            },
+            {
+              "title": "AWS"
+            }
+          ]
         }
       ]
     }
