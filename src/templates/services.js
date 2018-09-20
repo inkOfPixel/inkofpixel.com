@@ -301,6 +301,7 @@ const RichText = styled(Markdown)`
   }
   strong {
     font-weight: 600;
+    color: ${props => props.theme.colors.darkBlue};
   }
 `;
 
@@ -310,10 +311,19 @@ const ServicePoints = styled.ul`
   padding: 0;
   padding-top: 40px;
 `;
-const Point = styled.li`
+const Point = styled(Markdown)`
   display: flex;
   align-items: center;
   padding: 10px 0;
+  font-size: 14px;
+  color: ${props => props.theme.colors.gray};
+  p {
+    padding-bottom: 10px;
+  }
+  strong {
+    font-weight: 600;
+    color: ${props => props.theme.colors.darkBlue};
+  }
 `;
 
 const CheckContainer = styled.div`
