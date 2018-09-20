@@ -117,7 +117,26 @@
           "title": "Setup",
           "image": "/assets/inkofpixel - services_setup.svg",
           "description": "Pronto a far diventare il Mondo il tuo cliente?\nTi aiuteremo ad avere **i tuoi prodotti acquistabili online** da qualsiasi device. Attraverso Shopify potrai gestire il catalogo della tua attività e mostrare  tutti i tuoi clienti la tua potenzialità. Potrai **vendere su Instagram, Facebook** e moltissimi altri marketplace.\n\nGrazie a temi già presenti i Shopify sarà facile trovare quello che più si addice alle tue esigenze e configurarlo nel migliore dei modi.",
-          "points": []
+          "points": [
+            {
+              "title": "**Organizzare e importare le informazioni** dei prodotti, prezzi e foto"
+            },
+            {
+              "title": "**Selezionare e installare un tema** dallo [Store Shopify](https://themes.shopify.com/?ref=inkofpixel&utm_campaign=themes)"
+            },
+            {
+              "title": "**Impostare la struttura del sito**, dell'home page e la navigazione"
+            },
+            {
+              "title": "**Configurazione dominio**, certificato **SSL** e **sistemi di pagamento **(Stripe, Paypal ecc)"
+            },
+            {
+              "title": "**Formazione** per gestire al meglio il tuo store"
+            },
+            {
+              "title": "Ricerca, installazione e configurazione di **app** esistenti nell [App Store Shopify](https://apps.shopify.com/?ref=inkofpixel&utm_campaign=apps)"
+            }
+          ]
         },
         {
           "title": "Temi",
