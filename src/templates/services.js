@@ -101,7 +101,7 @@ const ServicesPage = ({ data, pathContext }: Props) => {
                           <Check
                             color={
                               index < 3
-                                ? ["#8152BC", "#05C3B6", "#F6BC00"][index]
+                                ? ["#8152bc", "#05c3b6", "#F6BC00"][index]
                                 : "#FD7241"
                             }
                             size={18}
@@ -202,7 +202,7 @@ const PageTitle = styled.h1`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: #05c3b6;
+  color: ${props => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
   &::before {
     content: "";
@@ -212,7 +212,7 @@ const PageTitle = styled.h1`
     position: absolute;
     top: 7px;
     left: -68px;
-    background-color: #05c3b6;
+    background-color: ${props => props.theme.colors.green};
   }
 `;
 
@@ -239,7 +239,7 @@ const Subtitle = styled.p`
   margin: 0;
   font-weight: 400;
   line-height: 1.8em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
   padding-top: 20px;
 `;
 const ServiceList = styled.ul`
@@ -295,7 +295,7 @@ const ServiceTitle = styled.h3`
 const RichText = styled(Markdown)`
   font-size: 14px;
   line-height: 1.8em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
   p {
     padding-bottom: 10px;
   }
@@ -343,7 +343,7 @@ const CheckContainer = styled.div`
 const PointTitle = styled.p`
   font-size: 14px;
   line-height: 1.8em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
 `;
 
 export default ServicesPage;

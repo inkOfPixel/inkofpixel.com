@@ -43,13 +43,13 @@ const Bar = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: #161338;
+  background-color: ${props => props.theme.colors.darkBlue};
   color: #fff;
   padding: 5px 15px;
   cursor: pointer;
   transition: 500ms all;
-  border: 1px solid #161338;
-  color: #161338;
+  border: 1px solid ${props => props.theme.colors.darkBlue};
+  color: ${props => props.theme.colors.darkBlue};
   background-color: transparent;
   font-size: 14px;
   font-weight: 400;
@@ -63,7 +63,7 @@ const Button = styled.button`
     color: #fff;
   }
   &::after {
-    background: #161338;
+    background: ${props => props.theme.colors.darkBlue};
     content: "";
     position: absolute;
     z-index: -1;
@@ -99,7 +99,7 @@ const CloseButton = styled.button`
     display: block;
     transform: rotate(45deg);
     position: absolute;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
   }
   &::after {
     content: "";
@@ -109,7 +109,7 @@ const CloseButton = styled.button`
     display: block;
     transform: rotate(-45deg);
     position: absolute;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
   }
 `;
 
@@ -122,11 +122,11 @@ const Text = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: #161338;
+  color: ${props => props.theme.colors.darkBlue};
   text-decoration: none;
   position: relative;
   &::before {
-    background: #161338;
+    background: ${props => props.theme.colors.darkBlue};
     opacity: 0;
     bottom: -5px;
     content: "";

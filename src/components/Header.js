@@ -215,7 +215,7 @@ const MobileMenuContainer = styled.div`
   }
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
-    background: #161338;
+    background: ${props => props.theme.colors.darkBlue};
     height: 10% !important;
   }
   /* Position and sizing of clickable cross button */
@@ -256,7 +256,7 @@ const CrossIcon = styled.div`
     transform: rotate(45deg);
     margin-top: 50%;
     position: absolute;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
   }
   &::after {
     content: "";
@@ -267,7 +267,7 @@ const CrossIcon = styled.div`
     transform: rotate(-45deg);
     margin-top: 50%;
     position: absolute;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
   }
 `;
 const BurgerIcon = styled.div`
@@ -277,14 +277,14 @@ const BurgerIcon = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   height: 2px !important;
-  background-color: #161338;
+  background-color: ${props => props.theme.colors.darkBlue};
   ::before,
   ::after {
     content: "";
     width: 100%;
     position: absolute;
     display: block;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
     height: 2px;
   }
   ::before {
@@ -304,7 +304,7 @@ const MobileMenu = styled(SlideMenu)`
 
 // const MobileLink = styled(Link)`
 //   display: inline-block;
-//   color: #161338;
+//   color: ${props => props.theme.colors.darkBlue};
 //   text-decoration: none;
 //   font-size: 24px;
 //   padding-bottom: 30px;
@@ -312,7 +312,7 @@ const MobileMenu = styled(SlideMenu)`
 
 const ResourceLink = styled.a`
   display: inline-block;
-  color: #161338;
+  color: ${props => props.theme.colors.darkBlue};
   text-decoration: none;
   font-size: 24px;
   padding-bottom: 30px;

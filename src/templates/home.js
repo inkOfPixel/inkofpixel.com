@@ -395,7 +395,7 @@ const SectionTitle = styled.h2`
     display: block;
     height: 2px;
     width: 60px;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
     position: absolute;
     top: 7px;
     left: -68px;
@@ -456,9 +456,9 @@ const Section = styled.section`
     background-color: #fff;
     padding-bottom: 150px;
     ${SectionTitle} {
-      color: #8152bc;
+      color: ${props => props.theme.colors.purple};
       &::before {
-        background-color: #8152bc;
+        background-color: ${props => props.theme.colors.purple};
       }
     }
     ${Flexbox} {
@@ -488,7 +488,7 @@ const Section = styled.section`
     }
     ${Subtitle} {
       padding-top: 20px;
-      color: #949494;
+      color: ${props => props.theme.colors.gray};
     }
     ${ServiceList} {
       li {
@@ -500,17 +500,17 @@ const Section = styled.section`
         padding-bottom: 60px;
         &:nth-child(1) {
           .icon {
-            background-color: #f8f1ff;
+            background-color: ${props => props.theme.colors.lightPurple};
           }
         }
         &:nth-child(2) {
           .icon {
-            background-color: #e8fbf6;
+            background-color: ${props => props.theme.colors.lightGreen};
           }
         }
         &:nth-child(3) {
           .icon {
-            background-color: #fff7df;
+            background-color: ${props => props.theme.colors.lightYello};
           }
         }
         ${Splash} {
@@ -529,10 +529,10 @@ const Section = styled.section`
         .description {
           font-size: 14px;
           line-height: 1.8em;
-          color: #949494;
+          color: ${props => props.theme.colors.gray};
         }
         .link {
-          color: #161338;
+          color: ${props => props.theme.colors.darkBlue};
           display: inline-block;
           text-decoration: none;
           transition: all 0.3s;
@@ -545,13 +545,13 @@ const Section = styled.section`
             font-size: 16px;
             padding-left: 10px;
             transition: 0.4s;
-            color: #161338;
+            color: ${props => props.theme.colors.darkBlue};
           }
           &:hover {
-            color: #05c3b6;
+            color: ${props => props.theme.colors.green};
             &::after {
               padding-left: 20px;
-              color: #05c3b6;
+              color: ${props => props.theme.colors.green};
             }
           }
         }
@@ -565,9 +565,9 @@ const Section = styled.section`
     padding-bottom: 150px;
     background-color: #eaf7f7;
     ${SectionTitle} {
-      color: #05c3b6;
+      color: ${props => props.theme.colors.green};
       &::before {
-        background-color: #05c3b6;
+        background-color: ${props => props.theme.colors.green};
       }
     }
     ${DisplayText} {
@@ -645,17 +645,17 @@ const Section = styled.section`
               font-size: 20px;
               padding-bottom: 20px;
               letter-spacing: 0.04em;
-              color: #161338;
+              color: ${props => props.theme.colors.darkBlue};
             }
             .description {
               font-size: 14px;
               line-height: 1.6em;
-              color: #949494;
+              color: ${props => props.theme.colors.gray};
             }
           }
         }
         .discoverMore {
-          color: #161338;
+          color: ${props => props.theme.colors.darkBlue};
           display: inline-block;
           text-decoration: none;
           transition: all 0.3s;
@@ -668,13 +668,13 @@ const Section = styled.section`
             font-size: 16px;
             padding-left: 10px;
             transition: 0.4s;
-            color: #161338;
+            color: ${props => props.theme.colors.darkBlue};
           }
           &:hover {
-            color: #05c3b6;
+            color: ${props => props.theme.colors.green};
             &::after {
               padding-left: 20px;
-              color: #05c3b6;
+              color: ${props => props.theme.colors.green};
             }
           }
         }
@@ -686,9 +686,9 @@ const Section = styled.section`
     padding-top: 200px;
     padding-bottom: 200px;
     ${SectionTitle} {
-      color: #8152bc;
+      color: ${props => props.theme.colors.purple};
       &::before {
-        background-color: #8152bc;
+        background-color: ${props => props.theme.colors.purple};
       }
     }
     ${DisplayText} {

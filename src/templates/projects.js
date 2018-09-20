@@ -191,7 +191,7 @@ const PageTitle = styled.h2`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: #05c3b6;
+  color: ${props => props.theme.colors.green};
   &::before {
     content: "";
     display: block;
@@ -200,7 +200,7 @@ const PageTitle = styled.h2`
     position: absolute;
     top: 7px;
     left: -68px;
-    background-color: #05c3b6;
+    background-color: ${props => props.theme.colors.green};
   }
 `;
 
@@ -259,7 +259,7 @@ const ProjectTitle = styled.h3`
   font-size: 20px;
   padding-bottom: 10px;
   letter-spacing: 0.04em;
-  color: #161338;
+  color: ${props => props.theme.colors.darkBlue};
 `;
 const ProjectType = styled.p`
   font-size: 12px;
@@ -269,17 +269,17 @@ const ProjectType = styled.p`
   position: relative;
   width: 100%;
   padding-bottom: 30px;
-  color: #05c3b6;
+  color: ${props => props.theme.colors.green};
 `;
 const ProjectExcerpt = styled.div`
   font-size: 14px;
   line-height: 1.6em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
 `;
 
 const ProjectLink = styled.div`
   a {
-    color: #161338;
+    color: ${props => props.theme.colors.darkBlue};
     display: inline-block;
     text-decoration: none;
     transition: all 0.3s;
@@ -292,13 +292,13 @@ const ProjectLink = styled.div`
       font-size: 16px;
       padding-left: 10px;
       transition: 0.4s;
-      color: #161338;
+      color: ${props => props.theme.colors.darkBlue};
     }
     &:hover {
-      color: #05c3b6;
+      color: ${props => props.theme.colors.green};
       &::after {
         padding-left: 20px;
-        color: #05c3b6;
+        color: ${props => props.theme.colors.green};
       }
     }
   }

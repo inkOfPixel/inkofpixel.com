@@ -31,7 +31,7 @@ Logo = styled(Logo)`
 
 Logo.defaultProps = {
   theme: {
-    navigationColor: "#161338"
+    navigationColor: "${props => props.theme.colors.darkBlue}"
   }
 };
 

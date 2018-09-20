@@ -210,12 +210,12 @@ const RichText = styled(Markdown)`
         position: absolute;
         bottom: -2px;
         left: -3px;
-        background-color: #161338;
+        background-color: ${props => props.theme.colors.darkBlue};
       }
       &:hover {
-        color: #05c3b6;
+        color: ${props => props.theme.colors.green};
         &::after {
-          background-color: #05c3b6;
+          background-color: ${props => props.theme.colors.green};
         }
       }
     }
@@ -270,7 +270,7 @@ const RichText = styled(Markdown)`
         content: "“";
         display: block;
         position: absolute;
-        color: #05c3b6;
+        color: ${props => props.theme.colors.green};
         opacity: 0.4;
         font-size: 90px;
         font-weight: 400;

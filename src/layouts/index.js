@@ -15,7 +15,7 @@ injectGlobal`
 
   body {
     font-family: 'Roboto Mono', monospace;
-    color: #161338;
+    color: ${props => props.theme.colors.darkBlue};
   }
   h1 {
     font-family: "Europa", sans-serif;

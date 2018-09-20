@@ -97,7 +97,13 @@ const ContactsPage = ({ data, pathContext }: Props) => {
                 defaultMessage="Peter Smith"
               >
                 {txt => (
-                  <input type="text" name="name" placeholder={txt} required />
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder={txt}
+                    required
+                  />
                 )}
               </FormattedMessage>
               <span className="focus-border" />
@@ -115,7 +121,13 @@ const ContactsPage = ({ data, pathContext }: Props) => {
                 defaultMessage="example@yourdomain.com"
               >
                 {txt => (
-                  <input type="email" name="email" placeholder={txt} required />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder={txt}
+                    required
+                  />
                 )}
               </FormattedMessage>
               <span className="focus-border" />
@@ -132,7 +144,12 @@ const ContactsPage = ({ data, pathContext }: Props) => {
                 defaultMessage="Hi there..."
               >
                 {txt => (
-                  <TextareaAutosize name="message" placeholder={txt} required />
+                  <TextareaAutosize
+                    id="message"
+                    name="message"
+                    placeholder={txt}
+                    required
+                  />
                 )}
               </FormattedMessage>
               <span className="focus-border" />
@@ -147,7 +164,7 @@ const ContactsPage = ({ data, pathContext }: Props) => {
             <SocialLink
               key={social.title}
               href={social.link}
-              alt={`${social.title} account of inkOfPixel`}
+              aria-label={`${social.title} account of inkOfPixel`}
             >
               <Splash className={social.iconHandle} size="60px">
                 <Icon name={social.iconHandle} />
@@ -248,7 +265,7 @@ const PageTitle = styled.h1`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: #05c3b6;
+  color: ${props => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
   &::before {
     content: "";
@@ -258,7 +275,7 @@ const PageTitle = styled.h1`
     position: absolute;
     top: 7px;
     left: -68px;
-    background-color: #05c3b6;
+    background-color: ${props => props.theme.colors.green};
   }
 `;
 
@@ -283,7 +300,7 @@ const Subtitle = styled.p`
   margin: 0;
   font-weight: 400;
   line-height: 1.8em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
   padding-top: 20px;
 `;
 
@@ -293,12 +310,12 @@ const Mail = styled.a`
   margin: 0;
   font-weight: 400;
   line-height: 1.8em;
-  color: #949494;
+  color: ${props => props.theme.colors.gray};
   padding-top: 60px;
   text-decoration: none;
   display: inline-block;
   &:hover {
-    color: #161338;
+    color: ${props => props.theme.colors.darkBlue};
   }
 `;
 
@@ -362,7 +379,7 @@ const FormField = styled.div`
       left: 0;
       width: 0;
       height: 1px;
-      background-color: #161338;
+      background-color: ${props => props.theme.colors.darkBlue};
       transition: 0.4s;
     }
     &:focus {
@@ -378,8 +395,8 @@ const FormField = styled.div`
 `;
 
 const SendButton = styled.button`
-  border: 1px solid #161338;
-  color: #161338;
+  border: 1px solid ${props => props.theme.colors.darkBlue};
+  color: ${props => props.theme.colors.darkBlue};
   background-color: transparent;
   font-size: 14px;
   font-weight: 400;
@@ -397,7 +414,7 @@ const SendButton = styled.button`
     color: #fff;
   }
   &::after {
-    background: #161338;
+    background: ${props => props.theme.colors.darkBlue};
     content: "";
     position: absolute;
     z-index: -1;
