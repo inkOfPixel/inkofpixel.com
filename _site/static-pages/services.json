@@ -193,7 +193,9 @@
             {
               "title": "Connessione con **sistemi di pagamento**"
             },
-            {},
+            {
+              "title": "**Pubblicazione** nell'App Store o in Google Play"
+            },
             {
               "title": "**UX/UI** Design"
             }
