@@ -109,7 +109,9 @@ const ServicesPage = ({ data, pathContext }: Props) => {
                             strokeWidth="3"
                           />
                         </CheckContainer>
-                        <PointTitle>{subitem.title}</PointTitle>
+                        <PointTitle>
+                          <RichText source={subitem.title} />
+                        </PointTitle>
                       </Point>
                     ))}
                 </ServicePoints>
@@ -297,11 +299,36 @@ const RichText = styled(Markdown)`
   line-height: 1.8em;
   color: ${props => props.theme.colors.gray};
   p {
-    padding-bottom: 10px;
+    padding: 5px 0;
   }
   strong {
     font-weight: 600;
     color: ${props => props.theme.colors.darkBlue};
+  }
+  a {
+    font-weight: 600;
+    color: inherit;
+    position: relative;
+    text-decoration: none;
+    transition: 0.3s all;
+    color: ${props => props.theme.colors.darkBlue};
+    &::after {
+      transition: 0.3s all;
+      content: "";
+      height: 1px;
+      width: calc(100% + 6px);
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: -3px;
+      background-color: ${props => props.theme.colors.darkBlue};
+    }
+    &:hover {
+      color: ${props => props.theme.colors.green};
+      &::after {
+        background-color: ${props => props.theme.colors.green};
+      }
+    }
   }
 `;
 
@@ -311,19 +338,10 @@ const ServicePoints = styled.ul`
   padding: 0;
   padding-top: 40px;
 `;
-const Point = styled(Markdown)`
+const Point = styled.li`
   display: flex;
   align-items: center;
   padding: 10px 0;
-  font-size: 14px;
-  color: ${props => props.theme.colors.gray};
-  p {
-    padding-bottom: 10px;
-  }
-  strong {
-    font-weight: 600;
-    color: ${props => props.theme.colors.darkBlue};
-  }
 `;
 
 const CheckContainer = styled.div`

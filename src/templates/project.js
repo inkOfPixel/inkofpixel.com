@@ -204,7 +204,7 @@ const RichText = styled(Markdown)`
       &::after {
         transition: 0.3s all;
         content: "";
-        height: 2px;
+        height: 1px;
         width: calc(100% + 6px);
         display: block;
         position: absolute;
