@@ -286,46 +286,5 @@ const RichText = styled(Markdown)`
         right: 0;
       }
     }
-    ul {
-      list-style: none;
-      bottom: 0;
-      right: 0;
-      padding-top: 60px;
-      text-align: right;
-      li {
-        color: #03635d;
-        font-size: 14px;
-        margin-bottom: -20px;
-      }
-    }
-  }
-  table {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    border-collapse: collapse;
-    border: 1px solid black;
-    text-align: center;
-    width: 100%;
-    border: none;
-    overflow: scroll;
-    display: block;
-    th {
-      padding: 12px 15px;
-      border: 1px solid #333;
-    }
-    td {
-      padding: 12px 15px;
-      border: 1px solid #999;
-    }
-  }
-  hr {
-    height: 1px;
-    border: none;
-    background-color: #999;
-    margin-left: 40px;
-    margin-right: 40px;
-    width: calc(100% - 80px);
-    margin-top: 40px;
-    margin-bottom: 50px;
   }
 `;

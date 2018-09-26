@@ -8,6 +8,7 @@ import Wrapper from "components/Wrapper";
 import simplePathJoin from "utils/simplePathJoin";
 import { default as BaseSplash } from "components/Splash";
 import { default as BaseIcon } from "react-simple-icons";
+import { encodingExists } from "iconv-lite";
 
 type Props = {
   data: Object,
@@ -18,7 +19,7 @@ type Props = {
 
 const PrivacyPage = ({ data, pathContext }: Props) => {
   const { locale: pageLocale } = pathContext;
-  const { site, navigation, cookiePolicy, page } = data;
+  const { allIubendaDocument, site, navigation, cookiePolicy, page } = data;
   const { origin } = site.siteMetadata;
   const currentPage = page.fields.locales.find(
     locale => locale.language === pageLocale
@@ -61,6 +62,14 @@ const PrivacyPage = ({ data, pathContext }: Props) => {
       </Helmet>
       <Wrapper>
         <Spacer />
+        <Info>
+          <PageTitle>{currentPage.title}</PageTitle>
+        </Info>
+        <Content
+          dangerouslySetInnerHTML={{
+            __html: allIubendaDocument.edges[0].node.content
+          }}
+        />
       </Wrapper>
     </Page>
   );
@@ -110,19 +119,19 @@ export const query = graphql`
         }
       }
     }
+    allIubendaDocument {
+      edges {
+        node {
+          content
+        }
+      }
+    }
   }
 `;
 
 const Spacer = styled.div`
   width: 100%;
   height: 200px;
-`;
-
-const Flexbox = styled.div`
-  display: flex;
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
 `;
 
 const Info = styled.div`
@@ -139,7 +148,7 @@ const Info = styled.div`
     margin-right: 0;
   }
 `;
-const PageTitle = styled.h1`
+const PageTitle = styled.p`
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -148,6 +157,7 @@ const PageTitle = styled.h1`
   width: 100%;
   color: ${props => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
+  margin: 0.67em 0;
   &::before {
     content: "";
     display: block;
@@ -160,190 +170,87 @@ const PageTitle = styled.h1`
   }
 `;
 
-const Intro = styled.h2`
-  font-size: 46px;
-  padding: 0;
-  margin: 0;
-  font-weight: 700;
-  font-family: Europa;
-  line-height: 1.1em;
-  @media (max-width: 900px) {
-    font-size: 40px;
-  }
-  @media (max-width: 600px) {
-    font-size: 32px;
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
-  font-weight: 400;
-  line-height: 1.8em;
-  color: ${props => props.theme.colors.gray};
-  padding-top: 20px;
-`;
-
-const Mail = styled.a`
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
-  font-weight: 400;
-  line-height: 1.8em;
-  color: ${props => props.theme.colors.gray};
-  padding-top: 60px;
-  text-decoration: none;
-  display: inline-block;
-  &:hover {
-    color: ${props => props.theme.colors.darkBlue};
-  }
-`;
-
-const Form = styled.form`
-  flex-grow: 1;
-  padding-top: 30px;
+const Content = styled.div`
   padding-bottom: 80px;
-  @media (max-width: 800px) {
-    margin: 80px -10px 0 -10px;
-  }
-`;
-
-const FormField = styled.div`
-  display: inline-block;
-  margin: 10px;
-  width: calc(100% - 20px);
-  position: relative;
-  &.half {
-    width: calc(50% - 20px);
-    @media (max-width: 950px) {
-      width: calc(100% - 20px);
-    }
-    @media (max-width: 800px) {
-      width: calc(50% - 20px);
+  h1 {
+    font-size: 46px;
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+    font-family: Europa;
+    line-height: 1.1em;
+    padding-bottom: 20px;
+    @media (max-width: 900px) {
+      font-size: 40px;
     }
     @media (max-width: 600px) {
-      width: calc(100% - 20px);
+      font-size: 32px;
     }
   }
-  &.hidden {
-    display: none;
-  }
-  label {
+  p {
+    line-height: 1.8em;
+    padding-bottom: 10px;
     font-size: 14px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-    width: 100%;
-    display: block;
+    b {
+      font-weight: 500;
+    }
   }
-  input,
-  textarea {
-    border: none;
-    position: relative;
-    outline: none;
-    border-bottom: 1px solid #949494;
-    width: 100%;
-    min-height: 40px;
-    padding: 10px 0;
-    box-sizing: border-box;
+  h2 {
+    font-weight: 700;
+    font-family: Europa;
+    font-size: 24px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+  }
+  h3 {
+    font-weight: 700;
+    font-family: Europa;
+    font-size: 20px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+  }
+  h4 {
+    line-height: 1.8em;
+    padding-bottom: 10px;
+    padding-top: 10px;
     font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    display: block;
-    resize: none;
-    line-height: 1.4em;
-    ~ .focus-border {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
+    font-weight: 700;
+  }
+  a {
+    font-weight: 700;
+    color: inherit;
+    position: relative;
+    text-decoration: none;
+    transition: 0.3s all;
+    &::after {
+      transition: 0.3s all;
+      content: "";
       height: 1px;
+      width: calc(100% + 6px);
+      display: block;
+      position: absolute;
+      bottom: -2px;
+      left: -3px;
       background-color: ${props => props.theme.colors.darkBlue};
-      transition: 0.4s;
     }
-    &:focus {
-      ~ .focus-border {
-        width: 100%;
-        transition: 0.4s;
+    &:hover {
+      color: ${props => props.theme.colors.green};
+      &::after {
+        background-color: ${props => props.theme.colors.green};
       }
     }
-    &::placeholder {
-      color: #ccc;
-    }
   }
-`;
-
-const SendButton = styled.button`
-  border: 1px solid ${props => props.theme.colors.darkBlue};
-  color: ${props => props.theme.colors.darkBlue};
-  background-color: transparent;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  overflow: hidden;
-  display: block;
-  position: relative;
-  min-width: 200px;
-  height: 40px;
-  transition: all 0.3s;
-  text-transform: uppercase;
-  margin: 40px 10px 10px 10px;
-  cursor: pointer;
-  &:hover {
-    color: #fff;
-  }
-  &::after {
-    background: ${props => props.theme.colors.darkBlue};
-    content: "";
-    position: absolute;
-    z-index: -1;
-    transition: all 0.3s;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 0;
-  }
-  &:hover:after {
-    width: 100%;
-  }
-`;
-
-const Socials = styled.div`
-  width: 100%;
-  text-align: right;
-  margin-bottom: 120px;
-`;
-
-const SocialLink = styled.a`
-  display: inline-block;
-  margin: 5px;
-`;
-
-const Icon = styled(BaseIcon)`
-  fill: #fff;
-`;
-
-const Splash = styled(BaseSplash)`
-  transition: 0.3s all;
-  &.twitter {
-    background-color: rgba(29, 161, 242, 0.7);
-    &:hover {
-      background-color: rgba(29, 161, 242, 1);
-    }
-  }
-  &.facebook {
-    background-color: rgba(59, 89, 152, 0.7);
-    &:hover {
-      background-color: rgba(59, 89, 152, 1);
-    }
-  }
-
-  &.github {
-    background-color: rgba(24, 23, 23, 0.7);
-    &:hover {
-      background-color: rgba(24, 23, 23, 1);
+  ul {
+    padding-left: 20px;
+    box-sizing: border-box;
+    li {
+      line-height: 1.8em;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 14px;
+      b {
+        font-weight: 500;
+      }
     }
   }
 `;
