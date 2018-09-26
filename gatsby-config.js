@@ -113,6 +113,13 @@ module.exports = {
         exclude: ["/preview/**", "/do-not-track/me/too/"]
       }
     },
+    {
+      resolve: `gatsby-source-iubenda`,
+      options: {
+        documentIds: `57888804`,
+        documentIds: `84397204`
+      }
+    },
     "gatsby-plugin-netlify"
   ],
   pathPrefix: "/assets"
