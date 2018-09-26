@@ -116,8 +116,7 @@ module.exports = {
     {
       resolve: `gatsby-source-iubenda`,
       options: {
-        documentIds: `57888804`,
-        documentIds: `84397204`
+        documentIds: [`57888804`, `84397204`]
       }
     },
     "gatsby-plugin-netlify"
