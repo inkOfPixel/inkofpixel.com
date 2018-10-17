@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, StaticQuery, graphql } from "gatsby";
-import styled, { withTheme } from "styled-components";
+import styled, { withTheme } from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
 import Wrapper from "components/Wrapper";
 import GooeyMenu from "components/GooeyMenu";
 import { IPageLocale } from "types";
+import ThemeInterface from "themes/theme";
 
 interface IProps {
-  theme: any;
+  theme: ThemeInterface;
   locale: string;
   defaultLocale: string;
   pageLocales?: IPageLocale[];
@@ -49,7 +50,7 @@ class Header extends React.Component<IProps, IState> {
 
   render() {
     const { languageMenuOpen } = this.state;
-    const { locale, defaultLocale, pageLocales } = this.props;
+    const { locale, defaultLocale, pageLocales, theme } = this.props;
     return (
       <StaticQuery
         query={graphql`
@@ -101,10 +102,8 @@ class Header extends React.Component<IProps, IState> {
                     renderLabel={() => (
                       <span className="selected">{locale}</span>
                     )}
-                    color={this.props.theme.languageSelector.color}
-                    backgroundColor={
-                      this.props.theme.languageSelector.backgroundColor
-                    }
+                    color={theme.languageSelector.color}
+                    backgroundColor={theme.languageSelector.backgroundColor}
                     size={50}
                     open={languageMenuOpen}
                     onToggle={this.handleToggleLanguageMenu}
