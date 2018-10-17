@@ -1,17 +1,14 @@
-// @ flow
+import React from "react";
 
-import React, { type Node, Component } from "react";
-import styled from "styled-components";
+interface IProps {
+  children: (answer: (value: boolean) => void) => React.ReactNode;
+}
 
-type Props = {
-  children: (answer: (boolean) => void) => Node
-};
+interface IState {
+  accepted: undefined | null | boolean;
+}
 
-type State = {
-  accepted: ?boolean
-};
-
-class Cookie extends Component<Props, State> {
+class Cookie extends React.Component<IProps, IState> {
   state = {
     accepted: undefined
   };

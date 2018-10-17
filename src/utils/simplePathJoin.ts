@@ -1,6 +1,4 @@
-// @flow
-
-export default (...args): string => {
+export default (...args: string[]): string => {
   const [first, ...others] = args;
   const prefix = /^\/*/;
   const suffix = /\/*$/;

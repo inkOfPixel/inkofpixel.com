@@ -1,67 +1,37 @@
-// @flow
-
-import React, { Fragment } from "react";
-import styled, { keyframes } from "styled-components";
-import Helmet from "react-helmet";
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
-import Link from "gatsby-link";
-import Page from "components/Page";
-import Wrapper from "components/Wrapper";
-import simplePathJoin from "utils/simplePathJoin";
-import TextareaAutosize from "react-autosize-textarea";
 import { default as BaseSplash } from "components/Splash";
 import { default as BaseIcon } from "react-simple-icons";
+import TextareaAutosize from "react-autosize-textarea";
+import Page from "components/Page";
+import Wrapper from "components/Wrapper";
+import { IPageLocale } from "types/index";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-const ContactsPage = ({ data, pathContext }: Props) => {
-  const { locale: pageLocale } = pathContext;
-  const { contacts, site, navigation, cookiePolicy, page } = data;
-  const { origin } = site.siteMetadata;
-  const currentPage = page.fields.locales.find(
-    locale => locale.language === pageLocale
-  );
-  const currentNavigation = navigation.locales.find(
-    locale => locale.language === pageLocale
+const ContactsPage = ({ data, pathContext }: IProps) => {
+  const currentPage = data.page.fields.locales.find(
+    locale => locale.language === pathContext.locale
   );
   return (
     <Page
-      locale={pageLocale}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: page.fields.locales.map(locale => ({
-          locale: locale.language,
+      title={currentPage.title}
+      description={currentPage.seo.description}
+      localeCode={pathContext.locale}
+      pageLocales={data.page.fields.locales.map(
+        (locale: any): IPageLocale => ({
+          code: locale.language,
           url: locale.path
-        })),
-        cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-          locale => locale.language === pathContext.locale
-        ).path
-      }}
+        })
+      )}
     >
-      <Helmet>
-        <title>{currentPage.title} | inkOfPixel</title>
-        <meta name="description" content={currentPage.seo.description} />
-        <meta property="og:title" content={currentPage.title} />
-        <meta property="og:image " content={currentPage.seo.image} />
-        <meta
-          property="og:url"
-          content={simplePathJoin(origin, currentPage.path)}
-        />
-        <meta property="og:description" content={currentPage.seo.description} />
-        {page.fields.locales.map(locale => (
-          <link
-            key={locale.language}
-            rel="alternate"
-            href={simplePathJoin(origin, locale.path)}
-            hreflang={locale.language}
-          />
-        ))}
-      </Helmet>
       <Wrapper>
         <Spacer />
         <Flexbox>
@@ -69,8 +39,8 @@ const ContactsPage = ({ data, pathContext }: Props) => {
             <PageTitle>{currentPage.title}</PageTitle>
             <Intro>{currentPage.intro}</Intro>
             <Subtitle>{currentPage.subtitle}</Subtitle>
-            <Mail href={`mailto:${contacts.email}`} data-rel="external">
-              {contacts.email}
+            <Mail href={`mailto:${data.contacts.email}`} data-rel="external">
+              {data.contacts.email}
             </Mail>
           </Info>
           <Form
@@ -160,7 +130,7 @@ const ContactsPage = ({ data, pathContext }: Props) => {
           </Form>
         </Flexbox>
         <Socials>
-          {contacts.socials.map(social => (
+          {data.contacts.socials.map(social => (
             <SocialLink
               key={social.title}
               href={social.link}
@@ -179,38 +149,12 @@ const ContactsPage = ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query ContactsPageQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
     contacts: settingsJson(fields: { name: { eq: "contacts" } }) {
       email
       socials {
         title
         link
         iconHandle
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
       }
     }
     page: staticPagesJson(fields: { name: { eq: $name } }) {

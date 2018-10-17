@@ -1,73 +1,40 @@
-// @flow
-
 import React from "react";
-import styled from "styled-components";
-import ScrollableAnchor from "react-scrollable-anchor";
+import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
-import Link from "gatsby-link";
-import Helmet from "react-helmet";
+import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
-import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
-import simplePathJoin from "utils/simplePathJoin";
+import Page from "components/Page";
+import { IPageLocale } from "types";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-export default class Home extends React.Component<Props> {
+export default class Home extends React.Component<IProps> {
   render() {
     const { data, pathContext } = this.props;
-    const { locale: pageLocale } = pathContext;
-    const { staticPagesJson, site, navigation, cookiePolicy } = data;
-    const { origin } = site.siteMetadata;
-    const home = data.staticPagesJson;
+    const home = data.page;
     const currentHome = home.fields.locales.find(
-      locale => locale.language === pageLocale
+      locale => locale.language === pathContext.locale
     );
     const { featuredProjects } = home.fields;
-    const currentNavigation = navigation.locales.find(
-      locale => locale.language === pageLocale
-    );
     return (
       <Page
-        locale={pageLocale}
-        navigation={{
-          main: currentNavigation.main.links,
-          language: home.fields.locales.map(locale => ({
-            locale: locale.language,
+        title={currentHome.title}
+        description={currentHome.seo.description}
+        localeCode={pathContext.locale}
+        pageLocales={data.page.fields.locales.map(
+          (locale: any): IPageLocale => ({
+            code: locale.language,
             url: locale.path
-          })),
-          cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-            locale => locale.language === pathContext.locale
-          ).path
-        }}
+          })
+        )}
       >
-        <Helmet>
-          <title>{currentHome.title}</title>
-          <meta name="description" content={currentHome.seo.description} />
-          <meta property="og:title" content={currentHome.title} />
-          <meta
-            property="og:url"
-            content={simplePathJoin(origin, currentHome.path)}
-          />
-          <meta
-            property="og:description"
-            content={currentHome.seo.description}
-          />
-          {home.fields.locales.map(locale => (
-            <link
-              key={locale.language}
-              rel="alternate"
-              href={simplePathJoin(origin, locale.path)}
-              hreflang={locale.language}
-            />
-          ))}
-        </Helmet>
         <Section className="Hero">
           <Wrapper>
             <Slogan
@@ -84,122 +51,116 @@ export default class Home extends React.Component<Props> {
             </HeroIllustration>
           </Wrapper>
         </Section>
-        <ScrollableAnchor id="services">
-          <Section className="Services">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.serviceSection.title"
-                  defaultMessage="Services"
-                />
-              </SectionTitle>
-              {currentHome.services.map((serviceGroup, groupIndex) => (
-                <Flexbox key={groupIndex}>
-                  <Heading>
-                    <DisplayText>{serviceGroup.groupTitle}</DisplayText>
-                    <Subtitle>{serviceGroup.groupDescription}</Subtitle>
-                  </Heading>
-                  <ServiceList>
-                    {serviceGroup.serviceList.map((item, index) => (
-                      <li key={item.title}>
-                        <Splash
-                          color={
-                            groupIndex === 0
-                              ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
-                              : "#ffefe4"
-                          }
-                          size="100px"
-                        >
-                          <img
-                            src={item.image}
-                            alt={`${item.title} inkOfPixel`}
-                          />
-                        </Splash>
-                        <p className="title">{item.title}</p>
-                        <p className="description">{item.description}</p>
-                        <Link className="link" to={item.link}>
-                          <FormattedMessage
-                            id="home.serviceSection.discoverMore"
-                            defaultMessage="Discover more"
-                          />
-                        </Link>
-                      </li>
-                    ))}
-                  </ServiceList>
-                </Flexbox>
-              ))}
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
-        <ScrollableAnchor id="work">
-          <Section className="Work">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.projectsSection.title"
-                  defaultMessage="Our Work"
-                />
-              </SectionTitle>
-              <DisplayText>{currentHome.projects.title}</DisplayText>
-              <ul className="featuredProjectsList">
-                {featuredProjects.map(item => {
-                  const frontmatter = item.fields.frontmatter;
-                  const currentItem = frontmatter.locales.find(
-                    locale => locale.language === pathContext.locale
-                  );
-                  return (
-                    <li key={frontmatter.title}>
-                      <Link to={currentItem.path}>
-                        <div className="content">
-                          <Img
-                            sizes={
-                              currentItem.featuredImage.childImageSharp.sizes
-                            }
-                          />
-                          <div className="info">
-                            <p className="title">{frontmatter.title}</p>
-                            <p className="description">{currentItem.excerpt}</p>
-                          </div>
-                        </div>
-                        <div className="discoverMore">
-                          <FormattedMessage
-                            id="projectCard.discoverMore"
-                            defaultMessage="Discover more"
-                          />
-                        </div>
+        <Section className="Services">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.serviceSection.title"
+                defaultMessage="Services"
+              />
+            </SectionTitle>
+            {currentHome.services.map((serviceGroup, groupIndex) => (
+              <Flexbox key={groupIndex}>
+                <Heading>
+                  <DisplayText>{serviceGroup.groupTitle}</DisplayText>
+                  <Subtitle>{serviceGroup.groupDescription}</Subtitle>
+                </Heading>
+                <ServiceList>
+                  {serviceGroup.serviceList.map((item, index) => (
+                    <li key={item.title}>
+                      <Splash
+                        color={
+                          groupIndex === 0
+                            ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
+                            : "#ffefe4"
+                        }
+                        size="100px"
+                      >
+                        <img
+                          src={item.image}
+                          alt={`${item.title} inkOfPixel`}
+                        />
+                      </Splash>
+                      <p className="title">{item.title}</p>
+                      <p className="description">{item.description}</p>
+                      <Link className="link" to={item.link}>
+                        <FormattedMessage
+                          id="home.serviceSection.discoverMore"
+                          defaultMessage="Discover more"
+                        />
                       </Link>
                     </li>
-                  );
-                })}
-              </ul>
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
-        <ScrollableAnchor id="about">
-          <Section className="About">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.about.title"
-                  defaultMessage="About us"
-                />
-              </SectionTitle>
-              <DisplayText>
-                <FormattedMessage
-                  id="home.about.heading"
-                  defaultMessage="We are engineers, designers and scientists."
-                />
-              </DisplayText>
-              <Subtitle>
-                <FormattedMessage
-                  id="home.about.description"
-                  defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
-                  values={{ newLine: <br /> }}
-                />
-              </Subtitle>
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
+                  ))}
+                </ServiceList>
+              </Flexbox>
+            ))}
+          </Wrapper>
+        </Section>
+        <Section className="Work">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.projectsSection.title"
+                defaultMessage="Our Work"
+              />
+            </SectionTitle>
+            <DisplayText>{currentHome.projects.title}</DisplayText>
+            <ul className="featuredProjectsList">
+              {featuredProjects.map(item => {
+                const frontmatter = item.fields.frontmatter;
+                const currentItem = frontmatter.locales.find(
+                  locale => locale.language === pathContext.locale
+                );
+                return (
+                  <li key={frontmatter.title}>
+                    <Link to={currentItem.path}>
+                      <div className="content">
+                        <Img
+                          fluid={
+                            currentItem.featuredImage.childImageSharp.fluid
+                          }
+                        />
+                        <div className="info">
+                          <p className="title">{frontmatter.title}</p>
+                          <p className="description">{currentItem.excerpt}</p>
+                        </div>
+                      </div>
+                      <div className="discoverMore">
+                        <FormattedMessage
+                          id="projectCard.discoverMore"
+                          defaultMessage="Discover more"
+                        />
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </Wrapper>
+        </Section>
+        <Section className="About">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.about.title"
+                defaultMessage="About us"
+              />
+            </SectionTitle>
+            <DisplayText>
+              <FormattedMessage
+                id="home.about.heading"
+                defaultMessage="We are engineers, designers and scientists."
+              />
+            </DisplayText>
+            <Subtitle>
+              <FormattedMessage
+                id="home.about.description"
+                defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
+                values={{ newLine: <br /> }}
+              />
+            </Subtitle>
+          </Wrapper>
+        </Section>
       </Page>
     );
   }
@@ -207,33 +168,7 @@ export default class Home extends React.Component<Props> {
 
 export const query = graphql`
   query HomeQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
-      }
-    }
-    staticPagesJson(fields: { name: { eq: $name } }) {
+    page: staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
         locales {
@@ -272,8 +207,8 @@ export const query = graphql`
                 excerpt
                 featuredImage {
                   childImageSharp {
-                    sizes(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -625,11 +560,8 @@ const Section = styled.section`
             display: block;
           }
         }
-        .gatsby-image-outer-wrapper {
+        .gatsby-image-wrapper {
           height: 300px;
-          .gatsby-image-wrapper {
-            height: 100%;
-          }
         }
         .content {
           display: flex;

@@ -1,26 +1,22 @@
-// @flow
+import React, { ChangeEvent } from "react";
+import styled, { css } from "types/styled-components";
 
-import React, { type Node } from "react";
-import styled, { css, keyframes } from "styled-components";
+interface IProps {
+  className?: string;
+  renderLabel?: () => React.ReactNode;
+  color?: string;
+  backgroundColor?: string;
+  size?: number;
+  spacing?: number;
+  open: boolean;
+  onToggle?: (value: boolean) => void;
+}
 
-type Props = {
-  children: Node,
-  className?: string,
-  label: string,
-  renderLabel?: () => Node,
-  color: string,
-  backgroundColor: string,
-  size: number,
-  spacing: number,
-  open: boolean,
-  onToggle?: Function
-};
+interface IState {
+  open: boolean;
+}
 
-type State = {
-  open: boolean
-};
-
-class GooeyMenu extends React.Component<Props, State> {
+class GooeyMenu extends React.Component<IProps, IState> {
   static defaultProps = {
     color: "#fff",
     backgroundColor: "#00bcd4",
@@ -44,7 +40,7 @@ class GooeyMenu extends React.Component<Props, State> {
     }
   };
 
-  handleToggleMenu = (event: Event) => {
+  handleToggleMenu = (event: ChangeEvent<HTMLInputElement>) => {
     if (this.isControlled() && this.props.onToggle) {
       this.props.onToggle(event.currentTarget.checked);
     } else {
@@ -93,7 +89,13 @@ class GooeyMenu extends React.Component<Props, State> {
   }
 }
 
-const buttonStyles = css`
+interface IButtonProps {
+  color: string;
+  backgroundColor: string;
+  size: number;
+}
+
+const buttonStyles = css<IButtonProps>`
   background: ${({ backgroundColor }) => backgroundColor};
   border-radius: 100%;
   display: block;
@@ -112,7 +114,13 @@ const Menu = styled.div`
   overflow: visible;
 `;
 
-const Label = styled.label.attrs({
+interface ILabelProps {
+  color: string;
+  backgroundColor: string;
+  htmlFor?: string;
+}
+
+const Label = styled<ILabelProps & IButtonProps, "label">("label").attrs({
   htmlFor: "gooey-menu-open"
 })`
   position: relative;
@@ -144,15 +152,21 @@ const Label = styled.label.attrs({
   }
 `;
 
+interface IItemsProps {
+  size: number;
+  spacing: number;
+  itemCount: number;
+}
+
 const Items = styled.div`
   position: absolute;
-  padding-top: ${({ size }) => size}px;
+  padding-top: ${(props: IItemsProps) => props.size}px;
   & > * {
-    margin-top: ${({ spacing }) => spacing}px;
+    margin-top: ${(props: IItemsProps) => props.spacing}px;
     ${buttonStyles};
-    ${props =>
+    ${(props: IItemsProps) =>
       Array.apply(null, Array(props.itemCount)).map(
-        (_, i) => css`
+        (_: number, i: number) => css`
           &:nth-child(${i + 1}) {
             transform: translate3d(
               0,
@@ -164,6 +178,10 @@ const Items = styled.div`
       )};
   }
 `;
+
+interface ICheckboxProps {
+  itemCount: number;
+}
 
 const Checkbox = styled.input.attrs({
   type: "checkbox",
@@ -185,9 +203,9 @@ const Checkbox = styled.input.attrs({
     }
     & ~ ${Items} > * {
       transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-      ${props =>
+      ${(props: ICheckboxProps) =>
         Array.apply(null, Array(props.itemCount)).map(
-          (_, i) => css`
+          (_: number, i: number) => css`
             &:nth-child(${i + 1}) {
               transition-duration: ${300 + 100 * i}ms;
               transform: translate3d(0, 0, 0);

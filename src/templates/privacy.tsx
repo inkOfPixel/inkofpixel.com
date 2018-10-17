@@ -1,65 +1,33 @@
-// @flow
-
-import React, { Fragment } from "react";
-import styled, { keyframes } from "styled-components";
-import Helmet from "react-helmet";
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
-import simplePathJoin from "utils/simplePathJoin";
-import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
-import { encodingExists } from "iconv-lite";
+import { IPageLocale } from "types/index";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-const PrivacyPage = ({ data, pathContext }: Props) => {
-  const { locale: pageLocale } = pathContext;
-  const { allIubendaDocument, site, navigation, cookiePolicy, page } = data;
-  const { origin } = site.siteMetadata;
-  const currentPage = page.fields.locales.find(
-    locale => locale.language === pageLocale
-  );
-  const currentNavigation = navigation.locales.find(
-    locale => locale.language === pageLocale
+const PrivacyPage = ({ data, pathContext }: IProps) => {
+  const currentPage = data.page.fields.locales.find(
+    locale => locale.language === pathContext.locale
   );
   return (
     <Page
-      locale={pageLocale}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: page.fields.locales.map(locale => ({
-          locale: locale.language,
+      title={currentPage.title}
+      description={currentPage.seo.description}
+      localeCode={pathContext.locale}
+      pageLocales={data.page.fields.locales.map(
+        (locale: any): IPageLocale => ({
+          code: locale.language,
           url: locale.path
-        })),
-        cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-          locale => locale.language === pathContext.locale
-        ).path
-      }}
+        })
+      )}
     >
-      <Helmet>
-        <title>{currentPage.title} | inkOfPixel</title>
-        <meta name="description" content={currentPage.seo.description} />
-        <meta property="og:title" content={currentPage.title} />
-        <meta property="og:image " content={currentPage.seo.image} />
-        <meta
-          property="og:url"
-          content={simplePathJoin(origin, currentPage.path)}
-        />
-        <meta property="og:description" content={currentPage.seo.description} />
-        {page.fields.locales.map(locale => (
-          <link
-            key={locale.language}
-            rel="alternate"
-            href={simplePathJoin(origin, locale.path)}
-            hreflang={locale.language}
-          />
-        ))}
-      </Helmet>
       <Wrapper>
         <Spacer />
         <Info>
@@ -67,7 +35,7 @@ const PrivacyPage = ({ data, pathContext }: Props) => {
         </Info>
         <Content
           dangerouslySetInnerHTML={{
-            __html: allIubendaDocument.edges[0].node.content
+            __html: data.allIubendaDocument.edges[0].node.content
           }}
         />
       </Wrapper>
@@ -77,32 +45,6 @@ const PrivacyPage = ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query PrivacyPageQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
-      }
-    }
     page: staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name

@@ -1,35 +1,76 @@
-// @ flow
-
-import React, { type Node, Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import Link from "gatsby-link";
+import { Link, StaticQuery, graphql } from "gatsby";
 import { FormattedMessage } from "react-intl";
-import Cookie from "components/Cookie";
+import Cookie from "./Cookie";
 
-type Props = {
-  cookiePolicyURL: string
-};
+interface ICookieQueryData {
+  cookiePolicy: {
+    fields: {
+      frontmatter: {
+        locales: Array<{
+          language: string;
+          path: string;
+        }>;
+      };
+    };
+  };
+}
 
-const CookierBar = ({ cookiePolicyURL = "/cookie-policy" }: Props) => (
-  <Cookie>
-    {answer => (
-      <Bar>
-        <Text>
-          <FormattedMessage
-            id="cookie.message"
-            defaultMessage="We use cookies to ensure that we give you the best experience
+interface IProps {
+  locale: string;
+}
+
+const CookierBar = (props: IProps) => (
+  <StaticQuery
+    query={graphql`
+      query CookieQuery {
+        cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
+          fields {
+            frontmatter {
+              locales {
+                language
+                path
+              }
+            }
+          }
+        }
+      }
+    `}
+  >
+    {(data: ICookieQueryData) => {
+      const localizedPolicy = data.cookiePolicy.fields.frontmatter.locales.find(
+        locale => locale.language === props.locale
+      );
+      if (!localizedPolicy) {
+        throw new Error(`Localized policy for ${props.locale} not found`);
+      }
+      return (
+        <Cookie>
+          {answer => (
+            <Bar>
+              <Text>
+                <FormattedMessage
+                  id="cookie.message"
+                  defaultMessage="We use cookies to ensure that we give you the best experience
           on our website. Read our"
-          />
-          <StyledLink to={cookiePolicyURL}> cookies policy </StyledLink>
-          <Button onClick={() => answer(true)}>OK</Button>
-        </Text>
-        <CloseButton
-          onClick={() => answer(false)}
-          aria-label="Close cookie policy message banner"
-        />
-      </Bar>
-    )}
-  </Cookie>
+                />
+                <StyledLink to={localizedPolicy.path}>
+                  {" "}
+                  cookies policy{" "}
+                </StyledLink>
+                <Button onClick={() => answer(true)}>OK</Button>
+              </Text>
+              <CloseButton
+                onClick={() => answer(false)}
+                aria-label="Close cookie policy message banner"
+              />
+            </Bar>
+          )}
+        </Cookie>
+      );
+    }}
+  </StaticQuery>
 );
 
 const Bar = styled.div`

@@ -1,72 +1,58 @@
-// @flow
-
 import React from "react";
-import styled from "styled-components";
 import Helmet from "react-helmet";
+import { graphql } from "gatsby";
 import Img from "gatsby-image";
+import styled from "types/styled-components";
 import Markdown from "react-markdown";
-import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
-import simplePathJoin from "utils/simplePathJoin";
+import Page from "components/Page";
+import { IPageLocale } from "types/index";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    slug: string,
-    locale: string
-  }
-};
+    slug: string;
+    locale: string;
+  };
+}
 
-export default ({ data, pathContext }: Props) => {
-  const { markdownRemark, navigation, site } = data;
-  const { origin } = site.siteMetadata;
-  const { title, locales } = markdownRemark.fields.frontmatter;
-  const page = locales.find(locale => locale.language === pathContext.locale);
-  const currentNavigation = navigation.locales.find(
+export default ({ data, pathContext }: IProps) => {
+  const currentProject = data.project.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
   return (
     <Page
-      theme={projectTheme}
-      locale={page.language}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: locales.map(locale => ({
-          locale: locale.language,
+      title={currentProject.seoTitle}
+      description={currentProject.seodescription}
+      localeCode={pathContext.locale}
+      pageLocales={data.project.fields.frontmatter.locales.map(
+        (locale: any): IPageLocale => ({
+          code: locale.language,
           url: locale.path
-        }))
-      }}
+        })
+      )}
+      theme={projectTheme}
     >
       <Helmet>
-        <title>{page.seoTitle} | inkOfPixel</title>
-        <meta name="description" content={page.seoDescription} />
-        <meta property="og:title" content={page.seoTitle} />
-        <meta property="og:image " content={page.heroImage.publicURL} />
-        <meta property="og:url" content={simplePathJoin(origin, page.path)} />
-        <meta property="og:description" content={page.seoDescription} />
-        {locales.map(locale => (
-          <link
-            key={locale.language}
-            rel="alternate"
-            href={simplePathJoin(origin, locale.path)}
-            hreflang={locale.language}
-          />
-        ))}
+        <meta
+          property="og:image "
+          content={currentProject.heroImage.publicURL}
+        />
       </Helmet>
       <Hero>
-        <Img sizes={page.heroImage.childImageSharp.sizes} />
+        <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
         <HeroContent>
           <Wrapper>
             <Heading>
-              <ProjectType>{page.type}</ProjectType>
-              <Title>{title}</Title>
+              <ProjectType>{currentProject.type}</ProjectType>
+              <Title>{data.project.fields.frontmatter.title}</Title>
             </Heading>
           </Wrapper>
         </HeroContent>
       </Hero>
       <Wrapper>
-        <RichText source={page.body} />
+        <RichText source={currentProject.body} />
       </Wrapper>
     </Page>
   );
@@ -90,7 +76,7 @@ export const query = graphql`
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    project: markdownRemark(fields: { slug: { eq: $slug } }) {
       fields {
         slug
         frontmatter {
@@ -102,8 +88,8 @@ export const query = graphql`
             heroImage {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 1200) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 1200) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

@@ -1,75 +1,45 @@
-// @flow
-
-import React, { Fragment } from "react";
-import styled, { keyframes } from "styled-components";
-import Helmet from "react-helmet";
-import { FormattedMessage } from "react-intl";
-import Link from "gatsby-link";
+import React from "react";
+import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
+import styled from "types/styled-components";
+import { FormattedMessage } from "react-intl";
 import Page from "components/Page";
+import { IPageLocale } from "types/index";
 import Wrapper from "components/Wrapper";
-import simplePathJoin from "utils/simplePathJoin";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-const ProjectsPage = ({ data, pathContext }: Props) => {
-  const { locale: pageLocale } = pathContext;
-  const { site, navigation, cookiePolicy, page } = data;
-  const { origin } = site.siteMetadata;
-  const currentPage = page.fields.locales.find(
-    locale => locale.language === pageLocale
-  );
-  const currentNavigation = navigation.locales.find(
-    locale => locale.language === pageLocale
+const ProjectsPage = ({ data, pathContext }: IProps) => {
+  const currentPage = data.page.fields.locales.find(
+    locale => locale.language === pathContext.locale
   );
   const projects = data.projects.edges.map(
     ({ node }) => node.fields.frontmatter
   );
   return (
     <Page
-      locale={pageLocale}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: page.fields.locales.map(locale => ({
-          locale: locale.language,
+      title={currentPage.title}
+      description={currentPage.seo.description}
+      localeCode={pathContext.locale}
+      pageLocales={data.page.fields.locales.map(
+        (locale: any): IPageLocale => ({
+          code: locale.language,
           url: locale.path
-        })),
-        cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-          locale => locale.language === pathContext.locale
-        ).path
-      }}
+        })
+      )}
     >
-      <Helmet>
-        <title>{currentPage.title} | inkOfPixel</title>
-        <meta name="description" content={currentPage.seo.description} />
-        <meta property="og:title" content={currentPage.title} />
-        <meta property="og:image " content={currentPage.seo.image} />
-        <meta
-          property="og:url"
-          content={simplePathJoin(origin, currentPage.path)}
-        />
-        <meta property="og:description" content={currentPage.seo.description} />
-        {page.fields.locales.map(locale => (
-          <link
-            key={locale.language}
-            rel="alternate"
-            href={simplePathJoin(origin, locale.path)}
-            hreflang={locale.language}
-          />
-        ))}
-      </Helmet>
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
         <ProjectsList>
           {projects.map(project => {
             const currentItem = project.locales.find(
-              locale => locale.language === pageLocale
+              locale => locale.language === pathContext.locale
             );
             return (
               <ProjectListItem key={currentItem.path}>
@@ -90,7 +60,7 @@ const ProjectsPage = ({ data, pathContext }: Props) => {
                 <ProjectFeaturedImageWrapper>
                   <Link to={currentItem.path}>
                     <Img
-                      sizes={currentItem.featuredImage.childImageSharp.sizes}
+                      fluid={currentItem.featuredImage.childImageSharp.fluid}
                     />
                   </Link>
                 </ProjectFeaturedImageWrapper>
@@ -105,32 +75,6 @@ const ProjectsPage = ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query ProjectsPageQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
-      }
-    }
     page: staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
@@ -166,8 +110,8 @@ export const query = graphql`
                 excerpt
                 featuredImage {
                   childImageSharp {
-                    sizes(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }

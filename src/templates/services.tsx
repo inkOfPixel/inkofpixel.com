@@ -1,67 +1,37 @@
-// @flow
-
-import React, { Fragment } from "react";
-import styled, { keyframes } from "styled-components";
-import Helmet from "react-helmet";
-import Link from "gatsby-link";
-import Page from "components/Page";
-import Wrapper from "components/Wrapper";
-import simplePathJoin from "utils/simplePathJoin";
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "types/styled-components";
+import { kebabCase } from "lodash";
 import Splash from "components/Splash";
 import Markdown from "react-markdown";
 import { Check } from "react-feather";
-import { kebabCase } from "lodash";
+import Page from "components/Page";
+import Wrapper from "components/Wrapper";
+import { IPageLocale } from "types/index";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-const ServicesPage = ({ data, pathContext }: Props) => {
-  const { locale: pageLocale } = pathContext;
-  const { site, navigation, cookiePolicy, page } = data;
-  const { origin } = site.siteMetadata;
-  const currentPage = page.fields.locales.find(
-    locale => locale.language === pageLocale
-  );
-  const currentNavigation = navigation.locales.find(
-    locale => locale.language === pageLocale
+const ServicesPage = ({ data, pathContext }: IProps) => {
+  const currentPage = data.page.fields.locales.find(
+    locale => locale.language === pathContext.locale
   );
   return (
     <Page
-      locale={pageLocale}
-      navigation={{
-        main: currentNavigation.main.links,
-        language: page.fields.locales.map(locale => ({
-          locale: locale.language,
+      title={currentPage.title}
+      description={currentPage.seo.description}
+      localeCode={pathContext.locale}
+      pageLocales={data.page.fields.locales.map(
+        (locale: any): IPageLocale => ({
+          code: locale.language,
           url: locale.path
-        })),
-        cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-          locale => locale.language === pathContext.locale
-        ).path
-      }}
+        })
+      )}
     >
-      <Helmet>
-        <title>{currentPage.title} | inkOfPixel</title>
-        <meta name="description" content={currentPage.seo.description} />
-        <meta property="og:title" content={currentPage.title} />
-        <meta property="og:image " content={currentPage.seo.image} />
-        <meta
-          property="og:url"
-          content={simplePathJoin(origin, currentPage.path)}
-        />
-        <meta property="og:description" content={currentPage.seo.description} />
-        {page.fields.locales.map(locale => (
-          <link
-            key={locale.language}
-            rel="alternate"
-            href={simplePathJoin(origin, locale.path)}
-            hreflang={locale.language}
-          />
-        ))}
-      </Helmet>
       <Wrapper>
         <Spacer />
         <Info>
@@ -126,32 +96,6 @@ const ServicesPage = ({ data, pathContext }: Props) => {
 
 export const query = graphql`
   query ServicesPageQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
-      }
-    }
     page: staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
@@ -368,7 +312,7 @@ const CheckContainer = styled.div`
   }
 `;
 
-const PointTitle = styled.p`
+const PointTitle = styled.div`
   font-size: 14px;
   line-height: 1.8em;
   color: ${props => props.theme.colors.gray};

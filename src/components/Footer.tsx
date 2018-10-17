@@ -1,16 +1,13 @@
-// @flow
-
-import React, { type Node, Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import ScrollableAnchor from "react-scrollable-anchor";
 import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
-import Link from "gatsby-link";
 import Logo from "components/Logo";
 
-type Props = {};
+interface IProps {}
 
-export default class Footer extends Component<Props> {
+export default class Footer extends React.Component<IProps> {
   render() {
     return (
       <ScrollableAnchor id="contacts">

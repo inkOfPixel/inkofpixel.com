@@ -1,9 +1,9 @@
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }, options) => {
+exports.onCreateNode = ({ node, getNode, actions }, options) => {
   const { defaultLocale = "en", name, getPath = defaultGetPath } = options;
-  const { createNodeField } = boundActionCreators;
+  const { createNodeField } = actions;
   if (node.internal.type === "MarkdownRemark") {
     const fileNode = getNode(node.parent);
     if (name === undefined || fileNode.sourceInstanceName === name) {
@@ -39,9 +39,9 @@ const defaultGetPath = ({ node, locale, defaultLocale, slug }) =>
     ? path.join("/", slug)
     : path.join("/", locale, slug);
 
-exports.createPages = ({ graphql, boundActionCreators }, options) => {
+exports.createPages = ({ graphql, actions }, options) => {
   const { defaultLocale = "en", name } = options;
-  const { createPage } = boundActionCreators;
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
     graphql(`
       {
@@ -74,7 +74,7 @@ exports.createPages = ({ graphql, boundActionCreators }, options) => {
         locales.forEach(locale => {
           createPage({
             path: locale.path,
-            component: path.resolve(`./src/templates/${template}.js`),
+            component: path.resolve(`./src/templates/${template}.tsx`),
             context: {
               slug: node.fields.slug,
               locale: locale.language
