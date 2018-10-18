@@ -62,31 +62,19 @@
           "description": "Sometime you need to boost your workflow and you reach the Shopify app store to find the right app.. But what if that app doesn't exist? We have a good news, we can build it for you!\n\nWe built several apps for our clients and we can leverage our knowledge to guide you through the process of identifying your issues and deliver the right solution thanks to a custom app! There is no real limit to how much you can customize your Shopify store.",
           "points": [
             {
-              "title": "Shopify apps for getting outside pricing feeds"
+              "title": "Build custom **connectors** to your ERP system to seamlessly integrate your shop with your existing workflow"
             },
             {
-              "title": "Shopify apps for order & customer management"
+              "title": "Handle advanced checkout experiences such as **DDP** shipping"
             },
             {
-              "title": "Shopify apps for marketing and re-targeting"
+              "title": "Build **custom dashboard** to visualize your metrics and KPI"
             },
             {
-              "title": "Shopify apps for integration with custom inventory systems"
+              "title": "Custom data management to comply to EU **GDPR**"
             },
             {
-              "title": "API or third party integration based Shopify apps"
-            },
-            {
-              "title": "Shopify apps for getting outside pricing feeds Custom functionality based Shopify apps"
-            },
-            {
-              "title": "Shopify ERP integration apps"
-            },
-            {
-              "title": "Shopify apps for third party website integration"
-            },
-            {
-              "title": "Apps for custom item features & custom Shopify themes"
+              "title": "Integration of third party services"
             }
           ]
         },
