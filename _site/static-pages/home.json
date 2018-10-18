@@ -98,19 +98,19 @@
               "title": "Setup",
               "image": "/assets/inkofpixel - services_setup.svg",
               "description": "Ti aiuteremo a lanciare e/o ottimizzare il tuo business online tramite Shopify.",
-              "link": "/servizi#setup"
+              "link": "/it/servizi#setup"
             },
             {
               "title": "Temi",
               "image": "/assets/inkofpixel - services_design.svg",
               "description": "Lavoriamo assieme per creare l'esperienza utente che più rispecchia il tuo brand.",
-              "link": "/servizi#temi"
+              "link": "/it/servizi#temi"
             },
             {
               "title": "Applicazioni Shopify",
               "image": "/assets/inkofpixel - services_web developer.svg",
               "description": "Creiamo applicazioni Shopify su misura per migliorare il tuo flusso di lavoro.",
-              "link": "/servizi#applicazioni-shopify"
+              "link": "/it/servizi#applicazioni-shopify"
             }
           ]
         },
@@ -122,13 +122,13 @@
               "title": "Applicazioni mobile",
               "image": "/assets/inkofpixel - services_app.svg",
               "description": "Progettiamo e costruiamo applicazioni mobile sia per Android che per iOS.",
-              "link": "/servizi#applicazioni-mobile"
+              "link": "/it/servizi#applicazioni-mobile"
             },
             {
               "title": "Applicazioni web",
               "image": "/assets/inkofpixel - services_web app.svg",
               "description": "Grazie alla nostra esperienza nello sviluppo full-stack creiamo piattaforme su misura per te.\n",
-              "link": "/servizi#applicazioni-web"
+              "link": "/it/servizi#applicazioni-web"
             }
           ]
         }
