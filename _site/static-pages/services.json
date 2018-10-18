@@ -77,16 +77,6 @@
               "title": "Integration of **third party** services"
             }
           ]
-        },
-        {
-          "title": "Mobile App",
-          "image": "/assets/inkofpixel - services_app.svg",
-          "description": "We design and build cross platform mobile apps to offer unique native experiences."
-        },
-        {
-          "title": "Web App",
-          "image": "/assets/inkofpixel - services_web app.svg",
-          "description": "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
         }
       ]
     },
