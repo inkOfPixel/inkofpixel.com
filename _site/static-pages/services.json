@@ -75,6 +75,9 @@
             },
             {
               "title": "Integration of **third party** services"
+            },
+            {
+              "title": ".. and much more!"
             }
           ]
         }
@@ -144,19 +147,22 @@
           "description": "A volte senti la necessità di ottimizzare il tuo flusso di lavoro e cerchi nel Shopify app store un'applicazione adatta alle tue esigenze.. Ma se quell'applicazione non esistesse? Abbiamo buone notizie per te, noi possiamo crearla!\n\nAbbiamo costruito molte applicazioni per i nostri clienti ed utilizzando la nostra esperienza possiamo guidarti nel processo di identificazione dei problemi e consegnarti un'applicazione Shopify personalizzata che li risolva! Non c'è un vero limite su quanto tu possa personalizzare il tuo negozio online.",
           "points": [
             {
-              "title": "App per connettere Shopify al **tuo gestionale**"
+              "title": "Costruire un **connettore** al tuo gestionale per integrare automaticamente il tuo negozio online nel tuo flusso di lavoro esistente."
             },
             {
-              "title": "App per la visualizzazione di **report personalizzati**"
+              "title": "Gestione di esperienze di checkout avanzate come ad esempio le spedizioni **DDP**"
             },
             {
-              "title": "App per **gestire meglio i dati** dei tuoi prodotti (Metafield manager)"
+              "title": "Costruire interfacce per la visualizzazione delle tue metriche e KPI"
             },
             {
-              "title": "App per integrazione di **servizi di terze parti**"
+              "title": "Gestione dei dati personalizzata per adempiere al **GDPR**"
             },
             {
-              "title": "... e molto altro"
+              "title": "Integrazione con servizi di **terze parti**"
+            },
+            {
+              "title": ".. e molto altro!"
             }
           ]
         }
