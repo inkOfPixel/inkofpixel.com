@@ -7,6 +7,7 @@ import Markdown from "react-markdown";
 import { Check } from "react-feather";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
+import Contacts from "components/Contacts";
 import { IPageLocale } from "types/index";
 
 interface IProps {
@@ -89,6 +90,7 @@ const ServicesPage = ({ data, pathContext }: IProps) => {
             </Service>
           ))}
         </ServiceList>
+        <Contacts />
       </Wrapper>
     </Page>
   );
