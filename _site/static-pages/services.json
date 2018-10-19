@@ -52,7 +52,7 @@
               "title": "Theme development with **modern technologies** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...)"
             },
             {
-              "title": "Implementation of advanced features such as **fast catalog search**, faceted navigation, **stores locator**, advanced cart features, ... you name it"
+              "title": "Implementation of advanced features such as **fast catalog search**, faceted navigation, **stores locator**, **multi-language**, ... you name it"
             }
           ]
         },
@@ -137,7 +137,7 @@
               "title": "Sviluppo del tema con **tecnologie moderne** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...) per ottenere le massime prestazioni"
             },
             {
-              "title": "Sviluppo di funzionalità avanzate come la **ricerca veloce** ([Algolia](https://www.algolia.com/), ..), la navigazione del catalogo con filtri, lo **store locator**, funzionalità di carrello avanzate, .. e qualsiasi cosa tu abbia in mente"
+              "title": "Sviluppo di funzionalità avanzate come la **ricerca veloce** ([Algolia](https://www.algolia.com/), ..), la navigazione del catalogo con filtri, lo **store locator**, **multi lingua**, .. e qualsiasi cosa tu abbia in mente"
             }
           ]
         },
