@@ -12,7 +12,7 @@ const NotFoundPage = () => (
   >
     <NotFoundWrapper>
       <Spacer />
-      <Title>Not found</Title>
+      <Title>Page not found</Title>
       <Description>
         Ops! The page you are looking for does not exist
       </Description>
