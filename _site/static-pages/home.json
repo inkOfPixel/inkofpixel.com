@@ -28,13 +28,13 @@
               "title": "Custom themes",
               "image": "/assets/inkofpixel - services_design.svg",
               "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store.",
-              "link": "/services#themes"
+              "link": "/services#custom-themes"
             },
             {
               "title": "Custom Shopify apps",
               "image": "/assets/inkofpixel - services_web developer.svg",
               "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties.",
-              "link": "/services#shopify-apps"
+              "link": "/services#custom-shopify-apps"
             }
           ]
         },
@@ -98,19 +98,19 @@
               "title": "Configurazione",
               "image": "/assets/inkofpixel - services_setup.svg",
               "description": "Ti aiuteremo a lanciare e/o ottimizzare il tuo business online tramite Shopify.",
-              "link": "/it/servizi#setup"
+              "link": "/it/servizi#configurazione"
             },
             {
               "title": "Temi personalizzati",
               "image": "/assets/inkofpixel - services_design.svg",
               "description": "Lavoriamo assieme per creare l'esperienza utente che più rispecchia il tuo brand.",
-              "link": "/it/servizi#temi"
+              "link": "/it/servizi#temi-personalizzati"
             },
             {
               "title": "Applicazioni Shopify personalizzate",
               "image": "/assets/inkofpixel - services_web developer.svg",
               "description": "Creiamo applicazioni Shopify su misura per migliorare il tuo flusso di lavoro.",
-              "link": "/it/servizi#applicazioni-shopify"
+              "link": "/it/servizi#applicazioni-shopify-personalizzate"
             }
           ]
         },
