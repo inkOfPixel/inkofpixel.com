@@ -1,0 +1,27 @@
+{
+  "template": "contacts",
+  "locales": [
+    {
+      "language": "en",
+      "title": "Contacts",
+      "path": "/contacts",
+      "seo": {
+        "description": "Our mission is to build the best shopping experiences. Together we can build the future of your business, contact us to learn more!",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "How can we help?",
+      "subtitle": "Get in touch to discuss your goals and how we can help you achieve them."
+    },
+    {
+      "language": "it",
+      "title": "Contatti",
+      "path": "/contatti",
+      "seo": {
+        "description": "La nostra mission è costruire la migliore esperienza di shopping online. Insieme possiamo costruire il futuro del tuo business, contattaci per sapere come possiamo aiutarti!",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "Come possiamo aiutarti?",
+      "subtitle": "Contattaci per raccontarci i tuoi obbiettivi e discutere su come possiamo aiutarti a raggiungerli."
+    }
+  ]
+}

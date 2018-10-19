@@ -1,16 +1,13 @@
-// @flow
-
-import React, { type Node, Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import ScrollableAnchor from "react-scrollable-anchor";
 import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
-import Link from "gatsby-link";
 import Logo from "components/Logo";
 
-type Props = {};
+interface IProps {}
 
-export default class Footer extends Component<Props> {
+export default class Footer extends React.Component<IProps> {
   render() {
     return (
       <ScrollableAnchor id="contacts">
@@ -59,12 +56,12 @@ export default class Footer extends Component<Props> {
 }
 
 const Container = styled.footer`
-  background-color: #05c3b6;
+  background-color: ${props => props.theme.colors.green};
   position: relative;
   overflow: hidden;
   padding-top: 150px;
   padding-bottom: 150px;
-  color: #fff;
+  color: ${props => props.theme.colors.white};
 `;
 
 const Flexbox = styled.div`
@@ -73,7 +70,7 @@ const Flexbox = styled.div`
     flex-direction: column;
   }
   ${Logo} {
-    fill: #fff;
+    fill: ${props => props.theme.colors.white};
   }
   .contact {
     padding-left: 100px;
@@ -96,9 +93,9 @@ const Flexbox = styled.div`
       text-decoration: none;
       position: relative;
       transition: all 300ms;
-      color: #fff;
+      color: ${props => props.theme.colors.white};
       &::before {
-        background: #fff;
+        background: ${props => props.theme.colors.white};
         opacity: 0;
         bottom: -4px;
         content: "";
@@ -120,42 +117,10 @@ const Flexbox = styled.div`
 `;
 
 const BottomLine = styled.div`
-   {
-    padding-top: 50px;
-    font-size: 13px;
-    line-height: 1.4em;
-    .copyright {
-      padding-bottom: 15px;
-    }
-  }
-`;
-
-const LanguageNavigation = styled.nav`
-  margin-top: 40px;
-  a {
-    color: #fff;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    margin-right: 20px;
-    &::before {
-      background: #fff;
-      opacity: 0;
-      bottom: -4px;
-      content: "";
-      height: 2px;
-      left: 50%;
-      position: absolute;
-      width: 0%;
-      transition: all 300ms;
-      transform: translateX(-50%) translateY(0);
-    }
-    &:hover,
-    &.selected {
-      &::before {
-        opacity: 1;
-        width: 100%;
-      }
-    }
+  padding-top: 50px;
+  font-size: 13px;
+  line-height: 1.4em;
+  .copyright {
+    padding-bottom: 15px;
   }
 `;

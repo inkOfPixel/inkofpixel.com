@@ -1,44 +1,26 @@
 /**
-j* Implement Gatsby's Node APIs in this file.
+ * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
 const path = require("path");
-const { createFilePath } = require("gatsby-source-filesystem");
+const chalk = require("chalk");
 const generalSettings = require("./_site/settings/general.json");
 
-exports.modifyBabelrc = ({ babelrc }) => ({
-  ...babelrc,
-  presets: babelrc.presets.concat(["flow"]),
-  plugins: babelrc.plugins.concat([
-    "babel-plugin-styled-components",
-    [
-      "react-intl",
-      {
-        messagesDir: "./src/translations/extractedMessages/"
-      }
-    ]
-  ])
-});
-
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  config.merge({
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
     resolve: {
-      root: path.resolve(__dirname, "./src"),
-      extensions: ["", ".js", ".jsx", ".json"]
-    },
-    module: {
-      noParse: /node_modules\/netlify-cms\/dist\/cms.js/
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
     }
   });
-  return config;
 };
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
   const parent = getNode(node.parent);
-  if (node.internal.type === "StaticPagesJson") {
+  if (node.internal.type === "StaticPagesJson" && node.template) {
     createNodeField({
       node,
       name: "locales",
@@ -65,8 +47,8 @@ exports.createPages = context => {
   return Promise.all([createStaticPages(context)]);
 };
 
-function createStaticPages({ graphql, boundActionCreators }) {
-  const { createPage } = boundActionCreators;
+function createStaticPages({ graphql, actions }) {
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
     graphql(`
       {
@@ -99,28 +81,32 @@ function createStaticPages({ graphql, boundActionCreators }) {
           template,
           fields: { locales }
         } = node;
-        locales.forEach(locale => {
-          createPage({
-            path: locale.path,
-            component: path.resolve(`./src/templates/${template}.js`),
-            context: {
-              name: node.fields.name,
-              locale: locale.language
-            }
+        if (locales) {
+          locales.forEach(locale => {
+            createPage({
+              path: locale.path,
+              component: path.resolve(`./src/templates/${template}.tsx`),
+              context: {
+                name: node.fields.name,
+                locale: locale.language
+              }
+            });
           });
-        });
+        } else {
+          console.warn(
+            chalk.yellow(
+              `Warning: locales are missing on StaticPage with id ${node.id}`
+            )
+          );
+        }
       });
       resolve();
     });
   });
 }
 
-exports.setFieldsOnGraphQLNodeType = ({
-  boundActionCreators,
-  getNodes,
-  getNode
-}) => {
-  const { createNodeField } = boundActionCreators;
+exports.setFieldsOnGraphQLNodeType = ({ actions, getNodes, getNode }) => {
+  const { createNodeField } = actions;
 
   const homeNode = getNodes().find(node => {
     return (

@@ -1,0 +1,172 @@
+{
+  "template": "services",
+  "locales": [
+    {
+      "language": "en",
+      "title": "Services",
+      "path": "/services",
+      "seo": {
+        "description": "We create blazing fast SEO friendly shopping experiences and workflow integrations to help you promote your brand and your products.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "We walk with you through this digital-led world to envision and create the future of your business",
+      "subtitle": "As a digital partner we create blazing fast SEO friendly e-commerce, and interactive user experiences to help you promote your brand and your products.",
+      "servicesList": [
+        {
+          "title": "Setup",
+          "image": "/assets/inkofpixel - services_setup.svg",
+          "description": "Ready for the world to be your customer? We'll help you bring your products online on all devices. You can also sell on **Instagram**, **Facebook**, and many other marketplaces.  Through Shopify you will manage your catalog and organize your workflow and we'll guide you through the process by suggesting and configuring all the necessary tools.",
+          "points": [
+            {
+              "title": "Choose and install a **theme** from the [Shopify store](https://themes.shopify.com/?ref=inkofpixel&utm_campaign=themes)"
+            },
+            {
+              "title": "Organize your **website content** and how to easily navigate through it."
+            },
+            {
+              "title": "Organize your product catalog, a perform data migration when replatforming."
+            },
+            {
+              "title": "Configure your **domain**, including the **SSL certificate** for a secure shopping experience."
+            },
+            {
+              "title": "**Tailored training** to give you the knowledge you need to run your online shop."
+            },
+            {
+              "title": "Configure [Shopify apps](https://apps.shopify.com/?ref=inkofpixel&utm_campaign=apps) that empower your shop and workflow"
+            }
+          ]
+        },
+        {
+          "title": "Custom themes",
+          "image": "/assets/inkofpixel - services_design.svg",
+          "description": "Shopify builtin themes don't fit your needs? You need an experience more tailored to your brand with advanced features?\nDon't worry, we got you covered! We can build a custom website that suits all your needs. This let us also optimize the website to deliver blazing fast pages. After all, we don't want your customers to wait to buy your products right?",
+          "points": [
+            {
+              "title": "Custom **user experience** and **user interface** design"
+            },
+            {
+              "title": "**Interactive prototypes** to visualize and iterate over ideas"
+            },
+            {
+              "title": "Theme development with **modern technologies** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...)"
+            },
+            {
+              "title": "Implementation of advanced features such as **fast catalog search**, faceted navigation, **stores locator**, **multi-language**, ... you name it"
+            }
+          ]
+        },
+        {
+          "title": "Custom Shopify apps",
+          "image": "/assets/inkofpixel - services_web developer.svg",
+          "description": "Sometime you need to **boost your workflow** and you reach the Shopify app store to find the right app.. But what if that app doesn't exist? We have good news, we can build it for you!\n\nWe built several apps for our clients and we can leverage our knowledge to guide you through the process of identifying pain points in your workflow and deliver the right solution thanks to a **custom app**! There is no real limit to how much you can customize your Shopify store.",
+          "points": [
+            {
+              "title": "Build custom **connectors** to your ERP system to seamlessly integrate your shop with your existing workflow"
+            },
+            {
+              "title": "Handle advanced checkout experiences such as **DDP** shipping"
+            },
+            {
+              "title": "Build **custom dashboard** to visualize your metrics and KPI"
+            },
+            {
+              "title": "Custom data management to comply to EU **GDPR**"
+            },
+            {
+              "title": "Integration of **third party** services"
+            },
+            {
+              "title": ".. and much more!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "title": "Servizi",
+      "path": "/servizi",
+      "seo": {
+        "description": "Creiamo esperienze di shopping online e integriamo il tuo workflow per aiutarti a promuovere il tuo brand e i tuoi prodotti nel mondo digitale.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "Ti guidiamo attraverso il mondo digitale per aiutarti a creare il futuro del tuo business",
+      "subtitle": "Agiamo come il tuo partner digitale, creando e-commerce ed esperienze utente interattive per aiutarti a promuovere il tuo brand e i tuoi prodotti.",
+      "servicesList": [
+        {
+          "title": "Configurazione",
+          "image": "/assets/inkofpixel - services_setup.svg",
+          "description": "Sei pronto per vendere i tuoi prodotti al mondo intero? Ti aiuteremo ad avere **i tuoi prodotti acquistabili online** da qualsiasi dispositivo. Attraverso Shopify potrai **vendere su Instagram, Facebook** e moltissimi altri marketplace. Ti aiuteremo ad organizzare il tuo catalogo e il tuo workflow, e ti guideremo in questo percorso suggerendoti e configurandoti tutti gli strumenti necessari affinché il tuo business abbia successo.",
+          "points": [
+            {
+              "title": "**Selezionare e installare un tema** dallo [Store Shopify](https://themes.shopify.com/?ref=inkofpixel&utm_campaign=themes)"
+            },
+            {
+              "title": "Organizzare il contenuto del tuo sito web e l'esperienza di navigazione"
+            },
+            {
+              "title": "Organizzare il tuo catalogo, importando automaticamente dal tuo ERP"
+            },
+            {
+              "title": "Configurare il tuo** dominio** e certificato **SSL** per un'esperienza di shopping online sicura"
+            },
+            {
+              "title": "Configurare i **sistemi di pagamento** (Stripe, Paypal, Apple Pay, ecc)"
+            },
+            {
+              "title": "**Formazione su misura** per gestire al meglio il tuo store"
+            },
+            {
+              "title": "Configurare [applicazioni Shopify](https://apps.shopify.com/?ref=inkofpixel&utm_campaign=apps) per potenziare te e il tuo shop."
+            }
+          ]
+        },
+        {
+          "title": "Temi personalizzati",
+          "image": "/assets/inkofpixel - services_design.svg",
+          "description": "I temi che sono presenti nello store Shopify non soddisfano le tue esigenze? Necessiti di un'esperienza personalizzata con funzionalità avanzate? Non preoccuparti, possiamo sviluppare assieme un **sito completamente personalizzato** che soddisfi tutte le tue esigenze. Questo ci permetterà inoltre di ottimizzare ulteriormente le performance del tuo sito; In fondo non vogliamo che i tuoi clienti debbano attendere per poter acquistare i tuoi prodotti giusto?",
+          "points": [
+            {
+              "title": "Progettazione di **esperienze utente** ed **interfacce utente** personalizzate"
+            },
+            {
+              "title": "**Prototipi interattivi** per visualizzare e migliorare le tue idee"
+            },
+            {
+              "title": "Sviluppo del tema con **tecnologie moderne** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...) per ottenere le massime prestazioni"
+            },
+            {
+              "title": "Sviluppo di funzionalità avanzate come la **ricerca veloce** ([Algolia](https://www.algolia.com/), ..), la navigazione del catalogo con filtri, lo **store locator**, **multi lingua**, .. e qualsiasi cosa tu abbia in mente"
+            }
+          ]
+        },
+        {
+          "title": "Applicazioni Shopify personalizzate",
+          "image": "/assets/inkofpixel - services_web developer.svg",
+          "description": "A volte senti la necessità di ottimizzare il tuo flusso di lavoro e cerchi nel Shopify app store un'applicazione adatta alle tue esigenze.. Ma se quell'applicazione non esistesse? Abbiamo buone notizie per te, noi possiamo crearla!\n\nAbbiamo costruito molte applicazioni per i nostri clienti ed utilizzando la nostra esperienza possiamo guidarti nel processo di identificazione dei problemi e consegnarti un'applicazione Shopify personalizzata che li risolva! Non c'è un vero limite su quanto tu possa personalizzare il tuo negozio online.",
+          "points": [
+            {
+              "title": "Costruire un **connettore** al tuo gestionale per integrare automaticamente il tuo negozio online nel tuo flusso di lavoro esistente."
+            },
+            {
+              "title": "Gestione di esperienze di checkout avanzate come ad esempio le spedizioni **DDP**"
+            },
+            {
+              "title": "Costruire interfacce per la visualizzazione delle tue metriche e KPI"
+            },
+            {
+              "title": "Gestione dei dati personalizzata per adempiere al **GDPR**"
+            },
+            {
+              "title": "Integrazione con servizi di **terze parti**"
+            },
+            {
+              "title": ".. e molto altro!"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

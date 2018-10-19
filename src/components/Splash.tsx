@@ -1,7 +1,12 @@
-// @flow
-
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "types/styled-components";
+
+interface IProps {
+  className?: string;
+  speed?: string;
+  size?: string;
+  color?: string;
+}
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -45,17 +50,15 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-let Splash = ({ className, children }: Props) => (
+const Splash = styled<IProps>(({ children, className }) => (
   <div className={className}>
     <div className="content">{children}</div>
   </div>
-);
-
-Splash = styled(Splash).attrs({
+)).attrs({
   speed: () => `${random(5, 12).toFixed(2)}s`
 })`
   position: relative;
-  width: ${props => props.size};
+  width: ${(props: IProps) => props.size};
   height: ${props => props.size};
   background-color: ${props => props.color};
   animation: ${() => random(3, 6)}s linear infinite ${bordertl},

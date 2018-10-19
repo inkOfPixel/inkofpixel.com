@@ -3,5 +3,18 @@
   "languageSelector": {
     "color": "#fff",
     "backgroundColor": "#161338"
+  },
+  "colors": {
+    "white": "#fff",
+    "darkBlue": "#161338",
+    "gray": "#5c5c5c",
+    "green": "#05c3b6",
+    "lightGreen": "#e8fbf6",
+    "purple": "#8152bc",
+    "lightPurple": "#f8f1ff",
+    "yellow": "#f6bc00",
+    "lightYellow": "#fff7df",
+    "orange": "#fd7241",
+    "lightOrange": "#ffefe4"
   }
 }

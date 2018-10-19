@@ -1,10 +1,12 @@
 {
   "name": "gatsby-plugin-netlify-markdown-paths",
   "version": "0.0.1",
-  "description":
-    "A Gatsby plugin to for transforming markdown path into Gasby friendly paths",
+  "description": "A Gatsby plugin to for transforming markdown path into Gasby friendly paths",
   "main": "gatsby-node.js",
-  "keywords": ["gatsby", "gatsby-plugin"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin"
+  ],
   "author": "Massimo De Marchi <massimo@inkofpixel.com>",
   "license": "MIT",
   "dependencies": {

@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  branch: master
 media_folder: static/assets
 public_folder: /assets
 collections:
@@ -57,6 +58,7 @@ collections:
                       - { label: Title, name: title, widget: string }
                       - { label: Image, name: image, widget: image }
                       - { label: Description, name: description, widget: text }
+                      - { label: Link, name: link, widget: string }
               - label: Projects
                 name: projects
                 widget: object
@@ -80,6 +82,132 @@ collections:
                 fields:
                   - { label: Title, name: title, widget: string }
                   - { label: Description, name: description, widget: text }
+      - name: projects
+        label: Projects Page
+        file: "_site/static-pages/projects.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: projects
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+      - name: contacts
+        label: Contacts Page
+        file: "_site/static-pages/contacts.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: contacts
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
+      - name: services
+        label: Services Page
+        file: "_site/static-pages/services.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: contacts
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
+              - label: Services List
+                name: servicesList
+                widget: list
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Image, name: image, widget: image }
+                  - { label: Description, name: description, widget: markdown }
+                  - label: Points
+                    name: points
+                    widget: list
+                    fields:
+                      - { label: Title, name: title, widget: markdown }
+      - name: privacy
+        label: Privacy Page
+        file: "_site/static-pages/privacy.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: privacy
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
+              - { label: Intro, name: intro, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
   - label: Pages
     label_singular: Page
     name: page
@@ -125,6 +253,23 @@ collections:
         widget: select
         options:
           - { label: Default, value: project }
+      - label: "Priority"
+        name: "priority"
+        widget: "select"
+        default: "0"
+        options:
+          - { label: "Lowest", value: "5" }
+          - { label: "Low", value: "4" }
+          - { label: "Medium", value: "3" }
+          - { label: "High", value: "2" }
+          - { label: "Higher", value: "1" }
+          - { label: "Highest", value: "0" }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: true,
+        }
       - label: Locales
         name: locales
         widget: list
@@ -157,6 +302,19 @@ collections:
             options:
               - { label: English, value: en }
               - { label: Italian, value: it }
+      - label: Contacts
+        name: contacts
+        file: "_site/settings/contacts.json"
+        fields:
+          - { label: Email, name: email, widget: string }
+          - label: Socials
+            name: socials
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Link, name: link, widget: string }
+              - { label: Icon Handle, name: iconHandle, widget: string }
+
       - label: Navigation
         name: navigation
         file: "_site/settings/navigation.json"

@@ -6,15 +6,15 @@
         "links": [
           {
             "label": "Services",
-            "url": "/#services"
+            "url": "/services"
           },
           {
             "label": "Our Work",
-            "url": "/#work"
+            "url": "/projects"
           },
           {
             "label": "Contacts",
-            "url": "/#contacts"
+            "url": "/contacts"
           }
         ]
       }
@@ -25,15 +25,15 @@
         "links": [
           {
             "label": "Servizi",
-            "url": "/it/#services"
+            "url": "/it/servizi"
           },
           {
             "label": "Progetti",
-            "url": "/it/#work"
+            "url": "/it/progetti"
           },
           {
             "label": "Contatti",
-            "url": "/it/#contacts"
+            "url": "/it/contatti"
           }
         ]
       }

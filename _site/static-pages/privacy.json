@@ -1,0 +1,25 @@
+{
+  "template": "privacy",
+  "locales": [
+    {
+      "language": "en",
+      "title": "Privacy",
+      "path": "/privacy",
+      "seo": {
+        "description": "Lorem ipsum",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "Privacy"
+    },
+    {
+      "language": "it",
+      "title": "Privacy",
+      "path": "/it/privacy",
+      "seo": {
+        "description": "Lorem ipsum",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "intro": "Privacy"
+    }
+  ]
+}

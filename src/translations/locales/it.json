@@ -1,4 +1,11 @@
 {
+  "contacts.form.email": "Email",
+  "contacts.form.emailPlaceholder": "esempio@dominio.com",
+  "contacts.form.message": "Messaggio",
+  "contacts.form.messagePlaceholder": "Ciao...",
+  "contacts.form.name": "Nome",
+  "contacts.form.namePlaceholder": "Mario Rossi",
+  "contacts.form.send": "Invia",
   "cookie.message": "Utilizziamo i cookies al fine di migliorare la navigazione nel nostro sito. Leggi la nostra",
   "footer.companyInfo": "Capitale sociale €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • Partita IVA numero 09287730965 • REA MI - 2081233",
   "footer.contacts.description": "Collaboriamo con brand e imprenditori ambiziosi.{newLine}Costruiamo qualcosa di grande insieme.",
@@ -7,7 +14,9 @@
   "home.about.description": "Utilizziamo tecnologie che rappresentano lo stato dell'arte, ci piace cambiare e guardare le cose da nuovi punti di vista e non smettiamo mai di imparare.{newLine}Se cerchi nuove idee e persone che siano capaci di realizzarle, sei nel posto giusto.",
   "home.about.heading": "Siamo ingegneri, designer e scienziati.",
   "home.about.title": "Chi siamo",
-  "home.projectsSection.discoverMore": "Scopri di più",
   "home.projectsSection.title": "Progetti",
-  "home.serviceSection.title": "Servizi"
+  "home.serviceSection.contactUsToLearnMore": "Contattaci per scoprire di più",
+  "home.serviceSection.learnMore": "Scopri di più",
+  "home.serviceSection.title": "Servizi",
+  "projectCard.discoverMore": "Scopri di più"
 }

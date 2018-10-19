@@ -1,73 +1,40 @@
-// @flow
-
 import React from "react";
-import styled from "styled-components";
-import ScrollableAnchor from "react-scrollable-anchor";
+import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
-import Link from "gatsby-link";
-import Helmet from "react-helmet";
+import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
-import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
-import simplePathJoin from "utils/simplePathJoin";
+import Page from "components/Page";
+import { IPageLocale } from "types";
 
-type Props = {
-  data: Object,
+interface IProps {
+  data: any;
   pathContext: {
-    locale: string
-  }
-};
+    locale: string;
+  };
+}
 
-export default class Home extends React.Component<Props> {
+export default class Home extends React.Component<IProps> {
   render() {
     const { data, pathContext } = this.props;
-    const { locale: pageLocale } = pathContext;
-    const { staticPagesJson, site, navigation, cookiePolicy } = data;
-    const { origin } = site.siteMetadata;
-    const home = data.staticPagesJson;
+    const home = data.page;
     const currentHome = home.fields.locales.find(
-      locale => locale.language === pageLocale
+      locale => locale.language === pathContext.locale
     );
     const { featuredProjects } = home.fields;
-    const currentNavigation = navigation.locales.find(
-      locale => locale.language === pageLocale
-    );
     return (
       <Page
-        locale={pageLocale}
-        navigation={{
-          main: currentNavigation.main.links,
-          language: home.fields.locales.map(locale => ({
-            locale: locale.language,
+        title={currentHome.title}
+        description={currentHome.seo.description}
+        localeCode={pathContext.locale}
+        pageLocales={data.page.fields.locales.map(
+          (locale: any): IPageLocale => ({
+            code: locale.language,
             url: locale.path
-          })),
-          cookiePolicy: cookiePolicy.fields.frontmatter.locales.find(
-            locale => locale.language === pathContext.locale
-          ).path
-        }}
+          })
+        )}
       >
-        <Helmet>
-          <title>{currentHome.title}</title>
-          <meta name="description" content={currentHome.seo.description} />
-          <meta property="og:title" content={currentHome.title} />
-          <meta
-            property="og:url"
-            content={simplePathJoin(origin, currentHome.path)}
-          />
-          <meta
-            property="og:description"
-            content={currentHome.seo.description}
-          />
-          {home.fields.locales.map(locale => (
-            <link
-              key={locale.language}
-              rel="alternate"
-              href={simplePathJoin(origin, locale.path)}
-              hreflang={locale.language}
-            />
-          ))}
-        </Helmet>
         <Section className="Hero">
           <Wrapper>
             <Slogan
@@ -84,117 +51,123 @@ export default class Home extends React.Component<Props> {
             </HeroIllustration>
           </Wrapper>
         </Section>
-        <ScrollableAnchor id="services">
-          <Section className="Services">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.serviceSection.title"
-                  defaultMessage="Services"
-                />
-              </SectionTitle>
-              {currentHome.services.map((serviceGroup, groupIndex) => (
-                <Flexbox key={groupIndex}>
-                  <Heading>
-                    <DisplayText>{serviceGroup.groupTitle}</DisplayText>
-                    <Subtitle>{serviceGroup.groupDescription}</Subtitle>
-                  </Heading>
-                  <ServiceList>
-                    {serviceGroup.serviceList.map((item, index) => (
-                      <li key={item.title}>
-                        <Splash
-                          color={
-                            groupIndex === 0
-                              ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
-                              : "#ffefe4"
-                          }
-                          size="100px"
-                        >
-                          <img
-                            src={item.image}
-                            alt={`${item.title} inkOfPixel`}
-                          />
-                        </Splash>
-                        <p className="title">{item.title}</p>
-                        <p className="description">{item.description}</p>
-                      </li>
-                    ))}
-                  </ServiceList>
-                </Flexbox>
-              ))}
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
-        <ScrollableAnchor id="work">
-          <Section className="Work">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.projectsSection.title"
-                  defaultMessage="Our Work"
-                />
-              </SectionTitle>
-              <DisplayText>{currentHome.projects.title}</DisplayText>
-              <ul className="featuredProjectsList">
-                {featuredProjects.map(item => {
-                  const frontmatter = item.fields.frontmatter;
-                  const currentItem = frontmatter.locales.find(
-                    locale => locale.language === pathContext.locale
-                  );
-                  return (
-                    <li key={frontmatter.title}>
-                      <Link to={currentItem.path}>
-                        <div className="content">
-                          <Img
-                            sizes={
-                              currentItem.featuredImage.childImageSharp.sizes
-                            }
-                          />
-                          <div className="info">
-                            <p className="title">{frontmatter.title}</p>
-                            <p className="description">{currentItem.excerpt}</p>
-                          </div>
-                        </div>
-                        <div className="discoverMore">
+        <Section className="Services">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.serviceSection.title"
+                defaultMessage="Services"
+              />
+            </SectionTitle>
+            {currentHome.services.map((serviceGroup, groupIndex) => (
+              <Flexbox key={groupIndex}>
+                <Heading>
+                  <DisplayText>{serviceGroup.groupTitle}</DisplayText>
+                  <Subtitle>{serviceGroup.groupDescription}</Subtitle>
+                </Heading>
+                <ServiceList>
+                  {serviceGroup.serviceList.map((item, index) => (
+                    <li key={item.title}>
+                      <Splash
+                        color={
+                          groupIndex === 0
+                            ? ["#f8f1ff", "#e8fbf6", "#fff7df"][index]
+                            : "#ffefe4"
+                        }
+                        size="100px"
+                      >
+                        <img
+                          src={item.image}
+                          alt={`${item.title} inkOfPixel`}
+                        />
+                      </Splash>
+                      <p className="title">{item.title}</p>
+                      <p className="description">{item.description}</p>
+                      <Link className="link" to={item.link}>
+                        {groupIndex === 0 ? (
                           <FormattedMessage
-                            className="pippo"
-                            id="home.projectsSection.discoverMore"
-                            defaultMessage="Discover more"
+                            id="home.serviceSection.learnMore"
+                            defaultMessage="Learn more"
                           />
-                        </div>
+                        ) : (
+                          <FormattedMessage
+                            id="home.serviceSection.contactUsToLearnMore"
+                            defaultMessage="Contact us to learn more"
+                          />
+                        )}
                       </Link>
                     </li>
-                  );
-                })}
-              </ul>
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
-        <ScrollableAnchor id="about">
-          <Section className="About">
-            <Wrapper>
-              <SectionTitle>
-                <FormattedMessage
-                  id="home.about.title"
-                  defaultMessage="About us"
-                />
-              </SectionTitle>
-              <DisplayText>
-                <FormattedMessage
-                  id="home.about.heading"
-                  defaultMessage="We are engineers, designers and scientists."
-                />
-              </DisplayText>
-              <Subtitle>
-                <FormattedMessage
-                  id="home.about.description"
-                  defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
-                  values={{ newLine: <br /> }}
-                />
-              </Subtitle>
-            </Wrapper>
-          </Section>
-        </ScrollableAnchor>
+                  ))}
+                </ServiceList>
+              </Flexbox>
+            ))}
+          </Wrapper>
+        </Section>
+        <Section className="Work">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.projectsSection.title"
+                defaultMessage="Our Work"
+              />
+            </SectionTitle>
+            <DisplayText>{currentHome.projects.title}</DisplayText>
+            <ul className="featuredProjectsList">
+              {featuredProjects.map(item => {
+                const frontmatter = item.fields.frontmatter;
+                const currentItem = frontmatter.locales.find(
+                  locale => locale.language === pathContext.locale
+                );
+                return (
+                  <li key={frontmatter.title}>
+                    <Link to={currentItem.path}>
+                      <div className="content">
+                        <Img
+                          fluid={
+                            currentItem.featuredImage.childImageSharp.fluid
+                          }
+                        />
+                        <div className="info">
+                          <p className="title">{frontmatter.title}</p>
+                          <p className="description">{currentItem.excerpt}</p>
+                        </div>
+                      </div>
+                      <div className="discoverMore">
+                        <FormattedMessage
+                          id="projectCard.discoverMore"
+                          defaultMessage="Discover more"
+                        />
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </Wrapper>
+        </Section>
+        <Section className="About">
+          <Wrapper>
+            <SectionTitle>
+              <FormattedMessage
+                id="home.about.title"
+                defaultMessage="About us"
+              />
+            </SectionTitle>
+            <DisplayText>
+              <FormattedMessage
+                id="home.about.heading"
+                defaultMessage="We are engineers, designers and scientists."
+              />
+            </DisplayText>
+            <Subtitle>
+              <FormattedMessage
+                id="home.about.description"
+                defaultMessage="We use state of the art technologies, embrace change and never stop learning. {newLine}If you’re looking for new ideas and talented people to bring them to life, you’ve come to the right place."
+                values={{ newLine: <br /> }}
+              />
+            </Subtitle>
+          </Wrapper>
+        </Section>
       </Page>
     );
   }
@@ -202,33 +175,7 @@ export default class Home extends React.Component<Props> {
 
 export const query = graphql`
   query HomeQuery($name: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-      fields {
-        frontmatter {
-          locales {
-            language
-            path
-          }
-        }
-      }
-    }
-    staticPagesJson(fields: { name: { eq: $name } }) {
+    page: staticPagesJson(fields: { name: { eq: $name } }) {
       fields {
         name
         locales {
@@ -249,6 +196,7 @@ export const query = graphql`
               title
               image
               description
+              link
             }
           }
           projects {
@@ -266,8 +214,8 @@ export const query = graphql`
                 excerpt
                 featuredImage {
                   childImageSharp {
-                    sizes(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpSizes
+                    fluid(maxWidth: 1200, maxHeight: 600) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -389,7 +337,7 @@ const SectionTitle = styled.h2`
     display: block;
     height: 2px;
     width: 60px;
-    background-color: #161338;
+    background-color: ${props => props.theme.colors.darkBlue};
     position: absolute;
     top: 7px;
     left: -68px;
@@ -450,9 +398,9 @@ const Section = styled.section`
     background-color: #fff;
     padding-bottom: 150px;
     ${SectionTitle} {
-      color: #8152bc;
+      color: ${props => props.theme.colors.purple};
       &::before {
-        background-color: #8152bc;
+        background-color: ${props => props.theme.colors.purple};
       }
     }
     ${Flexbox} {
@@ -482,7 +430,7 @@ const Section = styled.section`
     }
     ${Subtitle} {
       padding-top: 20px;
-      color: #949494;
+      color: ${props => props.theme.colors.gray};
     }
     ${ServiceList} {
       li {
@@ -491,20 +439,20 @@ const Section = styled.section`
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        padding-bottom: 40px;
+        padding-bottom: 60px;
         &:nth-child(1) {
           .icon {
-            background-color: #f8f1ff;
+            background-color: ${props => props.theme.colors.lightPurple};
           }
         }
         &:nth-child(2) {
           .icon {
-            background-color: #e8fbf6;
+            background-color: ${props => props.theme.colors.lightGreen};
           }
         }
         &:nth-child(3) {
           .icon {
-            background-color: #fff7df;
+            background-color: ${props => props.theme.colors.lightYello};
           }
         }
         ${Splash} {
@@ -523,7 +471,31 @@ const Section = styled.section`
         .description {
           font-size: 14px;
           line-height: 1.8em;
-          color: #949494;
+          color: ${props => props.theme.colors.gray};
+        }
+        .link {
+          color: ${props => props.theme.colors.darkBlue};
+          display: inline-block;
+          text-decoration: none;
+          transition: all 0.3s;
+          margin-top: 20px;
+          font-size: 14px;
+          transition: 0.4s;
+          &::after {
+            content: "→";
+            display: inline-block;
+            font-size: 16px;
+            padding-left: 10px;
+            transition: 0.4s;
+            color: ${props => props.theme.colors.darkBlue};
+          }
+          &:hover {
+            color: ${props => props.theme.colors.green};
+            &::after {
+              padding-left: 20px;
+              color: ${props => props.theme.colors.green};
+            }
+          }
         }
       }
     }
@@ -535,9 +507,9 @@ const Section = styled.section`
     padding-bottom: 150px;
     background-color: #eaf7f7;
     ${SectionTitle} {
-      color: #05c3b6;
+      color: ${props => props.theme.colors.green};
       &::before {
-        background-color: #05c3b6;
+        background-color: ${props => props.theme.colors.green};
       }
     }
     ${DisplayText} {
@@ -573,9 +545,6 @@ const Section = styled.section`
         &:hover {
           box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
           transform: scale(1.01, 1.01);
-          .discoverMore {
-            color: #7589f4;
-          }
         }
         a {
           flex-direction: column;
@@ -598,11 +567,8 @@ const Section = styled.section`
             display: block;
           }
         }
-        .gatsby-image-outer-wrapper {
+        .gatsby-image-wrapper {
           height: 300px;
-          .gatsby-image-wrapper {
-            height: 100%;
-          }
         }
         .content {
           display: flex;
@@ -618,23 +584,37 @@ const Section = styled.section`
               font-size: 20px;
               padding-bottom: 20px;
               letter-spacing: 0.04em;
-              color: #161338;
+              color: ${props => props.theme.colors.darkBlue};
             }
             .description {
               font-size: 14px;
               line-height: 1.6em;
-              color: #949494;
+              color: ${props => props.theme.colors.gray};
             }
           }
         }
         .discoverMore {
-          color: #05c3b6;
+          color: ${props => props.theme.colors.darkBlue};
           display: inline-block;
           text-decoration: none;
           transition: all 0.3s;
           margin: 0 30px 30px 30px;
+          font-size: 14px;
+          transition: 0.4s;
+          &::after {
+            content: "→";
+            display: inline-block;
+            font-size: 16px;
+            padding-left: 10px;
+            transition: 0.4s;
+            color: ${props => props.theme.colors.darkBlue};
+          }
           &:hover {
-            color: #7589f4;
+            color: ${props => props.theme.colors.green};
+            &::after {
+              padding-left: 20px;
+              color: ${props => props.theme.colors.green};
+            }
           }
         }
       }
@@ -645,9 +625,9 @@ const Section = styled.section`
     padding-top: 200px;
     padding-bottom: 200px;
     ${SectionTitle} {
-      color: #8152bc;
+      color: ${props => props.theme.colors.purple};
       &::before {
-        background-color: #8152bc;
+        background-color: ${props => props.theme.colors.purple};
       }
     }
     ${DisplayText} {

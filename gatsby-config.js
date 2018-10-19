@@ -7,9 +7,22 @@ module.exports = {
     origin: "https://inkofpixel.com"
   },
   plugins: [
-    "gatsby-plugin-react-next",
     "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "inkOfPixel",
+        short_name: "iop",
+        start_url: "/",
+        background_color: "#663399",
+        theme_color: "#663399",
+        display: "minimal-ui",
+        icon: "src/images/favicon.png" // This path is relative to the root of the site.
+      }
+    },
+    "gatsby-plugin-offline",
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-typescript",
     "gatsby-plugin-netlify-cms",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -97,6 +110,12 @@ module.exports = {
             }
           }
         ]
+      }
+    },
+    {
+      resolve: "gatsby-source-iubenda",
+      options: {
+        documentIds: ["84397204", "57888804"]
       }
     },
     {
