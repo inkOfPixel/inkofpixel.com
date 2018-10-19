@@ -17,9 +17,9 @@ class Cookie extends React.Component<IProps, IState> {
     const storedValue = window.localStorage.getItem("acceptsCookies");
     if (storedValue) {
       const accepted = Boolean(storedValue);
-      if (accepted !== this.state.accepted) {
-        this.setState(() => ({ accepted }));
-      }
+      this.setState(() => ({ accepted }));
+    } else {
+      this.setState({ accepted: false });
     }
   }
 
@@ -29,7 +29,8 @@ class Cookie extends React.Component<IProps, IState> {
   };
 
   render() {
-    if (typeof this.state.accepted === "boolean") {
+    const { accepted } = this.state;
+    if (accepted === true || accepted === undefined) {
       return null;
     }
     return this.props.children(this.answer);
