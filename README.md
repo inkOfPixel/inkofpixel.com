@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1>
   <a href="https://www.inkofpixel.com">
     <img alt="inkOfPixel" src="https://github.com/inkOfPixel/inkofpixel.com/blob/master/src/images/inkOfPixel%20-%20Logo.svg" width="300" />
   </a>
