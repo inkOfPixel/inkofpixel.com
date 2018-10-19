@@ -272,5 +272,17 @@ const RichText = styled(Markdown)`
         right: 0;
       }
     }
+    ul {
+      list-style: none;
+      bottom: 0;
+      right: 0;
+      padding-top: 60px;
+      text-align: right;
+      li {
+        color: #03635d;
+        font-size: 14px;
+        margin-bottom: -20px;
+      }
+    }
   }
 `;
