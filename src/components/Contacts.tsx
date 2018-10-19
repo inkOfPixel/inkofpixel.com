@@ -210,6 +210,7 @@ const SectionTitle = styled.h2`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   position: relative;
+  margin: 0.67em 0;
   width: 100%;
   color: ${props => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
