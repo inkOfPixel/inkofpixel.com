@@ -84,10 +84,17 @@ export default class Home extends React.Component<IProps> {
                       <p className="title">{item.title}</p>
                       <p className="description">{item.description}</p>
                       <Link className="link" to={item.link}>
-                        <FormattedMessage
-                          id="home.serviceSection.discoverMore"
-                          defaultMessage="Discover more"
-                        />
+                        {groupIndex === 0 ? (
+                          <FormattedMessage
+                            id="home.serviceSection.learnMore"
+                            defaultMessage="Learn more"
+                          />
+                        ) : (
+                          <FormattedMessage
+                            id="home.serviceSection.contactUsToLearnMore"
+                            defaultMessage="Contact us to learn more"
+                          />
+                        )}
                       </Link>
                     </li>
                   ))}

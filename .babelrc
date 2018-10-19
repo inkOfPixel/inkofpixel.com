@@ -36,6 +36,7 @@
         "helpers": true,
         "regenerator": true
       }
-    ]
+    ],
+    ["react-intl", { "messagesDir": "./src/translations/extractedMessages/" }]
   ]
 }
