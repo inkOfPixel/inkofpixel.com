@@ -1,8 +1,10 @@
-<p align="center">
+<h1 align="center">
   <a href="https://www.inkofpixel.com">
-    <img alt="inkOfPixel" src="https://github.com/inkOfPixel/inkofpixel.com/blob/master/src/images/inkOfPixel%20-%20Logo.svg" width="250" />
+    <img alt="inkOfPixel" src="https://github.com/inkOfPixel/inkofpixel.com/blob/master/src/images/inkOfPixel%20-%20Logo.svg" width="300" />
   </a>
-</p>
+</h1>
+
+
 
 This repo contains the source of [inkofpixel.com](https://inkofpixel.com) and it's made with [Gatsby](https://www.gatsbyjs.org)
 
