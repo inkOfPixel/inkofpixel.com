@@ -21,7 +21,7 @@ interface IProps {
   description: string;
   localeCode: string;
   defaultLocaleCode: string;
-  pageLocales: IPageLocale[];
+  pageLocales?: IPageLocale[];
 }
 
 addLocaleData([...en, ...it]);
@@ -85,10 +85,10 @@ class Page extends React.Component<IProps> {
       description
     } = this.props;
     const translations: { [code: string]: any } = { it: itMessages };
-    const currentPageLocale = pageLocales.find(
-      pageLocale => pageLocale.code === localeCode
-    );
-    if (!currentPageLocale) {
+    const currentPageLocale = pageLocales
+      ? pageLocales.find(pageLocale => pageLocale.code === localeCode)
+      : undefined;
+    if (pageLocales && !currentPageLocale) {
       throw new Error(`Couldn't find page with locale code ${localeCode}`);
     }
     return (
@@ -130,13 +130,15 @@ class Page extends React.Component<IProps> {
                     />
                     <meta property="og:title" content={title} />
                     <meta property="og:type" content="website" />
-                    <meta
-                      property="og:url"
-                      content={simplePathJoin(
-                        data.site.siteMetadata.origin,
-                        currentPageLocale.url
-                      )}
-                    />
+                    {currentPageLocale && (
+                      <meta
+                        property="og:url"
+                        content={simplePathJoin(
+                          data.site.siteMetadata.origin,
+                          currentPageLocale.url
+                        )}
+                      />
+                    )}
                     <meta
                       property="og:description"
                       content={
@@ -144,17 +146,18 @@ class Page extends React.Component<IProps> {
                         "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place."
                       }
                     />
-                    {pageLocales.map(pageLocale => (
-                      <link
-                        key={pageLocale.code}
-                        rel="alternate"
-                        hrefLang={pageLocale.code}
-                        href={simplePathJoin(
-                          data.site.siteMetadata.origin,
-                          pageLocale.url
-                        )}
-                      />
-                    ))}
+                    {pageLocales &&
+                      pageLocales.map(pageLocale => (
+                        <link
+                          key={pageLocale.code}
+                          rel="alternate"
+                          hrefLang={pageLocale.code}
+                          href={simplePathJoin(
+                            data.site.siteMetadata.origin,
+                            pageLocale.url
+                          )}
+                        />
+                      ))}
                   </Helmet>
                   <Header
                     locale={localeCode}

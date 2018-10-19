@@ -98,30 +98,32 @@ class Header extends React.Component<IProps, IState> {
                         </ListItem>
                       ))}
                   </List>
-                  <LanguageSelector
-                    renderLabel={() => (
-                      <span className="selected">{locale}</span>
+                  {pageLocales &&
+                    pageLocales.length > 1 && (
+                      <LanguageSelector
+                        renderLabel={() => (
+                          <span className="selected">{locale}</span>
+                        )}
+                        color={theme.languageSelector.color}
+                        backgroundColor={theme.languageSelector.backgroundColor}
+                        size={50}
+                        open={languageMenuOpen}
+                        onToggle={this.handleToggleLanguageMenu}
+                      >
+                        {pageLocales.map(pageLocale => (
+                          <Link
+                            key={pageLocale.code}
+                            onClick={() => this.handleToggleLanguageMenu(false)}
+                            to={pageLocale.url}
+                            className={
+                              pageLocale.code === locale ? "selected" : ""
+                            }
+                          >
+                            {pageLocale.code}
+                          </Link>
+                        ))}
+                      </LanguageSelector>
                     )}
-                    color={theme.languageSelector.color}
-                    backgroundColor={theme.languageSelector.backgroundColor}
-                    size={50}
-                    open={languageMenuOpen}
-                    onToggle={this.handleToggleLanguageMenu}
-                  >
-                    {pageLocales &&
-                      pageLocales.map(pageLocale => (
-                        <Link
-                          key={pageLocale.code}
-                          onClick={() => this.handleToggleLanguageMenu(false)}
-                          to={pageLocale.url}
-                          className={
-                            pageLocale.code === locale ? "selected" : ""
-                          }
-                        >
-                          {pageLocale.code}
-                        </Link>
-                      ))}
-                  </LanguageSelector>
                 </RightBarItems>
               </Wrapper>
             </DesktopMenuContainer>
