@@ -49,7 +49,7 @@
               "title": "**Interactive prototypes** to visualize and iterate over ideas"
             },
             {
-              "title": "Theme development with **modern technologies**"
+              "title": "Theme development with **modern technologies** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...)"
             },
             {
               "title": "Implementation of advanced features such as **fast catalog search**, faceted navigation, **store locators**, advanced cart features, ... you name it"
@@ -120,21 +120,21 @@
           ]
         },
         {
-          "title": "Temi",
+          "title": "Temi personalizzati",
           "image": "/assets/inkofpixel - services_design.svg",
-          "description": "I temi che sono presenti nello store Shopify non sono di tuo gradimento? Necessiti di un'esperienza utente super personalizzata? oppure hai un catalogo con molto prodotti che un tema semplice non ne facilita l'utilizzo? \nNessuna paura, possiamo sviluppare assieme un **sito completamente custom**, sfruttando comunque tutte le potenzialità di Shopify.\n\nDecideremo passo per passo ogni singolo dettaglio del sito, partendo dalla ricerca delle migliori soluzioni per vendere e **comunicare al meglio il tuo brand**. La definizione dell'esperienza utente (UX), mockup grafici (UI) e lo sviluppo con le tecnologie più avanzate presenti sul mercato.",
+          "description": "I temi che sono presenti nello store Shopify non soddisfano le tue esigenze? Necessiti di un'esperienza personalizzata con funzionalità avanzate? Non preoccuparti, possiamo sviluppare assieme un **sito completamente personalizzato** che soddisfi tutte le tue esigenze. Questo ci permetterà inoltre di ottimizzare ulteriormente le performance del tuo sito; In fondo non vogliamo che i tuoi clienti debbano attendere per poter acquistare i tuoi prodotti giusto?",
           "points": [
             {
-              "title": "**UX/UI** Design"
+              "title": "****"
             },
             {
-              "title": "**Sviluppo tema custom** da zero"
+              "title": "**Prototipi interattivi** per visualizzare e migliorare le tue idee"
             },
             {
-              "title": "**Implementazione di mockup** grafici sviluppati e animazioni personalizzate"
+              "title": "Sviluppo del tema con **tecnologie moderne** ([Next.js](https://nextjs.org/), [GatsbyJS](https://www.gatsbyjs.com/), ...) per ottenere le massime prestazioni"
             },
             {
-              "title": "**Sviluppo di funzionalità** per il tuo store (es: ricerca avanzata, filtri personalizzabili ..)"
+              "title": "Sviluppo di funzionalità avanzate come la **ricerca veloce** ([Algolia](https://www.algolia.com/), ..), la navigazione del catalogo con filtri, lo **store locator**, funzionalità di carrello avanzate, ... e qualsiasi cosa tu abbia in mente"
             }
           ]
         },
