@@ -36,11 +36,6 @@ class ContactForm extends React.Component<IProps, IState> {
 
   handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    this.setState({ state: FormState.Success }, () => {
-      console.log(this.feedbackRef.current);
-      this.feedbackRef.current.scrollIntoView();
-    });
-    return;
     const form = event.target;
     try {
       this.setState({ state: FormState.Submitting });
@@ -52,9 +47,13 @@ class ContactForm extends React.Component<IProps, IState> {
           ...this.state
         })
       });
-      this.setState({ state: FormState.Success });
+      this.setState({ state: FormState.Success }, () => {
+        this.feedbackRef.current && this.feedbackRef.current.scrollIntoView();
+      });
     } catch (error) {
-      this.setState({ state: FormState.Error, error: error.message });
+      this.setState({ state: FormState.Error, error: error.message }, () => {
+        this.feedbackRef.current && this.feedbackRef.current.scrollIntoView();
+      });
     }
   };
 
