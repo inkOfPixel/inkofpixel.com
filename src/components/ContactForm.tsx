@@ -28,12 +28,19 @@ class ContactForm extends React.Component<IProps, IState> {
     state: FormState.Normal
   };
 
+  feedbackRef = React.createRef<HTMLElement>();
+
   handleChange = (event: ChangeEvent<HTMLElement>) => {
     this.setState({ [event.currentTarget.name]: event.currentTarget.value });
   };
 
   handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    this.setState({ state: FormState.Success }, () => {
+      console.log(this.feedbackRef.current);
+      this.feedbackRef.current.scrollIntoView();
+    });
+    return;
     const form = event.target;
     try {
       this.setState({ state: FormState.Submitting });
@@ -59,7 +66,7 @@ class ContactForm extends React.Component<IProps, IState> {
     const { state } = this.state;
     if (state === FormState.Success) {
       return (
-        <Feedback>
+        <Feedback ref={this.feedbackRef}>
           <h3>
             <FormattedMessage
               id="contacts.form.thankYou"
@@ -75,7 +82,7 @@ class ContactForm extends React.Component<IProps, IState> {
     }
     if (state === FormState.Error) {
       return (
-        <Feedback>
+        <Feedback ref={this.feedbackRef}>
           <h3>
             <FormattedMessage
               id="contacts.form.errorMessage"
@@ -182,6 +189,7 @@ class ContactForm extends React.Component<IProps, IState> {
 
 const Feedback = styled.div`
   padding-top: 30px;
+  padding-bottom: 50px;
   h3 {
     font-size: 46px;
     font-weight: 700;
