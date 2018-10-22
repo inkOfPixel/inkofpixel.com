@@ -4,36 +4,54 @@ interface IProps {
   children: (answer: (value: boolean) => void) => React.ReactNode;
 }
 
-interface IState {
-  accepted: undefined | null | boolean;
+enum Consent {
+  Accepted = "accepted",
+  Denied = "denied",
+  Verify = "verify",
+  NotSet = "not set"
 }
+
+interface IState {
+  consent: Consent;
+}
+
+const COOKIE_NAME = "cookieConsent";
+
+const saveConsent = (consent: Consent) => {
+  window.localStorage.setItem(COOKIE_NAME, consent);
+};
+
+const getConsent = (): Consent | null => {
+  const consent = window.localStorage.getItem(COOKIE_NAME) as Consent | null;
+  return consent;
+};
 
 class Cookie extends React.Component<IProps, IState> {
   state = {
-    accepted: undefined
+    consent: Consent.Verify
   };
 
   componentDidMount() {
-    const storedValue = window.localStorage.getItem("acceptsCookies");
-    if (storedValue) {
-      const accepted = Boolean(storedValue);
-      this.setState(() => ({ accepted }));
+    const consent = getConsent();
+    if (consent) {
+      this.setState(() => ({ consent }));
     } else {
-      this.setState({ accepted: false });
+      this.setState(() => ({ consent: Consent.NotSet }));
     }
   }
 
   answer = (accepted: boolean) => {
-    window.localStorage.setItem("acceptsCookies", String(accepted));
-    this.setState(() => ({ accepted }));
+    const consent = accepted ? Consent.Accepted : Consent.Denied;
+    saveConsent(consent);
+    this.setState(() => ({ consent }));
   };
 
   render() {
-    const { accepted } = this.state;
-    if (accepted === true || accepted === undefined) {
-      return null;
+    const { consent } = this.state;
+    if (consent === Consent.NotSet) {
+      return this.props.children(this.answer);
     }
-    return this.props.children(this.answer);
+    return null;
   }
 }
 
