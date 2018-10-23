@@ -39,12 +39,13 @@ class ContactForm extends React.Component<IProps, IState> {
     const form = event.target;
     try {
       this.setState({ state: FormState.Submitting });
+      const { state: ignoreState, ...formData } = this.state;
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           "form-name": form.getAttribute("name"),
-          ...this.state
+          ...formData
         })
       });
       this.setState({ state: FormState.Success }, () => {
