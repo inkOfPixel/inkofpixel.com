@@ -41,7 +41,7 @@ class ContactForm extends React.Component<IProps, IState> {
     try {
       this.setState({ state: FormState.Submitting });
       const { state: ignoreState, ...formData } = this.state;
-      await fetch("/", {
+      await fetch("/?no-cache=1", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
