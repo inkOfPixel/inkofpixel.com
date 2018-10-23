@@ -112,6 +112,7 @@ class Page extends React.Component<IProps> {
                   <Helmet>
                     <html lang={localeCode} />
                     <link rel="icon" href={favicon} type="image/png" />
+                    <meta name="viewport" content="width=device-width" />
                     <title>
                       {/inkofpixel/i.test(title)
                         ? title

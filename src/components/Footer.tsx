@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ScrollableAnchor from "react-scrollable-anchor";
 import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
 import Logo from "components/Logo";
@@ -10,47 +9,45 @@ interface IProps {}
 export default class Footer extends React.Component<IProps> {
   render() {
     return (
-      <ScrollableAnchor id="contacts">
-        <Container>
-          <Wrapper>
-            <Flexbox>
-              <Logo />
-              <div className="contact">
-                <div className="caption">
-                  <FormattedMessage
-                    id="footer.contacts.description"
-                    defaultMessage="We collaborate with ambitious brands and entrepreneurs.{newLine}We’d love to build something great together."
-                    values={{ newLine: <br /> }}
-                  />
-                </div>
-                <a
-                  className="mail"
-                  href="mailto:info@inkofpixel.com"
-                  target="_top"
-                >
-                  info@inkofpixel.com
-                </a>
+      <Container>
+        <Wrapper>
+          <Flexbox>
+            <Logo />
+            <div className="contact">
+              <div className="caption">
+                <FormattedMessage
+                  id="footer.contacts.description"
+                  defaultMessage="We collaborate with ambitious brands and entrepreneurs.{newLine}We’d love to build something great together."
+                  values={{ newLine: <br /> }}
+                />
               </div>
-            </Flexbox>
-            <BottomLine>
-              <p className="copyright">
-                <FormattedMessage
-                  id="footer.copyright"
-                  defaultMessage="© {year} inkOfPixel Srl. All rights reserved."
-                  values={{ year: new Date().getFullYear() }}
-                />
-              </p>
-              <p className="companyInfo">
-                <FormattedMessage
-                  id="footer.companyInfo"
-                  defaultMessage="Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
+              <a
+                className="mail"
+                href="mailto:info@inkofpixel.com"
+                target="_top"
+              >
+                info@inkofpixel.com
+              </a>
+            </div>
+          </Flexbox>
+          <BottomLine>
+            <p className="copyright">
+              <FormattedMessage
+                id="footer.copyright"
+                defaultMessage="© {year} inkOfPixel Srl. All rights reserved."
+                values={{ year: new Date().getFullYear() }}
+              />
+            </p>
+            <p className="companyInfo">
+              <FormattedMessage
+                id="footer.companyInfo"
+                defaultMessage="Capital €10200 i.v. • Piazza Castello n. 26 - 20121 Milano • VAT
                 Number 09287730965 • REA MI - 2081233"
-                />
-              </p>
-            </BottomLine>
-          </Wrapper>
-        </Container>
-      </ScrollableAnchor>
+              />
+            </p>
+          </BottomLine>
+        </Wrapper>
+      </Container>
     );
   }
 }
