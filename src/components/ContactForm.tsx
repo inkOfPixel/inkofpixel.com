@@ -25,7 +25,8 @@ function encode(data: any) {
 
 class ContactForm extends React.Component<IProps, IState> {
   state = {
-    state: FormState.Normal
+    state: FormState.Normal,
+    "bot-field": ""
   };
 
   feedbackRef = React.createRef<HTMLElement>();
