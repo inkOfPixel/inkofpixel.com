@@ -74,10 +74,12 @@ class ContactForm extends React.Component<IProps, IState> {
               defaultMessage="Thank you!"
             />
           </h3>
-          <FormattedMessage
-            id="contacts.form.thankYouDetails"
-            defaultMessage="We'll get in touch soon."
-          />
+          <p>
+            <FormattedMessage
+              id="contacts.form.thankYouDetails"
+              defaultMessage="We'll get in touch soon."
+            />
+          </p>
         </Feedback>
       );
     }
@@ -189,7 +191,7 @@ class ContactForm extends React.Component<IProps, IState> {
 }
 
 const Feedback = styled.div`
-  padding-top: 30px;
+  padding-top: 36px;
   padding-bottom: 50px;
   h3 {
     font-size: 46px;
@@ -203,6 +205,10 @@ const Feedback = styled.div`
     @media (max-width: 600px) {
       font-size: 32px;
     }
+  }
+  p {
+    font-size: 14px;
+    color: #5c5c5c;
   }
 `;
 
