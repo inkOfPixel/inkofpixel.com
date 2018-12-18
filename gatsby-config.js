@@ -4,9 +4,12 @@ const generalSettings = require("./_site/settings/general.json");
 module.exports = {
   siteMetadata: {
     title: "inkOfPixel",
-    origin: "https://inkofpixel.com"
+    origin: "https://inkofpixel.com",
+    siteUrl: "https://inkofpixel.com"
   },
+
   plugins: [
+    "gatsby-plugin-sitemap",
     "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-manifest`,
