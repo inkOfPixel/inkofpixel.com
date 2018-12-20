@@ -4,9 +4,12 @@ template: project
 priority: '3'
 published: false
 locales:
-  - body: >+
+  - body: >-
       NGB Jewels è un marchio di gioielli artigianali Made in Italy. Offre una
       vasta gamma di prodotti ad un prezzo accessibile.
+
+
+      ![Pagina collezione NGB Jewels](/assets/inkofpixel-ngb-jewels-home.jpg)
 
 
       ## La sfida
@@ -31,9 +34,17 @@ locales:
       filtro colore il selettore specifico per ogni prodotto viene modificato.
 
 
+      ![Selettore prodotti NGB Jewels
+      ](/assets/inkofpixel-ngb-jewels-product-card.jpg)
+
+
       La stessa modalità di navigazione è stata utilizzate nella pagina
       prodotto, che presenta la stessa grafica per mantenere il più possibili la
       UX similare.
+
+
+      ![Pagina prodotto NGB
+      Jewels](/assets/inkofpixel-ngb-jewels-product-page.jpg)
 
 
       ## Internazionalizzazione
@@ -43,7 +54,6 @@ locales:
       presenza territoriale, con questo nuovo ecommerce l'obiettivo è di far
       crescere la presenza del brand anche fuori dall'Italia ed è stato quindi
       fondamentale sviluppare un ecommerce multilingua.
-
     excerpt: >-
       NGB Jewels aveva la necessità di rifare il suo sito con la possibilità di
       vendere i propri prodotti online. Li stiamo aiutando ad sviluppare il loro
