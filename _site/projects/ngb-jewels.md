@@ -13,8 +13,8 @@ locales:
 
 
       La sfida vera e propria è stata portare l'intero catalogo di NGB Jewels
-      consultabile e acquistabile. Abbiamo seguito da zero lo sviluppo del
-      business digitale e abbiamo l'obiettivo di farlo crescere.
+      consultabile e acquistabile online. Abbiamo seguito da zero lo sviluppo
+      del business digitale e abbiamo l'obiettivo di farlo crescere.
 
 
       ## Un nuovo modo di consultare i prodotti
@@ -24,12 +24,11 @@ locales:
       colori, abbiamo quindi pensato che a livello di UX fosse meglio permettere
       all'utente di visualizzare il catalogo con tutte le forme e tramite un
       selettore capire quali fossero i colori disponibili. La soluzione è stata
-      creare delle card di prodotto interattive con la possibilità di
+      creare delle card di prodotto interattive, con la possibilità di
       visualizzare le varianti colori e poter vedere il prodotto direttamente
-      dalla pagina della collezione. La parte più complessa è stata legare
-      questi selettori con i filtri di catalogo, ogni qual volta viene applicato
-      un filtro colore il selettore specifico per ogni prodotto viene
-      modificato.
+      dalla pagina della collezione. E' stato necessario anche legare questi
+      selettori con i filtri di catalogo, ogni qual volta viene applicato un
+      filtro colore il selettore specifico per ogni prodotto viene modificato.
 
 
       La stessa modalità di navigazione è stata utilizzate nella pagina
