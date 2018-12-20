@@ -28,8 +28,35 @@ export default class Footer extends React.Component<IProps> {
               >
                 info@inkofpixel.com
               </a>
+              <div className="companyHQ">
+                <div className="office">
+                  <div className="title">Milano</div>
+                  <div className="subtitle">
+                    <FormattedMessage
+                      id="footer.companyHQ.legalHQ"
+                      defaultMessage="Legal HQ"
+                    />
+                  </div>
+                  <div className="address">Piazza Castello 26</div>
+                  <div className="city">Milano</div>
+                  <div className="cap">20121 (MI)</div>
+                </div>
+                <div className="office">
+                  <div className="title">Treviso</div>
+                  <div className="subtitle">
+                    <FormattedMessage
+                      id="footer.companyHQ.operationalHQ"
+                      defaultMessage="Operational HQ"
+                    />
+                  </div>
+                  <div className="address">Via Leonardo Da Vinci 2</div>
+                  <div className="city">Godega di Sant'Urbano</div>
+                  <div className="cap">31010 (TV)</div>
+                </div>
+              </div>
             </div>
           </Flexbox>
+
           <BottomLine>
             <p className="copyright">
               <FormattedMessage
@@ -72,6 +99,7 @@ const Flexbox = styled.div`
   .contact {
     padding-left: 100px;
     box-sizing: border-box;
+    flex: 1 0 auto;
     @media (max-width: 850px) {
       padding-left: 0;
       padding-top: 60px;
@@ -107,6 +135,27 @@ const Flexbox = styled.div`
         &::before {
           opacity: 1;
           width: 100%;
+        }
+      }
+    }
+    .companyHQ {
+      font-size: 13px;
+      line-height: 1.4em;
+      display: flex;
+      @media (max-width: 600px) {
+        flex-direction: column;
+      }
+      .office {
+        flex: 1 0 auto;
+        padding-top: 50px;
+        .title {
+          font-family: Europa;
+          font-size: 24px;
+          font-weight: 700;
+        }
+        .subtitle {
+          opacity: 0.6;
+          padding-bottom: 10px;
         }
       }
     }
