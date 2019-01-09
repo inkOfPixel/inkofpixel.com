@@ -182,6 +182,7 @@ class ContactForm extends React.Component<IProps, IState> {
           </FormattedMessage>
           <span className="focus-border" />
         </FormField>
+        <div data-netlify-recaptcha="true" />
         <SendButton>
           <FormattedMessage id="contacts.form.send" defaultMessage="Send" />
         </SendButton>
