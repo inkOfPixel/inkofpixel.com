@@ -4,9 +4,9 @@
   </a>
 </h1>
 
-
-
 This repo contains the source of [inkofpixel.com](https://inkofpixel.com) and it's made with [Gatsby](https://www.gatsbyjs.org)
+
+[![Edit inkofpixel](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1yjp48vl3j?fontsize=14)
 
 ## 🚀 Quick start
 
