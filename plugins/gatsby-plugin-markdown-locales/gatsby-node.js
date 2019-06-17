@@ -71,8 +71,6 @@ exports.createPages = ({ graphql, actions }, options) => {
       }
     `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        console.log(node);
-        console.log(node.fields.frontmatter);
         const { template, published, locales } = node.fields.frontmatter;
         if ((template === "project" && published) || template !== "project") {
           locales.forEach(locale => {
