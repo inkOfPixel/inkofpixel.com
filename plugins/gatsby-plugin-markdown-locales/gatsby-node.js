@@ -58,6 +58,7 @@ exports.createPages = ({ graphql, actions }, options) => {
                 slug
                 frontmatter {
                   template
+                  published
                   locales {
                     language
                     path
@@ -70,17 +71,21 @@ exports.createPages = ({ graphql, actions }, options) => {
       }
     `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        const { template, locales } = node.fields.frontmatter;
-        locales.forEach(locale => {
-          createPage({
-            path: locale.path,
-            component: path.resolve(`./src/templates/${template}.tsx`),
-            context: {
-              slug: node.fields.slug,
-              locale: locale.language
-            }
+        console.log(node);
+        console.log(node.fields.frontmatter);
+        const { template, published, locales } = node.fields.frontmatter;
+        if ((template === "project" && published) || template !== "project") {
+          locales.forEach(locale => {
+            createPage({
+              path: locale.path,
+              component: path.resolve(`./src/templates/${template}.tsx`),
+              context: {
+                slug: node.fields.slug,
+                locale: locale.language
+              }
+            });
           });
-        });
+        }
       });
       resolve();
     });
