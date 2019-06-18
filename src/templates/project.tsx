@@ -18,6 +18,8 @@ interface IProps {
 }
 
 export default ({ data, pathContext }: IProps) => {
+  console.log(data);
+  console.log(pathContext);
   const currentProject = data.project.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );

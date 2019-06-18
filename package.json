@@ -47,6 +47,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "dev": "yarn start",
     "start": "yarn develop",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
