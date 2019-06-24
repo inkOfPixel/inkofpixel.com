@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: marketing
 media_folder: static/assets
 public_folder: /assets
 collections:
@@ -327,17 +327,6 @@ collections:
         widget: select
         options:
           - { label: Default, value: blog }
-      - label: "Priority"
-        name: "priority"
-        widget: "select"
-        default: "0"
-        options:
-          - { label: "Lowest", value: "5" }
-          - { label: "Low", value: "4" }
-          - { label: "Medium", value: "3" }
-          - { label: "High", value: "2" }
-          - { label: "Higher", value: "1" }
-          - { label: "Highest", value: "0" }
       - {
           label: "Published",
           name: "published",
@@ -359,13 +348,6 @@ collections:
           - { name: seoDescription, label: SEO Description, widget: text }
           - { name: excerpt, label: Excerpt, widget: text }
           - { name: author, label: Author, widget: string }
-          - {
-              name: date,
-              label: Date,
-              widget: date,
-              default: "",
-              format: "DD-MM-YYYY",
-            }
           - { name: featuredImage, label: Featured image, widget: image }
           - { name: heroImage, label: Hero image, widget: image }
           - { name: body, label: Page content, widget: markdown }

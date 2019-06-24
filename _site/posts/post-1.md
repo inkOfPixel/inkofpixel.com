@@ -1,7 +1,6 @@
 ---
 title: D1 Milano
 template: post
-priority: "2"
 published: true
 date: "20-06-2019"
 locales:
