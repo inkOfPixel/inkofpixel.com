@@ -53,6 +53,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        path: `${__dirname}/_site/posts`,
+        name: "posts"
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         path: `${__dirname}/_site/settings`,
         name: "home-page"
       }
@@ -82,6 +89,23 @@ module.exports = {
         }
       }
     },
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
+        name: "posts",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const basePathByLocale = {
+            en: "/blog",
+            it: "/blog"
+          };
+          return locale === defaultLocale
+            ? path.join("/", basePathByLocale[locale], slug)
+            : path.join("/", locale, basePathByLocale[locale], slug);
+        }
+      }
+    },
+
     {
       resolve: "gatsby-plugin-markdown-locales",
       options: {

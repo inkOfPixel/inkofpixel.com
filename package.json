@@ -36,6 +36,7 @@
     "react-helmet": "5.2.0",
     "react-intl": "2.7.1",
     "react-markdown": "4.0.3",
+    "react-masonry-component": "6.2.1",
     "react-scrollable-anchor": "0.6.1",
     "react-simple-icons": "1.0.0-beta.5",
     "read-yaml-promise": "1.0.2",

@@ -109,6 +109,34 @@ collections:
                 fields:
                   - { label: SEO Description, name: description, widget: text }
                   - { label: Image, name: image, widget: image }
+      - name: blog
+        label: Blog Page
+        file: "_site/static-pages/blog.json"
+        fields:
+          - label: Template
+            name: template
+            widget: hidden
+            default: blog
+          - label: Locales
+            name: locales
+            widget: list
+            fields:
+              - label: Language
+                name: language
+                widget: select
+                default: en
+                options:
+                  - { label: English, value: en }
+                  - { label: Italian, value: it }
+              - { label: Title, name: title, widget: string }
+              - { label: Subtitle, name: subtitle, widget: string }
+              - { label: Path, name: path, widget: string, default: / }
+              - label: SEO
+                name: seo
+                widget: object
+                fields:
+                  - { label: SEO Description, name: description, widget: text }
+                  - { label: Image, name: image, widget: image }
       - name: contacts
         label: Contacts Page
         file: "_site/static-pages/contacts.json"
@@ -284,6 +312,60 @@ collections:
           - { name: seoDescription, label: SEO Description, widget: text }
           - { name: excerpt, label: Excerpt, widget: text }
           - { name: type, label: Type Project, widget: string }
+          - { name: featuredImage, label: Featured image, widget: image }
+          - { name: heroImage, label: Hero image, widget: image }
+          - { name: body, label: Page content, widget: markdown }
+  - label: Posts
+    label_singular: Post
+    name: posts
+    folder: _site/posts
+    create: true
+    fields:
+      - { name: title, label: Project title }
+      - label: Page template
+        name: template
+        widget: select
+        options:
+          - { label: Default, value: blog }
+      - label: "Priority"
+        name: "priority"
+        widget: "select"
+        default: "0"
+        options:
+          - { label: "Lowest", value: "5" }
+          - { label: "Low", value: "4" }
+          - { label: "Medium", value: "3" }
+          - { label: "High", value: "2" }
+          - { label: "Higher", value: "1" }
+          - { label: "Highest", value: "0" }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: true,
+        }
+
+      - label: Locales
+        name: locales
+        widget: list
+        fields:
+          - label: Language
+            name: language
+            widget: select
+            options:
+              - { label: English, value: en }
+              - { label: Italian, value: it }
+          - { name: seoTitle, label: SEO Project title, widget: string }
+          - { name: seoDescription, label: SEO Description, widget: text }
+          - { name: excerpt, label: Excerpt, widget: text }
+          - { name: author, label: Author, widget: string }
+          - {
+              name: date,
+              label: Date,
+              widget: date,
+              default: "",
+              format: "DD-MM-YYYY",
+            }
           - { name: featuredImage, label: Featured image, widget: image }
           - { name: heroImage, label: Hero image, widget: image }
           - { name: body, label: Page content, widget: markdown }

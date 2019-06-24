@@ -18,15 +18,18 @@ interface IProps {
 }
 
 export default ({ data, pathContext }: IProps) => {
-  const currentProject = data.project.fields.frontmatter.locales.find(
+  console.log("data", data);
+  console.log("pathContext", pathContext);
+  const currentPost = data.post.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
+  console.log(currentPost);
   return (
     <Page
-      title={currentProject.seoTitle}
-      description={currentProject.seodescription}
+      title={currentPost.seoTitle}
+      description={currentPost.seodescription}
       localeCode={pathContext.locale}
-      pageLocales={data.project.fields.frontmatter.locales.map(
+      pageLocales={data.post.fields.frontmatter.locales.map(
         (locale: any): IPageLocale => ({
           code: locale.language,
           url: locale.path
@@ -35,31 +38,28 @@ export default ({ data, pathContext }: IProps) => {
       theme={projectTheme}
     >
       <Helmet>
-        <meta
-          property="og:image "
-          content={currentProject.heroImage.publicURL}
-        />
+        <meta property="og:image " content={currentPost.heroImage.publicURL} />
       </Helmet>
       <Hero>
-        <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
+        <Img fluid={currentPost.heroImage.childImageSharp.fluid} />
         <HeroContent>
           <Wrapper>
             <Heading>
-              <ProjectType>{currentProject.type}</ProjectType>
-              <Title>{data.project.fields.frontmatter.title}</Title>
+              <ProjectType>{currentPost.type}</ProjectType>
+              <Title>{data.post.fields.frontmatter.title}</Title>
             </Heading>
           </Wrapper>
         </HeroContent>
       </Hero>
       <Wrapper>
-        <RichText source={currentProject.body} />
+        <RichText source={currentPost.body} />
       </Wrapper>
     </Page>
   );
 };
 
 export const query = graphql`
-  query DefaultPageQuery($slug: String!) {
+  query DefaultPageQueryMarketing($slug: String!) {
     site {
       siteMetadata {
         origin
@@ -76,7 +76,7 @@ export const query = graphql`
         }
       }
     }
-    project: markdownRemark(fields: { slug: { eq: $slug } }) {
+    post: markdownRemark(fields: { slug: { eq: $slug } }) {
       fields {
         slug
         frontmatter {

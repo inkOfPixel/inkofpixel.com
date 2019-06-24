@@ -1,0 +1,25 @@
+{
+  "template": "blog",
+  "locales": [
+    {
+      "language": "en",
+      "title": "Blog",
+      "subtitle": "The latest from us",
+      "path": "/blog",
+      "seo": {
+        "description": "???",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      }
+    },
+    {
+      "language": "it",
+      "title": "Blog",
+      "subtitle": "The latest from us",
+      "path": "/it/blog",
+      "seo": {
+        "description": "??",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      }
+    }
+  ]
+}
