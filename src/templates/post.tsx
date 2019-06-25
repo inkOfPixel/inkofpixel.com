@@ -26,6 +26,7 @@ export default ({ data, pathContext }: IProps) => {
     locale => locale.language === pathContext.locale
   );
   console.log("currentPost", currentPost);
+  const shareUrl = `${data.site.siteMetadata.origin}${currentPost.path}`;
 
   return (
     <Page
@@ -56,7 +57,7 @@ export default ({ data, pathContext }: IProps) => {
       </Wrapper>
       <ShareContainer>
         <ShareMsg>Share</ShareMsg>
-        <SharePost text={data.post.fields.frontmatter.title} />
+        <SharePost text={data.post.fields.frontmatter.title} url={shareUrl} />
       </ShareContainer>
     </Page>
   );

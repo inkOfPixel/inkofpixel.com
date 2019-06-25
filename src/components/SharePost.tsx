@@ -5,11 +5,12 @@ import { default as BaseIcon } from "react-simple-icons";
 
 interface Props {
   text: string;
+  url: string;
 }
-function SharePost({ text }: Props) {
+function SharePost({ text, url }: Props) {
   function handleShare(e, social) {
     e.preventDefault();
-    const articleUrl = window.location.href;
+    const articleUrl = url || window.location.href;
 
     switch (social) {
       case "twitter":
