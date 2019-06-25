@@ -23,13 +23,11 @@ locales:
       For a company, e-commerce represents much more than a simple platform
       where products are sold. It is the first business card, a showcase where
       you can display your brand in the world. The experience that an e-commerce
-      is able to provide is inextricably linked to the quality of a brand.
-
+      is able to provide is inextricably linked to the quality of a brand.\
 
       We dealt with the renewal of the Rue Des Mille e-commerce with the aim of
       creating a platform whose image fully reflects the philosophy of Rue Des
-      Mille.
-
+      Mille.\
 
       The project was developed from the ground up so as to be able to choose
       all the technologies necessary to build the bases of a flexible and
@@ -234,8 +232,6 @@ locales:
     seoTitle: Rue Des Mille
     type: Ecommerce
   - body: >-
-
-
       ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
@@ -248,8 +244,6 @@ locales:
       collaborazione di Confindustria.
 
 
-
-
       ## La sfida
 
 
@@ -257,20 +251,16 @@ locales:
       piattaforma dove si vendono dei prodotti. È il primo biglietto da visita,
       una vetrina dove è possibile esporre il proprio brand al mondo.
       L’esperienza che un e-commerce è in grado di fornire è indissolubilmente
-      legata alla qualità di un brand.
-
+      legata alla qualità di un brand.\
 
       Abbiamo affrontato il rinnovamento dell’ e-commerce di Rue Des Mille con
       l’obiettivo di creare una piattaforma la cui immagine rispecchi a pieno la
-      filosofia di Rue Des Mille.
-
+      filosofia di Rue Des Mille.\
 
       Il progetto è stato sviluppato da zero in modo da poter scegliere tutte le
       tecnologie necessarie per costruire le basi di una piattaforma flessibile
       e proiettata al futuro, con un’esperienza utente al di sopra dello
       standard.
-
-
 
 
       Le principali sfide che abbiamo dovuto affrontare nella realizzazione del
@@ -300,8 +290,6 @@ locales:
       dei servizi.
 
 
-
-
       ## Mobile first ed esperienza utente
 
 
@@ -315,8 +303,6 @@ locales:
       Abbiamo iniziato il progetto lavorando su dei prototipi sia mobile che
       desktop, ragionando su come rendere ogni azione dell’utente il più
       intuitiva possibile. 
-
-
 
 
       ![Prototipo mobile](/assets/rue-des-mille-01-mobile.jpg)
@@ -345,8 +331,6 @@ locales:
       connessione. Anche durante picchi di traffico con migliaia di persone
       connesse simultaneamente non è stato riscontrato nessun degrado delle
       performance della piattaforma.
-
-
 
 
       ## Gestione e personalizzazione dei prodotti
@@ -417,8 +401,6 @@ locales:
       ![Content management](/assets/rue-des-mille-07-content-management.jpg)
 
 
-
-
       ## Internazionalizzazione
 
 
@@ -451,8 +433,6 @@ locales:
       ![Store locator](/assets/rue-des-mille-09-store-locator.jpg)
 
 
-
-
       ## Migrazione dei dati
 
 
@@ -462,8 +442,6 @@ locales:
       il team di Rue Des Mille per fare in modo che il trasferimento di tutti i
       prodotti dal vecchio al nuovo e-commerce fosse il più agevole possibile,
       riuscendo a garantire la piena continuità del servizio.
-
-
 
 
       ## Il risultato
