@@ -9,6 +9,7 @@ import Wrapper from "components/Wrapper";
 import Page from "components/Page";
 import { IPageLocale } from "types/index";
 import SharePost from "components/SharePost";
+import { FormattedMessage } from "react-intl";
 
 interface IProps {
   data: any;
@@ -61,7 +62,9 @@ export default ({ data, pathContext }: IProps) => {
         <RichText source={currentPost.body} />
       </Wrapper>
       <ShareContainer>
-        <ShareMsg>Share</ShareMsg>
+        <ShareMsg>
+          <FormattedMessage id="post.share" defaultMessage="Share" />
+        </ShareMsg>
         <SharePost text={data.post.fields.frontmatter.title} url={""} />
       </ShareContainer>
     </Page>

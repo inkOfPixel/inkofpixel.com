@@ -43,39 +43,41 @@ const BlogPage = ({ data, pathContext }: IProps) => {
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
-        <h1>{currentPage.subtitle}</h1>
-        <Masonry elementType={"ul"} options={masonryOptions}>
-          {posts.map(post => {
-            const currentItem = post.locales.find(
-              locale => locale.language === pathContext.locale
-            );
-            return (
-              <PostListItem key={currentItem.path}>
-                <PostFeaturedImageWrapper>
-                  <Link to={currentItem.path}>
-                    <Img
-                      fluid={currentItem.featuredImage.childImageSharp.fluid}
-                    />
-                  </Link>
-                </PostFeaturedImageWrapper>
-                <ProjectDescription>
-                  <PostTitle>{post.title}</PostTitle>
-                  <PostDate>{post.date}</PostDate>
-                  <PostAuthor>{currentItem.author}</PostAuthor>
-                  <PostExcerpt>{currentItem.excerpt}</PostExcerpt>
-                  <PostLink>
+        <Subtitle>{currentPage.subtitle}</Subtitle>
+        <Container>
+          <Masonry elementType={"ul"} options={masonryOptions}>
+            {posts.map(post => {
+              const currentItem = post.locales.find(
+                locale => locale.language === pathContext.locale
+              );
+              return (
+                <PostListItem key={currentItem.path}>
+                  <PostFeaturedImageWrapper>
                     <Link to={currentItem.path}>
-                      <FormattedMessage
-                        id="projectCard.readMore"
-                        defaultMessage="Read more"
+                      <Img
+                        fluid={currentItem.featuredImage.childImageSharp.fluid}
                       />
                     </Link>
-                  </PostLink>
-                </ProjectDescription>
-              </PostListItem>
-            );
-          })}
-        </Masonry>
+                  </PostFeaturedImageWrapper>
+                  <ProjectDescription>
+                    <PostTitle>{post.title}</PostTitle>
+                    <PostDate>{post.date}</PostDate>
+                    <PostAuthor>{currentItem.author}</PostAuthor>
+                    <PostExcerpt>{currentItem.excerpt}</PostExcerpt>
+                    <PostLink>
+                      <Link to={currentItem.path}>
+                        <FormattedMessage
+                          id="projectCard.readMore"
+                          defaultMessage="Read more"
+                        />
+                      </Link>
+                    </PostLink>
+                  </ProjectDescription>
+                </PostListItem>
+              );
+            })}
+          </Masonry>
+        </Container>
       </Wrapper>
     </Page>
   );
@@ -134,6 +136,10 @@ export const query = graphql`
   }
 `;
 
+const Container = styled.div`
+  margin-bottom: 50px;
+`;
+const Subtitle = styled.h1``;
 const Spacer = styled.div`
   width: 100%;
   height: 200px;
