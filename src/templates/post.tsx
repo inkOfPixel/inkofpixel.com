@@ -41,7 +41,12 @@ export default ({ data, pathContext }: IProps) => {
       )}
     >
       <Helmet>
-        <meta property="og:image " content={currentPost.heroImage.publicURL} />
+        <meta
+          property="og:image "
+          content={`${data.site.siteMetadata.origin}${
+            currentPost.featuredImage.publicURL
+          }`}
+        />
       </Helmet>
       <Hero>
         <Wrapper>
@@ -92,6 +97,9 @@ export const query = graphql`
             language
             path
             body
+            featuredImage {
+              publicURL
+            }
             heroImage {
               publicURL
               childImageSharp {
