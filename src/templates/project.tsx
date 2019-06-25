@@ -154,7 +154,7 @@ const ProjectType = styled.p`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-size: 46px;
   padding: 0;
   margin: 0;
@@ -173,11 +173,10 @@ const RichText = styled(Markdown)`
   padding: 50px 0;
   p {
     line-height: 1.8em;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin: 30px auto;
     width: 700px;
     font-size: 14px;
-    margin: 0 auto;
+
     box-sizing: border-box;
     @media (max-width: 800px) {
       width: 100%;
@@ -210,6 +209,8 @@ const RichText = styled(Markdown)`
       width: 100%;
       display: block;
       width: 1200px;
+      margin-top: 40px;
+      margin-bottom: 40px;
       margin-left: -250px;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
       @media (max-width: 1260px) {
@@ -222,12 +223,27 @@ const RichText = styled(Markdown)`
       }
     }
   }
+  ul {
+    line-height: 1.8em;
+    margin: 30px auto;
+    width: 700px;
+    font-size: 14px;
+
+    box-sizing: border-box;
+    padding-left: 20px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+  }
   h2 {
-    padding-top: 30px;
+    margin: 0 auto;
+    margin-top: 50px;
     width: 700px;
     font-size: 24px;
     letter-spacing: 0.02em;
-    margin: 0 auto;
     font-family: Europa, sans-serif;
     box-sizing: border-box;
     @media (max-width: 800px) {
@@ -241,7 +257,6 @@ const RichText = styled(Markdown)`
     margin: 30px auto;
     box-sizing: border-box;
     position: relative;
-
     @media (max-width: 800px) {
       width: 100%;
     }
