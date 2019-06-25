@@ -5,9 +5,6 @@ priority: '0'
 published: true
 locales:
   - body: >-
-      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
-
-
       Rue Des Mille is an Italian brand of prêt-à-porter jewelry with a strong
       presence both online and in the area, thanks to over 600 brick and mortar
       stores where you can buy their products. In the last year the company has
@@ -15,6 +12,9 @@ locales:
       international network of Elite, the program of the London Stock Exchange
       Group, born in Borsa Italiana in 2012 with the collaboration of
       Confindustria.
+
+
+      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
       ## The challenge
@@ -227,9 +227,6 @@ locales:
     seoTitle: Rue Des Mille
     type: Ecommerce
   - body: >-
-      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
-
-
       Rue Des Mille è un brand italiano di gioielli prêt-à-porter con una forte
       presenza sia online che sul territorio, grazie agli oltre 600 negozi
       fisici nei quali è possibile acquistare i loro prodotti. L’azienda
@@ -237,6 +234,9 @@ locales:
       è entrata a far parte del network internazionale di Elite, il programma
       del London Stock Exchange Group, nato in Borsa Italiana nel 2012 con la
       collaborazione di Confindustria.
+
+
+      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
       ## La sfida
