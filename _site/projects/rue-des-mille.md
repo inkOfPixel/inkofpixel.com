@@ -23,13 +23,11 @@ locales:
       For a company, e-commerce represents much more than a simple platform
       where products are sold. It is the first business card, a showcase where
       you can display your brand in the world. The experience that an e-commerce
-      is able to provide is inextricably linked to the quality of a brand.
-
+      is able to provide is inextricably linked to the quality of a brand.\
 
       We dealt with the renewal of the Rue Des Mille e-commerce with the aim of
       creating a platform whose image fully reflects the philosophy of Rue Des
-      Mille.
-
+      Mille.\
 
       The project was developed from the ground up so as to be able to choose
       all the technologies necessary to build the bases of a flexible and
