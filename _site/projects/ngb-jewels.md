@@ -2,7 +2,7 @@
 title: NGB Jewels
 template: project
 priority: '3'
-published: false
+published: true
 locales:
   - body: >-
       NGB Jewels è un brand di gioielli artigianali Made in Italy che offre una
