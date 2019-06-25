@@ -42,8 +42,8 @@ locales:
       ogni prodotto viene aggiornato di conseguenza.
 
 
-      ![Selettore colore
-      collezione](/assets/screenshot-2019-06-24-at-16.27.18.png)
+      ![Ngb Jewels Filters](/assets/inkofpixel-ngb-jewels-filters.png)
+
 
       La stessa modalità di navigazione è stata utilizzate nella pagina
       prodotto, che presenta la stessa grafica per mantenere un’uniformità di
@@ -83,7 +83,7 @@ locales:
       business anche online grazie a Shopify.
     seoTitle: NGB Jewels | inkOfPixel
     type: 'Ecommerce, Marketing'
-  - body: >
+  - body: >-
       NGB Jewels is a Made in Italy handmade jewelry brand that offers a wide
       range of unique products at an affordable price.
 
@@ -100,7 +100,7 @@ locales:
       marketing.
 
 
-      ## Un nuovo modo di consultare i prodotti
+      ## A new way to browse products
 
 
       The great variety of products in the NGB catalog has led us to structure
@@ -120,8 +120,8 @@ locales:
       is updated accordingly.
 
 
-      ![Collection color
-      selection](/assets/screenshot-2019-06-24-at-16.27.18.png)
+      ![Ngb Jewels Filters](/assets/inkofpixel-ngb-jewels-filters.png)
+
 
       The same navigation method was used on the product page, which has the
       same graphics to maintain a uniformity of content that facilitates
