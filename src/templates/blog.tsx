@@ -2,7 +2,7 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import styled from "types/styled-components";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedDate } from "react-intl";
 import Page from "components/Page";
 import { IPageLocale } from "types/index";
 import Wrapper from "components/Wrapper";
@@ -61,14 +61,21 @@ const BlogPage = ({ data, pathContext }: IProps) => {
                     </Link>
                   </PostFeaturedImageWrapper>
                   <ProjectDescription>
-                    <PostDate>{post.date}</PostDate>
-                    <PostTitle>{post.title}</PostTitle>
+                    <PostDate>
+                      <FormattedDate
+                        day="2-digit"
+                        month="long"
+                        year="numeric"
+                        value={post.date}
+                      />
+                    </PostDate>
+                    <PostTitle>{currentItem.title}</PostTitle>
                     <PostAuthor>{post.author}</PostAuthor>
                     <PostExcerpt>{currentItem.excerpt}</PostExcerpt>
                     <PostLink>
                       <Link to={currentItem.path}>
                         <FormattedMessage
-                          id="projectCard.readMore"
+                          id="blog.readMore"
                           defaultMessage="Read more"
                         />
                       </Link>
@@ -114,10 +121,10 @@ export const query = graphql`
         node {
           fields {
             frontmatter {
-              title
               date
               author
               locales {
+                title
                 language
                 path
                 excerpt

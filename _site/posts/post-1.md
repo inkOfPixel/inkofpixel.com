@@ -1,8 +1,7 @@
 ---
-title: D1 Milano
 template: post
 published: true
-date: "20-06-2019"
+date: "2019-06-20"
 author: TEST AUTHOR
 locales:
   - body: >-
@@ -81,6 +80,7 @@ locales:
     featuredImage: /assets/inkofpixel_d1_milano_featured.jpg
     heroImage: /assets/inkofpixel_d1_milano_hero.jpg
     language: en
+    title: D1 Milano EN
     seoDescription: >-
       D1 Milano approached us to build a brand new Shopify Plus e-commerce. The
       result outperformed their expectations.
@@ -165,6 +165,7 @@ locales:
     featuredImage: /assets/inkofpixel_d1_milano_featured.jpg
     heroImage: /assets/inkofpixel_d1_milano_hero.jpg
     language: it
+    title: D1 Milano ITA
     seoDescription: >-
       Siamo stati contattati da D1 Milano per costruire il loro nuovo e-commerce
       con Shopify Plus. I risultati hanno superato le aspettative.

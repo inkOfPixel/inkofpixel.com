@@ -95,13 +95,19 @@ module.exports = {
         name: "posts",
         defaultLocale: generalSettings.defaultLanguage,
         getPath: ({ node, locale, defaultLocale, slug }) => {
+          const localizedTitle = node.frontmatter.locales
+            .find(l => l.language === locale)
+            .title.toLowerCase()
+            .split(" ")
+            .join("-");
+
           const basePathByLocale = {
             en: "/blog",
             it: "/blog"
           };
           return locale === defaultLocale
-            ? path.join("/", basePathByLocale[locale], slug)
-            : path.join("/", locale, basePathByLocale[locale], slug);
+            ? path.join("/", basePathByLocale[locale], localizedTitle)
+            : path.join("/", locale, basePathByLocale[locale], localizedTitle);
         }
       }
     },

@@ -9,7 +9,7 @@ import Wrapper from "components/Wrapper";
 import Page from "components/Page";
 import { IPageLocale } from "types/index";
 import SharePost from "components/SharePost";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedDate } from "react-intl";
 
 interface IProps {
   data: any;
@@ -51,8 +51,15 @@ export default ({ data, pathContext }: IProps) => {
       </Helmet>
       <Hero>
         <Wrapper size="small">
-          <Title>{data.post.fields.frontmatter.title}</Title>
-          <Date>{data.post.fields.frontmatter.date}</Date>
+          <Title>{currentPost.title}</Title>
+          <Date>
+            <FormattedDate
+              day="2-digit"
+              month="long"
+              year="numeric"
+              value={data.post.fields.frontmatter.date}
+            />
+          </Date>
           <Author>{data.post.fields.frontmatter.author}</Author>
           <Img fluid={currentPost.heroImage.childImageSharp.fluid} />
         </Wrapper>
@@ -93,11 +100,11 @@ export const query = graphql`
       fields {
         slug
         frontmatter {
-          title
           date
           author
           locales {
             language
+            title
             path
             body
             featuredImage {

@@ -321,7 +321,6 @@ collections:
     folder: _site/posts
     create: true
     fields:
-      - { name: title, label: Project title }
       - label: Page template
         name: template
         widget: select
@@ -334,6 +333,11 @@ collections:
           default: true,
         }
       - { name: author, label: Author, widget: string }
+      - label: "Date"
+        name: "date"
+        widget: "date"
+        default: ""
+        format: "YYYY-MM-DD"
       - label: Locales
         name: locales
         widget: list
@@ -350,6 +354,7 @@ collections:
           - { name: featuredImage, label: Featured image, widget: image }
           - { name: heroImage, label: Hero image, widget: image }
           - { name: body, label: Page content, widget: markdown }
+          - { name: title, label: Project title }
   - label: Settings
     name: settings
     delete: false
