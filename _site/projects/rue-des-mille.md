@@ -31,8 +31,7 @@ locales:
 
       The project was developed from the ground up so as to be able to choose
       all the technologies necessary to build the bases of a flexible and
-      future-oriented platform, with a user experience above the standard.
-
+      future-oriented platform, with a user experience above the standard.\
 
       The main challenges we faced in the realization of the project were:
 
@@ -65,8 +64,7 @@ locales:
       it follows that our approach was to take care in every detail of the
       mobile browsing experience, designing every detail of the site from a
       mobile-first perspective, but without obviously neglecting the correct use
-      of the contents even from the desktop.
-
+      of the contents even from the desktop.\
 
       We started the project working on both mobile and desktop prototypes,
       thinking about how to make every user action as intuitive as possible.
@@ -136,8 +134,7 @@ locales:
       e-commerce. So in fact the first live test took place under heavy traffic
       conditions. The platform has borne the load of the users perfectly,
       without experiencing any drop in performance with peaks of over 1000 users
-      connected simultaneously.
-
+      connected simultaneously.\
 
       For the collection we also created a personalized landing page that was
       seamlessly integrated into e-commerce thanks to the flexibility of the
@@ -153,8 +150,7 @@ locales:
 
       To manage the contents of the site we used a headless CMS, giving the
       possibility to the administrators of Rue Des Mille to modify every page at
-      will and even create new pages completely independently.
-
+      will and even create new pages completely independently.\
 
       An example is the News page, where administrators can insert articles
       through a text editor and see them published within a few minutes.
@@ -169,8 +165,7 @@ locales:
       One of the objectives of Rue Des Mille to consolidate brand awareness is
       to invest in foreign markets, with targets in particular on the United
       States and Spain. It was therefore essential to develop multilingual
-      e-commerce. Internationalization has been managed
-
+      e-commerce. Internationalization has been managed\
 
       Through the use of the CMS, giving the possibility to independently modify
       the translations of all the contents.
@@ -260,8 +255,7 @@ locales:
       Il progetto è stato sviluppato da zero in modo da poter scegliere tutte le
       tecnologie necessarie per costruire le basi di una piattaforma flessibile
       e proiettata al futuro, con un’esperienza utente al di sopra dello
-      standard.
-
+      standard.\
 
       Le principali sfide che abbiamo dovuto affrontare nella realizzazione del
       progetto sono state: 
@@ -297,8 +291,7 @@ locales:
       smartphone. Da questo dato segue che il nostro approccio è stato quello di
       curare in ogni dettaglio l’esperienza di navigazione mobile progettando
       ogni dettaglio del sito in ottica mobile-first, ma senza ovviamente
-      trascurare la corretta fruizione dei contenuti anche da desktop.
-
+      trascurare la corretta fruizione dei contenuti anche da desktop.\
 
       Abbiamo iniziato il progetto lavorando su dei prototipi sia mobile che
       desktop, ragionando su come rendere ogni azione dell’utente il più
@@ -372,8 +365,7 @@ locales:
       nuovo e-commerce. Quindi di fatto il primo test live è avvenuto sotto
       condizioni di forte traffico. La piattaforma ha sopportato perfettamente
       il carico degli utenti, senza riscontrare nessun calo delle performance
-      con picchi di oltre 1000 utenti connessi simultaneamente.
-
+      con picchi di oltre 1000 utenti connessi simultaneamente.\
 
       Per la collezione inoltre abbiamo creato una landing page personalizzata
       che è stata integrata senza problemi nell’e-commerce grazie alla
@@ -390,8 +382,7 @@ locales:
       Per gestire i contenuti del sito abbiamo utilizzato un headless CMS, dando
       la possibilità agli amministratori di Rue Des Mille di modificare ogni
       pagina a piacimento e addirittura creare nuove pagine totalmente in
-      autonomia.
-
+      autonomia.\
 
       Un esempio è la pagina News, dove gli amministratori possono inserire
       articoli tramite un editor di testo e vederli pubblicati nel giro di pochi
@@ -407,8 +398,7 @@ locales:
       Uno degli obiettivi di Rue Des Mille per consolidare la brand awareness è
       quello di investire sui mercati esteri, con target in particolare su Stati
       Uniti e Spagna. È stato quindi fondamentale sviluppare l’ e-commerce
-      multilingua. L’internazionalizzazione è stata gestita 
-
+      multilingua. L’internazionalizzazione è stata gestita \
 
       Tramite l’utilizzo del CMS, dando la possibilità di modificare in maniera
       indipendente le traduzioni di tutti i contenuti.
