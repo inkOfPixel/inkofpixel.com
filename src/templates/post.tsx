@@ -120,7 +120,7 @@ export const query = graphql`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   font-size: 46px;
   padding: 0;
   margin: 0;
@@ -175,14 +175,13 @@ const Hero = styled.div`
 `;
 
 const RichText = styled(Markdown)`
-  padding: 30px 0;
+  padding: 50px 0;
   p {
     line-height: 1.8em;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    margin: 30px auto;
     width: 700px;
     font-size: 14px;
-    margin: 0 auto;
+
     box-sizing: border-box;
     @media (max-width: 800px) {
       width: 100%;
@@ -214,10 +213,12 @@ const RichText = styled(Markdown)`
     img {
       width: 100%;
       display: block;
-      width: 960px;
-      margin-left: -130px;
+      width: 1200px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      margin-left: -250px;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-      @media (max-width: 1020px) {
+      @media (max-width: 1260px) {
         width: calc(100vw - 80px);
         margin-left: calc((-100vw + 780px) / 2);
       }
@@ -227,12 +228,27 @@ const RichText = styled(Markdown)`
       }
     }
   }
+  ul {
+    line-height: 1.8em;
+    margin: 30px auto;
+    width: 700px;
+    font-size: 14px;
+
+    box-sizing: border-box;
+    padding-left: 20px;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+  }
   h2 {
-    padding-top: 30px;
+    margin: 0 auto;
+    margin-top: 50px;
     width: 700px;
     font-size: 24px;
     letter-spacing: 0.02em;
-    margin: 0 auto;
     font-family: Europa, sans-serif;
     box-sizing: border-box;
     @media (max-width: 800px) {
@@ -246,7 +262,6 @@ const RichText = styled(Markdown)`
     margin: 30px auto;
     box-sizing: border-box;
     position: relative;
-
     @media (max-width: 800px) {
       width: 100%;
     }
@@ -302,5 +317,12 @@ const ShareContainer = styled.div`
 `;
 
 const ShareMsg = styled.p`
+  font-size: 14px;
+  font-weight: 400;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  width: 100%;
+  font-family: "Roboto Mono", monospace;
+  text-align: center;
 `;
