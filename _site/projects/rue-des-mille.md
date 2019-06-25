@@ -5,9 +5,6 @@ priority: '0'
 published: true
 locales:
   - body: >-
-      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
-
-
       Rue Des Mille is an Italian brand of prêt-à-porter jewelry with a strong
       presence both online and in the area, thanks to over 600 brick and mortar
       stores where you can buy their products. In the last year the company has
@@ -17,17 +14,20 @@ locales:
       Confindustria.
 
 
+      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
+
+
       ## The challenge
 
 
       For a company, e-commerce represents much more than a simple platform
       where products are sold. It is the first business card, a showcase where
       you can display your brand in the world. The experience that an e-commerce
-      is able to provide is inextricably linked to the quality of a brand.  
+      is able to provide is inextricably linked to the quality of a brand.\
 
       We dealt with the renewal of the Rue Des Mille e-commerce with the aim of
       creating a platform whose image fully reflects the philosophy of Rue Des
-      Mille.  
+      Mille.\
 
       The project was developed from the ground up so as to be able to choose
       all the technologies necessary to build the bases of a flexible and
@@ -65,7 +65,7 @@ locales:
       it follows that our approach was to take care in every detail of the
       mobile browsing experience, designing every detail of the site from a
       mobile-first perspective, but without obviously neglecting the correct use
-      of the contents even from the desktop.  
+      of the contents even from the desktop.\
 
       We started the project working on both mobile and desktop prototypes,
       thinking about how to make every user action as intuitive as possible.
@@ -135,7 +135,7 @@ locales:
       e-commerce. So in fact the first live test took place under heavy traffic
       conditions. The platform has borne the load of the users perfectly,
       without experiencing any drop in performance with peaks of over 1000 users
-      connected simultaneously.  
+      connected simultaneously.\
 
       For the collection we also created a personalized landing page that was
       seamlessly integrated into e-commerce thanks to the flexibility of the
@@ -151,7 +151,7 @@ locales:
 
       To manage the contents of the site we used a headless CMS, giving the
       possibility to the administrators of Rue Des Mille to modify every page at
-      will and even create new pages completely independently.  
+      will and even create new pages completely independently.\
 
       An example is the News page, where administrators can insert articles
       through a text editor and see them published within a few minutes.
@@ -227,9 +227,6 @@ locales:
     seoTitle: Rue Des Mille
     type: Ecommerce
   - body: >-
-      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
-
-
       Rue Des Mille è un brand italiano di gioielli prêt-à-porter con una forte
       presenza sia online che sul territorio, grazie agli oltre 600 negozi
       fisici nei quali è possibile acquistare i loro prodotti. L’azienda
@@ -239,6 +236,9 @@ locales:
       collaborazione di Confindustria.
 
 
+      ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
+
+
       ## La sfida
 
 
@@ -246,11 +246,11 @@ locales:
       piattaforma dove si vendono dei prodotti. È il primo biglietto da visita,
       una vetrina dove è possibile esporre il proprio brand al mondo.
       L’esperienza che un e-commerce è in grado di fornire è indissolubilmente
-      legata alla qualità di un brand.  
+      legata alla qualità di un brand.\
 
       Abbiamo affrontato il rinnovamento dell’ e-commerce di Rue Des Mille con
       l’obiettivo di creare una piattaforma la cui immagine rispecchi a pieno la
-      filosofia di Rue Des Mille.  
+      filosofia di Rue Des Mille.\
 
       Il progetto è stato sviluppato da zero in modo da poter scegliere tutte le
       tecnologie necessarie per costruire le basi di una piattaforma flessibile
@@ -367,7 +367,7 @@ locales:
       nuovo e-commerce. Quindi di fatto il primo test live è avvenuto sotto
       condizioni di forte traffico. La piattaforma ha sopportato perfettamente
       il carico degli utenti, senza riscontrare nessun calo delle performance
-      con picchi di oltre 1000 utenti connessi simultaneamente.  
+      con picchi di oltre 1000 utenti connessi simultaneamente.\
 
       Per la collezione inoltre abbiamo creato una landing page personalizzata
       che è stata integrata senza problemi nell’e-commerce grazie alla
