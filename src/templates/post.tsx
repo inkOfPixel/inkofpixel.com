@@ -26,7 +26,7 @@ export default ({ data, pathContext }: IProps) => {
     locale => locale.language === pathContext.locale
   );
   console.log("currentPost", currentPost);
-  const shareUrl = `${data.site.siteMetadata.origin}${currentPost.path}`;
+  // const shareUrl = `${data.site.siteMetadata.origin}${currentPost.path}`;
 
   return (
     <Page
@@ -42,7 +42,7 @@ export default ({ data, pathContext }: IProps) => {
     >
       <Helmet>
         <meta
-          property="og:image "
+          property="og:image"
           content={`${data.site.siteMetadata.origin}${
             currentPost.featuredImage.publicURL
           }`}
@@ -62,7 +62,7 @@ export default ({ data, pathContext }: IProps) => {
       </Wrapper>
       <ShareContainer>
         <ShareMsg>Share</ShareMsg>
-        <SharePost text={data.post.fields.frontmatter.title} url={shareUrl} />
+        <SharePost text={data.post.fields.frontmatter.title} url={""} />
       </ShareContainer>
     </Page>
   );
