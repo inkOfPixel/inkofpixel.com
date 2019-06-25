@@ -25,7 +25,7 @@ export default ({ data, pathContext }: IProps) => {
   return (
     <Page
       title={currentProject.seoTitle}
-      description={currentProject.seodescription}
+      description={currentProject.seoDescription}
       localeCode={pathContext.locale}
       pageLocales={data.project.fields.frontmatter.locales.map(
         (locale: any): IPageLocale => ({
@@ -40,7 +40,6 @@ export default ({ data, pathContext }: IProps) => {
           property="og:image"
           content={currentProject.heroImage.publicURL}
         />
-        <meta property="og:description" content={currentProject.excerpt} />
       </Helmet>
       <Hero>
         <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
@@ -87,7 +86,6 @@ export const query = graphql`
             language
             path
             body
-            excerpt
             heroImage {
               publicURL
               childImageSharp {
