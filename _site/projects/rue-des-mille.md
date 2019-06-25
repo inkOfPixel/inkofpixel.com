@@ -228,7 +228,7 @@ locales:
     seoDescription: >-
       Rue Des Mille is an Italian brand of prêt-à-porter jewelry. We dealt with
       the renewal of the Rue Des Mille e-commerce with the aim of creating a
-      platform whose image fully reflects the philosophy of Rue Des Mille.
+      platform whose image fully reflects their philosophy.
     seoTitle: Rue Des Mille
     type: Ecommerce
   - body: >-
@@ -470,8 +470,8 @@ locales:
     seoDescription: >-
       Rue Des Mille è un marchio italiano di gioielli prêt-à-porter. Ci siamo
       occupati del rinnovo dell'e-commerce di Rue Des Mille con l'obiettivo di
-      creare una piattaforma la cui immagine rifletta pienamente la filosofia di
-      Rue Des Mille.
+      creare una piattaforma la cui immagine rifletta pienamente la loro
+      filosofia.
     seoTitle: Rue Des Mille
     type: Ecommerce
 ---
