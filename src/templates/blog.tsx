@@ -158,16 +158,16 @@ const PageTitle = styled.h2`
   }
 `;
 
-const ProjectsList = styled.ul`
-  list-style: none;
-  padding: 60px 0;
-`;
-
 const PostListItem = styled.li`
   display: flex;
   flex-direction: column;
-  max-width: 500px;
   margin: 20px;
+  width: calc(50% - 40px);
+  @media (max-width: 650px) {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 40px;
+  }
 `;
 
 const ProjectDescription = styled.div`

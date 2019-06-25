@@ -8,8 +8,7 @@ import Wrapper from "components/Wrapper";
 
 import Page from "components/Page";
 import { IPageLocale } from "types/index";
-import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
+import SharePost from "components/SharePost";
 
 interface IProps {
   data: any;
@@ -27,40 +26,6 @@ export default ({ data, pathContext }: IProps) => {
     locale => locale.language === pathContext.locale
   );
   console.log("currentPost", currentPost);
-
-  function handleShare(e, social) {
-    e.preventDefault();
-    const articleUrl = "window.location.href";
-    const text = data.post.fields.frontmatter.title;
-    switch (social) {
-      case "twitter":
-        window.open(
-          "http://twitter.com/share?url=" +
-            encodeURIComponent(articleUrl) +
-            "&text=" +
-            encodeURIComponent(text),
-          "",
-          "left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
-        );
-        break;
-      case "linkedin":
-        window.open(
-          "http://www.linkedin.com/shareArticle?mini=true&url=" +
-            encodeURIComponent(articleUrl),
-          "",
-          "left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
-        );
-      case "facebook":
-        window.open(
-          "https://www.facebook.com/sharer/sharer.php?u=" + articleUrl,
-          "facebook-popup",
-          "height=350,width=600"
-        );
-        break;
-      default:
-        break;
-    }
-  }
 
   return (
     <Page
@@ -91,24 +56,7 @@ export default ({ data, pathContext }: IProps) => {
       </Wrapper>
       <ShareContainer>
         <ShareMsg>Share</ShareMsg>
-        <Socials>
-          {[
-            { title: "twitter", link: "/", iconHandle: "twitter" },
-            { title: "linkedin", link: "/", iconHandle: "linkedin" },
-            { title: "facebook", link: "/", iconHandle: "facebook" }
-          ].map(social => (
-            <SocialLink
-              key={social.title}
-              href={social.link}
-              aria-label={`Share article on ${social.title}`}
-              onClick={e => handleShare(e, social.title)}
-            >
-              <Splash className={social.iconHandle} size="60px">
-                <Icon name={social.iconHandle} />
-              </Splash>
-            </SocialLink>
-          ))}
-        </Socials>
+        <SharePost text={data.post.fields.frontmatter.title} />
       </ShareContainer>
     </Page>
   );
@@ -160,44 +108,6 @@ export const query = graphql`
   }
 `;
 
-const SocialLink = styled.a`
-  display: inline-block;
-  margin: 5px;
-`;
-
-const Icon = styled(BaseIcon)`
-  fill: #fff;
-`;
-
-const Splash = styled(BaseSplash)`
-  transition: 0.3s all;
-  &.twitter {
-    background-color: rgba(29, 161, 242, 0.7);
-    &:hover {
-      background-color: rgba(29, 161, 242, 1);
-    }
-  }
-  &.facebook {
-    background-color: rgba(59, 89, 152, 0.7);
-    &:hover {
-      background-color: rgba(59, 89, 152, 1);
-    }
-  }
-
-  &.github {
-    background-color: rgba(24, 23, 23, 0.7);
-    &:hover {
-      background-color: rgba(24, 23, 23, 1);
-    }
-  }
-  &.linkedin {
-    background-color: rgba(72, 117, 180, 0.7);
-    &:hover {
-      background-color: rgba(72, 117, 180, 1);
-    }
-  }
-`;
-
 const ShareContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -206,10 +116,6 @@ const ShareContainer = styled.div`
   align-items: center;
 `;
 
-const Socials = styled.div`
-  display: flex;
-  margin-top: 20px;
-`;
 const ShareMsg = styled.p`
   text-transform: uppercase;
 `;
