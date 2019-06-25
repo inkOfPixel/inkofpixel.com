@@ -36,7 +36,6 @@ class Logo extends React.PureComponent<IProps> {
 }
 
 export default styled(Logo)`
-  width: 200px;
-  height: 54px;
+  display: block;
   fill: ${(props: IProps) => props.theme.navigationColor};
 `;

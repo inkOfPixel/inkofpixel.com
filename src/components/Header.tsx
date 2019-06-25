@@ -107,7 +107,7 @@ class Header extends React.Component<IProps, IState> {
                         )}
                         color={theme.languageSelector.color}
                         backgroundColor={theme.languageSelector.backgroundColor}
-                        size={50}
+                        size={44}
                         open={languageMenuOpen}
                         onToggle={this.handleToggleLanguageMenu}
                       >
@@ -155,18 +155,20 @@ const LogoLink = styled(Link)`
   display: block;
   left: 0px;
   top: 53px;
+  width: 200px;
   @media (max-width: 1260px) {
     left: 40px;
   }
   @media (max-width: 700px) {
     left: 20px;
+    width: 160px;
   }
 `;
 
 const RightBarItems = styled.div`
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 55px;
   margin: 0;
   display: flex;
   align-items: baseline;
@@ -177,7 +179,7 @@ const List = styled.ul`
   @media (max-width: 1260px) {
     right: 40px;
   }
-  @media (max-width: 899px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `;
@@ -217,18 +219,18 @@ const ListItem = styled.li`
 `;
 
 const LanguageSelector = styled(GooeyMenu)`
-  margin-left: 40px;
+  margin-left: 30px;
   @media (max-width: 1260px) {
-    margin-right: 40px;
+    margin-right: 30px;
   }
   a {
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
   }
   .selected {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
   }
 `;
 

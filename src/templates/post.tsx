@@ -50,7 +50,7 @@ export default ({ data, pathContext }: IProps) => {
         />
       </Helmet>
       <Hero>
-        <Wrapper>
+        <Wrapper size="small">
           <Title>{data.post.fields.frontmatter.title}</Title>
           <Date>{data.post.fields.frontmatter.date}</Date>
           <Author>{data.post.fields.frontmatter.author}</Author>
@@ -120,42 +120,6 @@ export const query = graphql`
   }
 `;
 
-const ShareContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 120px;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ShareMsg = styled.p`
-  text-transform: uppercase;
-`;
-const Date = styled.p`
-  margin: 20px 0;
-`;
-const Author = styled.p`
-  margin: 20px 0;
-  text-transform: uppercase;
-  color: ${props => props.theme.colors.green};
-`;
-
-const Hero = styled.div`
-  min-height: 480px;
-  width: 100%;
-  position: relative;
-  padding-top: 160px;
-  ${Wrapper} {
-    height: 100%;
-  }
-  .gatsby-image-outer-wrapper {
-    height: 100%;
-  }
-  .gatsby-image-wrapper {
-    height: 100%;
-  }
-`;
-
 const Title = styled.h2`
   font-size: 46px;
   padding: 0;
@@ -163,6 +127,8 @@ const Title = styled.h2`
   font-weight: 700;
   font-family: Europa;
   line-height: 1.1em;
+  padding-bottom: 16px;
+  text-align: center;
   @media (max-width: 900px) {
     font-size: 40px;
   }
@@ -171,8 +137,45 @@ const Title = styled.h2`
   }
 `;
 
+const Date = styled.p`
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  width: 100%;
+  color: ${props => props.theme.colors.gray};
+  font-family: "Roboto Mono", monospace;
+  padding-bottom: 20px;
+  text-align: center;
+`;
+const Author = styled.p`
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  width: 100%;
+  color: ${props => props.theme.colors.green};
+  font-family: "Roboto Mono", monospace;
+  padding-bottom: 40px;
+  text-align: center;
+`;
+
+const Hero = styled.div`
+  width: 100%;
+  position: relative;
+  padding-top: 200px;
+  .gatsby-image-outer-wrapper {
+    height: 100%;
+  }
+  .gatsby-image-wrapper {
+    height: 100%;
+  }
+`;
+
 const RichText = styled(Markdown)`
-  padding: 50px 0;
+  padding: 30px 0;
   p {
     line-height: 1.8em;
     padding-top: 30px;
@@ -211,10 +214,10 @@ const RichText = styled(Markdown)`
     img {
       width: 100%;
       display: block;
-      width: 1200px;
-      margin-left: -250px;
+      width: 960px;
+      margin-left: -130px;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-      @media (max-width: 1260px) {
+      @media (max-width: 1020px) {
         width: calc(100vw - 80px);
         margin-left: calc((-100vw + 780px) / 2);
       }
@@ -288,4 +291,16 @@ const RichText = styled(Markdown)`
       }
     }
   }
+`;
+
+const ShareContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 120px;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ShareMsg = styled.p`
+  text-transform: uppercase;
 `;

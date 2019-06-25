@@ -50,6 +50,7 @@ const BlogPage = ({ data, pathContext }: IProps) => {
               const currentItem = post.locales.find(
                 locale => locale.language === pathContext.locale
               );
+              console.log("CI", currentItem);
               return (
                 <PostListItem key={currentItem.path}>
                   <PostFeaturedImageWrapper>
@@ -60,9 +61,9 @@ const BlogPage = ({ data, pathContext }: IProps) => {
                     </Link>
                   </PostFeaturedImageWrapper>
                   <ProjectDescription>
-                    <PostTitle>{post.title}</PostTitle>
                     <PostDate>{post.date}</PostDate>
-                    <PostAuthor>{currentItem.author}</PostAuthor>
+                    <PostTitle>{post.title}</PostTitle>
+                    <PostAuthor>{post.author}</PostAuthor>
                     <PostExcerpt>{currentItem.excerpt}</PostExcerpt>
                     <PostLink>
                       <Link to={currentItem.path}>
@@ -136,15 +137,7 @@ export const query = graphql`
   }
 `;
 
-const Container = styled.div`
-  margin-bottom: 50px;
-`;
-const Subtitle = styled.h1``;
-const Spacer = styled.div`
-  width: 100%;
-  height: 200px;
-`;
-const PageTitle = styled.h2`
+const PageTitle = styled.h1`
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -152,6 +145,7 @@ const PageTitle = styled.h2`
   position: relative;
   width: 100%;
   color: ${props => props.theme.colors.green};
+  font-family: "Roboto Mono", monospace;
   &::before {
     content: "";
     display: block;
@@ -164,25 +158,68 @@ const PageTitle = styled.h2`
   }
 `;
 
+const Subtitle = styled.h2`
+  font-size: 46px;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  font-family: Europa;
+  line-height: 1.1em;
+  padding-bottom: 40px;
+  @media (max-width: 900px) {
+    font-size: 40px;
+  }
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
+`;
+const Spacer = styled.div`
+  width: 100%;
+  height: 200px;
+`;
+
+const Container = styled.div`
+  width: calc(100% + 120px);
+  margin-left: -60px;
+  @media (max-width: 1260px) {
+    width: calc(100% + 80px);
+    margin-left: -40px;
+  }
+  @media (max-width: 1000px) {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+    margin: 0;
+  }
+`;
+
 const PostListItem = styled.li`
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  width: calc(50% - 40px);
-  @media (max-width: 650px) {
+  padding: 60px;
+  box-sizing: border-box;
+  width: 50%;
+  @media (max-width: 1260px) {
+    padding: 40px;
+  }
+  @media (max-width: 1000px) {
+    padding: 20px;
+  }
+  @media (max-width: 800px) {
     width: 100%;
-    margin: 0;
-    margin-bottom: 40px;
+    padding: 0;
+    margin: 40px 0;
   }
 `;
 
 const ProjectDescription = styled.div`
   padding-right: 60px;
   box-sizing: border-box;
-  padding-top: 10px;
+  padding: 30px 0;
   @media (max-width: 900px) {
     width: 100%;
-    padding: 20px;
   }
 `;
 const PostFeaturedImageWrapper = styled.div`
@@ -202,14 +239,27 @@ const PostFeaturedImageWrapper = styled.div`
   }
 `;
 
+const PostDate = styled.p`
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  width: 100%;
+  color: ${props => props.theme.colors.gray};
+  font-family: "Roboto Mono", monospace;
+  padding-bottom: 13px;
+`;
+
 const PostTitle = styled.h3`
   font-weight: 700;
   font-family: Europa;
-  font-size: 20px;
-  padding-bottom: 10px;
+  font-size: 24px;
+  padding-bottom: 15px;
   letter-spacing: 0.04em;
   color: ${props => props.theme.colors.darkBlue};
 `;
+
 const PostAuthor = styled.p`
   font-size: 12px;
   font-weight: 400;
@@ -217,15 +267,14 @@ const PostAuthor = styled.p`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  padding-bottom: 30px;
-`;
-const PostDate = styled.p`
-  margin: 10px 0;
+  color: ${props => props.theme.colors.green};
+  font-family: "Roboto Mono", monospace;
+  padding-bottom: 25px;
 `;
 
 const PostExcerpt = styled.div`
   font-size: 14px;
-  line-height: 1.6em;
+  line-height: 1.8em;
   color: ${props => props.theme.colors.gray};
 `;
 
