@@ -5,9 +5,11 @@ import Img from "gatsby-image";
 import styled from "types/styled-components";
 import Markdown from "react-markdown";
 import Wrapper from "components/Wrapper";
-import projectTheme from "themes/project.json";
+
 import Page from "components/Page";
 import { IPageLocale } from "types/index";
+import { default as BaseSplash } from "components/Splash";
+import { default as BaseIcon } from "react-simple-icons";
 
 interface IProps {
   data: any;
@@ -20,10 +22,46 @@ interface IProps {
 export default ({ data, pathContext }: IProps) => {
   console.log("data", data);
   console.log("pathContext", pathContext);
+  console.log("data.post.fields.frontmatter", data.post.fields.frontmatter);
   const currentPost = data.post.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
-  console.log(currentPost);
+  console.log("currentPost", currentPost);
+
+  function handleShare(e, social) {
+    e.preventDefault();
+    const articleUrl = "window.location.href";
+    const text = data.post.fields.frontmatter.title;
+    switch (social) {
+      case "twitter":
+        window.open(
+          "http://twitter.com/share?url=" +
+            encodeURIComponent(articleUrl) +
+            "&text=" +
+            encodeURIComponent(text),
+          "",
+          "left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
+        );
+        break;
+      case "linkedin":
+        window.open(
+          "http://www.linkedin.com/shareArticle?mini=true&url=" +
+            encodeURIComponent(articleUrl),
+          "",
+          "left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
+        );
+      case "facebook":
+        window.open(
+          "https://www.facebook.com/sharer/sharer.php?u=" + articleUrl,
+          "facebook-popup",
+          "height=350,width=600"
+        );
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <Page
       title={currentPost.seoTitle}
@@ -35,25 +73,43 @@ export default ({ data, pathContext }: IProps) => {
           url: locale.path
         })
       )}
-      theme={projectTheme}
     >
       <Helmet>
         <meta property="og:image " content={currentPost.heroImage.publicURL} />
       </Helmet>
       <Hero>
-        <Img fluid={currentPost.heroImage.childImageSharp.fluid} />
-        <HeroContent>
-          <Wrapper>
-            <Heading>
-              <ProjectType>{currentPost.type}</ProjectType>
-              <Title>{data.post.fields.frontmatter.title}</Title>
-            </Heading>
-          </Wrapper>
-        </HeroContent>
+        <Wrapper>
+          <Title>{data.post.fields.frontmatter.title}</Title>
+          <Date>{data.post.fields.frontmatter.date}</Date>
+          <Author>{data.post.fields.frontmatter.author}</Author>
+          <Img fluid={currentPost.heroImage.childImageSharp.fluid} />
+        </Wrapper>
       </Hero>
+
       <Wrapper>
         <RichText source={currentPost.body} />
       </Wrapper>
+      <ShareContainer>
+        <ShareMsg>Share</ShareMsg>
+        <Socials>
+          {[
+            { title: "twitter", link: "/", iconHandle: "twitter" },
+            { title: "linkedin", link: "/", iconHandle: "linkedin" },
+            { title: "facebook", link: "/", iconHandle: "facebook" }
+          ].map(social => (
+            <SocialLink
+              key={social.title}
+              href={social.link}
+              aria-label={`Share article on ${social.title}`}
+              onClick={e => handleShare(e, social.title)}
+            >
+              <Splash className={social.iconHandle} size="60px">
+                <Icon name={social.iconHandle} />
+              </Splash>
+            </SocialLink>
+          ))}
+        </Socials>
+      </ShareContainer>
     </Page>
   );
 };
@@ -81,6 +137,8 @@ export const query = graphql`
         slug
         frontmatter {
           title
+          date
+          author
           locales {
             language
             path
@@ -93,7 +151,6 @@ export const query = graphql`
                 }
               }
             }
-            type
             seoTitle
             seoDescription
           }
@@ -103,12 +160,73 @@ export const query = graphql`
   }
 `;
 
+const SocialLink = styled.a`
+  display: inline-block;
+  margin: 5px;
+`;
+
+const Icon = styled(BaseIcon)`
+  fill: #fff;
+`;
+
+const Splash = styled(BaseSplash)`
+  transition: 0.3s all;
+  &.twitter {
+    background-color: rgba(29, 161, 242, 0.7);
+    &:hover {
+      background-color: rgba(29, 161, 242, 1);
+    }
+  }
+  &.facebook {
+    background-color: rgba(59, 89, 152, 0.7);
+    &:hover {
+      background-color: rgba(59, 89, 152, 1);
+    }
+  }
+
+  &.github {
+    background-color: rgba(24, 23, 23, 0.7);
+    &:hover {
+      background-color: rgba(24, 23, 23, 1);
+    }
+  }
+  &.linkedin {
+    background-color: rgba(72, 117, 180, 0.7);
+    &:hover {
+      background-color: rgba(72, 117, 180, 1);
+    }
+  }
+`;
+
+const ShareContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 120px;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Socials = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+const ShareMsg = styled.p`
+  text-transform: uppercase;
+`;
+const Date = styled.p`
+  margin: 20px 0;
+`;
+const Author = styled.p`
+  margin: 20px 0;
+  text-transform: uppercase;
+  color: ${props => props.theme.colors.green};
+`;
+
 const Hero = styled.div`
-  height: 480px;
+  min-height: 480px;
   width: 100%;
-  background-size: cover;
-  background-position: center center;
   position: relative;
+  padding-top: 160px;
   ${Wrapper} {
     height: 100%;
   }
@@ -117,39 +235,6 @@ const Hero = styled.div`
   }
   .gatsby-image-wrapper {
     height: 100%;
-  }
-`;
-
-const HeroContent = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const Heading = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-`;
-
-const ProjectType = styled.p`
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  position: relative;
-  width: 100%;
-  padding-bottom: 10px;
-  &::before {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 60px;
-    background-color: #fff;
-    position: absolute;
-    top: 7px;
-    left: -68px;
   }
 `;
 

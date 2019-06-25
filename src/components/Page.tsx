@@ -75,6 +75,7 @@ class Page extends React.Component<IProps> {
   };
 
   render() {
+    console.log("Props", this.props);
     const {
       children,
       theme,

@@ -72,6 +72,7 @@ class Header extends React.Component<IProps, IState> {
           const localizedNavigation = navigation.locales.find(
             navLocale => navLocale.language === locale
           );
+
           if (!localizedNavigation) {
             throw new Error(
               `Didn't found any navigation with locale ${locale}`

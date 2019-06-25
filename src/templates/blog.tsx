@@ -113,10 +113,10 @@ export const query = graphql`
             frontmatter {
               title
               date
+              author
               locales {
                 language
                 path
-                author
                 excerpt
                 featuredImage {
                   childImageSharp {

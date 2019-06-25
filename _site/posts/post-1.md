@@ -3,6 +3,7 @@ title: D1 Milano
 template: post
 published: true
 date: "20-06-2019"
+author: TEST AUTHOR
 locales:
   - body: >-
       [D1 Milano](https://d1milano.com) is a luxury fashion accessory brand born
@@ -84,7 +85,7 @@ locales:
       D1 Milano approached us to build a brand new Shopify Plus e-commerce. The
       result outperformed their expectations.
     seoTitle: D1 Milano | inkOfPixel
-    author: TEST AUTHOR
+
   - body: >-
       [D1 Milano](https://d1milano.com) è un marchio di accessori di moda di
       lusso nato a Milano durante l'edizione 2013 della Milano Fashion Week. La
@@ -169,6 +170,4 @@ locales:
       con Shopify Plus. I risultati hanno superato le aspettative.
     seoTitle: D1 Milano
     type: ECOMMERCE
-    author: TEST AUTHOR
-    date: ""
 ---
