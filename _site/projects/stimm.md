@@ -174,7 +174,7 @@ locales:
 
       Abbiamo migliorato sensibilmente l'esperienza di acquisto online su STIMM,
       con un aspetto completamente nuovo che meglio rappresenta i valori di
-      STIMM. Il e-commerce Shopify è il punto di partenza per l'ambizioso
+      STIMM. L' e-commerce Shopify è il punto di partenza per l'ambizioso
       progetto di diventare un vero business omni-channel.
     excerpt: >-
       STIMM era penalizzato dal vecchio e-commerce Magento. Abbiamo dato loro
