@@ -18,11 +18,10 @@ interface IProps {
 }
 
 export default ({ data, pathContext }: IProps) => {
-  console.log(data);
-  console.log(pathContext);
   const currentProject = data.project.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
+  console.log(currentProject);
   return (
     <Page
       title={currentProject.seoTitle}
@@ -38,9 +37,10 @@ export default ({ data, pathContext }: IProps) => {
     >
       <Helmet>
         <meta
-          property="og:image "
+          property="og:image"
           content={currentProject.heroImage.publicURL}
         />
+        <meta property="og:description" content={currentProject.excerpt} />
       </Helmet>
       <Hero>
         <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
@@ -87,6 +87,7 @@ export const query = graphql`
             language
             path
             body
+            excerpt
             heroImage {
               publicURL
               childImageSharp {
