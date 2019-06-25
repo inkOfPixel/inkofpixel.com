@@ -21,10 +21,11 @@ export default ({ data, pathContext }: IProps) => {
   const currentProject = data.project.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
+
   return (
     <Page
       title={currentProject.seoTitle}
-      description={currentProject.seodescription}
+      description={currentProject.seoDescription}
       localeCode={pathContext.locale}
       pageLocales={data.project.fields.frontmatter.locales.map(
         (locale: any): IPageLocale => ({
@@ -36,7 +37,7 @@ export default ({ data, pathContext }: IProps) => {
     >
       <Helmet>
         <meta
-          property="og:image "
+          property="og:image"
           content={currentProject.heroImage.publicURL}
         />
       </Helmet>
