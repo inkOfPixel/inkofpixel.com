@@ -5,8 +5,6 @@ priority: '0'
 published: true
 locales:
   - body: >-
-
-
       ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
@@ -102,8 +100,6 @@ locales:
       simultaneously, no degradation of platform performance was found.
 
 
-
-
       ## Product management and customization
 
 
@@ -169,8 +165,6 @@ locales:
       ![Content management](/assets/rue-des-mille-07-content-management.jpg)
 
 
-
-
       ## Internationalization
 
 
@@ -224,23 +218,19 @@ locales:
       superior to those that are the performance of a normal site.
 
 
-
-
       Having said that, we recommend that you personally test what we have told
       you in this post by visiting [Rue Des Mille](https://ruedesmille.com)
     excerpt: >-
-      Rue Des Mille is an Italian brand of prêt-à-porter jewelry with a strong
-      presence both online and in the area. We dealt with the renewal of the Rue
-      Des Mille e-commerce with the aim of creating a platform whose image fully
-      reflects the philosophy of Rue Des Mille.
+      Rue Des Mille is an Italian brand of prêt-à-porter jewelry. We dealt with
+      the renewal of the Rue Des Mille e-commerce with the aim of creating a
+      platform whose image fully reflects the philosophy of Rue Des Mille.
     featuredImage: /assets/rue-des-mille-featured.jpg
     heroImage: /assets/rue-des-mille-hero.jpg
     language: en
     seoDescription: >-
-      Rue Des Mille is an Italian brand of prêt-à-porter jewelry with a strong
-      presence both online and in the area. We dealt with the renewal of the Rue
-      Des Mille e-commerce with the aim of creating a platform whose image fully
-      reflects the philosophy of Rue Des Mille.
+      Rue Des Mille is an Italian brand of prêt-à-porter jewelry. We dealt with
+      the renewal of the Rue Des Mille e-commerce with the aim of creating a
+      platform whose image fully reflects the philosophy of Rue Des Mille.
     seoTitle: Rue Des Mille
     type: Ecommerce
   - body: >-
@@ -492,18 +482,18 @@ locales:
       raccontato in questo post, visitando [Rue Des
       Mille](https://ruedesmille.com)
     excerpt: >-
-      Rue Des Mille è un marchio italiano di gioielli prêt-à-porter con una
-      forte presenza sia online che nella zona. Ci siamo occupati del rinnovo
-      dell'e-commerce di Rue Des Mille con l'obiettivo di creare una piattaforma
-      la cui immagine rifletta pienamente la filosofia di Rue Des Mille.
+      Rue Des Mille è un marchio italiano di gioielli prêt-à-porter. Ci siamo
+      occupati del rinnovo dell'e-commerce di Rue Des Mille con l'obiettivo di
+      creare una piattaforma la cui immagine rifletta pienamente la filosofia di
+      Rue Des Mille.
     featuredImage: /assets/rue-des-mille-featured.jpg
     heroImage: /assets/rue-des-mille-hero.jpg
     language: it
     seoDescription: >-
-      Rue Des Mille è un marchio italiano di gioielli prêt-à-porter con una
-      forte presenza sia online che nella zona. Ci siamo occupati del rinnovo
-      dell'e-commerce di Rue Des Mille con l'obiettivo di creare una piattaforma
-      la cui immagine rifletta pienamente la filosofia di Rue Des Mille.
+      Rue Des Mille è un marchio italiano di gioielli prêt-à-porter. Ci siamo
+      occupati del rinnovo dell'e-commerce di Rue Des Mille con l'obiettivo di
+      creare una piattaforma la cui immagine rifletta pienamente la filosofia di
+      Rue Des Mille.
     seoTitle: Rue Des Mille
     type: Ecommerce
 ---
