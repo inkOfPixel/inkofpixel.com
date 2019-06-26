@@ -3,6 +3,7 @@ import { Link, StaticQuery, graphql } from "gatsby";
 import styled, { withTheme } from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
+import Icon from "components/Icon";
 import Wrapper from "components/Wrapper";
 import GooeyMenu from "components/GooeyMenu";
 import { IPageLocale } from "types";
@@ -131,7 +132,7 @@ class Header extends React.Component<IProps, IState> {
                             backgroundColor={
                               theme.languageSelector.backgroundColor
                             }
-                            size={50}
+                            size={44}
                             open={languageMenuOpen}
                             onToggle={this.handleToggleLanguageMenu}
                           >
@@ -160,16 +161,27 @@ class Header extends React.Component<IProps, IState> {
                 handleClose={this.handleCloseSidenav}
               >
                 <LinkMobileContainer>
+                  <IconContainer>
+                    <IconLink to={locale === defaultLocale ? "" : `/${locale}`}>
+                      <Icon />
+                      <AssistiveText>
+                        <FormattedMessage
+                          id="header.logo.assistiveText"
+                          defaultMessage="Link to home page"
+                        />
+                      </AssistiveText>
+                    </IconLink>
+                  </IconContainer>
                   {localizedNavigation.main &&
                     localizedNavigation.main.links.map(link => (
-                      <NavListItem key={link.label}>
+                      <MobileListItem key={link.label}>
                         <Link
                           to={link.url}
                           onClick={() => this.handleCloseSidenav()}
                         >
                           {link.label}
                         </Link>
-                      </NavListItem>
+                      </MobileListItem>
                     ))}
                 </LinkMobileContainer>
               </SideBarPanel>
@@ -180,15 +192,6 @@ class Header extends React.Component<IProps, IState> {
     );
   }
 }
-
-const LinkMobileContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const NavListItem = styled.li`
-  display: flex;
-`;
 
 const LogoContainer = styled.div`
   @media (max-width: 899px) {
@@ -203,18 +206,14 @@ const NavContainer = styled.div`
   align-items: center;
 `;
 const MenuIcon = styled(Menu)`
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   display: none;
   &:hover {
     cursor: pointer;
   }
   @media (max-width: 899px) {
     display: block;
-  }
-  @media (max-width: 600px) {
-    height: 40px;
-    width: 40px;
   }
 `;
 
@@ -257,7 +256,7 @@ const List = styled.ul`
   display: flex;
   flex: 1;
   justify-content: flex-end;
-  margin-right: 40px;
+  margin-right: 30px;
   @media (max-width: 899px) {
     display: none;
   }
@@ -300,17 +299,48 @@ const ListItem = styled.li`
 const LanguageSelector = styled(GooeyMenu)`
   margin-right: 0;
   @media (min-width: 1260px) {
-    margin-right: 40px;
+    margin-right: 30px;
   }
   a {
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
   }
   .selected {
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 12px;
   }
 `;
 
+const LinkMobileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 70px;
+`;
+
+const IconContainer = styled.div`
+  padding-bottom: 30px;
+`;
+
+const IconLink = styled(Link)`
+  display: inline-block;
+  width: 40px;
+`;
+
+const MobileListItem = styled.li`
+  display: flex;
+  a {
+    display: block;
+    padding: 20px 10px;
+    letter-spacing: 0.02em;
+    color: ${props => props.theme.navigationColor};
+    text-decoration: none;
+    position: relative;
+    transition: all 300ms;
+    font-weight: 400;
+    font-size: 14px;
+  }
+`;
 export default withTheme(Header);

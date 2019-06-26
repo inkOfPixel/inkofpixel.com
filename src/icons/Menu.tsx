@@ -11,14 +11,12 @@ const Menu = props => {
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth="1.5"
       {...otherProps}
     >
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="18" x2="21" y2="18" />
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <line x1="6" y1="12" x2="18" y2="12" />
+      <line x1="4" y1="17" x2="20" y2="17" />
     </svg>
   );
 };
