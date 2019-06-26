@@ -1,19 +1,29 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 
-type Props = PropsWithChildren<{
-  handleClose: () => void;
-  isOpen: boolean;
-}>;
-
-function Mask({ handleClose }: { handleClose: () => void }) {
-  useEffect(() => {
+// class Mask extends React.Component {
+//   // useEffect(() => {
+//   //   document.body.classList.add("no-scroll");
+//   //   return function restoreScroll() {
+//   //     document.body.classList.remove("no-scroll");
+//   //   };
+//   // }, []);
+//   render() {
+//     return (
+//       <MaskComponent onClick={handleClose} />;
+//     )
+//   }
+// }
+class Mask extends React.Component {
+  componentDidMount() {
     document.body.classList.add("no-scroll");
-    return function restoreScroll() {
-      document.body.classList.remove("no-scroll");
-    };
-  }, []);
-  return <MaskComponent onClick={handleClose} />;
+  }
+  componentWillUnmount() {
+    document.body.classList.remove("no-scroll");
+  }
+  render() {
+    return <MaskComponent onClick={this.props.handleClose} />;
+  }
 }
 
 const MaskComponent = styled.div`

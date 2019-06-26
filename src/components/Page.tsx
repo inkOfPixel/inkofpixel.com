@@ -58,6 +58,9 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+  .no-scroll {
+    overflow: hidden;
+  }
 `;
 
 interface ILayoutPageQueryData {
