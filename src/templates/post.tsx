@@ -20,13 +20,9 @@ interface IProps {
 }
 
 export default ({ data, pathContext }: IProps) => {
-  console.log("data", data);
-  console.log("pathContext", pathContext);
-  console.log("data.post.fields.frontmatter", data.post.fields.frontmatter);
   const currentPost = data.post.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
-  console.log("currentPost", currentPost);
   // const shareUrl = `${data.site.siteMetadata.origin}${currentPost.path}`;
 
   return (

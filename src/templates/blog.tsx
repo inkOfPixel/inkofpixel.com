@@ -20,14 +20,10 @@ const masonryOptions = {
 };
 
 const BlogPage = ({ data, pathContext }: IProps) => {
-  console.log(data);
-  console.log(pathContext);
   const currentPage = data.page.fields.locales.find(
     locale => locale.language === pathContext.locale
   );
   const posts = data.posts.edges.map(({ node }) => node.fields.frontmatter);
-
-  console.log(posts);
   return (
     <Page
       title={currentPage.title}
@@ -50,7 +46,6 @@ const BlogPage = ({ data, pathContext }: IProps) => {
               const currentItem = post.locales.find(
                 locale => locale.language === pathContext.locale
               );
-              console.log("CI", currentItem);
               return (
                 <PostListItem key={currentItem.path}>
                   <PostFeaturedImageWrapper>
