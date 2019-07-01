@@ -6,9 +6,6 @@ author: InkOfPixel
 date: '2019-07-01'
 locales:
   - body: >-
-      # Headless commerce is the future of e-commerce
-
-
       This year Shopify Unite (the annual Shopify partner and developer
       conference), there was a talk dedicated to headless commerce, which has
       generated a lot of interest. We want to take this opportunity to give our
