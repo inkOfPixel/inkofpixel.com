@@ -220,7 +220,17 @@ locales:
       As we said before, one of the advantages of using a custom made front end
       is the possibility to quickly adopt new technologies. For example this
       e-commerce is also a PWA, greatly improving the mobile experience.
+    excerpt: >-
+      This year Shopify Unite (the annual Shopify partner and developer
+      conference), there was a talk dedicated to headless commerce, which has
+      generated a lot of interest. We want to take this opportunity to give our
+      insight on the topic
+    featuredImage: /assets/rue-des-mille-00-hero-website.jpg
+    heroImage: /assets/rue-des-mille-hero.jpg
     language: en
+    seoDescription: |
+      Headless commerce is the future of e-commerce
+    seoTitle: Headless commerce is the future of e-commerce
     title: Headless commerce is the future of e-commerce
 ---
 
