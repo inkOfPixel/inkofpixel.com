@@ -220,6 +220,9 @@ locales:
       As we said before, one of the advantages of using a custom made front end
       is the possibility to quickly adopt new technologies. For example this
       e-commerce is also a PWA, greatly improving the mobile experience.
+
+
+      ![Pwa](/assets/ezgif.com-video-to-gif.gif)
     excerpt: >-
       This year Shopify Unite (the annual Shopify partner and developer
       conference), there was a talk dedicated to headless commerce, which has
