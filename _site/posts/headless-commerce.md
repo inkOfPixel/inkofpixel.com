@@ -12,6 +12,9 @@ locales:
       insight on the topic.
 
 
+      youtube https://www.youtube.com/watch?v=2MRdtXWcgIw
+
+
       ## What is a headless commerce and why does it matter
 
 
