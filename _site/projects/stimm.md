@@ -120,8 +120,13 @@ locales:
       dello store.
 
 
+
+      <div style="width:150px; height:100px">
+
       ![Pannello di controllo per la modifica dei contenuti del
       sito](/assets/inkofpixel_stimm_customize.jpg)
+
+      </div>
 
 
       ## La sfida nel ripensare il sito
