@@ -216,14 +216,14 @@ const RichText = styled(Markdown)`
     img {
       width: 100%;
       display: block;
-      width: 1200px;
+      width: 860px;
       margin-top: 40px;
       margin-bottom: 40px;
-      margin-left: -250px;
+      margin-left: calc((860px - 700px) / -2);
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-      @media (max-width: 1260px) {
-        width: calc(100vw - 80px);
-        margin-left: calc((-100vw + 780px) / 2);
+      @media (max-width: 920px) {
+        width: calc(100% + 80px);
+        margin-left: -40px;
       }
       @media (max-width: 800px) {
         width: 100%;
@@ -254,6 +254,17 @@ const RichText = styled(Markdown)`
     letter-spacing: 0.02em;
     font-family: Europa, sans-serif;
     box-sizing: border-box;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+  h3 {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 700px;
+    font-size: 18px;
+    box-sizing: border-box;
+    font-weight: 500;
     @media (max-width: 800px) {
       width: 100%;
     }
