@@ -2,7 +2,7 @@
 title: headless commerce
 template: post
 published: true
-author: InkOfPixel
+author: Gianluca Chiap
 date: '2019-07-01'
 locales:
   - body: >-
@@ -23,7 +23,7 @@ locales:
 
 
       This is a clear breaking point from the traditional approach where
-      frontend and backend are instead tightly coupled in a monolith.\
+      frontend and backend are instead tightly coupled in a monolith.  
 
       Even if this new architecture seems like a small change, it leads to a
       cascade of consequences that, if exploited in the right way, can
@@ -42,7 +42,7 @@ locales:
       The monolithic structure of traditional commerce systems carries some
       shortcomings that cause chronic inability to keep up with the newest
       technologies. This leads to a number of constraints that limit the freedom
-      of developers and slow down the overall business process.\
+      of developers and slow down the overall business process.  
 
       Technology moves extremely fast and by choosing to go headless developers
       regain the complete control over the digital storefront with the freedom
@@ -58,10 +58,10 @@ locales:
       test new features, remove old ones and experiments with changes, with a
       shorter delay from concept to market. Going to market faster means that
       you will be offering new features and improvements before your
-      competitors.\
+      competitors.  
 
       This situation gives us the agility required to quickly adapt to the new
-      users behaviour and market trends.\
+      users behaviour and market trends.  
 
       Otherwise if we are constantly slowed down by the technology debt we will
       steadily lagging behind the competition.
@@ -87,12 +87,12 @@ locales:
       Developing a native mobile app is not something that every business can
       afford. But luckily a native application is not always necessary to give
       users a native experience. By using a headless solution is possible to
-      transform the entire e-commerce in a Progressive Web App (PWA).\
+      transform the entire e-commerce in a Progressive Web App (PWA).  
 
       Progressive Web Apps is a new technology that allows to transform a webapp
       to provide a native app like experiences for the users. They work just
       like native apps but they drastically reduce the cost for a native user
-      experience.\
+      experience.  
 
       PWAs usually produce a higher user engagement and conversions which is the
       reason why many e-commerce are adopting this technology to grow their
@@ -132,7 +132,7 @@ locales:
 
 
       If someone has experience the opposite than he is not doing it right. A
-      faster website means a better SEO score.\
+      faster website means a better SEO score.  
 
       But most importantly page speed directly affects conversion. If your users
       have to wait a couple of seconds every time they change page or view a new
