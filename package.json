@@ -19,6 +19,7 @@
     "gatsby-plugin-sitemap": "2.0.3",
     "gatsby-plugin-styled-components": "3.0.0",
     "gatsby-plugin-typescript": "2.0.0",
+    "gatsby-remark-copy-linked-files": "2.1.0",
     "gatsby-remark-images": "2.0.4",
     "gatsby-source-filesystem": "2.0.4",
     "gatsby-source-iubenda": "1.0.0",

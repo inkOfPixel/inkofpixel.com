@@ -1,6 +1,6 @@
 ---
 title: headless commerce
-template: blog
+template: post
 published: true
 author: InkOfPixel
 date: '2019-07-01'
