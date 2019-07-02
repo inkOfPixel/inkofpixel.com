@@ -12,7 +12,6 @@ locales:
       insight on the topic.
 
 
-      custom-image(size:|align:undefined|width:|src:undefined|alt:)
 
 
       ## What is a headless commerce and why does it matter
