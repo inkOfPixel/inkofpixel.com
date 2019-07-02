@@ -221,6 +221,10 @@ locales:
 
       start-custom-image(size:tiny|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
       Des Mille PWA)end-custom-image
+
+
+      If you want more information about this project you can check [this
+      post](https://inkofpixel.com/blog/headless-commerce-is-the-future-of-e-commerce)
     excerpt: >-
       At this year's Shopify Unite, there was a talk dedicated to headless
       commerce, which has generated a lot of interest. We want to take this
@@ -475,6 +479,10 @@ locales:
 
 
       ![Pwa](/assets/ezgif.com-video-to-gif.gif)
+
+
+      Più informazioni su questo progetto sono presenti in [questo
+      post](https://inkofpixel.com/it/blog/il-futuro-degli-e-commerce-è-headless)
     excerpt: >-
       Allo Shopify Unite di quest’anno c’è stato un talk dedicato agli headless
       commerce che ha suscitato molto interesse. Vogliamo cogliere l'occasione
