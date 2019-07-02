@@ -12,7 +12,7 @@ locales:
       insight on the topic.
 
 
-      custom-image(size:small|align:center|src:/assets/ezgif.com-video-to-gif.gif|alt:Pwa)
+      custom-image(size:|align:undefined|width:|src:undefined|alt:)
 
 
       ## What is a headless commerce and why does it matter
@@ -222,7 +222,8 @@ locales:
       e-commerce is also a PWA, greatly improving the mobile experience.
 
 
-      ![Pwa](/assets/ezgif.com-video-to-gif.gif)
+      custom-image(size:small|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
+      Des Mille PWA)
     excerpt: >-
       This year Shopify Unite (the annual Shopify partner and developer
       conference), there was a talk dedicated to headless commerce, which has
