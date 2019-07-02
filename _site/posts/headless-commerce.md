@@ -208,7 +208,7 @@ locales:
       Load time between pages is almost non existent
 
 
-      ![RDM nvigation](/assets/kapture-2019-06-28-at-14.40.59.gif)
+      ![RdM navigation](/assets/rdm-gif-1.gif)
 
 
       ### PWA optimized
@@ -217,10 +217,6 @@ locales:
       As we said before, one of the advantages of using a custom made front end
       is the possibility to quickly adopt new technologies. For example this
       e-commerce is also a PWA, greatly improving the mobile experience.
-
-
-      start-custom-image(size:tiny|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
-      Des Mille PWA)end-custom-image
 
 
       If you want more information about this project you can check [this
@@ -450,10 +446,12 @@ locales:
       tempo di caricamento tra le pagine è quasi inesistente
 
 
-      ![RDM nvigation](/assets/kapture-2019-06-28-at-14.40.59.gif)
+      ![RdM navigazione](/assets/rdm-gif-1.gif)
 
 
-      ### PWA optimized
+
+
+      ### Ottimizzata per PWA
 
 
       Come abbiamo detto prima, uno dei vantaggi dell'utilizzo di un front end
