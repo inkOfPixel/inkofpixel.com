@@ -11,6 +11,13 @@ locales:
       generated a lot of interest. We want to take this opportunity to give our
       insight on the topic.
 
+
+      custom-image(size:small|align:center|src:/assets/ezgif.com-video-to-gif.gif|alt:Pwa)
+
+
+      ## What is a headless commerce and why does it matter
+
+
       To put it as simple as possible 
 
 
