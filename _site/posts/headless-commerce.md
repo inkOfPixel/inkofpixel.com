@@ -12,7 +12,7 @@ locales:
       insight on the topic.
 
 
-      youtube https://www.youtube.com/watch?v=2MRdtXWcgIw
+      custom-image(size:small|align:center|src:/assets/ezgif.com-video-to-gif.gif|alt:Pwa)
 
 
       ## What is a headless commerce and why does it matter
