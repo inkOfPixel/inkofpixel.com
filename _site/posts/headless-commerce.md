@@ -177,19 +177,8 @@ locales:
 
 
       > If you are starting a new e-commerce from scratch we strongly suggest to
-      consider a headless solution.
-
-
-      ## Why we decided to invest in headless
-
-
-      At inkOfPixel we firmly believe that headless commerce will play an
-      important role in the future of e-commerce and we have decided to fully
-      embrace it. The main reason is that 
-
-
-      > Headless gives an overall better experience both for the users and the
-      developers
+      consider a headless solution since it provides an overall better
+      experience for both users and developers
 
 
       ## Case study: Rue Des Mille
@@ -204,8 +193,8 @@ locales:
       ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
-      The first thing you notice about the commerce is that it’s extremely fast.
-      Load time between pages is almost non existent
+      The first thing you notice about the commerce is that it’s _extremely_
+      fast. Load time between pages is almost non existent
 
 
       ![RdM navigation](/assets/rdm-gif-1.gif)
@@ -219,8 +208,32 @@ locales:
       e-commerce is also a PWA, greatly improving the mobile experience.
 
 
+      start-custom-image(size:tiny|align:center|width:undefined|src:/assets/rdm-mobile.gif|alt:Rue
+      Des Mille PWA)end-custom-image
+
+
       If you want more information about this project you can check [this
       post](https://inkofpixel.com/blog/headless-commerce-is-the-future-of-e-commerce)
+
+
+
+
+      ## Why we decided to invest in headless
+
+
+      At inkOfPixel we firmly believe that headless commerce will play an
+      important role in the future of e-commerce and we have decided to fully
+      embrace it.
+
+
+      We hope that this post has helped you understand why we are so passionate
+      about this new paradigm.
+
+
+      Let us know what you think 
+
+
+      [@inkofpixel](https://twitter.com/inkOfPixel)
     excerpt: >-
       At this year's Shopify Unite, there was a talk dedicated to headless
       commerce, which has generated a lot of interest. We want to take this
