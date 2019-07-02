@@ -235,7 +235,7 @@ const Post = styled.div`
     &[left] {
       justify-content: flex-start;
     }
-    &[end] {
+    &[right] {
       justify-content: flex-end;
     }
     &[very-tiny] {

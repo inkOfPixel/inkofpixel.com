@@ -16,6 +16,10 @@ CMS.registerEditorComponent({
       widget: "select",
       options: [
         {
+          label: "Very tiny",
+          value: "very-tiny"
+        },
+        {
           label: "tiny",
           value: "tiny"
         },
@@ -26,6 +30,10 @@ CMS.registerEditorComponent({
         {
           label: "medium",
           value: "medium"
+        },
+        {
+          label: "large",
+          value: "large"
         },
         {
           label: "large",
@@ -58,37 +66,34 @@ CMS.registerEditorComponent({
   pattern: /^start-custom-image(([\S\s])*)end-custom-image$/,
   // Function to extract data elements from the regexp match
   fromBlock: function(match) {
-    console.log(match);
-    let src = "";
-    let width = "";
-    let size = "";
-    let alt = "";
-
-    for (let i = 1; i < match.length; i += 2) {
-      if (match[i] !== undefined) {
-        if (match[i].indexOf("src") !== -1) {
-          src = match[i + 1];
-        } else if (match[i].indexOf("size") !== -1) {
-          size = match[i + 1];
-        } else if (match[i].indexOf("width") !== -1) {
-          width = match[i + 1];
-        } else if (match[i].indexOf("alt") !== -1) {
-          alt = match[i + 1];
-        }
-      }
-    }
-
-    return {
-      src,
-      width,
-      size,
-      alt
+    console.log("match", match);
+    const attributes = {
+      src: "",
+      size: "",
+      width: "",
+      alt: "",
+      align: ""
     };
+    const attributesString = match["input"].match(/\((.*?)\)/);
+    console.log(attributesString);
+    if (attributesString) {
+      const attributesSplitted = attributesString[1].split("|");
+      console.log(attributesSplitted);
+      attributesSplitted.forEach(a => {
+        const [attrName, attrValue] = a.split(":");
+        attributes[attrName] = attrValue;
+      });
+    }
+    console.log(attributes);
+    return attributes;
   },
   // Function to create a text block from an instance of this component
   toBlock: function(obj) {
     // prettier-ignore
-    return `start-custom-image(size:${obj.size}|align:${obj.align}|width:${obj.width}|src:${obj.src}|alt:${obj.alt})end-custom-image`;
+    console.log(obj);
+    return `start-custom-image(size:${obj.size}|align:${obj.align}|width:${
+      obj.width
+    }|src:${obj.src}|alt:${obj.alt})end-custom-image`;
   },
   // Preview output for this component. Can either be a string or a React component
   // (component gives better render performance)
