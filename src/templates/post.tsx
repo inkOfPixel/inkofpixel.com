@@ -25,10 +25,7 @@ var renderer = new marked.Renderer();
 
 // Override function
 renderer.paragraph = function(text) {
-  console.log(text);
   if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(text)) {
-    console.log("text", text);
-    console.log("MATCH CUSTOM IMAGE");
     const attributes = {
       src: "",
       size: "",
@@ -37,16 +34,13 @@ renderer.paragraph = function(text) {
       align: ""
     };
     const attributesString = text.match(/\((.*?)\)/);
-    console.log(attributesString);
     if (attributesString) {
       const attributesSplitted = attributesString[1].split("|");
-      console.log(attributesSplitted);
       attributesSplitted.forEach(a => {
         const [attrName, attrValue] = a.split(":");
         attributes[attrName] = attrValue;
       });
     }
-    console.log(attributes);
     return `
     <div class="custom-image-container" ${attributes.size} ${attributes.align}>
       <img src="${attributes.src}" ${
@@ -68,10 +62,8 @@ export default ({ data, pathContext }: IProps) => {
   const currentPost = data.post.fields.frontmatter.locales.find(
     locale => locale.language === pathContext.locale
   );
-  console.log(currentPost);
 
   const html = marked(currentPost.body, { renderer: renderer });
-  // console.log(html);
 
   return (
     <Page
