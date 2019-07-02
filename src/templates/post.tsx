@@ -32,7 +32,8 @@ renderer.paragraph = function(text) {
       src: "",
       size: "",
       width: "",
-      alt: ""
+      alt: "",
+      align: ""
     };
     const attributesSplitted = text
       .split("(")[1]
@@ -44,7 +45,7 @@ renderer.paragraph = function(text) {
       attributes[attrName] = attrValue;
     });
     return `
-    <div class="custom-image-container" ${attributes.size}>
+    <div class="custom-image-container" ${attributes.size} ${attributes.align}>
       <img src="${attributes.src}" ${
       attributes.width ? (attributes.width = "${width}") : ""
     } alt="${attributes.alt}">
@@ -106,7 +107,6 @@ export default ({ data, pathContext }: IProps) => {
       </Hero>
 
       <Wrapper>
-        {/* <RichText source={currentPost.body} escapeHtml={false} /> */}
         <Post dangerouslySetInnerHTML={{ __html: html }} />
       </Wrapper>
       <ShareContainer>
@@ -226,10 +226,28 @@ const Post = styled.div`
   padding: 50px 0;
   .custom-image-container {
     display: flex;
-    justify-content: center;
+    &[center] {
+      justify-content: center;
+    }
+    &[left] {
+      justify-content: flex-start;
+    }
+    &[end] {
+      justify-content: flex-end;
+    }
+    &[very-tiny] {
+      img {
+        max-width: 200px;
+      }
+    }
     &[tiny] {
       img {
         max-width: 300px;
+      }
+    }
+    &[small] {
+      img {
+        max-width: 400px;
       }
     }
     &[medium] {
@@ -240,6 +258,11 @@ const Post = styled.div`
     &[large] {
       img {
         max-width: 1000px;
+      }
+    }
+    &[very-large] {
+      img {
+        max-width: 1200px;
       }
     }
   }

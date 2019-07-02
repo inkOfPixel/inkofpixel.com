@@ -88,7 +88,7 @@ CMS.registerEditorComponent({
   // Function to create a text block from an instance of this component
   toBlock: function(obj) {
     // prettier-ignore
-    return `custom-image(size:${obj.size}|align:${obj.align}|src:${obj.src}|alt:${obj.alt})`;
+    return `custom-image(size:${obj.size}|align:${obj.align}|width:${obj.width}|src:${obj.src}|alt:${obj.alt})`;
   },
   // Preview output for this component. Can either be a string or a React component
   // (component gives better render performance)
