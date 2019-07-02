@@ -183,7 +183,7 @@ locales:
       ## Why we decided to invest in headless
 
 
-      At InkOfPixel we firmly believe that headless commerce will play an
+      At inkOfPixel we firmly believe that headless commerce will play an
       important role in the future of e-commerce and we have decided to fully
       embrace it. The main reason is that 
 
@@ -198,7 +198,7 @@ locales:
       Rue Des Mille is an Italian brand of prêt-à-porter jewelry. We dealt with
       the renewal of their e-commerce adopting a headless solution. We have
       rebuilt the website from scratch, using a third-party CMS, in combination
-      with Shopify Plus, that powers our custom made front-end
+      with Shopify, that powers our custom made front-end
 
 
       ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
@@ -271,8 +271,6 @@ locales:
       presentato.
 
 
-
-
       ## Flessibilità e vantaggio tecnologico
 
 
@@ -308,8 +306,6 @@ locales:
       concorrenti
 
 
-
-
       ## Un esempio: esperienza mobile nativa con Progressive Web App
 
 
@@ -337,8 +333,6 @@ locales:
       Le PWA garantiscono un maggiore coinvolgimento degli utenti che si traduce
       in un conversion rate superiore, motivo per il quale molti e-commerce
       stanno adottando questa tecnologia per far crescere le proprie attività.
-
-
 
 
       ## Personalizzazione e miglior esperienza utente
@@ -369,8 +363,6 @@ locales:
       utente da zero, libera da ogni vincolo.
 
 
-
-
       ## Velocità e SEO
 
 
@@ -387,8 +379,6 @@ locales:
       probabilità che lasceranno l'e-commerce prima.
 
 
-
-
       ### Non testare la pazienza degli utenti
 
 
@@ -399,8 +389,6 @@ locales:
 
 
       > Un'esperienza fluida e reattiva migliora i tassi di conversione
-
-
 
 
       ## Il mio e-commerce dovrebbe adottare a una soluzione headless?
@@ -433,12 +421,10 @@ locales:
       vivamente di prendere in considerazione una soluzione headless.
 
 
-
-
       ## Perchè abbiamo deciso di investire nell'headless
 
 
-      Noi di InkOfPixel crediamo fermamente che gli headless commerce avranno un
+      Noi di inkOfPixel crediamo fermamente che gli headless commerce avranno un
       ruolo dominante in futuro e abbiamo deciso di investire su questa nuova
       architetture. Il motivo principale è che
 
@@ -447,15 +433,13 @@ locales:
       gli utenti che per gli sviluppatori
 
 
-
-
       ## Caso studio: Rue Des Mille
 
 
       Rue Des Mille è un marchio italiano di gioielli prêt-à-porter. Abbiamo
       seguito il rinnovo del loro e-commerce adottando una soluzione headless.
       Abbiamo sviluppato il nuovo sito web da zero, utilizzando un CMS, in
-      combinazione con Shopify Plus, che forniscono i dati al front-end
+      combinazione con Shopify, che forniscono i dati al front-end
       personalizzato.
 
 
