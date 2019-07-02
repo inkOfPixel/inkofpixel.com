@@ -25,7 +25,8 @@ var renderer = new marked.Renderer();
 
 // Override function
 renderer.paragraph = function(text) {
-  if (/^custom-image(\S+)$/.test(text)) {
+  console.log(text);
+  if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(text)) {
     console.log("text", text);
     console.log("MATCH CUSTOM IMAGE");
     const attributes = {
@@ -35,15 +36,17 @@ renderer.paragraph = function(text) {
       alt: "",
       align: ""
     };
-    const attributesSplitted = text
-      .split("(")[1]
-      .slice(0, -1)
-      .split("|");
-
-    attributesSplitted.forEach(a => {
-      const [attrName, attrValue] = a.split(":");
-      attributes[attrName] = attrValue;
-    });
+    const attributesString = text.match(/\((.*?)\)/);
+    console.log(attributesString);
+    if (attributesString) {
+      const attributesSplitted = attributesString[1].split("|");
+      console.log(attributesSplitted);
+      attributesSplitted.forEach(a => {
+        const [attrName, attrValue] = a.split(":");
+        attributes[attrName] = attrValue;
+      });
+    }
+    console.log(attributes);
     return `
     <div class="custom-image-container" ${attributes.size} ${attributes.align}>
       <img src="${attributes.src}" ${

@@ -222,8 +222,8 @@ locales:
       e-commerce is also a PWA, greatly improving the mobile experience.
 
 
-      custom-image(size:small|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
-      Des Mille PWA)
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
+      Des Mille PWA)end-custom-image
     excerpt: >-
       This year Shopify Unite (the annual Shopify partner and developer
       conference), there was a talk dedicated to headless commerce, which has

@@ -55,7 +55,7 @@ CMS.registerEditorComponent({
   ],
   // Pattern to identify a block as being an instance of this component
 
-  pattern: /^custom-image(\S+)$/,
+  pattern: /^start-custom-image(([\S\s])*)end-custom-image$/,
   // Function to extract data elements from the regexp match
   fromBlock: function(match) {
     console.log(match);
@@ -88,7 +88,7 @@ CMS.registerEditorComponent({
   // Function to create a text block from an instance of this component
   toBlock: function(obj) {
     // prettier-ignore
-    return `custom-image(size:${obj.size}|align:${obj.align}|width:${obj.width}|src:${obj.src}|alt:${obj.alt})`;
+    return `start-custom-image(size:${obj.size}|align:${obj.align}|width:${obj.width}|src:${obj.src}|alt:${obj.alt})end-custom-image`;
   },
   // Preview output for this component. Can either be a string or a React component
   // (component gives better render performance)
