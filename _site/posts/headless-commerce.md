@@ -223,7 +223,7 @@ locales:
 
 
       start-custom-image(size:tiny|align:center|width:undefined|src:/assets/ezgif.com-video-to-gif.gif|alt:Rue
-      Des Mille PWS)end-custom-image
+      Des Mille PWA)end-custom-image
     excerpt: >-
       This year Shopify Unite (the annual Shopify partner and developer
       conference), there was a talk dedicated to headless commerce, which has
