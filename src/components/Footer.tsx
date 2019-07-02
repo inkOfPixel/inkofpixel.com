@@ -90,10 +90,12 @@ const Container = styled.footer`
 
 const Flexbox = styled.div`
   display: flex;
+  align-items: start;
   @media (max-width: 850px) {
     flex-direction: column;
   }
   ${Logo} {
+    width: 200px;
     fill: ${props => props.theme.colors.white};
   }
   .contact {

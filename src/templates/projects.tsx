@@ -173,7 +173,7 @@ const ProjectDescription = styled.div`
   padding-top: 10px;
   @media (max-width: 900px) {
     width: 100%;
-    padding: 20px;
+    padding: 20px 0;
   }
 `;
 const ProjectFeaturedImageWrapper = styled.div`
@@ -212,12 +212,12 @@ const ProjectType = styled.p`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   color: ${props => props.theme.colors.green};
 `;
 const ProjectExcerpt = styled.div`
   font-size: 14px;
-  line-height: 1.6em;
+  line-height: 1.8em;
   color: ${props => props.theme.colors.gray};
 `;
 

@@ -26,7 +26,12 @@ module.exports = {
     "gatsby-plugin-offline",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-typescript",
-    "gatsby-plugin-netlify-cms",
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        modulePath: `${__dirname}/src/cms/extension.js`
+      }
+    },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
@@ -48,6 +53,13 @@ module.exports = {
       options: {
         path: `${__dirname}/_site/projects`,
         name: "projects"
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/_site/posts`,
+        name: "posts"
       }
     },
     {
@@ -85,6 +97,29 @@ module.exports = {
     {
       resolve: "gatsby-plugin-markdown-locales",
       options: {
+        name: "posts",
+        defaultLocale: generalSettings.defaultLanguage,
+        getPath: ({ node, locale, defaultLocale, slug }) => {
+          const localizedTitle = node.frontmatter.locales
+            .find(l => l.language === locale)
+            .title.toLowerCase()
+            .split(" ")
+            .join("-");
+
+          const basePathByLocale = {
+            en: "/blog",
+            it: "/blog"
+          };
+          return locale === defaultLocale
+            ? path.join("/", basePathByLocale[locale], localizedTitle)
+            : path.join("/", locale, basePathByLocale[locale], localizedTitle);
+        }
+      }
+    },
+
+    {
+      resolve: "gatsby-plugin-markdown-locales",
+      options: {
         name: "pages",
         defaultLocale: generalSettings.defaultLanguage,
         getPath: ({ node, locale, defaultLocale, slug }) => {
@@ -110,6 +145,20 @@ module.exports = {
               // base for generating different widths of each image.
               maxWidth: 2400,
               linkImagesToOriginal: false
+            }
+          },
+          {
+            resolve: "gatsby-remark-copy-linked-files",
+            options: {
+              // `ignoreFileExtensions` defaults to [`png`, `jpg`, `jpeg`, `bmp`, `tiff`]
+              // as we assume you'll use gatsby-remark-images to handle
+              // images in markdown as it automatically creates responsive
+              // versions of images.
+              //
+              // If you'd like to not use gatsby-remark-images and just copy your
+              // original images to the public directory, set
+              // `ignoreFileExtensions` to an empty array.
+              // ignoreFileExtensions: [],
             }
           }
         ]
