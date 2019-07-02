@@ -11,13 +11,6 @@ locales:
       generated a lot of interest. We want to take this opportunity to give our
       insight on the topic.
 
-
-      youtube https://www.youtube.com/watch?v=2MRdtXWcgIw
-
-
-      ## What is a headless commerce and why does it matter
-
-
       To put it as simple as possible 
 
 
@@ -211,7 +204,7 @@ locales:
       Load time between pages is almost non existent
 
 
-      ![RDM nvigation](/assets/kapture-2019-06-28-at-14.40.59.gif#small)
+      ![RDM nvigation](/assets/kapture-2019-06-28-at-14.40.59.gif)
 
 
       ### PWA optimized
