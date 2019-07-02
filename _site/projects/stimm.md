@@ -120,8 +120,9 @@ locales:
       dello store.
 
 
-      ![Pannello di controllo per la modifica dei contenuti del
+      !\[Pannello di controllo per la modifica dei contenuti del
       sito](/assets/inkofpixel_stimm_customize.jpg)
+
 
 
       ## La sfida nel ripensare il sito

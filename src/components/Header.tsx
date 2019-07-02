@@ -3,10 +3,13 @@ import { Link, StaticQuery, graphql } from "gatsby";
 import styled, { withTheme } from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
+import Icon from "components/Icon";
 import Wrapper from "components/Wrapper";
 import GooeyMenu from "components/GooeyMenu";
 import { IPageLocale } from "types";
 import ThemeInterface from "themes/theme";
+import Menu from "icons/Menu";
+import SideBarPanel from "./SidebarPanel";
 
 interface IProps {
   theme: ThemeInterface;
@@ -17,6 +20,7 @@ interface IProps {
 
 interface IState {
   languageMenuOpen: boolean;
+  isMobileNavOpen: boolean;
 }
 
 interface IHeaderQueryData {
@@ -39,12 +43,25 @@ class Header extends React.Component<IProps, IState> {
   };
 
   state = {
-    languageMenuOpen: false
+    languageMenuOpen: false,
+    isMobileNavOpen: false
   };
 
   handleToggleLanguageMenu = (open: boolean) => {
     this.setState({
       languageMenuOpen: open
+    });
+  };
+
+  handleOpenSidenav = () => {
+    this.setState({
+      isMobileNavOpen: true
+    });
+  };
+
+  handleCloseSidenav = () => {
+    this.setState({
+      isMobileNavOpen: false
     });
   };
 
@@ -79,61 +96,127 @@ class Header extends React.Component<IProps, IState> {
             );
           }
           return (
-            <DesktopMenuContainer>
-              <Wrapper>
-                <LogoLink to={locale === defaultLocale ? "" : `/${locale}`}>
-                  <Logo />
-                  <AssistiveText>
-                    <FormattedMessage
-                      id="header.logo.assistiveText"
-                      defaultMessage="Link to home page"
-                    />
-                  </AssistiveText>
-                </LogoLink>
-                <RightBarItems>
-                  <List>
-                    {localizedNavigation.main &&
-                      localizedNavigation.main.links.map(link => (
-                        <ListItem key={link.label}>
-                          <Link to={link.url}>{link.label}</Link>
-                        </ListItem>
-                      ))}
-                  </List>
-                  {pageLocales &&
-                    pageLocales.length > 1 && (
-                      <LanguageSelector
-                        renderLabel={() => (
-                          <span className="selected">{locale}</span>
-                        )}
-                        color={theme.languageSelector.color}
-                        backgroundColor={theme.languageSelector.backgroundColor}
-                        size={44}
-                        open={languageMenuOpen}
-                        onToggle={this.handleToggleLanguageMenu}
+            <>
+              <DesktopMenuContainer>
+                <Wrapper style={{ height: "100%" }}>
+                  <NavContainer>
+                    <MenuIcon onClick={this.handleOpenSidenav} />
+                    <LogoContainer>
+                      <LogoLink
+                        to={locale === defaultLocale ? "" : `/${locale}`}
                       >
-                        {pageLocales.map(pageLocale => (
-                          <Link
-                            key={pageLocale.code}
-                            onClick={() => this.handleToggleLanguageMenu(false)}
-                            to={pageLocale.url}
-                            className={
-                              pageLocale.code === locale ? "selected" : ""
+                        <Logo />
+                        <AssistiveText>
+                          <FormattedMessage
+                            id="header.logo.assistiveText"
+                            defaultMessage="Link to home page"
+                          />
+                        </AssistiveText>
+                      </LogoLink>
+                    </LogoContainer>
+                    <RightBarItems>
+                      <List>
+                        {localizedNavigation.main &&
+                          localizedNavigation.main.links.map(link => (
+                            <ListItem key={link.label}>
+                              <Link to={link.url}>{link.label}</Link>
+                            </ListItem>
+                          ))}
+                      </List>
+                      {pageLocales &&
+                        pageLocales.length > 1 && (
+                          <LanguageSelector
+                            renderLabel={() => (
+                              <span className="selected">{locale}</span>
+                            )}
+                            color={theme.languageSelector.color}
+                            backgroundColor={
+                              theme.languageSelector.backgroundColor
                             }
+                            size={44}
+                            open={languageMenuOpen}
+                            onToggle={this.handleToggleLanguageMenu}
                           >
-                            {pageLocale.code}
-                          </Link>
-                        ))}
-                      </LanguageSelector>
-                    )}
-                </RightBarItems>
-              </Wrapper>
-            </DesktopMenuContainer>
+                            {pageLocales.map(pageLocale => (
+                              <Link
+                                key={pageLocale.code}
+                                onClick={() =>
+                                  this.handleToggleLanguageMenu(false)
+                                }
+                                to={pageLocale.url}
+                                className={
+                                  pageLocale.code === locale ? "selected" : ""
+                                }
+                              >
+                                {pageLocale.code}
+                              </Link>
+                            ))}
+                          </LanguageSelector>
+                        )}
+                    </RightBarItems>
+                  </NavContainer>
+                </Wrapper>
+              </DesktopMenuContainer>
+              <SideBarPanel
+                isOpen={this.state.isMobileNavOpen}
+                handleClose={this.handleCloseSidenav}
+              >
+                <LinkMobileContainer>
+                  <IconContainer>
+                    <IconLink to={locale === defaultLocale ? "" : `/${locale}`}>
+                      <Icon />
+                      <AssistiveText>
+                        <FormattedMessage
+                          id="header.logo.assistiveText"
+                          defaultMessage="Link to home page"
+                        />
+                      </AssistiveText>
+                    </IconLink>
+                  </IconContainer>
+                  {localizedNavigation.main &&
+                    localizedNavigation.main.links.map(link => (
+                      <MobileListItem key={link.label}>
+                        <Link
+                          to={link.url}
+                          onClick={() => this.handleCloseSidenav()}
+                        >
+                          {link.label}
+                        </Link>
+                      </MobileListItem>
+                    ))}
+                </LinkMobileContainer>
+              </SideBarPanel>
+            </>
           );
         }}
       />
     );
   }
 }
+
+const LogoContainer = styled.div`
+  @media (max-width: 899px) {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+`;
+const NavContainer = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+`;
+const MenuIcon = styled(Menu)`
+  height: 40px;
+  width: 40px;
+  display: none;
+  &:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 899px) {
+    display: block;
+  }
+`;
 
 const AssistiveText = styled.span`
   height: 1px;
@@ -151,35 +234,31 @@ const DesktopMenuContainer = styled.header`
 `;
 
 const LogoLink = styled(Link)`
-  position: absolute;
-  display: block;
-  left: 0px;
-  top: 53px;
+  display: inline-block;
   width: 200px;
   @media (max-width: 1260px) {
-    left: 40px;
+    /* left: 40px; */
   }
-  @media (max-width: 700px) {
-    left: 20px;
-    width: 160px;
+  @media (max-width: 600px) {
+    width: 150px;
   }
 `;
 
 const RightBarItems = styled.div`
-  position: absolute;
-  right: 0;
-  top: 55px;
-  margin: 0;
   display: flex;
+  @media (min-width: 899px) {
+    flex: 1;
+  }
   align-items: baseline;
 `;
 
 const List = styled.ul`
   list-style: none;
-  @media (max-width: 1260px) {
-    right: 40px;
-  }
-  @media (max-width: 800px) {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  margin-right: 30px;
+  @media (max-width: 899px) {
     display: none;
   }
 `;
@@ -219,8 +298,8 @@ const ListItem = styled.li`
 `;
 
 const LanguageSelector = styled(GooeyMenu)`
-  margin-left: 30px;
-  @media (max-width: 1260px) {
+  margin-right: 0;
+  @media (min-width: 1260px) {
     margin-right: 30px;
   }
   a {
@@ -234,4 +313,35 @@ const LanguageSelector = styled(GooeyMenu)`
   }
 `;
 
+const LinkMobileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 70px;
+`;
+
+const IconContainer = styled.div`
+  padding-bottom: 30px;
+`;
+
+const IconLink = styled(Link)`
+  display: inline-block;
+  width: 40px;
+`;
+
+const MobileListItem = styled.li`
+  display: flex;
+  a {
+    display: block;
+    padding: 20px 10px;
+    letter-spacing: 0.02em;
+    color: ${props => props.theme.navigationColor};
+    text-decoration: none;
+    position: relative;
+    transition: all 300ms;
+    font-weight: 400;
+    font-size: 14px;
+  }
+`;
 export default withTheme(Header);

@@ -62,13 +62,13 @@
         "description": "",
         "featuredProjects": [
           {
+            "project": "Rue Des Mille"
+          },
+          {
             "project": "D1 Milano"
           },
           {
             "project": "STIMM"
-          },
-          {
-            "project": "Rewop Milano"
           }
         ]
       },
@@ -138,13 +138,13 @@
         "description": "",
         "featuredProjects": [
           {
+            "project": "Rue Des Mille"
+          },
+          {
             "project": "D1 Milano"
           },
           {
             "project": "STIMM"
-          },
-          {
-            "project": "Rewop Milano"
           }
         ]
       },
