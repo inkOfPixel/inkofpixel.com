@@ -3,7 +3,7 @@ title: headless commerce
 template: post
 published: true
 author: Gianluca Chiap
-date: '2019-07-01'
+date: '2019-07-03'
 locales:
   - body: >-
       At this year's Shopify Unite (the annual Shopify partner and developer
@@ -89,10 +89,9 @@ locales:
       users a native experience. By using a headless solution is possible to
       transform the entire e-commerce in a Progressive Web App (PWA).\
 
-      Progressive Web Apps is a new technology that allows to transform a webapp
-      to provide a native app like experiences for the users. They work just
-      like native apps but they drastically reduce the cost for a native user
-      experience.\
+      Progressive Web Apps is a new technology that allows to provide a native
+      app like experiences for the users. They work just like native apps but
+      they drastically lower the cost for a native experience.\
 
       PWAs usually produce a higher user engagement and conversions which is the
       reason why many e-commerce are adopting this technology to grow their
@@ -131,8 +130,8 @@ locales:
       > A headless solution is faster, always.
 
 
-      If someone has experience the opposite than he is not doing it right. A
-      faster website means a better SEO score.\
+      If someone has experience the opposite, he is not doing it right. A faster
+      website means a better SEO score.\
 
       But most importantly page speed directly affects conversion. If your users
       have to wait a couple of seconds every time they change page or view a new
@@ -171,9 +170,9 @@ locales:
       * An overall slowness to release new features or change existing ones.
 
 
-      than headless can be a good investment for your business. If your
-      e-commerce does not have users in the first place then there are probably
-      more deep problems to fix before considering the change.
+      headless can be a good investment for your business. If your e-commerce
+      does not have users in the first place, there are probably more deep
+      problems to fix before considering the change.
 
 
       > If you are starting a new e-commerce from scratch we strongly suggest to
@@ -204,8 +203,8 @@ locales:
 
 
       As we said before, one of the advantages of using a custom made front end
-      is the possibility to quickly adopt new technologies. For example this
-      e-commerce is also a PWA, greatly improving the mobile experience.
+      is the possibility to quickly adopt new technologies. For example Rue Des
+      Mille is also a PWA, greatly improving the mobile experience.
 
 
       start-custom-image(size:tiny|align:center|width:undefined|src:/assets/rdm-mobile.gif|alt:Rue
@@ -273,9 +272,8 @@ locales:
 
 
       In questo articolo discuteremo alcuni dei vantaggi che abbiamo
-      sperimentato adottando questa architettura ed alla fine discuteremo un
-      case study per dare un feedback concreto sui concetti che abbiamo
-      presentato.
+      sperimentato adottando questa architettura ed alla fine esporremo un case
+      study per dare un feedback concreto sui concetti che abbiamo presentato.
 
 
       ## Flessibilità e vantaggio tecnologico
@@ -297,19 +295,19 @@ locales:
 
 
       Questo superiorità tecnologica significa un ciclo di sviluppo più rapido
-      dove è più facile testare nuove funzionalità con un breve ritardo
-      dall'ideazione al mercato. Andare sul mercato più velocemente significa
-      poter offrire nuove funzionalità e miglioramenti prima dei tuoi
-      concorrenti.\
+      dove è più facile testare nuove funzionalità passando velocemente dal
+      concept al mercato. Andare sul mercato più velocemente significa poter
+      offrire nuove funzionalità e miglioramenti prima dei tuoi concorrenti.\
 
-      Questa situazione dà l'agilità necessaria per adattarsi rapidamente al
-      nuovo comportamento degli utenti e alle tendenze del mercato.\
+      Questa situazione dà l'agilità necessaria per adattarsi rapidamente ai
+      cambiamenti nel comportamento degli utenti e alle nuove tendenze del
+      mercato.\
 
-      Altrimenti, se veniamo costantemente rallentati dal debito tecnologico,
-      saremo costantemente in ritardo rispetto alla concorrenza.
+      Se veniamo rallentati dal debito tecnologico, saremo costantemente in
+      ritardo rispetto alla concorrenza.
 
 
-      > Una superiorità tecnologica significa maggior velocità rispetto ai tuoi
+      > Una superiorità tecnologica significa maggior agilità rispetto ai tuoi
       concorrenti
 
 
@@ -317,7 +315,7 @@ locales:
 
 
       È abbastanza comune che gli utenti mobile generino una buona percentuale
-      del traffico per e-commerce. Spesso però l’esperienza mobile è non è
+      del traffico dell' e-commerce. Spesso però l’esperienza mobile è non è
       piacevole come su desktop o applicazione nativa. Navigazione lenta e
       esperienza utente non ottimizzata sono alcuni dei peggiori scenari
       possibili per gli utenti mobili.
@@ -330,23 +328,23 @@ locales:
       Lo sviluppo di un'app mobile nativa non è qualcosa che ogni azienda può
       permettersi. Ma fortunatamente non è sempre necessaria per offrire agli
       utenti un'esperienza nativa. Utilizzando una soluzione headless è
-      possibile infatti trasformare l'intero e-commerce in una Progressive Web
+      possibile infatti convertire l'intero e-commerce in una Progressive Web
       App(PWA).\
 
-      Le Progressive Web Apps sono una nuova tecnologia che consente di
-      trasformare una webapp per offrire esperienza molto simile ad
-      un’applicazione nativa, riducendo drasticamente il costo di sviluppo.\
+      Le Progressive Web Apps sono una nuova tecnologia che consente di offrire
+      esperienza molto simile ad un’applicazione nativa, riducendo drasticamente
+      il costo di sviluppo.\
 
       Le PWA garantiscono un maggiore coinvolgimento degli utenti che si traduce
-      in un conversion rate superiore, motivo per il quale molti e-commerce
-      stanno adottando questa tecnologia per far crescere le proprie attività.
+      in una maggiore conversione, motivo per il quale molti e-commerce stanno
+      adottando questa tecnologia per far crescere il proprio business.
 
 
       ## Personalizzazione e miglior esperienza utente
 
 
       La limitata flessibilità degli e-commerce tradizionali riduce notevolmente
-      le scelte di design disponibili. 
+      le scelte di design. 
 
 
       > Non personalizzare un e-commerce per adattarsi al comportamento degli
@@ -377,10 +375,10 @@ locales:
 
 
       Chiunque abbia avuto un’esperienza diversa significa che non è stata
-      implementata in maniera corretta. Un sito Web più veloce significa un
-      punteggio SEO migliore.\
+      implementata in maniera corretta. Un sito Web più veloce significa inoltre
+      un punteggio SEO migliore.\
 
-      Ma soprattutto la velocità della pagina influisce direttamente sulla
+      Ma soprattutto la velocità della navigazione influisce direttamente sulla
       conversione. Se gli utenti devono aspettare un paio di secondi ogni volta
       che cambiano pagina o visualizzano un nuovo prodotto, c'è una buona
       probabilità che lasceranno l'e-commerce prima.
@@ -391,8 +389,8 @@ locales:
 
       Nel 2016 Amazon ha rilasciato uno dei primi studi sulla correlazione tra
       velocità del sito e tasso di conversione. Hanno dimostrato che ogni 100
-      millisecondi di ritardo nel caricamento della pagina porta a una perdita
-      dell'1% nelle vendite.
+      millisecondi di ritardo nel caricamento della pagina porta a una
+      diminuzione dell'1% nelle vendite.
 
 
       > Un'esperienza fluida e reattiva migliora i tassi di conversione
@@ -405,15 +403,14 @@ locales:
       adottare una soluzione headless. Prima di tutto il budget. Riscrivere
       tutto il front-end può essere piuttosto costoso e bisogna essere sicuri
       che il business ne trarrà vantaggio. Per prima cosa bisogna fare
-      un'analisi precisa dei problemi dell’ e-commerce e se alcuni dei problemi
-      sono:
+      un'analisi precisa dei problemi e se alcuni di questi sono:
 
 
       * un sito lento
 
       * un'esperienza utente non ottimale, in particolare per gli utenti mobile
 
-      * avere la sensazione di restare indietro rispetto ai concorrenti
+      * avere la sensazione essere in ritardo rispetto ai concorrenti
 
       * Una lentezza generale per rilasciare nuove funzionalità o modificare
       quelle esistenti.
@@ -453,7 +450,7 @@ locales:
       ### Ottimizzata per PWA
 
 
-      Come abbiamo detto prima, uno dei vantaggi dell'utilizzo di un front end
+      Come abbiamo detto prima, uno dei vantaggi dell'utilizzo di un front-end
       personalizzato è la possibilità di adottare rapidamente nuove tecnologie.
       Ad esempio questo e-commerce è anche una PWA, migliorando notevolmente
       l'esperienza mobile.
@@ -463,7 +460,7 @@ locales:
       Des Mille PWA)end-custom-image
 
 
-      Più informazioni su questo progetto sono presenti in [questo
+      Se volete più informazione su questo progetto leggete [questo
       post](https://inkofpixel.com/it/blog/il-futuro-degli-e-commerce-è-headless)
 
 
@@ -471,10 +468,10 @@ locales:
 
 
       Noi di InkOfPixel crediamo fermamente che gli headless commerce avranno un
-      ruolo dominante in futuro e abbiamo deciso di investire su questa nuova
-      architetture.\
+      ruolo dominante in futuro e abbiamo quindi deciso di investire su questa
+      nuova architetture.\
 
-      Speriamo che questo post ti abbia aiutato a capire perché siamo così
+      Speriamo che questo post abbia aiutato a capire perché siamo così
       appassionati di questo nuovo paradigma.
 
 
