@@ -216,8 +216,6 @@ locales:
       post](https://inkofpixel.com/blog/headless-commerce-is-the-future-of-e-commerce)
 
 
-
-
       ## Why we decided to invest in headless
 
 
@@ -427,19 +425,9 @@ locales:
 
 
       > Se invece stai iniziando un nuovo e-commerce da zero, ti consigliamo
-      vivamente di prendere in considerazione una soluzione headless.
-
-
-      ## Perchè abbiamo deciso di investire nell'headless
-
-
-      Noi di inkOfPixel crediamo fermamente che gli headless commerce avranno un
-      ruolo dominante in futuro e abbiamo deciso di investire su questa nuova
-      architetture. Il motivo principale è che
-
-
-      > Una soluzione headless offre un'esperienza complessiva migliore sia per
-      gli utenti che per gli sviluppatori
+      vivamente di prendere in considerazione una soluzione headless, poiché
+      garantisce un'esperienza migliore sia per gli utenti che per gli
+      sviluppatori
 
 
       ## Caso studio: Rue Des Mille
@@ -462,8 +450,6 @@ locales:
       ![RdM navigazione](/assets/rdm-gif-1.gif)
 
 
-
-
       ### Ottimizzata per PWA
 
 
@@ -473,11 +459,28 @@ locales:
       l'esperienza mobile.
 
 
-      ![Pwa](/assets/ezgif.com-video-to-gif.gif)
+      start-custom-image(size:tiny|align:center|width:|src:/assets/rdm-mobile.gif|alt:Rue
+      Des Mille PWA)end-custom-image
 
 
       Più informazioni su questo progetto sono presenti in [questo
       post](https://inkofpixel.com/it/blog/il-futuro-degli-e-commerce-è-headless)
+
+
+      ## Perchè abbiamo deciso di investire nell'headless
+
+
+      Noi di InkOfPixel crediamo fermamente che gli headless commerce avranno un
+      ruolo dominante in futuro e abbiamo deciso di investire su questa nuova
+      architetture.\
+
+      Speriamo che questo post ti abbia aiutato a capire perché siamo così
+      appassionati di questo nuovo paradigma.
+
+
+      Fateci sapere cosa ne pensate
+
+      [@inkofpixel](https://twitter.com/inkOfPixel)
     excerpt: >-
       Allo Shopify Unite di quest’anno c’è stato un talk dedicato agli headless
       commerce che ha suscitato molto interesse. Vogliamo cogliere l'occasione
