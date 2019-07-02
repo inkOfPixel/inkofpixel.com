@@ -225,8 +225,8 @@ locales:
       At this year's Shopify Unite, there was a talk dedicated to headless
       commerce, which has generated a lot of interest. We want to take this
       opportunity to give our insight on the topic
-    featuredImage: /assets/rue-des-mille-00-hero-website.jpg
-    heroImage: /assets/rue-des-mille-hero.jpg
+    featuredImage: /assets/headless-commerce-is-the-future-of-e-commerce.jpg
+    heroImage: /assets/headless-commerce-is-the-future-of-e-commerce.jpg
     language: en
     seoDescription: >-
       At this year's Shopify Unite, there was a talk dedicated to headless
@@ -479,8 +479,8 @@ locales:
       Allo Shopify Unite di quest’anno c’è stato un talk dedicato agli headless
       commerce che ha suscitato molto interesse. Vogliamo cogliere l'occasione
       per esprimere il nostro punto di vista sull'argomento.
-    featuredImage: /assets/rue-des-mille-00-hero-website.jpg
-    heroImage: /assets/rue-des-mille-featured.jpg
+    featuredImage: /assets/headless-commerce-is-the-future-of-e-commerce.jpg
+    heroImage: /assets/headless-commerce-is-the-future-of-e-commerce.jpg
     language: it
     seoDescription: >-
       Allo Shopify Unite di quest’anno c’è stato un talk dedicato agli headless
