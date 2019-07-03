@@ -79,7 +79,11 @@ CMS.registerEditorComponent({
       const attributesSplitted = attributesString[1].split("|");
       attributesSplitted.forEach(a => {
         const [attrName, attrValue] = a.split(":");
-        attributes[attrName] = attrValue;
+        if (attrValue || attrValue === "undefined") {
+          attributes[attrName] = "";
+        } else {
+          attributes[attrName] = attrValue;
+        }
       });
     }
 

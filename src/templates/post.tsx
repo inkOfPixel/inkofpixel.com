@@ -38,13 +38,17 @@ renderer.paragraph = function(text) {
       const attributesSplitted = attributesString[1].split("|");
       attributesSplitted.forEach(a => {
         const [attrName, attrValue] = a.split(":");
-        attributes[attrName] = attrValue;
+        if (!attrValue || attrValue === "undefined") {
+          attributes[attrName] = "";
+        } else {
+          attributes[attrName] = attrValue;
+        }
       });
     }
     return `
     <div class="custom-image-container" ${attributes.size} ${attributes.align}>
       <img src="${attributes.src}" ${
-      attributes.width ? (attributes.width = "${width}") : ""
+      attributes.width ? `width="${attributes.width}"` : ""
     } alt="${attributes.alt}">
     </div>
     `;
