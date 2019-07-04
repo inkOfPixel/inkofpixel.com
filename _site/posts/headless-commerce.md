@@ -440,8 +440,8 @@ locales:
       ![Rue Des Mille home page](/assets/rue-des-mille-00-hero-website.jpg)
 
 
-      La prima cosa che si nota dell’e-commerce è che l’estrema reattività. Il
-      tempo di caricamento tra le pagine è quasi inesistente
+      La prima cosa che si nota dell’e-commerce è l’estrema reattività. Il tempo
+      di caricamento tra le pagine è quasi inesistente
 
 
       ![RdM navigazione](/assets/rdm-gif-1.gif)
