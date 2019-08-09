@@ -324,5 +324,18 @@ locales:
       on Shopify
     seoTitle: Magento vs Shopify
     title: Magento vs Shopify
+  - excerpt: >-
+      Magento and Shopify are two of the most popular platforms that can be used
+      today to build e-commerce. We share our experience having worked with both
+      platforms and explaining why we have eventually decided to go all-in on
+      Shopify
+    language: it
+    seoDescription: >
+      Magento and Shopify are two of the most popular platforms that can be used
+      today to build e-commerce. We share our experience having worked with both
+      platforms and explaining why we have eventually decided to go all-in on
+      Shopify
+    seoTitle: Magento VS Shopify
+    title: Magento VS Shopify
 ---
 
