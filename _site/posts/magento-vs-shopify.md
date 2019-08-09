@@ -113,7 +113,7 @@ locales:
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/mvmt.png|alt:MVMT
-      watches)end-custom-image
+      watches|description:)end-custom-image
 
 
       ### Fun fact
@@ -124,7 +124,7 @@ locales:
 
 
       start-custom-image(size:small|align:center|width:|src:/assets/boring-company.gif|alt:Boring
-      Company)end-custom-image
+      Company|description:)end-custom-image
 
 
       ## Who uses Magento?
@@ -142,7 +142,7 @@ locales:
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/coca-cola.png|alt:Coca
-      Cola)end-custom-image
+      Cola|description:)end-custom-image
 
 
       ## Flexibility/complexity tradeoff.
@@ -191,7 +191,7 @@ locales:
 
 
       start-custom-image(size:small|align:center|width:|src:/assets/complexity-flexibility-tradeoff.png|alt:Complexity-Flexibility
-      tradeoff)end-custom-image
+      tradeoff|description:)end-custom-image
 
 
       The flexibility you gain by using a platform like Magento come at a cost
@@ -207,7 +207,7 @@ locales:
       realization to be stuck again by overwhelming complexity.
 
 
-      start-custom-image(size:small|align:center|width:|src:/assets/imfree.gif|alt:Freedom)end-custom-image
+      start-custom-image(size:small|align:center|width:|src:/assets/imfree.gif|alt:Freedom|description:)end-custom-image
 
 
       ### The hidden costs of flexibility.
@@ -282,8 +282,8 @@ locales:
       what it seems like.
 
 
-      start-custom-image(size:medium|align:center|width:undefined|src:/assets/hidden-cost.png|alt:Hidden
-      cost of self hosting)end-custom-image
+      start-custom-image(size:medium|align:center|width:|src:/assets/hidden-cost.png|alt:Hidden
+      cost of self hosting|description:)end-custom-image
 
 
       Building an infrastructure from scratch means you have to deal with
@@ -293,8 +293,9 @@ locales:
       > Self hosting works great until it doesn’t
 
 
-      start-custom-image(size:small|align:center|width:undefined|src:/assets/self-hosting.gif|alt:Self
-      hosting)end-custom-image
+      start-custom-image(size:small|align:center|width:|src:/assets/self-hosting.gif|alt:What
+      it’s like to manage an e-commerce
+      infrastructure|description:)end-custom-image
 
 
       Shopify on the other hand is a fully hosted solution. That means that it
@@ -304,11 +305,208 @@ locales:
 
       ### Security
 
+
       If you are going to sell anything online, you must follow specific
       security standard (namely PCI DSS) to protect your customer payment data
       from being stolen and used in fraud. The reputation of your store is at
       stake. Are your servers compliant with all those security standards? Do
       you meet GDPR requirements if you are selling in EU?
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/security.gif|alt:Security
+      on a discrete amount on self hosted
+      application|description:undefined)end-custom-image
+
+
+      All Shopify application are hosted PCI Compliance Level 1, the maximum
+      security level. And they are constantly audited. Using Magento (non cloud)
+      you are responsible for the security, and it’s your responsibility to
+      apply all the security patches during time.
+
+
+      > Using Shopify, security is one less thing to worry about.
+
+
+      ## E-commerce maintenance: Fixing bugs, updating and scaling
+
+
+      Once you have managed to build and host the e-commerce there is still tons
+      of work to do. For example when adding new functionalities or customizing
+      existing one there is a good chance of introducing new bugs.
+
+
+      > The more functionalities your shop has, the more bugs it can have
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/fix-it.gif|alt:Fix
+      it|description:undefined)end-custom-image
+
+
+      On top of that by using a self managed solution you are responsible for
+      installing all the patches and security updates released by Magento,
+      paying attention not to break anything in the process.
+
+
+      start-custom-image(size:tiny|align:center|width:undefined|src:/assets/bugs.png|alt:bugs|description:undefined)end-custom-image
+
+
+      With Shopify by giving up some flexibility you are gaining freedom from
+      dealing with security patches and updates.
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/update.gif|alt:Updates|description:undefined)end-custom-image
+
+
+      ## Scaling
+
+
+      It’s Black Friday weekend, you have just launched a costly advertising
+      campaign and users are flooding to your e-commerce. But wait, the servers
+      can’t handle all the requests and suddenly everything goes down. If you
+      are lucky users will only get an extremely slow and frustrating
+      experience, otherwise your e-commerce is no longer reachable.
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/fire.gif|alt:Trying
+      to scale the servers during traffic
+      peak.|description:undefined)end-custom-image
+
+
+      The risk is that you will be spending more time solving problems about
+      scaling than actually scaling.
+
+
+
+
+      > But \[insert big brand name] is using Magento and works fine even during
+      Black friday.
+
+
+
+
+      Yes, but they likely have an entire engineering team just dedicated to
+      that. Can you afford it?
+
+
+      Users don’t care about your infrastructure, they want their experience to
+      be as pleasant as possible. It’s very difficult to compete against a PaaS
+      in term of scalability and therefore you should stop wasting time managing
+      your own infrastructure and instead investing your money to provide the
+      best user experience possible.
+
+
+      ## To sum up
+
+
+      There is a clear tradeoff between flexibility and complexity. The more
+      flexible a platform is, the more complex it becomes. If your want to
+      invest in Magento because you think it worth it you have to be sure you’ll
+      be able to handle the complexity;
+
+
+      Otherwise the risk is that you will end up wasting most of your time
+      dealing with problems not directly related to your business, like managing
+      servers and there is a good chance your store is going to quickly
+      accumulate technical debt over time, leading to a situation where your
+      business is constantly lagging behind competition.
+
+
+
+
+      > While you are spending time figuring out how to scale your
+      infrastructure or update to the latest version without breaking everything
+      you competitors are implementing new features
+
+
+
+
+      With Shopify you can focus on the important things, like optimizing the
+      user experience, leaving all the management of the infrastructure to
+      Shopify.
+
+
+
+
+      > A PaaS solution like the one offered by Shopify is stress free.
+
+
+
+
+      ## What about Enterprise?
+
+
+      At enterprise level the battle is between Magento Commerce and Shopify
+      Plus. Things start to become quite expensive (both platforms start at
+      $2000/month) and business processes are very different. We are going to
+      talk about e-commerce at enterprise level in another post.
+
+
+
+
+      ## Why we choose Shopify
+
+
+      Shopify fits our clients’ requirements and developers mental sanity.
+
+
+      Shopify can be summarized with:
+
+
+      > It just works
+
+
+      You don’t have to worry about infrastructure, and can invest your time
+      working on optimizing the user experience, which in turn let us focus on
+      what matters to our customers.
+
+
+      Maybe Shopify does not offer the same freedom of Magento, but its
+      ecosystem won’t make you miss it.
+
+
+      ## Shopify app store
+
+
+
+
+      ## Shopify is growing fast
+
+
+      We are not the only one to believe in Shopify. If we look at Google Trends
+      we can clearly see Shopify popularity growing while interest in Magento is
+      declining.
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/magento-shopify-trend.png|alt:Magento
+      vs Shopify Google trends|description:undefined)end-custom-image
+
+
+      Also the markets believe in Shopify business, demonstrating this is the
+      stock value that it’s gone from $28 to $350 in less than 5 years.
+
+
+      start-custom-image(size:small|align:center|width:undefined|src:/assets/shopify-stock.png|alt:Shopify
+      stock price evolution|description:undefined)end-custom-image
+
+
+      ## Conclusion
+
+
+      We hope that this post has created some food for thoughts about the
+      flexibility/complexity tradeoff, and why we choose Shopify over Magento.
+
+
+
+
+      Of course Shopify is not a perfect platform and there are a lot of
+      functionalities and improvements we hope to see in the future, but overall
+      we believe Shopify approach will become the gold standard of e-commerces.
+
+
+
+
+      As always if you want to discuss about this post, or ask us anything you
+      can find us on Twitter  Linkedin
     excerpt: >-
       Magento and Shopify are two of the most popular platforms that can be used
       today to build an e-commerce. We share our experience having worked with
