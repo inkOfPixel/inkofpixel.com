@@ -59,6 +59,11 @@ CMS.registerEditorComponent({
           value: "right"
         }
       ]
+    },
+    {
+      name: "Description",
+      label: "Description",
+      widget: "string"
     }
   ],
   // Pattern to identify a block as being an instance of this component
@@ -71,7 +76,8 @@ CMS.registerEditorComponent({
       size: "",
       width: "",
       alt: "",
-      align: ""
+      align: "",
+      description: ""
     };
     const attributesString = match["input"].match(/\((.*?)\)/);
 
@@ -94,7 +100,7 @@ CMS.registerEditorComponent({
     // prettier-ignore
     return `start-custom-image(size:${obj.size}|align:${obj.align}|width:${
       obj.width
-    }|src:${obj.src}|alt:${obj.alt})end-custom-image`;
+    }|src:${obj.src}|alt:${obj.alt}|description:${obj.description})end-custom-image`;
   },
   // Preview output for this component. Can either be a string or a React component
   // (component gives better render performance)

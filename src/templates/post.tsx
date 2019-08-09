@@ -31,7 +31,8 @@ renderer.paragraph = function(text) {
       size: "",
       width: "",
       alt: "",
-      align: ""
+      align: "",
+      description: ""
     };
     const attributesString = text.match(/\((.*?)\)/);
     if (attributesString) {
@@ -50,6 +51,17 @@ renderer.paragraph = function(text) {
       <img src="${attributes.src}" ${
       attributes.width ? `width="${attributes.width}"` : ""
     } alt="${attributes.alt}">
+    ${
+      attributes.description
+        ? `
+      <div class="img-description">
+      <span>
+        ${attributes.description}
+      </span>
+    </div>
+    `
+        : ``
+    }
     </div>
     `;
   }
@@ -224,7 +236,13 @@ const Hero = styled.div`
 const Post = styled.div`
   padding: 50px 0;
   .custom-image-container {
+    flex-direction: column;
+    align-items: center;
     display: flex;
+    .img-description {
+      padding-top: 10px;
+      font-size: 0.85em;
+    }
     &[center] {
       justify-content: center;
     }
