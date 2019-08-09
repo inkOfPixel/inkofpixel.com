@@ -477,16 +477,16 @@ locales:
       declining.
 
 
-      start-custom-image(size:small|align:center|width:undefined|src:/assets/magento-shopify-trend.png|alt:Magento
-      vs Shopify Google trends|description:undefined)end-custom-image
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/magento-shopify-trend.png|alt:Magento
+      vs Shopify Google trends|description:Magento vs Shopify Google trends)end-custom-image
 
 
       Also the markets believe in Shopify business, demonstrating this is the
       stock value that it’s gone from $28 to $350 in less than 5 years.
 
 
-      start-custom-image(size:small|align:center|width:undefined|src:/assets/shopify-stock.png|alt:Shopify
-      stock price evolution|description:undefined)end-custom-image
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/shopify-stock.png|alt:Shopify
+      stock price evolution|description:Shopify stock price evolution)end-custom-image
 
 
       ## Conclusion

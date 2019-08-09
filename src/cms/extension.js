@@ -32,12 +32,16 @@ CMS.registerEditorComponent({
           value: "medium"
         },
         {
-          label: "large",
-          value: "large"
+          label: "medium",
+          value: "medium"
         },
         {
           label: "large",
           value: "large"
+        },
+        {
+          label: "very large",
+          value: "very-large"
         }
       ]
     },
@@ -61,7 +65,7 @@ CMS.registerEditorComponent({
       ]
     },
     {
-      name: "Description",
+      name: "description",
       label: "Description",
       widget: "string"
     }

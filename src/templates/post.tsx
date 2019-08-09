@@ -272,6 +272,11 @@ const Post = styled.div`
         max-width: 500px;
       }
     }
+    &[normal] {
+      img {
+        max-width: 650px;
+      }
+    }
     &[large] {
       img {
         max-width: 1000px;
