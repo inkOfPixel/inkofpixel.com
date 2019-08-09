@@ -330,6 +330,8 @@ locales:
       today to build e-commerce. We share our experience having worked with both
       platforms and explaining why we have eventually decided to go all-in on
       Shopify
+    featuredImage: /assets/shopify-vs-magento.jpg
+    heroImage: /assets/shopify-vs-magento.jpg
     language: it
     seoDescription: >
       Magento and Shopify are two of the most popular platforms that can be used
