@@ -1,7 +1,7 @@
 ---
 title: Magento vs Shopify
 template: post
-published: false
+published: true
 author: Gianluca Chiap
 date: "2019-08-12"
 locales:
@@ -119,7 +119,7 @@ locales:
 
 
       start-custom-image(size:normal|align:center|width:|src:/assets/coca-cola.png|alt:Coca
-      Cola|description:)end-custom-image
+      Cola|description:Coca Cola e-commerce)end-custom-image
 
 
       ## Flexibility/complexity tradeoff.
@@ -165,7 +165,7 @@ locales:
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/complexity-flexibility-tradeoff.png|alt:Complexity-Flexibility
-      tradeoff|description:)end-custom-image
+      tradeoff|description:Complexity/Flexibility tradeoff)end-custom-image
 
 
       The flexibility you gain by using a platform like Magento comes at a cost
@@ -252,7 +252,7 @@ locales:
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/hidden-cost.png|alt:Hidden
-      cost of self hosting|description:)end-custom-image
+      cost of self hosting|description:Hidden cost of self hosting)end-custom-image
 
 
       Building an infrastructure from scratch means you have to deal with
