@@ -51,7 +51,7 @@ renderer.paragraph = function(text) {
     return `
     <div class="custom-image-container" ${attributes.size} ${
       attributes.align
-    } ${attributes.shadow}>
+    } shadow="${attributes.shadow}">
       <img src="${attributes.src}" ${
       attributes.width ? `width="${attributes.width}"` : ""
     } alt="${attributes.alt}">
