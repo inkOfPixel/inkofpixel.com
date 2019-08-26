@@ -91,7 +91,7 @@ locales:
 
 
       start-custom-image(size:normal|align:center|width:|src:/assets/mvmt.png|alt:MVMT
-      watches|description:)end-custom-image
+      watches|description:MVMT e-commerce|shadow:true)end-custom-image
 
 
       ### Fun fact
