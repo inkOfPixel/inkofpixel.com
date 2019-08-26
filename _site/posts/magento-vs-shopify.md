@@ -1,7 +1,7 @@
 ---
 title: Magento vs Shopify
 template: post
-published: true
+published: false
 author: Gianluca Chiap
 date: "2019-08-12"
 locales:
@@ -91,7 +91,7 @@ locales:
 
 
       start-custom-image(size:normal|align:center|width:|src:/assets/mvmt.png|alt:MVMT
-      watches|description:MVMT e-commerce|shadow:false)end-custom-image
+      watches|description:MVMT e-commerce)end-custom-image
 
 
       ### Fun fact
@@ -161,7 +161,7 @@ locales:
       know that 
 
 
-      start-important-text(text:Flexibility comes at a cost|align:center)end-important-text
+      start-important-text(text:Flexibility comes at a cost|align:center|shadow:false)end-important-text
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/complexity-flexibility-tradeoff.png|alt:Complexity-Flexibility
