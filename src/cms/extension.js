@@ -117,3 +117,68 @@ CMS.registerEditorComponent({
     return output;
   }
 });
+
+CMS.registerEditorComponent({
+  // Internal id of the component
+  id: "importantText",
+  // Visible label
+  label: "Important text",
+  // Fields the user need to fill out when adding an instance of the component
+  fields: [
+    { name: "text", label: "text", widget: "string" },
+    {
+      name: "align",
+      label: "Align",
+      widget: "select",
+      options: [
+        {
+          label: "left",
+          value: "left"
+        },
+        {
+          label: "center",
+          value: "center"
+        },
+        {
+          label: "right",
+          value: "right"
+        }
+      ]
+    }
+  ],
+  // Pattern to identify a block as being an instance of this component
+
+  pattern: /^start-custom-image(([\S\s])*)end-custom-image$/,
+  // Function to extract data elements from the regexp match
+  fromBlock: function(match) {
+    const attributes = {
+      text: ""
+    };
+    const attributesString = match["input"].match(/\((.*?)\)/);
+
+    if (attributesString) {
+      const attributesSplitted = attributesString[1].split("|");
+      attributesSplitted.forEach(a => {
+        const [attrName, attrValue] = a.split(":");
+        if (!attrValue || attrValue === "undefined") {
+          attributes[attrName] = "";
+        } else {
+          attributes[attrName] = attrValue;
+        }
+      });
+    }
+
+    return attributes;
+  },
+  // Function to create a text block from an instance of this component
+  toBlock: function(obj) {
+    // prettier-ignore
+    return `start-important-text(text:${obj.text}|align:${obj.align})end-important-text`;
+  },
+  // Preview output for this component. Can either be a string or a React component
+  // (component gives better render performance)
+  toPreview: function(obj) {
+    const output = `<div><span>${obj.text}</span></div>`;
+    return output;
+  }
+});

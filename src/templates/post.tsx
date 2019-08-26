@@ -25,6 +25,7 @@ var renderer = new marked.Renderer();
 
 // Override function
 renderer.paragraph = function(text) {
+  console.log(text);
   if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(text)) {
     const attributes = {
       src: "",
@@ -64,7 +65,30 @@ renderer.paragraph = function(text) {
     }
     </div>
     `;
+  } else if (/^start-important-text(([\S\s])*)end-important-text$/.test(text)) {
+    const attributes = {
+      text: "",
+      align: ""
+    };
+    const attributesString = text.match(/\((.*?)\)/);
+    if (attributesString) {
+      const attributesSplitted = attributesString[1].split("|");
+      attributesSplitted.forEach(a => {
+        const [attrName, attrValue] = a.split(":");
+        if (!attrValue || attrValue === "undefined") {
+          attributes[attrName] = "";
+        } else {
+          attributes[attrName] = attrValue;
+        }
+      });
+    }
+    return `
+    <div class="important-text-container" ${attributes.align}>
+      <p>${attributes.text}</p>
+    </div>
+    `;
   }
+
   return `
   <p>
     ${text}
@@ -235,6 +259,50 @@ const Hero = styled.div`
 
 const Post = styled.div`
   padding: 50px 0;
+  .important-text-container {
+    padding: 60px 40px;
+    background-color: #eaf7f7;
+    width: 700px;
+    margin: 30px auto;
+    box-sizing: border-box;
+    position: relative;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+    &[center] {
+      p {
+        text-align: center;
+      }
+    }
+    p {
+      width: 100%;
+      position: relative;
+      color: #03635d;
+      font-weight: 700;
+      font-style: italic;
+      padding: 0;
+      &:before,
+      &:after {
+        content: "“";
+        display: block;
+        position: absolute;
+        color: ${props => props.theme.colors.green};
+        opacity: 0.4;
+        font-size: 90px;
+        font-weight: 400;
+      }
+      &:before {
+        content: "“";
+        top: -10px;
+        left: -30px;
+      }
+      &:after {
+        content: "”";
+        bottom: -50px;
+        right: 0;
+      }
+    }
+  }
   .custom-image-container {
     flex-direction: column;
     align-items: center;
@@ -271,15 +339,45 @@ const Post = styled.div`
       img {
         max-width: 500px;
       }
+      @media (max-width: 500px) {
+        max-width: 300px;
+      }
+      @media (max-width: 400px) {
+        max-width: 200px;
+      }
     }
     &[normal] {
       img {
         max-width: 650px;
+        @media (max-width: 700px) {
+          max-width: 500px;
+        }
+        @media (max-width: 600px) {
+          max-width: 400px;
+        }
+        @media (max-width: 500px) {
+          max-width: 300px;
+        }
+        @media (max-width: 400px) {
+          max-width: 200px;
+        }
       }
     }
     &[large] {
       img {
         max-width: 1000px;
+        @media (max-width: 800px) {
+          max-width: 650px;
+        }
+        @media (max-width: 700px) {
+          max-width: 800px;
+        }
+        @media (max-width: 600px) {
+          max-width: 400px;
+        }
+        @media (max-width: 500px) {
+          max-width: 300px;
+        }
       }
     }
     &[very-large] {
@@ -288,6 +386,7 @@ const Post = styled.div`
       }
     }
   }
+
   p {
     line-height: 1.8em;
     margin: 30px auto;
