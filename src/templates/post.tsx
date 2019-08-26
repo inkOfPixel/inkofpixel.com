@@ -314,10 +314,18 @@ const Post = styled.div`
       display: block;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
     }
+    &[shadow="false"] {
+      img {
+        box-shadow: none;
+      }
+    }
     .img-description {
       padding-top: 10px;
       font-size: 0.85em;
+      opacity: 0.5;
+      font-size: 13px;
     }
+
     &[center] {
       justify-content: center;
     }
