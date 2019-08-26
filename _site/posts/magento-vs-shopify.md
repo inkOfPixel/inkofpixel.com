@@ -3,7 +3,7 @@ title: Magento vs Shopify
 template: post
 published: true
 author: Gianluca Chiap
-date: "2019-08-12"
+date: "2019-08-27"
 locales:
   - body: >-
 
@@ -43,7 +43,9 @@ locales:
 
 
       Magento offers two variants of its core product:
+
       - **Magento Open Source**, is a free and open-source version of Magento where it’s possible to customize and extend its functionality.
+
       - **Magento Commerce**, targeted to enterprise, is a paid version that provides more features and can be run on-premises or as a PaaS, managed by Magento team
       with a solution they call *Magento Hosted Cloud*.
 
@@ -165,7 +167,7 @@ locales:
 
 
       start-custom-image(size:medium|align:center|width:|src:/assets/complexity-flexibility-tradeoff.png|alt:Complexity-Flexibility
-      tradeoff|description:Complexity/Flexibility tradeoff)end-custom-image
+      tradeoff|description:Complexity/Flexibility tradeoff|shadow:false)end-custom-image
 
 
       The flexibility you gain by using a platform like Magento comes at a cost
@@ -202,16 +204,17 @@ locales:
       start-important-text(text:with great power comes great responsibility|align:center)end-important-text
 
 
-      _I’m ok with that, how hard can it be?_
+
+      \- _I’m ok with that, how hard can it be?_
 
 
-      _It’s pretty hard._
+      \- _It’s pretty hard._
 
 
-      _Oh, but at least it’s free._
+      \- _Oh, but at least it’s free._
 
 
-      _Weeeeeell, not exactly._
+      \- _Weeeeeell, not exactly._
 
 
       If you decide to go for Magento Open Source hoping to save some money, you will be pretty disappointed, since it's true that Magento won't charge you a penny, but there are a lot of hidden costs that people tend to underestimate.
@@ -443,14 +446,14 @@ locales:
 
 
       start-custom-image(size:normal|align:center|width:undefined|src:/assets/magento-shopify-trend.png|alt:Magento
-      vs Shopify Google trends|description:Magento vs Shopify Google trends)end-custom-image
+      vs Shopify Google trends|description:Magento vs Shopify Google trends|shadow:false)end-custom-image
 
 
       Also the markets believe in Shopify. The stock price has gone from $28 to $350 in less than 5 years.
 
 
       start-custom-image(size:normal|align:center|width:undefined|src:/assets/shopify-stock.png|alt:Shopify
-      stock price evolution|description:Shopify stock price evolution)end-custom-image
+      stock price evolution|description:Shopify stock price evolution|shadow:false)end-custom-image
 
 
       ## Conclusion
