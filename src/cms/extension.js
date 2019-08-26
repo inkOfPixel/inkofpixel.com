@@ -81,7 +81,8 @@ CMS.registerEditorComponent({
       width: "",
       alt: "",
       align: "",
-      description: ""
+      description: "",
+      shadow: ""
     };
     const attributesString = match["input"].match(/\((.*?)\)/);
 
@@ -104,7 +105,7 @@ CMS.registerEditorComponent({
     // prettier-ignore
     return `start-custom-image(size:${obj.size}|align:${obj.align}|width:${
       obj.width
-    }|src:${obj.src}|alt:${obj.alt}|description:${obj.description})end-custom-image`;
+    }|src:${obj.src}|alt:${obj.alt}|description:${obj.description}|shadow:${obj.shadow})end-custom-image`;
   },
   // Preview output for this component. Can either be a string or a React component
   // (component gives better render performance)
@@ -148,7 +149,7 @@ CMS.registerEditorComponent({
   ],
   // Pattern to identify a block as being an instance of this component
 
-  pattern: /^start-custom-image(([\S\s])*)end-custom-image$/,
+  pattern: /^start-important-text(([\S\s])*)end-important-text$/,
   // Function to extract data elements from the regexp match
   fromBlock: function(match) {
     const attributes = {
