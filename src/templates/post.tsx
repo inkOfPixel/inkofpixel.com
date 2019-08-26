@@ -307,6 +307,10 @@ const Post = styled.div`
     flex-direction: column;
     align-items: center;
     display: flex;
+    img {
+      display: block;
+      box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+    }
     .img-description {
       padding-top: 10px;
       font-size: 0.85em;
@@ -322,67 +326,42 @@ const Post = styled.div`
     }
     &[very-tiny] {
       img {
-        max-width: 200px;
+        width: 200px;
+      }
+      @media (max-width: 240px) {
+        width: 100%;
       }
     }
     &[tiny] {
       img {
-        max-width: 300px;
+        width: 300px;
+      }
+      @media (max-width: 340px) {
+        width: 100%;
       }
     }
     &[small] {
       img {
-        max-width: 400px;
+        width: 400px;
+      }
+      @media (max-width: 440px) {
+        width: 100%;
       }
     }
     &[medium] {
       img {
-        max-width: 500px;
+        width: 500px;
       }
-      @media (max-width: 500px) {
-        max-width: 300px;
-      }
-      @media (max-width: 400px) {
-        max-width: 200px;
+      @media (max-width: 540px) {
+        width: 100%;
       }
     }
     &[normal] {
       img {
-        max-width: 650px;
-        @media (max-width: 700px) {
-          max-width: 500px;
+        width: 700px;
+        @media (max-width: 740px) {
+          max-width: 100%;
         }
-        @media (max-width: 600px) {
-          max-width: 400px;
-        }
-        @media (max-width: 500px) {
-          max-width: 300px;
-        }
-        @media (max-width: 400px) {
-          max-width: 200px;
-        }
-      }
-    }
-    &[large] {
-      img {
-        max-width: 1000px;
-        @media (max-width: 800px) {
-          max-width: 650px;
-        }
-        @media (max-width: 700px) {
-          max-width: 800px;
-        }
-        @media (max-width: 600px) {
-          max-width: 400px;
-        }
-        @media (max-width: 500px) {
-          max-width: 300px;
-        }
-      }
-    }
-    &[very-large] {
-      img {
-        max-width: 1200px;
       }
     }
   }
@@ -452,6 +431,30 @@ const Post = styled.div`
     }
     li {
       margin-bottom: 4px;
+      a {
+        font-weight: 700;
+        color: inherit;
+        position: relative;
+        text-decoration: none;
+        transition: 0.3s all;
+        &::after {
+          transition: 0.3s all;
+          content: "";
+          height: 1px;
+          width: calc(100% + 6px);
+          display: block;
+          position: absolute;
+          bottom: -2px;
+          left: -3px;
+          background-color: ${props => props.theme.colors.darkBlue};
+        }
+        &:hover {
+          color: ${props => props.theme.colors.green};
+          &::after {
+            background-color: ${props => props.theme.colors.green};
+          }
+        }
+      }
     }
   }
   h2 {

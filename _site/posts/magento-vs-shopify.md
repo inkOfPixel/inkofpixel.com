@@ -1,7 +1,7 @@
 ---
 title: Magento vs Shopify
 template: post
-published: false
+published: true
 author: Gianluca Chiap
 date: "2019-08-12"
 locales:
