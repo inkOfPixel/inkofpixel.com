@@ -814,6 +814,6 @@ locales:
     language: it
     seoDescription: >
       Magento e Shopify sono due delle piattaforme e-commerce più utilizzate. Condividiamo la nostra esperienza avendo lavorato con entrambe, spiegando perchè abbiamo scelto Shopify.
-    seoTitle: Magento VS Shopify
-    title: Magento VS Shopify
+    seoTitle: Magento vs Shopify
+    title: Magento vs Shopify
 ---
