@@ -666,7 +666,7 @@ locales:
       start-important-text(text:Cosa avrei potuto fare invece di fare quello?|align:center)end-important-text
 
 
-      ### Sono necessarie buone comptetenze tecniche solo per creare l'e-commerce
+      ### Sono necessarie buone competenze tecniche solo per creare l'e-commerce
 
       Magento è un progetto molto vasto con una curva di apprendimento ripida. Sono necessarie ottime competenze di programmazione solo per poter capire il codice e far funzionare il tutto. Se non si hanno queste competenze si finirà sicuramente a dover assumere un team di sviluppo che gestisca questa parte.
 
