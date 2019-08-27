@@ -11,6 +11,7 @@ function SharePost({ text, url }: Props) {
   function handleShare(e, social) {
     e.preventDefault();
     const articleUrl = url || window.location.href;
+    const articleText = text || "inkOfPixel";
 
     switch (social) {
       case "twitter":
@@ -18,7 +19,7 @@ function SharePost({ text, url }: Props) {
           "http://twitter.com/share?url=" +
             encodeURIComponent(articleUrl) +
             "&text=" +
-            encodeURIComponent(text),
+            encodeURIComponent(articleText),
           "",
           "left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
         );

@@ -15,7 +15,7 @@
       "language": "it",
       "title": "Blog",
       "subtitle": "Ultimi post",
-      "path": "/it/blog",
+      "path": "/blog",
       "seo": {
         "description": "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place",
         "image": "/assets/inkofpixel-featured-image.jpg"

@@ -104,7 +104,7 @@ export const query = graphql`
       }
     }
     posts: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: ASC }
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         fields: {
           collection: { eq: "posts" }
