@@ -24,14 +24,12 @@ locales:
 
       Both Magento and Shopify will almost surely get you where you want.
 
-      Magento is an open-source solution, while Shopify it’s a Platform as a Service. You can customize Magento as you wish, adding or removing functionalities. Shopify, on the other hand,does not provide that flexibility, but it provides an ecosystem where you won’t miss much of Magento freedom.
+      Magento is an open-source solution, while Shopify it’s a Platform as a Service. You can customize Magento as you wish, adding or removing functionalities. Shopify, on the other hand, does not provide that flexibility, but it provides an ecosystem where you won’t miss much of Magento freedom.
 
-      Flexibility comes at a cost in terms of complexity, and complexity is the main reason for longer development time and higher costs. The freedom offered by Magento comes at the price of having to manage every aspect of the e-commerce from hosting to security patches and updates.
+      Flexibility comes at a cost in terms of complexity, and complexity is the main reason for longer development time and higher costs. The freedom offered by Magento comes at the price of having to manage every aspect of the e-commerce, from hosting, to security patches, to updates.
 
 
       It’s not always worth to trade simplicity for flexibility, especially for businesses where moving fast is critical for success.
-
-      Headless commerce lets you take responsibility for all the aspects of your e-commerce to achieve greater flexibility within Shopify.
 
 
       ## An overview of Magento and Shopify in 175 words.
@@ -44,25 +42,26 @@ locales:
 
       Magento offers two variants of its core product:
 
-      - **Magento Open Source**, is a free and open-source version of Magento where it’s possible to customize and extend its functionality.
+      - **Magento Open Source**, is a free and open-source version of Magento where it’s possible to customize and extend every functionality.
 
       - **Magento Commerce**, targeted to enterprise, is a paid version that provides more features and can be run on-premises or as a PaaS, managed by Magento team
-      with a solution they call *Magento Hosted Cloud*.
+      with a solution called *Magento Hosted Cloud*.
 
 
-      **Shopify** was launched in 2006. In 2015 went public and it currently has
+      **Shopify** was launched in 2006. In 2015 it went public and it currently has
       a market cap of $35bn. It’s the third e-commerce by volume behind Magento
       and WooCommerce but it’s growing faster, particularly at the enterprise level.
-      It offers two solutions: Shopify, the base product that comes with
-      different subscription plans, and Shopify Plus, which provides a higher
-      level of customization and it's targeted to the enterprise. Both solutions are
-      provided only in the form of a platform as a service (PaaS).
+      It offers two solutions:
+      - **Shopify**, the base product, that comes with different subscription plan.
+      - **Shopify Plus**, which provides a higher level of customization and it's targeted to the enterprise. 
+
+      Both solutions are provided only in the form of a Platform as a Service (PaaS).
 
 
       ## How to make a fair comparison?
 
 
-      A 100% fair comparison is impossible. A more or less fair comparison can
+      A 100% fair comparison is impossible. A more or less fair comparison could
       be:
 
 
@@ -135,7 +134,7 @@ locales:
 
 
       Magento and Shopify have two completely different philosophies: Magento
-      aims to offer a platform as customizable as possible, leaving the final
+      offers a platform as customizable as possible, leaving the final
       choice about functionalities to developers, while Shopify aims to provide
       the smoothest possible experience for merchants, with sensible defaults and
       tips on how to obtain higher performance from the e-commerce.
@@ -178,9 +177,9 @@ locales:
 
 
 
-      Flexibility gives you more freedom at the cost of increasing overall
+      Flexibility gives you more freedom at the cost of an increase in the overall
       complexity. But there is a catch: the initial feeling of freedom provided by
-      having control over every functionality is replaced by the
+      having control over every functionality is quickly replaced by the
       realization to be stuck again by overwhelming complexity.
 
 
@@ -196,12 +195,12 @@ locales:
 
 
       By using an open-source solution like Magento you can add, remove, or
-      change every feature to create a product wholly tailored on your
-      needs. But you will also be responsible for every aspect of the
+      change every feature, to create a product wholly tailored on your
+      needs. But you will also be also responsible for every aspect of the
       e-commerce.
 
 
-      start-important-text(text:with great power comes great responsibility|align:center)end-important-text
+      start-important-text(text:With great power comes great responsibility|align:center)end-important-text
 
 
 
@@ -248,8 +247,7 @@ locales:
 
       Once you have finished building the e-commerce it’s time to host it, and
       here things start to get tricky. Self-hosting means taking your website
-      and making it accessible to the public by hosting it on some hosting
-      provider like Amazon Web Services. The server must be able to stand all the traffic while
+      and making it accessible to the public by intalling it on some provider like Amazon Web Services. The server must be able to stand all the traffic while
       ensuring no data loss or inconsistencies. This is much more complex than
       what it seems like.
 
@@ -279,10 +277,10 @@ locales:
 
 
       If you are going to sell anything online, you must follow specific
-      security standard (namely PCI DSS) to protect your customer payment data
+      security standard (namely **PCI DSS**) to protect your customer payment data
       from being stolen and used in fraud. The reputation of your store is at
       stake. Are your servers compliant with all those security standards? Do
-      you meet GDPR requirements if you are selling in the EU?
+      you meet **GDPR** requirements if you are selling in the EU?
 
 
       start-custom-image(size:small|align:center|width:undefined|src:/assets/security.gif|alt:Security
@@ -292,8 +290,7 @@ locales:
 
       All Shopify applications are hosted PCI Compliance Level 1, the maximum
       security level. And they are regularly audited. Using Magento (not cloud)
-      you are responsible for the security, and it’s your responsibility to
-      apply all the security patches.
+      you are responsible for the all the security aspects.
 
 
       start-important-text(text:Using Shopify, security is one less thing to worry about|align:center)end-important-text
@@ -335,7 +332,7 @@ locales:
       It’s Black Friday weekend, you have just launched a costly advertising
       campaign, and users are flooding to your e-commerce. But wait, the servers
       can’t handle all the requests, and suddenly everything goes down. If you
-      are lucky users will only get an extremely slow and frustrating
+      are lucky, users will only get an extremely slow and frustrating
       experience. Otherwise your e-commerce is no longer reachable.
 
 
@@ -362,7 +359,7 @@ locales:
       Users don’t care about your e-commerce infrastructure. They want their experience to
       be as pleasant as possible. It’s challenging to compete against a PaaS
       in term of scalability, and therefore, you should stop wasting time managing
-      your infrastructure and instead investing your time to provide the
+      your infrastructure and instead investing your time to create the
       best user experience possible.
 
 
@@ -374,7 +371,7 @@ locales:
 
       Otherwise the risk is that you will end up wasting most of your time
       dealing with problems not directly related to your business, like managing
-      servers, and there is a good chance your store is going to quickly
+      servers, and there is a good chance your store is going to
       accumulate technical debt over time, leading to a situation where your
       business is constantly lagging behind competition.
 
@@ -386,8 +383,7 @@ locales:
 
 
 
-      With Shopify you can focus on the important things, like optimizing the
-      user experience, leaving all the management of the infrastructure to
+      With Shopify you can focus on the important things leaving all the management of the infrastructure to
       Shopify.
 
 
@@ -401,7 +397,7 @@ locales:
 
 
       At enterprise level the battle is between Magento Commerce and Shopify
-      Plus. Things start to become quite expensive (both platforms start at
+      Plus. Things become quite expensive (both platforms start at
       $2000/month) and business processes are very different. We are going to
       talk about e-commerce at enterprise level in another post.
 
@@ -411,25 +407,25 @@ locales:
       ## Why we choose Shopify
 
 
-      Shopify fits our clients’ requirements and developers mental sanity.
-
-
-      Shopify can be summarized with:
+      Shopify fits our clients’ requirements and developers mental sanity. It can be summarized with:
 
 
       start-important-text(text:It just works|align:center)end-important-text
 
 
-      You don’t have to worry about infrastructure, and can invest your time
+      You don’t have to worry about infrastructure, and you can invest your time
       working on optimizing the user experience, which in turn let us focus on
       what matters to our customers.
 
 
-      Maybe Shopify does not offer the same freedom of Magento, but its
-      ecosystem won’t make you miss it.
+
 
 
       ### Shopify has a great ecosystem
+
+      Maybe Shopify does not offer the same freedom of Magento, but its
+      ecosystem won’t make you miss it.
+
 
       Shopify is much more than just an e-commerce platform. It allows you to manage several aspects of your business, including brick and mortar stores through *Shopify POS*, shipping with *Shopify Shipping*, payments with *Shopify Payments* and more recently even logistics with the announcement of *Shopify Fulfillment Network*. 
       Moreover Shopify offers a marketplace of plug and play apps for almost any necessities
@@ -449,7 +445,7 @@ locales:
       vs Shopify Google trends|description:Magento vs Shopify Google trends|shadow:false)end-custom-image
 
 
-      Also the markets believe in Shopify. The stock price has gone from $28 to $350 in less than 5 years.
+      Even the markets believe in Shopify. The stock price has gone from $28 to $350 in less than 5 years.
 
 
       start-custom-image(size:normal|align:center|width:undefined|src:/assets/shopify-stock.png|alt:Shopify
@@ -496,16 +492,16 @@ locales:
       ## Shopify vs Magento: la nostra scelta
 
 
-      Magento e Shopify sono attualmente due delle piattaforme più popolari per costruire un e-commerce. Il dibattito tra la flessibilità offerta da Magento contro la comodità offerta da Shopify non ha ancora vincitore.
+      Magento e Shopify sono due delle piattaforme più popolari per costruire un e-commerce. Il dibattito tra la flessibilità offerta da Magento contro la comodità offerta da Shopify non ha ancora vincitore.
 
 
-      Sono già stati scritti molti post su questo argomento e non andremo ad analizzare nel dettaglio ogni singola funzione, in quanto è possibile trovare numerosi articoli online. 
+      Sono già stati scritti molti post su questo argomento e non andremo ad analizzare nel dettaglio ogni singola funzione, in quanto è possibile trovare già numerosi articoli online. 
 
-      Affronteremo questa analisi in maniera più empirica, condividendo la nostra esperienza vendo lavorato con entrambe le piattaforme e spiegando perché alla fine abbiamo deciso di puntare su Shopify.
+      Affronteremo questa analisi in maniera più empirica, condividendo la nostra esperienza avendo lavorato con entrambe le piattaforme e spiegando perché alla fine abbiamo deciso di puntare su Shopify.
 
       ## TLDR;
 
-      Sia utilizzando Magento che Shopify è possibile raggiungere il risultato prefissato.
+      Sia utilizzando Magento che Shopify è possibile raggiungere il proprio obiettivo.
 
       Magento è una soluzione open source, mentre Shopify è una PaaS (Platform as a Service). È possibile personalizzare Magento a proprio piacimento, aggiungendo o rimuovendo            funzionalità. Shopify, d'altra parte, non offre tale flessibilità, ma fornisce un          ecosistema pensato per rendere la creazione di un e-commerce il più facile possibile.
 
@@ -514,9 +510,8 @@ locales:
 
       Scambiare semplicità con flessibilità è una scelta rischiosa, specialmente in un ambito nel quale muoversi velocemente è fondamentale per il successo.
 
-      L'headless commerce ti consente di ottenere una maggiore flessibilità senza rinunciare alle funzionalità offerte da Shopify.
 
-      ## Una panoramica di Magento e Shopify in ? parole
+      ## Una panoramica di Magento e Shopify in 174 parole
 
       Magento è stato rilasciato nel 2008. Nel 2018 è stato acquistato da Adobe per $1.7 miliardi. Attualmente è considerata la piattaforma e-commerce che gestisce il maggior volume di transazioni.
 
@@ -525,6 +520,13 @@ locales:
       - **Magento Open source**, una versione gratuita e open-source di Magento dove è possibile modificare ogni aspetto della piattaforma.
 
       - **Magento Commerce**, una versione a pagamento della piattaforma pensata per il settore enterprise. Questa soluzione offre più funzionalità e più essere gestita sia on-premise che direttamente da Magento, tramite una soluzione chiamata *Magento Hosted Cloud*.
+
+
+      Shopify è stato lanciato nel 2006. Nel 2015 si è quotato in borsa ed ha attualmente un market cap di $35 miliardi. È la terza piattaforma e-commerce per volume, dopo Magento e WooCommerce, ma è quella che sta crescendo più velocemente, specialmente a livello enterprise. Shopify offre due soluzioni:
+      - **Shopify** il prodotto base, che offre diversi piani.
+      - **Shopify Plus**, che offre un maggiore grado di personalizzazione ed è pensato per il mercato enterprise.
+
+      Entrambe le soluzioni sono disponibili solo come PaaS.
 
       ## Come si piò fare una comparazione corretta?
 
