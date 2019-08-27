@@ -25,7 +25,6 @@ var renderer = new marked.Renderer();
 
 // Override function
 renderer.paragraph = function(text) {
-  console.log(text);
   if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(text)) {
     const attributes = {
       src: "",
@@ -107,7 +106,6 @@ export default ({ data, pathContext }: IProps) => {
   );
 
   const html = marked(currentPost.body, { renderer: renderer });
-
   return (
     <Page
       title={currentPost.seoTitle}
@@ -151,7 +149,7 @@ export default ({ data, pathContext }: IProps) => {
         <ShareMsg>
           <FormattedMessage id="post.share" defaultMessage="Share" />
         </ShareMsg>
-        <SharePost text={data.post.fields.frontmatter.title} url={""} />
+        <SharePost text={currentPost.title} url={""} />
       </ShareContainer>
     </Page>
   );
