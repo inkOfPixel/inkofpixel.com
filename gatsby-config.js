@@ -5,7 +5,7 @@ module.exports = {
   siteMetadata: {
     title: "inkOfPixel",
     origin: "https://inkofpixel.com",
-    siteUrl: "https://inkofpixel.com"
+    siteUrl: "https://inkofpixel.com",
   },
 
   plugins: [
@@ -20,8 +20,8 @@ module.exports = {
         background_color: "#663399",
         theme_color: "#663399",
         display: "minimal-ui",
-        icon: "src/images/favicon.png" // This path is relative to the root of the site.
-      }
+        icon: "src/images/favicon.png", // This path is relative to the root of the site.
+      },
     },
     "gatsby-plugin-offline",
     "gatsby-plugin-styled-components",
@@ -29,8 +29,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
-        modulePath: `${__dirname}/src/cms/extension.js`
-      }
+        modulePath: `${__dirname}/src/cms/extension.js`,
+      },
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -38,43 +38,43 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/static/assets`,
-        name: "assets"
-      }
+        name: "assets",
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/_site/pages`,
-        name: "pages"
-      }
+        name: "pages",
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/_site/projects`,
-        name: "projects"
-      }
+        name: "projects",
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/_site/posts`,
-        name: "posts"
-      }
+        name: "posts",
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/_site/settings`,
-        name: "home-page"
-      }
+        name: "home-page",
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/_site/static-pages`,
-        name: "static-pages"
-      }
+        name: "static-pages",
+      },
     },
     "gatsby-transformer-json",
     "gatsby-plugin-netlify-markdown-paths",
@@ -86,13 +86,13 @@ module.exports = {
         getPath: ({ node, locale, defaultLocale, slug }) => {
           const basePathByLocale = {
             en: "/projects",
-            it: "/progetti"
+            it: "/progetti",
           };
           return locale === defaultLocale
             ? path.join("/", basePathByLocale[locale], slug)
             : path.join("/", locale, basePathByLocale[locale], slug);
-        }
-      }
+        },
+      },
     },
     {
       resolve: "gatsby-plugin-markdown-locales",
@@ -101,20 +101,20 @@ module.exports = {
         defaultLocale: generalSettings.defaultLanguage,
         getPath: ({ node, locale, defaultLocale, slug }) => {
           const localizedTitle = node.frontmatter.locales
-            .find(l => l.language === locale)
+            .find((l) => l.language === locale)
             .title.toLowerCase()
             .split(" ")
             .join("-");
 
           const basePathByLocale = {
             en: "/blog",
-            it: "/blog"
+            it: "/blog",
           };
           return locale === defaultLocale
             ? path.join("/", basePathByLocale[locale], localizedTitle)
             : path.join("/", locale, basePathByLocale[locale], localizedTitle);
-        }
-      }
+        },
+      },
     },
 
     {
@@ -124,13 +124,13 @@ module.exports = {
         defaultLocale: generalSettings.defaultLanguage,
         getPath: ({ node, locale, defaultLocale, slug }) => {
           const currentLocale = node.frontmatter.locales.find(
-            loc => loc.language === locale
+            (loc) => loc.language === locale
           );
           return locale === defaultLocale
             ? path.join("/", currentLocale.handle || slug)
             : path.join("/", locale, currentLocale.handle || slug);
-        }
-      }
+        },
+      },
     },
     {
       resolve: "gatsby-transformer-remark",
@@ -144,8 +144,8 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 2400,
-              linkImagesToOriginal: false
-            }
+              linkImagesToOriginal: false,
+            },
           },
           {
             resolve: "gatsby-remark-copy-linked-files",
@@ -159,16 +159,16 @@ module.exports = {
               // original images to the public directory, set
               // `ignoreFileExtensions` to an empty array.
               // ignoreFileExtensions: [],
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     },
     {
       resolve: "gatsby-source-iubenda",
       options: {
-        documentIds: ["84397204", "57888804"]
-      }
+        documentIds: ["57888804"],
+      },
     },
     {
       resolve: "gatsby-plugin-google-analytics",
@@ -181,10 +181,10 @@ module.exports = {
         // Setting this parameter is also optional
         respectDNT: true,
         // Avoids sending pageview hits from custom paths
-        exclude: ["/preview/**", "/do-not-track/me/too/"]
-      }
+        exclude: ["/preview/**", "/do-not-track/me/too/"],
+      },
     },
-    "gatsby-plugin-netlify"
+    "gatsby-plugin-netlify",
   ],
-  pathPrefix: "/assets"
+  pathPrefix: "/assets",
 };

@@ -14,7 +14,7 @@ interface IProps {
 
 const PrivacyPage = ({ data, pathContext }: IProps) => {
   const currentPage = data.page.fields.locales.find(
-    locale => locale.language === pathContext.locale
+    (locale) => locale.language === pathContext.locale
   );
   return (
     <Page
@@ -24,7 +24,7 @@ const PrivacyPage = ({ data, pathContext }: IProps) => {
       pageLocales={data.page.fields.locales.map(
         (locale: any): IPageLocale => ({
           code: locale.language,
-          url: locale.path
+          url: locale.path,
         })
       )}
     >
@@ -33,11 +33,11 @@ const PrivacyPage = ({ data, pathContext }: IProps) => {
         <Info>
           <PageTitle>{currentPage.title}</PageTitle>
         </Info>
-        <Content
+        {/* <Content
           dangerouslySetInnerHTML={{
             __html: data.allIubendaDocument.edges[0].node.content
           }}
-        />
+        /> */}
       </Wrapper>
     </Page>
   );
@@ -97,7 +97,7 @@ const PageTitle = styled.p`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: ${props => props.theme.colors.green};
+  color: ${(props) => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
   margin: 0.67em 0;
   &::before {
@@ -108,7 +108,7 @@ const PageTitle = styled.p`
     position: absolute;
     top: 7px;
     left: -68px;
-    background-color: ${props => props.theme.colors.green};
+    background-color: ${(props) => props.theme.colors.green};
   }
 `;
 
@@ -173,12 +173,12 @@ const Content = styled.div`
       position: absolute;
       bottom: -2px;
       left: -3px;
-      background-color: ${props => props.theme.colors.darkBlue};
+      background-color: ${(props) => props.theme.colors.darkBlue};
     }
     &:hover {
-      color: ${props => props.theme.colors.green};
+      color: ${(props) => props.theme.colors.green};
       &::after {
-        background-color: ${props => props.theme.colors.green};
+        background-color: ${(props) => props.theme.colors.green};
       }
     }
   }
