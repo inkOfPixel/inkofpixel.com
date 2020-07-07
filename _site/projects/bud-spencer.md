@@ -54,8 +54,8 @@ locales:
     excerpt: >-
       Bud Spencer is one of the most iconic Italian actors, and has become, over the years, a pop icon known by millions of people around the world. We dealt with the
       renewal of the e-commerce by creating a brand new e-commerce solution.
-    featuredImage: /assets/bud-spencer-featured.png
-    heroImage: /assets/bud-spencer-hero.png
+    featuredImage: /assets/bud-spencer-featured.jpg
+    heroImage: /assets/bud-spencer-hero.jpg
     language: en
     seoDescription: >-
       Bud Spencer is one of the most iconic Italian actors, and has become, over the years, a pop icon known by millions of people around the world. We dealt with the
@@ -69,9 +69,9 @@ locales:
 
       ## La sfida
 
-      La versione precedente del Bud Spencer Official Shop era stata sviluppata utilizzando Prestashop, ma l'esperienza complessiva non è risultava moderna e soddisfacente. Numerosi problemi, in particolare la lentezza generale dell’ e-commerce e la complessità necessaria per apportare modifiche, hanno convinto il cliente a investire in una soluzione nuova con l’obiettivo di migliorare l'esperienza dell'utente e allo stesso tempo ridurre le difficoltà di amministrazione.
+      La versione precedente del Bud Spencer Official Shop era stata sviluppata utilizzando Prestashop, ma l'esperienza complessiva non era soddisfacente. Numerosi problemi, in particolare la lentezza generale dell’ e-commerce e la complessità necessaria per apportare modifiche, hanno convinto il cliente a investire in una soluzione nuova con l’obiettivo di migliorare l'esperienza dell'utente e allo stesso tempo ridurre le difficoltà di amministrazione.
 
-      Abbiamo deciso di costruire il nuovo e-commerce da zero, selezionando con cura tutti i componenti e le tecnologie che meglio si sono adattate alle esigenze del progetto.
+      Abbiamo deciso di costruire il nuovo e-commerce da zero, selezionando con cura tutti i componenti e le tecnologie per meglio adattarle alle esigenze del progetto.
 
       Le principali sfide che abbiamo dovuto affrontare durante lo sviluppo sono state:
 
@@ -89,15 +89,15 @@ locales:
 
       ## La nostra soluzione
 
-      Abbiamo deciso di sviluppare la nuova piattaforma utilizzando una soluzione basata su headless commerce (puoi leggere più in dettaglio qui). Nel quale facciamo affidamento sulla solidità di Shopify per gestire i prodotti e gli ordini, delegando la presentazione a un frontend separato e personalizzato. Questo ci ha permesso di creare una soluzione altamente ottimizzata con un'esperienza utente estremamente fluida e ricca.
-      Anche durante il picco del traffico non è mai stato registrato alcun degrado delle prestazioni.
+      Abbiamo deciso di sviluppare la nuova piattaforma utilizzando una soluzione basata su un paradigma headless commerce (puoi leggere più in dettaglio [qui](/blog/headless-commerce-is-the-future-of-e-commerce). Nel quale facciamo affidamento sulla solidità di Shopify per gestire i prodotti e gli ordini, delegando la presentazione a un frontend separato e personalizzato. Questo ci ha permesso di creare una soluzione altamente ottimizzata con un'esperienza utente estremamente fluida e ricca.
+      Anche durante i picchi di traffico non è mai stato registrato alcun degrado delle prestazioni.
 
 
       ![inkOfPixel - Bud Spencer Product](/assets/bud-spencer-product.png)
 
       ## Gestione dei contenuti
 
-      Per gestire il contenuto del sito, come ad esempio le informazioni prodotto, abbiamo fatto affidamento su un CMS. Con questo approccio gli amministratori sono in grado di aggiungere, rimuovere o modificare autonomamente tutti i contenuti del’ e-commerce in totale autonomia.
+      Per gestire i contenuti del sito, come ad esempio le informazioni prodotto, abbiamo fatto affidamento su un CMS. Con questo approccio gli amministratori sono in grado di aggiungere, rimuovere o modificare autonomamente tutti i contenuti del’ e-commerce in totale autonomia.
 
       Un esempio di questa flessibilità è l'internalizzazione del contenuto gestito interamente attraverso il CMS, dando la possibilità di modificare in modo indipendente le traduzioni di tutti i contenuti. In questo momento l'e-commerce è tradotto in italiano, inglese e tedesco.
 
@@ -108,8 +108,8 @@ locales:
       Il team e-commerce di Bud Spencer è molto soddisfatto del risultato in quanto tutti i requisiti sono stati soddisfatti e abbiamo creato una piattaforma estremamente innovativa, flessibile e performante. Ti consigliamo di vedere di persona su [bud spencer official shop](https://shop.budspencerofficial.com) !
     excerpt: >-
       Bud Spencer è uno degli attori italiani più iconici ed è diventato, nel corso degli anni, un'icona pop riconosciuta da milioni di persone in tutto il mondo. Abbiamo sviluppato un nuovo e-commerce in linea con il loro brand.
-    featuredImage: /assets/bud-spencer-featured.png
-    heroImage: /assets/bud-spencer-hero.png
+    featuredImage: /assets/bud-spencer-featured.jpg
+    heroImage: /assets/bud-spencer-hero.jpg
     language: it
     seoDescription: >-
       Bud Spencer è uno degli attori italiani più iconici ed è diventato, nel corso degli anni, un'icona pop riconosciuta da milioni di persone in tutto il mondo. Abbiamo sviluppato un nuovo e-commerce in linea con il loro brand.
