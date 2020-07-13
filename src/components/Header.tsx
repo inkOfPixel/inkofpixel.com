@@ -362,17 +362,29 @@ const NavContainer = styled.div<{ headerTheme: string }>`
   display: flex;
   height: 100%;
   align-items: center;
+<<<<<<< HEAD
   ${({ headerTheme }) =>
     headerTheme === "dark" &&
     css`
+=======
+  ${({ headerTheme = "light" }) =>
+    headerTheme === "dark" &&
+    css`
+      ${Logo} {
+        fill: #161338;
+      }
+>>>>>>> bud-spencer-post
       ${ListItem} {
         a {
           color: #161338;
         }
       }
+<<<<<<< HEAD
       ${Logo} {
         fill: #161338 !important;
       }
+=======
+>>>>>>> bud-spencer-post
     `};
 `;
 export default withTheme(Header);
