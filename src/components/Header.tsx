@@ -329,6 +329,9 @@ const LinkMobileContainer = styled.div`
   width: 100%;
   align-items: center;
   margin-top: 70px;
+  ${Icon} {
+    fill: #161338;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -359,16 +362,16 @@ const NavContainer = styled.div<{ headerTheme: string }>`
   display: flex;
   height: 100%;
   align-items: center;
-  ${({ headerTheme = "light" }) =>
+  ${({ headerTheme }) =>
     headerTheme === "dark" &&
     css`
-      ${Logo} {
-        fill: #161338;
-      }
       ${ListItem} {
         a {
           color: #161338;
         }
+      }
+      ${Logo} {
+        fill: #161338 !important;
       }
     `};
 `;
