@@ -368,6 +368,9 @@ const NavContainer = styled.div<{ headerTheme: string }>`
       ${ListItem} {
         a {
           color: #161338;
+          &::before {
+            background: #161338;
+          }
         }
       }
       ${Logo} {
