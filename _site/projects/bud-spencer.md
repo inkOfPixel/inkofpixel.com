@@ -3,6 +3,7 @@ title: Bud Spencer
 template: project
 priority: "3"
 published: true
+headerTheme: dark
 locales:
   - body: >-
       Bud Spencer is one of the most iconic Italian actors and has become, over
@@ -47,7 +48,7 @@ locales:
 
       ![inkOfPixel - Bud Spencer CMS](/assets/bud-spencer-cms.png)
 
-      ## Il risultato
+      ## Conclusions
 
       Bud spencer e-commerce team is very happy with the result as all requirements have been met and we have created an extremely innovative, flexible and performing platform. We recommend that you see for yourself at [bud spencer official shop](https://shop.budspencerofficial.com) !
 
@@ -89,7 +90,7 @@ locales:
 
       ## La nostra soluzione
 
-      Abbiamo deciso di sviluppare la nuova piattaforma utilizzando una soluzione basata su un paradigma headless commerce (puoi leggere più in dettaglio [qui](/blog/headless-commerce-is-the-future-of-e-commerce). Nel quale facciamo affidamento sulla solidità di Shopify per gestire i prodotti e gli ordini, delegando la presentazione a un frontend separato e personalizzato. Questo ci ha permesso di creare una soluzione altamente ottimizzata con un'esperienza utente estremamente fluida e ricca.
+      Abbiamo deciso di sviluppare la nuova piattaforma utilizzando una soluzione basata su un paradigma headless commerce (puoi leggere più in dettaglio [qui](/blog/headless-commerce-is-the-future-of-e-commerce)). Nel quale facciamo affidamento sulla solidità di Shopify per gestire i prodotti e gli ordini, delegando la presentazione a un frontend separato e personalizzato. Questo ci ha permesso di creare una soluzione altamente ottimizzata con un'esperienza utente estremamente fluida e ricca.
       Anche durante i picchi di traffico non è mai stato registrato alcun degrado delle prestazioni.
 
 
@@ -103,7 +104,7 @@ locales:
 
       ![inkOfPixel - Bud Spencer CMS](/assets/bud-spencer-cms.png)
 
-      ## Il risultato
+      ## Conclusione
 
       Il team e-commerce di Bud Spencer è molto soddisfatto del risultato in quanto tutti i requisiti sono stati soddisfatti e abbiamo creato una piattaforma estremamente innovativa, flessibile e performante. Ti consigliamo di vedere di persona su [bud spencer official shop](https://shop.budspencerofficial.com) !
     excerpt: >-

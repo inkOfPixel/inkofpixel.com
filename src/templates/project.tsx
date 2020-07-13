@@ -19,7 +19,7 @@ interface IProps {
 
 export default ({ data, pathContext }: IProps) => {
   const currentProject = data.project.fields.frontmatter.locales.find(
-    locale => locale.language === pathContext.locale
+    (locale) => locale.language === pathContext.locale
   );
 
   return (
@@ -30,9 +30,10 @@ export default ({ data, pathContext }: IProps) => {
       pageLocales={data.project.fields.frontmatter.locales.map(
         (locale: any): IPageLocale => ({
           code: locale.language,
-          url: locale.path
+          url: locale.path,
         })
       )}
+      headerTheme={data.project.fields.frontmatter.headerTheme}
       theme={projectTheme}
     >
       <Helmet>
@@ -45,8 +46,12 @@ export default ({ data, pathContext }: IProps) => {
         <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
         <HeroContent>
           <Wrapper>
-            <Heading>
-              <ProjectType>{currentProject.type}</ProjectType>
+            <Heading headerTheme={data.project.fields.frontmatter.headerTheme}>
+              <ProjectType
+                headerTheme={data.project.fields.frontmatter.headerTheme}
+              >
+                {currentProject.type}
+              </ProjectType>
               <Title>{data.project.fields.frontmatter.title}</Title>
             </Heading>
           </Wrapper>
@@ -82,6 +87,7 @@ export const query = graphql`
         slug
         frontmatter {
           title
+          headerTheme
           locales {
             language
             path
@@ -128,14 +134,15 @@ const HeroContent = styled.div`
   height: 100%;
 `;
 
-const Heading = styled.div`
+const Heading = styled.div<{ headerTheme?: string }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: #fff;
+  color: ${({ headerTheme = "light", theme }) =>
+    headerTheme === "dark" ? "#161338" : "#fff"};
 `;
 
-const ProjectType = styled.p`
+const ProjectType = styled.p<{ headerTheme?: string }>`
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -147,7 +154,8 @@ const ProjectType = styled.p`
     display: block;
     height: 2px;
     width: 60px;
-    background-color: #fff;
+    background-color: ${({ headerTheme = "light" }) =>
+      headerTheme === "dark" ? "#161338" : "#fff"};
     position: absolute;
     top: 7px;
     left: -68px;
@@ -196,12 +204,12 @@ const RichText = styled(Markdown)`
         position: absolute;
         bottom: -2px;
         left: -3px;
-        background-color: ${props => props.theme.colors.darkBlue};
+        background-color: ${(props) => props.theme.colors.darkBlue};
       }
       &:hover {
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         &::after {
-          background-color: ${props => props.theme.colors.green};
+          background-color: ${(props) => props.theme.colors.green};
         }
       }
     }
@@ -272,7 +280,7 @@ const RichText = styled(Markdown)`
         content: "“";
         display: block;
         position: absolute;
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         opacity: 0.4;
         font-size: 90px;
         font-weight: 400;

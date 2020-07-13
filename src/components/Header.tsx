@@ -10,12 +10,14 @@ import { IPageLocale } from "types";
 import ThemeInterface from "themes/theme";
 import Menu from "icons/Menu";
 import SideBarPanel from "./SidebarPanel";
+import { css } from "styled-components";
 
 interface IProps {
   theme: ThemeInterface;
   locale: string;
   defaultLocale: string;
   pageLocales?: IPageLocale[];
+  headerTheme: string;
 }
 
 interface IState {
@@ -39,35 +41,42 @@ interface INavigationLocale {
 class Header extends React.Component<IProps, IState> {
   static defaultProps = {
     locale: "en",
-    defaultLocale: "en"
+    defaultLocale: "en",
   };
 
   state = {
     languageMenuOpen: false,
-    isMobileNavOpen: false
+    isMobileNavOpen: false,
   };
 
   handleToggleLanguageMenu = (open: boolean) => {
     this.setState({
-      languageMenuOpen: open
+      languageMenuOpen: open,
     });
   };
 
   handleOpenSidenav = () => {
     this.setState({
-      isMobileNavOpen: true
+      isMobileNavOpen: true,
     });
   };
 
   handleCloseSidenav = () => {
     this.setState({
-      isMobileNavOpen: false
+      isMobileNavOpen: false,
     });
   };
 
   render() {
     const { languageMenuOpen } = this.state;
-    const { locale, defaultLocale, pageLocales, theme } = this.props;
+    const {
+      locale,
+      defaultLocale,
+      pageLocales,
+      theme,
+      headerTheme,
+    } = this.props;
+    console.log("headerTheme", headerTheme);
     return (
       <StaticQuery
         query={graphql`
@@ -87,7 +96,7 @@ class Header extends React.Component<IProps, IState> {
         `}
         render={({ navigation }: IHeaderQueryData) => {
           const localizedNavigation = navigation.locales.find(
-            navLocale => navLocale.language === locale
+            (navLocale) => navLocale.language === locale
           );
 
           if (!localizedNavigation) {
@@ -99,7 +108,7 @@ class Header extends React.Component<IProps, IState> {
             <>
               <DesktopMenuContainer>
                 <Wrapper style={{ height: "100%" }}>
-                  <NavContainer>
+                  <NavContainer headerTheme={headerTheme}>
                     <MenuIcon onClick={this.handleOpenSidenav} />
                     <LogoContainer>
                       <LogoLink
@@ -117,7 +126,7 @@ class Header extends React.Component<IProps, IState> {
                     <RightBarItems>
                       <List>
                         {localizedNavigation.main &&
-                          localizedNavigation.main.links.map(link => (
+                          localizedNavigation.main.links.map((link) => (
                             <ListItem key={link.label}>
                               <Link to={link.url}>{link.label}</Link>
                             </ListItem>
@@ -137,7 +146,7 @@ class Header extends React.Component<IProps, IState> {
                             open={languageMenuOpen}
                             onToggle={this.handleToggleLanguageMenu}
                           >
-                            {pageLocales.map(pageLocale => (
+                            {pageLocales.map((pageLocale) => (
                               <Link
                                 key={pageLocale.code}
                                 onClick={() =>
@@ -174,7 +183,7 @@ class Header extends React.Component<IProps, IState> {
                     </IconLink>
                   </IconContainer>
                   {localizedNavigation.main &&
-                    localizedNavigation.main.links.map(link => (
+                    localizedNavigation.main.links.map((link) => (
                       <MobileListItem key={link.label}>
                         <Link
                           to={link.url}
@@ -201,10 +210,20 @@ const LogoContainer = styled.div`
     justify-content: center;
   }
 `;
-const NavContainer = styled.div`
+const NavContainer = styled.div<{ headerTheme: string }>`
   display: flex;
   height: 100%;
   align-items: center;
+  ${({ headerTheme = "light" }) =>
+    headerTheme === "dark" &&
+    css`
+      a {
+        color: #161338 !important;
+      }
+      svg {
+        fill: #161338;
+      }
+    `};
 `;
 const MenuIcon = styled(Menu)`
   height: 40px;
@@ -270,14 +289,14 @@ const ListItem = styled.li`
     margin: 0 0px 0 10px;
     padding: 12px 10px;
     letter-spacing: 0.02em;
-    color: ${props => props.theme.navigationColor};
+    color: ${(props) => props.theme.navigationColor};
     text-decoration: none;
     position: relative;
     transition: all 300ms;
     font-weight: 400;
     font-size: 14px;
     &::before {
-      background: ${props => props.theme.navigationColor};
+      background: ${(props) => props.theme.navigationColor};
       opacity: 0;
       bottom: -1px;
       content: "";
@@ -336,7 +355,7 @@ const MobileListItem = styled.li`
     display: block;
     padding: 20px 10px;
     letter-spacing: 0.02em;
-    color: ${props => props.theme.navigationColor};
+    color: ${(props) => props.theme.navigationColor};
     text-decoration: none;
     position: relative;
     transition: all 300ms;

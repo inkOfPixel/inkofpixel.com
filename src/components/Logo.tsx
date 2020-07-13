@@ -11,8 +11,8 @@ interface IProps {
 class Logo extends React.PureComponent<IProps> {
   static defaultProps = {
     theme: {
-      navigationColor: "#0000ff"
-    }
+      navigationColor: "#0000ff",
+    },
   };
 
   render() {
