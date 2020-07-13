@@ -7,4 +7,8 @@ export default interface ThemeInterface {
     color: string;
     backgroundColor: string;
   };
+  languageSelectorDark: {
+    color: string;
+    backgroundColor: string;
+  };
 }

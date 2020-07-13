@@ -4,6 +4,10 @@
     "color": "#161338",
     "backgroundColor": "#fff"
   },
+  "languageSelectorDark": {
+    "color": "#fff",
+    "backgroundColor": "#161338"
+  },
   "colors": {
     "white": "#fff",
     "darkBlue": "#161338",

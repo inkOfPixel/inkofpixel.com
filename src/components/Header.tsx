@@ -76,7 +76,6 @@ class Header extends React.Component<IProps, IState> {
       theme,
       headerTheme,
     } = this.props;
-    console.log("headerTheme", headerTheme);
     return (
       <StaticQuery
         query={graphql`
@@ -138,9 +137,15 @@ class Header extends React.Component<IProps, IState> {
                             renderLabel={() => (
                               <span className="selected">{locale}</span>
                             )}
-                            color={theme.languageSelector.color}
+                            color={
+                              headerTheme === "dark"
+                                ? theme.languageSelectorDark.color
+                                : theme.languageSelector.color
+                            }
                             backgroundColor={
-                              theme.languageSelector.backgroundColor
+                              headerTheme === "dark"
+                                ? theme.languageSelectorDark.backgroundColor
+                                : theme.languageSelector.backgroundColor
                             }
                             size={44}
                             open={languageMenuOpen}
@@ -210,21 +215,7 @@ const LogoContainer = styled.div`
     justify-content: center;
   }
 `;
-const NavContainer = styled.div<{ headerTheme: string }>`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  ${({ headerTheme = "light" }) =>
-    headerTheme === "dark" &&
-    css`
-      a {
-        color: #161338 !important;
-      }
-      svg {
-        fill: #161338;
-      }
-    `};
-`;
+
 const MenuIcon = styled(Menu)`
   height: 40px;
   width: 40px;
@@ -355,12 +346,30 @@ const MobileListItem = styled.li`
     display: block;
     padding: 20px 10px;
     letter-spacing: 0.02em;
-    color: ${(props) => props.theme.navigationColor};
+    color: #161338;
     text-decoration: none;
     position: relative;
     transition: all 300ms;
     font-weight: 400;
     font-size: 14px;
   }
+`;
+
+const NavContainer = styled.div<{ headerTheme: string }>`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  ${({ headerTheme = "light" }) =>
+    headerTheme === "dark" &&
+    css`
+      ${Logo} {
+        fill: #161338;
+      }
+      ${ListItem} {
+        a {
+          color: #161338;
+        }
+      }
+    `};
 `;
 export default withTheme(Header);
