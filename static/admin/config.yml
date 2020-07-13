@@ -276,6 +276,12 @@ collections:
     create: true
     fields:
       - { name: title, label: Project title }
+      - label: Header theme
+        name: headerTheme
+        widget: select
+        options:
+          - { label: Light, value: light }
+          - { label: Dark, value: dark }
       - label: Page template
         name: template
         widget: select
@@ -320,7 +326,6 @@ collections:
     name: posts
     folder: _site/posts
     create: true
-    
     fields:
       - { name: title, label: Project title }
       - label: Page template
@@ -328,6 +333,12 @@ collections:
         widget: select
         options:
           - { label: Default, value: post }
+      - label: Header theme
+        name: headerTheme
+        widget: select
+        options:
+          - { label: Light, value: light }
+          - { label: Dark, value: dark }
       - {
           label: "Published",
           name: "published",

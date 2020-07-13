@@ -22,6 +22,7 @@ interface IProps {
   localeCode: string;
   defaultLocaleCode: string;
   pageLocales?: IPageLocale[];
+  headerTheme: string;
 }
 
 addLocaleData([...en, ...it]);
@@ -37,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "Roboto Mono", monospace;
-    color: ${props => props.theme.colors.darkBlue};
+    color: ${(props) => props.theme.colors.darkBlue};
   }
   h1 {
     font-family: "Europa", sans-serif;
@@ -74,7 +75,8 @@ interface ILayoutPageQueryData {
 class Page extends React.Component<IProps> {
   static defaultProps = {
     theme: defaultTheme,
-    defaultLocaleCode: "en"
+
+    defaultLocaleCode: "en",
   };
 
   render() {
@@ -85,11 +87,12 @@ class Page extends React.Component<IProps> {
       defaultLocaleCode,
       pageLocales,
       title,
-      description
+      description,
+      headerTheme,
     } = this.props;
     const translations: { [code: string]: any } = { it: itMessages };
     const currentPageLocale = pageLocales
-      ? pageLocales.find(pageLocale => pageLocale.code === localeCode)
+      ? pageLocales.find((pageLocale) => pageLocale.code === localeCode)
       : undefined;
     if (pageLocales && !currentPageLocale) {
       throw new Error(`Couldn't find page with locale code ${localeCode}`);
@@ -151,7 +154,7 @@ class Page extends React.Component<IProps> {
                       }
                     />
                     {pageLocales &&
-                      pageLocales.map(pageLocale => (
+                      pageLocales.map((pageLocale) => (
                         <link
                           key={pageLocale.code}
                           rel="alternate"
@@ -167,6 +170,7 @@ class Page extends React.Component<IProps> {
                     locale={localeCode}
                     defaultLocale={defaultLocaleCode}
                     pageLocales={pageLocales}
+                    headerTheme={headerTheme}
                   />
                   {children}
                   <Footer />
