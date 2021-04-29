@@ -1,7 +1,7 @@
 ---
 title: SMS marketing
 template: post
-published: true
+published: false
 author: Gianluca Chiap
 date: "2021-04-28"
 locales:
@@ -336,12 +336,12 @@ locales:
       Come sempre se volete discute di questo articolo o chiederci qualsiasi cosa potete scriverci su [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
 
     excerpt: >-
-      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus. Gli SMS sono considerati una delle tendenze di e-commerce più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno progressivamente utilizzati come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
+      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus.  Gli SMS sono considerati una delle tendenze più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno utilizzati sempre di piú come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
     featuredImage: /assets/sms-marketing.png
     heroImage: /assets/sms-marketing.png
     language: it
     seoDescription: >
-      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus. Gli SMS sono considerati una delle tendenze di e-commerce più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno progressivamente utilizzati come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
+      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus.  Gli SMS sono considerati una delle tendenze più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno utilizzati sempre di piú come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
     seoTitle: SMS marketing
     title: SMS marketing
 ---
