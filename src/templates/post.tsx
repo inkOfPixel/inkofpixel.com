@@ -33,12 +33,12 @@ renderer.paragraph = function(text) {
       alt: "",
       align: "",
       description: "",
-      shadow: ""
+      shadow: "",
     };
     const attributesString = text.match(/\((.*?)\)/);
     if (attributesString) {
       const attributesSplitted = attributesString[1].split("|");
-      attributesSplitted.forEach(a => {
+      attributesSplitted.forEach((a) => {
         const [attrName, attrValue] = a.split(":");
         if (!attrValue || attrValue === "undefined") {
           attributes[attrName] = "";
@@ -70,12 +70,12 @@ renderer.paragraph = function(text) {
   } else if (/^start-important-text(([\S\s])*)end-important-text$/.test(text)) {
     const attributes = {
       text: "",
-      align: ""
+      align: "",
     };
     const attributesString = text.match(/\((.*?)\)/);
     if (attributesString) {
       const attributesSplitted = attributesString[1].split("|");
-      attributesSplitted.forEach(a => {
+      attributesSplitted.forEach((a) => {
         const [attrName, attrValue] = a.split(":");
         if (!attrValue || attrValue === "undefined") {
           attributes[attrName] = "";
@@ -102,19 +102,20 @@ renderer.paragraph = function(text) {
 
 export default ({ data, pathContext }: IProps) => {
   const currentPost = data.post.fields.frontmatter.locales.find(
-    locale => locale.language === pathContext.locale
+    (locale) => locale.language === pathContext.locale
   );
 
   const html = marked(currentPost.body, { renderer: renderer });
+  console.log("currentPost", currentPost);
   return (
     <Page
       title={currentPost.seoTitle}
-      description={currentPost.seodescription}
+      description={currentPost.seoDescription}
       localeCode={pathContext.locale}
       pageLocales={data.post.fields.frontmatter.locales.map(
         (locale: any): IPageLocale => ({
           code: locale.language,
-          url: locale.path
+          url: locale.path,
         })
       )}
     >
@@ -228,7 +229,7 @@ const Date = styled.p`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: ${props => props.theme.colors.gray};
+  color: ${(props) => props.theme.colors.gray};
   font-family: "Roboto Mono", monospace;
   padding-bottom: 20px;
   text-align: center;
@@ -240,7 +241,7 @@ const Author = styled.p`
   letter-spacing: 0.1em;
   position: relative;
   width: 100%;
-  color: ${props => props.theme.colors.green};
+  color: ${(props) => props.theme.colors.green};
   font-family: "Roboto Mono", monospace;
   padding-bottom: 40px;
   text-align: center;
@@ -287,7 +288,7 @@ const Post = styled.div`
         content: "“";
         display: block;
         position: absolute;
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         opacity: 0.4;
         font-size: 90px;
         font-weight: 400;
@@ -400,12 +401,12 @@ const Post = styled.div`
         position: absolute;
         bottom: -2px;
         left: -3px;
-        background-color: ${props => props.theme.colors.darkBlue};
+        background-color: ${(props) => props.theme.colors.darkBlue};
       }
       &:hover {
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         &::after {
-          background-color: ${props => props.theme.colors.green};
+          background-color: ${(props) => props.theme.colors.green};
         }
       }
     }
@@ -455,12 +456,12 @@ const Post = styled.div`
           position: absolute;
           bottom: -2px;
           left: -3px;
-          background-color: ${props => props.theme.colors.darkBlue};
+          background-color: ${(props) => props.theme.colors.darkBlue};
         }
         &:hover {
-          color: ${props => props.theme.colors.green};
+          color: ${(props) => props.theme.colors.green};
           &::after {
-            background-color: ${props => props.theme.colors.green};
+            background-color: ${(props) => props.theme.colors.green};
           }
         }
       }
@@ -511,7 +512,7 @@ const Post = styled.div`
         content: "“";
         display: block;
         position: absolute;
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         opacity: 0.4;
         font-size: 90px;
         font-weight: 400;
@@ -587,12 +588,12 @@ const RichText = styled(Markdown)`
         position: absolute;
         bottom: -2px;
         left: -3px;
-        background-color: ${props => props.theme.colors.darkBlue};
+        background-color: ${(props) => props.theme.colors.darkBlue};
       }
       &:hover {
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         &::after {
-          background-color: ${props => props.theme.colors.green};
+          background-color: ${(props) => props.theme.colors.green};
         }
       }
     }
@@ -674,7 +675,7 @@ const RichText = styled(Markdown)`
         content: "“";
         display: block;
         position: absolute;
-        color: ${props => props.theme.colors.green};
+        color: ${(props) => props.theme.colors.green};
         opacity: 0.4;
         font-size: 90px;
         font-weight: 400;
