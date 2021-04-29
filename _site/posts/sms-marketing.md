@@ -17,6 +17,7 @@ locales:
 
 
       **Customers want to receive personalized shopping experience, with one to one customer support and personalized discount codes.**
+      
 
       In this environment we are witnessing a comeback of an old technology: SMS. SMS are considered to be one of the most promising eCommerce trends that can vastly improve customer experience and marketing.
       In 2021 text messages will progressively be used as a way to create a loyal customer base, going to complement existing tools like emails.
@@ -34,6 +35,7 @@ locales:
 
 
       Text messages are simple, direct, bried, and personal. All characteristics very desired by marketer when interacting with a customer. Personalized text messaging has emerged as a way for consumers to connect 1:1 with brands. Having an opportunity to build highly engaged communities by creating a sense of "exclusivity."
+
 
       **Engaging with consumers via SMS can be a valuable differentiator for brands that want to make the shopping experience more personalized.**
 
@@ -117,17 +119,29 @@ locales:
 
       Here's some example of SMS you can send with YSMS
 
-      ### Notify Shipping 
+      ### Shipping notification
 
       SMS can be used for much more than just marketing. For example we could inform our customer that their order has just been shipped.
+
+
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-shipping-notification.png|alt:SMS marketing shipping-notification example|description:SMS marketing shipping notification example|shadow:false)end-custom-image
+
 
       ### Abandoned checkout
 
       This is one of the most used messages. For example you can send an SMS with a discount code to all the clients who have not completed the purchase.
 
-      ### Flash sale
 
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-abandoned-cart.png|alt:SMS marketing abandoned cart example|description:SMS marketing flash sale example|shadow:false)end-custom-image
+
+
+      ### Flash sale
+      
       SMS are usually read within minutes upon being received, becoming the idea communication medium to inform your customer about a 
+    
+
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-flash-sale.png|alt:SMS marketing flash sale example|description:SMS marketing flash sale example|shadow:false)end-custom-image
+
 
       Conclusion
       SMS marketing can be a very powerful tool if used correctly. If you want to try some of the things you have read in this article try YSMS. As always if you want to discuss this post, or ask us anything you can find us on [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
