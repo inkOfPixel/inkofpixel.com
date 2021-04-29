@@ -70,11 +70,11 @@ locales:
       Since SMS marketing requires customers to opt in, giving away their phone number, your list will only include customers who want to hear from you.
 
       ### High open rate, engagement rate and conversion rates.
-      
+
       When people receive a text message notification they read it way faster than emails. When we hear a notification it usually takes seconds or at most minutes before checking who has sent us a message. SMS messages have an average open rate of 98%, while email scores around a 20% average open rate. SMS click-through rates can reach 45%, while email reach 6% average. Those numbers are even worse during holiday periods like Black Friday or Christmas. SMS marketing gets high engagement and higher conversion rates, and can be more cost-efficient overall.
 
       ### Easy to write
-      
+
       Writing a good email can require a lot of effort. Choosing the right title, phrases, images, can be really time consuming. With SMS, you’re limited to 160 characters (you can send more messages, but it’s more expensive). You don’t need to think of catchy phrases, images or design. It’s fast and easy
 
       ## SMS Best practices
@@ -132,18 +132,13 @@ locales:
       Conclusion
       SMS marketing can be a very powerful tool if used correctly. If you want to try some of the things you have read in this article try YSMS. As always if you want to discuss this post, or ask us anything you can find us on [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
 
-
-
-
-
-
     excerpt: >-
       Magento and Shopify are two of the most popular platforms that can be used
       today to build an e-commerce. We share our experience having worked with
       both platforms and explaining why we have eventually decided to go all in
       on Shopify
-    featuredImage: /assets/shopify-vs-magento.jpg
-    heroImage: /assets/shopify-vs-magento.jpg
+    featuredImage: /assets/sms-marketing.png
+    heroImage: /assets/sms-marketing.png
     language: en
     seoDescription: >-
       Magento and Shopify are two of the most popular platforms that can be used
@@ -216,7 +211,7 @@ locales:
       La conseguenza è che una lista di SMS marketing è solitamente molto più piccola di una lista di email marketing. Ma la quantità non si converte sempre in un maggior numero di vendite. I clienti che desiderano ricevere SMS sono solitamente molto più interessati a quel brand e questo porta a migliori tassi di conversione.
       Con un elenco di dispositivi mobili non sprecherai tempo e denaro per persone che non sono interessate ai tuoi prodotti.
 
-      
+
       Gli abbonati ai messaggi di testo sono spesso tra i clienti più fedeli di un marchio e sono molto interessati a ricevere preziosi aggiornamenti dai loro marchi preferiti tramite messaggio di testo. Per alcuni abbonati, valore significa semplicemente sconti e aggiornamenti di vendita lampo.
 
 
@@ -224,11 +219,11 @@ locales:
 
 
       ### Alto tasso di apertura, partecipazione e conversione.
-      
+
       Quando le persone ricevono una notifica tramite messaggio di testo, la leggono molto più velocemente delle email. Quando sentiamo una notifica, di solito passano secondi o al massimo minuti prima di controllare chi ci ha inviato un messaggio. I messaggi SMS hanno un tasso di apertura medio del 98%, mentre le email si aggirano intorno al 20%. Le percentuali di clic sugli SMS possono raggiungere il 45%, mentre nelle email raggiungono in media il 6%. Questi numeri sono anche peggiori durante i periodi di festività come il Black Friday o il Natale. L'SMS marketing ottiene un tasso di apertura e tassi di conversione più elevati e può essere complessivamente più efficiente in termini di costi.
 
       ### Facili da scrivere
-      
+
       Scrivere una buona email può richiedere molto impegno. Scegliere il titolo, le frasi e le immagini giuste può richiedere molto tempo. Con gli SMS, sei limitato a 160 caratteri (puoi inviare più messaggi, ma è più costoso). Non è necessario pensare a frasi complesse, immagini o design accattivanti. È immediato e facile.
 
       ## Consigli per usare gli SMS
@@ -275,7 +270,7 @@ locales:
       Questi sono alcuni esempi di SMS che puoi provare a inviare
 
       ### Notifica di spedizione
-      
+
       Gli SMS possono essere utilizzati per molto di più del semplice marketing. Ad esempio, si può informare il nostro cliente che il suo ordine è stato appena spedito.
 
       ### Carrello abbandonato
@@ -296,8 +291,8 @@ locales:
 
     excerpt: >-
       Magento e Shopify sono due delle piattaforme e-commerce più utilizzate. Condividiamo la nostra esperienza avendo lavorato con entrambe, spiegando perchè abbiamo scelto Shopify.
-    featuredImage: /assets/shopify-vs-magento.jpg
-    heroImage: /assets/shopify-vs-magento.jpg
+    featuredImage: /assets/sms-marketing.png
+    heroImage: /assets/sms-marketing.png
     language: it
     seoDescription: >
       Magento e Shopify sono due delle piattaforme e-commerce più utilizzate. Condividiamo la nostra esperienza avendo lavorato con entrambe, spiegando perchè abbiamo scelto Shopify.
