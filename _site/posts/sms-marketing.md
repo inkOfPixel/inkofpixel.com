@@ -25,8 +25,7 @@ locales:
       start-custom-image(size:small|align:center|width:undefined|src:/assets/sms-marketing-customer-important.gif|alt:How customers want to be treated|description:How customers want to be treated|shadow:false)end-custom-image
       
 
-      In this environment we are witnessing a comeback of an old technology: SMS. SMS are considered to be one of the most promising eCommerce trends that can vastly improve customer experience and marketing.
-      In 2021 text messages will progressively be used as a way to create a loyal customer base, going to complement existing tools like emails.
+      In this environment we are witnessing a comeback of an old technology: SMS. SMS are considered to be one of the most promising eCommerce trends that can vastly improve customer experience and marketing. Text messages will progressively be used as a way to create a loyal customer base, going to complement existing tools like emails.
 
       ## SMS are cool again
 
@@ -177,19 +176,14 @@ locales:
       As always if you want to discuss this post, or ask us anything you can find us on [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
 
     excerpt: >-
-      Magento and Shopify are two of the most popular platforms that can be used
-      today to build an e-commerce. We share our experience having worked with
-      both platforms and explaining why we have eventually decided to go all in
-      on Shopify
+      2020 has been one of the most important years for eCommerce, growing more than 30% because of the coronavirus pandemic. SMS are considered to be one of the most promising eCommerce trends that can vastly improve customer experience and marketing. Text messages will progressively be used as a way to create a loyal customer base, going to complement existing tools like emails.
     featuredImage: /assets/sms-marketing.png
     heroImage: /assets/sms-marketing.png
     language: en
     seoDescription: >-
-      Magento and Shopify are two of the most popular platforms that can be used
-      today to build an e-commerce. We share our experience having worked with
-      both platforms and explaining why we have eventually decided to go all in
-      on Shopify
-    seoTitle: Magento vs Shopify
+      2020 has been one of the most important years for eCommerce, growing more than 30% because of the coronavirus pandemic. SMS are considered to be one of the most promising eCommerce trends that can vastly improve customer experience and marketing. Text messages will progressively be used as a way to create a loyal customer base, going to complement existing tools like emails.
+      
+    seoTitle: SMS Marketing
     title: SMS marketing
   - body: >-
       Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus. I clienti sono stati costretti a cambiare le loro abitudini di acquisto, spontandosi in massa sugli acquisti online, spingendo i negozi in tutto il mondo ad adattarsi a questa nuova situazione.
@@ -207,8 +201,7 @@ locales:
       **I clienti desiderano ricevere un'esperienza di acquisto personalizzata, con assistenza clienti individuale e codici sconto personalizzati.**
 
 
-      In questo contesto, stiamo assistendo al ritorno di una vecchia tecnologia: gli SMS. Gli SMS sono considerati una delle tendenze più promettenti nell'ambito degli eCommerce, con il potenziale di riuscire a migliorare notevolmente l'esperienza del cliente e il marketing.
-      Nel 2021 i messaggi di testo verranno progressivamente utilizzati come mezzo per creare una base di clienti fedeli, andando a completare strumenti esistenti come le email.
+      In questo contesto, stiamo assistendo al ritorno di una vecchia tecnologia: gli SMS. Gli SMS sono considerati una delle tendenze più promettenti nell'ambito degli eCommerce, con il potenziale di riuscire a migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno progressivamente utilizzati come mezzo per creare una base di clienti fedeli, andando a completare strumenti esistenti come le email.
 
       ## SMS sono di nuovo di moda
 
@@ -343,12 +336,12 @@ locales:
       Come sempre se volete discute di questo articolo o chiederci qualsiasi cosa potete scriverci su [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
 
     excerpt: >-
-      Magento e Shopify sono due delle piattaforme e-commerce più utilizzate. Condividiamo la nostra esperienza avendo lavorato con entrambe, spiegando perchè abbiamo scelto Shopify.
+      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus. Gli SMS sono considerati una delle tendenze di e-commerce più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno progressivamente utilizzati come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
     featuredImage: /assets/sms-marketing.png
     heroImage: /assets/sms-marketing.png
     language: it
     seoDescription: >
-      Magento e Shopify sono due delle piattaforme e-commerce più utilizzate. Condividiamo la nostra esperienza avendo lavorato con entrambe, spiegando perchè abbiamo scelto Shopify.
+      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita di oltre il 30% a causa della pandemia di coronavirus. Gli SMS sono considerati una delle tendenze di e-commerce più promettenti che possono migliorare notevolmente l'esperienza del cliente e il marketing. I messaggi di testo verranno progressivamente utilizzati come un modo per creare una base di clienti fedeli, andando a completare gli strumenti esistenti come le email.
     seoTitle: SMS marketing
     title: SMS marketing
 ---
