@@ -144,7 +144,9 @@ locales:
 
 
       Conclusion
-      SMS marketing can be a very powerful tool if used correctly. If you want to try some of the things you have read in this article try YSMS. As always if you want to discuss this post, or ask us anything you can find us on [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
+      SMS marketing can be a very powerful tool if used correctly. If you want to try some of the things you have read in this article try YSMS.
+      
+      As always if you want to discuss this post, or ask us anything you can find us on [Twitter](https://twitter.com/inkOfPixel) or [Linkedin](https://www.linkedin.com/company/inkofpixel)
 
     excerpt: >-
       Magento and Shopify are two of the most popular platforms that can be used
@@ -287,14 +289,23 @@ locales:
 
       Gli SMS possono essere utilizzati per molto di più del semplice marketing. Ad esempio, si può informare il nostro cliente che il suo ordine è stato appena spedito.
 
+
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-shipping-notification.png|alt:SMS marketing shipping-notification example|description:SMS marketing shipping notification example|shadow:false)end-custom-image
+
+
       ### Carrello abbandonato
 
       Questo è uno dei messaggi piú utilizzati in assoluto. Puoi ad esempio inviare un SMS con uno sconto a tutti gli utenti che non completano l'acquisto.
 
 
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-abandoned-cart.png|alt:SMS marketing abandoned cart example|description:SMS marketing flash sale example|shadow:false)end-custom-image
+
       ### Flash sale
 
       Gli SMS vengono solitamente letti entro pochi minuti dalla ricezione, diventando il mezzo di comunicazione ideale per informare il cliente su un file
+
+
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-flash-sale.png|alt:SMS marketing flash sale example|description:SMS marketing flash sale example|shadow:false)end-custom-image
 
 
       ## Conclusion
