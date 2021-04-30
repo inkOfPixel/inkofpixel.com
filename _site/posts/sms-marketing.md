@@ -312,7 +312,7 @@ locales:
 
       ## Conclusion
       
-      The recent rise of SMS marketing has demonstrated that it can be a very powerful tool if used correctly, but not all businesses have yet adopted it. It's not meant to be a replacement of existing marketing medium like emails, but thanks to its simplicity and attention-grabbing nature can make the difference in generating a conversion. If you want to try some of the ideas you have read in this article,contact us and we are happy to assist you in setting up YSMS for your Shopify e-commerce.
+      The recent rise of SMS marketing has demonstrated that it can be a very powerful tool if used correctly, yet not many businesses are taking advantage of this opportunity. It's not meant to be a replacement of existing marketing medium like emails, but thanks to its simplicity and attention-grabbing nature can make the difference in generating a conversion. If you want to try some of the ideas you have read in this article,contact us and we are happy to assist you in setting up YSMS for your Shopify e-commerce.
 
 
       As always if you want to discuss this post, or ask us anything you can
@@ -619,7 +619,7 @@ locales:
 
       ## Conclusioni
 
-      Il recente aumento dell'SMS marketing ha dimostrato che può essere uno strumento molto potente se usato correttamente, ma non tutte le aziende lo hanno ancora adottato. Non deve esser una soluzione che va a sostituire gli esistenti canali di marketing come le email, ma, grazie alla sua semplicità e capacità di attirare l'attenzione, può fare la differenza nel generare una conversione. Se vuoi provare alcune delle idee che hai letto in questo articolo, contattaci e saremo felici di aiutarti nella configurazione di YSMS per il tuo e-commerce Shopify.
+      Il recente aumento dell'SMS marketing ha dimostrato che può essere uno strumento molto potente se usato correttamente, ma non molte aziende stanno sfruttando questa opportunità. Non deve esser una soluzione che va a sostituire gli esistenti canali di marketing come le email, ma, grazie alla sua semplicità e capacità di attirare l'attenzione, può fare la differenza nel generare una conversione. Se vuoi provare alcune delle idee che hai letto in questo articolo, contattaci e saremo felici di aiutarti nella configurazione di YSMS per il tuo e-commerce Shopify.
 
 
       Come sempre se volete discute di questo articolo o chiederci qualsiasi
