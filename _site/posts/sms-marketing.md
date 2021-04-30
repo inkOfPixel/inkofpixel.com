@@ -4,7 +4,7 @@ template: post
 headerTheme: light
 published: false
 author: Gianluca Chiap
-date: '2021-04-28'
+date: '2021-04-30'
 locales:
   - body: >-
       2020 has been one of the most important years for e-commerce, growing more
@@ -12,13 +12,14 @@ locales:
       to change their shopping habits by buying online, pushing commerce all
       around the world to adapt to this sudden market shift.
 
+
       With the number of online shops that keeps increasing, it’s becoming more
       and more challenging for an e-commerce to effectively reach the target
       audience and make its products stand out between dozens of competitors.
 
+
       Ads are omnipresent and our inbox is full of marketing mail. People no
       longer pay much attention to those marketing emails. They are overwhelmed.
-      Good luck getting people to read your email.
 
 
       start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-full-inbox.jpeg|alt:A
@@ -26,7 +27,7 @@ locales:
       inbox|shadow:false)end-custom-image
 
 
-      In addition to that customers want their shopping experience to be as
+      In addition to that, customers want their shopping experience to be as
       smooth as possible. If they find a problem they want to chat 1 on 1 with a
       person. They want to feel special.
 
@@ -41,7 +42,7 @@ locales:
 
 
       In this environment we are witnessing a comeback of an old technology:
-      SMS. SMS are considered to be one of the most promising e-commerce trends
+      **SMS**. SMS are considered to be one of the most promising e-commerce trends
       that can vastly improve customer experience and marketing. Text messages
       will progressively be used as a way to create a loyal customer base, going
       to complement existing tools like emails.
@@ -61,8 +62,6 @@ locales:
       medium. In order to stand out your e-commerce needs to offer an overall
       better experience than your competitors. We are not only talking about
       your products, but also your customer support, your discount codes etc.
-      Personalized SMS can help achieve the required to create a loyal customer
-      base.
 
 
       Despite being one of the simplest communication methods between mobile
@@ -70,7 +69,7 @@ locales:
       option.
 
 
-      Text messages are simple, direct, bried, and personal. These
+      Text messages are simple, direct, brief, and personal. These
       characteristics are very desirable when interacting with a customer.
       Personalized text messaging has emerged as a way for consumers to connect
       1:1 with brands. Having an opportunity to build highly engaged communities
@@ -90,14 +89,14 @@ locales:
       offers, communications, customer service, etc. 
 
 
-      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-useless-email.jpeg|alt:A
-      missing inbox feature|description:A missing inbox
-      feature|shadow:false)end-custom-image
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-useless-email.jpeg|alt:The truth of emails|description:The truth of emails|shadow:false)end-custom-image
 
 
       Emails arrive in our inbox multiple times a day. It’s hard to make a
       marketing campaign stand out with all this noise. Consumers are
       overwhelmed, and very often they  delete emails without ever opening them.
+      Good luck in convincing the people to read the email where you communicate the start of the discounts for your e-commerce.
+
 
       The situation is only going to get more crowded with more and more shops
       expanding their business online.
@@ -111,9 +110,9 @@ locales:
       ### SMS can give your e-commerce a higher perceived value
 
 
-      SMS can be expensive. A shop that is willing to invest money for sending
-      personalized SMS is usually perceived as a more trustworthy activity.
-      Consumers are incentivized by perceived value, and SMS can definitely
+      SMS are more expensive than emails. A shop that is willing to invest money for sending
+      personalized SMS is usually perceived as more trustworthy and willing to invest in their products.
+      Consumers are incentivized by perceived value of a brand, and SMS can definitely
       improve the perceived value of your store.
 
 
@@ -137,17 +136,13 @@ locales:
       The consequence is that an sms list is usually much smaller than an email
       list. But quantity does not alway convert into better sales. Customers
       willing to receive SMS are usually much more interested in that brand, and
-      this leads to better conversion rates. With a mobile list you won’t waste
-      time and money on people that are not interested.
+      this leads to better conversion rates.
 
 
       Text messaging subscribers are often among a brand's most loyal customers
       and are very interested in receiving valuable updates from their favorite
-      brands via text message. For some subscribers, value simply means
+      brands via text message. For some subscribers, valuable updates simply means
       discounts and flash sale updates.
-
-      Since SMS marketing requires customers to opt in, giving away their phone
-      number, your list will only include customers who want to hear from you.
 
 
       ### High open rate, engagement rate and conversion rates.
@@ -160,7 +155,7 @@ locales:
       rate. SMS click-through rates can reach 45%, while email reach 6% average.
       Those numbers are even more extreme during holiday periods like Black
       Friday or Christmas. SMS marketing gets high engagement and higher
-      conversion rates, and can be more cost-efficient overall.
+      conversion rates, and can be more cost-efficient overall, considering the increase in conversions.
 
 
       start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-check-phone.gif|alt:Checking
@@ -171,7 +166,7 @@ locales:
       ### Easy to write
 
 
-      Writing a good email can require a lot of effort. Choosing the right
+      Writing a good email require a lot of effort. Choosing the right
       title, phrases, images, can be really time consuming. With SMS, you’re
       limited to 160 characters (you can send more messages, but it’s more
       expensive). You don’t need to think of catchy phrases, images or design.
@@ -187,7 +182,10 @@ locales:
       the customer’s attention. People who have given you their number trust
       your business. And trust that you will use their number responsibly. Don’t
       abuse it. Before sending any SMS you must ask yourself if SMS is really
-      the best medium for the message you are trying to communicate. SMS
+      the best medium for the message you are trying to communicate.
+      
+      
+      SMS
       marketing is a very powerful tool, but at the same time must be used very
       cautiously.
 
@@ -231,7 +229,7 @@ locales:
       ### Send at the right time.
 
 
-      The time of receiving a  marketing SMS can be the difference between a
+      The time of receiving a marketing SMS can be the difference between a
       conversion and a message ignored. It’s important to respect the person you
       are sending the messages, always remembering that you are sending a
       message to their private phone number.
@@ -284,9 +282,7 @@ locales:
       inform our customer that their order has just been shipped.
 
 
-      start-custom-image(size:normal|align:center|width:|src:/assets/sms-marketing-shipping-notification.png|alt:SMS
-      marketing shipping-notification example|description:SMS marketing shipping
-      notification example|shadow:false)end-custom-image
+      start-custom-image(size:normal|align:center|width:|src:/assets/sms-marketing-shipping-notification.png|alt:Shipping notification|description:Shipping notification|shadow:false)end-custom-image
 
 
       ### Abandoned checkout
@@ -314,8 +310,10 @@ locales:
       example|shadow:false)end-custom-image
 
 
-      Conclusion SMS marketing can be a very powerful tool if used correctly. If
-      you want to try some of the things you have read in this article try YSMS.
+      ## Conclusion
+      
+      The recent rise of SMS marketing has demonstrated that it can be a very powerful tool if used correctly, but not all businesses have yet adopted it. It's not meant to be a replacement of existing marketing medium like emails, but thanks to its simplicity and attention-grabbing nature can make the difference in generating a conversion. If you want to try some of the ideas you have read in this article,contact us and we are happy to assist you in setting up YSMS for your Shopify e-commerce.
+
 
       As always if you want to discuss this post, or ask us anything you can
       find us on [Twitter](https://twitter.com/inkOfPixel) or
@@ -340,41 +338,46 @@ locales:
     seoTitle: How to boost your sales with SMS marketing this year
     title: How to boost your sales with SMS marketing this year
   - body: >-
-      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita
+      Il 2020 è stato uno degli anni più importanti per l'e-commerce, in crescita
       di oltre il 30% a causa della pandemia di coronavirus. I clienti sono
       stati costretti a cambiare le loro abitudini di acquisto, spontandosi in
       massa sugli acquisti online, spingendo i negozi in tutto il mondo ad
       adattarsi a questa nuova situazione.
 
 
-      Con il numero di eCommerce che continua ad aumentare, sta diventando
+      Con il numero di e-commerce che continua ad aumentare, sta diventando
       sempre più difficile raggiungere in modo efficace il proprio target di
-      clienti e riuscire a comunicare in modo efficace i propri prodotti e
-      offerte.
+      clienti e riuscire a far risaltare i propri prodotti tra tutti i competitors.
 
 
-      La pubblicità sono onnipresenti e la nostra inbox è piena di email di
-      marketing. Le persone non prestano più molta attenzione alle tutte queste
-      email.
+      Le pubblicità sono onnipresenti e la nostra inbox è piena di email di
+      marketing. Le persone non prestano più molta attenzione a tutte queste email. Si sentono sopraffatti.
+
+
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-full-inbox.jpeg|alt:Una normale inbox email|description:Una normale inbox email|shadow:false)end-custom-image
+
 
 
       Inoltre, i clienti desiderano che la loro esperienza di acquisto sia il
       più comoda e personalizzata possibile. Se ad esempio trovano un problema
-      vogliono chattare con una persona.
+      vogliono chattare con una persona. Vogliono sentirsi speciali
 
 
       **I clienti desiderano ricevere un'esperienza di acquisto personalizzata,
       con assistenza clienti individuale e codici sconto personalizzati.**
 
+    
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-customer-important.gif|alt:Come vogliono essere trattati i clienti|description:Come vogliono essere trattati i clienti|shadow:false)end-custom-image
+
 
       In questo contesto, stiamo assistendo al ritorno di una vecchia
-      tecnologia: gli SMS. Gli SMS sono considerati una delle tendenze più
-      promettenti nell'ambito degli eCommerce, con il potenziale di riuscire a
+      tecnologia: gli **SMS**. Gli SMS sono considerati una delle tecnologie più
+      promettenti nell'ambito degli e-commerce, con il potenziale di riuscire a
       migliorare notevolmente l'esperienza del cliente e il marketing. I
       messaggi di testo verranno progressivamente utilizzati come mezzo per
-      creare una base di clienti fedeli, andando a completare strumenti
-      esistenti come le email.
+      creare una base di clienti fedeli, andando a unirsi a strumenti già esistenti come le email.
 
+    
       ## SMS sono di nuovo di moda
 
       Gli smartphone sono sempre a portata di mano. Gli SMS hanno un alevato
@@ -383,22 +386,20 @@ locales:
       nostra attenzione come nessun altro strumento di comunicazione.
 
 
-      Lo shopping online è ormai in gran parte sui dispositivi mobili. Le
-      persone preferiscono fare acquisti direttamente dal proprio smartphone.
+      Lo shopping online è ormai in gran parte sui dispositivi mobili. I giovani preferiscono fare acquisti direttamente dal proprio smartphone.
       L'email non può più essere l'unico mezzo di comunicazione. Per
-      distinguersi, il tuo eCommerce deve offrire un'esperienza complessiva
+      distinguersi, il tuo e-commerce deve offrire un'esperienza complessiva
       migliore rispetto ai tuoi concorrenti. Non stiamo parlando solo dei
-      prodotti, ma anche dell' assistenza clienti, dei codici sconto, ecc. Gli
-      SMS personalizzati possono aiutare a creare una base di clienti fedeli.
+      prodotti, ma anche dell' assistenza clienti, dei codici sconto, ecc.
 
 
       Nonostante siano uno dei metodi di comunicazione più semplici tra
       telefoni, gli SMS rimangono un'opzione di marketing estremamente efficace,
-      ma ancora poco outilizzata.
+      ma ancora poco utilizzata.
 
 
       Gli SMS sono semplici, diretti, veloci e personali. Tutte caratteristiche
-      valide quando interagisce con un cliente. Gli SMS personalizzati sono
+      importanti quando si interagisce con un cliente. Gli SMS personalizzati sono
       emersi come un modo per i consumatori di connettersi 1 a 1 con i brand.
       Avere l'opportunità di costruire una comunità altamente coinvolta creando
       un senso di "esclusività".
@@ -416,11 +417,15 @@ locales:
       sicuramente in volume. L'inbox di tutti è piena di decine di email non
       lette. Newsletter, offerte, comunicazioni, servizio clienti, ecc.
 
+
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-useless-email.jpeg|alt:La realtà delle email|description:La realtà delle email|shadow:false)end-custom-image
+
+
       Le email arrivano nella nostra casella di posta più volte al giorno. È
       difficile attirare l'attenzione con una campagna di marketing in mezzo a
       tutto questo rumore. I consumatori sono sopraffatti e molto spesso
       cancellano le email senza neanche aprirle. Buona fortuna a convincere la
-      gente a leggere la tua email di marketing.
+      gente a leggere la email dove comunichi l'inizio degli sconti per il tuo e-commerce.
 
 
       La situazione diventerà sempre più caotica al crescere del numero di
@@ -432,17 +437,17 @@ locales:
       a te fare buon uso di questa opportunità.**
 
 
-      ### Gli SMS possono dare al tuo eCommerce un valore percepito più elevato
+      ### Gli SMS possono dare al tuo e-commerce un valore percepito più elevato
 
-      Gli SMS possono essere costosi. Un negozio che è disposto a investire
-      denaro per l'invio di SMS personalizzati è generalmente percepito come
-      un'attività più affidabile. I consumatori sono incentivati dal valore
-      percepito e gli SMS possono sicuramente migliorare questo valore.
+      Gli SMS sono più costosi delle email. Un negozio che è disposto a investire
+      denaro per l'invio di SMS personalizzati è solitamente percepito come
+      un'attività più affidabile e disposta ad investire nei propri prodotti. I consumatori sono incentivati dal valore
+      percepito di un brand e gli SMS possono sicuramente migliorare il valore percepito del tuo e-commerce.
 
       ### Liste piú piccole, ma di valore maggiore.
 
       Ci sono due ragioni principali per cui le persone non ricevono molti SMS
-      di marketing. Una è che la maggior parte dell'eCommerce non ha ancora
+      di marketing. Una è che la maggior parte dell'e-commerce non ha ancora
       esplorato le possibilità offerte da questa tecnologia. L'altra è che le
       persone sono molto meno disposte a condividere il loro numero di telefono,
       poiché è visto come qualcosa di più privato rispetto al loro indirizzo
@@ -450,49 +455,47 @@ locales:
       decidono di condividerlo solo se si fidano del brand.
 
 
-      Poiché l'SMS marketing richiede ai clienti di condividere il proprio
-      numero di telefono, la lista di clienti sarà composto per la maggior parte
-      da clienti che desiderano avere tue notizie e sono interessati ai tuoi
-      prodotti.
+      **Considerando che l'SMS marketing richiede ai clienti di condividere il proprio
+      numero di telefono, la lista di clienti sarà composta per la maggior parte
+      da clienti che desiderano ricevere informazioni e sono interessati ai tuoi
+      prodotti.**
 
 
       La conseguenza è che una lista di SMS marketing è solitamente molto più
       piccola di una lista di email marketing. Ma la quantità non si converte
       sempre in un maggior numero di vendite. I clienti che desiderano ricevere
       SMS sono solitamente molto più interessati a quel brand e questo porta a
-      migliori tassi di conversione. Con un elenco di dispositivi mobili non
-      sprecherai tempo e denaro per persone che non sono interessate ai tuoi
-      prodotti.
+      migliori tassi di conversione.
 
 
       Gli abbonati ai messaggi di testo sono spesso tra i clienti più fedeli di
       un marchio e sono molto interessati a ricevere preziosi aggiornamenti dai
       loro marchi preferiti tramite messaggio di testo. Per alcuni abbonati,
-      valore significa semplicemente sconti e aggiornamenti di vendita lampo.
+      aggiornamenti interessanti significa semplicemente sconti e aggiornamenti di sconti lampo.
 
-
-      **Poiché l'SMS marketing richiede ai clienti di aderire, dando via il loro
-      numero di telefono, il tuo elenco includerà solo i clienti che desiderano
-      avere tue notizie.**
 
 
       ### Alto tasso di apertura, partecipazione e conversione.
 
       Quando le persone ricevono una notifica tramite messaggio di testo, la
-      leggono molto più velocemente delle email. Quando sentiamo una notifica,
+      leggono molto più velocemente rispetto alle email. Quando sentiamo una notifica,
       di solito passano secondi o al massimo minuti prima di controllare chi ci
       ha inviato un messaggio. I messaggi SMS hanno un tasso di apertura medio
       del 98%, mentre le email si aggirano intorno al 20%. Le percentuali di
-      clic sugli SMS possono raggiungere il 45%, mentre nelle email raggiungono
+      click nei link degli SMS possono raggiungere il 45%, mentre nelle email raggiungono
       in media il 6%. Questi numeri sono anche peggiori durante i periodi di
       festività come il Black Friday o il Natale. L'SMS marketing ottiene un
       tasso di apertura e tassi di conversione più elevati e può essere
-      complessivamente più efficiente in termini di costi.
+      complessivamente più efficiente in termini di costi, considerando il probabile maggior numero di conversioni.
+
+      
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-check-phone.gif|alt:Controllare il telefono quando ricevi una notifica|description:Controllare il telefono quando ricevi una notifica|shadow:false)end-custom-image
+
 
       ### Facili da scrivere
 
       Scrivere una buona email può richiedere molto impegno. Scegliere il
-      titolo, le frasi e le immagini giuste può richiedere molto tempo. Con gli
+      titolo, le frasi e le immagini giuste è complicato. Con gli
       SMS, sei limitato a 160 caratteri (puoi inviare più messaggi, ma è più
       costoso). Non è necessario pensare a frasi complesse, immagini o design
       accattivanti. È immediato e facile.
@@ -513,6 +516,9 @@ locales:
 
       **Se decidi di scrivere un SMS al tuo cliente, devi avere un motivo
       valido**
+
+
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-receive-offer.gif|alt:Quendo ricevi un codice sconto via SMS|description:Quendo ricevi un codice sconto via SMS|shadow:false)end-custom-image
 
 
       Un'altra cosa che deve essere considerata è che l'SMS marketing di solito
@@ -546,10 +552,16 @@ locales:
       inviando i messaggi, ricordando sempre che stai inviando un messaggio al
       suo numero di telefono privato.
 
+      
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-night-sms.gif|alt:Don't
+      send your SMS at the wrong time|description:Don't send your SMS at the
+      wrong time|shadow:false)end-custom-image
+
+
       ### Non inviare troppi messaggi
 
-      Non inviare troppi messaggi. Il marketing di testo dovrebbe essere
-      utilizzato solo per occasioni speciali. Gli SMS devono un'integrazione
+      Non inviare troppi messaggi. Il marketing tramite SMS dovrebbe essere
+      utilizzato solo per occasioni speciali. Gli SMS devono essere un'integrazione
       alle email, non sostituirle.
 
       ### Deve essere facile disiscriversi
@@ -561,12 +573,18 @@ locales:
       iscritti che non vogliono rimanere nella tua lista piuttosto che
       infastidire qualche potenziale cliente.
 
+      
+      start-custom-image(size:small|align:center|width:|src:/assets/sms-marketing-spam.gif|alt:A nessuno piace lo spam|description:A nessuno piace lo spam|shadow:false)end-custom-image
 
-      ## La nostra app di SMS marketing: YSMS
 
-      Se sei curioso di provare l'SMS marketing per il tuo eCommerce, dovresti
-      provare [YSMS](https://ysms.me/), la nostra app di SMS marketing. Ci
-      piacerebbe avere il tuo feedback.
+      ## Come puoi creare una campagna SMS oggi dal tuo store Shopify?
+
+      Per semplificare il lancio della tua prima campagna SMS, abbiamo creato un'app per fa proprio questo. [YSMS](https://ysms.me/) è la nostra app di SMS marketing che ti potrà aiutare a incrementare le tue vendite.
+
+
+      start-custom-image(size:normal|align:center|width:|src:/assets/sms-marketing-ysms.png|alt:YSMS|description:YSMS|shadow:false)end-custom-image
+
+
 
       Questi sono alcuni esempi di SMS che puoi provare a inviare
 
@@ -577,9 +595,7 @@ locales:
       appena spedito.
 
 
-      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-shipping-notification.png|alt:SMS
-      marketing shipping-notification example|description:SMS marketing shipping
-      notification example|shadow:false)end-custom-image
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-shipping-notification.png|alt:Notifica di spedizione|description:Notifica di spedizione|shadow:false)end-custom-image
 
 
       ### Carrello abbandonato
@@ -589,33 +605,28 @@ locales:
       l'acquisto.
 
 
-      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-abandoned-cart.png|alt:SMS
-      marketing abandoned cart example|description:SMS marketing flash sale
-      example|shadow:false)end-custom-image
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-abandoned-cart.png|alt:Abandoned cart example|description:Abandoned cart example|shadow:false)end-custom-image
 
       ### Flash sale
 
       Gli SMS vengono solitamente letti entro pochi minuti dalla ricezione,
-      diventando il mezzo di comunicazione ideale per informare il cliente su un
-      file
+      diventando il mezzo di comunicazione ideale per informare il cliente su un flash sale
 
 
-      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-flash-sale.png|alt:SMS
-      marketing flash sale example|description:SMS marketing flash sale
+      start-custom-image(size:normal|align:center|width:undefined|src:/assets/sms-marketing-flash-sale.png|alt:Flash sale|description:Flash sale
       example|shadow:false)end-custom-image
 
 
-      ## Conclusion
+      ## Conclusioni
 
-      L'SMS marketing può essere uno strumento molto potente se usato
-      correttamente. Se sei interessato ad alcune delle cose che hai letto in
-      questo articolo, prova YSMS.
+      Il recente aumento dell'SMS marketing ha dimostrato che può essere uno strumento molto potente se usato correttamente, ma non tutte le aziende lo hanno ancora adottato. Non deve esser una soluzione che va a sostituire gli esistenti canali di marketing come le email, ma, grazie alla sua semplicità e capacità di attirare l'attenzione, può fare la differenza nel generare una conversione. Se vuoi provare alcune delle idee che hai letto in questo articolo, contattaci e saremo felici di aiutarti nella configurazione di YSMS per il tuo e-commerce Shopify.
+
 
       Come sempre se volete discute di questo articolo o chiederci qualsiasi
       cosa potete scriverci su [Twitter](https://twitter.com/inkOfPixel) or
       [Linkedin](https://www.linkedin.com/company/inkofpixel)
     excerpt: >-
-      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita
+      Il 2020 è stato uno degli anni più importanti per l'e-commerce, in crescita
       di oltre il 30% a causa della pandemia di coronavirus.  Gli SMS sono
       considerati una delle tendenze più promettenti che possono migliorare
       notevolmente l'esperienza del cliente e il marketing. I messaggi di testo
@@ -626,14 +637,14 @@ locales:
     heroImage: /assets/sms-marketing.png
     language: it
     seoDescription: >
-      Il 2020 è stato uno degli anni più importanti per l'eCommerce, in crescita
+      Il 2020 è stato uno degli anni più importanti per l'e-commerce, in crescita
       di oltre il 30% a causa della pandemia di coronavirus.  Gli SMS sono
       considerati una delle tendenze più promettenti che possono migliorare
       notevolmente l'esperienza del cliente e il marketing. I messaggi di testo
       verranno utilizzati sempre di piú come un modo per creare una base di
       clienti fedeli, andando a completare gli strumenti esistenti come le
       email.
-    seoTitle: SMS marketing
-    title: SMS marketing
+    seoTitle: Come aumentare le tue vendite con l'SMS marketing quest'anno
+    title: Come aumentare le tue vendite con l'SMS marketing quest'anno
 ---
 

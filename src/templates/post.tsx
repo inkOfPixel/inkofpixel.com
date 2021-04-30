@@ -106,7 +106,6 @@ export default ({ data, pathContext }: IProps) => {
   );
 
   const html = marked(currentPost.body, { renderer: renderer });
-  console.log("currentPost", currentPost);
   return (
     <Page
       title={currentPost.seoTitle}
