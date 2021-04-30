@@ -2,7 +2,7 @@
 title: How to boost your sales with SMS marketing this year
 template: post
 headerTheme: light
-published: true
+published: false
 author: Gianluca Chiap
 date: '2021-04-30'
 locales:
