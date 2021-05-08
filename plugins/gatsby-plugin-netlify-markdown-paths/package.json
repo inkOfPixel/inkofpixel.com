@@ -10,7 +10,7 @@
   "author": "Massimo De Marchi <massimo@inkofpixel.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash": "4.17.10",
+    "lodash": "4.17.21",
     "read-yaml-promise": "1.0.2"
   }
 }
