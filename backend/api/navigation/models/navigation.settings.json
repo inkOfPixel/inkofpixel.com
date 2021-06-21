@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "navigations",
+  "info": {
+    "name": "Navigation",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "navigationName": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "dynamiczone",
+      "components": [
+        "menu.link",
+        "menu.page-link"
+      ]
+    }
+  }
+}

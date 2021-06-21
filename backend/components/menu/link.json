@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_menu_links",
+  "info": {
+    "name": "Link",
+    "icon": "external-link-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "linkName": {
+      "type": "string",
+      "required": true
+    },
+    "path": {
+      "model": "pages"
+    }
+  }
+}

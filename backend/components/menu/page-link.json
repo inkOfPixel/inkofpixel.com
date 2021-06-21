@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_menu_page_links",
+  "info": {
+    "name": "PageLink",
+    "icon": "pager",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pageLinkName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "path": {
+      "model": "pages"
+    }
+  }
+}
