@@ -1,0 +1,44 @@
+query GetPages($where: JSON, $locale: String) {
+  pages(where: $where, locale: $locale) {
+    id
+    locale
+    created_at
+    updated_at
+    pageName
+    path
+    blocks {
+      __typename
+      ... on ComponentBlocksCard {
+        id
+        title
+        description
+        image {
+          url
+        }
+        projectLink {
+          path {
+            path
+          }
+        }
+      }
+      ... on ComponentBlocksSingleFeature {
+        id
+        title
+        description
+        image {
+          url
+        }
+        serviceLink {
+          path {
+            path
+          }
+        }
+      }
+      ... on ComponentBlocksHero {
+        id
+        title
+        subtitle
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "navigations",
+  "collectionName": "features_sections",
   "info": {
-    "name": "Navigation",
+    "name": "pageFeaturesSection",
     "description": ""
   },
   "options": {
@@ -16,20 +16,10 @@
     }
   },
   "attributes": {
-    "navigationName": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "items": {
+    "blocks": {
       "type": "dynamiczone",
       "components": [
-        "menu.link",
-        "menu.page-link"
+        "blocks.feature"
       ],
       "pluginOptions": {
         "i18n": {

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_blocks_single_features",
+  "info": {
+    "name": "singleFeature",
+    "icon": "allergies",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "serviceLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.page-link"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_features",
+  "info": {
+    "name": "feature",
+    "icon": "ad"
+  },
+  "options": {},
+  "attributes": {
+    "featureTitle": {
+      "type": "string",
+      "required": true
+    },
+    "featureDescription": {
+      "type": "text"
+    },
+    "feat": {
+      "type": "component",
+      "repeatable": true,
+      "component": "feat.feat"
+    }
+  }
+}

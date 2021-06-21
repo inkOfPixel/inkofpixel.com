@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_blocks_cards",
+  "info": {
+    "name": "card",
+    "icon": "address-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "projectLink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "menu.page-link"
+    }
+  }
+}

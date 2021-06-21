@@ -1,0 +1,15 @@
+query GetFeatures {
+  featuresSections {
+    blocks {
+      ... on ComponentBlocksFeature {
+        featureTitle
+        featureDescription
+        feat {
+          ... on ComponentFeatFeat {
+            featDescription
+          }
+        }
+      }
+    }
+  }
+}
