@@ -41,7 +41,7 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
       <DefaultLayout title="InkOfPixel">
         <InlineForm form={form}>
           <StyledComponent
-            color={colorMode == "light" ? "black" : "white"}
+            color={colorMode == "light" ? "dark" : "white"}
             name="blocks"
             blocks={PAGE_BLOCKS}
             itemProps={itemProps}

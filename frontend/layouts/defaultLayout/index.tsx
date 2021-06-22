@@ -1,7 +1,7 @@
 import { Box, Flex, useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
-import DarkModeSwitch from "@components/DarkModeSwitch";
+// import DarkModeSwitch from "@components/DarkModeSwitch";
 
 export function DefaultLayout({ children, title }: any) {
   const { colorMode } = useColorMode();
@@ -17,7 +17,7 @@ export function DefaultLayout({ children, title }: any) {
           width="100%"
           justifyContent="flex-end"
         >
-          <DarkModeSwitch />
+          {/* <DarkModeSwitch /> */}
         </Flex>
         <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
       </Box>
