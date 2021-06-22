@@ -21,14 +21,20 @@ interface HeroBlockProps {
 }
 
 export function HeroBlock({}: HeroBlockProps) {
-  /*const [isSmallerThan900] = useMediaQuery(
-    "(max-width: 900px){ font-size:4xl }"
-  );*/
+  const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
+  const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
+  const [isSmallerThan1260] = useMediaQuery("(max-width: 1260px)");
+  const [isSmallerThan700] = useMediaQuery("(max-width: 700)");
+  const [isSmallerThan1020] = useMediaQuery("(max-width: 1020)");
   return (
     <HeroBox as="section" pt={"300px"} pb={"400px"} overflow={"hidden"}>
-      <Flex w={"1200px"} m={"0 auto"} flexDirection="column">
+      <Flex
+        w={isSmallerThan1020 ? "100%" : isSmallerThan1260 ? "100%" : "1200px"}
+        m={"0 auto"}
+        flexDirection="column"
+      >
         <Box
-          fontSize={"5xl"}
+          fontSize={isSmallerThan600 ? "3xl" : isSmallerThan900 ? "4xl" : "5xl"}
           w={"50%"}
           p={0}
           m={0}
@@ -37,9 +43,7 @@ export function HeroBlock({}: HeroBlockProps) {
           fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
-          <h2>
-            <InlineText name="title" />
-          </h2>
+          <InlineText name="title" />
         </Box>
         <Box
           fontSize={"sm"}
