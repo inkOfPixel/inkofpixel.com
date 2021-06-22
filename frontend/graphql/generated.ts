@@ -1671,7 +1671,7 @@ export type CreatePageMutation = (
 );
 
 export type UpdatePageMutationVariables = Exact<{
-  pageInput?: Maybe<UpdatePageInput>;
+  input?: Maybe<UpdatePageInput>;
 }>;
 
 
@@ -1826,8 +1826,8 @@ export const CreatePage = `
 }
     `;
 export const UpdatePage = `
-    mutation UpdatePage($pageInput: updatePageInput) {
-  updatePage(input: $pageInput) {
+    mutation UpdatePage($input: updatePageInput) {
+  updatePage(input: $input) {
     page {
       id
     }
