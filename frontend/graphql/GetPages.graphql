@@ -15,11 +15,7 @@ query GetPages($where: JSON, $locale: String) {
         image {
           url
         }
-        projectLink {
-          path {
-            path
-          }
-        }
+        projectLink
       }
       ... on ComponentBlocksSingleFeature {
         id
@@ -28,11 +24,7 @@ query GetPages($where: JSON, $locale: String) {
         image {
           url
         }
-        serviceLink {
-          path {
-            path
-          }
-        }
+        serviceLink
       }
       ... on ComponentBlocksHero {
         id

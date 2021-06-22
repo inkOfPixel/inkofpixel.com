@@ -37,8 +37,6 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
-      console.log("Input", getPageInput(values));
-
       try {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
           input,

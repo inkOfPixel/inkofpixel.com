@@ -43,14 +43,14 @@ export type ComponentBlocksCard = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<UploadFile>;
-  projectLink?: Maybe<ComponentMenuPageLink>;
+  projectLink?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksCardInput = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  projectLink?: Maybe<ComponentMenuPageLinkInput>;
+  projectLink?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksFeature = {
@@ -85,14 +85,14 @@ export type ComponentBlocksSingleFeature = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<UploadFile>;
-  serviceLink?: Maybe<Array<Maybe<ComponentMenuPageLink>>>;
+  serviceLink?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksSingleFeatureInput = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  serviceLink?: Maybe<Array<Maybe<ComponentMenuPageLinkInput>>>;
+  serviceLink?: Maybe<Scalars['String']>;
 };
 
 export type ComponentFeatFeat = {
@@ -1352,7 +1352,7 @@ export type EditComponentBlocksCardInput = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
-  projectLink?: Maybe<EditComponentMenuPageLinkInput>;
+  projectLink?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentBlocksFeatureInput = {
@@ -1373,7 +1373,7 @@ export type EditComponentBlocksSingleFeatureInput = {
   description?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
-  serviceLink?: Maybe<Array<Maybe<EditComponentMenuPageLinkInput>>>;
+  serviceLink?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentFeatFeatInput = {
@@ -1561,33 +1561,21 @@ export type GetPageDataQuery = (
     & Pick<Pages, 'id' | 'locale' | 'pageName' | 'path'>
     & { blocks?: Maybe<Array<Maybe<(
       { __typename: 'ComponentBlocksCard' }
-      & Pick<ComponentBlocksCard, 'id' | 'title' | 'description'>
+      & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
         & Pick<UploadFile, 'url'>
-      )>, projectLink?: Maybe<(
-        { __typename?: 'ComponentMenuPageLink' }
-        & { path?: Maybe<(
-          { __typename?: 'Pages' }
-          & Pick<Pages, 'path'>
-        )> }
       )> }
     ) | (
       { __typename: 'ComponentBlocksHero' }
       & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
     ) | (
       { __typename: 'ComponentBlocksSingleFeature' }
-      & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description'>
+      & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description' | 'serviceLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
         & Pick<UploadFile, 'url'>
-      )>, serviceLink?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentMenuPageLink' }
-        & { path?: Maybe<(
-          { __typename?: 'Pages' }
-          & Pick<Pages, 'path'>
-        )> }
-      )>>> }
+      )> }
     )>>> }
   )>>> }
 );
@@ -1623,33 +1611,21 @@ export type GetPagesQuery = (
     & Pick<Pages, 'id' | 'locale' | 'created_at' | 'updated_at' | 'pageName' | 'path'>
     & { blocks?: Maybe<Array<Maybe<(
       { __typename: 'ComponentBlocksCard' }
-      & Pick<ComponentBlocksCard, 'id' | 'title' | 'description'>
+      & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
         & Pick<UploadFile, 'url'>
-      )>, projectLink?: Maybe<(
-        { __typename?: 'ComponentMenuPageLink' }
-        & { path?: Maybe<(
-          { __typename?: 'Pages' }
-          & Pick<Pages, 'path'>
-        )> }
       )> }
     ) | (
       { __typename: 'ComponentBlocksHero' }
       & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
     ) | (
       { __typename: 'ComponentBlocksSingleFeature' }
-      & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description'>
+      & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description' | 'serviceLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
         & Pick<UploadFile, 'url'>
-      )>, serviceLink?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentMenuPageLink' }
-        & { path?: Maybe<(
-          { __typename?: 'Pages' }
-          & Pick<Pages, 'path'>
-        )> }
-      )>>> }
+      )> }
     )>>> }
   )>>> }
 );
@@ -1725,11 +1701,7 @@ export const GetPageData = `
         image {
           url
         }
-        projectLink {
-          path {
-            path
-          }
-        }
+        projectLink
       }
       ... on ComponentBlocksSingleFeature {
         id
@@ -1738,11 +1710,7 @@ export const GetPageData = `
         image {
           url
         }
-        serviceLink {
-          path {
-            path
-          }
-        }
+        serviceLink
       }
       ... on ComponentBlocksHero {
         id
@@ -1788,11 +1756,7 @@ export const GetPages = `
         image {
           url
         }
-        projectLink {
-          path {
-            path
-          }
-        }
+        projectLink
       }
       ... on ComponentBlocksSingleFeature {
         id
@@ -1801,11 +1765,7 @@ export const GetPages = `
         image {
           url
         }
-        serviceLink {
-          path {
-            path
-          }
-        }
+        serviceLink
       }
       ... on ComponentBlocksHero {
         id

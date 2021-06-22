@@ -13,12 +13,9 @@ query GetPageData($locale: String) {
         image {
           url
         }
-        projectLink {
-          path {
-            path
-          }
-        }
+        projectLink
       }
+
       ... on ComponentBlocksSingleFeature {
         id
         title
@@ -26,11 +23,7 @@ query GetPageData($locale: String) {
         image {
           url
         }
-        serviceLink {
-          path {
-            path
-          }
-        }
+        serviceLink
       }
       ... on ComponentBlocksHero {
         id

@@ -188,7 +188,7 @@ function getPageData(
               title: section.title,
               description: section.description,
               imageUrl: STRAPI_URL + section.image?.url,
-              projectLink: section.projectLink?.path?.path,
+              projectLink: section.projectLink,
             };
           }
           case "ComponentBlocksSingleFeature": {

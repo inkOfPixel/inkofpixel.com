@@ -26,9 +26,7 @@
       "pluginOptions": {}
     },
     "projectLink": {
-      "type": "component",
-      "repeatable": false,
-      "component": "menu.page-link"
+      "type": "string"
     }
   }
 }
