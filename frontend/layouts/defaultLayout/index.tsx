@@ -1,9 +1,10 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 import DarkModeSwitch from "@components/DarkModeSwitch";
 
 export function DefaultLayout({ children, title }: any) {
+  const { colorMode } = useColorMode();
   return (
     <React.Fragment>
       <Head>
@@ -18,7 +19,7 @@ export function DefaultLayout({ children, title }: any) {
         >
           <DarkModeSwitch />
         </Flex>
-        <Box>{children}</Box>
+        <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
       </Box>
     </React.Fragment>
   );

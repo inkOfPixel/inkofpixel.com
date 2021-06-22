@@ -1,4 +1,6 @@
-export type BlockTemplateData<T> = { _template: string } & T;
+export type BlockTemplateData<TemplateName, Type> = {
+  _template: TemplateName;
+} & Type;
 
 export interface BlockItemProps {
   isPreview: boolean;

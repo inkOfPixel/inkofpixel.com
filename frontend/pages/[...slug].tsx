@@ -1,16 +1,17 @@
-import DarkModeSwitch from "@components/DarkModeSwitch";
-import { HeroBlock } from "@features/pageBlocks/HeroBlock";
 import { fetchGraphQL, filterListNullableItems } from "@graphql/utils";
 import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
-import { InlineForm } from "react-tinacms-inline";
+import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { BlockData } from "@features/pageBlocks";
-import { PageData } from "@features/plugins/usePagePlugin";
+import { BlockData, BlockItemProps, PAGE_BLOCKS } from "@features/pageBlocks";
+import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
+import { DefaultLayout } from "@layouts/defaultLayout";
+import { chakra, useColorMode } from "@chakra-ui/react";
+import { STRAPI_URL } from "@config/env";
 
 interface DynamicPageProps {
   path: string[];
@@ -21,18 +22,40 @@ interface DynamicPageProps {
 }
 
 export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+  if (pageData == null) {
+    return null;
+  }
+
+  const { colorMode } = useColorMode();
+
+  const [_, form] = usePagePlugin(pageData);
+
+  const itemProps = React.useMemo<BlockItemProps>(() => {
+    return {
+      isPreview: preview,
+    };
+  }, [preview]);
+
   return (
     <div>
-      <DarkModeSwitch />
-      <InlineForm form={}>
-        <HeroBlock />
-        {/* <CardBlock /> */}
-      </InlineForm>
+      <DefaultLayout title="InkOfPixel">
+        <InlineForm form={form}>
+          <StyledComponent
+            color={colorMode == "light" ? "black" : "white"}
+            name="blocks"
+            blocks={PAGE_BLOCKS}
+            itemProps={itemProps}
+          />
+          {/* <CardBlock /> */}
+        </InlineForm>
 
-      <p>SLUG</p>
+        <p>SLUG</p>
+      </DefaultLayout>
     </div>
   );
 }
+
+const StyledComponent = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   // Get all pages from Strapi
@@ -60,12 +83,14 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     // Decompose the slug that was saved in Strapi
     const pagePath = page.path?.replace(/^\/+/, "") || "";
     const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
+    console.log("Slug array", slugArray);
 
     return {
       params: { slug: slugArray },
       locale: page.locale!,
     };
   });
+  console.log("Paths", paths);
 
   return { paths, fallback: true };
 };
@@ -112,6 +137,8 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  console.log("Page data", pageData);
+
   if (preview) {
     return {
       props: {
@@ -141,13 +168,14 @@ function getPageData(
   const page = pages?.find((page) => page?.locale === locale);
   if (page) {
     const blocks =
-      page.blocks?.map<BlockData>((section) => {
+      page.blocks?.map<BlockData | null>((section) => {
         if (section == null) {
           return null;
         }
         switch (section.__typename) {
           case "ComponentBlocksHero": {
             return {
+              _template: "hero",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
@@ -155,19 +183,21 @@ function getPageData(
           }
           case "ComponentBlocksCard": {
             return {
+              _template: "card",
               id: section.id,
               title: section.title,
               description: section.description,
-              imageUrl: section.image?.url,
+              imageUrl: STRAPI_URL + section.image?.url,
               projectLink: section.projectLink?.path?.path,
             };
           }
           case "ComponentBlocksSingleFeature": {
             return {
+              _template: "feat",
               id: section.id,
               title: section.title,
               description: section.description,
-              imageUrl: section.image?.url,
+              imageUrl: STRAPI_URL + section.image?.url,
               serviceLink: section.serviceLink,
             };
           }
@@ -177,8 +207,8 @@ function getPageData(
       }) || [];
     return {
       id: page.id,
-      blocks : filterListNullableItems(blocks),
-      path: page.path?
+      blocks: filterListNullableItems(blocks),
+      path: page.path ? page.path : undefined,
     };
   }
 }

@@ -5,7 +5,7 @@ import {
   UpdatePage,
   UpdatePageInput,
 } from "@graphql/generated";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import {
   ContentCreatorPlugin,
   Form,
@@ -18,8 +18,14 @@ import {
 export interface PageData {
   id: string;
   title?: string;
-  path: string;
+  path?: string;
   blocks: BlockData[];
+}
+
+export interface PageDataCreateInput {
+  title: string;
+  path: string;
+  locale: string;
 }
 
 export function usePagePlugin(pageData: PageData): [PageData, Form] {
@@ -31,6 +37,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
+      console.log("Input", getPageInput(values));
 
       try {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
@@ -50,11 +57,11 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   };
   const [page, form] = useForm<PageData>(formConfig);
   usePlugin(form);
-  /*
+
   const creatorPlugin = getPageCreatorPlugin({
     locales: router.locales || [],
   });
-  usePlugin(creatorPlugin);*/
+  usePlugin(creatorPlugin);
 
   return [page, form];
 }
@@ -74,6 +81,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               __typename: "ComponentBlocksHero",
               id: block.id,
               title: block.title,
+              subtitle: block.subtitle,
             };
           }
           case "card": {
@@ -81,19 +89,40 @@ function getPageInput(data: PageData): UpdatePageInput {
               __typename: "ComponentBlocksCard",
               id: block.id,
               title: block.title,
+              description: block.description,
+              projectLink: block.projectLink,
+              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
+            };
+          }
+          case "feat": {
+            return {
+              __typename: "ComponentBlocksSingleFeature",
+              id: block.id,
+              title: block.title,
+              description: block.description,
+              serviceLink: block.serviceLink,
+              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
             };
           }
           default:
-            throw new Error(`Unknown block type "${block._template}"`);
+            return assertNever(block);
         }
       }),
     },
   };
 }
 
+function assertNever(x: never): never {
+  throw new Error("Unexpected object: " + x);
+}
+
+interface PageCreatorPluginOptions {
+  locales: string[];
+}
+
 function getPageCreatorPlugin(
-  options: Plugin
-): ContentCreatorPlugin<CreatePageInput> {
+  options: PageCreatorPluginOptions
+): ContentCreatorPlugin<PageDataCreateInput> {
   return {
     __type: "content-creator",
     name: "Add new page",
@@ -139,7 +168,7 @@ function getPageCreatorPlugin(
         if (response.data) {
           // @ts-ignore
           cms.alerts.success("Changes saved!");
-          window.location.href = `/${values.data?.locale}${values.data?.path}`;
+          window.location.href = `/${values.locale}${values.path}`;
         } else {
           // @ts-ignore
           cms.alerts.error("Error while saving changes");
@@ -153,12 +182,12 @@ function getPageCreatorPlugin(
   };
 }
 
-function getPageCreateInput(input: CreatePageInput): CreatePageInput {
+function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.data?.pageName ? input.data?.pageName : "Default",
-      path: input.data?.path,
-      locale: input.data?.locale,
+      pageName: input.title ? input.title : "Default",
+      path: input.path,
+      locale: input.locale,
     },
   };
 }

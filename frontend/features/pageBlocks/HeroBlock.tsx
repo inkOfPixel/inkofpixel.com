@@ -3,18 +3,32 @@ import React from "react";
 import { Block, BlocksControls, InlineText } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
-export type HeroBlockData = BlockTemplateData<{
-  id: string;
-  title: string;
-  subtitle: string;
-}>;
+export type HeroBlockData = BlockTemplateData<
+  "hero",
+  {
+    id: string;
+    title: string;
+    subtitle: string;
+  }
+>;
 
-export function HeroBlock() {
+interface HeroBlockProps {
+  imageUrl?: string;
+  title?: string;
+  description: string;
+  projectLink?: string;
+}
+
+export function HeroBlock({}: HeroBlockProps) {
   return (
     <Box as="section">
       <Flex flexDirection="column">
-        <InlineText name="title" />
-        <InlineText name="subtitle" />
+        <Box p={3} m={3}>
+          <InlineText name="title" />
+        </Box>
+        <Box p={3} m={3}>
+          <InlineText name="subtitle" />
+        </Box>
       </Flex>
     </Box>
   );
@@ -24,14 +38,15 @@ export const heroBlock: Block = {
   Component: ({ index, data, name, ...other }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <HeroBlock />
+        <HeroBlock {...data} />
       </BlocksControls>
     );
   },
   template: {
-    label: "Hero",
+    label: "hero",
     defaultItem: {
-      title: "Hero title",
+      title: "Default title",
+      subtitle: "Default subtitle",
     },
     fields: [],
   },

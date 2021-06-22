@@ -8,26 +8,30 @@ import {
 } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
-export type CardBlockData = BlockTemplateData<{
-  id: string;
-  imageUrl: string;
-  title: string;
-  description: string;
-  projectLink: string;
-}>;
+export type CardBlockData = BlockTemplateData<
+  "card",
+  {
+    id: string;
+    imageUrl?: string;
+    title: string;
+    description: string;
+    projectLink: string;
+  }
+>;
 
 interface CardBlockProps {
   imageUrl?: string;
   title?: string;
-  description?: string;
+  description: string;
   projectLink?: string;
 }
 
-export function CardBlock({ imageUrl }: CardBlockProps) {
+export function CardBlock({ imageUrl, projectLink }: CardBlockProps) {
   return (
     <Box
       p={4}
       display={{ md: "flex" }}
+      flexDirection={"column"}
       maxWidth="32rem"
       borderWidth={1}
       margin={2}
@@ -61,8 +65,8 @@ export function CardBlock({ imageUrl }: CardBlockProps) {
           <InlineText name="description" />
         </Text>
 
-        <Link maxWidth="100px" my={2}>
-          <InlineText name="projectLink" />
+        <Link href={projectLink} maxWidth="100px">
+          Discover more
         </Link>
       </Stack>
     </Box>
@@ -73,12 +77,12 @@ export const cardBlock: Block = {
   Component: ({ index, data, name, ...other }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <CardBlock {...data} />
+        <CardBlock {...data} projectLink={data.projectLink} />
       </BlocksControls>
     );
   },
   template: {
-    label: "Card",
+    label: "card",
     defaultItem: {
       title: "Default title",
       description: "Default description",

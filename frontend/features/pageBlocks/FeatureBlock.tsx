@@ -8,13 +8,16 @@ import {
 } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
-export type FeatureBlockData = BlockTemplateData<{
-  id: string;
-  imageUrl: string;
-  title: string;
-  description: string;
-  serviceLink: string;
-}>;
+export type FeatureBlockData = BlockTemplateData<
+  "feat",
+  {
+    id: string;
+    imageUrl?: string;
+    title: string;
+    description: string;
+    serviceLink: string;
+  }
+>;
 
 interface FeatureBlockProps {
   imageUrl?: string;
@@ -47,7 +50,7 @@ export const featureBlock: Block = {
     );
   },
   template: {
-    label: "Feature",
+    label: "feat",
     defaultItem: {
       title: "Default title",
       description: "Default description",
