@@ -3,11 +3,19 @@ import { cardBlock, CardBlockData } from "./CardBlock";
 import { featureBlock, FeatureBlockData } from "./FeatureBlock";
 import { heroBlock, HeroBlockData } from "./HeroBlock";
 
-export const PAGE_BLOCKS = {
+export const HERO_BLOCK = {
   /** We will define blocks here later */
   hero: heroBlock,
-  card: cardBlock,
+};
+
+export const FEAT_BLOCK = {
+  /** We will define blocks here later */
   feat: featureBlock,
+};
+
+export const CARD_BLOCK = {
+  /** We will define blocks here later */
+  card: cardBlock,
 };
 
 export type BlockData = HeroBlockData | CardBlockData | FeatureBlockData;

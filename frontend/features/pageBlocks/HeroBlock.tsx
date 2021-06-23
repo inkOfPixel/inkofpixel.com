@@ -30,12 +30,16 @@ export function HeroBlock({}: HeroBlockProps) {
     <HeroBox as="section" pt={"300px"} pb={"400px"} overflow={"hidden"}>
       <Flex
         w={isSmallerThan1020 ? "100%" : isSmallerThan1260 ? "100%" : "1200px"}
-        m={"0 auto"}
+        p={
+          isSmallerThan700 ? "0px 26px" : isSmallerThan1260 ? "0px 40px" : "0px"
+        }
+        m={"0px auto"}
+        pos={"relative"}
         flexDirection="column"
       >
         <Box
           fontSize={isSmallerThan600 ? "3xl" : isSmallerThan900 ? "4xl" : "5xl"}
-          w={"50%"}
+          w={"50vw"}
           p={0}
           m={0}
           fontWeight={"bold"}
@@ -54,6 +58,7 @@ export function HeroBlock({}: HeroBlockProps) {
           fontWeight={"subtitle"}
           lineHeight={"subtitle"}
           fontFamily={"Monospace"}
+          letterSpacing={"0.02em"}
         >
           <InlineText name="subtitle" />
         </Box>

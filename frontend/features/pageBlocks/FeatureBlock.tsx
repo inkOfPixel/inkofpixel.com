@@ -1,4 +1,4 @@
-import { Box, Flex, Link } from "@chakra-ui/react";
+import { Box, chakra, Flex, Link } from "@chakra-ui/react";
 import React from "react";
 import {
   Block,
@@ -27,13 +27,31 @@ interface FeatureBlockProps {
 }
 
 export function FeatureBlock({}: FeatureBlockProps) {
+  const StyledInlineText = chakra(InlineText);
   return (
-    <Box as="section">
-      <Flex flexDirection="column">
+    <Box as="div">
+      <Flex flexDirection="column" pb={"60px"} m={2.5}>
         <InlineImage name="imageUrl" parse={(media) => media.id} />
-        <InlineText name="title" />
-        <InlineText name="description" />
-        <Link>
+        <Box
+          fontSize={"xl"}
+          fontWeight={"bold"}
+          lineHeight={"hero"}
+          fontFamily={"Monospace"}
+          letterSpacing={"0.02em"}
+          p={"20px 0px"}
+        >
+          <StyledInlineText name="title" />
+        </Box>
+        <Box
+          fontSize={"sm"}
+          fontWeight={"subtitle"}
+          lineHeight={"subtitle"}
+          fontFamily={"Monospace"}
+          letterSpacing={"0.02em"}
+        >
+          <StyledInlineText name="description" />
+        </Box>
+        <Link mt={"20px"}>
           <InlineText name="serviceLink" />
         </Link>
       </Flex>

@@ -26,19 +26,6 @@
         }
       }
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "blocks.card",
-        "blocks.hero",
-        "blocks.single-feature"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "path": {
       "type": "string",
       "pluginOptions": {
@@ -46,6 +33,19 @@
           "localized": true
         }
       }
+    },
+    "blocks": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "blocks.card",
+        "blocks.hero",
+        "blocks.single-feature"
+      ]
     }
   }
 }

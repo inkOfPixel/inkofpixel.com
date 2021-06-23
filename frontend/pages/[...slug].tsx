@@ -7,10 +7,22 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { BlockData, BlockItemProps, PAGE_BLOCKS } from "@features/pageBlocks";
+import {
+  BlockData,
+  BlockItemProps,
+  CARD_BLOCK,
+  FEAT_BLOCK,
+  HERO_BLOCK,
+} from "@features/pageBlocks";
 import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
-import { chakra, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Flex,
+  useColorMode,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
 
 interface DynamicPageProps {
@@ -36,6 +48,13 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
     };
   }, [preview]);
 
+  const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
+  const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
+  const [isSmallerThan1260] = useMediaQuery("(max-width: 1260px)");
+  const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
+  const [isSmallerThan1020] = useMediaQuery("(max-width: 1020px)");
+  const [isSmallerThan750] = useMediaQuery("(max-width: 750px)");
+
   return (
     <div>
       <DefaultLayout title="InkOfPixel">
@@ -43,13 +62,104 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
           <StyledComponent
             color={colorMode == "light" ? "dark" : "white"}
             name="blocks"
-            blocks={PAGE_BLOCKS}
+            blocks={HERO_BLOCK}
+            itemProps={itemProps}
+          />
+
+          <Box as="section" pb={"150px"}>
+            SERVICES
+            <Flex
+              flexDirection={isSmallerThan750 ? "column" : "row"} //Doesn't work
+              w={
+                isSmallerThan1020
+                  ? "100%"
+                  : isSmallerThan1260
+                  ? "100%"
+                  : "1200px"
+              }
+              p={
+                isSmallerThan700
+                  ? "0px 26px"
+                  : isSmallerThan1260
+                  ? "0px 40px"
+                  : "0px"
+              }
+              m={"0px auto"}
+            >
+              <Flex flexDirection={"column"}>
+                <Flex
+                  flexDirection={"column"}
+                  w={
+                    isSmallerThan700
+                      ? "auto"
+                      : isSmallerThan1020
+                      ? "300px"
+                      : "400px"
+                  }
+                  marginRight={
+                    isSmallerThan700
+                      ? "0px"
+                      : isSmallerThan1020
+                      ? "80px"
+                      : "150px"
+                  }
+                >
+                  <Box
+                    fontSize={
+                      isSmallerThan600
+                        ? "3xl"
+                        : isSmallerThan900
+                        ? "4xl"
+                        : "5xl"
+                    }
+                    p={0}
+                    m={0}
+                    fontWeight={"bold"}
+                    lineHeight={"hero"}
+                    fontFamily={"Monospace"}
+                    letterSpacing={"0.02em"}
+                  >
+                    <p>New e-commerces, replatforming, consulting</p>
+                  </Box>
+                  <Box
+                    fontSize={"sm"}
+                    p={0}
+                    m={0}
+                    paddingTop={5}
+                    fontWeight={"subtitle"}
+                    lineHeight={"subtitle"}
+                    fontFamily={"Monospace"}
+                    letterSpacing={"0.02em"}
+                  >
+                    <p>
+                      We are Shopify partners that help ambitious entrepreneurs
+                      selling more using Shopify. We can help you create a brand
+                      new site, boost your e-commerce performances and user
+                      experience, develop custom integrations with your supply
+                      chain and improve your workflow.
+                    </p>
+                  </Box>
+                </Flex>
+              </Flex>
+              <Flex m={0} p={0} justifyContent={"center"}>
+                <StyledComponent
+                  color={colorMode == "light" ? "dark" : "white"}
+                  name="blocks"
+                  blocks={FEAT_BLOCK}
+                  itemProps={itemProps}
+                />
+              </Flex>
+            </Flex>
+          </Box>
+
+          <StyledComponent
+            color={colorMode == "light" ? "dark" : "white"}
+            name="blocks"
+            blocks={CARD_BLOCK}
             itemProps={itemProps}
           />
           {/* <CardBlock /> */}
         </InlineForm>
-
-        <p>SLUG</p>
       </DefaultLayout>
     </div>
   );

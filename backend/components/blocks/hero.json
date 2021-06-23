@@ -9,7 +9,8 @@
   "attributes": {
     "title": {
       "type": "text",
-      "required": true
+      "required": true,
+      "default": "sd"
     },
     "subtitle": {
       "type": "text"

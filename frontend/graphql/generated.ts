@@ -75,7 +75,7 @@ export type ComponentBlocksHero = {
 };
 
 export type ComponentBlocksHeroInput = {
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
 
@@ -543,8 +543,8 @@ export type NavigationItemsDynamicZone = ComponentMenuLink | ComponentMenuPageLi
 
 export type PageInput = {
   pageName: Scalars['String'];
-  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
   path?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -558,8 +558,8 @@ export type Pages = {
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   pageName: Scalars['String'];
-  blocks?: Maybe<Array<Maybe<PagesBlocksDynamicZone>>>;
   path?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<PagesBlocksDynamicZone>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<Array<Maybe<Pages>>>;
@@ -1441,8 +1441,8 @@ export type EditNavigationInput = {
 
 export type EditPageInput = {
   pageName?: Maybe<Scalars['String']>;
-  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
   path?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
