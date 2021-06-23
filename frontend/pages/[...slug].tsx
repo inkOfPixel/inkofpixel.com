@@ -6,54 +6,42 @@ import {
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
+  GetSections,
+  GetSectionsQuery,
+  GetSectionsQueryVariables,
 } from "@graphql/generated";
-import {
-  BlockData,
-  BlockItemProps,
-  CARD_BLOCK,
-  FEAT_BLOCK,
-  HERO_BLOCK,
-} from "@features/pageBlocks";
-import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
+import { BlockItemProps } from "@features/pageBlocks";
+import { SectionData, useSectionPlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
-import {
-  Box,
-  chakra,
-  Flex,
-  useColorMode,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { STRAPI_URL } from "@config/env";
+import { chakra, useColorMode } from "@chakra-ui/react";
+import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/sectionBlocks";
+import { assertNever } from "utils";
 
 interface DynamicPageProps {
   path: string[];
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  pageData: PageData;
+  sectionData: SectionData;
 }
 
-export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
-  if (pageData == null) {
+export default function DynamicPage({
+  sectionData,
+  preview,
+}: DynamicPageProps) {
+  if (sectionData == null) {
     return null;
   }
 
   const { colorMode } = useColorMode();
 
-  const [_, form] = usePagePlugin(pageData);
+  const [_, form] = useSectionPlugin(sectionData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
     };
   }, [preview]);
-
-  const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
-  const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
-  const [isSmallerThan1260] = useMediaQuery("(max-width: 1260px)");
-  const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
-  const [isSmallerThan1020] = useMediaQuery("(max-width: 1020px)");
-  const [isSmallerThan750] = useMediaQuery("(max-width: 750px)");
 
   return (
     <div>
@@ -62,101 +50,9 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
           <StyledComponent
             color={colorMode == "light" ? "dark" : "white"}
             name="blocks"
-            blocks={HERO_BLOCK}
+            blocks={SECTION_PAGE_BLOCKS}
             itemProps={itemProps}
-          />
-
-          <Box as="section" pb={"150px"}>
-            SERVICES
-            <Flex
-              flexDirection={isSmallerThan750 ? "column" : "row"} //Doesn't work
-              w={
-                isSmallerThan1020
-                  ? "100%"
-                  : isSmallerThan1260
-                  ? "100%"
-                  : "1200px"
-              }
-              p={
-                isSmallerThan700
-                  ? "0px 26px"
-                  : isSmallerThan1260
-                  ? "0px 40px"
-                  : "0px"
-              }
-              m={"0px auto"}
-            >
-              <Flex flexDirection={"column"}>
-                <Flex
-                  flexDirection={"column"}
-                  w={
-                    isSmallerThan700
-                      ? "auto"
-                      : isSmallerThan1020
-                      ? "300px"
-                      : "400px"
-                  }
-                  marginRight={
-                    isSmallerThan700
-                      ? "0px"
-                      : isSmallerThan1020
-                      ? "80px"
-                      : "150px"
-                  }
-                >
-                  <Box
-                    fontSize={
-                      isSmallerThan600
-                        ? "3xl"
-                        : isSmallerThan900
-                        ? "4xl"
-                        : "5xl"
-                    }
-                    p={0}
-                    m={0}
-                    fontWeight={"bold"}
-                    lineHeight={"hero"}
-                    fontFamily={"Monospace"}
-                    letterSpacing={"0.02em"}
-                  >
-                    <p>New e-commerces, replatforming, consulting</p>
-                  </Box>
-                  <Box
-                    fontSize={"sm"}
-                    p={0}
-                    m={0}
-                    paddingTop={5}
-                    fontWeight={"subtitle"}
-                    lineHeight={"subtitle"}
-                    fontFamily={"Monospace"}
-                    letterSpacing={"0.02em"}
-                  >
-                    <p>
-                      We are Shopify partners that help ambitious entrepreneurs
-                      selling more using Shopify. We can help you create a brand
-                      new site, boost your e-commerce performances and user
-                      experience, develop custom integrations with your supply
-                      chain and improve your workflow.
-                    </p>
-                  </Box>
-                </Flex>
-              </Flex>
-              <Flex m={0} p={0} justifyContent={"center"}>
-                <StyledComponent
-                  color={colorMode == "light" ? "dark" : "white"}
-                  name="blocks"
-                  blocks={FEAT_BLOCK}
-                  itemProps={itemProps}
-                />
-              </Flex>
-            </Flex>
-          </Box>
-
-          <StyledComponent
-            color={colorMode == "light" ? "dark" : "white"}
-            name="blocks"
-            blocks={CARD_BLOCK}
-            itemProps={itemProps}
+            className={"aaa"}
           />
           {/* <CardBlock /> */}
         </InlineForm>
@@ -193,14 +89,11 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     // Decompose the slug that was saved in Strapi
     const pagePath = page.path?.replace(/^\/+/, "") || "";
     const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
-    console.log("Slug array", slugArray);
-
     return {
       params: { slug: slugArray },
       locale: page.locale!,
     };
   });
-  console.log("Paths", paths);
 
   return { paths, fallback: true };
 };
@@ -222,6 +115,15 @@ export const getStaticProps: GetStaticProps<
     throw new Error(`Path "${pathParts.join("/")}" has no locale!`);
   }
   const preview = context.preview === true;
+  const localeSection = await fetchGraphQL<
+    GetSectionsQuery,
+    GetSectionsQueryVariables
+  >(GetSections, {
+    locale,
+    where: {
+      path,
+    },
+  });
 
   const localePages = await fetchGraphQL<GetPagesQuery, GetPagesQueryVariables>(
     GetPages,
@@ -239,20 +141,29 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const pageData = getPageData(localePages.pages, locale);
-
-  if (pageData == null) {
+  if (localeSection.sections == null) {
     return {
       notFound: true,
     };
   }
 
-  console.log("Page data", pageData);
+  const sectionData = getSectionData(localeSection.sections, locale);
+  console.log(
+    "localeSection.section",
+    JSON.stringify(localeSection.sections, null, " ")
+  );
+  console.log("Section data", JSON.stringify(sectionData?.blocks, null, " "));
+
+  if (sectionData == null) {
+    return {
+      notFound: true,
+    };
+  }
 
   if (preview) {
     return {
       props: {
-        pageData,
+        sectionData,
         path: pathParts,
         locale,
         preview,
@@ -263,62 +174,89 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      pageData,
+      sectionData,
       path: pathParts,
       locale,
       preview,
     },
   };
 };
-
+/*
 function getPageData(
   pages: GetPagesQuery["pages"],
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
+  console.log("Page", page);
+
   if (page) {
-    const blocks =
-      page.blocks?.map<BlockData | null>((section) => {
+    const sections =
+      page.sections?.map<BlockData | null>((section) => {
         if (section == null) {
           return null;
         }
-        switch (section.__typename) {
+        return {
+          title: section.title,
+          subtitle: section.subtitle,
+          blocks: section.blocks,
+        };
+      }) || [];
+
+    return {
+      id: page.id,
+      sections: filterListNullableItems(sections),
+      path: page.path ? page.path : undefined,
+    };
+  }
+}
+*/
+
+function getSectionData(
+  sections: GetSectionsQuery["sections"],
+  locale: string
+): SectionData | undefined {
+  const section = sections?.find((section) => section?.locale === locale);
+  if (section) {
+    const sections =
+      section.blocks?.map<SectionBlockData | null>((block) => {
+        if (block == null) return null;
+        switch (block.__typename) {
           case "ComponentBlocksHero": {
             return {
-              _template: "hero",
-              id: section.id,
-              title: section.title,
-              subtitle: section.subtitle,
+              id: block.id,
+              title: block.title,
+              subtitle: block.subtitle,
             };
           }
           case "ComponentBlocksCard": {
             return {
-              _template: "card",
-              id: section.id,
-              title: section.title,
-              description: section.description,
-              imageUrl: STRAPI_URL + section.image?.url,
-              projectLink: section.projectLink,
+              id: block.id,
+              title: block.id,
+              subtitle: block.id,
+              projectLink: block.projectLink,
+              imageUrl: block.image?.url,
             };
           }
           case "ComponentBlocksSingleFeature": {
             return {
-              _template: "feat",
-              id: section.id,
-              title: section.title,
-              description: section.description,
-              imageUrl: STRAPI_URL + section.image?.url,
-              serviceLink: section.serviceLink,
+              id: block.id,
+              title: block.id,
+              subtitle: block.id,
+              serviceLink: block.serviceLink,
+              imageUrl: block.image?.url,
             };
           }
+
           default:
-            return null;
+            return assertNever(block);
         }
       }) || [];
     return {
-      id: page.id,
-      blocks: filterListNullableItems(blocks),
-      path: page.path ? page.path : undefined,
+      id: section.id,
+      title: section.title ? section.title : undefined,
+      subtitle: section.subtitle ? section.subtitle : undefined,
+      blocks: filterListNullableItems(sections),
     };
   }
+  return undefined;
 }

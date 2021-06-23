@@ -1,34 +1,38 @@
-query GetPageData($locale: String) {
-  pages(locale: $locale) {
+query getPageData {
+  pages {
     id
-    locale
     pageName
+    created_at
+    updated_at
     path
-    blocks {
-      __typename
-      ... on ComponentBlocksCard {
-        id
-        title
-        description
-        image {
-          url
+    locale
+    sections {
+      title
+      subtitle
+      blocks {
+        ... on ComponentBlocksHero {
+          id
+          title
+          subtitle
         }
-        projectLink
-      }
-
-      ... on ComponentBlocksSingleFeature {
-        id
-        title
-        description
-        image {
-          url
+        ... on ComponentBlocksSingleFeature {
+          id
+          description
+          title
+          serviceLink
+          image {
+            url
+          }
         }
-        serviceLink
-      }
-      ... on ComponentBlocksHero {
-        id
-        title
-        subtitle
+        ... on ComponentBlocksCard {
+          id
+          title
+          description
+          projectLink
+          image {
+            url
+          }
+        }
       }
     }
   }

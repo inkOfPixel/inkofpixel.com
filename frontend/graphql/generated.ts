@@ -21,8 +21,8 @@ export type Scalars = {
   Long: any;
   /** Input type for dynamic zone items of Navigation */
   NavigationItemsDynamicZoneInput: any;
-  /** Input type for dynamic zone blocks of Pages */
-  PagesBlocksDynamicZoneInput: any;
+  /** Input type for dynamic zone blocks of Section */
+  SectionBlocksDynamicZoneInput: any;
   /** A time string with format: HH:mm:ss.SSS */
   Time: any;
   /** The `Upload` scalar type represents a file upload. */
@@ -262,7 +262,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | FeaturesSections | FeaturesSectionsConnection | FeaturesSectionsAggregator | FeaturesSectionsGroupBy | FeaturesSectionsConnectionId | FeaturesSectionsConnectionCreated_At | FeaturesSectionsConnectionUpdated_At | FeaturesSectionsConnectionLocale | FeaturesSectionsConnectionPublished_At | CreateFeaturesSectionPayload | UpdateFeaturesSectionPayload | DeleteFeaturesSectionPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionNavigationName | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksFeature | ComponentBlocksHero | ComponentBlocksSingleFeature | ComponentFeatFeat | ComponentMenuLink | ComponentMenuPageLink;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | FeaturesSections | FeaturesSectionsConnection | FeaturesSectionsAggregator | FeaturesSectionsGroupBy | FeaturesSectionsConnectionId | FeaturesSectionsConnectionCreated_At | FeaturesSectionsConnectionUpdated_At | FeaturesSectionsConnectionLocale | FeaturesSectionsConnectionPublished_At | CreateFeaturesSectionPayload | UpdateFeaturesSectionPayload | DeleteFeaturesSectionPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionNavigationName | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Section | SectionConnection | SectionAggregator | SectionGroupBy | SectionConnectionId | SectionConnectionCreated_At | SectionConnectionUpdated_At | SectionConnectionTitle | SectionConnectionSubtitle | SectionConnectionPath | SectionConnectionLocale | SectionConnectionPublished_At | CreateSectionPayload | UpdateSectionPayload | DeleteSectionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksFeature | ComponentBlocksHero | ComponentBlocksSingleFeature | ComponentFeatFeat | ComponentMenuLink | ComponentMenuPageLink;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -275,6 +275,9 @@ export type Mutation = {
   createPage?: Maybe<CreatePagePayload>;
   updatePage?: Maybe<UpdatePagePayload>;
   deletePage?: Maybe<DeletePagePayload>;
+  createSection?: Maybe<CreateSectionPayload>;
+  updateSection?: Maybe<UpdateSectionPayload>;
+  deleteSection?: Maybe<DeleteSectionPayload>;
   /** Delete one file */
   deleteFile?: Maybe<DeleteFilePayload>;
   /** Create a new role */
@@ -292,6 +295,7 @@ export type Mutation = {
   createFeaturesSectionLocalization: FeaturesSections;
   createNavigationLocalization: Navigation;
   createPageLocalization: Pages;
+  createSectionLocalization: Section;
   upload: UploadFile;
   multipleUpload: Array<Maybe<UploadFile>>;
   updateFileInfo: UploadFile;
@@ -348,6 +352,21 @@ export type MutationDeletePageArgs = {
 };
 
 
+export type MutationCreateSectionArgs = {
+  input?: Maybe<CreateSectionInput>;
+};
+
+
+export type MutationUpdateSectionArgs = {
+  input?: Maybe<UpdateSectionInput>;
+};
+
+
+export type MutationDeleteSectionArgs = {
+  input?: Maybe<DeleteSectionInput>;
+};
+
+
 export type MutationDeleteFileArgs = {
   input?: Maybe<DeleteFileInput>;
 };
@@ -395,6 +414,11 @@ export type MutationCreateNavigationLocalizationArgs = {
 
 export type MutationCreatePageLocalizationArgs = {
   input: UpdatePageInput;
+};
+
+
+export type MutationCreateSectionLocalizationArgs = {
+  input: UpdateSectionInput;
 };
 
 
@@ -544,7 +568,7 @@ export type NavigationItemsDynamicZone = ComponentMenuLink | ComponentMenuPageLi
 export type PageInput = {
   pageName: Scalars['String'];
   path?: Maybe<Scalars['String']>;
-  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
+  sections?: Maybe<Array<Maybe<Scalars['ID']>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -559,10 +583,18 @@ export type Pages = {
   updated_at: Scalars['DateTime'];
   pageName: Scalars['String'];
   path?: Maybe<Scalars['String']>;
-  blocks?: Maybe<Array<Maybe<PagesBlocksDynamicZone>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
+  sections?: Maybe<Array<Maybe<Section>>>;
   localizations?: Maybe<Array<Maybe<Pages>>>;
+};
+
+
+export type PagesSectionsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
 };
 
 
@@ -578,9 +610,6 @@ export type PagesAggregator = {
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
 };
-
-export type PagesBlocksDynamicZone = ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksSingleFeature;
-
 
 export type PagesConnection = {
   __typename?: 'PagesConnection';
@@ -658,6 +687,9 @@ export type Query = {
   page?: Maybe<Pages>;
   pages?: Maybe<Array<Maybe<Pages>>>;
   pagesConnection?: Maybe<PagesConnection>;
+  section?: Maybe<Section>;
+  sections?: Maybe<Array<Maybe<Section>>>;
+  sectionsConnection?: Maybe<SectionConnection>;
   files?: Maybe<Array<Maybe<UploadFile>>>;
   filesConnection?: Maybe<UploadFileConnection>;
   role?: Maybe<UsersPermissionsRole>;
@@ -746,6 +778,31 @@ export type QueryPagesConnectionArgs = {
 };
 
 
+export type QuerySectionArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QuerySectionsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySectionsConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryFilesArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
@@ -814,6 +871,116 @@ export type RoleInput = {
   type?: Maybe<Scalars['String']>;
   permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
   users?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type Section = {
+  __typename?: 'Section';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<SectionBlocksDynamicZone>>>;
+  path?: Maybe<Scalars['String']>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  localizations?: Maybe<Array<Maybe<Section>>>;
+};
+
+
+export type SectionLocalizationsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type SectionAggregator = {
+  __typename?: 'SectionAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type SectionBlocksDynamicZone = ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksSingleFeature;
+
+
+export type SectionConnection = {
+  __typename?: 'SectionConnection';
+  values?: Maybe<Array<Maybe<Section>>>;
+  groupBy?: Maybe<SectionGroupBy>;
+  aggregate?: Maybe<SectionAggregator>;
+};
+
+export type SectionConnectionCreated_At = {
+  __typename?: 'SectionConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionId = {
+  __typename?: 'SectionConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionLocale = {
+  __typename?: 'SectionConnectionLocale';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionPath = {
+  __typename?: 'SectionConnectionPath';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionPublished_At = {
+  __typename?: 'SectionConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionSubtitle = {
+  __typename?: 'SectionConnectionSubtitle';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionTitle = {
+  __typename?: 'SectionConnectionTitle';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionConnectionUpdated_At = {
+  __typename?: 'SectionConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<SectionConnection>;
+};
+
+export type SectionGroupBy = {
+  __typename?: 'SectionGroupBy';
+  id?: Maybe<Array<Maybe<SectionConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<SectionConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<SectionConnectionUpdated_At>>>;
+  title?: Maybe<Array<Maybe<SectionConnectionTitle>>>;
+  subtitle?: Maybe<Array<Maybe<SectionConnectionSubtitle>>>;
+  path?: Maybe<Array<Maybe<SectionConnectionPath>>>;
+  locale?: Maybe<Array<Maybe<SectionConnectionLocale>>>;
+  published_at?: Maybe<Array<Maybe<SectionConnectionPublished_At>>>;
+};
+
+export type SectionInput = {
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['SectionBlocksDynamicZoneInput']>>;
+  path?: Maybe<Scalars['String']>;
+  localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1284,6 +1451,15 @@ export type CreateRolePayload = {
   role?: Maybe<UsersPermissionsRole>;
 };
 
+export type CreateSectionInput = {
+  data?: Maybe<SectionInput>;
+};
+
+export type CreateSectionPayload = {
+  __typename?: 'createSectionPayload';
+  section?: Maybe<Section>;
+};
+
 export type CreateUserInput = {
   data?: Maybe<UserInput>;
 };
@@ -1336,6 +1512,15 @@ export type DeleteRoleInput = {
 export type DeleteRolePayload = {
   __typename?: 'deleteRolePayload';
   role?: Maybe<UsersPermissionsRole>;
+};
+
+export type DeleteSectionInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteSectionPayload = {
+  __typename?: 'deleteSectionPayload';
+  section?: Maybe<Section>;
 };
 
 export type DeleteUserInput = {
@@ -1442,7 +1627,7 @@ export type EditNavigationInput = {
 export type EditPageInput = {
   pageName?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
-  blocks?: Maybe<Array<Scalars['PagesBlocksDynamicZoneInput']>>;
+  sections?: Maybe<Array<Maybe<Scalars['ID']>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -1456,6 +1641,18 @@ export type EditRoleInput = {
   type?: Maybe<Scalars['String']>;
   permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
   users?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditSectionInput = {
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['SectionBlocksDynamicZoneInput']>>;
+  path?: Maybe<Scalars['String']>;
+  localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1514,6 +1711,16 @@ export type UpdateRolePayload = {
   role?: Maybe<UsersPermissionsRole>;
 };
 
+export type UpdateSectionInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditSectionInput>;
+};
+
+export type UpdateSectionPayload = {
+  __typename?: 'updateSectionPayload';
+  section?: Maybe<Section>;
+};
+
 export type UpdateUserInput = {
   where?: Maybe<InputId>;
   data?: Maybe<EditUserInput>;
@@ -1549,33 +1756,35 @@ export type GetNavItemsQuery = (
   )>>> }
 );
 
-export type GetPageDataQueryVariables = Exact<{
-  locale?: Maybe<Scalars['String']>;
-}>;
+export type GetPageDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetPageDataQuery = (
   { __typename?: 'Query' }
   & { pages?: Maybe<Array<Maybe<(
     { __typename?: 'Pages' }
-    & Pick<Pages, 'id' | 'locale' | 'pageName' | 'path'>
-    & { blocks?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentBlocksCard' }
-      & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
-      & { image?: Maybe<(
-        { __typename?: 'UploadFile' }
-        & Pick<UploadFile, 'url'>
-      )> }
-    ) | (
-      { __typename: 'ComponentBlocksHero' }
-      & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
-    ) | (
-      { __typename: 'ComponentBlocksSingleFeature' }
-      & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description' | 'serviceLink'>
-      & { image?: Maybe<(
-        { __typename?: 'UploadFile' }
-        & Pick<UploadFile, 'url'>
-      )> }
+    & Pick<Pages, 'id' | 'pageName' | 'created_at' | 'updated_at' | 'path' | 'locale'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'Section' }
+      & Pick<Section, 'title' | 'subtitle'>
+      & { blocks?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksCard' }
+        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'url'>
+        )> }
+      ) | (
+        { __typename?: 'ComponentBlocksHero' }
+        & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
+      ) | (
+        { __typename?: 'ComponentBlocksSingleFeature' }
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'url'>
+        )> }
+      )>>> }
     )>>> }
   )>>> }
 );
@@ -1608,19 +1817,55 @@ export type GetPagesQuery = (
   { __typename?: 'Query' }
   & { pages?: Maybe<Array<Maybe<(
     { __typename?: 'Pages' }
-    & Pick<Pages, 'id' | 'locale' | 'created_at' | 'updated_at' | 'pageName' | 'path'>
+    & Pick<Pages, 'id' | 'locale' | 'pageName' | 'path'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'Section' }
+      & Pick<Section, 'title' | 'subtitle'>
+      & { blocks?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksCard' }
+        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'url'>
+        )> }
+      ) | (
+        { __typename?: 'ComponentBlocksHero' }
+        & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
+      ) | (
+        { __typename?: 'ComponentBlocksSingleFeature' }
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'url'>
+        )> }
+      )>>> }
+    )>>> }
+  )>>> }
+);
+
+export type GetSectionsQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetSectionsQuery = (
+  { __typename?: 'Query' }
+  & { sections?: Maybe<Array<Maybe<(
+    { __typename?: 'Section' }
+    & Pick<Section, 'id' | 'title' | 'subtitle' | 'locale' | 'path'>
     & { blocks?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentBlocksCard' }
+      { __typename?: 'ComponentBlocksCard' }
       & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
         & Pick<UploadFile, 'url'>
       )> }
     ) | (
-      { __typename: 'ComponentBlocksHero' }
+      { __typename?: 'ComponentBlocksHero' }
       & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
     ) | (
-      { __typename: 'ComponentBlocksSingleFeature' }
+      { __typename?: 'ComponentBlocksSingleFeature' }
       & Pick<ComponentBlocksSingleFeature, 'id' | 'title' | 'description' | 'serviceLink'>
       & { image?: Maybe<(
         { __typename?: 'UploadFile' }
@@ -1628,6 +1873,22 @@ export type GetPagesQuery = (
       )> }
     )>>> }
   )>>> }
+);
+
+export type UpdateSectionMutationVariables = Exact<{
+  input?: Maybe<UpdateSectionInput>;
+}>;
+
+
+export type UpdateSectionMutation = (
+  { __typename?: 'Mutation' }
+  & { updateSection?: Maybe<(
+    { __typename?: 'updateSectionPayload' }
+    & { section?: Maybe<(
+      { __typename?: 'Section' }
+      & Pick<Section, 'id'>
+    )> }
+  )> }
 );
 
 export type CreatePageMutationVariables = Exact<{
@@ -1686,36 +1947,41 @@ export const GetNavItems = `
 }
     `;
 export const GetPageData = `
-    query GetPageData($locale: String) {
-  pages(locale: $locale) {
+    query getPageData {
+  pages {
     id
-    locale
     pageName
+    created_at
+    updated_at
     path
-    blocks {
-      __typename
-      ... on ComponentBlocksCard {
-        id
-        title
-        description
-        image {
-          url
+    locale
+    sections {
+      title
+      subtitle
+      blocks {
+        ... on ComponentBlocksHero {
+          id
+          title
+          subtitle
         }
-        projectLink
-      }
-      ... on ComponentBlocksSingleFeature {
-        id
-        title
-        description
-        image {
-          url
+        ... on ComponentBlocksSingleFeature {
+          id
+          description
+          title
+          serviceLink
+          image {
+            url
+          }
         }
-        serviceLink
-      }
-      ... on ComponentBlocksHero {
-        id
-        title
-        subtitle
+        ... on ComponentBlocksCard {
+          id
+          title
+          description
+          projectLink
+          image {
+            url
+          }
+        }
       }
     }
   }
@@ -1739,39 +2005,85 @@ export const GetFeatures = `
 }
     `;
 export const GetPages = `
-    query GetPages($where: JSON, $locale: String) {
+    query getPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
     id
     locale
-    created_at
-    updated_at
     pageName
     path
+    sections {
+      title
+      subtitle
+      blocks {
+        ... on ComponentBlocksHero {
+          id
+          title
+          subtitle
+        }
+        ... on ComponentBlocksSingleFeature {
+          id
+          description
+          title
+          serviceLink
+          image {
+            url
+          }
+        }
+        ... on ComponentBlocksCard {
+          id
+          title
+          description
+          projectLink
+          image {
+            url
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+export const GetSections = `
+    query GetSections($where: JSON, $locale: String) {
+  sections(where: $where, locale: $locale) {
+    id
+    title
+    subtitle
+    locale
+    path
     blocks {
-      __typename
-      ... on ComponentBlocksCard {
-        id
-        title
-        description
-        image {
-          url
-        }
-        projectLink
-      }
-      ... on ComponentBlocksSingleFeature {
-        id
-        title
-        description
-        image {
-          url
-        }
-        serviceLink
-      }
       ... on ComponentBlocksHero {
         id
         title
         subtitle
       }
+      ... on ComponentBlocksSingleFeature {
+        id
+        title
+        description
+        serviceLink
+        image {
+          url
+        }
+      }
+      ... on ComponentBlocksCard {
+        id
+        title
+        description
+        projectLink
+        image {
+          url
+        }
+      }
+    }
+  }
+}
+    `;
+export const UpdateSection = `
+    mutation UpdateSection($input: updateSectionInput) {
+  updateSection(input: $input) {
+    section {
+      id
     }
   }
 }

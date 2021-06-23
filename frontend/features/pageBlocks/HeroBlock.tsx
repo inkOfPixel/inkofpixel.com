@@ -68,8 +68,6 @@ export function HeroBlock({}: HeroBlockProps) {
 }
 
 const HeroBox = chakra(Box);
-//const H2 = chakra(InlineText);
-
 export const heroBlock: Block = {
   Component: ({ index, data, name, ...other }) => {
     return (

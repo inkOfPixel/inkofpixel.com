@@ -34,18 +34,8 @@
         }
       }
     },
-    "blocks": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "blocks.card",
-        "blocks.hero",
-        "blocks.single-feature"
-      ]
+    "sections": {
+      "collection": "section"
     }
   }
 }
