@@ -5,11 +5,11 @@ import { Block, BlocksControls, InlineText } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
 export type HeroBlockData = BlockTemplateData<
-  "hero",
+  "ComponentBlocksHero",
   {
     id: string;
-    title: string;
-    subtitle: string;
+    title?: string;
+    subtitle?: string;
   }
 >;
 

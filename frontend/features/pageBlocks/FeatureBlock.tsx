@@ -9,7 +9,7 @@ import {
 import { BlockTemplateData } from "./types";
 
 export type FeatureBlockData = BlockTemplateData<
-  "feat",
+  "ComponentBlocksSingleFeature",
   {
     id: string;
     imageUrl?: string;

@@ -6,12 +6,9 @@ import {
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
-  GetSections,
-  GetSectionsQuery,
-  GetSectionsQueryVariables,
 } from "@graphql/generated";
 import { BlockItemProps } from "@features/pageBlocks";
-import { SectionData, useSectionPlugin } from "@features/plugins/usePagePlugin";
+import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/sectionBlocks";
@@ -22,20 +19,19 @@ interface DynamicPageProps {
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  sectionData: SectionData;
+  pageData: PageData;
 }
 
-export default function DynamicPage({
-  sectionData,
-  preview,
-}: DynamicPageProps) {
-  if (sectionData == null) {
+export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+  if (pageData == null) {
     return null;
   }
 
   const { colorMode } = useColorMode();
 
-  const [_, form] = useSectionPlugin(sectionData);
+  const [_, form] = usePagePlugin(pageData);
+
+  console.log("pageData", JSON.stringify(pageData, null, " "));
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -47,12 +43,11 @@ export default function DynamicPage({
     <div>
       <DefaultLayout title="InkOfPixel">
         <InlineForm form={form}>
-          <StyledComponent
+          <StyledInlineBlocks
             color={colorMode == "light" ? "dark" : "white"}
-            name="blocks"
+            name="sections"
             blocks={SECTION_PAGE_BLOCKS}
             itemProps={itemProps}
-            className={"aaa"}
           />
           {/* <CardBlock /> */}
         </InlineForm>
@@ -61,7 +56,7 @@ export default function DynamicPage({
   );
 }
 
-const StyledComponent = chakra(InlineBlocks);
+const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   // Get all pages from Strapi
@@ -115,23 +110,11 @@ export const getStaticProps: GetStaticProps<
     throw new Error(`Path "${pathParts.join("/")}" has no locale!`);
   }
   const preview = context.preview === true;
-  const localeSection = await fetchGraphQL<
-    GetSectionsQuery,
-    GetSectionsQueryVariables
-  >(GetSections, {
-    locale,
-    where: {
-      path,
-    },
-  });
 
   const localePages = await fetchGraphQL<GetPagesQuery, GetPagesQueryVariables>(
     GetPages,
     {
       locale,
-      where: {
-        path,
-      },
     }
   );
 
@@ -141,20 +124,19 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  if (localeSection.sections == null) {
-    return {
-      notFound: true,
-    };
-  }
+  const availablePages = await fetchGraphQL<
+    GetPagesQuery,
+    GetPagesQueryVariables
+  >(GetPages, {
+    locale,
+    where: {
+      path,
+    },
+  });
 
-  const sectionData = getSectionData(localeSection.sections, locale);
-  console.log(
-    "localeSection.section",
-    JSON.stringify(localeSection.sections, null, " ")
-  );
-  console.log("Section data", JSON.stringify(sectionData?.blocks, null, " "));
+  const pageData = getPageData(availablePages.pages, locale);
 
-  if (sectionData == null) {
+  if (pageData == null) {
     return {
       notFound: true,
     };
@@ -163,7 +145,7 @@ export const getStaticProps: GetStaticProps<
   if (preview) {
     return {
       props: {
-        sectionData,
+        pageData,
         path: pathParts,
         locale,
         preview,
@@ -174,89 +156,176 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      sectionData,
+      pageData,
       path: pathParts,
       locale,
       preview,
     },
   };
 };
-/*
+
 function getPageData(
   pages: GetPagesQuery["pages"],
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
-  console.log("Page", page);
 
   if (page) {
     const sections =
-      page.sections?.map<BlockData | null>((section) => {
+      page.sections?.map<SectionBlockData | null>((section) => {
         if (section == null) {
           return null;
         }
-        return {
-          title: section.title,
-          subtitle: section.subtitle,
-          blocks: section.blocks,
-        };
+        switch (section.__typename) {
+          case "ComponentSectionHeroSection": {
+            return {
+              _template: "heroSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              blocks: section.hero?.map((hero) => {
+                if (hero != null) {
+                  return {
+                    id: hero.id,
+                    title: hero.title,
+                    subtitle: hero.subtitle,
+                  };
+                }
+              }),
+            };
+          }
+          case "ComponentSectionSingleFeatureSection": {
+            console.log(
+              "features",
+              JSON.stringify(section.singleFeature, null, " ")
+            );
+            return {
+              _template: "featureSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              blocks: section.singleFeature?.map((feature) => {
+                if (feature != null) {
+                  return {
+                    id: feature.id,
+                    title: feature.title,
+                    description: feature.description,
+                    imageUrl: feature.image?.url,
+                    serviceLink: feature.serviceLink,
+                  };
+                }
+              }),
+            };
+          }
+          case "ComponentSectionCardSection": {
+            return {
+              _template: "cardSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              blocks: section.card?.map((card) => {
+                if (card != null) {
+                  return {
+                    id: card.id,
+                    title: card.title,
+                    description: card.description,
+                    imageUrl: card.image?.url,
+                    projectLink: card.projectLink,
+                  };
+                }
+              }),
+            };
+          }
+          default:
+            return assertNever(section);
+        }
       }) || [];
 
     return {
       id: page.id,
+      title: page.pageName,
       sections: filterListNullableItems(sections),
       path: page.path ? page.path : undefined,
     };
   }
 }
-*/
 
-function getSectionData(
-  sections: GetSectionsQuery["sections"],
+/*
+function getPageData(
+  pages: GetPagesQuery["pages"],
   locale: string
-): SectionData | undefined {
-  const section = sections?.find((section) => section?.locale === locale);
-  if (section) {
-    const sections =
-      section.blocks?.map<SectionBlockData | null>((block) => {
-        if (block == null) return null;
-        switch (block.__typename) {
-          case "ComponentBlocksHero": {
-            return {
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
-            };
-          }
-          case "ComponentBlocksCard": {
-            return {
-              id: block.id,
-              title: block.id,
-              subtitle: block.id,
-              projectLink: block.projectLink,
-              imageUrl: block.image?.url,
-            };
-          }
-          case "ComponentBlocksSingleFeature": {
-            return {
-              id: block.id,
-              title: block.id,
-              subtitle: block.id,
-              serviceLink: block.serviceLink,
-              imageUrl: block.image?.url,
-            };
-          }
+): PageData | undefined {
+  //const section = sections?.find((section) => section?.locale == locale); // == first section
+  //if (section) {
+  const aa: SectionBlockData =
+    pages?.map<PageData | null>((page) => {
+      if (page == null) {
+        return null;
+      }
 
-          default:
-            return assertNever(block);
+      let blocks =
+        section?.blocks?.map<BlockData | null>((block) => {
+          console.log("block", JSON.stringify(block, null, " "));
+          if (block == null) {
+            return null;
+          }
+          switch (block?.__typename) {
+            case "ComponentBlocksHero": {
+              return {
+                _template: "ComponentBlocksHero",
+                id: block.id,
+                title: block.title,
+                subtitle: block.subtitle,
+              };
+            }
+            case "ComponentBlocksCard": {
+              return {
+                _template: "ComponentBlocksCard",
+                id: block.id,
+                title: block.title,
+                subtitle: block.description,
+                projectLink: block.projectLink,
+                imageUrl: block.image?.url,
+              };
+            }
+            case "ComponentBlocksSingleFeature": {
+              return {
+                _template: "ComponentBlocksSingleFeature",
+                id: block.id,
+                title: block.title,
+                subtitle: block.description,
+                serviceLink: block.serviceLink,
+                imageUrl: block.image?.url,
+              };
+            }
+
+            default:
+              return assertNever(block);
+          }
+        }) || [];
+      switch (sezioni._template) {
+        case "heroSection": {
+          return {
+            id: section.id,
+            title: section.title,
+            subtitle: section.subtitle,
+            blocks: filterListNullableItems(blocks),
+          };
         }
-      }) || [];
-    return {
-      id: section.id,
-      title: section.title ? section.title : undefined,
-      subtitle: section.subtitle ? section.subtitle : undefined,
-      blocks: filterListNullableItems(sections),
-    };
-  }
-  return undefined;
+        case "featureSection": {
+          return {
+            id: section.id,
+            title: section.title,
+            subtitle: section.subtitle,
+            blocks: filterListNullableItems(blocks),
+          };
+        }
+      }
+    }) || [];
+  return {
+    id: sezioni.id,
+    title: sezioni.title,
+    sections: filterListNullableItems(sezioni),
+  };
 }
+*/

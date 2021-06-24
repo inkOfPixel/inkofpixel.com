@@ -1,12 +1,11 @@
-import { BlockData } from "@features/pageBlocks";
 import { SectionBlockData } from "@features/sectionBlocks";
 import {
   CreatePage,
   CreatePageInput,
   UpdatePage,
-  UpdateSection,
-  UpdateSectionInput,
+  UpdatePageInput,
 } from "@graphql/generated";
+import { useRouter } from "next/router";
 import {
   ContentCreatorPlugin,
   Form,
@@ -24,94 +23,12 @@ export interface PageData {
   sections: SectionBlockData[];
 }
 
-export interface SectionData {
-  id: string;
-  title?: string;
-  subtitle?: string;
-  blocks?: BlockData[];
-}
-
 export interface PageDataCreateInput {
   title: string;
   path: string;
   locale: string;
 }
 
-export function useSectionPlugin(
-  sectionData: SectionData
-): [SectionData, Form] {
-  const cms = useCMS();
-  const formConfig: FormOptions<SectionData> = {
-    id: sectionData,
-    label: "aa",
-    initialValues: sectionData,
-    onSubmit: async (values) => {
-      const input = getSectionInput(values);
-      try {
-        const response = await cms.api.strapi.fetchGraphql(UpdateSection, {
-          input,
-        });
-        if (response.data) {
-          cms.alerts.success("Changes saved!");
-        } else {
-          cms.alerts.error("Error while saving changes");
-        }
-      } catch (error) {
-        console.log(error);
-        cms.alerts.error("Error while saving changes");
-      }
-    },
-    fields: [],
-  };
-  const [section, form] = useForm<SectionData>(formConfig);
-  usePlugin(form);
-
-  return [section, form];
-}
-
-function getSectionInput(data: SectionData): UpdateSectionInput {
-  return {
-    where: { id: data.id },
-    data: {
-      title: data.title,
-      subtitle: data.subtitle,
-      blocks: data.blocks?.map((section) => {
-        switch (section._template) {
-          case "hero": {
-            return {
-              id: section.id,
-              title: section.title,
-              subtitle: section.subtitle,
-            };
-          }
-          case "feat": {
-            return {
-              id: section.id,
-              title: section.title,
-              subtitle: section.description,
-              serviceLink: section.serviceLink,
-              imageUrl: section.imageUrl,
-            };
-          }
-          case "card": {
-            return {
-              id: section.id,
-              title: section.title,
-              subtitle: section.description,
-              projectLink: section.projectLink,
-              imageUrl: section.imageUrl,
-            };
-          }
-
-          default:
-            return assertNever(section);
-        }
-      }),
-    },
-  };
-}
-
-/*
 export function usePagePlugin(pageData: PageData): [PageData, Form] {
   const cms = useCMS();
   const router = useRouter();
@@ -147,52 +64,77 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
 
   return [page, form];
 }
-*/
 
-/*
 function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
       pageName: data.title,
       path: data.path,
-      sections: data.sections.map((block) => {
-        switch (block._template) {
+      sections: data.sections.map((section) => {
+        switch (section._template) {
           case "heroSection": {
             return {
-              __typename: "",
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
-              blocks: block.blocks,
+              __typename: "ComponentBlocksHero",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map((hero) => {
+                if (hero != null) {
+                  return {
+                    id: hero.id,
+                    title: hero.title,
+                    subtitle: hero.subtitle,
+                  };
+                }
+              }),
             };
           }
           case "cardSection": {
             return {
               __typename: "ComponentBlocksCard",
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
-              blocks: block.blocks,
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map((card) => {
+                if (card != null) {
+                  return {
+                    id: card.id,
+                    title: card.title,
+                    description: card.description,
+                    imageUrl: card.imageUrl,
+                    projectLink: card.projectLink,
+                  };
+                }
+              }),
             };
           }
           case "featureSection": {
             return {
               __typename: "ComponentBlocksSingleFeature",
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
-              blocks: block.blocks,
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map((feature) => {
+                if (feature != null) {
+                  return {
+                    id: feature.id,
+                    title: feature.title,
+                    description: feature.description,
+                    imageUrl: feature.imageUrl,
+                    serviceLink: feature.serviceLink,
+                  };
+                }
+              }),
             };
           }
           default:
-            return assertNever(block);
+            return assertNever(section);
         }
       }),
     },
   };
 }
-*/
 
 interface PageCreatorPluginOptions {
   locales: string[];

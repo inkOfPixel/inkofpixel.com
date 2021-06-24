@@ -9,7 +9,7 @@ import {
 import { BlockTemplateData } from "./types";
 
 export type CardBlockData = BlockTemplateData<
-  "card",
+  "ComponentBlocksCard",
   {
     id: string;
     imageUrl?: string;
@@ -26,7 +26,7 @@ interface CardBlockProps {
   projectLink?: string;
 }
 
-export function CardBlock({ imageUrl, projectLink }: CardBlockProps) {
+export function CardBlock({ projectLink }: CardBlockProps) {
   return (
     <Box
       p={4}

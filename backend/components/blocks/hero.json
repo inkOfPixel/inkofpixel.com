@@ -8,9 +8,8 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "text",
-      "required": true,
-      "default": "sd"
+      "type": "string",
+      "required": false
     },
     "subtitle": {
       "type": "text"

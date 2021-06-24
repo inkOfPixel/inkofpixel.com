@@ -35,7 +35,17 @@
       }
     },
     "sections": {
-      "collection": "section"
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "section.card-section",
+        "section.hero-section",
+        "section.single-feature-section"
+      ]
     }
   }
 }
