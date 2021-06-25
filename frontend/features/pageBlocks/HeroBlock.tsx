@@ -1,12 +1,7 @@
-import { Flex, Box, chakra, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Box, chakra } from "@chakra-ui/react";
 
 import React from "react";
-import {
-  Block,
-  BlocksControls,
-  InlineText,
-  InlineTextarea,
-} from "react-tinacms-inline";
+import { Block, BlocksControls, InlineTextarea } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
 export type HeroBlockData = BlockTemplateData<
@@ -26,37 +21,37 @@ interface HeroBlockProps {
 }
 
 export function HeroBlock({}: HeroBlockProps) {
-  const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
-  const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
-  const [isSmallerThan1260] = useMediaQuery("(max-width: 1260px)");
-  const [isSmallerThan700] = useMediaQuery("(max-width: 700)");
-  const [isSmallerThan1020] = useMediaQuery("(max-width: 1020)");
   return (
-    <HeroBox as="section" pt={"300px"} pb={"400px"} overflow={"hidden"}>
+    <HeroBox>
       <Flex
-        w={isSmallerThan1020 ? "100%" : isSmallerThan1260 ? "100%" : "1200px"}
-        p={
-          isSmallerThan700 ? "0px 26px" : isSmallerThan1260 ? "0px 40px" : "0px"
-        }
+        w={{
+          base: "full",
+          xl: "1200px",
+        }}
+        p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
         m={"0px auto"}
         pos={"relative"}
-        flexDirection="column"
+        flexDirection={"column"}
       >
         <Box
-          fontSize={isSmallerThan600 ? "3xl" : isSmallerThan900 ? "4xl" : "5xl"}
-          w={"50vw"}
-          p={0}
-          m={0}
+          fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
+          m={{ base: 0 }}
           fontWeight={"bold"}
           lineHeight={"hero"}
-          fontFamily={"Monospace"}
+          fontFamily={"monospace"}
           letterSpacing={"0.02em"}
         >
           <InlineTextarea name="title" />
         </Box>
         <Box
-          fontSize={"sm"}
-          w={"45%"}
+          fontSize={{
+            base: "sm",
+          }}
+          w={{
+            base: "full",
+            sm: "75%",
+            md: "50%",
+          }}
           p={0}
           m={0}
           paddingTop={5}
@@ -74,7 +69,7 @@ export function HeroBlock({}: HeroBlockProps) {
 
 const HeroBox = chakra(Box);
 export const heroBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
+  Component: ({ index, data, name }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
         <HeroBlock {...data} />

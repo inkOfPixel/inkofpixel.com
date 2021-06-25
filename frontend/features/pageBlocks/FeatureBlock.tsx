@@ -1,10 +1,11 @@
-import { Box, chakra, Flex, Link } from "@chakra-ui/react";
+import { Box, chakra, Container, Flex, Link } from "@chakra-ui/react";
 import React from "react";
 import {
   Block,
   BlocksControls,
   InlineImage,
   InlineText,
+  InlineTextarea,
 } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
@@ -26,49 +27,66 @@ interface FeatureBlockProps {
   serviceLink?: string;
 }
 
-export function FeatureBlock({ imageUrl }: FeatureBlockProps) {
-  const StyledInlineText = chakra(InlineText);
+export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
+  const StyledInlineTextarea = chakra(InlineTextarea);
   return (
-    <Box as="div">
-      <Flex flexDirection="column" pb={"60px"} m={2.5}>
-        <InlineImage
-          uploadDir={() => "http://localhost:1337"}
-          name={"imageUrl"}
-          parse={(media) => media.filename}
-        />
-        <Box
-          fontSize={"xl"}
-          fontWeight={"bold"}
-          lineHeight={"hero"}
-          fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-          p={"20px 0px"}
+    <Container>
+      <Box as="div">
+        <Flex
+          flexDirection="column"
+          pb={"60px"}
+          m={2.5}
+          boxSizing={"border-box"}
         >
-          <StyledInlineText name="title" />
-        </Box>
-        <Box
-          fontSize={"sm"}
-          fontWeight={"subtitle"}
-          lineHeight={"subtitle"}
-          fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-        >
-          <StyledInlineText name="description" />
-        </Box>
-        <Link mt={"20px"}>
-          <InlineText name="serviceLink" />
-        </Link>
-      </Flex>
-    </Box>
+          {/*  <InlineImage
+            uploadDir={() => "http://localhost:1337"}
+            name={"imageUrl"}
+            parse={(media) => media.filename}
+          /> */}
+          <img
+            width="80px"
+            src="https://i.picsum.photos/id/106/80/80.jpg?hmac=om_fN6kywCtxkLhUY-HNdDirboY20kQlR9V3inM1tEQ"
+          ></img>
+          <Box
+            fontSize={"xl"}
+            fontWeight={"bold"}
+            lineHeight={"hero"}
+            fontFamily={"Monospace"}
+            letterSpacing={"0.04em"}
+            p={"20px 0px"}
+          >
+            <StyledInlineTextarea name="title" />
+          </Box>
+          <Box
+            fontSize={"sm"}
+            fontWeight={"subtitle"}
+            lineHeight={"subtitle"}
+            fontFamily={"Monospace"}
+            letterSpacing={"0.02em"}
+          >
+            <StyledInlineTextarea width={"600px"} name="description" />
+          </Box>
+          <Link textDecoration={"none"} mt={"20px"} href={serviceLink}>
+            <InlineText name="serviceLink" />
+          </Link>
+        </Flex>
+      </Box>
+    </Container>
   );
 }
 
 export const featureBlock: Block = {
   Component: ({ index, data, name, ...other }) => {
+    const StyledBlocksControls = chakra(BlocksControls);
     return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <StyledBlocksControls
+        index={index}
+        focusRing={{ offset: 0 }}
+        insetControls
+        width={"600px"}
+      >
         <FeatureBlock {...data} />
-      </BlocksControls>
+      </StyledBlocksControls>
     );
   },
   template: {
