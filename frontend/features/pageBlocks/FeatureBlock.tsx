@@ -12,10 +12,10 @@ export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
     id: string;
-    imageUrl?: string;
+    imageUrl?: Nullable<string>;
     title: string;
     description: string;
-    serviceLink: string;
+    serviceLink?: Nullable<string>;
   }
 >;
 
@@ -26,12 +26,16 @@ interface FeatureBlockProps {
   serviceLink?: string;
 }
 
-export function FeatureBlock({}: FeatureBlockProps) {
+export function FeatureBlock({ imageUrl }: FeatureBlockProps) {
   const StyledInlineText = chakra(InlineText);
   return (
     <Box as="div">
       <Flex flexDirection="column" pb={"60px"} m={2.5}>
-        <InlineImage name="imageUrl" parse={(media) => media.id} />
+        <InlineImage
+          uploadDir={() => "http://localhost:1337"}
+          name={"imageUrl"}
+          parse={(media) => media.filename}
+        />
         <Box
           fontSize={"xl"}
           fontWeight={"bold"}

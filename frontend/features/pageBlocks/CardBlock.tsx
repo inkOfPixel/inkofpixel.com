@@ -15,7 +15,7 @@ export type CardBlockData = BlockTemplateData<
     imageUrl?: string;
     title: string;
     description: string;
-    projectLink: string;
+    projectLink?: Nullable<string>;
   }
 >;
 

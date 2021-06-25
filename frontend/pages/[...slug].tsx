@@ -7,7 +7,7 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { BlockItemProps } from "@features/pageBlocks";
+import { BlockData } from "@features/pageBlocks";
 import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
@@ -22,7 +22,7 @@ interface DynamicPageProps {
   pageData: PageData;
 }
 
-export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+export default function DynamicPage({ pageData }: DynamicPageProps) {
   if (pageData == null) {
     return null;
   }
@@ -31,13 +31,11 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
 
   const [_, form] = usePagePlugin(pageData);
 
-  console.log("pageData", JSON.stringify(pageData, null, " "));
-
-  const itemProps = React.useMemo<BlockItemProps>(() => {
+  /* const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
     };
-  }, [preview]);
+  }, [preview]);*/
 
   return (
     <div>
@@ -47,7 +45,6 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
             color={colorMode == "light" ? "dark" : "white"}
             name="sections"
             blocks={SECTION_PAGE_BLOCKS}
-            itemProps={itemProps}
           />
           {/* <CardBlock /> */}
         </InlineForm>
@@ -183,38 +180,38 @@ function getPageData(
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.hero?.map((hero) => {
+              blocks: section.hero?.map<BlockData | undefined>((hero) => {
                 if (hero != null) {
                   return {
                     id: hero.id,
                     title: hero.title,
                     subtitle: hero.subtitle,
+                    _template: "ComponentBlocksHero",
                   };
                 }
               }),
             };
           }
           case "ComponentSectionSingleFeatureSection": {
-            console.log(
-              "features",
-              JSON.stringify(section.singleFeature, null, " ")
-            );
             return {
               _template: "featureSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.singleFeature?.map((feature) => {
-                if (feature != null) {
-                  return {
-                    id: feature.id,
-                    title: feature.title,
-                    description: feature.description,
-                    imageUrl: feature.image?.url,
-                    serviceLink: feature.serviceLink,
-                  };
+              blocks: section.singleFeature?.map<BlockData | undefined>(
+                (feature) => {
+                  if (feature != null) {
+                    return {
+                      id: feature.id,
+                      title: feature.title,
+                      description: feature.description,
+                      imageUrl: feature.image?.url ? feature.image.url : null,
+                      serviceLink: feature.serviceLink,
+                      _template: "ComponentBlocksSingleFeature",
+                    };
+                  }
                 }
-              }),
+              ),
             };
           }
           case "ComponentSectionCardSection": {
@@ -223,7 +220,7 @@ function getPageData(
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.card?.map((card) => {
+              blocks: section.card?.map<BlockData | undefined>((card) => {
                 if (card != null) {
                   return {
                     id: card.id,
@@ -231,6 +228,7 @@ function getPageData(
                     description: card.description,
                     imageUrl: card.image?.url,
                     projectLink: card.projectLink,
+                    _template: "ComponentBlocksCard",
                   };
                 }
               }),
@@ -249,83 +247,3 @@ function getPageData(
     };
   }
 }
-
-/*
-function getPageData(
-  pages: GetPagesQuery["pages"],
-  locale: string
-): PageData | undefined {
-  //const section = sections?.find((section) => section?.locale == locale); // == first section
-  //if (section) {
-  const aa: SectionBlockData =
-    pages?.map<PageData | null>((page) => {
-      if (page == null) {
-        return null;
-      }
-
-      let blocks =
-        section?.blocks?.map<BlockData | null>((block) => {
-          console.log("block", JSON.stringify(block, null, " "));
-          if (block == null) {
-            return null;
-          }
-          switch (block?.__typename) {
-            case "ComponentBlocksHero": {
-              return {
-                _template: "ComponentBlocksHero",
-                id: block.id,
-                title: block.title,
-                subtitle: block.subtitle,
-              };
-            }
-            case "ComponentBlocksCard": {
-              return {
-                _template: "ComponentBlocksCard",
-                id: block.id,
-                title: block.title,
-                subtitle: block.description,
-                projectLink: block.projectLink,
-                imageUrl: block.image?.url,
-              };
-            }
-            case "ComponentBlocksSingleFeature": {
-              return {
-                _template: "ComponentBlocksSingleFeature",
-                id: block.id,
-                title: block.title,
-                subtitle: block.description,
-                serviceLink: block.serviceLink,
-                imageUrl: block.image?.url,
-              };
-            }
-
-            default:
-              return assertNever(block);
-          }
-        }) || [];
-      switch (sezioni._template) {
-        case "heroSection": {
-          return {
-            id: section.id,
-            title: section.title,
-            subtitle: section.subtitle,
-            blocks: filterListNullableItems(blocks),
-          };
-        }
-        case "featureSection": {
-          return {
-            id: section.id,
-            title: section.title,
-            subtitle: section.subtitle,
-            blocks: filterListNullableItems(blocks),
-          };
-        }
-      }
-    }) || [];
-  return {
-    id: sezioni.id,
-    title: sezioni.title,
-    sections: filterListNullableItems(sezioni),
-  };
-}
-*/

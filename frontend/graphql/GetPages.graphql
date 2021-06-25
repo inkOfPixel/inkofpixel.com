@@ -11,7 +11,7 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
-        singleFeature {
+        singleFeature: sections {
           __typename
           id
           description
@@ -27,7 +27,7 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
-        hero {
+        hero: sections {
           id
           title
           subtitle
@@ -38,7 +38,7 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
-        card {
+        card: sections {
           id
           title
           description

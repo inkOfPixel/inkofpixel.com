@@ -108,25 +108,25 @@ export type ComponentSectionCardSection = {
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  card?: Maybe<Array<Maybe<ComponentBlocksCard>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksCard>>>;
 };
 
 export type ComponentSectionCardSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  card?: Maybe<Array<Maybe<ComponentBlocksCardInput>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksCardInput>>>;
 };
 
 export type ComponentSectionHeroSection = {
   __typename?: 'ComponentSectionHeroSection';
   id: Scalars['ID'];
-  hero?: Maybe<Array<Maybe<ComponentBlocksHero>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksHero>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionHeroSectionInput = {
-  hero?: Maybe<Array<Maybe<ComponentBlocksHeroInput>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
@@ -136,13 +136,13 @@ export type ComponentSectionSingleFeatureSection = {
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  singleFeature?: Maybe<Array<Maybe<ComponentBlocksSingleFeature>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeature>>>;
 };
 
 export type ComponentSectionSingleFeatureSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  singleFeature?: Maybe<Array<Maybe<ComponentBlocksSingleFeatureInput>>>;
+  sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeatureInput>>>;
 };
 
 
@@ -1248,12 +1248,12 @@ export type EditComponentSectionCardSectionInput = {
   id?: Maybe<Scalars['ID']>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  card?: Maybe<Array<Maybe<EditComponentBlocksCardInput>>>;
+  sections?: Maybe<Array<Maybe<EditComponentBlocksCardInput>>>;
 };
 
 export type EditComponentSectionHeroSectionInput = {
   id?: Maybe<Scalars['ID']>;
-  hero?: Maybe<Array<Maybe<EditComponentBlocksHeroInput>>>;
+  sections?: Maybe<Array<Maybe<EditComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
@@ -1262,7 +1262,7 @@ export type EditComponentSectionSingleFeatureSectionInput = {
   id?: Maybe<Scalars['ID']>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  singleFeature?: Maybe<Array<Maybe<EditComponentBlocksSingleFeatureInput>>>;
+  sections?: Maybe<Array<Maybe<EditComponentBlocksSingleFeatureInput>>>;
 };
 
 export type EditFileInput = {
@@ -1515,7 +1515,7 @@ export const GetPages = `
         id
         title
         subtitle
-        singleFeature {
+        singleFeature: sections {
           __typename
           id
           description
@@ -1531,7 +1531,7 @@ export const GetPages = `
         id
         title
         subtitle
-        hero {
+        hero: sections {
           id
           title
           subtitle
@@ -1542,7 +1542,7 @@ export const GetPages = `
         id
         title
         subtitle
-        card {
+        card: sections {
           id
           title
           description

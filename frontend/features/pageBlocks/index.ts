@@ -4,15 +4,15 @@ import { featureBlock, FeatureBlockData } from "./FeatureBlock";
 import { heroBlock, HeroBlockData } from "./HeroBlock";
 
 export const HERO_BLOCK = {
-  hero: heroBlock,
+  ComponentBlocksHero: heroBlock,
 };
 
 export const FEAT_BLOCK = {
-  feat: featureBlock,
+  ComponentBlocksSingleFeature: featureBlock,
 };
 
 export const CARD_BLOCK = {
-  card: cardBlock,
+  ComponentBlocksCard: cardBlock,
 };
 
 export type BlockData = HeroBlockData | CardBlockData | FeatureBlockData;

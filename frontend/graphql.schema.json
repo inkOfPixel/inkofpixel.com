@@ -719,7 +719,7 @@
             "deprecationReason": null
           },
           {
-            "name": "card",
+            "name": "sections",
             "description": null,
             "args": [],
             "type": {
@@ -771,7 +771,7 @@
             "deprecationReason": null
           },
           {
-            "name": "card",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -813,7 +813,7 @@
             "deprecationReason": null
           },
           {
-            "name": "hero",
+            "name": "sections",
             "description": null,
             "args": [],
             "type": {
@@ -865,7 +865,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "hero",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -955,7 +955,7 @@
             "deprecationReason": null
           },
           {
-            "name": "singleFeature",
+            "name": "sections",
             "description": null,
             "args": [],
             "type": {
@@ -1007,7 +1007,7 @@
             "deprecationReason": null
           },
           {
-            "name": "singleFeature",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -9517,7 +9517,7 @@
             "deprecationReason": null
           },
           {
-            "name": "card",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -9556,7 +9556,7 @@
             "deprecationReason": null
           },
           {
-            "name": "hero",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -9643,7 +9643,7 @@
             "deprecationReason": null
           },
           {
-            "name": "singleFeature",
+            "name": "sections",
             "description": null,
             "type": {
               "kind": "LIST",

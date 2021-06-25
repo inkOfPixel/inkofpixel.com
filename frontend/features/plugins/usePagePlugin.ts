@@ -1,3 +1,5 @@
+import { BlockData } from "@features/pageBlocks";
+import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import { SectionBlockData } from "@features/sectionBlocks";
 import {
   CreatePage,
@@ -75,24 +77,27 @@ function getPageInput(data: PageData): UpdatePageInput {
         switch (section._template) {
           case "heroSection": {
             return {
-              __typename: "ComponentBlocksHero",
+              __typename: "ComponentSectionHeroSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sections: section.blocks?.map((hero) => {
-                if (hero != null) {
-                  return {
-                    id: hero.id,
-                    title: hero.title,
-                    subtitle: hero.subtitle,
-                  };
+              sections: section.blocks?.map<HeroBlockData | undefined>(
+                (hero) => {
+                  if (hero != null) {
+                    return {
+                      id: hero.id,
+                      title: hero.title,
+                      subtitle: hero.subtitle,
+                      _template: "ComponentBlocksHero",
+                    };
+                  }
                 }
-              }),
+              ),
             };
           }
           case "cardSection": {
             return {
-              __typename: "ComponentBlocksCard",
+              __typename: "ComponentSectionCardSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
@@ -111,7 +116,7 @@ function getPageInput(data: PageData): UpdatePageInput {
           }
           case "featureSection": {
             return {
-              __typename: "ComponentBlocksSingleFeature",
+              __typename: "ComponentSectionSingleFeatureSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
@@ -179,7 +184,6 @@ function getPageCreatorPlugin(
       },
     ],
     onSubmit: async (values, cms) => {
-      console.log(values);
       const input = getPageCreateInput(values);
       try {
         const response = await cms.api.strapi.fetchGraphql(CreatePage, {

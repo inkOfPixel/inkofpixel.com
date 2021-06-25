@@ -1,15 +1,20 @@
 import { Flex, Box, chakra, useMediaQuery } from "@chakra-ui/react";
 
 import React from "react";
-import { Block, BlocksControls, InlineText } from "react-tinacms-inline";
+import {
+  Block,
+  BlocksControls,
+  InlineText,
+  InlineTextarea,
+} from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
 export type HeroBlockData = BlockTemplateData<
   "ComponentBlocksHero",
   {
     id: string;
-    title?: string;
-    subtitle?: string;
+    title?: Nullable<string>;
+    subtitle?: Nullable<string>;
   }
 >;
 
@@ -47,7 +52,7 @@ export function HeroBlock({}: HeroBlockProps) {
           fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
-          <InlineText name="title" />
+          <InlineTextarea name="title" />
         </Box>
         <Box
           fontSize={"sm"}
@@ -60,7 +65,7 @@ export function HeroBlock({}: HeroBlockProps) {
           fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
-          <InlineText name="subtitle" />
+          <InlineTextarea name="subtitle" />
         </Box>
       </Flex>
     </HeroBox>
