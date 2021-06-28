@@ -1,0 +1,23 @@
+@media (max-width: 1000px) {
+  .card-list a:nth-child(3) {
+    display: none;
+  }
+  .card-list a {
+    width: calc(50% - 30px);
+    margin: 15px;
+  }
+}
+
+@media (max-width: 750px) {
+  .card-list a:nth-child(3) {
+    display: block;
+  }
+  .card-list a {
+    width: 100%;
+    margin: 15px;
+  }
+}
+
+.StyledFocusRing-sc-191xkzj.kQMZpz {
+  height: auto;
+}
