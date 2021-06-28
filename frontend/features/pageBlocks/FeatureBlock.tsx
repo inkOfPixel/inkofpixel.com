@@ -1,12 +1,7 @@
 import { Box, chakra, Container, Flex, Link } from "@chakra-ui/react";
+import { STRAPI_URL } from "@config/env";
 import React from "react";
-import {
-  Block,
-  BlocksControls,
-  InlineImage,
-  InlineText,
-  InlineTextarea,
-} from "react-tinacms-inline";
+import { Block, BlocksControls, InlineTextarea } from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
 export type FeatureBlockData = BlockTemplateData<
@@ -22,8 +17,6 @@ export type FeatureBlockData = BlockTemplateData<
 
 interface FeatureBlockProps {
   imageUrl?: string;
-  title?: string;
-  description?: string;
   serviceLink?: string;
 }
 
@@ -38,20 +31,16 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
           m={2.5}
           boxSizing={"border-box"}
         >
-          {/*  <InlineImage
+          {/* <InlineImage
             uploadDir={() => "http://localhost:1337"}
             name={"imageUrl"}
             parse={(media) => media.filename}
           /> */}
-          <img
-            width="80px"
-            src="https://i.picsum.photos/id/106/80/80.jpg?hmac=om_fN6kywCtxkLhUY-HNdDirboY20kQlR9V3inM1tEQ"
-          ></img>
+          <img width="80px" src={STRAPI_URL + imageUrl}></img>
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
             lineHeight={"hero"}
-            fontFamily={"Monospace"}
             letterSpacing={"0.04em"}
             p={"20px 0px"}
           >
@@ -61,13 +50,18 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
             fontSize={"sm"}
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
-            fontFamily={"Monospace"}
             letterSpacing={"0.02em"}
+            color={"description"}
           >
-            <StyledInlineTextarea width={"600px"} name="description" />
+            <StyledInlineTextarea
+              color={"description"}
+              width={"600px"}
+              height={"auto"}
+              name="description"
+            />
           </Box>
           <Link textDecoration={"none"} mt={"20px"} href={serviceLink}>
-            <InlineText name="serviceLink" />
+            Learn more →
           </Link>
         </Flex>
       </Box>
@@ -76,16 +70,17 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
 }
 
 export const featureBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
+  Component: ({ index, data }) => {
     const StyledBlocksControls = chakra(BlocksControls);
+    console.log("DATA", JSON.stringify(data, null, " "));
+
     return (
-      <StyledBlocksControls
-        index={index}
-        focusRing={{ offset: 0 }}
-        insetControls
-        width={"600px"}
-      >
-        <FeatureBlock {...data} />
+      <StyledBlocksControls index={index} focusRing={{ offset: 0 }}>
+        <FeatureBlock
+          imageUrl={data.imageUrl}
+          serviceLink={data.serviceLink}
+          {...data}
+        />
       </StyledBlocksControls>
     );
   },

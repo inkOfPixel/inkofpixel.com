@@ -4,7 +4,7 @@ import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const fonts = {
   ...chakraTheme.fonts,
-  body: `"Roboto Mono", monospace`,
+  body: `"Europa","Roboto Mono", monospace`,
   heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
@@ -50,6 +50,7 @@ const overrides: ThemeOverride = {
   },
   colors: {
     dark: "rgb(22,19,56)",
+    description: "rgb(92,92,92)",
   },
   components: {
     /*

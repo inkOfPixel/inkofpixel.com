@@ -6,7 +6,6 @@ import {
   Block,
   BlocksControls,
   InlineBlocks,
-  InlineText,
   InlineTextarea,
 } from "react-tinacms-inline";
 import { SectionBlockTemplateData } from "./types";
@@ -24,6 +23,7 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
 export function FeatureSectionBlock() {
   const StyledInlineTextarea = chakra(InlineTextarea);
   const StyledInlineBlocks = chakra(InlineBlocks);
+
   return (
     <Flex
       m={{
@@ -56,7 +56,7 @@ export function FeatureSectionBlock() {
         flexBasis={{
           base: "auto",
           md: "300px",
-          lg: "400px",
+          lg: "420px",
         }}
       >
         <Box
@@ -65,7 +65,6 @@ export function FeatureSectionBlock() {
           m={0}
           fontWeight={"bold"}
           lineHeight={"hero"}
-          fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
           <StyledInlineTextarea
@@ -74,20 +73,20 @@ export function FeatureSectionBlock() {
             m={0}
             fontWeight={"bold"}
             lineHeight={"hero"}
-            fontFamily={"Monospace"}
             letterSpacing={"0.02em"}
             name="title"
           />
         </Box>
         <Box
           fontSize={"sm"}
-          p={0}
+          pt={5}
           m={0}
           paddingTop={5}
           fontWeight={"subtitle"}
           lineHeight={"subtitle"}
-          fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
+          color={"description"}
+          letterSpacing={"0.04em"}
+          fontFamily={"Roboto Mono"}
         >
           <StyledInlineTextarea
             fontSize={"sm"}
@@ -96,13 +95,22 @@ export function FeatureSectionBlock() {
             paddingTop={5}
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
-            fontFamily={"Monospace"}
             letterSpacing={"0.02em"}
+            color={"description"}
             name="subtitle"
           />
         </Box>
       </Flex>
-      <StyledInlineBlocks width={"600px"} name="blocks" blocks={FEAT_BLOCK} />
+      <StyledInlineBlocks
+        mt={{
+          base: 10,
+          md: 0,
+        }}
+        width={"600px"}
+        height={"fit-content"}
+        name="blocks"
+        blocks={FEAT_BLOCK}
+      />
     </Flex>
   );
 }

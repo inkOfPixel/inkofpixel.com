@@ -21,27 +21,19 @@ interface HeroBlockProps {
 }
 
 export function HeroBlock({}: HeroBlockProps) {
+  const StyledInlineTextarea = chakra(InlineTextarea);
   return (
     <HeroBox>
-      <Flex
-        w={{
-          base: "full",
-          xl: "1200px",
-        }}
-        p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
-        m={"0px auto"}
-        pos={"relative"}
-        flexDirection={"column"}
-      >
+      <Flex flexDirection={"column"}>
         <Box
           fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
           m={{ base: 0 }}
           fontWeight={"bold"}
           lineHeight={"hero"}
-          fontFamily={"monospace"}
+          fontFamily={"Europa"}
           letterSpacing={"0.02em"}
         >
-          <InlineTextarea name="title" />
+          <StyledInlineTextarea name="title" />
         </Box>
         <Box
           fontSize={{
@@ -57,10 +49,18 @@ export function HeroBlock({}: HeroBlockProps) {
           paddingTop={5}
           fontWeight={"subtitle"}
           lineHeight={"subtitle"}
-          fontFamily={"Monospace"}
+          fontFamily={"Roboto Mono"}
           letterSpacing={"0.02em"}
         >
-          <InlineTextarea name="subtitle" />
+          <StyledInlineTextarea
+            w={{
+              base: "full",
+              sm: "75%",
+              md: "50%",
+            }}
+            fontFamily={"Roboto Mono"}
+            name="subtitle"
+          />
         </Box>
       </Flex>
     </HeroBox>
@@ -69,7 +69,7 @@ export function HeroBlock({}: HeroBlockProps) {
 
 const HeroBox = chakra(Box);
 export const heroBlock: Block = {
-  Component: ({ index, data, name }) => {
+  Component: ({ index, data }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
         <HeroBlock {...data} />

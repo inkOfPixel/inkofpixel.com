@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, chakra, Flex } from "@chakra-ui/react";
 import { HERO_BLOCK } from "@features/pageBlocks";
 import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import React from "react";
@@ -7,6 +7,7 @@ import {
   BlocksControls,
   InlineBlocks,
   InlineText,
+  InlineTextarea,
 } from "react-tinacms-inline";
 import { SectionBlockTemplateData } from "./types";
 
@@ -21,6 +22,7 @@ export type HeroSectionBlockData = SectionBlockTemplateData<
 >;
 
 export function HeroSectionBlock() {
+  const StyledInlineBlocks = chakra(InlineBlocks);
   return (
     <Flex
       pb={{
@@ -50,7 +52,7 @@ export function HeroSectionBlock() {
           fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
-          <InlineText name="title" />
+          <InlineTextarea name="title" />
         </Box>
         <Box
           fontSize={"sm"}
@@ -62,18 +64,34 @@ export function HeroSectionBlock() {
           fontFamily={"Monospace"}
           letterSpacing={"0.02em"}
         >
-          <InlineText name="subtitle" />
+          <InlineTextarea name="subtitle" />
         </Box>
       </Flex>
-      <Flex>
-        <InlineBlocks name="blocks" blocks={HERO_BLOCK} />
+      <Flex
+        w={{
+          base: "full",
+          xl: "1200px",
+        }}
+        p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
+        m={"0 auto"}
+        pos={"relative"}
+      >
+        <StyledInlineBlocks
+          w={{
+            base: "full",
+            xl: "1200px",
+          }}
+          height={"fit-content"}
+          name="blocks"
+          blocks={HERO_BLOCK}
+        />
       </Flex>
     </Flex>
   );
 }
 
 export const heroSectionBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
+  Component: ({ index, data }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
         <HeroSectionBlock {...data} />
