@@ -20,8 +20,9 @@ interface FeatureBlockProps {
   serviceLink?: string;
 }
 
+export const StyledInlineTextarea = chakra(InlineTextarea);
+
 export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
-  const StyledInlineTextarea = chakra(InlineTextarea);
   return (
     <Container>
       <Box as="div">
@@ -69,14 +70,14 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
   );
 }
 
+export const StyledBlocksControls = chakra(BlocksControls);
+
 export const featureBlock: Block = {
   Component: ({ index, data }) => {
-    const StyledBlocksControls = chakra(BlocksControls);
-    console.log("DATA", JSON.stringify(data, null, " "));
-
     return (
       <StyledBlocksControls index={index} focusRing={{ offset: 0 }}>
         <FeatureBlock
+          key={data.id}
           imageUrl={data.imageUrl}
           serviceLink={data.serviceLink}
           {...data}
@@ -91,6 +92,12 @@ export const featureBlock: Block = {
       description: "Default description",
       serviceLink: "Default link",
     },
-    fields: [],
+    fields: [
+      {
+        name: "serviceLink",
+        label: "Url",
+        component: "text",
+      },
+    ],
   },
 };

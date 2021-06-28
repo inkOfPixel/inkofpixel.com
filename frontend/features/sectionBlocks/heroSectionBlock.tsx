@@ -6,10 +6,9 @@ import {
   Block,
   BlocksControls,
   InlineBlocks,
-  InlineText,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockItemProps, SectionBlockTemplateData } from "./types";
 
 export type HeroSectionBlockData = SectionBlockTemplateData<
   "heroSection",
@@ -21,8 +20,15 @@ export type HeroSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
-export function HeroSectionBlock() {
-  const StyledInlineBlocks = chakra(InlineBlocks);
+export const StyledInlineBlocks = chakra(InlineBlocks);
+
+export function HeroSectionBlock(preview: boolean) {
+  const itemProps = React.useMemo<BlockItemProps>(() => {
+    return {
+      isPreview: preview,
+    };
+  }, [preview]);
+
   return (
     <Flex
       pb={{
@@ -84,6 +90,7 @@ export function HeroSectionBlock() {
           height={"fit-content"}
           name="blocks"
           blocks={HERO_BLOCK}
+          itemProps={itemProps}
         />
       </Flex>
     </Flex>

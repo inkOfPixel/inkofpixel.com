@@ -20,8 +20,9 @@ interface HeroBlockProps {
   projectLink?: string;
 }
 
+export const StyledInlineTextarea = chakra(InlineTextarea);
+
 export function HeroBlock({}: HeroBlockProps) {
-  const StyledInlineTextarea = chakra(InlineTextarea);
   return (
     <HeroBox>
       <Flex flexDirection={"column"}>

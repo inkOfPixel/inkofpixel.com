@@ -1,5 +1,5 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import { FEAT_BLOCK } from "@features/pageBlocks";
+import { BlockItemProps, FEAT_BLOCK } from "@features/pageBlocks";
 import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
 import React from "react";
 import {
@@ -20,9 +20,15 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
-export function FeatureSectionBlock() {
-  const StyledInlineTextarea = chakra(InlineTextarea);
-  const StyledInlineBlocks = chakra(InlineBlocks);
+export const StyledInlineTextarea = chakra(InlineTextarea);
+export const StyledInlineBlocks = chakra(InlineBlocks);
+
+export function FeatureSectionBlock(preview: boolean) {
+  const itemProps = React.useMemo<BlockItemProps>(() => {
+    return {
+      isPreview: preview,
+    };
+  }, [preview]);
 
   return (
     <Flex
@@ -110,6 +116,7 @@ export function FeatureSectionBlock() {
         height={"fit-content"}
         name="blocks"
         blocks={FEAT_BLOCK}
+        itemProps={itemProps}
       />
     </Flex>
   );

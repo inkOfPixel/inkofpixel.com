@@ -7,12 +7,18 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { BlockData } from "@features/pageBlocks";
 import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
-import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/sectionBlocks";
+import {
+  BlockItemProps,
+  SectionBlockData,
+  SECTION_PAGE_BLOCKS,
+} from "@features/sectionBlocks";
 import { assertNever } from "utils";
+import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
+import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
+import { CardBlockData } from "@features/pageBlocks/CardBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -22,7 +28,7 @@ interface DynamicPageProps {
   pageData: PageData;
 }
 
-export default function DynamicPage({ pageData }: DynamicPageProps) {
+export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   if (pageData == null) {
     return null;
   }
@@ -31,11 +37,11 @@ export default function DynamicPage({ pageData }: DynamicPageProps) {
 
   const [_, form] = usePagePlugin(pageData);
 
-  /* const itemProps = React.useMemo<BlockItemProps>(() => {
+  const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
     };
-  }, [preview]);*/
+  }, [preview]);
 
   return (
     <div>
@@ -44,6 +50,7 @@ export default function DynamicPage({ pageData }: DynamicPageProps) {
           <StyledInlineBlocks
             color={colorMode == "light" ? "dark" : "white"}
             name="sections"
+            itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
           />
           {/* <CardBlock /> */}
@@ -180,7 +187,7 @@ function getPageData(
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.hero?.map<BlockData | undefined>((hero) => {
+              blocks: section.hero?.map<HeroBlockData | undefined>((hero) => {
                 if (hero != null) {
                   return {
                     id: hero.id,
@@ -198,7 +205,7 @@ function getPageData(
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.singleFeature?.map<BlockData | undefined>(
+              blocks: section.singleFeature?.map<FeatureBlockData | undefined>(
                 (feature) => {
                   if (feature != null) {
                     return {
@@ -220,7 +227,7 @@ function getPageData(
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              blocks: section.card?.map<BlockData | undefined>((card) => {
+              blocks: section.card?.map<CardBlockData | undefined>((card) => {
                 if (card != null) {
                   return {
                     id: card.id,
