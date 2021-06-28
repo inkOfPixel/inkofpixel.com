@@ -51,6 +51,8 @@ const overrides: ThemeOverride = {
   colors: {
     dark: "rgb(22,19,56)",
     description: "rgb(92,92,92)",
+    cardSectionBg: "rgb(234, 247, 247)",
+    cardDescription: "rgb(92, 92, 92)",
   },
   components: {
     /*
