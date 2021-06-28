@@ -36,7 +36,7 @@ export function CardBlock({ imageUrl, projectLink }: CardBlockProps) {
       boxSizing={"border-box"}
       justifyContent={"space-between"}
       h={cms.enabled ? "full" : "auto"}
-      width={cms.enabled ? "calc(100% - 30px)" : "calc(33.33% - 30px)"}
+      width={cms.enabled ? "calc(99% - 30px)" : "calc(33.33% - 30px)"}
       backgroundColor={"white"}
       href={projectLink}
       transition={"all 0.8s"}

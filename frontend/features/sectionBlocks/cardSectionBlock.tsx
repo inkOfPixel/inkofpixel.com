@@ -71,7 +71,8 @@ export function CardSectionBlock() {
         </Box>
         <StyledInlineBlocks
           display={"flex"}
-          flexWrap={cms.enabled ? "nowrap" : "wrap"}
+          flexBasis={"30%"}
+          flexWrap={"wrap"}
           flexDir={{
             base: "column",
             md: "row",
@@ -84,7 +85,6 @@ export function CardSectionBlock() {
             base: "full",
             md: "calc(100% + 30px)",
           }}
-          
           className="card-list"
           name="blocks"
           blocks={CARD_BLOCK}

@@ -53,11 +53,13 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
             lineHeight={"subtitle"}
             letterSpacing={"0.02em"}
             color={"description"}
+            fontFamily={"Roboto Mono"}
           >
             <StyledInlineTextarea
               color={"description"}
               width={"600px"}
               height={"auto"}
+              fontFamily={"Roboto Mono"}
               name="description"
             />
           </Box>
