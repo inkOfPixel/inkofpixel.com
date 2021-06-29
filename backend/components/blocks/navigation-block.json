@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_navigation_blocks",
+  "info": {
+    "name": "navigation",
+    "icon": "arrow-circle-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pageName": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}
