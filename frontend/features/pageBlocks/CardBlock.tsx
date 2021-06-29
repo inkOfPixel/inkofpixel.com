@@ -1,4 +1,4 @@
-import { Image, Box, chakra, Flex } from "@chakra-ui/react";
+import { Image, Box, chakra, Flex, calc } from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import { Block, BlocksControls, InlineTextarea } from "react-tinacms-inline";
@@ -9,7 +9,7 @@ export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",
   {
     id: string;
-    imageUrl?: string;
+    imageUrl?: Nullable<string>;
     title: string;
     description: string;
     projectLink?: Nullable<string>;
@@ -36,7 +36,7 @@ export function CardBlock({ imageUrl, projectLink }: CardBlockProps) {
       boxSizing={"border-box"}
       justifyContent={"space-between"}
       h={cms.enabled ? "full" : "auto"}
-      width={cms.enabled ? "calc(99% - 30px)" : "calc(33.33% - 30px)"}
+      width={"calc(33.33% - 30px)"}
       backgroundColor={"white"}
       href={projectLink}
       transition={"all 0.8s"}

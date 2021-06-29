@@ -233,7 +233,7 @@ function getPageData(
                     id: card.id,
                     title: card.title,
                     description: card.description,
-                    imageUrl: card.image?.url,
+                    imageUrl: card.image?.url ? card.image.url : null,
                     projectLink: card.projectLink,
                     _template: "ComponentBlocksCard",
                   };

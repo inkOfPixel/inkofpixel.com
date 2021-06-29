@@ -1,15 +1,13 @@
-import { Box, chakra, Flex } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 import { CARD_BLOCK } from "@features/pageBlocks";
 import { CardBlockData } from "@features/pageBlocks/CardBlock";
 import React from "react";
 import {
   Block,
   BlocksControls,
-  InlineBlock,
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { useCMS } from "tinacms";
 import { SectionBlockTemplateData } from "./types";
 
 export type CardSectionBlockData = SectionBlockTemplateData<
@@ -26,7 +24,6 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function CardSectionBlock() {
-  const cms = useCMS();
   return (
     <Box
       as={"section"}
@@ -71,7 +68,6 @@ export function CardSectionBlock() {
         </Box>
         <StyledInlineBlocks
           display={"flex"}
-          flexBasis={"30%"}
           flexWrap={"wrap"}
           flexDir={{
             base: "column",
@@ -89,6 +85,9 @@ export function CardSectionBlock() {
           name="blocks"
           blocks={CARD_BLOCK}
           direction={"horizontal"}
+          justifyContent={"center"}
+          flexBasis={"30%"}
+          
         />
       </Box>
     </Box>
@@ -96,7 +95,7 @@ export function CardSectionBlock() {
 }
 
 export const cardSectionBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
+  Component: ({ index, data }) => {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
         <CardSectionBlock {...data} />
