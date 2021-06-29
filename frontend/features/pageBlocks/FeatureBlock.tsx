@@ -39,6 +39,7 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
           /> */}
           <img width="80px" src={STRAPI_URL + imageUrl}></img>
           <Box
+            fontFamily={"Europa"}
             fontSize={"xl"}
             fontWeight={"bold"}
             lineHeight={"hero"}

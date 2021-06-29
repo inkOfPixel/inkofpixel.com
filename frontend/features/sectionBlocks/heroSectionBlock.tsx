@@ -36,8 +36,8 @@ export function HeroSectionBlock(preview: boolean) {
         lg: "400px",
       }}
       pt={{
-        base: "200px",
-        lg: "300px",
+        base: "40px",
+        lg: "140px",
       }}
       flexDir={"column"}
       w={{

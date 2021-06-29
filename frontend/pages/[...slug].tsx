@@ -3,9 +3,6 @@ import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
-  GetNavItems,
-  GetNavItemsQuery,
-  GetNavItemsQueryVariables,
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
@@ -22,8 +19,7 @@ import { assertNever } from "utils";
 import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
 import { CardBlockData } from "@features/pageBlocks/CardBlock";
-import { NavBlocksData } from "@features/navigation";
-import { NavData } from "@features/plugins/useNavPlugin";
+import { NavBlockData } from "@features/pageBlocks/NavigationBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -31,14 +27,9 @@ interface DynamicPageProps {
   preview: boolean;
   previewData?: PreviewData;
   pageData: PageData;
-  navData: NavData;
 }
 
-export default function DynamicPage({
-  navData,
-  pageData,
-  preview,
-}: DynamicPageProps) {
+export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   if (pageData == null) {
     return null;
   }
@@ -55,7 +46,7 @@ export default function DynamicPage({
 
   return (
     <div>
-      <DefaultLayout data={navData} title="InkOfPixel">
+      <DefaultLayout title="InkOfPixel">
         <InlineForm form={form}>
           <StyledInlineBlocks
             color={colorMode == "light" ? "dark" : "white"}
@@ -63,7 +54,6 @@ export default function DynamicPage({
             itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
           />
-          {/* <CardBlock /> */}
         </InlineForm>
       </DefaultLayout>
     </div>
@@ -148,23 +138,7 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
-  const availableNavBlocks = await fetchGraphQL<
-    GetNavItemsQuery,
-    GetNavItemsQueryVariables
-  >(GetNavItems, {
-    locale,
-  });
-
-  const navData = getNavData(availableNavBlocks.navigations, locale);
   const pageData = getPageData(availablePages.pages, locale);
-
-  
-
-  if (navData == null) {
-    return {
-      notFound: true,
-    };
-  }
 
   if (pageData == null) {
     return {
@@ -176,7 +150,6 @@ export const getStaticProps: GetStaticProps<
     return {
       props: {
         pageData,
-        navData,
         path: pathParts,
         locale,
         preview,
@@ -188,7 +161,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       pageData,
-      navData,
       path: pathParts,
       locale,
       preview,
@@ -269,6 +241,22 @@ function getPageData(
               }),
             };
           }
+          case "ComponentSectionNavigationSection": {
+            return {
+              _template: "navigationSection",
+              id: section.id,
+              blocks: section.nav?.map<NavBlockData | undefined>((nav) => {
+                if (nav != null) {
+                  return {
+                    id: nav.id,
+                    pageName: nav.pageName,
+                    path: nav.path,
+                    _template: "ComponentBlocksNavigation",
+                  };
+                }
+              }),
+            };
+          }
           default:
             return assertNever(section);
         }
@@ -279,33 +267,6 @@ function getPageData(
       title: page.pageName,
       sections: filterListNullableItems(sections),
       path: page.path ? page.path : undefined,
-    };
-  }
-}
-
-function getNavData(
-  navigations: GetNavItemsQuery["navigations"],
-  locale: string
-): NavData | undefined {
-  const nav = navigations?.find((nav) => nav?.locale === locale);
-
-  if (nav) {
-    const items =
-      nav.items?.map<NavBlocksData | null>((navItem) => {
-        if (navItem == null) {
-          return null;
-        }
-        return {
-          id: navItem.id,
-          linkName: navItem.path?.pageName,
-          path: navItem.path?.path,
-          _template: "ComponentMenuLink",
-        };
-      }) || [];
-
-    return {
-      id: nav.id,
-      sections: filterListNullableItems(items),
     };
   }
 }

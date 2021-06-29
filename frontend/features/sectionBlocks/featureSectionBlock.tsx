@@ -72,6 +72,7 @@ export function FeatureSectionBlock(preview: boolean) {
           fontWeight={"bold"}
           lineHeight={"hero"}
           letterSpacing={"0.02em"}
+          fontFamily={"Europa"}
         >
           <StyledInlineTextarea
             fontSize={"5xl"}
@@ -80,6 +81,7 @@ export function FeatureSectionBlock(preview: boolean) {
             fontWeight={"bold"}
             lineHeight={"hero"}
             letterSpacing={"0.02em"}
+            fontFamily={"Europa"}
             name="title"
           />
         </Box>

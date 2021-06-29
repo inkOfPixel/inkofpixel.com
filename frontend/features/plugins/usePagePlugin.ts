@@ -1,4 +1,3 @@
-import { BlockData } from "@features/pageBlocks";
 import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import { SectionBlockData } from "@features/sectionBlocks";
 import {
@@ -128,6 +127,21 @@ function getPageInput(data: PageData): UpdatePageInput {
                     description: feature.description,
                     imageUrl: feature.imageUrl,
                     serviceLink: feature.serviceLink,
+                  };
+                }
+              }),
+            };
+          }
+          case "navigationSection": {
+            return {
+              __typename: "ComponentSectionNavigationSection",
+              id: section.id,
+              sections: section.blocks?.map((nav) => {
+                if (nav != null) {
+                  return {
+                    id: nav.id,
+                    pageName: nav.pageName,
+                    path: nav.path,
                   };
                 }
               }),

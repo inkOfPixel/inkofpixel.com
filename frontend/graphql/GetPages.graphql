@@ -48,6 +48,15 @@ query GetPages($where: JSON, $locale: String) {
           projectLink
         }
       }
+      ... on ComponentSectionNavigationSection {
+        id
+        __typename
+        nav: sections {
+          id
+          pageName
+          path
+        }
+      }
     }
   }
 }
