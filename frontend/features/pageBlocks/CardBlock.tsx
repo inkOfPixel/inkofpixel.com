@@ -12,7 +12,7 @@ export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",
   {
     id: string;
-    imageUrl?: string;
+    imageUrl?: Nullable<string>;
     title: string;
     description: string;
     projectLink?: Nullable<string>;
@@ -20,9 +20,6 @@ export type CardBlockData = BlockTemplateData<
 >;
 
 interface CardBlockProps {
-  imageUrl?: string;
-  title?: string;
-  description: string;
   projectLink?: string;
 }
 

@@ -1612,11 +1612,6 @@
           },
           {
             "kind": "OBJECT",
-            "name": "NavigationConnectionNavigationName",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
             "name": "NavigationConnectionLocale",
             "ofType": null
           },
@@ -2899,22 +2894,6 @@
             "deprecationReason": null
           },
           {
-            "name": "navigationName",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "items",
             "description": null,
             "args": [],
@@ -3218,41 +3197,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "NavigationConnectionNavigationName",
-        "description": null,
-        "fields": [
-          {
-            "name": "key",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "connection",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "NavigationConnection",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "NavigationConnectionPublished_at",
         "description": null,
         "fields": [
@@ -3375,22 +3319,6 @@
             "deprecationReason": null
           },
           {
-            "name": "navigationName",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "NavigationConnectionNavigationName",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "locale",
             "description": null,
             "args": [],
@@ -3434,22 +3362,6 @@
         "description": null,
         "fields": null,
         "inputFields": [
-          {
-            "name": "navigationName",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "items",
             "description": null,
@@ -3551,11 +3463,6 @@
           {
             "kind": "OBJECT",
             "name": "ComponentMenuLink",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ComponentMenuPageLink",
             "ofType": null
           }
         ]
@@ -9947,18 +9854,6 @@
         "description": null,
         "fields": null,
         "inputFields": [
-          {
-            "name": "navigationName",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "items",
             "description": null,

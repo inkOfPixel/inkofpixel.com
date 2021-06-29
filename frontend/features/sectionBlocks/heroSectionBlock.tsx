@@ -14,8 +14,8 @@ export type HeroSectionBlockData = SectionBlockTemplateData<
   "heroSection",
   {
     id: string;
-    title: string;
-    subtitle: string;
+    title?: Nullable<string>;
+    subtitle?: Nullable<string>;
     blocks: HeroBlockData[];
   }
 >;

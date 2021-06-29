@@ -16,20 +16,10 @@
     }
   },
   "attributes": {
-    "navigationName": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "items": {
       "type": "dynamiczone",
       "components": [
-        "menu.link",
-        "menu.page-link"
+        "menu.link"
       ],
       "pluginOptions": {
         "i18n": {

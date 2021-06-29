@@ -195,7 +195,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionNavigationName | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -363,7 +363,6 @@ export type Navigation = {
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  navigationName: Scalars['String'];
   items?: Maybe<Array<Maybe<NavigationItemsDynamicZone>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -409,12 +408,6 @@ export type NavigationConnectionLocale = {
   connection?: Maybe<NavigationConnection>;
 };
 
-export type NavigationConnectionNavigationName = {
-  __typename?: 'NavigationConnectionNavigationName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<NavigationConnection>;
-};
-
 export type NavigationConnectionPublished_At = {
   __typename?: 'NavigationConnectionPublished_at';
   key?: Maybe<Scalars['DateTime']>;
@@ -432,13 +425,11 @@ export type NavigationGroupBy = {
   id?: Maybe<Array<Maybe<NavigationConnectionId>>>;
   created_at?: Maybe<Array<Maybe<NavigationConnectionCreated_At>>>;
   updated_at?: Maybe<Array<Maybe<NavigationConnectionUpdated_At>>>;
-  navigationName?: Maybe<Array<Maybe<NavigationConnectionNavigationName>>>;
   locale?: Maybe<Array<Maybe<NavigationConnectionLocale>>>;
   published_at?: Maybe<Array<Maybe<NavigationConnectionPublished_At>>>;
 };
 
 export type NavigationInput = {
-  navigationName: Scalars['String'];
   items?: Maybe<Array<Scalars['NavigationItemsDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
@@ -447,7 +438,7 @@ export type NavigationInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type NavigationItemsDynamicZone = ComponentMenuLink | ComponentMenuPageLink;
+export type NavigationItemsDynamicZone = ComponentMenuLink;
 
 
 export type PageInput = {
@@ -1293,7 +1284,6 @@ export type EditLocaleInput = {
 };
 
 export type EditNavigationInput = {
-  navigationName?: Maybe<Scalars['String']>;
   items?: Maybe<Array<Scalars['NavigationItemsDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
@@ -1377,26 +1367,38 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
-export type GetNavItemsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreatePageMutationVariables = Exact<{
+  input?: Maybe<CreatePageInput>;
+}>;
+
+
+export type CreatePageMutation = (
+  { __typename?: 'Mutation' }
+  & { createPage?: Maybe<(
+    { __typename?: 'createPagePayload' }
+    & { page?: Maybe<(
+      { __typename?: 'Pages' }
+      & Pick<Pages, 'id'>
+    )> }
+  )> }
+);
+
+export type GetNavItemsQueryVariables = Exact<{
+  locale?: Maybe<Scalars['String']>;
+}>;
 
 
 export type GetNavItemsQuery = (
   { __typename?: 'Query' }
   & { navigations?: Maybe<Array<Maybe<(
     { __typename?: 'Navigation' }
+    & Pick<Navigation, 'id' | 'locale'>
     & { items?: Maybe<Array<Maybe<(
       { __typename: 'ComponentMenuLink' }
-      & Pick<ComponentMenuLink, 'linkName'>
+      & Pick<ComponentMenuLink, 'id' | 'linkName'>
       & { path?: Maybe<(
         { __typename?: 'Pages' }
-        & Pick<Pages, 'pageName'>
-      )> }
-    ) | (
-      { __typename: 'ComponentMenuPageLink' }
-      & Pick<ComponentMenuPageLink, 'pageLinkName'>
-      & { path?: Maybe<(
-        { __typename?: 'Pages' }
-        & Pick<Pages, 'pageName'>
+        & Pick<Pages, 'path' | 'pageName'>
       )> }
     )>>> }
   )>>> }
@@ -1446,18 +1448,18 @@ export type GetPagesQuery = (
   )>>> }
 );
 
-export type CreatePageMutationVariables = Exact<{
-  input?: Maybe<CreatePageInput>;
+export type UpdateNavigationMutationVariables = Exact<{
+  input?: Maybe<UpdateNavigationInput>;
 }>;
 
 
-export type CreatePageMutation = (
+export type UpdateNavigationMutation = (
   { __typename?: 'Mutation' }
-  & { createPage?: Maybe<(
-    { __typename?: 'createPagePayload' }
-    & { page?: Maybe<(
-      { __typename?: 'Pages' }
-      & Pick<Pages, 'id'>
+  & { updateNavigation?: Maybe<(
+    { __typename?: 'updateNavigationPayload' }
+    & { navigation?: Maybe<(
+      { __typename?: 'Navigation' }
+      & Pick<Navigation, 'id'>
     )> }
   )> }
 );
@@ -1479,21 +1481,27 @@ export type UpdatePageMutation = (
 );
 
 
+export const CreatePage = `
+    mutation CreatePage($input: createPageInput) {
+  createPage(input: $input) {
+    page {
+      id
+    }
+  }
+}
+    `;
 export const GetNavItems = `
-    query GetNavItems {
-  navigations {
+    query GetNavItems($locale: String) {
+  navigations(locale: $locale) {
+    id
+    locale
     items {
-      ... on ComponentMenuPageLink {
-        pageLinkName
-        __typename
-        path {
-          pageName
-        }
-      }
       ... on ComponentMenuLink {
+        id
         linkName
         __typename
         path {
+          path
           pageName
         }
       }
@@ -1556,10 +1564,10 @@ export const GetPages = `
   }
 }
     `;
-export const CreatePage = `
-    mutation CreatePage($input: createPageInput) {
-  createPage(input: $input) {
-    page {
+export const UpdateNavigation = `
+    mutation UpdateNavigation($input: updateNavigationInput) {
+  updateNavigation(input: $input) {
+    navigation {
       id
     }
   }

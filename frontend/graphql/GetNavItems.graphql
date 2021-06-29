@@ -1,17 +1,14 @@
-query GetNavItems {
-  navigations {
+query GetNavItems($locale: String) {
+  navigations(locale: $locale) {
+    id
+    locale
     items {
-      ... on ComponentMenuPageLink {
-        pageLinkName
-        __typename
-        path {
-          pageName
-        }
-      }
       ... on ComponentMenuLink {
+        id
         linkName
         __typename
         path {
+          path
           pageName
         }
       }
