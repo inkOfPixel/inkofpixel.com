@@ -1,6 +1,7 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
-import styled, { keyframes } from "types/styled-components";
-/*
+/* import styled, { keyframes } from "types/styled-components";
+
 interface IProps {
   className?: string;
   speed?: string;
@@ -50,6 +51,22 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
+function Splash({ children, className, color = "#000", size = "300px" }) {
+  return (
+    <Box className={className}>
+      <Box
+        pos="relative"
+        width={size}
+        height={size}
+        backgroundColor={color}
+        animation=
+        className="content">
+        {children}
+      </Box>
+    </Box>
+  );
+}
+
 const Splash = styled<IProps>(({ children, className }) => (
   <div className={className}>
     <div className="content">{children}</div>
@@ -65,7 +82,7 @@ const Splash = styled<IProps>(({ children, className }) => (
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
     ${() => random(3, 6)}s linear infinite ${borderbr},
-    ${(props) => props.speed} linear infinite ${rotate};
+    ${random(5, 12).toFixed(2)}s linear infinite ${rotate};
   & > .content {
     display: flex;
     align-items: center;
@@ -82,4 +99,4 @@ Splash.defaultProps = {
 };
 
 export default Splash;
-*/
+ */

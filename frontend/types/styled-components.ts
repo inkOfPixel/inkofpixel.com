@@ -24,7 +24,7 @@ const {
   keyframes,
   ThemeProvider,
   withTheme,
-} = styledComponents as unknown as ThemedStyledComponentsModule<ThemeInterface>;
+} = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
 export { css, createGlobalStyle, keyframes, ThemeProvider, withTheme };
 export default styled;

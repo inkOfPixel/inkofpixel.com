@@ -91,7 +91,7 @@ export const featureBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      serviceLink: "Default link",
+      serviceLink: "/",
     },
     fields: [
       {

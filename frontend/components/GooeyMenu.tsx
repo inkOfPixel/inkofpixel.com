@@ -1,222 +1,92 @@
-import React, { ChangeEvent } from "react";
-import styled, { css } from "types/styled-components";
+import { Box, Checkbox } from "@chakra-ui/react";
+import React, { ChangeEvent, useState } from "react";
 
-interface IProps {
-  className?: string;
-  renderLabel?: () => React.ReactNode;
-  color?: string;
-  backgroundColor?: string;
-  size?: number;
-  spacing?: number;
-  open: boolean;
-  onToggle?: (value: boolean) => void;
-}
+export default function GooeyMenu({
+  color = "#fff",
+  backgroundColor = "rgb(22, 19, 56)",
+  size = 80,
+  spacing = 20,
+  className,
+  renderLabel,
+  children,
+  open,
+}: any) {
+  const [state, setState] = useState(open);
 
-interface IState {
-  open: boolean;
-}
-
-class GooeyMenu extends React.Component<IProps, IState> {
-  static defaultProps = {
-    color: "#fff",
-    backgroundColor: "#00bcd4",
-    size: 80,
-    spacing: 20,
-  };
-
-  state = {
-    open: false,
-  };
-
-  isControlled = () => {
-    return this.props.open !== undefined;
-  };
-
-  getState = () => {
-    if (this.isControlled()) {
-      return this.props;
-    } else {
-      return this.state;
-    }
-  };
-
-  handleToggleMenu = (event: ChangeEvent<HTMLInputElement>) => {
-    if (this.isControlled() && this.props.onToggle) {
-      this.props.onToggle(event.currentTarget.checked);
-    } else {
-      this.setState({ open: event.currentTarget.checked });
-    }
-  };
-
-  render() {
-    const {
-      children,
-      className,
-      renderLabel,
-      size,
-      spacing,
-      color,
-      backgroundColor,
-    } = this.props;
-    const itemCount = React.Children.count(children);
-    const { open } = this.getState();
-    return (
-      <React.Fragment>
-        <GooeySVGDefs />
-        <Menu className={className}>
-          <Checkbox
-            
-          />
-          <Items
-            itemCount={itemCount}
-            size={size}
-            spacing={spacing}
-            color={color}
-            backgroundColor={backgroundColor}
-          >
-            {children}
-          </Items>
-          <Label size={size} color={color} backgroundColor={backgroundColor}>
-            <div className="toggleButtonContent">
-              {renderLabel && renderLabel()}
-            </div>
-          </Label>
-        </Menu>
-      </React.Fragment>
-    );
+  function handleToggleMenu() {
+    setState(!state);
   }
+
+  const itemCount = React.Children.count(children);
+
+  return (
+    <React.Fragment>
+      <GooeySVGDefs />
+      <Box
+        position="relative"
+        filter="url('#shadowed-goo1')"
+        overflow="visible"
+        className={className}>
+        <Checkbox
+          display={"none"}
+          itemCount={itemCount}
+          onChange={handleToggleMenu}
+          checked={state}
+        />
+        <Box
+          position={"absolute"}
+          pt={size}
+          mt={spacing}
+          itemCount={itemCount}
+          color={color}
+          backgroundColor={backgroundColor}></Box>
+        <Box
+          as={"label"}
+          pos={"relative"}
+          color={color}
+          backgroundColor={backgroundColor}
+          borderRadius={"100%"}
+          display={"block"}
+          width={size}
+          height={size}
+          text-align={"center"}
+          line-height={size}
+          transform={"scale(1,1) translate3d(0, 0, 0)"}
+          transition={"transform ease-out 200ms"}
+          transitionDuration={"400ms"}
+          cursor={"pointer"}
+          _hover={{
+            transform: "scale(1.1, 1.1) translate3d(0,0,0)",
+          }}
+          _before={{
+            pos: "absolute",
+            zIndex: "1",
+            transition: "all 200ms",
+            opacity: "0",
+            content: "'✕'",
+            fontsize: "25px",
+            color: { color },
+            left: "50%",
+            transform: "translate3d(-50%, 0, 0)",
+            top: "1%",
+            h: "98%",
+            w: "98%",
+            borderRadius: "100%",
+            backgroundColor: { backgroundColor },
+          }}>
+          <Box
+            pos={"relative"}
+            textAlign="center"
+            top={"30%"}
+            fontSize={"xs"}
+            className="toggleButtonContent">
+            {renderLabel && renderLabel()}
+          </Box>
+        </Box>
+      </Box>
+    </React.Fragment>
+  );
 }
-
-interface IButtonProps {
-  color: string;
-  backgroundColor: string;
-  size: number;
-}
-
-const buttonStyles = css<IButtonProps>`
-  background: ${({ backgroundColor }) => backgroundColor};
-  border-radius: 100%;
-  display: block;
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
-  color: ${({ color }) => color};
-  text-align: center;
-  line-height: ${({ size }) => size}px;
-  transform: translate3d(0, 0, 0);
-  transition: transform ease-out 200ms;
-`;
-
-const Menu = styled.div`
-  position: relative;
-  filter: url("#shadowed-goo1");
-  overflow: visible;
-`;
-
-interface ILabelProps {
-  color: string;
-  backgroundColor: string;
-  htmlFor?: string;
-}
-
-const Label = styled<ILabelProps & IButtonProps, "label">("label").attrs({
-  htmlFor: "gooey-menu-open",
-})`
-  position: relative;
-  ${buttonStyles};
-  transition-duration: 400ms;
-  transform: scale(1, 1) translate3d(0, 0, 0);
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1, 1.1) translate3d(0, 0, 0);
-  }
-  .toggleButtonContent {
-    opacity: 1;
-  }
-  &::before {
-    position: absolute;
-    z-index: 1;
-    transition: all 200ms;
-    opacity: 0;
-    content: "✕";
-    font-size: 25px;
-    color: ${({ color }) => color};
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-    top: 1%;
-    height: 98%;
-    width: 98%;
-    border-radius: 100%;
-    background: ${({ backgroundColor }) => backgroundColor};
-  }
-`;
-
-interface IItemsProps {
-  size: number;
-  spacing: number;
-  itemCount: number;
-}
-
-const Items = styled.div`
-  position: absolute;
-  padding-top: ${(props: IItemsProps) => props.size}px;
-  & > * {
-    margin-top: ${(props: IItemsProps) => props.spacing}px;
-    ${buttonStyles};
-    ${(props: IItemsProps) =>
-      Array.apply(null, Array(props.itemCount)).map(
-        (_: number, i: number) => css`
-          &:nth-child(${i + 1}) {
-            transform: translate3d(
-              0,
-              ${({ size, spacing }) => -(size + spacing) * (i + 1)}px,
-              0
-            );
-          }
-        `
-      )};
-  }
-`;
-
-interface ICheckboxProps {
-  itemCount: number;
-}
-
-const Checkbox = styled.input.attrs({
-  type: "checkbox",
-  name: "gooey-menu-open",
-  id: "gooey-menu-open",
-})`
-  display: none;
-  &:checked {
-    & ~ ${Label} {
-      transition-timing-function: linear;
-      transition-duration: 200ms;
-      transform: scale(0.8, 0.8) translate3d(0, 0, 0);
-      .toggleButtonContent {
-        opacity: 0;
-      }
-      &::before {
-        opacity: 1;
-      }
-    }
-    & ~ ${Items} > * {
-      transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-      ${(props: ICheckboxProps) =>
-        Array.apply(null, Array(props.itemCount)).map(
-          (_: number, i: number) => css`
-            &:nth-child(${i + 1}) {
-              transition-duration: ${300 + 100 * i}ms;
-              transform: translate3d(0, 0, 0);
-              &:hover {
-                transition: transform 400ms;
-                transform: scale(1.1, 1.1);
-              }
-            }
-          `
-        )};
-    }
-  }
-`;
 
 const GooeySVGDefs = () => (
   <svg width={0} height={0}>
@@ -253,5 +123,3 @@ const GooeySVGDefs = () => (
     </defs>
   </svg>
 );
-
-export default GooeyMenu;

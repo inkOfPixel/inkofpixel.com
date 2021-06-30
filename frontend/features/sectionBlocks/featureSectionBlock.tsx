@@ -114,7 +114,6 @@ export function FeatureSectionBlock(preview: boolean) {
           base: 10,
           md: 0,
         }}
-        width={"600px"}
         height={"fit-content"}
         name="blocks"
         blocks={FEAT_BLOCK}

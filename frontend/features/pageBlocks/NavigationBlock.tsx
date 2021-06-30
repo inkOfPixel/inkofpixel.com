@@ -13,15 +13,16 @@ export type NavBlockData = BlockTemplateData<
 >;
 interface NavBlockProps {
   path: string;
+  isOpen: boolean;
 }
 
-export function NavigationBlock({ path }: NavBlockProps) {
+export function NavigationBlock({ path, isOpen }: NavBlockProps) {
   return (
     <Box>
       <Link
-        display={"block"}
+        display={isOpen ? "inline-block" : "block"}
         m={"0px 0px 0px 10px"}
-        p={"12px 10px"}
+        p={isOpen ? "20px 10px" : "12px 10px"}
         letterSpacing={"0.02em"}
         color={"dark"}
         className="link"
@@ -30,7 +31,23 @@ export function NavigationBlock({ path }: NavBlockProps) {
         fontSize={"sm"}
         fontWeight={"subtitle"}
         href={path}
-      >
+        _before={{
+          background: "rgb(22,19,56)",
+          bottom: "-1px",
+          content: "' '",
+          height: "2px",
+          left: "50%",
+          position: "absolute",
+          width: "0%",
+          transition: "all 300ms",
+          transform: "translateX(-50%) translateY(-50%)",
+        }}
+        _hover={{
+          _before: {
+            opacity: "1",
+            w: "100%",
+          },
+        }}>
         <InlineTextarea name="pageName" />
       </Link>
     </Box>
@@ -42,6 +59,7 @@ export const navigationBlock: Block = {
     return (
       <BlocksControls index={index} focusRing={{ offset: 0 }}>
         <NavigationBlock
+          isOpen={true}
           key={data.id}
           imageUrl={data.imageUrl}
           serviceLink={data.serviceLink}
@@ -54,7 +72,7 @@ export const navigationBlock: Block = {
     label: "nav",
     defaultItem: {
       pageName: "Link",
-      path: "/home",
+      path: "/",
     },
     fields: [
       {
