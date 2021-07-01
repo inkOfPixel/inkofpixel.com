@@ -1,5 +1,8 @@
 import React from "react";
-import styled, { keyframes } from "types/styled-components";
+
+export default function Splash() {
+  return <div>SPLASH</div>;
+}
 /*
 interface IProps {
   className?: string;

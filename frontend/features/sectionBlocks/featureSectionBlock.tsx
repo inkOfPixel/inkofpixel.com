@@ -4,6 +4,7 @@ import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
 import React from "react";
 import {
   Block,
+  BlockComponentProps,
   BlocksControls,
   InlineBlocks,
   InlineTextarea,
@@ -14,9 +15,9 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
   "featureSection",
   {
     id: string;
-    title?: string;
-    subtitle?: string;
-    blocks?: FeatureBlockData[];
+    title: Nullable<string>;
+    subtitle: Nullable<string>;
+    blocks: FeatureBlockData[];
   }
 >;
 
@@ -48,8 +49,7 @@ export function FeatureSectionBlock(preview: boolean) {
       w={{
         base: "full",
         xl: "1200px",
-      }}
-    >
+      }}>
       <Flex
         flexDirection={"column"}
         mr={{
@@ -63,16 +63,14 @@ export function FeatureSectionBlock(preview: boolean) {
           base: "auto",
           md: "300px",
           lg: "420px",
-        }}
-      >
+        }}>
         <Box
           fontSize={"5xl"}
           p={0}
           m={0}
           fontWeight={"bold"}
           lineHeight={"hero"}
-          letterSpacing={"0.02em"}
-        >
+          letterSpacing={"0.02em"}>
           <StyledInlineTextarea
             fontSize={"5xl"}
             p={0}
@@ -92,8 +90,7 @@ export function FeatureSectionBlock(preview: boolean) {
           lineHeight={"subtitle"}
           color={"description"}
           letterSpacing={"0.04em"}
-          fontFamily={"Roboto Mono"}
-        >
+          fontFamily={"Roboto Mono"}>
           <StyledInlineTextarea
             fontSize={"sm"}
             p={0}
@@ -122,23 +119,21 @@ export function FeatureSectionBlock(preview: boolean) {
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <FeatureSectionBlock {...data} />
+    </BlocksControls>
+  );
+}
+
 export const featureSectionBlock: Block = {
-  Component: ({ index, data }) => {
-    return (
-      <BlocksControls
-        index={index}
-        focusRing={{ offset: data.id }}
-        insetControls
-      >
-        <FeatureSectionBlock {...data} />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "featureSection",
     defaultItem: {
-      title: "Default title",
-      subtitle: "Default subtitle",
+      title: "Default section title",
+      subtitle: "Default section subtitle",
       blocks: [],
     },
     fields: [],

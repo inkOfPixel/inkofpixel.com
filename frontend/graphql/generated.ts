@@ -51,18 +51,6 @@ export type ComponentBlocksCardInput = {
   projectLink?: Maybe<Scalars['String']>;
 };
 
-export type ComponentBlocksHero = {
-  __typename?: 'ComponentBlocksHero';
-  id: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
-export type ComponentBlocksHeroInput = {
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type ComponentBlocksSingleFeature = {
   __typename?: 'ComponentBlocksSingleFeature';
   id: Scalars['ID'];
@@ -120,13 +108,11 @@ export type ComponentSectionCardSectionInput = {
 export type ComponentSectionHeroSection = {
   __typename?: 'ComponentSectionHeroSection';
   id: Scalars['ID'];
-  sections?: Maybe<Array<Maybe<ComponentBlocksHero>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionHeroSectionInput = {
-  sections?: Maybe<Array<Maybe<ComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
@@ -195,7 +181,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionNavigationName | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Navigation | NavigationConnection | NavigationAggregator | NavigationGroupBy | NavigationConnectionId | NavigationConnectionCreated_At | NavigationConnectionUpdated_At | NavigationConnectionNavigationName | NavigationConnectionLocale | NavigationConnectionPublished_At | CreateNavigationPayload | UpdateNavigationPayload | DeleteNavigationPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -1218,12 +1204,6 @@ export type EditComponentBlocksCardInput = {
   projectLink?: Maybe<Scalars['String']>;
 };
 
-export type EditComponentBlocksHeroInput = {
-  id?: Maybe<Scalars['ID']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type EditComponentBlocksSingleFeatureInput = {
   id?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
@@ -1253,7 +1233,6 @@ export type EditComponentSectionCardSectionInput = {
 
 export type EditComponentSectionHeroSectionInput = {
   id?: Maybe<Scalars['ID']>;
-  sections?: Maybe<Array<Maybe<EditComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
 };
@@ -1377,31 +1356,6 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
-export type GetNavItemsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetNavItemsQuery = (
-  { __typename?: 'Query' }
-  & { navigations?: Maybe<Array<Maybe<(
-    { __typename?: 'Navigation' }
-    & { items?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentMenuLink' }
-      & Pick<ComponentMenuLink, 'linkName'>
-      & { path?: Maybe<(
-        { __typename?: 'Pages' }
-        & Pick<Pages, 'pageName'>
-      )> }
-    ) | (
-      { __typename: 'ComponentMenuPageLink' }
-      & Pick<ComponentMenuPageLink, 'pageLinkName'>
-      & { path?: Maybe<(
-        { __typename?: 'Pages' }
-        & Pick<Pages, 'pageName'>
-      )> }
-    )>>> }
-  )>>> }
-);
-
 export type GetPagesQueryVariables = Exact<{
   where?: Maybe<Scalars['JSON']>;
   locale?: Maybe<Scalars['String']>;
@@ -1427,10 +1381,6 @@ export type GetPagesQuery = (
     ) | (
       { __typename: 'ComponentSectionHeroSection' }
       & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle'>
-      & { hero?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksHero' }
-        & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
-      )>>> }
     ) | (
       { __typename: 'ComponentSectionSingleFeatureSection' }
       & Pick<ComponentSectionSingleFeatureSection, 'id' | 'title' | 'subtitle'>
@@ -1479,28 +1429,6 @@ export type UpdatePageMutation = (
 );
 
 
-export const GetNavItems = `
-    query GetNavItems {
-  navigations {
-    items {
-      ... on ComponentMenuPageLink {
-        pageLinkName
-        __typename
-        path {
-          pageName
-        }
-      }
-      ... on ComponentMenuLink {
-        linkName
-        __typename
-        path {
-          pageName
-        }
-      }
-    }
-  }
-}
-    `;
 export const GetPages = `
     query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
@@ -1531,11 +1459,6 @@ export const GetPages = `
         id
         title
         subtitle
-        hero: sections {
-          id
-          title
-          subtitle
-        }
       }
       ... on ComponentSectionCardSection {
         __typename

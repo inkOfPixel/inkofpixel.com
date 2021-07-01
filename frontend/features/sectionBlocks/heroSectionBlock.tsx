@@ -1,34 +1,27 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import { HERO_BLOCK } from "@features/pageBlocks";
-import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import React from "react";
 import {
   Block,
+  BlockComponentProps,
   BlocksControls,
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockItemProps, SectionBlockTemplateData } from "./types";
+import { SectionBlockTemplateData } from "./types";
 
 export type HeroSectionBlockData = SectionBlockTemplateData<
   "heroSection",
   {
     id: string;
-    title: string;
-    subtitle: string;
-    blocks: HeroBlockData[];
+    title: Nullable<string>;
+    subtitle: Nullable<string>;
   }
 >;
 
 export const StyledInlineBlocks = chakra(InlineBlocks);
+export const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function HeroSectionBlock(preview: boolean) {
-  const itemProps = React.useMemo<BlockItemProps>(() => {
-    return {
-      isPreview: preview,
-    };
-  }, [preview]);
-
+export function HeroSectionBlock() {
   return (
     <Flex
       pb={{
@@ -46,33 +39,7 @@ export function HeroSectionBlock(preview: boolean) {
       m={{
         base: "0 auto",
       }}
-      position={"relative"}
-    >
-      <Flex>
-        <Box
-          fontSize={"xl"}
-          p={0}
-          m={0}
-          fontWeight={"bold"}
-          lineHeight={"hero"}
-          fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-        >
-          <InlineTextarea name="title" />
-        </Box>
-        <Box
-          fontSize={"sm"}
-          p={0}
-          m={0}
-          paddingTop={5}
-          fontWeight={"subtitle"}
-          lineHeight={"subtitle"}
-          fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-        >
-          <InlineTextarea name="subtitle" />
-        </Box>
-      </Flex>
+      position={"relative"}>
       <Flex
         w={{
           base: "full",
@@ -80,36 +47,71 @@ export function HeroSectionBlock(preview: boolean) {
         }}
         p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
         m={"0 auto"}
-        pos={"relative"}
-      >
-        <StyledInlineBlocks
+        pos={"relative"}>
+        <Box
           w={{
             base: "full",
             xl: "1200px",
           }}
-          height={"fit-content"}
-          name="blocks"
-          blocks={HERO_BLOCK}
-          itemProps={itemProps}
-        />
+          height={"fit-content"}>
+          <Flex flexDirection={"column"}>
+            <Box
+              fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
+              m={{ base: 0 }}
+              fontWeight={"bold"}
+              lineHeight={"hero"}
+              fontFamily={"Europa"}
+              letterSpacing={"0.02em"}>
+              <StyledInlineTextarea name="title" />
+            </Box>
+            <Box
+              fontSize={{
+                base: "sm",
+              }}
+              w={{
+                base: "full",
+                sm: "75%",
+                md: "50%",
+              }}
+              p={0}
+              m={0}
+              paddingTop={5}
+              fontWeight={"subtitle"}
+              lineHeight={"subtitle"}
+              fontFamily={"Roboto Mono"}
+              letterSpacing={"0.02em"}>
+              <StyledInlineTextarea
+                w={{
+                  base: "full",
+                  sm: "75%",
+                  md: "50%",
+                }}
+                fontFamily={"Roboto Mono"}
+                name="subtitle"
+              />
+            </Box>
+          </Flex>
+        </Box>
       </Flex>
     </Flex>
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <HeroSectionBlock {...data} />
+    </BlocksControls>
+  );
+}
+
 export const heroSectionBlock: Block = {
-  Component: ({ index, data }) => {
-    return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <HeroSectionBlock {...data} />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "heroSection",
     defaultItem: {
-      title: " ",
-      subtitle: " ",
+      title: "Default title",
+      subtitle: "Default subtitle",
       blocks: [],
     },
     fields: [],

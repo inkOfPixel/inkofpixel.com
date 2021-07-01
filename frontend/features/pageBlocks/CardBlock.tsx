@@ -1,7 +1,8 @@
-import { AspectRatio, Box, Link, Stack, Text } from "@chakra-ui/react";
+import { AspectRatio, Box, Link, Stack } from "@chakra-ui/react";
 import React from "react";
 import {
   Block,
+  BlockComponentProps,
   BlocksControls,
   InlineImage,
   InlineText,
@@ -34,8 +35,7 @@ export function CardBlock({ projectLink }: CardBlockProps) {
       flexDirection={"column"}
       maxWidth="32rem"
       borderWidth={1}
-      margin={2}
-    >
+      margin={2}>
       <AspectRatio ratio={1 / 1}>
         <InlineImage name="imageUrl" parse={(media) => media.id} />
       </AspectRatio>
@@ -43,27 +43,10 @@ export function CardBlock({ projectLink }: CardBlockProps) {
         align={{ base: "center", md: "stretch" }}
         textAlign={{ base: "center", md: "left" }}
         mt={{ base: 4, md: 0 }}
-        ml={{ md: 6 }}
-      >
-        <Text
-          fontWeight="bold"
-          textTransform="uppercase"
-          fontSize="lg"
-          letterSpacing="wide"
-          color="black.600"
-        >
-          <InlineText name="title" />
-        </Text>
-        <Text
-          my={1}
-          display="block"
-          fontSize="md"
-          lineHeight="normal"
-          fontWeight="semibold"
-          href="#"
-        >
-          <InlineText name="description" />
-        </Text>
+        ml={{ md: 6 }}>
+        <InlineText name="title" />
+
+        <InlineText name="description" />
 
         <Link href={projectLink} maxWidth="100px">
           Discover more
@@ -73,14 +56,16 @@ export function CardBlock({ projectLink }: CardBlockProps) {
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <CardBlock {...data} projectLink={data.projectLink} />
+    </BlocksControls>
+  );
+}
+
 export const cardBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
-    return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <CardBlock {...data} projectLink={data.projectLink} />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "card",
     defaultItem: {

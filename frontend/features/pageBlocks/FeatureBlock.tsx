@@ -1,17 +1,22 @@
 import { Box, chakra, Container, Flex, Link } from "@chakra-ui/react";
-import { STRAPI_URL } from "@config/env";
 import React from "react";
-import { Block, BlocksControls, InlineTextarea } from "react-tinacms-inline";
+import {
+  Block,
+  BlockComponentProps,
+  BlocksControls,
+  InlineImage,
+  InlineTextarea,
+} from "react-tinacms-inline";
 import { BlockTemplateData } from "./types";
 
 export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
-    id: string;
-    imageUrl?: Nullable<string>;
-    title: string;
-    description: string;
-    serviceLink?: Nullable<string>;
+    id: Nullable<string>;
+    imageUrl: Nullable<string>;
+    title: Nullable<string>;
+    description: Nullable<string>;
+    serviceLink: Nullable<string>;
   }
 >;
 
@@ -22,7 +27,7 @@ interface FeatureBlockProps {
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
+export function FeatureBlock({ serviceLink }: FeatureBlockProps) {
   return (
     <Container>
       <Box as="div">
@@ -30,21 +35,19 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
           flexDirection="column"
           pb={"60px"}
           m={2.5}
-          boxSizing={"border-box"}
-        >
-          {/* <InlineImage
-            uploadDir={() => "http://localhost:1337"}
+          boxSizing={"border-box"}>
+          <InlineImage
+            uploadDir={() => "http://localhost:1337/upload"}
             name={"imageUrl"}
             parse={(media) => media.filename}
-          /> */}
-          <img width="80px" src={STRAPI_URL + imageUrl}></img>
+          />
+
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
             lineHeight={"hero"}
             letterSpacing={"0.04em"}
-            p={"20px 0px"}
-          >
+            p={"20px 0px"}>
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -52,8 +55,7 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
             letterSpacing={"0.02em"}
-            color={"description"}
-          >
+            color={"description"}>
             <StyledInlineTextarea
               color={"description"}
               width={"600px"}
@@ -72,19 +74,20 @@ export function FeatureBlock({ imageUrl, serviceLink }: FeatureBlockProps) {
 
 export const StyledBlocksControls = chakra(BlocksControls);
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <FeatureBlock
+        imageUrl={data.imageUrl}
+        serviceLink={data.serviceLink}
+        {...data}
+      />
+    </BlocksControls>
+  );
+}
+
 export const featureBlock: Block = {
-  Component: ({ index, data }) => {
-    return (
-      <StyledBlocksControls index={index} focusRing={{ offset: 0 }}>
-        <FeatureBlock
-          key={data.id}
-          imageUrl={data.imageUrl}
-          serviceLink={data.serviceLink}
-          {...data}
-        />
-      </StyledBlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "feat",
     defaultItem: {

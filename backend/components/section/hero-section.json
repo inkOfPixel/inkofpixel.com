@@ -7,11 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "sections": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.hero"
-    },
     "title": {
       "type": "string"
     },

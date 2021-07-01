@@ -1,5 +1,3 @@
-import { BlockData } from "@features/pageBlocks";
-import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import { SectionBlockData } from "@features/sectionBlocks";
 import {
   CreatePage,
@@ -81,18 +79,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sections: section.blocks?.map<HeroBlockData | undefined>(
-                (hero) => {
-                  if (hero != null) {
-                    return {
-                      id: hero.id,
-                      title: hero.title,
-                      subtitle: hero.subtitle,
-                      _template: "ComponentBlocksHero",
-                    };
-                  }
-                }
-              ),
             };
           }
           case "cardSection": {
@@ -179,6 +165,7 @@ function getPageCreatorPlugin(
         name: "locale",
         component: "select",
         description: "Select a locale for this page",
+        defaultValue: "en",
         // @ts-ignore
         options: options.locales,
       },

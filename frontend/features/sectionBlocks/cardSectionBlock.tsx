@@ -2,15 +2,20 @@ import { Box } from "@chakra-ui/react";
 import { CARD_BLOCK } from "@features/pageBlocks";
 import { CardBlockData } from "@features/pageBlocks/CardBlock";
 import React from "react";
-import { Block, BlocksControls, InlineBlocks } from "react-tinacms-inline";
+import {
+  Block,
+  BlockComponentProps,
+  BlocksControls,
+  InlineBlocks,
+} from "react-tinacms-inline";
 import { SectionBlockTemplateData } from "./types";
 
 export type CardSectionBlockData = SectionBlockTemplateData<
   "cardSection",
   {
     id: string;
-    title?: string;
-    subtitle?: string;
+    title: Nullable<string>;
+    subtitle: Nullable<string>;
     blocks?: CardBlockData[];
   }
 >;
@@ -27,14 +32,16 @@ export function CardSectionBlock() {
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <CardSectionBlock {...data} />
+    </BlocksControls>
+  );
+}
+
 export const cardSectionBlock: Block = {
-  Component: ({ index, data, name, ...other }) => {
-    return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <CardSectionBlock {...data} />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "cardSection",
     defaultItem: {

@@ -18,7 +18,7 @@ const breakpoints = createBreakpoints({
 
 const config: ThemeOverride["config"] = {
   // @ts-ignore
-  initialColorMode: "system",
+  initialColorMode: "light",
   useSystemColorMode: true,
 };
 
