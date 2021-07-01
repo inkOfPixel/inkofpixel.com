@@ -1,4 +1,5 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
+import Splash from "@components/Splash";
 import { HERO_BLOCK } from "@features/pageBlocks";
 import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
 import React from "react";
@@ -46,8 +47,7 @@ export function HeroSectionBlock(preview: boolean) {
       m={{
         base: "0 auto",
       }}
-      position={"relative"}
-    >
+      position={"relative"}>
       <Flex>
         <Box
           fontSize={"xl"}
@@ -56,8 +56,7 @@ export function HeroSectionBlock(preview: boolean) {
           fontWeight={"bold"}
           lineHeight={"hero"}
           fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-        >
+          letterSpacing={"0.02em"}>
           <InlineTextarea name="title" />
         </Box>
         <Box
@@ -68,10 +67,10 @@ export function HeroSectionBlock(preview: boolean) {
           fontWeight={"subtitle"}
           lineHeight={"subtitle"}
           fontFamily={"Monospace"}
-          letterSpacing={"0.02em"}
-        >
+          letterSpacing={"0.02em"}>
           <InlineTextarea name="subtitle" />
         </Box>
+        <Splash className="splash01" color="#f8f1ff" size="600px" />
       </Flex>
       <Flex
         w={{
@@ -80,8 +79,7 @@ export function HeroSectionBlock(preview: boolean) {
         }}
         p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
         m={"0 auto"}
-        pos={"relative"}
-      >
+        pos={"relative"}>
         <StyledInlineBlocks
           w={{
             base: "full",

@@ -172,8 +172,12 @@ export function NavigationSectionBlock() {
                 {pageLocale.code}
               </Link>
             ))}*/}
-            <Link>EN</Link>
-            <Link>IT</Link>
+            <Link key="1" onClick={handleOpen}>
+              EN
+            </Link>
+            <Link key="2" onClick={handleOpen}>
+              IT
+            </Link>
           </StyledGooeyMenu>
         </Flex>
       </Box>

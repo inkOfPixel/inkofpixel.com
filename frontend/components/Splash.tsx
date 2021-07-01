@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-/* import styled, { keyframes } from "types/styled-components";
+import styled, { keyframes } from "types/styled-components";
 
 interface IProps {
   className?: string;
@@ -51,7 +51,7 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-function Splash({ children, className, color = "#000", size = "300px" }) {
+function Splash({ className, color = "#000", size = "300px" }) {
   return (
     <Box className={className}>
       <Box
@@ -59,25 +59,26 @@ function Splash({ children, className, color = "#000", size = "300px" }) {
         width={size}
         height={size}
         backgroundColor={color}
-        animation=
         className="content">
-        {children}
+        {Bubble}
       </Box>
     </Box>
   );
 }
 
-const Splash = styled<IProps>(({ children, className }) => (
-  <div className={className}>
-    <div className="content">{children}</div>
-  </div>
-)).attrs({
+const Bubble = styled<IProps>(
+  ({ children, className, color = "#000", size = "300px" }) => (
+    <div className={className}>
+      <div className="content">{children}</div>
+    </div>
+  )
+).attrs({
   speed: () => `${random(5, 12).toFixed(2)}s`,
 })`
   position: relative;
-  width: ${(props: IProps) => props.size};
-  height: ${(props) => props.size};
-  background-color: ${(props) => props.color};
+  width: {size};
+  height: {size};
+  background-color: {color};
   animation: ${() => random(3, 6)}s linear infinite ${bordertl},
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
@@ -89,7 +90,7 @@ const Splash = styled<IProps>(({ children, className }) => (
     justify-content: center;
     width: 100%;
     height: 100%;
-    animation: ${(props) => props.speed} ${rotateInverse} linear infinite;
+    animation: {speed} linear infinite;
   }
 `;
 
@@ -99,4 +100,3 @@ Splash.defaultProps = {
 };
 
 export default Splash;
- */

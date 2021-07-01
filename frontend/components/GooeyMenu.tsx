@@ -1,5 +1,5 @@
 import { Box, Checkbox } from "@chakra-ui/react";
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 
 export default function GooeyMenu({
   color = "#fff",
@@ -28,23 +28,42 @@ export default function GooeyMenu({
         overflow="visible"
         className={className}>
         <Checkbox
+          type={"checkbox"}
+          name={"gooey-menu-open"}
+          id={"gooey-menu-open"}
           display={"none"}
           itemCount={itemCount}
           onChange={handleToggleMenu}
           checked={state}
         />
+
+        {/*Da dare ai bottoni
+          background={backgroundColor}
+          borderRadius={"100%"}
+          display={"block"}
+          width={size}
+          height={size}
+          text-align={"center"}
+          line-height={size}
+          transform={"scale(1,1) translate3d(0, 0, 0)"} -> Questa è la regola che sposta i bottoni
+          transition={"transform ease-out 200ms"}*/}
+
         <Box
           position={"absolute"}
           pt={size}
           mt={spacing}
           itemCount={itemCount}
           color={color}
-          backgroundColor={backgroundColor}></Box>
+          backgroundColor={backgroundColor}>
+          {children}
+        </Box>
         <Box
           as={"label"}
           pos={"relative"}
+          htmlFor="gooey-menu-open"
           color={color}
           backgroundColor={backgroundColor}
+          background={backgroundColor}
           borderRadius={"100%"}
           display={"block"}
           width={size}
