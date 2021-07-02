@@ -97,12 +97,14 @@ export type ComponentSectionCardSection = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksCard>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionCardSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksCardInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionHeroSection = {
@@ -123,12 +125,14 @@ export type ComponentSectionSingleFeatureSection = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeature>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionSingleFeatureSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeatureInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 
@@ -438,7 +442,7 @@ export type NavigationItemsDynamicZone = ComponentMenuLink | ComponentMenuPageLi
 
 export type PageInput = {
   pageName: Scalars['String'];
-  path?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
@@ -453,7 +457,7 @@ export type Pages = {
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   pageName: Scalars['String'];
-  path?: Maybe<Scalars['String']>;
+  path: Scalars['String'];
   sections?: Maybe<Array<Maybe<PagesSectionsDynamicZone>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -1229,6 +1233,7 @@ export type EditComponentSectionCardSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksCardInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentSectionHeroSectionInput = {
@@ -1242,6 +1247,7 @@ export type EditComponentSectionSingleFeatureSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksSingleFeatureInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type EditFileInput = {
@@ -1369,7 +1375,7 @@ export type GetPagesQuery = (
     & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
     & { sections?: Maybe<Array<Maybe<(
       { __typename: 'ComponentSectionCardSection' }
-      & Pick<ComponentSectionCardSection, 'id' | 'title' | 'subtitle'>
+      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
       & { card?: Maybe<Array<Maybe<(
         { __typename?: 'ComponentBlocksCard' }
         & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
@@ -1383,13 +1389,13 @@ export type GetPagesQuery = (
       & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle'>
     ) | (
       { __typename: 'ComponentSectionSingleFeatureSection' }
-      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'title' | 'subtitle'>
+      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
       & { singleFeature?: Maybe<Array<Maybe<(
         { __typename: 'ComponentBlocksSingleFeature' }
         & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
         & { image?: Maybe<(
           { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'url'>
+          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
         )> }
       )>>> }
     )>>> }
@@ -1441,6 +1447,7 @@ export const GetPages = `
       ... on ComponentSectionSingleFeatureSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         singleFeature: sections {
@@ -1450,6 +1457,11 @@ export const GetPages = `
           title
           serviceLink
           image {
+            id
+            name
+            alternativeText
+            width
+            height
             url
           }
         }
@@ -1463,6 +1475,7 @@ export const GetPages = `
       ... on ComponentSectionCardSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         card: sections {

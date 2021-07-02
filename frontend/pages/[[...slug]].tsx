@@ -172,6 +172,7 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
+  console.log("PAGE SECTIONS", JSON.stringify(page?.sections, null, " "));
 
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
@@ -192,6 +193,7 @@ function getPageData(
               id: section.id,
               title: section.title ? section.title : null,
               subtitle: section.subtitle ? section.subtitle : null,
+              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
               blocks: section.singleFeature
                 ? filterListNullableItems(
                     section.singleFeature
@@ -202,7 +204,13 @@ function getPageData(
                       description: feature.description
                         ? feature.description
                         : null,
-                      imageUrl: feature.image ? feature.image.url : null,
+                      imageUrl: {
+                        id: feature.image?.id ? feature.image?.id : null,
+                        url: feature.image?.url ? feature.image.url : null,
+                        altText: feature.image?.alternativeText
+                          ? feature.image.alternativeText
+                          : null,
+                      },
                       serviceLink: feature.serviceLink
                         ? feature.serviceLink
                         : null,
@@ -218,6 +226,7 @@ function getPageData(
               id: section.id,
               title: section.title ? section.title : null,
               subtitle: section.subtitle ? section.subtitle : null,
+              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
               blocks: section.card
                 ? filterListNullableItems(section.card).map<CardBlockData>(
                     (card) => {

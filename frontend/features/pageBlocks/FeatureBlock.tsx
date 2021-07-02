@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { Box, chakra, Container, Flex, Link } from "@chakra-ui/react";
+import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
   Block,
@@ -13,21 +15,27 @@ export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
     id: Nullable<string>;
-    imageUrl: Nullable<string>;
+    imageUrl: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
     serviceLink: Nullable<string>;
   }
 >;
 
+interface FeatureImage {
+  id: Nullable<string>;
+  altText: Nullable<string>;
+  url: Nullable<string>;
+}
+
 interface FeatureBlockProps {
-  imageUrl?: string;
+  imageUrl?: Nullable<FeatureImage>;
   serviceLink?: string;
 }
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function FeatureBlock({ serviceLink }: FeatureBlockProps) {
+export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
   return (
     <Container>
       <Box as="div">
@@ -37,11 +45,19 @@ export function FeatureBlock({ serviceLink }: FeatureBlockProps) {
           m={2.5}
           boxSizing={"border-box"}>
           <InlineImage
-            uploadDir={() => "http://localhost:1337/upload"}
-            name={"imageUrl"}
-            parse={(media) => media.filename}
-          />
-
+            name="imageUrl"
+            previewSrc={(media) => STRAPI_URL + media}
+            parse={(media) => STRAPI_URL + media.id}>
+            {() => (
+              <img
+                width="80px"
+                height="80px"
+                src={STRAPI_URL + imageUrl}
+                alt={"Cover image"}
+              />
+            )}
+          </InlineImage>
+          {console.log("imageurl", STRAPI_URL + imageUrl.url)}
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
@@ -51,6 +67,7 @@ export function FeatureBlock({ serviceLink }: FeatureBlockProps) {
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
+            fontFamily={"Roboto Mono"}
             fontSize={"sm"}
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
@@ -58,7 +75,6 @@ export function FeatureBlock({ serviceLink }: FeatureBlockProps) {
             color={"description"}>
             <StyledInlineTextarea
               color={"description"}
-              width={"600px"}
               height={"auto"}
               name="description"
             />
@@ -100,6 +116,11 @@ export const featureBlock: Block = {
         name: "serviceLink",
         label: "Url",
         component: "text",
+      },
+      {
+        name: "imageUrl",
+        label: "URL",
+        component: "image",
       },
     ],
   },

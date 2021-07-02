@@ -14,6 +14,7 @@ export type CardSectionBlockData = SectionBlockTemplateData<
   "cardSection",
   {
     id: string;
+    sectionTitle: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
     blocks?: CardBlockData[];

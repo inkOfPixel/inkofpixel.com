@@ -87,6 +87,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((card) => {
                 if (card != null) {
                   return {
@@ -106,13 +107,14 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((feature) => {
                 if (feature != null) {
                   return {
                     id: feature.id,
                     title: feature.title,
                     description: feature.description,
-                    imageUrl: feature.imageUrl,
+                    imageUrl: feature.imageUrl ? feature.imageUrl : null,
                     serviceLink: feature.serviceLink,
                   };
                 }

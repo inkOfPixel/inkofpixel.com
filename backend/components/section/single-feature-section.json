@@ -17,6 +17,9 @@
       "type": "component",
       "repeatable": true,
       "component": "blocks.single-feature"
+    },
+    "sectionTitle": {
+      "type": "string"
     }
   }
 }

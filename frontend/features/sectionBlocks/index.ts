@@ -1,9 +1,9 @@
 export * from "./types";
-import { heroSectionBlock, HeroSectionBlockData } from "./heroSectionBlock";
+import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
 import {
   featureSectionBlock,
   FeatureSectionBlockData,
-} from "./featureSectionBlock";
+} from "./FeatureSectionBlock";
 import { cardSectionBlock, CardSectionBlockData } from "./CardSectionBlock";
 
 export const SECTION_PAGE_BLOCKS = {

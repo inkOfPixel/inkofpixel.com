@@ -17,6 +17,9 @@
       "type": "component",
       "repeatable": true,
       "component": "blocks.card"
+    },
+    "sectionTitle": {
+      "type": "string"
     }
   }
 }
