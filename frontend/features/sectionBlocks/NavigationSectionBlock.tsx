@@ -10,7 +10,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { Block, BlocksControls, InlineBlocks } from "react-tinacms-inline";
+import {
+  Block,
+  BlockComponentProps,
+  BlocksControls,
+  InlineBlocks,
+} from "react-tinacms-inline";
 import { NAV_BLOCK } from "@features/pageBlocks";
 import { NavBlockData } from "features/pageBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "./types";
@@ -172,12 +177,9 @@ export function NavigationSectionBlock() {
                 {pageLocale.code}
               </Link>
             ))}*/}
-            <Link key="1" onClick={handleOpen}>
-              EN
-            </Link>
-            <Link key="2" onClick={handleOpen}>
-              IT
-            </Link>
+
+            <Link onClick={handleOpen}>EN</Link>
+            <Link onClick={handleOpen}>IT</Link>
           </StyledGooeyMenu>
         </Flex>
       </Box>
@@ -185,14 +187,15 @@ export function NavigationSectionBlock() {
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <NavigationSectionBlock {...data} />
+    </BlocksControls>
+  );
+}
 export const navigationSectionBlock: Block = {
-  Component: ({ index, data }) => {
-    return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-        <NavigationSectionBlock {...data} />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "navigationSection",
     defaultItem: {

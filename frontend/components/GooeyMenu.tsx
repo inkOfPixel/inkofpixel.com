@@ -54,9 +54,9 @@ export default function GooeyMenu({
           mt={spacing}
           itemCount={itemCount}
           color={color}
-          backgroundColor={backgroundColor}>
-          {children}
-        </Box>
+          backgroundColor={backgroundColor}
+          
+          ></Box>
         <Box
           as={"label"}
           pos={"relative"}

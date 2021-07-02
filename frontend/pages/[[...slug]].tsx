@@ -30,10 +30,6 @@ interface DynamicPageProps {
 }
 
 export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
-  if (pageData == null) {
-    return null;
-  }
-
   const { colorMode } = useColorMode();
 
   const [_, form] = usePagePlugin(pageData);
@@ -43,6 +39,10 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
       isPreview: preview,
     };
   }, [preview]);
+
+  if (pageData == null) {
+    return null;
+  }
 
   return (
     <div>

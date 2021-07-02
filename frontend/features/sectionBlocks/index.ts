@@ -1,10 +1,10 @@
 export * from "./types";
-import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
+import { heroSectionBlock, HeroSectionBlockData } from "./heroSectionBlock";
 import {
   featureSectionBlock,
   FeatureSectionBlockData,
-} from "./FeatureSectionBlock";
-import { cardSectionBlock, CardSectionBlockData } from "./CardSectionBlock";
+} from "./featureSectionBlock";
+import { cardSectionBlock, CardSectionBlockData } from "./cardSectionBlock";
 import {
   navigationSectionBlock,
   NavigationSectionBlockData,
