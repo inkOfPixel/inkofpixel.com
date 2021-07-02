@@ -1,4 +1,6 @@
 import { BlockData } from "@features/pageBlocks";
+import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
+import { SectionBlockData } from "@features/sectionBlocks";
 import {
   CreatePage,
   CreatePageInput,
@@ -14,12 +16,13 @@ import {
   useForm,
   usePlugin,
 } from "tinacms";
+import { assertNever } from "utils";
 
 export interface PageData {
   id: string;
   title?: string;
   path?: string;
-  blocks: BlockData[];
+  sections: SectionBlockData[];
 }
 
 export interface PageDataCreateInput {
@@ -37,8 +40,6 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
-      console.log("Input", getPageInput(values));
-
       try {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
           input,
@@ -72,48 +73,72 @@ function getPageInput(data: PageData): UpdatePageInput {
     data: {
       pageName: data.title,
       path: data.path,
-      blocks: data.blocks.map((block) => {
-        console.log("Blocks", data.blocks);
-
-        switch (block._template) {
-          case "hero": {
+      sections: data.sections.map((section) => {
+        switch (section._template) {
+          case "heroSection": {
             return {
-              __typename: "ComponentBlocksHero",
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
+              __typename: "ComponentSectionHeroSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map<HeroBlockData | undefined>(
+                (hero) => {
+                  if (hero != null) {
+                    return {
+                      id: hero.id,
+                      title: hero.title,
+                      subtitle: hero.subtitle,
+                      _template: "ComponentBlocksHero",
+                    };
+                  }
+                }
+              ),
             };
           }
-          case "card": {
+          case "cardSection": {
             return {
-              __typename: "ComponentBlocksCard",
-              id: block.id,
-              title: block.title,
-              description: block.description,
-              projectLink: block.projectLink,
-              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
+              __typename: "ComponentSectionCardSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map((card) => {
+                if (card != null) {
+                  return {
+                    id: card.id,
+                    title: card.title,
+                    description: card.description,
+                    imageUrl: card.imageUrl,
+                    projectLink: card.projectLink,
+                  };
+                }
+              }),
             };
           }
-          case "feat": {
+          case "featureSection": {
             return {
-              __typename: "ComponentBlocksSingleFeature",
-              id: block.id,
-              title: block.title,
-              description: block.description,
-              serviceLink: block.serviceLink,
-              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
+              __typename: "ComponentSectionSingleFeatureSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sections: section.blocks?.map((feature) => {
+                if (feature != null) {
+                  return {
+                    id: feature.id,
+                    title: feature.title,
+                    description: feature.description,
+                    imageUrl: feature.imageUrl,
+                    serviceLink: feature.serviceLink,
+                  };
+                }
+              }),
             };
           }
           default:
-            return assertNever(block);
+            return assertNever(section);
         }
       }),
     },
   };
-}
-
-function assertNever(x: never): never {
-  throw new Error("Unexpected object: " + x);
 }
 
 interface PageCreatorPluginOptions {
@@ -159,7 +184,6 @@ function getPageCreatorPlugin(
       },
     ],
     onSubmit: async (values, cms) => {
-      console.log(values);
       const input = getPageCreateInput(values);
       try {
         const response = await cms.api.strapi.fetchGraphql(CreatePage, {

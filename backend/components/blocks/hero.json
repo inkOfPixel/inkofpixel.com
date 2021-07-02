@@ -9,7 +9,7 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "subtitle": {
       "type": "text"

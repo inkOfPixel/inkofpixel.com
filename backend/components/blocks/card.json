@@ -8,7 +8,7 @@
   "options": {},
   "attributes": {
     "title": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "description": {
@@ -26,9 +26,7 @@
       "pluginOptions": {}
     },
     "projectLink": {
-      "type": "component",
-      "repeatable": false,
-      "component": "menu.page-link"
+      "type": "string"
     }
   }
 }

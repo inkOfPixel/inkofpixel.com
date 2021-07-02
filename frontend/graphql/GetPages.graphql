@@ -1,43 +1,52 @@
 query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
     id
-    locale
-    created_at
-    updated_at
-    pageName
     path
-    blocks {
-      __typename
-      ... on ComponentBlocksCard {
-        id
-        title
-        description
-        image {
-          url
-        }
-        projectLink {
-          path {
-            path
-          }
-        }
-      }
-      ... on ComponentBlocksSingleFeature {
-        id
-        title
-        description
-        image {
-          url
-        }
-        serviceLink {
-          path {
-            path
-          }
-        }
-      }
-      ... on ComponentBlocksHero {
+    pageName
+    locale
+    __typename
+    sections {
+      ... on ComponentSectionSingleFeatureSection {
+        __typename
         id
         title
         subtitle
+        singleFeature: sections {
+          __typename
+          id
+          description
+          title
+          serviceLink
+          image {
+            url
+          }
+        }
+      }
+      ... on ComponentSectionHeroSection {
+        __typename
+        id
+        title
+        subtitle
+        hero: sections {
+          id
+          title
+          subtitle
+        }
+      }
+      ... on ComponentSectionCardSection {
+        __typename
+        id
+        title
+        subtitle
+        card: sections {
+          id
+          title
+          description
+          image {
+            url
+          }
+          projectLink
+        }
       }
     }
   }

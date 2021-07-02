@@ -7,11 +7,18 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { BlockData, BlockItemProps, PAGE_BLOCKS } from "@features/pageBlocks";
 import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
-import { STRAPI_URL } from "@config/env";
+import {
+  BlockItemProps,
+  SectionBlockData,
+  SECTION_PAGE_BLOCKS,
+} from "@features/sectionBlocks";
+import { assertNever } from "utils";
+import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
+import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
+import { CardBlockData } from "@features/pageBlocks/CardBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -40,22 +47,20 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
     <div>
       <DefaultLayout title="InkOfPixel">
         <InlineForm form={form}>
-          <StyledComponent
-            color={colorMode == "light" ? "black" : "white"}
-            name="blocks"
-            blocks={PAGE_BLOCKS}
+          <StyledInlineBlocks
+            color={colorMode == "light" ? "dark" : "white"}
+            name="sections"
             itemProps={itemProps}
+            blocks={SECTION_PAGE_BLOCKS}
           />
           {/* <CardBlock /> */}
         </InlineForm>
-
-        <p>SLUG</p>
       </DefaultLayout>
     </div>
   );
 }
 
-const StyledComponent = chakra(InlineBlocks);
+const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   // Get all pages from Strapi
@@ -83,14 +88,11 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     // Decompose the slug that was saved in Strapi
     const pagePath = page.path?.replace(/^\/+/, "") || "";
     const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
-    console.log("Slug array", slugArray);
-
     return {
       params: { slug: slugArray },
       locale: page.locale!,
     };
   });
-  console.log("Paths", paths);
 
   return { paths, fallback: true };
 };
@@ -117,9 +119,6 @@ export const getStaticProps: GetStaticProps<
     GetPages,
     {
       locale,
-      where: {
-        path,
-      },
     }
   );
 
@@ -129,15 +128,23 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  const pageData = getPageData(localePages.pages, locale);
+  const availablePages = await fetchGraphQL<
+    GetPagesQuery,
+    GetPagesQueryVariables
+  >(GetPages, {
+    locale,
+    where: {
+      path,
+    },
+  });
+
+  const pageData = getPageData(availablePages.pages, locale);
 
   if (pageData == null) {
     return {
       notFound: true,
     };
   }
-
-  console.log("Page data", pageData);
 
   if (preview) {
     return {
@@ -166,48 +173,83 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
+
   if (page) {
-    const blocks =
-      page.blocks?.map<BlockData | null>((section) => {
+    const sections =
+      page.sections?.map<SectionBlockData | null>((section) => {
         if (section == null) {
           return null;
         }
         switch (section.__typename) {
-          case "ComponentBlocksHero": {
+          case "ComponentSectionHeroSection": {
             return {
-              _template: "hero",
+              _template: "heroSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              blocks: section.hero?.map<HeroBlockData | undefined>((hero) => {
+                if (hero != null) {
+                  return {
+                    id: hero.id,
+                    title: hero.title,
+                    subtitle: hero.subtitle,
+                    _template: "ComponentBlocksHero",
+                  };
+                }
+              }),
             };
           }
-          case "ComponentBlocksCard": {
+          case "ComponentSectionSingleFeatureSection": {
             return {
-              _template: "card",
+              _template: "featureSection",
               id: section.id,
               title: section.title,
-              description: section.description,
-              imageUrl: STRAPI_URL + section.image?.url,
-              projectLink: section.projectLink?.path?.path,
+              subtitle: section.subtitle,
+              blocks: section.singleFeature?.map<FeatureBlockData | undefined>(
+                (feature) => {
+                  if (feature != null) {
+                    return {
+                      id: feature.id,
+                      title: feature.title,
+                      description: feature.description,
+                      imageUrl: feature.image?.url ? feature.image.url : null,
+                      serviceLink: feature.serviceLink,
+                      _template: "ComponentBlocksSingleFeature",
+                    };
+                  }
+                }
+              ),
             };
           }
-          case "ComponentBlocksSingleFeature": {
+          case "ComponentSectionCardSection": {
             return {
-              _template: "feat",
+              _template: "cardSection",
               id: section.id,
               title: section.title,
-              description: section.description,
-              imageUrl: STRAPI_URL + section.image?.url,
-              serviceLink: section.serviceLink,
+              subtitle: section.subtitle,
+              blocks: section.card?.map<CardBlockData | undefined>((card) => {
+                if (card != null) {
+                  return {
+                    id: card.id,
+                    title: card.title,
+                    description: card.description,
+                    imageUrl: card.image?.url ? card.image.url : null,
+                    projectLink: card.projectLink,
+                    _template: "ComponentBlocksCard",
+                  };
+                }
+              }),
             };
           }
           default:
-            return null;
+            return assertNever(section);
         }
       }) || [];
+
     return {
       id: page.id,
-      blocks: filterListNullableItems(blocks),
+      title: page.pageName,
+      sections: filterListNullableItems(sections),
       path: page.path ? page.path : undefined,
     };
   }

@@ -1,0 +1,19 @@
+@media (max-width: 1000px) {
+  .card-list a:nth-child(3) {
+    display: block;
+  }
+  .card-list a {
+    width: calc(50% - 30px);
+    margin: 15px;
+  }
+}
+
+@media (max-width: 760px) {
+  .card-list a:nth-child(3) {
+    display: block;
+  }
+  .card-list a {
+    width: 90%;
+    margin: 15px auto;
+  }
+}

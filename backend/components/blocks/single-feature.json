@@ -26,9 +26,7 @@
       "pluginOptions": {}
     },
     "serviceLink": {
-      "type": "component",
-      "repeatable": true,
-      "component": "menu.page-link"
+      "type": "string"
     }
   }
 }
