@@ -16,7 +16,7 @@ export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
     id: Nullable<string>;
-    imageUrl: Nullable<FeatureImage>;
+    image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
     serviceLink: Nullable<string>;
@@ -24,19 +24,19 @@ export type FeatureBlockData = BlockTemplateData<
 >;
 
 interface FeatureImage {
-  id: Nullable<string>;
+  id: string;
   altText: Nullable<string>;
-  url: Nullable<string>;
+  url: string;
 }
 
 interface FeatureBlockProps {
-  imageUrl?: Nullable<FeatureImage>;
+  image?: Nullable<FeatureImage>;
   serviceLink?: string;
 }
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
+export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
   const cms = useCMS();
   return (
     <Container maxWidth={"full"}>
@@ -45,34 +45,46 @@ export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
           flexDirection="column"
           pb={"60px"}
           m={2.5}
-          boxSizing={"border-box"}>
+          boxSizing={"border-box"}
+        >
           <InlineImage
             name="imageUrl"
             uploadDir={() => "/"}
-            previewSrc={(fieldValue) => cms.media.previewSrc(fieldValue)}
-            parse={(media) => STRAPI_URL + media.id}>
-            {() => (
-              <Box w={"100px"} h={"100px"}>
-                <Img
-                  width="80px"
-                  height="80px"
-                  src={
-                    imageUrl?.url
-                      ? STRAPI_URL + imageUrl.url
-                      : "/defaultImage.png"
-                  }
-                  alt={"Cover image"}
-                />
-              </Box>
-            )}
+            previewSrc={(imageSrc) => {
+              if (imageSrc === "") {
+                return "/images/default-image.png";
+              }
+              // console.log({ fieldValue: imageSrc });
+              // const previewSrc = cms.media.previewSrc(imageSrc);
+              // return previewSrc;
+              return imageSrc;
+            }}
+            parse={(media) => {
+              // console.log("PARSE", { media });
+              return media.previewSrc || "/images/default-image.png";
+            }}
+          >
+            {(imageProps) => {
+              console.log("ImageProps", imageProps);
+              return (
+                <Box w="100px" h="100px">
+                  <Img
+                    width="80px"
+                    height="80px"
+                    src={imageProps.src}
+                    alt={"Cover image"}
+                  />
+                </Box>
+              );
+            }}
           </InlineImage>
-          {console.log("imageurl", imageUrl?.url)}
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
             lineHeight={"hero"}
             letterSpacing={"0.04em"}
-            p={"20px 0px"}>
+            p={"20px 0px"}
+          >
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -81,7 +93,8 @@ export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
             letterSpacing={"0.02em"}
-            color={"description"}>
+            color={"description"}
+          >
             <StyledInlineTextarea
               color={"description"}
               height={"auto"}
@@ -101,7 +114,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <FeatureBlock
-        imageUrl={data.imageUrl}
+        image={data.imageUrl}
         serviceLink={data.serviceLink}
         {...data}
       />

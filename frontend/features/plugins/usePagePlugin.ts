@@ -109,21 +109,20 @@ function getPageInput(data: PageData): UpdatePageInput {
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((feature) => {
-                if (feature != null) {
-                  return {
-                    id: feature.id,
-                    title: feature.title,
-                    description: feature.description,
-                    image: feature.imageUrl
-                      ? {
-                          id: feature.imageUrl.id,
-                          altText: feature.imageUrl.altText || null,
-                          url: feature.imageUrl.url,
-                        }
-                      : null,
-                    serviceLink: feature.serviceLink,
-                  };
-                }
+                console.log("FEATURE WHILE SAVING", feature);
+                return {
+                  id: feature.id,
+                  title: feature.title,
+                  description: feature.description,
+                  image: feature.image
+                    ? {
+                        id: feature.image.id,
+                        altText: feature.image.altText || null,
+                        url: feature.image.url,
+                      }
+                    : null,
+                  serviceLink: feature.serviceLink,
+                };
               }),
             };
           }

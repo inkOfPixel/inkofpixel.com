@@ -52,7 +52,6 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
             itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
           />
-          {/* <CardBlock /> */}
         </InlineForm>
       </DefaultLayout>
     </div>
@@ -203,13 +202,14 @@ function getPageData(
                       description: feature.description
                         ? feature.description
                         : null,
-                      imageUrl: {
-                        id: feature.image?.id ? feature.image?.id : null,
-                        url: feature.image?.url ? feature.image.url : null,
-                        altText: feature.image?.alternativeText
-                          ? feature.image.alternativeText
-                          : null,
-                      },
+                      image:
+                        feature.image == null
+                          ? null
+                          : {
+                              id: feature.image.id,
+                              url: feature.image.url,
+                              altText: feature.image.alternativeText || null,
+                            },
                       serviceLink: feature.serviceLink
                         ? feature.serviceLink
                         : null,
