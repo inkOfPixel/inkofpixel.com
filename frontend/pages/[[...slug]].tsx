@@ -14,10 +14,10 @@ import {
   BlockItemProps,
   SectionBlockData,
   SECTION_PAGE_BLOCKS,
-} from "@features/sectionBlocks";
+} from "@features/pageBlocks";
 import { assertNever } from "utils";
-import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
-import { CardBlockData } from "@features/pageBlocks/CardBlock";
+import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 
 interface DynamicPageProps {
   path: string[];

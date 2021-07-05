@@ -1,4 +1,4 @@
-import { SectionBlockData } from "@features/sectionBlocks";
+import { SectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
