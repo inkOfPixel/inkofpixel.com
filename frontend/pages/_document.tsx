@@ -17,6 +17,7 @@ export default class Document extends NextDocument {
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
             rel="stylesheet"
           />
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
 
         <body style={{ overflowX: "hidden" }}>

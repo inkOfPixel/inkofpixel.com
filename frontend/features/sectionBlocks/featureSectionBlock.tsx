@@ -87,7 +87,7 @@ export function FeatureSectionBlock(preview: boolean) {
           flexBasis={{
             base: "auto",
             md: "300px",
-            lg: "420px",
+            lg: "400px",
           }}>
           <Box
             fontSize={"5xl"}
@@ -110,6 +110,7 @@ export function FeatureSectionBlock(preview: boolean) {
             fontSize={"sm"}
             pt={5}
             m={0}
+            w={"full"}
             paddingTop={5}
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
@@ -158,6 +159,7 @@ export const featureSectionBlock: Block = {
   template: {
     label: "featureSection",
     defaultItem: {
+      sectionTitle: "Services",
       title: "Default section title",
       subtitle: "Default section subtitle",
       blocks: [],

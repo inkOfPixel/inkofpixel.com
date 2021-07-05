@@ -114,7 +114,13 @@ function getPageInput(data: PageData): UpdatePageInput {
                     id: feature.id,
                     title: feature.title,
                     description: feature.description,
-                    imageUrl: feature.imageUrl ? feature.imageUrl : null,
+                    image: feature.imageUrl
+                      ? {
+                          id: feature.imageUrl.id,
+                          altText: feature.imageUrl.altText || null,
+                          url: feature.imageUrl.url,
+                        }
+                      : null,
                     serviceLink: feature.serviceLink,
                   };
                 }

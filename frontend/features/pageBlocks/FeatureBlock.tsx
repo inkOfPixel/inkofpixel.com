@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Box, chakra, Container, Flex, Link } from "@chakra-ui/react";
+import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -9,6 +9,7 @@ import {
   InlineImage,
   InlineTextarea,
 } from "react-tinacms-inline";
+import { useCMS } from "tinacms";
 import { BlockTemplateData } from "./types";
 
 export type FeatureBlockData = BlockTemplateData<
@@ -36,8 +37,9 @@ interface FeatureBlockProps {
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
+  const cms = useCMS();
   return (
-    <Container>
+    <Container maxWidth={"full"}>
       <Box as="div">
         <Flex
           flexDirection="column"
@@ -46,18 +48,25 @@ export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
           boxSizing={"border-box"}>
           <InlineImage
             name="imageUrl"
-            previewSrc={(media) => STRAPI_URL + media}
+            uploadDir={() => "/"}
+            previewSrc={(fieldValue) => cms.media.previewSrc(fieldValue.id)}
             parse={(media) => STRAPI_URL + media.id}>
             {() => (
-              <img
-                width="80px"
-                height="80px"
-                src={STRAPI_URL + imageUrl}
-                alt={"Cover image"}
-              />
+              <Box w={"100px"} h={"100px"}>
+                <Img
+                  width="80px"
+                  height="80px"
+                  src={
+                    imageUrl?.url
+                      ? STRAPI_URL + imageUrl.url
+                      : "/defaultImage.png"
+                  }
+                  alt={"Cover image"}
+                />
+              </Box>
             )}
           </InlineImage>
-          {console.log("imageurl", STRAPI_URL + imageUrl.url)}
+          {console.log("imageurl", imageUrl?.url)}
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
@@ -88,8 +97,6 @@ export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
   );
 }
 
-export const StyledBlocksControls = chakra(BlocksControls);
-
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
@@ -109,18 +116,25 @@ export const featureBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      serviceLink: "Default link",
+      serviceLink: "/",
+      imageUrl: {
+        id: "0",
+        altText: "Default",
+        src: "/defaultImage.png",
+      },
     },
     fields: [
       {
         name: "serviceLink",
         label: "Url",
         component: "text",
+        defaultValue: "/",
       },
       {
         name: "imageUrl",
         label: "URL",
         component: "image",
+        defaultValue: "/defaultImage.png",
       },
     ],
   },

@@ -172,7 +172,6 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
-  console.log("PAGE SECTIONS", JSON.stringify(page?.sections, null, " "));
 
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
