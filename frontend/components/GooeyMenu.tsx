@@ -54,9 +54,7 @@ export default function GooeyMenu({
           mt={spacing}
           itemCount={itemCount}
           color={color}
-          backgroundColor={backgroundColor}
-          
-          ></Box>
+          backgroundColor={backgroundColor}></Box>
         <Box
           as={"label"}
           pos={"relative"}
@@ -92,15 +90,17 @@ export default function GooeyMenu({
             w: "98%",
             borderRadius: "100%",
             backgroundColor: { backgroundColor },
+          }}
+          _first={{
+            color: "red",
+            transform: "translate3d(-50%, 0, 0)",
           }}>
           <Box
             pos={"relative"}
             textAlign="center"
             top={"30%"}
             fontSize={"xs"}
-            className="toggleButtonContent">
-            {renderLabel && renderLabel()}
-          </Box>
+            className="toggleButtonContent"></Box>
         </Box>
       </Box>
     </React.Fragment>
