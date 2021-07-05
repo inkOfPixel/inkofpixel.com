@@ -49,7 +49,7 @@ export function FeatureBlock({ serviceLink, imageUrl }: FeatureBlockProps) {
           <InlineImage
             name="imageUrl"
             uploadDir={() => "/"}
-            previewSrc={(fieldValue) => cms.media.previewSrc(fieldValue.id)}
+            previewSrc={(fieldValue) => cms.media.previewSrc(fieldValue)}
             parse={(media) => STRAPI_URL + media.id}>
             {() => (
               <Box w={"100px"} h={"100px"}>
