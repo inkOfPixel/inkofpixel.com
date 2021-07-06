@@ -1,13 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, chakra, Flex } from "@chakra-ui/react";
 import React from "react";
 import styled, { keyframes } from "types/styled-components";
-
-interface IProps {
-  className?: string;
-  speed?: string;
-  size?: string;
-  color?: string;
-}
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -16,11 +9,6 @@ const random = (min: number, max: number): number => {
 const rotate = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-`;
-
-const rotateInverse = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
 `;
 
 const bordertl = keyframes`
@@ -51,47 +39,46 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-function Splash({ className, color = "#000", size = "300px" }) {
-  return (
-    <Box className={className}>
-      <Box
-        pos="relative"
-        width={size}
-        height={size}
-        backgroundColor={color}
-        className="content">
-        {Bubble}
-      </Box>
-    </Box>
-  );
+function Splash() {
+  return <Bubble2></Bubble2>;
 }
 
-const Bubble = styled<IProps>(
-  ({ children, className, color = "#000", size = "300px" }) => (
-    <div className={className}>
-      <div className="content">{children}</div>
-    </div>
-  )
-).attrs({
+const Bubble2 = chakra(({ className, children }: any) => {
+  return (
+    <Box
+      className={className}
+      pos="relative"
+      w="500px"
+      h="500px"
+      backgroundColor="red.100"
+      animation="2s linear infinite {bordertl}">
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        w="full"
+        h="full"
+        animation="3s linear infinite">
+        {children}
+      </Flex>
+    </Box>
+  );
+});
+
+const Bubble = styled(({}) => (
+  <div className={"className"}>
+    <div className="content">{"children"}</div>
+  </div>
+)).attrs({
   speed: () => `${random(5, 12).toFixed(2)}s`,
 })`
   position: relative;
-  width: {size};
-  height: {size};
+  
   background-color: {color};
   animation: ${() => random(3, 6)}s linear infinite ${bordertl},
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
     ${() => random(3, 6)}s linear infinite ${borderbr},
     ${random(5, 12).toFixed(2)}s linear infinite ${rotate};
-  & > .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    animation: {speed} linear infinite;
-  }
 `;
 
 Splash.defaultProps = {

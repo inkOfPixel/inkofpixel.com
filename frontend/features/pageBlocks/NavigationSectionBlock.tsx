@@ -16,8 +16,8 @@ import {
   BlocksControls,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { NAV_BLOCK } from "@features/pageBlocks";
-import { NavBlockData } from "features/pageBlocks/NavigationBlock";
+import { NAV_BLOCK } from "@features/sectionBlocks";
+import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "./types";
 import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
@@ -34,19 +34,18 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
 >;
 
 const StyledMenu = chakra(Menu);
+const StyledInlineBlocks = chakra(InlineBlocks);
+const StyledGooeyMenu = chakra(GooeyMenu);
 
 export function NavigationSectionBlock() {
   const cms = useCMS();
 
-  const StyledInlineBlocks = chakra(InlineBlocks);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [open, setOpen] = useState(false);
 
   function handleOpen() {
     setOpen(!open);
   }
-
-  const StyledGooeyMenu = chakra(GooeyMenu);
 
   return (
     <Flex as={"header"} w={"full"} zIndex={"100"} h={"160px"}>

@@ -1,5 +1,4 @@
-import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
-import { SectionBlockData } from "@features/sectionBlocks";
+import { SectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
@@ -80,18 +79,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sections: section.blocks?.map<HeroBlockData | undefined>(
-                (hero) => {
-                  if (hero != null) {
-                    return {
-                      id: hero.id,
-                      title: hero.title,
-                      subtitle: hero.subtitle,
-                      _template: "ComponentBlocksHero",
-                    };
-                  }
-                }
-              ),
             };
           }
           case "cardSection": {
@@ -100,6 +87,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((card) => {
                 if (card != null) {
                   return {
@@ -119,16 +107,22 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((feature) => {
-                if (feature != null) {
-                  return {
-                    id: feature.id,
-                    title: feature.title,
-                    description: feature.description,
-                    imageUrl: feature.imageUrl,
-                    serviceLink: feature.serviceLink,
-                  };
-                }
+                console.log("FEATURE WHILE SAVING", feature);
+                return {
+                  id: feature.id,
+                  title: feature.title,
+                  description: feature.description,
+                  image: feature.image
+                    ? {
+                        id: feature.image.id,
+                        altText: feature.image.altText || null,
+                        url: feature.image.url,
+                      }
+                    : null,
+                  serviceLink: feature.serviceLink,
+                };
               }),
             };
           }

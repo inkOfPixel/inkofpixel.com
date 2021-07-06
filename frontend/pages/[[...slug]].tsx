@@ -14,12 +14,11 @@ import {
   BlockItemProps,
   SectionBlockData,
   SECTION_PAGE_BLOCKS,
-} from "@features/sectionBlocks";
+} from "@features/pageBlocks";
 import { assertNever } from "utils";
-import { HeroBlockData } from "@features/pageBlocks/HeroBlock";
-import { FeatureBlockData } from "@features/pageBlocks/FeatureBlock";
-import { CardBlockData } from "@features/pageBlocks/CardBlock";
-import { NavBlockData } from "@features/pageBlocks/NavigationBlock";
+import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -185,76 +184,83 @@ function getPageData(
             return {
               _template: "heroSection",
               id: section.id,
-              title: section.title,
-              subtitle: section.subtitle,
-              blocks: section.hero?.map<HeroBlockData | undefined>((hero) => {
-                if (hero != null) {
-                  return {
-                    id: hero.id,
-                    title: hero.title,
-                    subtitle: hero.subtitle,
-                    _template: "ComponentBlocksHero",
-                  };
-                }
-              }),
+              title: section.title ? section.title : null,
+              subtitle: section.subtitle ? section.subtitle : null,
             };
           }
           case "ComponentSectionSingleFeatureSection": {
             return {
               _template: "featureSection",
               id: section.id,
-              title: section.title,
-              subtitle: section.subtitle,
-              blocks: section.singleFeature?.map<FeatureBlockData | undefined>(
-                (feature) => {
-                  if (feature != null) {
+              title: section.title ? section.title : null,
+              subtitle: section.subtitle ? section.subtitle : null,
+              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
+              blocks: section.singleFeature
+                ? filterListNullableItems(
+                    section.singleFeature
+                  ).map<FeatureBlockData>((feature) => {
                     return {
-                      id: feature.id,
-                      title: feature.title,
-                      description: feature.description,
-                      imageUrl: feature.image?.url ? feature.image.url : null,
-                      serviceLink: feature.serviceLink,
+                      id: feature.id ? feature.id : null,
+                      title: feature.title ? feature.title : null,
+                      description: feature.description
+                        ? feature.description
+                        : null,
+                      image:
+                        feature.image == null
+                          ? null
+                          : {
+                              id: feature.image.id,
+                              url: feature.image.url,
+                              altText: feature.image.alternativeText || null,
+                            },
+                      serviceLink: feature.serviceLink
+                        ? feature.serviceLink
+                        : null,
                       _template: "ComponentBlocksSingleFeature",
                     };
-                  }
-                }
-              ),
+                  })
+                : [],
             };
           }
           case "ComponentSectionCardSection": {
             return {
               _template: "cardSection",
               id: section.id,
-              title: section.title,
-              subtitle: section.subtitle,
-              blocks: section.card?.map<CardBlockData | undefined>((card) => {
-                if (card != null) {
-                  return {
-                    id: card.id,
-                    title: card.title,
-                    description: card.description,
-                    imageUrl: card.image?.url,
-                    projectLink: card.projectLink,
-                    _template: "ComponentBlocksCard",
-                  };
-                }
-              }),
+              title: section.title ? section.title : null,
+              subtitle: section.subtitle ? section.subtitle : null,
+              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
+              blocks: section.card
+                ? filterListNullableItems(section.card).map<CardBlockData>(
+                    (card) => {
+                      return {
+                        id: card.id,
+                        title: card.title,
+                        description: card.description,
+                        imageUrl: card.image?.url,
+                        projectLink: card.projectLink ? card.projectLink : null,
+                        _template: "ComponentBlocksCard",
+                      };
+                    }
+                  )
+                : [],
             };
           }
           case "ComponentSectionNavigationSection": {
             return {
               _template: "navigationSection",
               id: section.id,
-              blocks: section.nav?.map<NavBlockData | undefined>((nav) => {
-                if (nav != null) {
-                  return {
-                    id: nav.id,
-                    pageName: nav.pageName,
-                    path: nav.path,
-                    _template: "ComponentBlocksNavigation",
-                  };
-                }
-              }),
+              blocks: section.nav
+                ? filterListNullableItems(section.nav).map<NavBlockData>(
+                    (nav) => {
+                      return {
+                        id: nav.id,
+                        pageName: nav.pageName ? nav.pageName : null,
+                        path: nav.path ? nav.path : null,
+                        _template: "ComponentBlocksNavigation",
+                      };
+                    }
+                  )
+                : [],
             };
           }
           default:

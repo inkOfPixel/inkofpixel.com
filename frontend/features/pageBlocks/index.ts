@@ -1,28 +1,25 @@
 export * from "./types";
+import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
+import {
+  featureSectionBlock,
+  FeatureSectionBlockData,
+} from "./FeatureSectionBlock";
+import { cardSectionBlock, CardSectionBlockData } from "./CardSectionBlock";
+import {
+  navigationSectionBlock,
+  NavigationSectionBlockData,
+} from "./NavigationSectionBlock";
 
-import { cardBlock, CardBlockData } from "./CardBlock";
-import { featureBlock, FeatureBlockData } from "./FeatureBlock";
-import { heroBlock, HeroBlockData } from "./HeroBlock";
-import { NavBlockData, navigationBlock } from "./NavigationBlock";
-
-export const HERO_BLOCK = {
-  ComponentBlocksHero: heroBlock,
+export const SECTION_PAGE_BLOCKS = {
+  /** We will define blocks here later */
+  heroSection: heroSectionBlock,
+  featureSection: featureSectionBlock,
+  cardSection: cardSectionBlock,
+  navigationSection: navigationSectionBlock,
 };
 
-export const FEAT_BLOCK = {
-  ComponentBlocksSingleFeature: featureBlock,
-};
-
-export const CARD_BLOCK = {
-  ComponentBlocksCard: cardBlock,
-};
-
-export const NAV_BLOCK = {
-  ComponentBlocksNavigation: navigationBlock,
-};
-
-export type BlockData =
-  | HeroBlockData
-  | CardBlockData
-  | FeatureBlockData
-  | NavBlockData;
+export type SectionBlockData =
+  | HeroSectionBlockData
+  | FeatureSectionBlockData
+  | CardSectionBlockData
+  | NavigationSectionBlockData;

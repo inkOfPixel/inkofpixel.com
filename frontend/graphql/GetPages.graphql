@@ -9,6 +9,7 @@ query GetPages($where: JSON, $locale: String) {
       ... on ComponentSectionSingleFeatureSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         singleFeature: sections {
@@ -18,6 +19,11 @@ query GetPages($where: JSON, $locale: String) {
           title
           serviceLink
           image {
+            id
+            name
+            alternativeText
+            width
+            height
             url
           }
         }
@@ -27,19 +33,16 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
-        hero: sections {
-          id
-          title
-          subtitle
-        }
       }
       ... on ComponentSectionCardSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         card: sections {
           id
+
           title
           description
           image {

@@ -1,7 +1,12 @@
 import { Box, Link } from "@chakra-ui/react";
-import { BlockTemplateData } from "@features/pageBlocks";
+import { BlockTemplateData } from "@features/sectionBlocks";
 import React from "react";
-import { Block, BlocksControls, InlineTextarea } from "react-tinacms-inline";
+import {
+  Block,
+  BlockComponentProps,
+  BlocksControls,
+  InlineTextarea,
+} from "react-tinacms-inline";
 
 export type NavBlockData = BlockTemplateData<
   "ComponentBlocksNavigation",
@@ -54,20 +59,16 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
   );
 }
 
+function BlockComponent({ index, data }: BlockComponentProps) {
+  return (
+    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+      <NavigationBlock image={data.image} {...data} />
+    </BlocksControls>
+  );
+}
+
 export const navigationBlock: Block = {
-  Component: ({ index, data }) => {
-    return (
-      <BlocksControls index={index} focusRing={{ offset: 0 }}>
-        <NavigationBlock
-          isOpen={true}
-          key={data.id}
-          imageUrl={data.imageUrl}
-          serviceLink={data.serviceLink}
-          {...data}
-        />
-      </BlocksControls>
-    );
-  },
+  Component: BlockComponent,
   template: {
     label: "nav",
     defaultItem: {
@@ -78,6 +79,11 @@ export const navigationBlock: Block = {
       {
         name: "path",
         label: "Url",
+        component: "text",
+      },
+      {
+        name: "pageName",
+        label: "Page",
         component: "text",
       },
     ],

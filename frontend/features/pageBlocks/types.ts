@@ -1,4 +1,4 @@
-export type BlockTemplateData<TemplateName, Type> = {
+export type SectionBlockTemplateData<TemplateName, Type> = {
   _template: TemplateName;
 } & Type;
 

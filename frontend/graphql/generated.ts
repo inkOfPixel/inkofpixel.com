@@ -119,12 +119,14 @@ export type ComponentSectionCardSection = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksCard>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionCardSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksCardInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionHeroSection = {
@@ -157,12 +159,14 @@ export type ComponentSectionSingleFeatureSection = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeature>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionSingleFeatureSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeatureInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 
@@ -1113,6 +1117,7 @@ export type EditComponentSectionCardSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksCardInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentSectionHeroSectionInput = {
@@ -1132,6 +1137,7 @@ export type EditComponentSectionSingleFeatureSectionInput = {
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksSingleFeatureInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
 };
 
 export type EditFileInput = {
@@ -1226,6 +1232,53 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type GetPagesQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetPagesQuery = (
+  { __typename?: 'Query' }
+  & { pages?: Maybe<Array<Maybe<(
+    { __typename: 'Pages' }
+    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename: 'ComponentSectionCardSection' }
+      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
+      & { card?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksCard' }
+        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'url'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionHeroSection' }
+      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle'>
+    ) | (
+      { __typename: 'ComponentSectionSingleFeatureSection' }
+      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
+      & { singleFeature?: Maybe<Array<Maybe<(
+        { __typename: 'ComponentBlocksSingleFeature' }
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionNavigationSection' }
+      & Pick<ComponentSectionNavigationSection, 'id'>
+      & { nav?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksNavigationBlock' }
+        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
+      )>>> }
+    )>>> }
+  )>>> }
+);
+
 export type CreatePageMutationVariables = Exact<{
   input?: Maybe<CreatePageInput>;
 }>;
@@ -1240,57 +1293,6 @@ export type CreatePageMutation = (
       & Pick<Pages, 'id'>
     )> }
   )> }
-);
-
-export type GetPagesQueryVariables = Exact<{
-  where?: Maybe<Scalars['JSON']>;
-  locale?: Maybe<Scalars['String']>;
-}>;
-
-
-export type GetPagesQuery = (
-  { __typename?: 'Query' }
-  & { pages?: Maybe<Array<Maybe<(
-    { __typename: 'Pages' }
-    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
-    & { sections?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentSectionCardSection' }
-      & Pick<ComponentSectionCardSection, 'id' | 'title' | 'subtitle'>
-      & { card?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksCard' }
-        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'url'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionHeroSection' }
-      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle'>
-      & { hero?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksHero' }
-        & Pick<ComponentBlocksHero, 'id' | 'title' | 'subtitle'>
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionSingleFeatureSection' }
-      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'title' | 'subtitle'>
-      & { singleFeature?: Maybe<Array<Maybe<(
-        { __typename: 'ComponentBlocksSingleFeature' }
-        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'url'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionNavigationSection' }
-      & Pick<ComponentSectionNavigationSection, 'id'>
-      & { nav?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksNavigationBlock' }
-        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
-      )>>> }
-    )>>> }
-  )>>> }
 );
 
 export type UpdatePageMutationVariables = Exact<{
@@ -1310,15 +1312,6 @@ export type UpdatePageMutation = (
 );
 
 
-export const CreatePage = `
-    mutation CreatePage($input: createPageInput) {
-  createPage(input: $input) {
-    page {
-      id
-    }
-  }
-}
-    `;
 export const GetPages = `
     query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
@@ -1331,6 +1324,7 @@ export const GetPages = `
       ... on ComponentSectionSingleFeatureSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         singleFeature: sections {
@@ -1340,6 +1334,11 @@ export const GetPages = `
           title
           serviceLink
           image {
+            id
+            name
+            alternativeText
+            width
+            height
             url
           }
         }
@@ -1349,15 +1348,11 @@ export const GetPages = `
         id
         title
         subtitle
-        hero: sections {
-          id
-          title
-          subtitle
-        }
       }
       ... on ComponentSectionCardSection {
         __typename
         id
+        sectionTitle
         title
         subtitle
         card: sections {
@@ -1379,6 +1374,15 @@ export const GetPages = `
           path
         }
       }
+    }
+  }
+}
+    `;
+export const CreatePage = `
+    mutation CreatePage($input: createPageInput) {
+  createPage(input: $input) {
+    page {
+      id
     }
   }
 }
