@@ -34,6 +34,13 @@ interface FeatureBlockProps {
   serviceLink?: string;
 }
 
+interface ImageRenderProps {
+  src: {
+    url?: string;
+    previewSrc?: string;
+  };
+}
+
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
@@ -52,36 +59,29 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
               uploadDir={() => "/"}
               previewSrc={(imageSrc) => {
                 if (imageSrc === "") {
-                  console.log("imageSrc", imageSrc);
-
-                  return "/images/default-image.png";
+                  return ""; // "/images/default-image.png";
                 }
-                // console.log({ fieldValue: imageSrc });
                 // const previewSrc = cms.media.previewSrc(imageSrc);
                 // return previewSrc;
                 return imageSrc;
               }}
               parse={(media) => {
-                console.log("PARSE", { media });
-                return media.previewSrc;
+                return media as any;
               }}>
-              {(imageProps) => {
-                console.log("ImageProps", imageProps);
+              {(imageProps: any) => {
+                const { src } = imageProps as ImageRenderProps;
+                let imageSrc: string = src.previewSrc || src.url || "";
+                if (imageSrc === "") {
+                  imageSrc = "/images/default-image.png";
+                } else if (!imageSrc.startsWith("http")) {
+                  imageSrc = `${STRAPI_URL}${imageSrc}`;
+                }
                 return (
                   <Box w="100px" h="100px">
                     <Img
                       width="80px"
                       height="80px"
-                      src={
-                        imageProps.src?.previewSrc != null
-                          ? imageProps.src.previewSrc
-                          : typeof imageProps.src == "object"
-                          ? STRAPI_URL + imageProps.src?.url
-                          : imageProps.src?.startsWith("http") ||
-                            imageProps.src?.startsWith("/images")
-                          ? imageProps.src
-                          : STRAPI_URL + imageProps.src
-                      }
+                      src={imageSrc}
                       alt={"Cover image"}
                     />
                   </Box>
@@ -99,29 +99,63 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
             </Box>
           )}
           <Box
-            fontSize={"xl"}
-            fontWeight={"bold"}
-            lineHeight={"hero"}
-            letterSpacing={"0.04em"}
-            p={"20px 0px"}>
+            fontSize="xl"
+            fontWeight="bold"
+            lineHeight="hero"
+            letterSpacing="0.04em"
+            p="20px 0px">
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
-            fontFamily={"Roboto Mono"}
-            fontSize={"sm"}
-            fontWeight={"subtitle"}
-            lineHeight={"subtitle"}
-            letterSpacing={"0.02em"}
-            color={"description"}>
+            fontFamily="Roboto Mono"
+            fontSize="sm"
+            fontWeight="subtitle"
+            lineHeight="subtitle"
+            letterSpacing="0.02em"
+            color="description">
             <StyledInlineTextarea
-              color={"description"}
-              height={"auto"}
+              color="description"
+              height="auto"
               name="description"
             />
           </Box>
-          <Link textDecoration={"none"} mt={"20px"} href={serviceLink}>
-            Learn more →
-          </Link>
+          <Box
+            display="inline-block"
+            textDecoration="none"
+            transition="all 0.4s ease 0s"
+            color="dark"
+            _after={{
+              content: "'→'",
+              display: "inline-block",
+              fontSize: "md",
+              paddingLeft: "10px",
+              transition: "0.4s",
+              fontWeight: "thin",
+            }}
+            _hover={{
+              color: "rgb(5, 195, 182)",
+              _after: {
+                paddingLeft: "20px",
+              },
+            }}
+            mt="20px">
+            <Box as={"span"}>
+              <Link
+                fontFamily="Roboto Mono"
+                color="dark"
+                fontWeight="light"
+                fontSize="sm"
+                userSelect="none"
+                letterSpacing="0.02em"
+                _hover={{
+                  color: "rgb(5, 195, 182)",
+                  textDecorationLine: "none",
+                }}
+                href={serviceLink}>
+                Learn more
+              </Link>
+            </Box>
+          </Box>
         </Flex>
       </Box>
     </Container>

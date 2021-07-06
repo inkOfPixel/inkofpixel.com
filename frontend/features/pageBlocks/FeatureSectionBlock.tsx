@@ -25,7 +25,7 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
 export const StyledInlineTextarea = chakra(InlineTextarea);
 export const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function FeatureSectionBlock(preview: boolean) {
+export function FeatureSectionBlock(section: any, preview: boolean) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -47,29 +47,46 @@ export function FeatureSectionBlock(preview: boolean) {
         base: "full",
         xl: "1200px",
       }}>
-      <Box
-        color="rgb(129, 82, 188)"
-        fontSize={"sm"}
-        textTransform="uppercase"
-        letterSpacing="0.1em"
-        pos="relative"
-        w="full"
-        pb="30px"
-        as="h2"
-        fontFamily="Roboto Mono"
-        lineHeight="1.15em"
-        _before={{
-          content: "''",
-          display: "block",
-          h: "2px",
-          w: "60px",
-          pos: "absolute",
-          top: "7px",
-          left: "-68px",
-          backgroundColor: "rgb(129, 82, 188)",
-        }}>
-        <InlineTextarea name="sectionTitle" />
-      </Box>
+      {section.sectionTitle != null ? (
+        <Box
+          color="rgb(129, 82, 188)"
+          fontSize={"sm"}
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="30px"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={{
+            content: "''",
+            display: "block",
+            h: "2px",
+            w: "60px",
+            pos: "absolute",
+            top: "7px",
+            left: "-68px",
+            backgroundColor: "rgb(129, 82, 188)",
+          }}>
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+      ) : (
+        <Box
+          color="rgb(129, 82, 188)"
+          fontSize={"sm"}
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="30px"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em">
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+      )}
+
       <Flex
         flexDirection={{
           base: "column",
@@ -90,7 +107,7 @@ export function FeatureSectionBlock(preview: boolean) {
             lg: "400px",
           }}>
           <Box
-            fontSize={"5xl"}
+            fontSize={"46px"}
             p={0}
             m={0}
             fontWeight={"bold"}
@@ -149,7 +166,7 @@ export function FeatureSectionBlock(preview: boolean) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureSectionBlock {...data} />
+      <FeatureSectionBlock section={data} {...data} />
     </BlocksControls>
   );
 }
