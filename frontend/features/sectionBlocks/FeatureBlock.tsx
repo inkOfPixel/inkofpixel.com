@@ -45,46 +45,65 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
           flexDirection="column"
           pb={"60px"}
           m={2.5}
-          boxSizing={"border-box"}
-        >
-          <InlineImage
-            name="imageUrl"
-            uploadDir={() => "/"}
-            previewSrc={(imageSrc) => {
-              if (imageSrc === "") {
-                return "/images/default-image.png";
-              }
-              // console.log({ fieldValue: imageSrc });
-              // const previewSrc = cms.media.previewSrc(imageSrc);
-              // return previewSrc;
-              return imageSrc;
-            }}
-            parse={(media) => {
-              // console.log("PARSE", { media });
-              return media.previewSrc || "/images/default-image.png";
-            }}
-          >
-            {(imageProps) => {
-              console.log("ImageProps", imageProps);
-              return (
-                <Box w="100px" h="100px">
-                  <Img
-                    width="80px"
-                    height="80px"
-                    src={imageProps.src}
-                    alt={"Cover image"}
-                  />
-                </Box>
-              );
-            }}
-          </InlineImage>
+          boxSizing={"border-box"}>
+          {cms.enabled ? (
+            <InlineImage
+              name="image"
+              uploadDir={() => "/"}
+              previewSrc={(imageSrc) => {
+                if (imageSrc === "") {
+                  console.log("imageSrc", imageSrc);
+
+                  return "/images/default-image.png";
+                }
+                // console.log({ fieldValue: imageSrc });
+                // const previewSrc = cms.media.previewSrc(imageSrc);
+                // return previewSrc;
+                return imageSrc;
+              }}
+              parse={(media) => {
+                console.log("PARSE", { media });
+                return media.previewSrc;
+              }}>
+              {(imageProps) => {
+                console.log("ImageProps", imageProps);
+                return (
+                  <Box w="100px" h="100px">
+                    <Img
+                      width="80px"
+                      height="80px"
+                      src={
+                        imageProps.src?.previewSrc != null
+                          ? imageProps.src.previewSrc
+                          : typeof imageProps.src == "object"
+                          ? STRAPI_URL + imageProps.src?.url
+                          : imageProps.src?.startsWith("http") ||
+                            imageProps.src?.startsWith("/images")
+                          ? imageProps.src
+                          : STRAPI_URL + imageProps.src
+                      }
+                      alt={"Cover image"}
+                    />
+                  </Box>
+                );
+              }}
+            </InlineImage>
+          ) : (
+            <Box boxSize="100px">
+              <Img
+                width="80px"
+                height="80px"
+                src={
+                  image ? STRAPI_URL + image.url : "/images/default-image.png"
+                }></Img>
+            </Box>
+          )}
           <Box
             fontSize={"xl"}
             fontWeight={"bold"}
             lineHeight={"hero"}
             letterSpacing={"0.04em"}
-            p={"20px 0px"}
-          >
+            p={"20px 0px"}>
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -93,8 +112,7 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
             fontWeight={"subtitle"}
             lineHeight={"subtitle"}
             letterSpacing={"0.02em"}
-            color={"description"}
-          >
+            color={"description"}>
             <StyledInlineTextarea
               color={"description"}
               height={"auto"}
@@ -114,7 +132,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <FeatureBlock
-        image={data.imageUrl}
+        image={data.image}
         serviceLink={data.serviceLink}
         {...data}
       />
@@ -130,10 +148,8 @@ export const featureBlock: Block = {
       title: "Default title",
       description: "Default description",
       serviceLink: "/",
-      imageUrl: {
-        id: "0",
-        altText: "Default",
-        src: "/defaultImage.png",
+      image: {
+        id: "51",
       },
     },
     fields: [
@@ -144,10 +160,10 @@ export const featureBlock: Block = {
         defaultValue: "/",
       },
       {
-        name: "imageUrl",
+        name: "image",
         label: "URL",
         component: "image",
-        defaultValue: "/defaultImage.png",
+        defaultValue: "/images/default-image.png",
       },
     ],
   },
