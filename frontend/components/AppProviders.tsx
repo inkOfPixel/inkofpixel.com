@@ -62,6 +62,7 @@ const EditButton = () => {
   const cms = useCMS();
   return (
     <Button
+      zIndex="100"
       position="fixed"
       right="4"
       bottom="4"

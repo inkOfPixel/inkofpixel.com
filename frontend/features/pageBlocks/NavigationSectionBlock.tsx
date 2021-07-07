@@ -6,10 +6,9 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Link,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import {
   Block,
   BlockComponentProps,
@@ -21,7 +20,6 @@ import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "./types";
 import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
-import GooeyMenu from "@components/GooeyMenu";
 import Icon from "@components/Icon";
 import { Image } from "@chakra-ui/image";
 
@@ -35,17 +33,11 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
 
 const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
-const StyledGooeyMenu = chakra(GooeyMenu);
 
 export function NavigationSectionBlock() {
   const cms = useCMS();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [open, setOpen] = useState(false);
-
-  function handleOpen() {
-    setOpen(!open);
-  }
 
   return (
     <Flex as={"header"} w={"full"} zIndex={"100"} h={"160px"}>
@@ -131,7 +123,7 @@ export function NavigationSectionBlock() {
                 sm: "200px",
               }}
               height="54px">
-              <Image src="/logo.svg" fill="rgb(22, 19, 56)" />
+              <Image alt="Logo" src="/logo.svg" fill="rgb(22, 19, 56)" />
             </Box>
           </Flex>
           <Flex
@@ -156,7 +148,7 @@ export function NavigationSectionBlock() {
               max={6}
             />
           </Flex>
-
+          {/*
           <StyledGooeyMenu
             mr={{
               base: "0",
@@ -166,7 +158,7 @@ export function NavigationSectionBlock() {
             size={"44px"}
             open={open}
             onToggle={handleOpen}>
-            {/*
+            
             {localePages.map((pageLocale) => (
               <Link
                 key={pageLocale.code}
@@ -175,11 +167,12 @@ export function NavigationSectionBlock() {
                 className={pageLocale.code === locale ? "selected" : ""}>
                 {pageLocale.code}
               </Link>
-            ))}*/}
+            ))}
 
             <Link onClick={handleOpen}>EN</Link>
             <Link onClick={handleOpen}>IT</Link>
           </StyledGooeyMenu>
+            */}
         </Flex>
       </Box>
     </Flex>

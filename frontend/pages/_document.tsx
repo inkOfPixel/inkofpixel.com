@@ -19,7 +19,7 @@ export default class Document extends NextDocument {
             rel="stylesheet"></link>
         </Head>
 
-        <body style={{ overflowX: "hidden" }}>
+        <body>
           <ColorModeScript initialColorMode={Theme.config?.initialColorMode} />
           <Main />
           <NextScript />
