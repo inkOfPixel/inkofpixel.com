@@ -132,15 +132,15 @@ export type ComponentSectionCardSectionInput = {
 export type ComponentSectionHeroSection = {
   __typename?: 'ComponentSectionHeroSection';
   id: Scalars['ID'];
-  sections?: Maybe<Array<Maybe<ComponentBlocksHero>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
+  areBubblesActive: Scalars['Boolean'];
 };
 
 export type ComponentSectionHeroSectionInput = {
-  sections?: Maybe<Array<Maybe<ComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionNavigationSection = {
@@ -1122,9 +1122,9 @@ export type EditComponentSectionCardSectionInput = {
 
 export type EditComponentSectionHeroSectionInput = {
   id?: Maybe<Scalars['ID']>;
-  sections?: Maybe<Array<Maybe<EditComponentBlocksHeroInput>>>;
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type EditComponentSectionNavigationSectionInput = {
@@ -1251,12 +1251,12 @@ export type GetPagesQuery = (
         & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
         & { image?: Maybe<(
           { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'url'>
+          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
         )> }
       )>>> }
     ) | (
       { __typename: 'ComponentSectionHeroSection' }
-      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle'>
+      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle' | 'areBubblesActive'>
     ) | (
       { __typename: 'ComponentSectionSingleFeatureSection' }
       & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
@@ -1348,6 +1348,7 @@ export const GetPages = `
         id
         title
         subtitle
+        areBubblesActive
       }
       ... on ComponentSectionCardSection {
         __typename
@@ -1360,7 +1361,9 @@ export const GetPages = `
           title
           description
           image {
+            id
             url
+            alternativeText
           }
           projectLink
         }

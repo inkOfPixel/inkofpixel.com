@@ -33,6 +33,7 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
+        areBubblesActive
       }
       ... on ComponentSectionCardSection {
         __typename
@@ -42,11 +43,12 @@ query GetPages($where: JSON, $locale: String) {
         subtitle
         card: sections {
           id
-
           title
           description
           image {
+            id
             url
+            alternativeText
           }
           projectLink
         }
