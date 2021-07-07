@@ -186,6 +186,9 @@ function getPageData(
               id: section.id,
               title: section.title ? section.title : null,
               subtitle: section.subtitle ? section.subtitle : null,
+              areBubblesActive: section.areBubblesActive
+                ? section.areBubblesActive
+                : false,
             };
           }
           case "ComponentSectionSingleFeatureSection": {
@@ -236,7 +239,14 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        imageUrl: card.image?.url,
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.alternativeText || null,
+                              },
                         projectLink: card.projectLink ? card.projectLink : null,
                         _template: "ComponentBlocksCard",
                       };

@@ -15,34 +15,48 @@ export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",
   {
     id: string;
-    imageUrl?: string;
+    image?: Nullable<CardImage>;
     title: string;
     description: string;
     projectLink?: Nullable<string>;
   }
 >;
 
+type CardImage = {
+  id: string;
+  altText: Nullable<string>;
+  url: string;
+};
+
 interface CardBlockProps {
-  imageUrl?: string;
+  image?: Nullable<CardImage>;
   title?: string;
   description: string;
   projectLink?: string;
 }
 
-const StyledImage = chakra(InlineImage);
+interface ImageRenderProps {
+  src: {
+    url?: string;
+    previewSrc?: string;
+  };
+}
+
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardBlock({ projectLink, imageUrl }: CardBlockProps) {
+export function CardBlock({ projectLink, image }: CardBlockProps) {
   const cms = useCMS();
+  console.log("image", image);
+
   return (
     <Flex
-      as={"a"}
-      m={"15px"}
+      m="15px"
+      flexBasis="30%"
       flexDir={"column"}
       boxSizing={"border-box"}
       justifyContent={"space-between"}
       h={cms.enabled ? "full" : "auto"}
-      width={"calc(33.33% - 30px)"}
+      width={cms.enabled ? "calc(100% - 30px)" : "calc(33.33% - 30px)"}
       backgroundColor={"white"}
       href={projectLink}
       transition={"all 0.8s"}
@@ -52,24 +66,64 @@ export function CardBlock({ projectLink, imageUrl }: CardBlockProps) {
         transition: "0.8s",
       }}>
       <Flex flexDir={"column"}>
-        <Box pos={"relative"} overflow={"hidden"} height={"300px"}>
-          <Img
-            position={"absolute"}
-            top={0}
-            left={0}
-            src={
-              imageUrl
-                ? STRAPI_URL + imageUrl
-                : "http://localhost:1337/uploads/80_c6692eb6f8"
-            }
-            w={"full"}
-            h={"full"}
-            objectFit={"cover"}
-            objectPosition={"center center"}
-            opacity={1}
-            transition={"0.5s"}
-            borderStyle={"none"}></Img>
-        </Box>
+        {cms.enabled ? (
+          <InlineImage
+            name="image"
+            uploadDir={() => "/"}
+            previewSrc={(imageSrc) => {
+              if (imageSrc === "") {
+                return "/images/default-image.png"; // "/images/default-image.png";
+              }
+              // const previewSrc = cms.media.previewSrc(imageSrc);
+              // return previewSrc;
+              return imageSrc;
+            }}
+            parse={(media) => {
+              return media as any;
+            }}>
+            {(imageProps: any) => {
+              const { src } = imageProps as ImageRenderProps;
+              let imageSrc: string = src.previewSrc || src.url || "";
+              if (imageSrc === "") {
+                imageSrc = "/images/default-image.png";
+              } else if (!imageSrc.startsWith("http")) {
+                imageSrc = `${STRAPI_URL}${imageSrc}`;
+              }
+              console.log("imageSrc", imageSrc);
+
+              return (
+                <Box pos={"relative"} overflow={"hidden"} height={"300px"}>
+                  <Img
+                    w="full"
+                    h="full"
+                    objectFit={"cover"}
+                    objectPosition={"center center"}
+                    opacity={1}
+                    transition={"0.5s"}
+                    borderStyle={"none"}
+                    src={imageSrc}
+                    alt={"Cover image"}
+                  />
+                </Box>
+              );
+            }}
+          </InlineImage>
+        ) : (
+          <Box pos={"relative"} overflow={"hidden"} height={"300px"}>
+            <Img
+              w="full"
+              h="full"
+              objectFit={"cover"}
+              objectPosition={"center center"}
+              opacity={1}
+              transition={"0.5s"}
+              borderStyle={"none"}
+              src={
+                image ? STRAPI_URL + image.url : "/images/default-image.png"
+              }></Img>
+          </Box>
+        )}
+
         <Flex
           flexDir={"column"}
           w={"full"}
@@ -142,11 +196,7 @@ export function CardBlock({ projectLink, imageUrl }: CardBlockProps) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardBlock
-        {...data}
-        imageUrl={data.imageUrl ? data.imageUrl : null}
-        projectLink={data.projectLink}
-      />
+      <CardBlock {...data} image={data.image} projectLink={data.projectLink} />
     </BlocksControls>
   );
 }

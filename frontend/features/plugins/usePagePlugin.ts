@@ -79,6 +79,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              areBubblesActive: section.areBubblesActive,
             };
           }
           case "cardSection": {
@@ -94,7 +95,13 @@ function getPageInput(data: PageData): UpdatePageInput {
                     id: card.id,
                     title: card.title,
                     description: card.description,
-                    imageUrl: card.imageUrl,
+                    image: card.image
+                      ? {
+                          id: card.image.id,
+                          altText: card.image.altText || null,
+                          url: card.image.url,
+                        }
+                      : null,
                     projectLink: card.projectLink,
                   };
                 }
@@ -109,7 +116,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((feature) => {
-                console.log("FEATURE WHILE SAVING", feature);
                 return {
                   id: feature.id,
                   title: feature.title,
@@ -186,6 +192,7 @@ function getPageCreatorPlugin(
         label: "Locale",
         name: "locale",
         component: "select",
+        defaultValue: "en",
         description: "Select a locale for this page",
         // @ts-ignore
         options: options.locales,

@@ -25,7 +25,7 @@ export type CardSectionBlockData = SectionBlockTemplateData<
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardSectionBlock() {
+export function CardSectionBlock({ sectionTitle }: any) {
   return (
     <Box
       as={"section"}
@@ -36,6 +36,7 @@ export function CardSectionBlock() {
       p={"150px 0px"}
       backgroundColor={"cardSectionBg"}>
       <Box
+        zIndex="10"
         p={{
           base: "0px 26px",
           sm: "0px 40px",
@@ -48,44 +49,70 @@ export function CardSectionBlock() {
         }}
         letterSpacing={"0.02em"}
         pos={"relative"}>
+        {sectionTitle != null ? (
+          <Box
+            color="rgb(5, 195, 182)"
+            fontSize={"sm"}
+            textTransform="uppercase"
+            letterSpacing="0.1em"
+            pos="relative"
+            w="full"
+            pb="30px"
+            as="h2"
+            fontFamily="Roboto Mono"
+            lineHeight="1.15em"
+            _before={{
+              content: "''",
+              display: "block",
+              h: "2px",
+              w: "60px",
+              pos: "absolute",
+              top: "7px",
+              left: "-68px",
+              backgroundColor: "rgb(5, 195, 182)",
+            }}>
+            <InlineTextarea name="sectionTitle" />
+          </Box>
+        ) : (
+          <Box
+            color="rgb(5, 195, 182)"
+            fontSize={"sm"}
+            textTransform="uppercase"
+            letterSpacing="0.1em"
+            pos="relative"
+            w="full"
+            pb="30px"
+            as="h2"
+            fontFamily="Roboto Mono"
+            lineHeight="1.15em">
+            <InlineTextarea name="sectionTitle" />
+          </Box>
+        )}
         <Box
-          fontSize={"5xl"}
+          fontFamily="Europa"
+          fontSize="46px"
           p={"0px 0px 100px 0px"}
           m={0}
           fontWeight={"bold"}
           lineHeight={"hero"}
           letterSpacing={"0.02em"}>
-          <StyledInlineTextarea
-            fontSize={"5xl"}
-            p={"0px 0px 100px 0px"}
-            m={0}
-            fontWeight={"bold"}
-            lineHeight={"hero"}
-            letterSpacing={"0.02em"}
-            name="title"
-          />
+          <StyledInlineTextarea name="title" />
         </Box>
         <StyledInlineBlocks
-          display={"flex"}
-          flexWrap={"wrap"}
-          flexDir={{
-            base: "column",
-            md: "row",
+          display="flex"
+          justifyContent="center"
+          sx={{
+            "& > div": {
+              w: "calc(33.33%)",
+              h: "auto",
+              mt: "2",
+              mb: "2",
+            },
           }}
-          m={{
-            base: "0px",
-            md: "0px 0px 0px -15px",
-          }}
-          w={{
-            base: "full",
-            md: "calc(100% + 30px)",
-          }}
-          className="card-list"
+          flexWrap="wrap"
           name="blocks"
           blocks={CARD_BLOCK}
           direction={"horizontal"}
-          justifyContent={"center"}
-          flexBasis={"30%"}
         />
       </Box>
     </Box>
@@ -95,7 +122,7 @@ export function CardSectionBlock() {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardSectionBlock {...data} />
+      <CardSectionBlock sectionTitle={data.sectionTitle} {...data} />
     </BlocksControls>
   );
 }
