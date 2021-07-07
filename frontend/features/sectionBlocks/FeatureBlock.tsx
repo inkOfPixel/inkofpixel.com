@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
+import Splash from "@components/Splash";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -42,6 +43,7 @@ interface ImageRenderProps {
 }
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
+const Bubble = chakra(Splash);
 
 export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
   const cms = useCMS();
@@ -53,51 +55,60 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
           pb={"60px"}
           m={2.5}
           boxSizing={"border-box"}>
-          {cms.enabled ? (
-            <InlineImage
-              name="image"
-              uploadDir={() => "/"}
-              previewSrc={(imageSrc) => {
-                if (imageSrc === "") {
-                  return ""; // "/images/default-image.png";
-                }
-                // const previewSrc = cms.media.previewSrc(imageSrc);
-                // return previewSrc;
-                return imageSrc;
-              }}
-              parse={(media) => {
-                return media as any;
-              }}>
-              {(imageProps: any) => {
-                const { src } = imageProps as ImageRenderProps;
-                let imageSrc: string = src.previewSrc || src.url || "";
-                if (imageSrc === "") {
-                  imageSrc = "/images/default-image.png";
-                } else if (!imageSrc.startsWith("http")) {
-                  imageSrc = `${STRAPI_URL}${imageSrc}`;
-                }
-                return (
-                  <Box w="100px" h="100px">
-                    <Img
-                      width="80px"
-                      height="80px"
-                      src={imageSrc}
-                      alt={"Cover image"}
-                    />
-                  </Box>
-                );
-              }}
-            </InlineImage>
-          ) : (
-            <Box boxSize="100px">
-              <Img
-                width="80px"
-                height="80px"
-                src={
-                  image ? STRAPI_URL + image.url : "/images/default-image.png"
-                }></Img>
-            </Box>
-          )}
+          <Bubble
+            className="gira"
+            pos="relative"
+            boxSize="100px"
+            backgroundColor="rgb(248, 241, 255)">
+            {cms.enabled ? (
+              <InlineImage
+                name="image"
+                uploadDir={() => "/"}
+                previewSrc={(imageSrc) => {
+                  if (imageSrc === "") {
+                    return ""; // "/images/default-image.png";
+                  }
+                  // const previewSrc = cms.media.previewSrc(imageSrc);
+                  // return previewSrc;
+                  return imageSrc;
+                }}
+                parse={(media) => {
+                  return media as any;
+                }}>
+                {(imageProps: any) => {
+                  const { src } = imageProps as ImageRenderProps;
+                  let imageSrc: string = src.previewSrc || src.url || "";
+                  if (imageSrc === "") {
+                    imageSrc = "/images/default-image.png";
+                  } else if (!imageSrc.startsWith("http")) {
+                    imageSrc = `${STRAPI_URL}${imageSrc}`;
+                  }
+                  return (
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      boxSize="100px">
+                      <Img
+                        width="80px"
+                        height="80px"
+                        src={imageSrc}
+                        alt={"Cover image"}
+                      />
+                    </Flex>
+                  );
+                }}
+              </InlineImage>
+            ) : (
+              <Flex justifyContent="center" alignItems="center" boxSize="100px">
+                <Img
+                  width="80px"
+                  height="80px"
+                  src={
+                    image ? STRAPI_URL + image.url : "/images/default-image.png"
+                  }></Img>
+              </Flex>
+            )}
+          </Bubble>
           <Box
             fontSize="xl"
             fontFamily="Roboto Mono"
@@ -193,12 +204,6 @@ export const featureBlock: Block = {
         label: "Url",
         component: "text",
         defaultValue: "/",
-      },
-      {
-        name: "image",
-        label: "URL",
-        component: "image",
-        defaultValue: "/images/default-image.png",
       },
     ],
   },

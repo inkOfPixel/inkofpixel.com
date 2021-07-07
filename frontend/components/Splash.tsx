@@ -1,6 +1,5 @@
-import { Box, chakra, Flex } from "@chakra-ui/react";
+import { Box, chakra, Flex, keyframes } from "@chakra-ui/react";
 import React from "react";
-import styled, { keyframes } from "types/styled-components";
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -9,6 +8,11 @@ const random = (min: number, max: number): number => {
 const rotate = keyframes`
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+`;
+
+const rotateInverse = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 `;
 
 const bordertl = keyframes`
@@ -39,41 +43,50 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-function Splash() {
-  return <Bubble2></Bubble2>;
-}
-
 const Bubble2 = chakra(({ className, children }: any) => {
+  const seconds = random(5, 12);
   return (
     <Box
       className={className}
-      pos="relative"
+      pos="absolute"
       w="500px"
       h="500px"
-      backgroundColor="red.100"
-      animation="2s linear infinite {bordertl}">
+      backgroundColor="red.500"
+      animation={
+        random(3, 6) +
+        "3s linear infinite " +
+        bordertl +
+        "," +
+        random(3, 6) +
+        "3s linear infinite " +
+        bordertr +
+        "," +
+        random(3, 6) +
+        "3s linear infinite " +
+        borderbr +
+        "," +
+        random(3, 6) +
+        "3s linear infinite " +
+        borderbl +
+        "," +
+        seconds +
+        "s linear infinite " +
+        rotate
+      }>
       <Flex
+        className="content"
         alignItems="center"
         justifyContent="center"
         w="full"
         h="full"
-        animation="3s linear infinite">
+        animation={seconds + "s " + rotateInverse + " linear infinite"}>
         {children}
       </Flex>
     </Box>
   );
 });
 
-const Bubble = styled(({}) => (
-  <div className={"className"}>
-    <div className="content">{"children"}</div>
-  </div>
-)).attrs({
-  speed: () => `${random(5, 12).toFixed(2)}s`,
-})`
-  position: relative;
-  
-  background-color: {color};
+/*
   animation: ${() => random(3, 6)}s linear infinite ${bordertl},
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
@@ -85,5 +98,5 @@ Splash.defaultProps = {
   color: "#000",
   size: "300px",
 };
-
-export default Splash;
+*/
+export default Bubble2;

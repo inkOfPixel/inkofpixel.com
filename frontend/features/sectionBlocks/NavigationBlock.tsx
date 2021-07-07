@@ -26,7 +26,7 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
     <Box>
       <Link
         display={isOpen ? "inline-block" : "block"}
-        m={"0px 0px 0px 10px"}
+        m={isOpen ? "0px 0px 0px 0px" : "0px 0px 0px 10px"}
         p={isOpen ? "20px 10px" : "12px 10px"}
         letterSpacing={"0.02em"}
         color={"dark"}

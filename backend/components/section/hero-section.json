@@ -7,16 +7,16 @@
   },
   "options": {},
   "attributes": {
-    "sections": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.hero"
-    },
     "title": {
       "type": "string"
     },
     "subtitle": {
       "type": "text"
+    },
+    "areBubblesActive": {
+      "type": "boolean",
+      "required": true,
+      "default": true
     }
   }
 }
