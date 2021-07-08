@@ -18,6 +18,7 @@ query GetPages($where: JSON, $locale: String) {
           description
           title
           serviceLink
+          bubbleColor
           image {
             id
             name

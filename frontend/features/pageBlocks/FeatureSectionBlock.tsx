@@ -26,6 +26,7 @@ export const StyledInlineTextarea = chakra(InlineTextarea);
 export const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function FeatureSectionBlock(section: any, preview: boolean) {
+  
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,

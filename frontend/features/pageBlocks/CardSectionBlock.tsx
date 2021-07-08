@@ -110,10 +110,13 @@ export function CardSectionBlock({ sectionTitle }: any) {
             justifyContent="center"
             sx={{
               "& > div": {
-                w: { base: "full", md: "calc(33.33%)" },
+                w: {
+                  base: "calc(100% - 30px)",
+                  md: "calc(40% - 30px)",
+                  xl: "calc(30% - 30px)",
+                },
                 h: "auto",
-                mt: "2",
-                mb: "2",
+                m: "4",
               },
             }}
             flexWrap="wrap"
@@ -123,6 +126,11 @@ export function CardSectionBlock({ sectionTitle }: any) {
           />
         ) : (
           <StyledInlineBlocks
+            w={{
+              base: "calc(100% - 30px)",
+              md: "calc(40% - 30px)",
+              xl: "calc(30% - 30px)",
+            }}
             display="flex"
             flexDir={{
               base: "column",

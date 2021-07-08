@@ -50,12 +50,14 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
   return (
     <Flex
       m={{ base: "auto", md: "15px" }}
-      flexBasis="calc(33% - 30px)"
       flexDir="column"
       boxSizing="border-box"
       justifyContent="space-between"
       h={cms.enabled ? "full" : "auto"}
-      width={"calc(33.33% - 30px)"}
+      /*       w={cms.enabled ? "full" : "calc(33.33% - 30px)"} */
+      w={{
+        base: "full",
+      }}
       backgroundColor="white"
       href={projectLink}
       transition="all 0.8s"
