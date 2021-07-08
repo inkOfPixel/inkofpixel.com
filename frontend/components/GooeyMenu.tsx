@@ -1,4 +1,4 @@
-import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
+import { Box, chakra, Checkbox, FormLabel, Link } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
@@ -8,48 +8,24 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
     setOpen(!open);
   }
   const StyledLabel = chakra(FormLabel);
-  const itemCount = React.Children.count(children);
   console.log("OPEN? ", open);
 
   return (
     <React.Fragment>
       <GooeySVGDefs />
-      <Box pos="relative" filter="url('#shadowed-goo1)" overflow="visible">
+      <Box pos="relative" filter="url(#shadowed-goo1)" overflow="visible">
         <Checkbox
           type="checkbox"
           name="gooey-menu-open"
           id="gooey-menu-open"
           display="none"
-          onChange={handleToggleMenu}
-          sx={{
-            "&:checked": {
-              "& ~ label ": {
-                transitionTimingFunction: "linear",
-                transitionDuration: "200ms",
-                transform: "scale (0.8, 0.8) translate3d(0, 0, 0)",
-                ".toggleButtonContent": {
-                  opacity: "0",
-                },
-                "&::before": {
-                  opacity: "1",
-                },
-              },
-              "& ~ .items > * ": {
-                transitionTimingFunction: "cubic-bezier(0.165, 0.84, 0.44, 1)",
-                transform: "translate3d(0, 0, 0)",
-                transitionDuration: "400ms",
-                "&:hover": {
-                  transition: "transform 400ms",
-                  transform: "scale(1.1, 1.1)",
-                },
-              },
-            },
-          }}></Checkbox>
+          onChange={handleToggleMenu}></Checkbox>
         <Box
           pos="absolute"
           pt="44px"
           spacing="20px"
           color="white"
+          transition="transform ease-out 2000ms"
           backgroundColor="transparent"
           sx={{
             "& > *": {
@@ -63,12 +39,40 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
               color: "white",
               textAlign: "center",
               lineHeight: "44px",
-              transition: "transform ease-out 200ms",
+              transition: "transform 200ms ease-out 0",
             },
           }}>
-          {children}
+          {children.map((lang: any, index: number): any =>
+            open === false ? (
+              <Link
+                fontFamily="Roboto Mono"
+                fontSize="xs"
+                transitionDuration={300 + 100 * index + "ms"}
+                transform={"translate3d(0," + -64 * (index + 1) + "px, 0)"}
+                key={index}>
+                {lang}
+              </Link>
+            ) : (
+              <Link
+                fontFamily="Roboto Mono"
+                fontSize="xs"
+                transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
+                transitionDuration={300 + 100 * index + "ms"}
+                _hover={{
+                  transform: "scale(1.1, 1.1)",
+                }}
+                key={index}
+                transform="translate3d(0, 0, 0)">
+                {lang}
+              </Link>
+            )
+          )}
+          {console.log("children", children)}
         </Box>
         <StyledLabel
+          fontWeight="light"
+          fontFamily="Roboto Mono"
+          fontSize="xs"
           pos="relative"
           backgroundColor="dark"
           borderRadius="100%"
@@ -78,36 +82,43 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
           color="white"
           textAlign="center"
           lineHeight="44px"
-          transition="transform ease-out 200ms"
           htmlFor="gooey-menu-open"
           transitionDuration="400ms"
-          transform="scale(1, 1) translate3d(0, 0, 0)"
+          transform={
+            open === true
+              ? "scale(0.8, 0.8) translate3d(0, 0, 0)"
+              : "scale(1, 1) translate3d(0, 0, 0)"
+          }
           cursor="pointer"
           _hover={{
-            transform: "scale(1.1, 1.1) translate3d(0, 0, 0)",
+            transform: `${
+              open === false ? "scale(1.1, 1.1) translate3d(0, 0, 0)" : null
+            }`,
           }}
           css={{
             ".toggleButtonContent": {
-              opacity: 1,
+              opacity: `${open === true ? "0" : "1"}`,
             },
           }}
-          _before={{
-            pos: "absolute",
-            zIndex: "1",
-            transition: "all 200ms",
-            opacity: "0",
-            content: "'✕'",
-            fontSize: "25px",
-            color: "white",
-            left: "50%",
-            transform: "translate3d(-50%, 0, 0)",
-            top: "1%",
-            h: "98%",
-            w: "98%",
-            borderRadius: "100%",
-            backgroundColor: "green.600",
+          sx={{
+            "&::before": {
+              pos: "absolute",
+              zIndex: "1",
+              transition: "all 200ms",
+              opacity: `${open === false ? "0" : "1"}`,
+              content: "'✕'",
+              fontSize: "25px",
+              color: "white",
+              left: "50%",
+              transform: "translate3d(-50%, 0, 0)",
+              top: "1%",
+              h: "98%",
+              w: "98%",
+              borderRadius: "100%",
+              backgroundColor: "dark",
+            },
           }}>
-          <Box className="toggleButtonContent">{renderLabel()}</Box>
+          <Box className="toggleButtonContent">{"EN" && renderLabel()}</Box>
         </StyledLabel>
       </Box>
     </React.Fragment>
