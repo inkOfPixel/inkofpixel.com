@@ -46,20 +46,19 @@ const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function CardBlock({ projectLink, image }: CardBlockProps) {
   const cms = useCMS();
-  console.log("image", image);
 
   return (
     <Flex
-      m="15px"
-      flexBasis="30%"
-      flexDir={"column"}
-      boxSizing={"border-box"}
-      justifyContent={"space-between"}
+      m={{ base: "auto", md: "15px" }}
+      flexBasis="calc(33% - 30px)"
+      flexDir="column"
+      boxSizing="border-box"
+      justifyContent="space-between"
       h={cms.enabled ? "full" : "auto"}
-      width={cms.enabled ? "calc(100% - 30px)" : "calc(33.33% - 30px)"}
-      backgroundColor={"white"}
+      width={"calc(33.33% - 30px)"}
+      backgroundColor="white"
       href={projectLink}
-      transition={"all 0.8s"}
+      transition="all 0.8s"
       _hover={{
         boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.15)",
         transform: "scale(1.01, 1.01)",
@@ -89,35 +88,34 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
               } else if (!imageSrc.startsWith("http")) {
                 imageSrc = `${STRAPI_URL}${imageSrc}`;
               }
-              console.log("imageSrc", imageSrc);
 
               return (
-                <Box pos={"relative"} overflow={"hidden"} height={"300px"}>
+                <Box pos="relative" overflow="hidden" height="72">
                   <Img
                     w="full"
                     h="full"
-                    objectFit={"cover"}
-                    objectPosition={"center center"}
-                    opacity={1}
-                    transition={"0.5s"}
-                    borderStyle={"none"}
+                    objectFit="cover"
+                    objectPosition="center"
+                    opacity="1"
+                    transition="0.5s"
+                    borderStyle="none"
                     src={imageSrc}
-                    alt={"Cover image"}
+                    alt="Cover image"
                   />
                 </Box>
               );
             }}
           </InlineImage>
         ) : (
-          <Box pos={"relative"} overflow={"hidden"} height={"300px"}>
+          <Box pos="relative" overflow="hidden" height="72">
             <Img
               w="full"
               h="full"
-              objectFit={"cover"}
-              objectPosition={"center center"}
-              opacity={1}
-              transition={"0.5s"}
-              borderStyle={"none"}
+              objectFit="cover"
+              objectPosition="center"
+              opacity="1"
+              transition="0.5s"
+              borderStyle="none"
               src={
                 image ? STRAPI_URL + image.url : "/images/default-image.png"
               }></Img>
@@ -125,52 +123,52 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
         )}
 
         <Flex
-          flexDir={"column"}
-          w={"full"}
-          p={"30px"}
-          pos={"relative"}
-          boxSizing={"border-box"}>
+          flexDir="column"
+          w="full"
+          p={8}
+          pos="relative"
+          boxSizing="border-box">
           <Box
             pb={5}
-            fontFamily={"Europa"}
+            fontFamily="Europa"
             color="dark"
-            fontSize={"xl"}
+            fontSize="xl"
             name="title"
-            letterSpacing={"0.06em"}
-            fontWeight={"bold"}>
+            letterSpacing="0.06em"
+            fontWeight="bold">
             <StyledInlineTextarea
               pb={5}
-              fontFamily={"Europa"}
+              fontFamily="Europa"
               color="dark"
-              fontSize={"xl"}
+              fontSize="xl"
               name="title"
-              letterSpacing={"0.06em"}
-              fontWeight={"bold"}
+              letterSpacing="0.06em"
+              fontWeight="bold"
             />
           </Box>
           <Box
-            fontFamily={"Roboto Mono"}
-            fontSize={"sm"}
-            lineHeight={"1.6em"}
-            color={"cardDescription"}
-            letterSpacing={"0.02em"}
+            fontFamily="Roboto Mono"
+            fontSize="sm"
+            lineHeight="1.6em"
+            color="cardDescription"
+            letterSpacing="0.02em"
             name="description">
             <StyledInlineTextarea
-              fontFamily={"Roboto Mono"}
-              fontSize={"sm"}
-              lineHeight={"1.6em"}
-              letterSpacing={"0.02em"}
-              color={"cardDescription"}
+              fontFamily="Roboto Mono"
+              fontSize="sm"
+              lineHeight="1.6em"
+              color="cardDescription"
+              letterSpacing="0.02em"
               name="description"
             />
           </Box>
         </Flex>
       </Flex>
       <Box
-        display={"inline-block"}
-        textDecoration={"none"}
+        display="inline-block"
+        textDecoration="none"
         transition="all 0.4s ease 0s"
-        color={"dark"}
+        color="dark"
         _after={{
           content: "'→'",
           display: "inline-block",
@@ -186,8 +184,10 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
             paddingLeft: "20px",
           },
         }}
-        margin={"0px 30px 30px"}>
-        <Box as={"span"}>Discover more</Box>
+        mr={8}
+        ml={8}
+        mb={8}>
+        <Box as="span">Discover more</Box>
       </Box>
     </Flex>
   );

@@ -48,15 +48,10 @@ const Bubble = chakra(Splash);
 export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
   const cms = useCMS();
   return (
-    <Container maxWidth={"full"}>
+    <Container maxWidth="full">
       <Box as="div">
-        <Flex
-          flexDirection="column"
-          pb={"60px"}
-          m={2.5}
-          boxSizing={"border-box"}>
+        <Flex flexDirection="column" pb={16} m={2.5} boxSizing="border-box">
           <Bubble
-            className="gira"
             pos="relative"
             boxSize="100px"
             backgroundColor="rgb(248, 241, 255)">
@@ -92,7 +87,7 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
                         width="80px"
                         height="80px"
                         src={imageSrc}
-                        alt={"Cover image"}
+                        alt="Cover image"
                       />
                     </Flex>
                   );

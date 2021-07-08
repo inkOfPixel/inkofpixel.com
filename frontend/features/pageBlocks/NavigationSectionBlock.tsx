@@ -6,9 +6,10 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
+  Link,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import {
   Block,
   BlockComponentProps,
@@ -22,6 +23,7 @@ import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
 import Icon from "@components/Icon";
 import { Image } from "@chakra-ui/image";
+import { GooeyMenu } from "@components/GooeyMenu";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
@@ -33,14 +35,21 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
 
 const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
+const StyledGooeyMenu = chakra(GooeyMenu);
 
 export function NavigationSectionBlock() {
   const cms = useCMS();
 
+  function handleOpen() {
+    setOpen(!open);
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [open, setOpen] = useState(false);
+
   return (
-    <Flex as={"header"} w={"full"} zIndex={"100"} h={"160px"}>
+    <Flex as="header" w="full" zIndex="100" pos="absolute" h="40">
       <Box
         h="full"
         p={{
@@ -54,40 +63,40 @@ export function NavigationSectionBlock() {
         m={{
           base: "0px auto",
         }}>
-        <Flex h={"full"} alignItems={"center"}>
+        <Flex h="full" alignItems="center">
           <Box
             display={{
               base: "block",
               lg: "none",
             }}>
             <StyledMenu
-              mb={"10px"}
+              mb={"2.5"}
               onClick={onOpen}
               color={"rgb(22,19,56)"}
               display={{
                 base: "block",
                 lg: "none",
               }}
-              size={"40px"}
+              size="40px"
               _hover={{ cursor: "pointer" }}
             />
             <Drawer
-              placement={"left"}
+              placement="left"
               onClose={onClose}
               isOpen={isOpen}
               autoFocus={false}
               onEsc={onClose}
-              size={"xs"}>
+              size="xs">
               <DrawerOverlay />
               <DrawerContent>
                 <DrawerBody>
                   <Flex
-                    justifyContent={"center"}
-                    flexDir={"column"}
-                    mt={"70"}
-                    alignItems={"center"}
-                    textAlign={"center"}>
-                    <Box as={"a"} href={"/"} ml={"5px"} mb={"30px"}>
+                    justifyContent="center"
+                    flexDir="column"
+                    mt={16}
+                    alignItems="center"
+                    textAlign="center">
+                    <Box as={"a"} href={"/"} ml={1} mb={8}>
                       <Icon
                         width="40px"
                         height="40px"
@@ -95,7 +104,7 @@ export function NavigationSectionBlock() {
                       />
                     </Box>
                     <StyledInlineBlocks
-                      textAlign={"center"}
+                      textAlign="center"
                       name="blocks"
                       blocks={NAV_BLOCK}
                       isOpen={true}
@@ -137,28 +146,26 @@ export function NavigationSectionBlock() {
                 base: "none",
                 lg: "flex",
               }}
-              flex={"1 1 0%"}
-              w={"full"}
-              mr={"30px"}
-              justifyContent={"flex-end"}
-              flexDir={"row"}
+              flex="1 1 0%"
+              w="full"
+              mr="30px"
+              justifyContent="flex-end"
+              flexDir="row"
               name="blocks"
               blocks={NAV_BLOCK}
-              direction={"horizontal"}
+              direction="horizontal"
               max={6}
             />
           </Flex>
-          {/*
+
           <StyledGooeyMenu
             mr={{
               base: "0",
               xl: "30px",
             }}
             renderLabel={() => <span className="selected">{"EN"}</span>}
-            size={"44px"}
-            open={open}
-            onToggle={handleOpen}>
-            
+            size={"44px"}>
+            {/*
             {localePages.map((pageLocale) => (
               <Link
                 key={pageLocale.code}
@@ -168,11 +175,14 @@ export function NavigationSectionBlock() {
                 {pageLocale.code}
               </Link>
             ))}
-
-            <Link onClick={handleOpen}>EN</Link>
-            <Link onClick={handleOpen}>IT</Link>
-          </StyledGooeyMenu>
             */}
+            <Link className="items" onClick={handleOpen}>
+              EN
+            </Link>
+            <Link className="items" onClick={handleOpen}>
+              IT
+            </Link>
+          </StyledGooeyMenu>
         </Flex>
       </Box>
     </Flex>

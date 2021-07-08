@@ -9,6 +9,7 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
+import { useCMS } from "tinacms";
 import { SectionBlockTemplateData } from "./types";
 
 export type CardSectionBlockData = SectionBlockTemplateData<
@@ -26,15 +27,16 @@ const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function CardSectionBlock({ sectionTitle }: any) {
+  const cms = useCMS();
   return (
     <Box
-      as={"section"}
+      as="section"
       w={{
         base: "full",
       }}
-      m={"0 auto"}
-      p={"150px 0px"}
-      backgroundColor={"cardSectionBg"}>
+      m="0 auto"
+      p="150px 0px"
+      backgroundColor="cardSectionBg">
       <Box
         zIndex="10"
         p={{
@@ -42,22 +44,22 @@ export function CardSectionBlock({ sectionTitle }: any) {
           sm: "0px 40px",
           xl: "0px",
         }}
-        m={"0 auto"}
+        m="0 auto"
         w={{
           base: "full",
           xl: "1200px",
         }}
-        letterSpacing={"0.02em"}
-        pos={"relative"}>
+        letterSpacing="0.02em"
+        pos="relative">
         {sectionTitle != null ? (
           <Box
             color="rgb(5, 195, 182)"
-            fontSize={"sm"}
+            fontSize="sm"
             textTransform="uppercase"
             letterSpacing="0.1em"
             pos="relative"
             w="full"
-            pb="30px"
+            pb={8}
             as="h2"
             fontFamily="Roboto Mono"
             lineHeight="1.15em"
@@ -76,7 +78,7 @@ export function CardSectionBlock({ sectionTitle }: any) {
         ) : (
           <Box
             color="rgb(5, 195, 182)"
-            fontSize={"sm"}
+            fontSize="sm"
             textTransform="uppercase"
             letterSpacing="0.1em"
             pos="relative"
@@ -90,30 +92,49 @@ export function CardSectionBlock({ sectionTitle }: any) {
         )}
         <Box
           fontFamily="Europa"
-          fontSize="46px"
-          p={"0px 0px 100px 0px"}
+          fontSize={{ base: "32px", md: "40px", lg: "46px" }}
+          pb={25}
           m={0}
-          fontWeight={"bold"}
-          lineHeight={"hero"}
-          letterSpacing={"0.02em"}>
+          fontWeight="bold"
+          lineHeight="hero"
+          letterSpacing="0.02em">
           <StyledInlineTextarea name="title" />
         </Box>
-        <StyledInlineBlocks
-          display="flex"
-          justifyContent="center"
-          sx={{
-            "& > div": {
-              w: "calc(33.33%)",
-              h: "auto",
-              mt: "2",
-              mb: "2",
-            },
-          }}
-          flexWrap="wrap"
-          name="blocks"
-          blocks={CARD_BLOCK}
-          direction={"horizontal"}
-        />
+        {cms.enabled ? (
+          <StyledInlineBlocks
+            display="flex"
+            flexDir={{
+              base: "column",
+              md: "row",
+            }}
+            justifyContent="center"
+            sx={{
+              "& > div": {
+                w: { base: "full", md: "calc(33.33%)" },
+                h: "auto",
+                mt: "2",
+                mb: "2",
+              },
+            }}
+            flexWrap="wrap"
+            name="blocks"
+            blocks={CARD_BLOCK}
+            direction="horizontal"
+          />
+        ) : (
+          <StyledInlineBlocks
+            display="flex"
+            flexDir={{
+              base: "column",
+              md: "row",
+            }}
+            justifyContent="center"
+            flexWrap="wrap"
+            name="blocks"
+            blocks={CARD_BLOCK}
+            direction="horizontal"
+          />
+        )}
       </Box>
     </Box>
   );

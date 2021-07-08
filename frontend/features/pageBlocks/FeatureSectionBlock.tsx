@@ -51,7 +51,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
         {section.sectionTitle != null ? (
           <Box
             color="rgb(129, 82, 188)"
-            fontSize={"sm"}
+            fontSize="sm"
             textTransform="uppercase"
             letterSpacing="0.1em"
             pos="relative"
@@ -75,7 +75,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
         ) : (
           <Box
             color="rgb(129, 82, 188)"
-            fontSize={"sm"}
+            fontSize="sm"
             textTransform="uppercase"
             letterSpacing="0.1em"
             pos="relative"
@@ -94,7 +94,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
             md: "row",
           }}>
           <Flex
-            flexDirection={"column"}
+            flexDirection="column"
             mr={{
               base: "0px",
               md: "80px",
@@ -108,43 +108,44 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
               lg: "400px",
             }}>
             <Box
-              fontSize={"46px"}
+              fontSize="5xl"
               p={0}
               m={0}
-              fontWeight={"bold"}
-              lineHeight={"hero"}
+              fontWeight="bold"
+              lineHeight="hero"
               fontFamily="Europa"
-              letterSpacing={"0.02em"}>
+              letterSpacing="0.02em">
               <StyledInlineTextarea
-                fontSize={"5xl"}
+                fontSize="5xl"
                 p={0}
                 m={0}
-                fontWeight={"bold"}
-                lineHeight={"hero"}
-                letterSpacing={"0.02em"}
+                fontWeight="bold"
+                lineHeight="hero"
+                fontFamily="Europa"
+                letterSpacing="0.02em"
                 name="title"
               />
             </Box>
             <Box
-              fontSize={"sm"}
+              fontSize="sm"
               pt={5}
               m={0}
-              w={"full"}
+              w="full"
               paddingTop={5}
-              fontWeight={"subtitle"}
-              lineHeight={"subtitle"}
-              color={"description"}
-              letterSpacing={"0.04em"}
-              fontFamily={"Roboto Mono"}>
+              fontWeight="subtitle"
+              lineHeight="subtitle"
+              color="description"
+              letterSpacing="0.04em"
+              fontFamily="Roboto Mono">
               <StyledInlineTextarea
-                fontSize={"sm"}
+                fontSize="sm"
                 p={0}
                 m={0}
                 paddingTop={5}
-                fontWeight={"subtitle"}
-                lineHeight={"subtitle"}
-                letterSpacing={"0.02em"}
-                color={"description"}
+                fontWeight="subtitle"
+                lineHeight="subtitle"
+                letterSpacing="0.02em"
+                color="description"
                 name="subtitle"
               />
             </Box>
@@ -154,7 +155,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
               base: 10,
               md: 0,
             }}
-            height={"fit-content"}
+            height="fit-content"
             w="full"
             name="blocks"
             blocks={FEAT_BLOCK}

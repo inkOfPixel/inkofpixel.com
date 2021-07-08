@@ -24,46 +24,46 @@ const Bubble = chakra(Splash);
 
 export function HeroSectionBlock({ active }: any) {
   return (
-    <Box w="full" as="section">
+    <Box w="full" zIndex="1" pos="relative" overflow="hidden" as="section">
       <Flex
         pb={{
-          base: "300px",
-          lg: "400px",
+          base: "80",
+          lg: "96",
         }}
         pt={{
-          base: "40px",
-          lg: "140px",
+          base: "52",
+          lg: "80",
         }}
-        flexDir={"column"}
+        flexDir="column"
         w={{
           base: "full",
         }}
         m={{
           base: "0 auto",
         }}
-        position={"relative"}>
+        pos="relative">
         <Flex
           w={{
             base: "full",
             xl: "1200px",
           }}
           p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
-          m={"0 auto"}
-          pos={"relative"}>
+          m="0 auto"
+          pos="relative">
           <Box
             w={{
               base: "full",
               xl: "1200px",
             }}
-            height={"fit-content"}>
-            <Flex flexDirection={"column"}>
+            height="fit-content">
+            <Flex flexDirection="column">
               <Box
                 fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
                 m={{ base: 0 }}
-                fontWeight={"bold"}
-                lineHeight={"hero"}
-                fontFamily={"Europa"}
-                letterSpacing={"0.02em"}>
+                fontWeight="bold"
+                lineHeight="hero"
+                fontFamily="Europa"
+                letterSpacing="0.02em">
                 <StyledInlineTextarea name="title" />
               </Box>
               <Box
@@ -73,27 +73,26 @@ export function HeroSectionBlock({ active }: any) {
                 w={{
                   base: "full",
                   sm: "75%",
-                  md: "50%",
+                  md: "1/2",
                 }}
                 p={0}
                 m={0}
                 paddingTop={5}
-                fontWeight={"subtitle"}
-                lineHeight={"subtitle"}
-                fontFamily={"Roboto Mono"}
-                letterSpacing={"0.02em"}>
+                fontWeight="subtitle"
+                lineHeight="subtitle"
+                fontFamily="Roboto Mono"
+                letterSpacing="0.02em">
                 <StyledInlineTextarea
                   w={{
                     base: "full",
                     sm: "75%",
                     md: "50%",
                   }}
-                  fontFamily={"Roboto Mono"}
+                  fontFamily="Roboto Mono"
                   name="subtitle"
                 />
               </Box>
             </Flex>
-            {}
             {active === true ? (
               <Box
                 w="full"
@@ -171,8 +170,6 @@ export function HeroSectionBlock({ active }: any) {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("DATA", data);
-
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <HeroSectionBlock active={data.areBubblesActive} {...data} />

@@ -28,13 +28,13 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
         display={isOpen ? "inline-block" : "block"}
         m={isOpen ? "0px 0px 0px 0px" : "0px 0px 0px 10px"}
         p={isOpen ? "20px 10px" : "12px 10px"}
-        letterSpacing={"0.02em"}
-        color={"dark"}
+        letterSpacing="0.02em"
+        color="dark"
         className="link"
-        position={"relative"}
-        transition={"all 0.3s"}
-        fontSize={"sm"}
-        fontWeight={"subtitle"}
+        position="relative"
+        transition="all 0.3s"
+        fontSize="sm"
+        fontWeight="subtitle"
         href={path}
         _before={{
           background: "rgb(22,19,56)",
