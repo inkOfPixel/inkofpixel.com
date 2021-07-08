@@ -1,79 +1,95 @@
-import { Box, Checkbox } from "@chakra-ui/react";
+import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-export default function GooeyMenu({
-  color = "#fff",
-  backgroundColor = "rgb(22, 19, 56)",
-  size = 80,
-  spacing = 20,
-  className,
-  renderLabel,
-  children,
-  open,
-}: any) {
-  const [state, setState] = useState(open);
+export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
+  const [open, setOpen] = useState(false);
 
   function handleToggleMenu() {
-    setState(!state);
+    setOpen(!open);
   }
-
+  const StyledLabel = chakra(FormLabel);
   const itemCount = React.Children.count(children);
+  console.log("OPEN? ", open);
 
   return (
     <React.Fragment>
       <GooeySVGDefs />
-      <Box
-        position="relative"
-        filter="url('#shadowed-goo1')"
-        overflow="visible"
-        className={className}>
+      <Box pos="relative" filter="url('#shadowed-goo1)" overflow="visible">
         <Checkbox
-          type={"checkbox"}
-          name={"gooey-menu-open"}
-          id={"gooey-menu-open"}
-          display={"none"}
-          itemCount={itemCount}
+          type="checkbox"
+          name="gooey-menu-open"
+          id="gooey-menu-open"
+          display="none"
           onChange={handleToggleMenu}
-          checked={state}
-        />
-
-        {/*Da dare ai bottoni
-          background={backgroundColor}
-          borderRadius={"100%"}
-          display={"block"}
-          width={size}
-          height={size}
-          text-align={"center"}
-          line-height={size}
-          transform={"scale(1,1) translate3d(0, 0, 0)"} -> Questa è la regola che sposta i bottoni
-          transition={"transform ease-out 200ms"}*/}
-
+          sx={{
+            "&:checked": {
+              "& ~ label ": {
+                transitionTimingFunction: "linear",
+                transitionDuration: "200ms",
+                transform: "scale (0.8, 0.8) translate3d(0, 0, 0)",
+                ".toggleButtonContent": {
+                  opacity: "0",
+                },
+                "&::before": {
+                  opacity: "1",
+                },
+              },
+              "& ~ .items > * ": {
+                transitionTimingFunction: "cubic-bezier(0.165, 0.84, 0.44, 1)",
+                transform: "translate3d(0, 0, 0)",
+                transitionDuration: "400ms",
+                "&:hover": {
+                  transition: "transform 400ms",
+                  transform: "scale(1.1, 1.1)",
+                },
+              },
+            },
+          }}></Checkbox>
         <Box
-          position={"absolute"}
-          pt={size}
-          mt={spacing}
-          itemCount={itemCount}
-          color={color}
-          backgroundColor={backgroundColor}></Box>
-        <Box
-          as={"label"}
-          pos={"relative"}
+          pos="absolute"
+          pt="44px"
+          spacing="20px"
+          color="white"
+          backgroundColor="transparent"
+          sx={{
+            "& > *": {
+              pos: "relative",
+              mt: "20px",
+              backgroundColor: "dark",
+              borderRadius: "100%",
+              display: "block",
+              w: "44px",
+              h: "44px",
+              color: "white",
+              textAlign: "center",
+              lineHeight: "44px",
+              transition: "transform ease-out 200ms",
+            },
+          }}>
+          {children}
+        </Box>
+        <StyledLabel
+          pos="relative"
+          backgroundColor="dark"
+          borderRadius="100%"
+          display="block"
+          w="44px"
+          h="44px"
+          color="white"
+          textAlign="center"
+          lineHeight="44px"
+          transition="transform ease-out 200ms"
           htmlFor="gooey-menu-open"
-          color={color}
-          backgroundColor={backgroundColor}
-          background={backgroundColor}
-          borderRadius={"100%"}
-          display={"block"}
-          width={size}
-          height={size}
-          text-align={"center"}
-          line-height={size}
-          transform={"scale(1,1) translate3d(0, 0, 0)"}
-          transition={"transform ease-out 200ms"}
-          transitionDuration={"400ms"}
-          cursor={"pointer"}
+          transitionDuration="400ms"
+          transform="scale(1, 1) translate3d(0, 0, 0)"
+          cursor="pointer"
           _hover={{
-            transform: "scale(1.1, 1.1) translate3d(0,0,0)",
+            transform: "scale(1.1, 1.1) translate3d(0, 0, 0)",
+          }}
+          css={{
+            ".toggleButtonContent": {
+              opacity: 1,
+            },
           }}
           _before={{
             pos: "absolute",
@@ -81,31 +97,22 @@ export default function GooeyMenu({
             transition: "all 200ms",
             opacity: "0",
             content: "'✕'",
-            fontsize: "25px",
-            color: { color },
+            fontSize: "25px",
+            color: "white",
             left: "50%",
             transform: "translate3d(-50%, 0, 0)",
             top: "1%",
             h: "98%",
             w: "98%",
             borderRadius: "100%",
-            backgroundColor: { backgroundColor },
-          }}
-          _first={{
-            color: "red",
-            transform: "translate3d(-50%, 0, 0)",
+            backgroundColor: "green.600",
           }}>
-          <Box
-            pos={"relative"}
-            textAlign="center"
-            top={"30%"}
-            fontSize={"xs"}
-            className="toggleButtonContent"></Box>
-        </Box>
+          <Box className="toggleButtonContent">{renderLabel()}</Box>
+        </StyledLabel>
       </Box>
     </React.Fragment>
   );
-}
+});
 
 const GooeySVGDefs = () => (
   <svg width={0} height={0}>
