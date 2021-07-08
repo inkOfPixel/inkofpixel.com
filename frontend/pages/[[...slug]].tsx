@@ -208,6 +208,9 @@ function getPageData(
                       description: feature.description
                         ? feature.description
                         : null,
+                      bubbleColor: feature.bubbleColor
+                        ? feature.bubbleColor
+                        : null,
                       image:
                         feature.image == null
                           ? null

@@ -21,6 +21,7 @@ export type FeatureBlockData = BlockTemplateData<
     title: Nullable<string>;
     description: Nullable<string>;
     serviceLink: Nullable<string>;
+    bubbleColor: Nullable<string>;
   }
 >;
 
@@ -33,6 +34,7 @@ interface FeatureImage {
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
   serviceLink?: string;
+  bubbleColor: Nullable<string>;
 }
 
 interface ImageRenderProps {
@@ -45,7 +47,11 @@ interface ImageRenderProps {
 export const StyledInlineTextarea = chakra(InlineTextarea);
 const Bubble = chakra(Splash);
 
-export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
+export function FeatureBlock({
+  serviceLink,
+  image,
+  bubbleColor,
+}: FeatureBlockProps) {
   const cms = useCMS();
   return (
     <Container maxWidth="full">
@@ -54,7 +60,7 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
           <Bubble
             pos="relative"
             boxSize="100px"
-            backgroundColor="rgb(248, 241, 255)">
+            backgroundColor={bubbleColor ? bubbleColor : "rgb(248, 241, 255)"}>
             {cms.enabled ? (
               <InlineImage
                 name="image"
@@ -173,6 +179,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <FeatureBlock
+        bubbleColor={data.bubbleColor}
         image={data.image}
         serviceLink={data.serviceLink}
         {...data}
@@ -199,6 +206,11 @@ export const featureBlock: Block = {
         label: "Url",
         component: "text",
         defaultValue: "/",
+      },
+      {
+        name: "bubbleColor",
+        label: "Bubble color",
+        component: "color",
       },
     ],
   },

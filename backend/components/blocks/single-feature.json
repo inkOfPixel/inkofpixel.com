@@ -27,6 +27,9 @@
     },
     "serviceLink": {
       "type": "string"
+    },
+    "bubbleColor": {
+      "type": "string"
     }
   }
 }

@@ -80,6 +80,7 @@ export type ComponentBlocksSingleFeature = {
   title: Scalars['String'];
   image?: Maybe<UploadFile>;
   serviceLink?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksSingleFeatureInput = {
@@ -87,6 +88,7 @@ export type ComponentBlocksSingleFeatureInput = {
   title: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
   serviceLink?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
 };
 
 export type ComponentMenuLink = {
@@ -1098,6 +1100,7 @@ export type EditComponentBlocksSingleFeatureInput = {
   title?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
   serviceLink?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentMenuLinkInput = {
@@ -1262,7 +1265,7 @@ export type GetPagesQuery = (
       & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
       & { singleFeature?: Maybe<Array<Maybe<(
         { __typename: 'ComponentBlocksSingleFeature' }
-        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink'>
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink' | 'bubbleColor'>
         & { image?: Maybe<(
           { __typename?: 'UploadFile' }
           & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
@@ -1333,6 +1336,7 @@ export const GetPages = `
           description
           title
           serviceLink
+          bubbleColor
           image {
             id
             name

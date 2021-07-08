@@ -128,6 +128,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                       }
                     : null,
                   serviceLink: feature.serviceLink,
+                  bubbleColor: feature.bubbleColor,
                 };
               }),
             };
