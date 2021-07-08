@@ -176,12 +176,8 @@ export function NavigationSectionBlock() {
               </Link>
             ))}
             */}
-            <Link className="items" onClick={handleOpen}>
-              EN
-            </Link>
-            <Link className="items" onClick={handleOpen}>
-              IT
-            </Link>
+            <span>EN</span>
+            <span>IT</span>
           </StyledGooeyMenu>
         </Flex>
       </Box>
