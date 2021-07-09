@@ -47,7 +47,7 @@ export function CardSectionBlock(sectionTitle: string) {
         m="0 auto"
         w={{
           base: "full",
-          xl: "1200px",
+          xl: "1300px",
         }}
         letterSpacing="0.02em"
         pos="relative">
@@ -112,8 +112,8 @@ export function CardSectionBlock(sectionTitle: string) {
               "& > div": {
                 w: {
                   base: "calc(100% - 30px)",
-                  md: "calc(45% - 30px)",
-                  lg: "calc(30% - 30px)",
+                  md: "calc(50% - 30px)",
+                  lg: "calc(33% - 30px)",
                 },
                 h: "auto",
                 m: "4",

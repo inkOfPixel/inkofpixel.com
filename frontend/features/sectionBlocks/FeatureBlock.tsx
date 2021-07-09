@@ -71,7 +71,7 @@ export function FeatureBlock({
                 uploadDir={() => "/"}
                 previewSrc={(imageSrc) => {
                   if (imageSrc === "") {
-                    return "";
+                    return "/images/default-image.png";
                   }
 
                   return imageSrc;
