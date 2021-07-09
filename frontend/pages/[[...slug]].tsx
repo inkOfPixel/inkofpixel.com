@@ -219,9 +219,8 @@ function getPageData(
                               url: feature.image.url,
                               altText: feature.image.alternativeText || null,
                             },
-                      serviceLink: feature.serviceLink
-                        ? feature.serviceLink
-                        : null,
+                      url: feature.url ? feature.url : null,
+                      urlName: feature.urlName ? feature.urlName : null,
                       _template: "ComponentBlocksSingleFeature",
                     };
                   })
@@ -242,6 +241,7 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
+                        urlName: card.urlName,
                         image:
                           card.image == null
                             ? null
@@ -250,7 +250,7 @@ function getPageData(
                                 url: card.image.url,
                                 altText: card.image.alternativeText || null,
                               },
-                        projectLink: card.projectLink ? card.projectLink : null,
+                        url: card.url ? card.url : null,
                         _template: "ComponentBlocksCard",
                       };
                     }

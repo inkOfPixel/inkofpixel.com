@@ -20,7 +20,8 @@ export type FeatureBlockData = BlockTemplateData<
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
-    serviceLink: Nullable<string>;
+    url: Nullable<string>;
+    urlName: Nullable<string>;
     bubbleColor: Nullable<string>;
   }
 >;
@@ -33,7 +34,8 @@ interface FeatureImage {
 
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
-  serviceLink?: string;
+  url?: string;
+  urlName?: string;
   bubbleColor: Nullable<string>;
 }
 
@@ -48,11 +50,13 @@ export const StyledInlineTextarea = chakra(InlineTextarea);
 const Bubble = chakra(Splash);
 
 export function FeatureBlock({
-  serviceLink,
+  url,
   image,
   bubbleColor,
+  urlName,
 }: FeatureBlockProps) {
   const cms = useCMS();
+
   return (
     <Container maxWidth="full">
       <Box as="div">
@@ -67,10 +71,9 @@ export function FeatureBlock({
                 uploadDir={() => "/"}
                 previewSrc={(imageSrc) => {
                   if (imageSrc === "") {
-                    return ""; // "/images/default-image.png";
+                    return "";
                   }
-                  // const previewSrc = cms.media.previewSrc(imageSrc);
-                  // return previewSrc;
+
                   return imageSrc;
                 }}
                 parse={(media) => {
@@ -164,8 +167,8 @@ export function FeatureBlock({
                   color: "rgb(5, 195, 182)",
                   textDecorationLine: "none",
                 }}
-                href={serviceLink}>
-                Learn more
+                href={url}>
+                {urlName ? urlName : "Learn more"}
               </Link>
             </Box>
           </Box>
@@ -178,12 +181,7 @@ export function FeatureBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureBlock
-        bubbleColor={data.bubbleColor}
-        image={data.image}
-        serviceLink={data.serviceLink}
-        {...data}
-      />
+      <FeatureBlock {...data} />
     </BlocksControls>
   );
 }
@@ -195,17 +193,22 @@ export const featureBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      serviceLink: "/",
+      url: "/",
       image: {
         id: "51",
       },
     },
     fields: [
       {
-        name: "serviceLink",
+        name: "url",
         label: "Url",
         component: "text",
         defaultValue: "/",
+      },
+      {
+        name: "urlName",
+        label: "Url name",
+        component: "text",
       },
       {
         name: "bubbleColor",

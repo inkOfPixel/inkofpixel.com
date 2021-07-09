@@ -95,6 +95,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                     id: card.id,
                     title: card.title,
                     description: card.description,
+                    urlName: card.urlName,
                     image: card.image
                       ? {
                           id: card.image.id,
@@ -102,7 +103,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                           url: card.image.url,
                         }
                       : null,
-                    projectLink: card.projectLink,
+                    url: card.url,
                   };
                 }
               }),
@@ -120,6 +121,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                   id: feature.id,
                   title: feature.title,
                   description: feature.description,
+                  urlName: feature.urlName,
                   image: feature.image
                     ? {
                         id: feature.image.id,
@@ -127,7 +129,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                         url: feature.image.url,
                       }
                     : null,
-                  serviceLink: feature.serviceLink,
+                  url: feature.url,
                   bubbleColor: feature.bubbleColor,
                 };
               }),

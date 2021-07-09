@@ -165,7 +165,19 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "args": [],
             "type": {
@@ -233,7 +245,19 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -487,7 +511,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -500,6 +524,18 @@
           },
           {
             "name": "bubbleColor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "args": [],
             "type": {
@@ -567,7 +603,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -580,6 +616,18 @@
           },
           {
             "name": "bubbleColor",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8292,7 +8340,19 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8457,7 +8517,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -8470,6 +8530,18 @@
           },
           {
             "name": "bubbleColor",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "urlName",
             "description": null,
             "type": {
               "kind": "SCALAR",

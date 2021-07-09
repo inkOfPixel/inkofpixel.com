@@ -17,7 +17,8 @@ query GetPages($where: JSON, $locale: String) {
           id
           description
           title
-          serviceLink
+          url
+          urlName
           bubbleColor
           image {
             id
@@ -51,7 +52,8 @@ query GetPages($where: JSON, $locale: String) {
             url
             alternativeText
           }
-          projectLink
+          url
+          urlName
         }
       }
       ... on ComponentSectionNavigationSection {

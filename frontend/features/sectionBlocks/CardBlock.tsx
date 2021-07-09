@@ -18,7 +18,8 @@ export type CardBlockData = BlockTemplateData<
     image?: Nullable<CardImage>;
     title: string;
     description: string;
-    projectLink?: Nullable<string>;
+    url?: Nullable<string>;
+    urlName?: Nullable<string>;
   }
 >;
 
@@ -32,7 +33,8 @@ interface CardBlockProps {
   image?: Nullable<CardImage>;
   title?: string;
   description: string;
-  projectLink?: string;
+  url?: string;
+  urlName?: string;
 }
 
 interface ImageRenderProps {
@@ -44,7 +46,7 @@ interface ImageRenderProps {
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardBlock({ projectLink, image }: CardBlockProps) {
+export function CardBlock({ url, image, urlName }: CardBlockProps) {
   const cms = useCMS();
 
   return (
@@ -54,12 +56,11 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
       boxSizing="border-box"
       justifyContent="space-between"
       h={cms.enabled ? "full" : "auto"}
-      /*       w={cms.enabled ? "full" : "calc(33.33% - 30px)"} */
       w={{
         base: "full",
       }}
       backgroundColor="white"
-      href={projectLink}
+      href={url}
       transition="all 0.8s"
       _hover={{
         boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.15)",
@@ -73,10 +74,9 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
             uploadDir={() => "/"}
             previewSrc={(imageSrc) => {
               if (imageSrc === "") {
-                return "/images/default-image.png"; // "/images/default-image.png";
+                return "/images/default-image.png";
               }
-              // const previewSrc = cms.media.previewSrc(imageSrc);
-              // return previewSrc;
+
               return imageSrc;
             }}
             parse={(media) => {
@@ -189,7 +189,7 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
         mr={8}
         ml={8}
         mb={8}>
-        <Box as="span">Discover more</Box>
+        <Box as="span">{urlName ? urlName : "Discover more"}</Box>
       </Box>
     </Flex>
   );
@@ -198,7 +198,7 @@ export function CardBlock({ projectLink, image }: CardBlockProps) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardBlock {...data} image={data.image} projectLink={data.projectLink} />
+      <CardBlock {...data} />
     </BlocksControls>
   );
 }
@@ -210,8 +210,20 @@ export const cardBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      projectLink: "Default link",
+      url: "Default link",
     },
-    fields: [],
+    fields: [
+      {
+        name: "url",
+        label: "Url",
+        component: "text",
+        defaultValue: "/",
+      },
+      {
+        name: "urlName",
+        label: "Url name",
+        component: "text",
+      },
+    ],
   },
 };

@@ -25,7 +25,10 @@
       "required": false,
       "pluginOptions": {}
     },
-    "projectLink": {
+    "url": {
+      "type": "string"
+    },
+    "urlName": {
       "type": "string"
     }
   }

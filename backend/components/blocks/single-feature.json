@@ -25,10 +25,13 @@
       "required": false,
       "pluginOptions": {}
     },
-    "serviceLink": {
+    "url": {
       "type": "string"
     },
     "bubbleColor": {
+      "type": "string"
+    },
+    "urlName": {
       "type": "string"
     }
   }

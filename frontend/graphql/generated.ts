@@ -39,14 +39,16 @@ export type ComponentBlocksCard = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<UploadFile>;
-  projectLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksCardInput = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  projectLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksHero = {
@@ -79,16 +81,18 @@ export type ComponentBlocksSingleFeature = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<UploadFile>;
-  serviceLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type ComponentBlocksSingleFeatureInput = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  serviceLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type ComponentMenuLink = {
@@ -1079,7 +1083,8 @@ export type EditComponentBlocksCardInput = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
-  projectLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentBlocksHeroInput = {
@@ -1099,8 +1104,9 @@ export type EditComponentBlocksSingleFeatureInput = {
   description?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
-  serviceLink?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
+  urlName?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentMenuLinkInput = {
@@ -1235,53 +1241,6 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
-export type GetPagesQueryVariables = Exact<{
-  where?: Maybe<Scalars['JSON']>;
-  locale?: Maybe<Scalars['String']>;
-}>;
-
-
-export type GetPagesQuery = (
-  { __typename?: 'Query' }
-  & { pages?: Maybe<Array<Maybe<(
-    { __typename: 'Pages' }
-    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
-    & { sections?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentSectionCardSection' }
-      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { card?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksCard' }
-        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'projectLink'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionHeroSection' }
-      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle' | 'areBubblesActive'>
-    ) | (
-      { __typename: 'ComponentSectionSingleFeatureSection' }
-      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { singleFeature?: Maybe<Array<Maybe<(
-        { __typename: 'ComponentBlocksSingleFeature' }
-        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'serviceLink' | 'bubbleColor'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionNavigationSection' }
-      & Pick<ComponentSectionNavigationSection, 'id'>
-      & { nav?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksNavigationBlock' }
-        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
-      )>>> }
-    )>>> }
-  )>>> }
-);
-
 export type CreatePageMutationVariables = Exact<{
   input?: Maybe<CreatePageInput>;
 }>;
@@ -1309,6 +1268,53 @@ export type GetLocalesQuery = (
   )>>> }
 );
 
+export type GetPagesQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetPagesQuery = (
+  { __typename?: 'Query' }
+  & { pages?: Maybe<Array<Maybe<(
+    { __typename: 'Pages' }
+    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename: 'ComponentSectionCardSection' }
+      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
+      & { card?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksCard' }
+        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'url' | 'urlName'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionHeroSection' }
+      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle' | 'areBubblesActive'>
+    ) | (
+      { __typename: 'ComponentSectionSingleFeatureSection' }
+      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
+      & { singleFeature?: Maybe<Array<Maybe<(
+        { __typename: 'ComponentBlocksSingleFeature' }
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'url' | 'urlName' | 'bubbleColor'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionNavigationSection' }
+      & Pick<ComponentSectionNavigationSection, 'id'>
+      & { nav?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksNavigationBlock' }
+        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
+      )>>> }
+    )>>> }
+  )>>> }
+);
+
 export type UpdatePageMutationVariables = Exact<{
   input?: Maybe<UpdatePageInput>;
 }>;
@@ -1326,6 +1332,22 @@ export type UpdatePageMutation = (
 );
 
 
+export const CreatePage = `
+    mutation CreatePage($input: createPageInput) {
+  createPage(input: $input) {
+    page {
+      id
+    }
+  }
+}
+    `;
+export const GetLocales = `
+    query GetLocales {
+  pages {
+    locale
+  }
+}
+    `;
 export const GetPages = `
     query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
@@ -1346,7 +1368,8 @@ export const GetPages = `
           id
           description
           title
-          serviceLink
+          url
+          urlName
           bubbleColor
           image {
             id
@@ -1380,7 +1403,8 @@ export const GetPages = `
             url
             alternativeText
           }
-          projectLink
+          url
+          urlName
         }
       }
       ... on ComponentSectionNavigationSection {
@@ -1393,22 +1417,6 @@ export const GetPages = `
         }
       }
     }
-  }
-}
-    `;
-export const CreatePage = `
-    mutation CreatePage($input: createPageInput) {
-  createPage(input: $input) {
-    page {
-      id
-    }
-  }
-}
-    `;
-export const GetLocales = `
-    query GetLocales {
-  pages {
-    locale
   }
 }
     `;
