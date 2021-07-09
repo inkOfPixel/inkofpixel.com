@@ -15,6 +15,7 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
       <GooeySVGDefs />
       <Box pos="relative" filter="url(#shadowed-goo1)" overflow="visible">
         <Checkbox
+          userSelect="none"
           type="checkbox"
           name="gooey-menu-open"
           id="gooey-menu-open"
@@ -54,6 +55,7 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
               </Link>
             ) : (
               <Link
+                userSelect="none"
                 fontFamily="Roboto Mono"
                 fontSize="xs"
                 transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
@@ -67,9 +69,9 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
               </Link>
             )
           )}
-          {console.log("children", children)}
         </Box>
         <StyledLabel
+          userSelect="none"
           fontWeight="light"
           fontFamily="Roboto Mono"
           fontSize="xs"

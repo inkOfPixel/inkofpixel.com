@@ -26,7 +26,7 @@ export type CardSectionBlockData = SectionBlockTemplateData<
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardSectionBlock({ sectionTitle }: any) {
+export function CardSectionBlock(sectionTitle: string) {
   const cms = useCMS();
   return (
     <Box
@@ -112,8 +112,8 @@ export function CardSectionBlock({ sectionTitle }: any) {
               "& > div": {
                 w: {
                   base: "calc(100% - 30px)",
-                  md: "calc(40% - 30px)",
-                  xl: "calc(30% - 30px)",
+                  md: "calc(45% - 30px)",
+                  lg: "calc(30% - 30px)",
                 },
                 h: "auto",
                 m: "4",
@@ -126,10 +126,16 @@ export function CardSectionBlock({ sectionTitle }: any) {
           />
         ) : (
           <StyledInlineBlocks
-            w={{
-              base: "calc(100% - 30px)",
-              md: "calc(40% - 30px)",
-              xl: "calc(30% - 30px)",
+            sx={{
+              "& > div": {
+                w: {
+                  base: "calc(100% - 30px)",
+                  md: "calc(45% - 30px)",
+                  lg: "calc(30% - 30px)",
+                },
+                h: "auto",
+                m: "4",
+              },
             }}
             display="flex"
             flexDir={{

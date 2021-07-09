@@ -1298,6 +1298,17 @@ export type CreatePageMutation = (
   )> }
 );
 
+export type GetLocalesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLocalesQuery = (
+  { __typename?: 'Query' }
+  & { pages?: Maybe<Array<Maybe<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'locale'>
+  )>>> }
+);
+
 export type UpdatePageMutationVariables = Exact<{
   input?: Maybe<UpdatePageInput>;
 }>;
@@ -1391,6 +1402,13 @@ export const CreatePage = `
     page {
       id
     }
+  }
+}
+    `;
+export const GetLocales = `
+    query GetLocales {
+  pages {
+    locale
   }
 }
     `;

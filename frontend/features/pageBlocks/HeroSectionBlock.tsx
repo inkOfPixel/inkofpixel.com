@@ -22,9 +22,9 @@ export type HeroSectionBlockData = SectionBlockTemplateData<
 const StyledInlineTextarea = chakra(InlineTextarea);
 const Bubble = chakra(Splash);
 
-export function HeroSectionBlock({ active }: any) {
+export function HeroSectionBlock(active: boolean) {
   return (
-    <Box w="full" zIndex="1" pos="relative" overflow="hidden" as="section">
+    <Box w="full" pos="relative" overflow="hidden" as="section">
       <Flex
         pb={{
           base: "80",

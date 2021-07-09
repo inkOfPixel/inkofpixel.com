@@ -22,11 +22,18 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
+type FeatureSectionProps = {
+  sectionTitle: string;
+  preview: boolean;
+};
+
 export const StyledInlineTextarea = chakra(InlineTextarea);
 export const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function FeatureSectionBlock(section: any, preview: boolean) {
-  
+export function FeatureSectionBlock({
+  sectionTitle,
+  preview,
+}: FeatureSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -49,7 +56,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
           base: "full",
           xl: "1200px",
         }}>
-        {section.sectionTitle != null ? (
+        {sectionTitle != null ? (
           <Box
             color="rgb(129, 82, 188)"
             fontSize="sm"
@@ -171,7 +178,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureSectionBlock section={data} {...data} />
+      <FeatureSectionBlock sectionTitle={data.sectionTitle} {...data} />
     </BlocksControls>
   );
 }
