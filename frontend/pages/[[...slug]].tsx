@@ -1,4 +1,4 @@
-import { fetchGraphQL, filterListNullableItems } from "@graphql/utils";
+import { fetchGraphQL } from "@graphql/utils";
 import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
@@ -12,10 +12,10 @@ import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
-  SectionBlockData,
-  SECTION_PAGE_BLOCKS,
+  PageSectionBlockData,
+  PAGE_SECTION_BLOCKS,
 } from "@features/pageBlocks";
-import { assertNever } from "utils";
+import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 
@@ -50,7 +50,7 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
             color={colorMode == "light" ? "dark" : "white"}
             name="sections"
             itemProps={itemProps}
-            blocks={SECTION_PAGE_BLOCKS}
+            blocks={PAGE_SECTION_BLOCKS}
           />
         </InlineForm>
       </DefaultLayout>
@@ -175,7 +175,7 @@ function getPageData(
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
     const sections =
-      filteredSections.map<SectionBlockData>((section) => {
+      filteredSections.map<PageSectionBlockData>((section) => {
         switch (section.__typename) {
           case "ComponentSectionHeroSection": {
             return {
@@ -210,9 +210,7 @@ function getPageData(
                               url: feature.image.url,
                               altText: feature.image.alternativeText || null,
                             },
-                      serviceLink: feature.serviceLink
-                        ? feature.serviceLink
-                        : null,
+                      url: feature.url ? feature.url : null,
                       _template: "ComponentBlocksSingleFeature",
                     };
                   })
@@ -233,8 +231,15 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        imageUrl: card.image?.url,
-                        projectLink: card.projectLink ? card.projectLink : null,
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.alternativeText || null,
+                              },
+                        projectLink: card.url ? card.url : null,
                         _template: "ComponentBlocksCard",
                       };
                     }

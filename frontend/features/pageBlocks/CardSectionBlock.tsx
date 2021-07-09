@@ -8,16 +8,16 @@ import {
   BlocksControls,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData } from "./types";
 
-export type CardSectionBlockData = SectionBlockTemplateData<
+export type CardSectionBlockData = BlockTemplateData<
   "cardSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
-    blocks?: CardBlockData[];
+    blocks: CardBlockData[];
   }
 >;
 

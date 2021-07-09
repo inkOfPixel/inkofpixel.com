@@ -17,7 +17,7 @@ query GetPages($where: JSON, $locale: String) {
           id
           description
           title
-          serviceLink
+          url
           image {
             id
             name
@@ -46,9 +46,11 @@ query GetPages($where: JSON, $locale: String) {
           title
           description
           image {
+            id
             url
+            alternativeText
           }
-          projectLink
+          url
         }
       }
     }

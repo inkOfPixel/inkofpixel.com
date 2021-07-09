@@ -1,20 +1,11 @@
 import { extendTheme, ThemeOverride } from "@chakra-ui/react";
 import { theme as chakraTheme } from "@chakra-ui/react";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const fonts = {
   ...chakraTheme.fonts,
   body: `"Europa","Roboto Mono", monospace`,
   heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
-
-const breakpoints = createBreakpoints({
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-  "2xl": "96em",
-});
 
 const config: ThemeOverride["config"] = {
   initialColorMode: "light",
@@ -24,7 +15,7 @@ const config: ThemeOverride["config"] = {
 const overrides: ThemeOverride = {
   config,
   fonts,
-  breakpoints,
+
   fontWeights: {
     normal: 300,
     subtitle: 400,

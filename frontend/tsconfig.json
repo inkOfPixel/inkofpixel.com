@@ -27,10 +27,11 @@
         "@components/*": ["components/*"],
         "@features/*": ["features/*"],
         "@assets/*": ["assets/*"],
-        "@theme": ["theme"]
+        "@theme": ["theme"],
+        "@utils": ["utils"]
       }
     },
     "exclude": ["node_modules"],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@types/index.d.ts", "next.config.js"]
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@types/index.d.ts"]
   }
   

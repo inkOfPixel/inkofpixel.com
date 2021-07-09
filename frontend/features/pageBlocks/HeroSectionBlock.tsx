@@ -7,9 +7,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData } from "./types";
 
-export type HeroSectionBlockData = SectionBlockTemplateData<
+export type HeroSectionBlockData = BlockTemplateData<
   "heroSection",
   {
     id: string;

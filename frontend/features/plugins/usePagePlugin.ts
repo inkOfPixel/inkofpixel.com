@@ -1,4 +1,4 @@
-import { SectionBlockData } from "@features/pageBlocks";
+import { PageSectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
@@ -14,13 +14,14 @@ import {
   useForm,
   usePlugin,
 } from "tinacms";
-import { assertNever } from "utils";
-
+import { assertNever, filterListNullableItems } from "@utils";
+import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 export interface PageData {
   id: string;
   title?: string;
   path?: string;
-  sections: SectionBlockData[];
+  sections: PageSectionBlockData[];
 }
 
 export interface PageDataCreateInput {
@@ -34,7 +35,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   const router = useRouter();
   const formConfig: FormOptions<PageData> = {
     id: pageData,
-    label: "aa",
+    label: "Page",
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
@@ -88,17 +89,27 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              sections: section.blocks?.map((card) => {
-                if (card != null) {
-                  return {
-                    id: card.id,
-                    title: card.title,
-                    description: card.description,
-                    imageUrl: card.imageUrl,
-                    projectLink: card.projectLink,
-                  };
-                }
-              }),
+              sections: section.blocks
+                ? filterListNullableItems(section.blocks).map<CardBlockData>(
+                    (card) => {
+                      return {
+                        id: card.id,
+                        title: card.title,
+                        description: card.description,
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.altText || null,
+                              },
+                        projectLink: card.projectLink ? card.projectLink : null,
+                        _template: "ComponentBlocksCard",
+                      };
+                    }
+                  )
+                : [],
             };
           }
           case "featureSection": {
@@ -108,22 +119,27 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              sections: section.blocks?.map((feature) => {
-                console.log("FEATURE WHILE SAVING", feature);
-                return {
-                  id: feature.id,
-                  title: feature.title,
-                  description: feature.description,
-                  image: feature.image
-                    ? {
-                        id: feature.image.id,
-                        altText: feature.image.altText || null,
-                        url: feature.image.url,
-                      }
-                    : null,
-                  serviceLink: feature.serviceLink,
-                };
-              }),
+              sections: section.blocks
+                ? filterListNullableItems(section.blocks).map<FeatureBlockData>(
+                    (feature) => {
+                      return {
+                        id: feature.id,
+                        title: feature.title,
+                        description: feature.description,
+                        image:
+                          feature.image == null
+                            ? null
+                            : {
+                                id: feature.image.id,
+                                url: feature.image.url,
+                                altText: feature.image.altText || null,
+                              },
+                        url: feature.url ? feature.url : null,
+                        _template: "ComponentBlocksSingleFeature",
+                      };
+                    }
+                  )
+                : [],
             };
           }
           default:

@@ -19,7 +19,7 @@ export type FeatureBlockData = BlockTemplateData<
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
-    serviceLink: Nullable<string>;
+    url: Nullable<string>;
   }
 >;
 
@@ -31,7 +31,7 @@ interface FeatureImage {
 
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
-  serviceLink?: string;
+  url?: string;
 }
 
 interface ImageRenderProps {
@@ -43,7 +43,7 @@ interface ImageRenderProps {
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
+export function FeatureBlock({ url, image }: FeatureBlockProps) {
   const cms = useCMS();
   return (
     <Container maxWidth={"full"}>
@@ -59,10 +59,8 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
               uploadDir={() => "/"}
               previewSrc={(imageSrc) => {
                 if (imageSrc === "") {
-                  return ""; // "/images/default-image.png";
+                  return "";
                 }
-                // const previewSrc = cms.media.previewSrc(imageSrc);
-                // return previewSrc;
                 return imageSrc;
               }}
               parse={(media) => {
@@ -77,26 +75,29 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
                   imageSrc = `${STRAPI_URL}${imageSrc}`;
                 }
                 return (
-                  <Box w="100px" h="100px">
+                  <Flex
+                    justifyContent="center"
+                    alignItems="center"
+                    boxSize="100px">
                     <Img
                       width="80px"
                       height="80px"
                       src={imageSrc}
-                      alt={"Cover image"}
+                      alt="Cover image"
                     />
-                  </Box>
+                  </Flex>
                 );
               }}
             </InlineImage>
           ) : (
-            <Box boxSize="100px">
+            <Flex justifyContent="center" alignItems="center" boxSize="100px">
               <Img
                 width="80px"
                 height="80px"
                 src={
                   image ? STRAPI_URL + image.url : "/images/default-image.png"
                 }></Img>
-            </Box>
+            </Flex>
           )}
           <Box
             fontSize="xl"
@@ -151,7 +152,7 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
                   color: "rgb(5, 195, 182)",
                   textDecorationLine: "none",
                 }}
-                href={serviceLink}>
+                href={url}>
                 Learn more
               </Link>
             </Box>
@@ -165,11 +166,7 @@ export function FeatureBlock({ serviceLink, image }: FeatureBlockProps) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureBlock
-        image={data.image}
-        serviceLink={data.serviceLink}
-        {...data}
-      />
+      <FeatureBlock {...data} />
     </BlocksControls>
   );
 }
@@ -177,18 +174,15 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "feat",
+    label: "Feature",
     defaultItem: {
       title: "Default title",
       description: "Default description",
       serviceLink: "/",
-      image: {
-        id: "51",
-      },
     },
     fields: [
       {
-        name: "serviceLink",
+        name: "url",
         label: "Url",
         component: "text",
         defaultValue: "/",

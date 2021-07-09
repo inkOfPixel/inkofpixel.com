@@ -20,7 +20,7 @@ export default class Document extends NextDocument {
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
 
-        <body style={{ overflowX: "hidden" }}>
+        <body>
           <ColorModeScript initialColorMode={Theme.config?.initialColorMode} />
           <Main />
           <NextScript />

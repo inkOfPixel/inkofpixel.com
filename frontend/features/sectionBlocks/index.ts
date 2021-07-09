@@ -2,7 +2,7 @@ export * from "./types";
 import { cardBlock, CardBlockData } from "./CardBlock";
 import { featureBlock, FeatureBlockData } from "./FeatureBlock";
 
-export const FEAT_BLOCK = {
+export const FEATURE_BLOCK = {
   ComponentBlocksSingleFeature: featureBlock,
 };
 

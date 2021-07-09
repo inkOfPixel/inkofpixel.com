@@ -11,15 +11,6 @@ export function DefaultLayout({ children, title }: any) {
         <title>{title}</title>
       </Head>
       <Box>
-        {/*
-        <Flex
-          direction="row"
-          alignItems="center"
-          width="100%"
-          justifyContent="flex-end"
-        >
-           <DarkModeSwitch /> 
-        </Flex>*/}
         <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
       </Box>
     </React.Fragment>

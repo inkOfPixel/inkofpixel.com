@@ -1,5 +1,5 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import { BlockItemProps, FEAT_BLOCK } from "@features/sectionBlocks";
+import { BlockItemProps, FEATURE_BLOCK } from "@features/sectionBlocks";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import React from "react";
 import {
@@ -9,9 +9,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData } from "./types";
 
-export type FeatureSectionBlockData = SectionBlockTemplateData<
+export type FeatureListSectionBlockData = BlockTemplateData<
   "featureSection",
   {
     id: string;
@@ -22,10 +22,18 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
+type FeatureListSectionProps = {
+  sectionTitle: string;
+  preview: boolean;
+};
+
 export const StyledInlineTextarea = chakra(InlineTextarea);
 export const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function FeatureSectionBlock(section: any, preview: boolean) {
+export function FeatureListSectionBlock({
+  sectionTitle,
+  preview,
+}: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -47,7 +55,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
         base: "full",
         xl: "1200px",
       }}>
-      {section.sectionTitle != null ? (
+      {sectionTitle != null ? (
         <Box
           color="rgb(129, 82, 188)"
           fontSize={"sm"}
@@ -155,7 +163,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
           height={"fit-content"}
           w="full"
           name="blocks"
-          blocks={FEAT_BLOCK}
+          blocks={FEATURE_BLOCK}
           itemProps={itemProps}
         />
       </Flex>
@@ -166,7 +174,7 @@ export function FeatureSectionBlock(section: any, preview: boolean) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureSectionBlock section={data} {...data} />
+      <FeatureListSectionBlock {...data} />
     </BlocksControls>
   );
 }

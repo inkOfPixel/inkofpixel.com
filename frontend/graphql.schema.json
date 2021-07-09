@@ -165,7 +165,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -233,7 +233,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -315,7 +315,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "args": [],
             "type": {
@@ -383,7 +383,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9179,7 +9179,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9250,7 +9250,7 @@
             "deprecationReason": null
           },
           {
-            "name": "serviceLink",
+            "name": "url",
             "description": null,
             "type": {
               "kind": "SCALAR",

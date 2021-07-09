@@ -13,21 +13,20 @@ export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",
   {
     id: string;
-    imageUrl?: string;
+    image?: Nullable<CardImage>;
     title: string;
     description: string;
     projectLink?: Nullable<string>;
   }
 >;
 
-interface CardBlockProps {
-  imageUrl?: string;
-  title?: string;
-  description: string;
-  projectLink?: string;
-}
+type CardImage = {
+  id: string;
+  altText: Nullable<string>;
+  url: string;
+};
 
-export function CardBlock({ projectLink }: CardBlockProps) {
+export function CardBlock(projectLink: string) {
   return (
     <Box
       p={4}
@@ -59,7 +58,7 @@ export function CardBlock({ projectLink }: CardBlockProps) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardBlock {...data} projectLink={data.projectLink} />
+      <CardBlock {...data} />
     </BlocksControls>
   );
 }
