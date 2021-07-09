@@ -15,7 +15,7 @@ import { BlockTemplateData } from "./types";
 export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
-    id: Nullable<string>;
+    id: string;
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
@@ -48,18 +48,14 @@ export function FeatureBlock({ url, image }: FeatureBlockProps) {
   return (
     <Container maxWidth={"full"}>
       <Box as="div">
-        <Flex
-          flexDirection="column"
-          pb={"60px"}
-          m={2.5}
-          boxSizing={"border-box"}>
+        <Flex flexDirection="column" pb={16} m={2.5} boxSizing="border-box">
           {cms.enabled ? (
             <InlineImage
               name="image"
               uploadDir={() => "/"}
               previewSrc={(imageSrc) => {
                 if (imageSrc === "") {
-                  return "";
+                  return "/images/default-image.png";
                 }
                 return imageSrc;
               }}
@@ -174,11 +170,11 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "Feature",
+    label: "FEATURE",
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      serviceLink: "/",
+      url: "/",
     },
     fields: [
       {
@@ -186,12 +182,6 @@ export const featureBlock: Block = {
         label: "Url",
         component: "text",
         defaultValue: "/",
-      },
-      {
-        name: "image",
-        label: "URL",
-        component: "image",
-        defaultValue: "/images/default-image.png",
       },
     ],
   },

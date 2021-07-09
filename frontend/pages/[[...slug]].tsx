@@ -197,7 +197,7 @@ function getPageData(
                     section.singleFeature
                   ).map<FeatureBlockData>((feature) => {
                     return {
-                      id: feature.id ? feature.id : null,
+                      id: feature.id,
                       title: feature.title ? feature.title : null,
                       description: feature.description
                         ? feature.description
@@ -239,7 +239,7 @@ function getPageData(
                                 url: card.image.url,
                                 altText: card.image.alternativeText || null,
                               },
-                        projectLink: card.url ? card.url : null,
+                        url: card.url ? card.url : null,
                         _template: "ComponentBlocksCard",
                       };
                     }

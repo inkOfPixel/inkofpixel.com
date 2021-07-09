@@ -32,36 +32,36 @@ export function HeroSectionBlock() {
         base: "200px",
         lg: "300px",
       }}
-      flexDir={"column"}
+      flexDir="column"
       w={{
         base: "full",
       }}
       m={{
         base: "0 auto",
       }}
-      position={"relative"}>
+      pos="relative">
       <Flex
         w={{
           base: "full",
           xl: "1200px",
         }}
         p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
-        m={"0 auto"}
-        pos={"relative"}>
+        m="0 auto"
+        pos="relative">
         <Box
           w={{
             base: "full",
             xl: "1200px",
           }}
-          height={"fit-content"}>
-          <Flex flexDirection={"column"}>
+          height="fit-content">
+          <Flex flexDirection="column">
             <Box
               fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
               m={{ base: 0 }}
-              fontWeight={"bold"}
-              lineHeight={"hero"}
-              fontFamily={"Europa"}
-              letterSpacing={"0.02em"}>
+              fontWeight="bold"
+              lineHeight="hero"
+              fontFamily="Europa"
+              letterSpacing="0.02em">
               <StyledInlineTextarea name="title" />
             </Box>
             <Box
@@ -76,17 +76,17 @@ export function HeroSectionBlock() {
               p={0}
               m={0}
               paddingTop={5}
-              fontWeight={"subtitle"}
-              lineHeight={"subtitle"}
-              fontFamily={"Roboto Mono"}
-              letterSpacing={"0.02em"}>
+              fontWeight="subtitle"
+              lineHeight="subtitle"
+              fontFamily="Roboto Mono"
+              letterSpacing="0.02em">
               <StyledInlineTextarea
                 w={{
                   base: "full",
                   sm: "75%",
                   md: "50%",
                 }}
-                fontFamily={"Roboto Mono"}
+                fontFamily="Roboto Mono"
                 name="subtitle"
               />
             </Box>

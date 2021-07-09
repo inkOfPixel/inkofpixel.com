@@ -104,7 +104,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                                 url: card.image.url,
                                 altText: card.image.altText || null,
                               },
-                        projectLink: card.projectLink ? card.projectLink : null,
+                        url: card.url ? card.url : null,
                         _template: "ComponentBlocksCard",
                       };
                     }
