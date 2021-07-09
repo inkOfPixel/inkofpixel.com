@@ -8,7 +8,6 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
     setOpen(!open);
   }
   const StyledLabel = chakra(FormLabel);
-  console.log("OPEN? ", open);
 
   return (
     <React.Fragment>

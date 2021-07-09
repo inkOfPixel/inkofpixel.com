@@ -186,8 +186,6 @@ export function NavigationSectionBlock() {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("DATA", data);
-
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <NavigationSectionBlock {...data} />
