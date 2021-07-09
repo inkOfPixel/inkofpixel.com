@@ -1,5 +1,5 @@
 import { Box, chakra, Flex, keyframes } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -43,8 +43,13 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-const Bubble2 = chakra(({ className, children }: any) => {
-  const seconds = random(5, 12);
+const Bubble = chakra(({ className, children }: any) => {
+  const [randomNumber, setRandomNumber] = useState(0);
+
+  useEffect(() => {
+    setRandomNumber(random(3, 6));
+  }, []);
+
   return (
     <Box
       className={className}
@@ -53,24 +58,23 @@ const Bubble2 = chakra(({ className, children }: any) => {
       h="500px"
       backgroundColor="red.500"
       animation={
-        random(3, 6) +
-        "3s linear infinite " +
+        randomNumber +
+        "s linear infinite " +
         bordertl +
         "," +
-        random(3, 6) +
-        "3s linear infinite " +
+        randomNumber +
+        "s linear infinite " +
         bordertr +
         "," +
-        random(3, 6) +
-        "3s linear infinite " +
+        randomNumber +
+        "s linear infinite " +
         borderbr +
         "," +
-        random(3, 6) +
-        "3s linear infinite " +
+        randomNumber +
+        "s linear infinite " +
         borderbl +
         "," +
-        seconds +
-        "s linear infinite " +
+        "8s linear infinite " +
         rotate
       }>
       <Flex
@@ -79,7 +83,7 @@ const Bubble2 = chakra(({ className, children }: any) => {
         justifyContent="center"
         w="full"
         h="full"
-        animation={seconds + "s " + rotateInverse + " linear infinite"}>
+        animation={"8s " + rotateInverse + " linear infinite"}>
         {children}
       </Flex>
     </Box>
@@ -99,4 +103,4 @@ Splash.defaultProps = {
   size: "300px",
 };
 */
-export default Bubble2;
+export default Bubble;
