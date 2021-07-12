@@ -41,7 +41,7 @@ export function FeatureListSectionBlock({
   }, [preview]);
 
   return (
-    <Box as="section" pb={"36"}>
+    <Box as="section" pb="36">
       <Box
         m={{
           base: "0px",
@@ -56,7 +56,21 @@ export function FeatureListSectionBlock({
           base: "full",
           xl: "1200px",
         }}>
-        {sectionTitle != null ? (
+        {sectionTitle == null ? (
+          <Box
+            color="rgb(129, 82, 188)"
+            fontSize="sm"
+            textTransform="uppercase"
+            letterSpacing="0.1em"
+            pos="relative"
+            w="full"
+            pb={8}
+            as="h2"
+            fontFamily="Roboto Mono"
+            lineHeight="1.15em">
+            <InlineTextarea name="sectionTitle" />
+          </Box>
+        ) : (
           <Box
             color="rgb(129, 82, 188)"
             fontSize="sm"
@@ -78,20 +92,6 @@ export function FeatureListSectionBlock({
               left: "-68px",
               backgroundColor: "rgb(129, 82, 188)",
             }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        ) : (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb={8}
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
             <InlineTextarea name="sectionTitle" />
           </Box>
         )}
@@ -186,12 +186,31 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "featureSection",
+    label: "Feature List Section",
     defaultItem: {
-      sectionTitle: "SERVICES",
+      sectionTitle: "Default section title",
       title: "Default section title",
       subtitle: "Default section subtitle",
-      blocks: [],
+      blocks: [
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+      ],
     },
     fields: [],
   },
