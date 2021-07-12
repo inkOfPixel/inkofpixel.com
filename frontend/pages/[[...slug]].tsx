@@ -39,7 +39,9 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   }, [preview]);
 
   if (pageData == null) {
-    return null;
+    return {
+      notFound: true,
+    };
   }
 
   return (
