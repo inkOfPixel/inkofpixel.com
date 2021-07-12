@@ -3,6 +3,9 @@ import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
+  GetLocales,
+  GetLocalesQuery,
+  GetLocalesQueryVariables,
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
@@ -114,6 +117,11 @@ export const getStaticProps: GetStaticProps<
   }
   const preview = context.preview === true;
 
+  const availableLangs = await fetchGraphQL<
+    GetLocalesQuery,
+    GetLocalesQueryVariables
+  >(GetLocales);
+
   const localePages = await fetchGraphQL<GetPagesQuery, GetPagesQueryVariables>(
     GetPages,
     {
@@ -137,7 +145,11 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
-  const pageData = getPageData(availablePages.pages, locale);
+  const pageData = getPageData(
+    availablePages.pages,
+    locale,
+    availableLangs.pages
+  );
 
   if (pageData == null) {
     return {
@@ -169,7 +181,8 @@ export const getStaticProps: GetStaticProps<
 
 function getPageData(
   pages: GetPagesQuery["pages"],
-  locale: string
+  locale: string,
+  availableLangs?: GetLocalesQuery["pages"]
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
@@ -262,6 +275,7 @@ function getPageData(
             return {
               _template: "navigationSection",
               id: section.id,
+              availableLanguages: availableLangs ? availableLangs : null,
               blocks: section.nav
                 ? filterListNullableItems(section.nav).map<NavBlockData>(
                     (nav) => {

@@ -29,6 +29,7 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
   {
     id: string;
+    availableLanguages: Nullable<string[]>;
     blocks?: NavBlockData[];
   }
 >;
@@ -37,7 +38,7 @@ const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledGooeyMenu = chakra(GooeyMenu);
 
-export function NavigationSectionBlock() {
+export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const cms = useCMS();
 
   function handleOpen() {
@@ -165,19 +166,9 @@ export function NavigationSectionBlock() {
             }}
             renderLabel={() => <span className="selected">{"EN"}</span>}
             size={"44px"}>
-            {/*
-            {localePages.map((pageLocale) => (
-              <Link
-                key={pageLocale.code}
-                onClick={() => this.handleToggleLanguageMenu(false)}
-                to={pageLocale.url}
-                className={pageLocale.code === locale ? "selected" : ""}>
-                {pageLocale.code}
-              </Link>
+            {data.availableLanguages?.map((lang, index) => (
+              <span key={index}>{lang.locale.toUpperCase()}</span>
             ))}
-            */}
-            <span>EN</span>
-            <span>IT</span>
           </StyledGooeyMenu>
         </Flex>
       </Box>

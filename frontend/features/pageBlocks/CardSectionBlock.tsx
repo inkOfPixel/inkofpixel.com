@@ -157,7 +157,7 @@ export function CardSectionBlock(sectionTitle: string) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardSectionBlock sectionTitle={data.sectionTitle} {...data} />
+      <CardSectionBlock {...data} />
     </BlocksControls>
   );
 }
