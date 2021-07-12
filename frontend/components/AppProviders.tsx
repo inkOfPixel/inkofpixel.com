@@ -30,7 +30,7 @@ export default function AppProviders({
         },
         media: new StrapiMediaStore(STRAPI_URL),
       }),
-    []
+    [preview]
   );
 
   return (
@@ -38,7 +38,7 @@ export default function AppProviders({
       <StrapiProvider onLogin={enterEditMode} onLogout={exitEditMode}>
         <ChakraProvider theme={customTheme}>
           <Head>
-            <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+            <link rel="icon" type="image/x-icon" href="/favicon.png" />
           </Head>
           <Box color="white">{children}</Box>
           <EditButton />
@@ -65,8 +65,7 @@ const EditButton = () => {
       position="fixed"
       right="4"
       bottom="4"
-      onClick={() => (cms.enabled ? cms.disable() : cms.enable())}
-    >
+      onClick={() => (cms.enabled ? cms.disable() : cms.enable())}>
       {cms.enabled ? `Stop Editing ` : `Edit this Site `}
     </Button>
   );

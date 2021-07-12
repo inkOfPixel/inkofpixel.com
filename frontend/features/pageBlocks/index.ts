@@ -1,13 +1,19 @@
 export * from "./types";
-import { cardBlock, CardBlockData } from "./CardBlock";
-import { featureBlock, FeatureBlockData } from "./FeatureBlock";
-import { heroBlock, HeroBlockData } from "./HeroBlock";
+import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
+import {
+  featureSectionBlock,
+  FeatureListSectionBlockData,
+} from "./FeatureListSectionBlock";
+import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
 
-export const PAGE_BLOCKS = {
+export const PAGE_SECTION_BLOCKS = {
   /** We will define blocks here later */
-  hero: heroBlock,
-  card: cardBlock,
-  feat: featureBlock,
+  heroSection: heroSectionBlock,
+  featureSection: featureSectionBlock,
+  cardSection: cardSectionBlock,
 };
 
-export type BlockData = HeroBlockData | CardBlockData | FeatureBlockData;
+export type PageSectionBlockData =
+  | HeroSectionBlockData
+  | FeatureListSectionBlockData
+  | CardSectionBlockData;

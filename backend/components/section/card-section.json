@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_section_card_sections",
+  "info": {
+    "name": "cardSection",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.card"
+    },
+    "sectionTitle": {
+      "type": "string"
+    }
+  }
+}

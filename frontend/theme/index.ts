@@ -1,32 +1,24 @@
 import { extendTheme, ThemeOverride } from "@chakra-ui/react";
 import { theme as chakraTheme } from "@chakra-ui/react";
-import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const fonts = {
   ...chakraTheme.fonts,
-  body: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  body: `"Europa","Roboto Mono", monospace`,
   heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
 };
 
-const breakpoints = createBreakpoints({
-  sm: "40em",
-  md: "52em",
-  lg: "64em",
-  xl: "80em",
-});
-
 const config: ThemeOverride["config"] = {
-  // @ts-ignore
-  initialColorMode: "system",
-  useSystemColorMode: true,
+  initialColorMode: "light",
+  useSystemColorMode: false,
 };
 
 const overrides: ThemeOverride = {
   config,
   fonts,
-  breakpoints,
+
   fontWeights: {
     normal: 300,
+    subtitle: 400,
     medium: 600,
     bold: 700,
   },
@@ -37,10 +29,18 @@ const overrides: ThemeOverride = {
     lg: "18px",
     xl: "20px",
     "2xl": "24px",
-    "3xl": "28px",
-    "4xl": "36px",
-    "5xl": "48px",
+    "3xl": "32px",
+    "4xl": "40px",
+    "5xl": "46px",
     "6xl": "64px",
+  },
+  lineHeights: {
+    hero: "1.1em",
+    subtitle: "1.8em",
+  },
+  colors: {
+    dark: "rgb(22,19,56)",
+    description: "rgb(92,92,92)",
   },
   components: {
     /*

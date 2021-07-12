@@ -1,4 +1,4 @@
-import { BlockData } from "@features/pageBlocks";
+import { PageSectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
@@ -14,12 +14,14 @@ import {
   useForm,
   usePlugin,
 } from "tinacms";
-
+import { assertNever, filterListNullableItems } from "@utils";
+import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 export interface PageData {
   id: string;
   title?: string;
   path?: string;
-  blocks: BlockData[];
+  sections: PageSectionBlockData[];
 }
 
 export interface PageDataCreateInput {
@@ -33,12 +35,10 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   const router = useRouter();
   const formConfig: FormOptions<PageData> = {
     id: pageData,
-    label: "aa",
+    label: "Page",
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
-      console.log("Input", getPageInput(values));
-
       try {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
           input,
@@ -72,48 +72,82 @@ function getPageInput(data: PageData): UpdatePageInput {
     data: {
       pageName: data.title,
       path: data.path,
-      blocks: data.blocks.map((block) => {
-        console.log("Blocks", data.blocks);
-
-        switch (block._template) {
-          case "hero": {
+      sections: data.sections.map((section) => {
+        switch (section._template) {
+          case "heroSection": {
             return {
-              __typename: "ComponentBlocksHero",
-              id: block.id,
-              title: block.title,
-              subtitle: block.subtitle,
+              __typename: "ComponentSectionHeroSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
             };
           }
-          case "card": {
+          case "cardSection": {
             return {
-              __typename: "ComponentBlocksCard",
-              id: block.id,
-              title: block.title,
-              description: block.description,
-              projectLink: block.projectLink,
-              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
+              __typename: "ComponentSectionCardSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
+              sections: section.blocks
+                ? filterListNullableItems(section.blocks).map<CardBlockData>(
+                    (card) => {
+                      return {
+                        id: card.id,
+                        title: card.title,
+                        description: card.description,
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.altText || null,
+                              },
+                        url: card.url || null,
+                        _template: "ComponentBlocksCard",
+                      };
+                    }
+                  )
+                : [],
             };
           }
-          case "feat": {
+          case "featureSection": {
             return {
-              __typename: "ComponentBlocksSingleFeature",
-              id: block.id,
-              title: block.title,
-              description: block.description,
-              serviceLink: block.serviceLink,
-              imageUrl: block.imageUrl ? block.imageUrl : "undefined",
+              __typename: "ComponentSectionSingleFeatureSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
+              sections: section.blocks
+                ? filterListNullableItems(section.blocks).map<FeatureBlockData>(
+                    (feature) => {
+                      return {
+                        id: feature.id,
+                        title: feature.title,
+                        description: feature.description,
+                        image:
+                          feature.image == null
+                            ? null
+                            : {
+                                id: feature.image.id,
+                                url: feature.image.url,
+                                altText: feature.image.altText || null,
+                              },
+                        url: feature.url || null,
+                        _template: "ComponentBlocksSingleFeature",
+                      };
+                    }
+                  )
+                : [],
             };
           }
           default:
-            return assertNever(block);
+            return assertNever(section);
         }
       }),
     },
   };
-}
-
-function assertNever(x: never): never {
-  throw new Error("Unexpected object: " + x);
 }
 
 interface PageCreatorPluginOptions {
@@ -154,12 +188,12 @@ function getPageCreatorPlugin(
         name: "locale",
         component: "select",
         description: "Select a locale for this page",
+        defaultValue: "en",
         // @ts-ignore
         options: options.locales,
       },
     ],
     onSubmit: async (values, cms) => {
-      console.log(values);
       const input = getPageCreateInput(values);
       try {
         const response = await cms.api.strapi.fetchGraphql(CreatePage, {
@@ -185,7 +219,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title ? input.title : "Default",
+      pageName: input.title || "Default",
       path: input.path,
       locale: input.locale,
     },

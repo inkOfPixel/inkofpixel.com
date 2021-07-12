@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_section_single_feature_sections",
+  "info": {
+    "name": "singleFeatureSection",
+    "icon": "anchor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.single-feature"
+    },
+    "sectionTitle": {
+      "type": "string"
+    }
+  }
+}

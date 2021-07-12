@@ -1,15 +1,14 @@
 {
-  "collectionName": "components_blocks_heroes",
+  "collectionName": "components_section_hero_sections",
   "info": {
-    "name": "hero",
-    "icon": "archway",
+    "name": "heroSection",
+    "icon": "arrow-alt-circle-up",
     "description": ""
   },
   "options": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "subtitle": {
       "type": "text"

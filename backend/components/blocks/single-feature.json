@@ -25,10 +25,8 @@
       "required": false,
       "pluginOptions": {}
     },
-    "serviceLink": {
-      "type": "component",
-      "repeatable": true,
-      "component": "menu.page-link"
+    "url": {
+      "type": "string"
     }
   }
 }
