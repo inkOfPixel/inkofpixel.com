@@ -39,8 +39,6 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     initialValues: pageData,
     onSubmit: async (values) => {
       const input = getPageInput(values);
-      console.log("INPUT", JSON.stringify(input, null, " "));
-
       try {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
           input,
@@ -106,7 +104,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                                 url: card.image.url,
                                 altText: card.image.altText || null,
                               },
-                        url: card.url ? card.url : null,
+                        url: card.url || null,
                         _template: "ComponentBlocksCard",
                       };
                     }

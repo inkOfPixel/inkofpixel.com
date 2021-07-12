@@ -43,25 +43,22 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   }
 
   return (
-    <div>
-      <DefaultLayout title="InkOfPixel">
-        <InlineForm form={form}>
-          <StyledInlineBlocks
-            color={colorMode == "light" ? "dark" : "white"}
-            name="sections"
-            itemProps={itemProps}
-            blocks={PAGE_SECTION_BLOCKS}
-          />
-        </InlineForm>
-      </DefaultLayout>
-    </div>
+    <DefaultLayout title="InkOfPixel">
+      <InlineForm form={form}>
+        <StyledInlineBlocks
+          color={colorMode == "light" ? "dark" : "white"}
+          name="sections"
+          itemProps={itemProps}
+          blocks={PAGE_SECTION_BLOCKS}
+        />
+      </InlineForm>
+    </DefaultLayout>
   );
 }
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  // Get all pages from Strapi
   if (context.locales == null) {
     throw new Error("No locale has been defined!");
   }
@@ -83,7 +80,6 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   const pages = allPages.flat();
 
   const paths = pages.map((page) => {
-    // Decompose the slug that was saved in Strapi
     const pagePath = page.path?.replace(/^\/+/, "") || "";
     const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
     return {
@@ -199,9 +195,7 @@ function getPageData(
                     return {
                       id: feature.id,
                       title: feature.title || null,
-                      description: feature.description
-                        ? feature.description
-                        : null,
+                      description: feature.description || null,
                       image:
                         feature.image == null
                           ? null
@@ -231,15 +225,14 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        image:
-                          card.image == null
-                            ? null
-                            : {
-                                id: card.image.id,
-                                url: card.image.url,
-                                altText: card.image.alternativeText || null,
-                              },
-                        url: card.url ? card.url : null,
+                        image: card.image
+                          ? {
+                              id: card.image.id,
+                              url: card.image.url,
+                              altText: card.image.alternativeText || null,
+                            }
+                          : null,
+                        url: card.url || null,
                         _template: "ComponentBlocksCard",
                       };
                     }
@@ -256,7 +249,7 @@ function getPageData(
       id: page.id,
       title: page.pageName,
       sections: sections,
-      path: page.path ? page.path : undefined,
+      path: page.path || undefined,
     };
   }
 }

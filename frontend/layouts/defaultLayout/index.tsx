@@ -1,7 +1,6 @@
 import { Box, useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
-// import DarkModeSwitch from "@components/DarkModeSwitch";
 
 export function DefaultLayout({ children, title }: any) {
   const { colorMode } = useColorMode();
