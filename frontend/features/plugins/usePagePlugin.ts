@@ -134,7 +134,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                                 url: feature.image.url,
                                 altText: feature.image.altText || null,
                               },
-                        url: feature.url ? feature.url : null,
+                        url: feature.url || null,
                         _template: "ComponentBlocksSingleFeature",
                       };
                     }
@@ -219,7 +219,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title ? input.title : "Default",
+      pageName: input.title || "Default",
       path: input.path,
       locale: input.locale,
     },
