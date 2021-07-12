@@ -108,7 +108,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const heroSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "heroSection",
+    label: "Hero Section",
     defaultItem: {
       title: "Default title",
       subtitle: "Default subtitle",
