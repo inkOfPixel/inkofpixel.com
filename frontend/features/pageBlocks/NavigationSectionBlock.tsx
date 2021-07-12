@@ -6,10 +6,9 @@ import {
   DrawerContent,
   DrawerOverlay,
   Flex,
-  Link,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import {
   Block,
   BlockComponentProps,
@@ -38,16 +37,14 @@ const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledGooeyMenu = chakra(GooeyMenu);
 
+type langType = {
+  locale: string;
+};
+
 export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const cms = useCMS();
 
-  function handleOpen() {
-    setOpen(!open);
-  }
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [open, setOpen] = useState(false);
 
   return (
     <Flex as="header" w="full" zIndex="100" pos="absolute" h="40">
