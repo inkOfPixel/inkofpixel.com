@@ -192,9 +192,9 @@ function getPageData(
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
-              blocks: section.singleFeature
+              blocks: section.sections
                 ? filterListNullableItems(
-                    section.singleFeature
+                    section.sections
                   ).map<FeatureBlockData>((feature) => {
                     return {
                       id: feature.id,
@@ -224,8 +224,8 @@ function getPageData(
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
-              blocks: section.card
-                ? filterListNullableItems(section.card).map<CardBlockData>(
+              blocks: section.sections
+                ? filterListNullableItems(section.sections).map<CardBlockData>(
                     (card) => {
                       return {
                         id: card.id,
