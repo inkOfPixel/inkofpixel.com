@@ -4,7 +4,7 @@ import {
   featureSectionBlock,
   FeatureListSectionBlockData,
 } from "./FeatureListSectionBlock";
-import { cardSectionBlock, CardSectionBlockData } from "./CardSectionBlock";
+import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
 
 export const PAGE_SECTION_BLOCKS = {
   /** We will define blocks here later */
