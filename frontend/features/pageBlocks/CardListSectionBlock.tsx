@@ -30,6 +30,7 @@ export function CardSectionBlock(sectionTitle: string) {
   const cms = useCMS();
   return (
     <Box
+      bg="rgb(234, 247, 247)"
       as="section"
       w={{
         base: "full",
@@ -100,55 +101,30 @@ export function CardSectionBlock(sectionTitle: string) {
           letterSpacing="0.02em">
           <StyledInlineTextarea name="title" />
         </Box>
-        {cms.enabled ? (
-          <StyledInlineBlocks
-            display="flex"
-            flexDir={{
-              base: "column",
-              md: "row",
-            }}
-            justifyContent="center"
-            sx={{
-              "& > div": {
-                w: {
-                  base: "calc(100% - 30px)",
-                  md: "calc(45% - 30px)",
-                  lg: "calc(30% - 30px)",
-                },
-                h: "auto",
-                m: "4",
+
+        <StyledInlineBlocks
+          sx={{
+            "& > div": {
+              w: {
+                base: "calc(100% - 30px)",
+                md: "calc(45% - 30px)",
+                lg: "calc(30% - 30px)",
               },
-            }}
-            flexWrap="wrap"
-            name="blocks"
-            blocks={CARD_BLOCK}
-            direction="horizontal"
-          />
-        ) : (
-          <StyledInlineBlocks
-            sx={{
-              "& > div": {
-                w: {
-                  base: "calc(100% - 30px)",
-                  md: "calc(45% - 30px)",
-                  lg: "calc(30% - 30px)",
-                },
-                h: "auto",
-                m: "4",
-              },
-            }}
-            display="flex"
-            flexDir={{
-              base: "column",
-              md: "row",
-            }}
-            justifyContent="center"
-            flexWrap="wrap"
-            name="blocks"
-            blocks={CARD_BLOCK}
-            direction="horizontal"
-          />
-        )}
+              h: "auto",
+              m: "4",
+            },
+          }}
+          display="flex"
+          flexDir={{
+            base: "column",
+            md: "row",
+          }}
+          justifyContent="center"
+          flexWrap="wrap"
+          name="blocks"
+          blocks={CARD_BLOCK}
+          direction="horizontal"
+        />
       </Box>
     </Box>
   );
@@ -165,12 +141,31 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const cardSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "cardSection",
+    label: "Card List Section",
     defaultItem: {
       title: "Default title",
-      sectionTitle: "OUR WORK",
+      sectionTitle: "Default section title",
       subtitle: "Default subtitle",
-      blocks: [],
+      blocks: [
+        {
+          _template: "ComponentBlocksCard",
+          title: "Default title",
+          description: "Default description",
+          url: "Default link",
+        },
+        {
+          _template: "ComponentBlocksCard",
+          title: "Default title",
+          description: "Default description",
+          url: "Default link",
+        },
+        {
+          _template: "ComponentBlocksCard",
+          title: "Default title",
+          description: "Default description",
+          url: "Default link",
+        },
+      ],
     },
     fields: [],
   },
