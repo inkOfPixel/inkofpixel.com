@@ -170,7 +170,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "FEATURE",
+    label: "Feature",
     defaultItem: {
       title: "Default title",
       description: "Default description",
