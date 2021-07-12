@@ -181,24 +181,24 @@ function getPageData(
             return {
               _template: "heroSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
             };
           }
           case "ComponentSectionSingleFeatureSection": {
             return {
               _template: "featureSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
-              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
               blocks: section.singleFeature
                 ? filterListNullableItems(
                     section.singleFeature
                   ).map<FeatureBlockData>((feature) => {
                     return {
                       id: feature.id,
-                      title: feature.title ? feature.title : null,
+                      title: feature.title || null,
                       description: feature.description
                         ? feature.description
                         : null,
@@ -210,7 +210,7 @@ function getPageData(
                               url: feature.image.url,
                               altText: feature.image.alternativeText || null,
                             },
-                      url: feature.url ? feature.url : null,
+                      url: feature.url || null,
                       _template: "ComponentBlocksSingleFeature",
                     };
                   })
@@ -221,9 +221,9 @@ function getPageData(
             return {
               _template: "cardSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
-              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
               blocks: section.card
                 ? filterListNullableItems(section.card).map<CardBlockData>(
                     (card) => {
