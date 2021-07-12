@@ -1255,7 +1255,7 @@ export type GetPagesQuery = (
     & { sections?: Maybe<Array<Maybe<(
       { __typename: 'ComponentSectionCardSection' }
       & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { card?: Maybe<Array<Maybe<(
+      & { sections?: Maybe<Array<Maybe<(
         { __typename?: 'ComponentBlocksCard' }
         & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'url' | 'urlName'>
         & { image?: Maybe<(
@@ -1269,7 +1269,7 @@ export type GetPagesQuery = (
     ) | (
       { __typename: 'ComponentSectionSingleFeatureSection' }
       & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { singleFeature?: Maybe<Array<Maybe<(
+      & { sections?: Maybe<Array<Maybe<(
         { __typename: 'ComponentBlocksSingleFeature' }
         & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'url' | 'urlName' | 'bubbleColor'>
         & { image?: Maybe<(
@@ -1280,7 +1280,7 @@ export type GetPagesQuery = (
     ) | (
       { __typename: 'ComponentSectionNavigationSection' }
       & Pick<ComponentSectionNavigationSection, 'id'>
-      & { nav?: Maybe<Array<Maybe<(
+      & { sections?: Maybe<Array<Maybe<(
         { __typename?: 'ComponentBlocksNavigationBlock' }
         & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
       )>>> }
@@ -1347,7 +1347,7 @@ export const GetPages = `
         sectionTitle
         title
         subtitle
-        singleFeature: sections {
+        sections {
           __typename
           id
           description
@@ -1378,7 +1378,7 @@ export const GetPages = `
         sectionTitle
         title
         subtitle
-        card: sections {
+        sections {
           id
           title
           description
@@ -1394,7 +1394,7 @@ export const GetPages = `
       ... on ComponentSectionNavigationSection {
         id
         __typename
-        nav: sections {
+        sections {
           id
           pageName
           path

@@ -1,5 +1,6 @@
-import { Box, chakra, Checkbox, FormLabel, Link } from "@chakra-ui/react";
+import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import React, { useState } from "react";
+import Link from "next/link";
 
 export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
   const [open, setOpen] = useState(false);
@@ -8,6 +9,7 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
     setOpen(!open);
   }
   const StyledLabel = chakra(FormLabel);
+  const StyledLink = chakra(Link);
 
   return (
     <React.Fragment>
@@ -43,19 +45,11 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
             },
           }}>
           {children.map((lang: any, index: number): any =>
-            open === false ? (
-              <Link
-                fontFamily="Roboto Mono"
-                fontSize="xs"
-                transitionDuration={300 + 100 * index + "ms"}
-                transform={"translate3d(0," + -64 * (index + 1) + "px, 0)"}
-                key={index}>
-                {lang}
-              </Link>
-            ) : (
-              <Link
+            open === true ? (
+              <StyledLink
                 userSelect="none"
                 fontFamily="Roboto Mono"
+                href={"/" + lang.props.children.toLowerCase()}
                 fontSize="xs"
                 transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
                 transitionDuration={300 + 100 * index + "ms"}
@@ -64,7 +58,16 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
                 }}
                 key={index}
                 transform="translate3d(0, 0, 0)">
-                {lang}
+                <a>{lang}</a>
+              </StyledLink>
+            ) : (
+              <Link
+                fontFamily="Roboto Mono"
+                fontSize="xs"
+                transitionDuration={300 + 100 * index + "ms"}
+                transform={"translate3d(0," + -64 * (index + 1) + "px, 0)"}
+                key={index}>
+                <a>{lang}</a>
               </Link>
             )
           )}
@@ -119,7 +122,9 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
               backgroundColor: "dark",
             },
           }}>
-          <Box className="toggleButtonContent">{"EN" && renderLabel()}</Box>
+          <Box className="toggleButtonContent">
+            {renderLabel && renderLabel()}
+          </Box>
         </StyledLabel>
       </Box>
     </React.Fragment>

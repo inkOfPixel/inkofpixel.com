@@ -16,7 +16,7 @@ import { BlockTemplateData } from "./types";
 export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",
   {
-    id: Nullable<string>;
+    id: string;
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;

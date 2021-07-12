@@ -11,7 +11,6 @@ import {
 } from "./NavigationSectionBlock";
 
 export const SECTION_PAGE_BLOCKS = {
-  /** We will define blocks here later */
   heroSection: heroSectionBlock,
   featureSection: featureSectionBlock,
   cardSection: cardSectionBlock,

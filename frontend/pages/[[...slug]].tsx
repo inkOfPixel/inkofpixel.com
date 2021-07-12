@@ -65,7 +65,6 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
 const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  // Get all pages from Strapi
   if (context.locales == null) {
     throw new Error("No locale has been defined!");
   }
@@ -87,7 +86,6 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   const pages = allPages.flat();
 
   const paths = pages.map((page) => {
-    // Decompose the slug that was saved in Strapi
     const pagePath = page.path?.replace(/^\/+/, "") || "";
     const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
     return {
@@ -190,43 +188,36 @@ function getPageData(
     return undefined;
   }
 
-  if (page) {
+  if (page?.sections) {
+    let filteredSections = filterListNullableItems(page.sections);
     const sections =
-      page.sections?.map<SectionBlockData | null>((section) => {
-        if (section == null) {
-          return null;
-        }
+      filteredSections.map<SectionBlockData>((section) => {
         switch (section.__typename) {
           case "ComponentSectionHeroSection": {
             return {
               _template: "heroSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
-              areBubblesActive: section.areBubblesActive
-                ? section.areBubblesActive
-                : false,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              areBubblesActive: section.areBubblesActive || false,
             };
           }
           case "ComponentSectionSingleFeatureSection": {
             return {
               _template: "featureSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
-              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
-              blocks: section.singleFeature
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
+              blocks: section.sections
                 ? filterListNullableItems(
-                    section.singleFeature
+                    section.sections
                   ).map<FeatureBlockData>((feature) => {
                     return {
-                      id: feature.id ? feature.id : null,
-                      title: feature.title ? feature.title : null,
+                      id: feature.id,
+                      title: feature.title || null,
                       description: feature.description
                         ? feature.description
-                        : null,
-                      bubbleColor: feature.bubbleColor
-                        ? feature.bubbleColor
                         : null,
                       image:
                         feature.image == null
@@ -236,8 +227,9 @@ function getPageData(
                               url: feature.image.url,
                               altText: feature.image.alternativeText || null,
                             },
-                      url: feature.url ? feature.url : null,
-                      urlName: feature.urlName ? feature.urlName : null,
+                      url: feature.url || null,
+                      urlName: feature.urlName || null,
+                      bubbleColor: feature.bubbleColor || null,
                       _template: "ComponentBlocksSingleFeature",
                     };
                   })
@@ -248,17 +240,16 @@ function getPageData(
             return {
               _template: "cardSection",
               id: section.id,
-              title: section.title ? section.title : null,
-              subtitle: section.subtitle ? section.subtitle : null,
-              sectionTitle: section.sectionTitle ? section.sectionTitle : null,
-              blocks: section.card
-                ? filterListNullableItems(section.card).map<CardBlockData>(
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
+              blocks: section.sections
+                ? filterListNullableItems(section.sections).map<CardBlockData>(
                     (card) => {
                       return {
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        urlName: card.urlName,
                         image:
                           card.image == null
                             ? null
@@ -279,14 +270,14 @@ function getPageData(
             return {
               _template: "navigationSection",
               id: section.id,
-              availableLanguages: availableLangs ? availableLangs : null,
-              blocks: section.nav
-                ? filterListNullableItems(section.nav).map<NavBlockData>(
+              availableLanguages: (availableLangs as string[]) || null,
+              blocks: section.sections
+                ? filterListNullableItems(section.sections).map<NavBlockData>(
                     (nav) => {
                       return {
                         id: nav.id,
-                        pageName: nav.pageName ? nav.pageName : null,
-                        path: nav.path ? nav.path : null,
+                        pageName: nav.pageName || null,
+                        path: nav.path || null,
                         _template: "ComponentBlocksNavigation",
                       };
                     }

@@ -23,6 +23,8 @@ import { useCMS } from "tinacms";
 import Icon from "@components/Icon";
 import { Image } from "@chakra-ui/image";
 import { GooeyMenu } from "@components/GooeyMenu";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
@@ -36,18 +38,21 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
 const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledGooeyMenu = chakra(GooeyMenu);
+const StyledDrawer = chakra(Drawer);
 
 export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const cms = useCMS();
-  /*
-  const uniqueArray = things.thing.filter((thing, index) => {
-    const _thing = JSON.stringify(thing);
-    return index === things.thing.findIndex(obj => {
-      return JSON.stringify(obj) === _thing;
-    });
+  const router = useRouter();
+
+  const uniqueArray = data.availableLanguages?.filter((item, index) => {
+    const _thing = JSON.stringify(item);
+    return (
+      index ===
+      data.availableLanguages?.findIndex((obj) => {
+        return JSON.stringify(obj) === _thing;
+      })
+    );
   });
-*/
-  console.log("UNIQUE", uniqueArray);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -83,13 +88,12 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               size="40px"
               _hover={{ cursor: "pointer" }}
             />
-            <Drawer
+            <StyledDrawer
               placement="left"
               onClose={onClose}
               isOpen={isOpen}
               autoFocus={false}
-              onEsc={onClose}
-              size="xs">
+              onEsc={onClose}>
               <DrawerOverlay />
               <DrawerContent>
                 <DrawerBody>
@@ -99,7 +103,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                     mt={16}
                     alignItems="center"
                     textAlign="center">
-                    <Box as={"a"} href={"/"} ml={1} mb={8}>
+                    <Box as={"a"} href={router.locale} ml={1} mb={8}>
                       <Icon
                         width="40px"
                         height="40px"
@@ -115,7 +119,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                   </Flex>
                 </DrawerBody>
               </DrawerContent>
-            </Drawer>
+            </StyledDrawer>
           </Box>
           <Flex
             flex={{
@@ -126,17 +130,18 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               base: "center",
               lg: "flex-start",
             }}>
-            <Box
-              color={"rgb(22, 19, 56)"}
-              as={"a"}
-              href="/"
-              width={{
-                base: "150px",
-                sm: "200px",
-              }}
-              height="54px">
-              <Image alt="Logo" src="/logo.svg" fill="rgb(22, 19, 56)" />
-            </Box>
+            <Link href="/" passHref>
+              <Box
+                color={"rgb(22, 19, 56)"}
+                as={"a"}
+                width={{
+                  base: "150px",
+                  sm: "200px",
+                }}
+                height="54px">
+                <Image alt="Logo" src="/logo.svg" fill="rgb(22, 19, 56)" />
+              </Box>
+            </Link>
           </Flex>
           <Flex
             alignItems={"baseline"}
@@ -166,9 +171,11 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               base: "0",
               xl: "30px",
             }}
-            renderLabel={() => <span className="selected">{"EN"}</span>}
+            renderLabel={() => (
+              <span className="selected">{router.locale?.toUpperCase()}</span>
+            )}
             size={"44px"}>
-            {data.availableLanguages?.map((lang, index) => (
+            {uniqueArray?.map((lang: any, index) => (
               <span key={index}>{lang.locale.toUpperCase()}</span>
             ))}
           </StyledGooeyMenu>
@@ -192,8 +199,10 @@ export const navigationSectionBlock: Block = {
     defaultItem: {
       blocks: [
         {
+          _template: "ComponentBlocksNavigation",
           id: "0",
           pageName: "Default",
+          availableLanguages: "EN",
           path: "/",
         },
       ],
