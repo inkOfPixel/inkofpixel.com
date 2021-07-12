@@ -1241,33 +1241,6 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
-export type CreatePageMutationVariables = Exact<{
-  input?: Maybe<CreatePageInput>;
-}>;
-
-
-export type CreatePageMutation = (
-  { __typename?: 'Mutation' }
-  & { createPage?: Maybe<(
-    { __typename?: 'createPagePayload' }
-    & { page?: Maybe<(
-      { __typename?: 'Pages' }
-      & Pick<Pages, 'id'>
-    )> }
-  )> }
-);
-
-export type GetLocalesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetLocalesQuery = (
-  { __typename?: 'Query' }
-  & { pages?: Maybe<Array<Maybe<(
-    { __typename?: 'Pages' }
-    & Pick<Pages, 'locale'>
-  )>>> }
-);
-
 export type GetPagesQueryVariables = Exact<{
   where?: Maybe<Scalars['JSON']>;
   locale?: Maybe<Scalars['String']>;
@@ -1315,6 +1288,33 @@ export type GetPagesQuery = (
   )>>> }
 );
 
+export type CreatePageMutationVariables = Exact<{
+  input?: Maybe<CreatePageInput>;
+}>;
+
+
+export type CreatePageMutation = (
+  { __typename?: 'Mutation' }
+  & { createPage?: Maybe<(
+    { __typename?: 'createPagePayload' }
+    & { page?: Maybe<(
+      { __typename?: 'Pages' }
+      & Pick<Pages, 'id'>
+    )> }
+  )> }
+);
+
+export type GetLocalesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLocalesQuery = (
+  { __typename?: 'Query' }
+  & { pages?: Maybe<Array<Maybe<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'locale'>
+  )>>> }
+);
+
 export type UpdatePageMutationVariables = Exact<{
   input?: Maybe<UpdatePageInput>;
 }>;
@@ -1332,22 +1332,6 @@ export type UpdatePageMutation = (
 );
 
 
-export const CreatePage = `
-    mutation CreatePage($input: createPageInput) {
-  createPage(input: $input) {
-    page {
-      id
-    }
-  }
-}
-    `;
-export const GetLocales = `
-    query GetLocales {
-  pages {
-    locale
-  }
-}
-    `;
 export const GetPages = `
     query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
@@ -1417,6 +1401,22 @@ export const GetPages = `
         }
       }
     }
+  }
+}
+    `;
+export const CreatePage = `
+    mutation CreatePage($input: createPageInput) {
+  createPage(input: $input) {
+    page {
+      id
+    }
+  }
+}
+    `;
+export const GetLocales = `
+    query GetLocales {
+  pages(locale: "all") {
+    locale
   }
 }
     `;

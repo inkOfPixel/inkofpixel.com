@@ -37,12 +37,17 @@ const StyledMenu = chakra(Menu);
 const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledGooeyMenu = chakra(GooeyMenu);
 
-type langType = {
-  locale: string;
-};
-
 export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const cms = useCMS();
+  /*
+  const uniqueArray = things.thing.filter((thing, index) => {
+    const _thing = JSON.stringify(thing);
+    return index === things.thing.findIndex(obj => {
+      return JSON.stringify(obj) === _thing;
+    });
+  });
+*/
+  console.log("UNIQUE", uniqueArray);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

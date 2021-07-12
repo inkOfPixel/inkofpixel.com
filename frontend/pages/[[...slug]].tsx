@@ -186,6 +186,10 @@ function getPageData(
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
+  if (page == null) {
+    return undefined;
+  }
+
   if (page) {
     const sections =
       page.sections?.map<SectionBlockData | null>((section) => {

@@ -1,5 +1,5 @@
 query GetLocales {
-  pages {
+  pages(locale: "all") {
     locale
   }
 }
