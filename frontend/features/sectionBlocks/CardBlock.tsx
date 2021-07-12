@@ -46,7 +46,7 @@ export function CardBlock({ url, image }: CardBlockProps) {
   const cms = useCMS();
   return (
     <Flex
-      m={{ base: "auto", md: "15px" }}
+      m={{ base: "auto" }}
       flexDir="column"
       boxSizing="border-box"
       justifyContent="space-between"
@@ -87,7 +87,7 @@ export function CardBlock({ url, image }: CardBlockProps) {
               }
 
               return (
-                <Box pos="relative" overflow="hidden" height="72">
+                <Box pos="relative" overflow="hidden" height="80">
                   <Img
                     w="full"
                     h="full"
@@ -201,11 +201,11 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const cardBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "card",
+    label: "Card",
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      projectLink: "Default link",
+      url: "Default link",
     },
     fields: [],
   },
