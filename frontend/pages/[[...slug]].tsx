@@ -18,7 +18,7 @@ import {
   SectionBlockData,
   SECTION_PAGE_BLOCKS,
 } from "@features/pageBlocks";
-import { assertNever } from "utils";
+import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
@@ -43,22 +43,22 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   }, [preview]);
 
   if (pageData == null) {
-    return {
-      notFound: true,
-    };
+    return null;
   }
 
   return (
-    <DefaultLayout title="InkOfPixel">
-      <InlineForm form={form}>
-        <StyledInlineBlocks
-          color={colorMode == "light" ? "dark" : "white"}
-          name="sections"
-          itemProps={itemProps}
-          blocks={SECTION_PAGE_BLOCKS}
-        />
-      </InlineForm>
-    </DefaultLayout>
+    <div>
+      <DefaultLayout title="inkOfPixel">
+        <InlineForm form={form}>
+          <StyledInlineBlocks
+            color={colorMode == "light" ? "dark" : "white"}
+            name="sections"
+            itemProps={itemProps}
+            blocks={SECTION_PAGE_BLOCKS}
+          />
+        </InlineForm>
+      </DefaultLayout>
+    </div>
   );
 }
 
@@ -216,7 +216,9 @@ function getPageData(
                     return {
                       id: feature.id,
                       title: feature.title || null,
-                      description: feature.description || null,
+                      description: feature.description
+                        ? feature.description
+                        : null,
                       image:
                         feature.image == null
                           ? null
@@ -248,14 +250,15 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        image: card.image
-                          ? {
-                              id: card.image.id,
-                              url: card.image.url,
-                              altText: card.image.alternativeText || null,
-                            }
-                          : null,
-                        url: card.url || null,
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.alternativeText || null,
+                              },
+                        url: card.url ? card.url : null,
                         _template: "ComponentBlocksCard",
                       };
                     }
@@ -282,6 +285,7 @@ function getPageData(
                 : [],
             };
           }
+
           default:
             return assertNever(section);
         }
@@ -290,8 +294,8 @@ function getPageData(
     return {
       id: page.id,
       title: page.pageName,
-      sections: sections,
-      path: page.path || undefined,
+      sections: filterListNullableItems(sections),
+      path: page.path ? page.path : undefined,
     };
   }
 }

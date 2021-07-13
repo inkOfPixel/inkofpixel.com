@@ -150,6 +150,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               }),
             };
           }
+
           default:
             return assertNever(section);
         }

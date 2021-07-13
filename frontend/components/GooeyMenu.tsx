@@ -42,34 +42,36 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
               transition: "transform 200ms ease-out 0",
             },
           }}>
-          {children.map((lang: any, index: number): any =>
-            open === true ? (
-              <Link
-                userSelect="none"
-                fontFamily="Roboto Mono"
-                href={"/" + lang.props.children.toLowerCase()}
-                fontSize="xs"
-                transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
-                transitionDuration={300 + 100 * index + "ms"}
-                _hover={{
-                  transform: "scale(1.1, 1.1)",
-                }}
-                key={index}
-                transform="translate3d(0, 0, 0)">
-                <a>{lang}</a>
-              </Link>
-            ) : (
-              <Link
-                href="/"
-                fontFamily="Roboto Mono"
-                fontSize="xs"
-                transitionDuration={300 + 100 * index + "ms"}
-                transform={"translate3d(0," + -64 * (index + 1) + "px, 0)"}
-                key={index}>
-                <a>{lang}</a>
-              </Link>
-            )
-          )}
+          {children
+            ? children.map((lang: any, index: number): any =>
+                open === true ? (
+                  <Link
+                    userSelect="none"
+                    fontFamily="Roboto Mono"
+                    href={"/" + lang.props.children.toLowerCase()}
+                    fontSize="xs"
+                    transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
+                    transitionDuration={300 + 100 * index + "ms"}
+                    _hover={{
+                      transform: "scale(1.1, 1.1)",
+                    }}
+                    key={index}
+                    transform="translate3d(0, 0, 0)">
+                    {lang}
+                  </Link>
+                ) : (
+                  <Link
+                    href="/"
+                    fontFamily="Roboto Mono"
+                    fontSize="xs"
+                    transitionDuration={300 + 100 * index + "ms"}
+                    transform={"translate3d(0," + -64 * (index + 1) + "px, 0)"}
+                    key={index}>
+                    {lang}
+                  </Link>
+                )
+              )
+            : "EN"}
         </Box>
         <StyledLabel
           userSelect="none"

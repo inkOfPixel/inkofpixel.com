@@ -1,4 +1,5 @@
-import { Box, Link } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
+import Link from "next/link";
 import { BlockTemplateData } from "@features/sectionBlocks";
 import React from "react";
 import {
@@ -23,10 +24,10 @@ interface NavBlockProps {
 
 export function NavigationBlock({ path, isOpen }: NavBlockProps) {
   return (
-    <Box>
-      <Link
+    <Link href={path} passHref>
+      <Box
         display={isOpen ? "inline-block" : "block"}
-        m={isOpen ? "0px 0px 0px 0px" : "0px 0px 0px 10px"}
+        m={0}
         p={isOpen ? "20px 10px" : "12px 10px"}
         letterSpacing="0.02em"
         color="dark"
@@ -35,7 +36,6 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
         transition="all 0.3s"
         fontSize="sm"
         fontWeight="subtitle"
-        href={path}
         _before={{
           background: "rgb(22,19,56)",
           bottom: "-1px",
@@ -54,8 +54,8 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
           },
         }}>
         <InlineTextarea name="pageName" />
-      </Link>
-    </Box>
+      </Box>
+    </Link>
   );
 }
 

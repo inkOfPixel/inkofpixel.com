@@ -2,9 +2,9 @@ export * from "./types";
 import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
 import {
   featureSectionBlock,
-  FeatureSectionBlockData,
-} from "./FeatureSectionBlock";
-import { cardSectionBlock, CardSectionBlockData } from "./CardSectionBlock";
+  FeatureListSectionBlockData,
+} from "./FeatureListSectionBlock";
+import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
 import {
   navigationSectionBlock,
   NavigationSectionBlockData,
@@ -19,6 +19,6 @@ export const SECTION_PAGE_BLOCKS = {
 
 export type SectionBlockData =
   | HeroSectionBlockData
-  | FeatureSectionBlockData
+  | FeatureListSectionBlockData
   | CardSectionBlockData
   | NavigationSectionBlockData;

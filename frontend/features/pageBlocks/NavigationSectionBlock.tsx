@@ -21,10 +21,10 @@ import { SectionBlockTemplateData } from "./types";
 import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
 import Icon from "@components/Icon";
-import { Image } from "@chakra-ui/image";
 import { GooeyMenu } from "@components/GooeyMenu";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Logo from "@components/Logo";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
@@ -57,7 +57,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex as="header" w="full" zIndex="100" pos="absolute" h="40">
+    <Flex as="header" w="full" pos="relative" overflow="visible" h="40">
       <Box
         h="full"
         p={{
@@ -78,7 +78,6 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               lg: "none",
             }}>
             <StyledMenu
-              mb={"2.5"}
               onClick={onOpen}
               color={"rgb(22,19,56)"}
               display={{
@@ -96,7 +95,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               onEsc={onClose}>
               <DrawerOverlay />
               <DrawerContent>
-                <DrawerBody>
+                <DrawerBody onClick={onClose}>
                   <Flex
                     justifyContent="center"
                     flexDir="column"
@@ -126,6 +125,8 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               base: "1 1 0%",
               lg: "null",
             }}
+            mr="4"
+            ml="4"
             justifyContent={{
               base: "center",
               lg: "flex-start",
@@ -139,7 +140,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                   sm: "200px",
                 }}
                 height="54px">
-                <Image alt="Logo" src="/logo.svg" fill="rgb(22, 19, 56)" />
+                <Logo width="100%" height="100%" color="rgb(22, 19, 56)" />
               </Box>
             </Link>
           </Flex>
@@ -167,6 +168,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
           </Flex>
 
           <StyledGooeyMenu
+            mt="3"
             mr={{
               base: "0",
               xl: "30px",
@@ -195,14 +197,27 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const navigationSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "navigationSection",
+    label: "Navigation Section",
     defaultItem: {
       blocks: [
         {
           _template: "ComponentBlocksNavigation",
-          id: "0",
           pageName: "Default",
-          availableLanguages: "EN",
+          path: "/",
+        },
+        {
+          _template: "ComponentBlocksNavigation",
+          pageName: "Default",
+          path: "/",
+        },
+        {
+          _template: "ComponentBlocksNavigation",
+          pageName: "Default",
+          path: "/",
+        },
+        {
+          _template: "ComponentBlocksNavigation",
+          pageName: "Default",
           path: "/",
         },
       ],

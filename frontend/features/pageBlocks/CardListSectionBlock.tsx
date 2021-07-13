@@ -25,7 +25,7 @@ export type CardSectionBlockData = SectionBlockTemplateData<
 const StyledInlineTextarea = chakra(InlineTextarea);
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function CardSectionBlock(sectionTitle: string) {
+export function CardListSectionBlock(data: CardSectionBlockData) {
   return (
     <Box
       bg="rgb(234, 247, 247)"
@@ -50,7 +50,7 @@ export function CardSectionBlock(sectionTitle: string) {
         }}
         letterSpacing="0.02em"
         pos="relative">
-        {sectionTitle != null ? (
+        {data.sectionTitle != null ? (
           <Box
             color="rgb(5, 195, 182)"
             fontSize="sm"
@@ -131,7 +131,7 @@ export function CardSectionBlock(sectionTitle: string) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardSectionBlock {...data} />
+      <CardListSectionBlock {...data} />
     </BlocksControls>
   );
 }

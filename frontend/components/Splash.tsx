@@ -90,17 +90,4 @@ const Bubble = chakra(({ className, children }: any) => {
   );
 });
 
-/*
-  animation: ${() => random(3, 6)}s linear infinite ${bordertl},
-    ${() => random(3, 6)}s linear infinite ${bordertr},
-    ${() => random(3, 6)}s linear infinite ${borderbl},
-    ${() => random(3, 6)}s linear infinite ${borderbr},
-    ${random(5, 12).toFixed(2)}s linear infinite ${rotate};
-`;
-
-Splash.defaultProps = {
-  color: "#000",
-  size: "300px",
-};
-*/
 export default Bubble;

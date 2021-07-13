@@ -40,6 +40,8 @@ export function FeatureListSectionBlock({
     };
   }, [preview]);
 
+  if (sectionTitle != null) sectionTitle = sectionTitle.toUpperCase();
+
   return (
     <Box as="section" pb="36">
       <Box

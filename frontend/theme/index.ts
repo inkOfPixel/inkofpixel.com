@@ -7,8 +7,9 @@ const fonts = {
 };
 
 const config: ThemeOverride["config"] = {
-  initialColorMode: "light",
-  useSystemColorMode: false,
+  // @ts-ignore
+  initialColorMode: "system",
+  useSystemColorMode: true,
 };
 
 const overrides: ThemeOverride = {
@@ -21,6 +22,7 @@ const overrides: ThemeOverride = {
     bold: 700,
   },
   fontsizes: {
+    footer: "10px",
     xs: "12px",
     sm: "14px",
     md: "16px",
