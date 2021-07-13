@@ -55,6 +55,7 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
             name="sections"
             itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
+            
           />
         </InlineForm>
       </DefaultLayout>

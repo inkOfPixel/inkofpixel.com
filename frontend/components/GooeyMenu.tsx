@@ -1,6 +1,5 @@
-import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
+import { Box, chakra, Checkbox, FormLabel, Link } from "@chakra-ui/react";
 import React, { useState } from "react";
-import Link from "next/link";
 
 export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
   const [open, setOpen] = useState(false);
@@ -9,7 +8,6 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
     setOpen(!open);
   }
   const StyledLabel = chakra(FormLabel);
-  const StyledLink = chakra(Link);
 
   return (
     <React.Fragment>
@@ -46,7 +44,7 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
           }}>
           {children.map((lang: any, index: number): any =>
             open === true ? (
-              <StyledLink
+              <Link
                 userSelect="none"
                 fontFamily="Roboto Mono"
                 href={"/" + lang.props.children.toLowerCase()}
@@ -59,9 +57,10 @@ export const GooeyMenu = chakra(({ renderLabel, children }: any) => {
                 key={index}
                 transform="translate3d(0, 0, 0)">
                 <a>{lang}</a>
-              </StyledLink>
+              </Link>
             ) : (
               <Link
+                href="/"
                 fontFamily="Roboto Mono"
                 fontSize="xs"
                 transitionDuration={300 + 100 * index + "ms"}
