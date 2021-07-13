@@ -4,7 +4,7 @@ import { cardBlock, CardBlockData } from "./CardBlock";
 import { featureBlock, FeatureBlockData } from "./FeatureBlock";
 import { NavBlockData, navigationBlock } from "./NavigationBlock";
 
-export const FEAT_BLOCK = {
+export const FEATURE_BLOCK = {
   ComponentBlocksSingleFeature: featureBlock,
 };
 

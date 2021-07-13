@@ -38,7 +38,7 @@ export default function AppProviders({
       <StrapiProvider onLogin={enterEditMode} onLogout={exitEditMode}>
         <ChakraProvider theme={customTheme}>
           <Head>
-            <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+            <link rel="icon" type="image/x-icon" href="/favicon.png" />
           </Head>
           <Box color="white">{children}</Box>
           <EditButton />

@@ -1,4 +1,4 @@
-import { fetchGraphQL, filterListNullableItems } from "@graphql/utils";
+import { fetchGraphQL } from "@graphql/utils";
 import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
@@ -43,23 +43,22 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   }, [preview]);
 
   if (pageData == null) {
-    return null;
+    return {
+      notFound: true,
+    };
   }
 
   return (
-    <div>
-      <DefaultLayout title="InkOfPixel">
-        <InlineForm form={form}>
-          <StyledInlineBlocks
-            color={colorMode == "light" ? "dark" : "white"}
-            name="sections"
-            itemProps={itemProps}
-            blocks={SECTION_PAGE_BLOCKS}
-            
-          />
-        </InlineForm>
-      </DefaultLayout>
-    </div>
+    <DefaultLayout title="InkOfPixel">
+      <InlineForm form={form}>
+        <StyledInlineBlocks
+          color={colorMode == "light" ? "dark" : "white"}
+          name="sections"
+          itemProps={itemProps}
+          blocks={SECTION_PAGE_BLOCKS}
+        />
+      </InlineForm>
+    </DefaultLayout>
   );
 }
 
@@ -217,9 +216,7 @@ function getPageData(
                     return {
                       id: feature.id,
                       title: feature.title || null,
-                      description: feature.description
-                        ? feature.description
-                        : null,
+                      description: feature.description || null,
                       image:
                         feature.image == null
                           ? null
@@ -251,15 +248,14 @@ function getPageData(
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        image:
-                          card.image == null
-                            ? null
-                            : {
-                                id: card.image.id,
-                                url: card.image.url,
-                                altText: card.image.alternativeText || null,
-                              },
-                        url: card.url ? card.url : null,
+                        image: card.image
+                          ? {
+                              id: card.image.id,
+                              url: card.image.url,
+                              altText: card.image.alternativeText || null,
+                            }
+                          : null,
+                        url: card.url || null,
                         _template: "ComponentBlocksCard",
                       };
                     }
@@ -294,8 +290,8 @@ function getPageData(
     return {
       id: page.id,
       title: page.pageName,
-      sections: filterListNullableItems(sections),
-      path: page.path ? page.path : undefined,
+      sections: sections,
+      path: page.path || undefined,
     };
   }
 }

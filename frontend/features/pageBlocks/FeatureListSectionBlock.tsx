@@ -11,7 +11,7 @@ import {
 } from "react-tinacms-inline";
 import { SectionBlockTemplateData } from "./types";
 
-export type FeatureSectionBlockData = SectionBlockTemplateData<
+export type FeatureListSectionBlockData = SectionBlockTemplateData<
   "featureSection",
   {
     id: string;
@@ -22,7 +22,7 @@ export type FeatureSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
-type FeatureSectionProps = {
+type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
 };
@@ -30,10 +30,10 @@ type FeatureSectionProps = {
 export const StyledInlineTextarea = chakra(InlineTextarea);
 export const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function FeatureSectionBlock({
+export function FeatureListSectionBlock({
   sectionTitle,
   preview,
-}: FeatureSectionProps) {
+}: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -41,7 +41,7 @@ export function FeatureSectionBlock({
   }, [preview]);
 
   return (
-    <Box as="section" pb="150px">
+    <Box as="section" pb="36">
       <Box
         m={{
           base: "0px",
@@ -56,7 +56,21 @@ export function FeatureSectionBlock({
           base: "full",
           xl: "1200px",
         }}>
-        {sectionTitle != null ? (
+        {sectionTitle == null ? (
+          <Box
+            color="rgb(129, 82, 188)"
+            fontSize="sm"
+            textTransform="uppercase"
+            letterSpacing="0.1em"
+            pos="relative"
+            w="full"
+            pb={8}
+            as="h2"
+            fontFamily="Roboto Mono"
+            lineHeight="1.15em">
+            <InlineTextarea name="sectionTitle" />
+          </Box>
+        ) : (
           <Box
             color="rgb(129, 82, 188)"
             fontSize="sm"
@@ -78,20 +92,6 @@ export function FeatureSectionBlock({
               left: "-68px",
               backgroundColor: "rgb(129, 82, 188)",
             }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        ) : (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="30px"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
             <InlineTextarea name="sectionTitle" />
           </Box>
         )}
@@ -178,7 +178,7 @@ export function FeatureSectionBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureSectionBlock sectionTitle={data.sectionTitle} {...data} />
+      <FeatureListSectionBlock {...data} />
     </BlocksControls>
   );
 }
@@ -186,12 +186,31 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "featureSection",
+    label: "Feature List Section",
     defaultItem: {
-      sectionTitle: "Services",
+      sectionTitle: "Default section title",
       title: "Default section title",
       subtitle: "Default section subtitle",
-      blocks: [],
+      blocks: [
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+        {
+          _template: "ComponentBlocksSingleFeature",
+          title: "Default title",
+          description: "Default description",
+          url: "/",
+        },
+      ],
     },
     fields: [],
   },
