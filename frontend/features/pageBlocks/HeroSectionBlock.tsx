@@ -7,7 +7,6 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { useCMS } from "tinacms";
 import { SectionBlockTemplateData } from "./types";
 
 export type HeroSectionBlockData = SectionBlockTemplateData<

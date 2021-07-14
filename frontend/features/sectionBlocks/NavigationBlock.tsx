@@ -1,4 +1,4 @@
-import { Box, chakra } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import Link from "next/link";
 import { BlockTemplateData } from "@features/sectionBlocks";
 import React from "react";

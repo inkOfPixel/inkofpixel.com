@@ -25,7 +25,6 @@ import { GooeyMenu } from "@components/GooeyMenu";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "@components/Logo";
-import Bubble from "@components/Splash";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
