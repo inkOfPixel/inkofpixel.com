@@ -17,6 +17,7 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
 export interface PageData {
   id: string;
   title?: string;
@@ -53,7 +54,12 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
         cms.alerts.error("Error while saving changes");
       }
     },
-    fields: [],
+    fields: [
+      {
+        name: "title",
+        component: "text",
+      },
+    ],
   };
   const [page, form] = useForm<PageData>(formConfig);
   usePlugin(form);
@@ -67,6 +73,8 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
 }
 
 function getPageInput(data: PageData): UpdatePageInput {
+  console.log("DATA", JSON.stringify(data, null, " "));
+
   return {
     where: { id: data.id },
     data: {
@@ -136,6 +144,36 @@ function getPageInput(data: PageData): UpdatePageInput {
                               },
                         url: feature.url || null,
                         _template: "ComponentBlocksSingleFeature",
+                      };
+                    }
+                  )
+                : [],
+            };
+          }
+          case "footerSection": {
+            return {
+              __typename: "ComponentSectionFooterSection",
+              id: section.id,
+              cap: section.cap,
+              city: section.city,
+              email: section.email,
+              description: section.description,
+              sharedCapital: section.sharedCapital,
+              copyright: section.copyright,
+              street: section.street,
+              vatNumber: section.vatNumber,
+              blocks: section.blocks
+                ? filterListNullableItems(section.blocks).map<FooterBlockData>(
+                    (footerBlock) => {
+                      return {
+                        _template: "ComponentBlocksFooter",
+                        id: footerBlock.id,
+                        cap: footerBlock.cap,
+                        street: footerBlock.street,
+                        city: footerBlock.city,
+                        initials: footerBlock.initials,
+                        type: footerBlock.type,
+                        province: footerBlock.province,
                       };
                     }
                   )

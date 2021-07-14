@@ -42,7 +42,6 @@ query GetPages($where: JSON, $locale: String) {
         subtitle
         sections {
           id
-
           title
           description
           image {
@@ -51,6 +50,26 @@ query GetPages($where: JSON, $locale: String) {
             alternativeText
           }
           url
+        }
+      }
+      ... on ComponentSectionFooterSection {
+        id
+        description
+        email
+        copyright
+        sharedCapital
+        street
+        cap
+        city
+        vatNumber
+        sections {
+          id
+          city
+          type
+          street
+          cap
+          province
+          initials
         }
       }
     }

@@ -18,6 +18,7 @@ import {
 import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -169,6 +170,7 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
+  console.log("page", JSON.stringify(page, null, " "));
 
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
@@ -242,6 +244,37 @@ function getPageData(
                 : [],
             };
           }
+          case "ComponentSectionFooterSection": {
+            return {
+              _template: "footerSection",
+              id: section.id,
+              cap: section.cap || null,
+              city: section.city || null,
+              email: section.email || null,
+              description: section.description || null,
+              sharedCapital: section.sharedCapital || null,
+              copyright: section.copyright || null,
+              street: section.street || null,
+              vatNumber: section.vatNumber || null,
+              blocks: section.sections
+                ? filterListNullableItems(
+                    section.sections
+                  ).map<FooterBlockData>((footerBlock) => {
+                    return {
+                      _template: "ComponentBlocksFooter",
+                      id: footerBlock.id,
+                      cap: footerBlock.cap || null,
+                      street: footerBlock.street || null,
+                      city: footerBlock.city || null,
+                      initials: footerBlock.initials || null,
+                      type: footerBlock.type || null,
+                      province: footerBlock.province || null,
+                    };
+                  })
+                : [],
+            };
+          }
+
           default:
             return assertNever(section);
         }
