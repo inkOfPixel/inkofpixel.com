@@ -18,6 +18,7 @@ export type FeatureListSectionBlockData = SectionBlockTemplateData<
     sectionTitle: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
+    paddingTop: number;
     blocks: FeatureBlockData[];
   }
 >;
@@ -25,6 +26,7 @@ export type FeatureListSectionBlockData = SectionBlockTemplateData<
 type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
+  paddingTop: number;
 };
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
@@ -33,6 +35,7 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export function FeatureListSectionBlock({
   sectionTitle,
   preview,
+  paddingTop,
 }: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -43,7 +46,7 @@ export function FeatureListSectionBlock({
   if (sectionTitle != null) sectionTitle = sectionTitle.toUpperCase();
 
   return (
-    <Box as="section" pb="36">
+    <Box as="section" pt={paddingTop}>
       <Box
         m={{
           base: "0px",
@@ -214,6 +217,13 @@ export const featureSectionBlock: Block = {
         },
       ],
     },
-    fields: [],
+    fields: [
+      {
+        name: "paddingTop",
+        label: "Section padding top",
+        component: "number",
+        defaultValue: "paddingTop",
+      },
+    ],
   },
 };

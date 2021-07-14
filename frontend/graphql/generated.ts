@@ -175,6 +175,7 @@ export type ComponentSectionSingleFeatureSection = {
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeature>>>;
   sectionTitle?: Maybe<Scalars['String']>;
+  paddingTop?: Maybe<Scalars['Int']>;
 };
 
 export type ComponentSectionSingleFeatureSectionInput = {
@@ -182,6 +183,7 @@ export type ComponentSectionSingleFeatureSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<ComponentBlocksSingleFeatureInput>>>;
   sectionTitle?: Maybe<Scalars['String']>;
+  paddingTop?: Maybe<Scalars['Int']>;
 };
 
 
@@ -1160,6 +1162,7 @@ export type EditComponentSectionSingleFeatureSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksSingleFeatureInput>>>;
   sectionTitle?: Maybe<Scalars['String']>;
+  paddingTop?: Maybe<Scalars['Int']>;
 };
 
 export type EditFileInput = {
@@ -1254,53 +1257,6 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
-export type GetPagesQueryVariables = Exact<{
-  where?: Maybe<Scalars['JSON']>;
-  locale?: Maybe<Scalars['String']>;
-}>;
-
-
-export type GetPagesQuery = (
-  { __typename?: 'Query' }
-  & { pages?: Maybe<Array<Maybe<(
-    { __typename: 'Pages' }
-    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
-    & { sections?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentSectionCardSection' }
-      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { sections?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksCard' }
-        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'url' | 'urlName'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionHeroSection' }
-      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle' | 'areBubblesActive'>
-    ) | (
-      { __typename: 'ComponentSectionSingleFeatureSection' }
-      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
-      & { sections?: Maybe<Array<Maybe<(
-        { __typename: 'ComponentBlocksSingleFeature' }
-        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'url' | 'urlName' | 'bubbleColor'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
-        )> }
-      )>>> }
-    ) | (
-      { __typename: 'ComponentSectionNavigationSection' }
-      & Pick<ComponentSectionNavigationSection, 'id'>
-      & { sections?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksNavigationBlock' }
-        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
-      )>>> }
-    )>>> }
-  )>>> }
-);
-
 export type CreatePageMutationVariables = Exact<{
   input?: Maybe<CreatePageInput>;
 }>;
@@ -1328,6 +1284,53 @@ export type GetLocalesQuery = (
   )>>> }
 );
 
+export type GetPagesQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetPagesQuery = (
+  { __typename?: 'Query' }
+  & { pages?: Maybe<Array<Maybe<(
+    { __typename: 'Pages' }
+    & Pick<Pages, 'id' | 'path' | 'pageName' | 'locale'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename: 'ComponentSectionCardSection' }
+      & Pick<ComponentSectionCardSection, 'id' | 'sectionTitle' | 'title' | 'subtitle'>
+      & { sections?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksCard' }
+        & Pick<ComponentBlocksCard, 'id' | 'title' | 'description' | 'url' | 'urlName'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionHeroSection' }
+      & Pick<ComponentSectionHeroSection, 'id' | 'title' | 'subtitle' | 'areBubblesActive'>
+    ) | (
+      { __typename: 'ComponentSectionSingleFeatureSection' }
+      & Pick<ComponentSectionSingleFeatureSection, 'id' | 'sectionTitle' | 'title' | 'subtitle' | 'paddingTop'>
+      & { sections?: Maybe<Array<Maybe<(
+        { __typename: 'ComponentBlocksSingleFeature' }
+        & Pick<ComponentBlocksSingleFeature, 'id' | 'description' | 'title' | 'url' | 'urlName' | 'bubbleColor'>
+        & { image?: Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
+        )> }
+      )>>> }
+    ) | (
+      { __typename: 'ComponentSectionNavigationSection' }
+      & Pick<ComponentSectionNavigationSection, 'id'>
+      & { sections?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksNavigationBlock' }
+        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
+      )>>> }
+    )>>> }
+  )>>> }
+);
+
 export type UpdatePageMutationVariables = Exact<{
   input?: Maybe<UpdatePageInput>;
 }>;
@@ -1345,6 +1348,22 @@ export type UpdatePageMutation = (
 );
 
 
+export const CreatePage = `
+    mutation CreatePage($input: createPageInput) {
+  createPage(input: $input) {
+    page {
+      id
+    }
+  }
+}
+    `;
+export const GetLocales = `
+    query GetLocales {
+  pages(locale: "all") {
+    locale
+  }
+}
+    `;
 export const GetPages = `
     query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
@@ -1360,6 +1379,7 @@ export const GetPages = `
         sectionTitle
         title
         subtitle
+        paddingTop
         sections {
           __typename
           id
@@ -1414,22 +1434,6 @@ export const GetPages = `
         }
       }
     }
-  }
-}
-    `;
-export const CreatePage = `
-    mutation CreatePage($input: createPageInput) {
-  createPage(input: $input) {
-    page {
-      id
-    }
-  }
-}
-    `;
-export const GetLocales = `
-    query GetLocales {
-  pages(locale: "all") {
-    locale
   }
 }
     `;

@@ -13,19 +13,6 @@ export function DefaultLayout({ children, title }: any) {
         <link rel="shortcut icon" href="/static/favicon.png" />
       </Head>
       <Box color="black">
-        {/*
-        <InlineForm form={form}>
-          <InlineBlocks name="sections" blocks={NAV_BLOCK} />
-        </InlineForm>
-        
-        <Flex
-          direction="row"
-          alignItems="center"
-          width="100%"
-          justifyContent="flex-end"
-        >
-           <DarkModeSwitch /> 
-        </Flex>*/}
         <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
       </Box>
     </React.Fragment>

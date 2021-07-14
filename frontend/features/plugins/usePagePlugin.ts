@@ -116,6 +116,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
+              paddingTop: section.paddingTop,
               sections: section.blocks?.map((feature) => {
                 return {
                   id: feature.id,
@@ -140,13 +141,11 @@ function getPageInput(data: PageData): UpdatePageInput {
               __typename: "ComponentSectionNavigationSection",
               id: section.id,
               sections: section.blocks?.map((nav) => {
-                if (nav != null) {
-                  return {
-                    id: nav.id,
-                    pageName: nav.pageName,
-                    path: nav.path,
-                  };
-                }
+                return {
+                  id: nav.id,
+                  pageName: nav.pageName,
+                  path: nav.path,
+                };
               }),
             };
           }

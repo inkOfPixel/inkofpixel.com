@@ -20,6 +20,9 @@
     },
     "sectionTitle": {
       "type": "string"
+    },
+    "paddingTop": {
+      "type": "integer"
     }
   }
 }

@@ -7,6 +7,7 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
+import { useCMS } from "tinacms";
 import { SectionBlockTemplateData } from "./types";
 
 export type HeroSectionBlockData = SectionBlockTemplateData<
@@ -25,11 +26,11 @@ const Bubble = chakra(Splash);
 export function HeroSectionBlock(data: HeroSectionBlockData) {
   return (
     <Box
+      overflow="hidden"
       w="full"
-      overflowX="clip"
       pb={{
         base: "80",
-        lg: "96",
+        lg: "400px",
       }}
       pt={{
         base: "52",
@@ -49,7 +50,12 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
             base: "full",
             xl: "1200px",
           }}
-          p={{ base: "0px 26px", sm: "0px 40px", xl: "0px" }}
+          py="0"
+          px={{
+            base: "6",
+            sm: "10",
+            xl: "0",
+          }}
           m="0 auto"
           pos="relative">
           {data.areBubblesActive === true ? (
@@ -61,9 +67,12 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
               top="0"
               className="HeroIllustrator">
               <Bubble
-                top="-200px"
+                top={{
+                  base: "-250px",
+                  sm: "-200px",
+                }}
                 right={{
-                  base: "-120px",
+                  base: "-200px",
                   sm: "-200px",
                 }}
                 boxSize="600px"
@@ -131,6 +140,11 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
               <Box
                 fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
                 m={{ base: 0 }}
+                w={{
+                  base: "full",
+                  sm: "75%",
+                  md: "500px",
+                }}
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
@@ -144,7 +158,7 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
                 w={{
                   base: "full",
                   sm: "75%",
-                  md: "1/2",
+                  md: "600px",
                 }}
                 p={0}
                 m={0}

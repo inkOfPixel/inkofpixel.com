@@ -12,6 +12,7 @@ query GetPages($where: JSON, $locale: String) {
         sectionTitle
         title
         subtitle
+        paddingTop
         sections {
           __typename
           id

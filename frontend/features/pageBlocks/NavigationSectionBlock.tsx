@@ -25,6 +25,7 @@ import { GooeyMenu } from "@components/GooeyMenu";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "@components/Logo";
+import Bubble from "@components/Splash";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
   "navigationSection",
@@ -57,19 +58,20 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex as="header" w="full" pos="relative" overflow="visible" h="40">
+    <Flex as="header" w="full" pos="absolute" h="40">
       <Box
         h="full"
-        p={{
-          base: "0px 26px",
-          md: "0px 40px",
+        px={{
+          base: "6",
+          sm: "10",
+          xl: "0",
         }}
         w={{
           base: "full",
           xl: "1200px",
         }}
         m={{
-          base: "0px auto",
+          base: "0 auto",
         }}>
         <Flex h="full" alignItems="center">
           <Box
@@ -84,7 +86,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                 base: "block",
                 lg: "none",
               }}
-              size="40px"
+              size="10"
               _hover={{ cursor: "pointer" }}
             />
             <StyledDrawer
@@ -99,13 +101,13 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                   <Flex
                     justifyContent="center"
                     flexDir="column"
-                    mt={16}
+                    mt="16"
                     alignItems="center"
                     textAlign="center">
-                    <Box as={"a"} href={router.locale} ml={1} mb={8}>
+                    <Box as={"a"} href={router.locale} ml="1" mb="8">
                       <Icon
-                        width="40px"
-                        height="40px"
+                        width="10"
+                        height="10"
                         navigationColor={"rgb(22, 19, 56)"}
                       />
                     </Box>
@@ -134,10 +136,10 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
             <Link href="/" passHref>
               <Box
                 color={"rgb(22, 19, 56)"}
-                as={"a"}
+                as="a"
                 width={{
-                  base: "150px",
-                  sm: "200px",
+                  base: "36",
+                  sm: "52",
                 }}
                 height="54px">
                 <Logo width="100%" height="100%" color="rgb(22, 19, 56)" />
@@ -157,7 +159,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               }}
               flex="1 1 0%"
               w="full"
-              mr="30px"
+              mr="8"
               justifyContent="flex-end"
               flexDir="row"
               name="blocks"
@@ -171,12 +173,12 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
             mt="3"
             mr={{
               base: "0",
-              xl: "30px",
+              xl: "8",
             }}
             renderLabel={() => (
               <span className="selected">{router.locale?.toUpperCase()}</span>
             )}
-            size={"44px"}>
+            size="10">
             {uniqueArray?.map((lang: any, index) => (
               <span key={index}>{lang.locale.toUpperCase()}</span>
             ))}

@@ -60,10 +60,10 @@ export function FeatureBlock({
   return (
     <Container maxWidth="full">
       <Box as="div">
-        <Flex flexDirection="column" pb={16} m={2.5} boxSizing="border-box">
+        <Flex flexDirection="column" pb="16" m="2.5" boxSizing="border-box">
           <Bubble
             pos="relative"
-            boxSize="100px"
+            boxSize="24"
             backgroundColor={bubbleColor ? bubbleColor : "rgb(248, 241, 255)"}>
             {cms.enabled ? (
               <InlineImage
@@ -91,10 +91,10 @@ export function FeatureBlock({
                     <Flex
                       justifyContent="center"
                       alignItems="center"
-                      boxSize="100px">
+                      boxSize="24">
                       <Img
-                        width="80px"
-                        height="80px"
+                        width="20"
+                        height="20"
                         src={imageSrc}
                         alt="Cover image"
                       />
@@ -103,10 +103,10 @@ export function FeatureBlock({
                 }}
               </InlineImage>
             ) : (
-              <Flex justifyContent="center" alignItems="center" boxSize="100px">
+              <Flex justifyContent="center" alignItems="center" boxSize="24">
                 <Img
-                  width="80px"
-                  height="80px"
+                  width="20"
+                  height="20"
                   src={
                     image ? STRAPI_URL + image.url : "/images/default-image.png"
                   }></Img>
@@ -119,7 +119,8 @@ export function FeatureBlock({
             fontWeight="bold"
             lineHeight="hero"
             letterSpacing="0.04em"
-            p="20px 0px">
+            py="5"
+            px="0">
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -144,18 +145,18 @@ export function FeatureBlock({
               content: "'→'",
               display: "inline-block",
               fontSize: "md",
-              paddingLeft: "10px",
+              paddingLeft: "2.5",
               transition: "0.4s",
               fontWeight: "thin",
             }}
             _hover={{
               color: "rgb(5, 195, 182)",
               _after: {
-                paddingLeft: "20px",
+                paddingLeft: "5",
               },
             }}
-            mt="20px">
-            <Box as={"span"}>
+            mt="5">
+            <Box as="span">
               <Link
                 fontFamily="Roboto Mono"
                 color="dark"

@@ -27,8 +27,9 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
     <Link href={path} passHref>
       <Box
         display={isOpen ? "inline-block" : "block"}
-        m={0}
-        p={isOpen ? "20px 10px" : "12px 10px"}
+        m="0"
+        px="2.5"
+        py={isOpen ? "5" : "3"}
         letterSpacing="0.02em"
         color="dark"
         className="link"
@@ -40,7 +41,7 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
           background: "rgb(22,19,56)",
           bottom: "-1px",
           content: "' '",
-          height: "2px",
+          height: "0.5",
           left: "50%",
           position: "absolute",
           width: "0%",
@@ -50,7 +51,7 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
         _hover={{
           _before: {
             opacity: "1",
-            w: "100%",
+            w: "full",
           },
         }}>
         <InlineTextarea name="pageName" />

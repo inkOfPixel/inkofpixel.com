@@ -1,6 +1,6 @@
 import { fetchGraphQL } from "@graphql/utils";
 import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
   GetLocales,
@@ -12,7 +12,7 @@ import {
 } from "@graphql/generated";
 import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
-import { chakra, useColorMode } from "@chakra-ui/react";
+import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
   SectionBlockData,
@@ -22,6 +22,7 @@ import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
+import { useCMS } from "tinacms";
 
 interface DynamicPageProps {
   path: string[];
@@ -33,7 +34,7 @@ interface DynamicPageProps {
 
 export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-
+  const cms = useCMS();
   const [_, form] = usePagePlugin(pageData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
@@ -51,6 +52,16 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
       <DefaultLayout title="inkOfPixel">
         <InlineForm form={form}>
           <StyledInlineBlocks
+            sx={{
+              "& > div:first-of-type": {
+                pos: "absolute",
+                height: "160px",
+                zIndex: "1",
+              },
+              "& > div:nth-child(2)": {
+                overflow: "visible",
+              },
+            }}
             color={colorMode == "light" ? "dark" : "white"}
             name="sections"
             itemProps={itemProps}
@@ -209,6 +220,7 @@ function getPageData(
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
+              paddingTop: section.paddingTop || 0,
               blocks: section.sections
                 ? filterListNullableItems(
                     section.sections
