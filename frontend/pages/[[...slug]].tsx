@@ -136,6 +136,7 @@ export const getStaticProps: GetStaticProps<
   });
 
   const pageData = getPageData(availablePages.pages, locale);
+  console.log("Page data", JSON.stringify(pageData, null, " "));
 
   if (pageData == null) {
     return {

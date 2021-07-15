@@ -1300,10 +1300,10 @@ export type GetPagesQuery = (
         )> }
       )>>> }
     ) | (
-      { __typename?: 'ComponentSectionFooterSection' }
+      { __typename: 'ComponentSectionFooterSection' }
       & Pick<ComponentSectionFooterSection, 'id' | 'description' | 'email' | 'copyright' | 'sharedCapital' | 'street' | 'cap' | 'city' | 'vatNumber'>
       & { sections?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksFooterBlock' }
+        { __typename: 'ComponentBlocksFooterBlock' }
         & Pick<ComponentBlocksFooterBlock, 'id' | 'city' | 'type' | 'street' | 'cap' | 'province' | 'initials'>
       )>>> }
     )>>> }
@@ -1392,6 +1392,7 @@ export const GetPages = `
         }
       }
       ... on ComponentSectionFooterSection {
+        __typename
         id
         description
         email
@@ -1402,6 +1403,7 @@ export const GetPages = `
         city
         vatNumber
         sections {
+          __typename
           id
           city
           type

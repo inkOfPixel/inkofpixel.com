@@ -17,7 +17,11 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
-import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
+import {
+  FooterBlock,
+  FooterBlockData,
+} from "@features/sectionBlocks/FooterBlock";
+import { FOOTER_BLOCK } from "@features/sectionBlocks";
 export interface PageData {
   id: string;
   title?: string;
@@ -34,6 +38,7 @@ export interface PageDataCreateInput {
 export function usePagePlugin(pageData: PageData): [PageData, Form] {
   const cms = useCMS();
   const router = useRouter();
+
   const formConfig: FormOptions<PageData> = {
     id: pageData,
     label: "Page",
@@ -54,12 +59,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
         cms.alerts.error("Error while saving changes");
       }
     },
-    fields: [
-      {
-        name: "title",
-        component: "text",
-      },
-    ],
+    fields: [],
   };
   const [page, form] = useForm<PageData>(formConfig);
   usePlugin(form);
@@ -162,7 +162,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               copyright: section.copyright,
               street: section.street,
               vatNumber: section.vatNumber,
-              blocks: section.blocks
+              sections: section.blocks
                 ? filterListNullableItems(section.blocks).map<FooterBlockData>(
                     (footerBlock) => {
                       return {

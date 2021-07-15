@@ -53,6 +53,7 @@ query GetPages($where: JSON, $locale: String) {
         }
       }
       ... on ComponentSectionFooterSection {
+        __typename
         id
         description
         email
@@ -63,6 +64,7 @@ query GetPages($where: JSON, $locale: String) {
         city
         vatNumber
         sections {
+          __typename
           id
           city
           type

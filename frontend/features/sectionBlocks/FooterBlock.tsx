@@ -54,14 +54,14 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const footerBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "Feature",
+    label: "Footer Block",
     defaultItem: {
       province: "Default province",
       street: "Default street",
       type: "Default type",
       city: "Default city",
-      cap: "Default cap",
-      initials: "(XX)",
+      cap: "00000",
+      initials: "XX",
     },
     fields: [
       {
@@ -91,8 +91,14 @@ export const footerBlock: Block = {
       {
         name: "cap",
         label: "CAP",
-        component: "text",
+        component: "number",
         defaultValue: "province",
+      },
+      {
+        name: "initials",
+        label: "Initials",
+        component: "text",
+        defaultValue: "initials",
       },
     ],
   },

@@ -1,5 +1,4 @@
-import { Box, chakra, Flex, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, chakra, Flex, Text, Link } from "@chakra-ui/react";
 import React from "react";
 import {
   Block,
@@ -42,6 +41,8 @@ export default function FooterSectionBlock({
 }: FooterSectionBlockData) {
   return (
     <Box
+      fontFamily="Roboto Mono"
+      letterSpacing="0.08em"
       pos="relative"
       overflow="hidden"
       pt="36"
@@ -98,38 +99,51 @@ export default function FooterSectionBlock({
             flexGrow={1}
             flexShrink={0}
             flexBasis="auto">
-            <Box className="caption" fontSize="sm" lineHeight="1.8em">
+            <Box
+              className="caption"
+              mb="6"
+              fontSize="sm"
+              maxW="500px"
+              lineHeight="1.8em">
               <Box as="span">{description}</Box>
             </Box>
 
-            <Link href="mailto:info@inkofpixel.com" passHref>
-              <Box
-                as="a"
-                fontFamily="Europa"
-                fontSize="2xl"
-                pt="6"
-                fontWeight="bold"
-                letterSpacing="0.04em"
-                display="inline-block"
-                textDecoration="none"
-                pos="relative"
-                transition="all 300ms ease 0s"
-                color="white"
-                _before={{
-                  backgroundColor: "white",
-                  opacity: 0,
-                  bottom: "-4px",
-                  content: "''",
-                  h: "2px",
-                  left: "50%",
-                  pos: "absolute",
-                  w: "0%",
-                  transition: "all 300ms ease 0s",
-                  transform: "translateX(-50%) translateY(0px)",
-                }}>
-                {email}
-              </Box>
-            </Link>
+            <Box>
+              <Link
+                style={{ textDecoration: "none", userSelect: "none" }}
+                href={"mailto:" + email}>
+                <Box
+                  as="span"
+                  fontFamily="Europa"
+                  fontSize="2xl"
+                  fontWeight="bold"
+                  letterSpacing="0.04em"
+                  display="inline"
+                  pos="relative"
+                  transition="all 300ms ease 0s"
+                  color="white"
+                  _before={{
+                    backgroundColor: "white",
+                    opacity: 0,
+                    bottom: "-4px",
+                    content: "' '",
+                    h: "2px",
+                    left: "50%",
+                    pos: "absolute",
+                    w: "0%",
+                    transition: "all 300ms ease 0s",
+                    transform: "translateX(-50%) translateY(0px)",
+                  }}
+                  _hover={{
+                    _before: {
+                      opacity: "1",
+                      w: "full",
+                    },
+                  }}>
+                  {email}
+                </Box>
+              </Link>
+            </Box>
 
             <StyledInlineBlocks
               display="flex"
@@ -144,7 +158,7 @@ export default function FooterSectionBlock({
             />
           </Flex>
         </Flex>
-        <Box m="0" pt="12" fontSize="13px" lineHeight="1.4em">
+        <Box m="0" pt="12" fontSize="sm" lineHeight="1.4em">
           <Text pb="4">{copyright}</Text>
           <Text>
             {sharedCapital +
@@ -261,7 +275,7 @@ export const footerSectionBlock: Block = {
       street: "Piazza Castello n. 26",
       city: "Milano",
       cap: "20121",
-      vatNumber: "09287730965",
+      vatNumber: "123",
       copyright: "© 2021 inkOfPixel Srl. All rights reserved.",
     },
   },
