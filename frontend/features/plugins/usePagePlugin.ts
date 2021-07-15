@@ -17,11 +17,7 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
-import {
-  FooterBlock,
-  FooterBlockData,
-} from "@features/sectionBlocks/FooterBlock";
-import { FOOTER_BLOCK } from "@features/sectionBlocks";
+import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
 export interface PageData {
   id: string;
   title?: string;
