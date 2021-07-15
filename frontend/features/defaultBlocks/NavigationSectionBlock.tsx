@@ -17,7 +17,7 @@ import {
 } from "react-tinacms-inline";
 import { NAV_BLOCK } from "@features/sectionBlocks";
 import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
-import { SectionBlockTemplateData } from "./types";
+import { SectionBlockTemplateData } from "../pageBlocks/types";
 import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
 import Icon from "@components/Icon";
@@ -189,6 +189,8 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
+  console.log("aa", JSON.stringify(data, null, " "));
+
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <NavigationSectionBlock {...data} />

@@ -3,9 +3,9 @@ import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
-  GetLocales,
-  GetLocalesQuery,
-  GetLocalesQueryVariables,
+  GetGlobal,
+  GetGlobalQuery,
+  GetGlobalQueryVariables,
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
@@ -21,7 +21,9 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { GlobalData, useGlobalPlugin } from "@features/plugins/useGlobalPlugin";
 import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
+import { NavigationSectionBlock } from "@features/defaultBlocks/NavigationSectionBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -29,11 +31,17 @@ interface DynamicPageProps {
   preview: boolean;
   previewData?: PreviewData;
   pageData: PageData;
+  globalData: GlobalData;
 }
 
-export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+export default function DynamicPage({
+  pageData,
+  globalData,
+  preview,
+}: DynamicPageProps) {
   const { colorMode } = useColorMode();
   const [_, form] = usePagePlugin(pageData);
+  const [__, form2] = useGlobalPlugin(globalData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -42,21 +50,25 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
   }, [preview]);
 
   if (pageData == null) {
-    return null;
+    return {
+      notFound: true,
+    };
   }
+
+  const StyledInlineBlocks = chakra(InlineBlocks);
 
   return (
     <div>
       <DefaultLayout title="inkOfPixel">
+        <InlineForm form={form2}>
+          <NavigationSectionBlock
+            _template="navigationSection"
+            id="12"
+            blocks={globalData.links}
+          />
+        </InlineForm>
         <InlineForm form={form}>
           <StyledInlineBlocks
-            sx={{
-              "& > div:first-of-type": {
-                pos: "absolute",
-                height: "160px",
-                zIndex: "1",
-              },
-            }}
             color={colorMode == "light" ? "dark" : "white"}
             name="sections"
             itemProps={itemProps}
@@ -67,8 +79,6 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
     </div>
   );
 }
-
-const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   if (context.locales == null) {
@@ -121,11 +131,6 @@ export const getStaticProps: GetStaticProps<
   }
   const preview = context.preview === true;
 
-  const availableLangs = await fetchGraphQL<
-    GetLocalesQuery,
-    GetLocalesQueryVariables
-  >(GetLocales);
-
   const localePages = await fetchGraphQL<GetPagesQuery, GetPagesQueryVariables>(
     GetPages,
     {
@@ -149,11 +154,15 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
-  const pageData = getPageData(
-    availablePages.pages,
-    locale,
-    availableLangs.pages
+  const global = await fetchGraphQL<GetGlobalQuery, GetGlobalQueryVariables>(
+    GetGlobal
   );
+
+  console.log("Global data", JSON.stringify(global, null, " "));
+
+  const pageData = getPageData(availablePages.pages, locale);
+
+  const globalData = getGlobalData(global.global);
 
   if (pageData == null) {
     return {
@@ -169,6 +178,7 @@ export const getStaticProps: GetStaticProps<
         locale,
         preview,
         previewData: context.previewData,
+        globalData,
       },
     };
   }
@@ -179,14 +189,32 @@ export const getStaticProps: GetStaticProps<
       path: pathParts,
       locale,
       preview,
+      globalData,
     },
   };
 };
 
+function getGlobalData(
+  global: GetGlobalQuery["global"]
+): GlobalData | undefined {
+  if (global == null) return undefined;
+
+  return {
+    id: global.id,
+    links: global.topbar?.menu?.links?.map<NavBlockData>((link) => {
+      return {
+        _template: "ComponentBlocksNavigation",
+        id: link?.id,
+        pageName: link?.pageName,
+        path: link?.path,
+      };
+    }),
+  };
+}
+
 function getPageData(
   pages: GetPagesQuery["pages"],
-  locale: string,
-  availableLangs?: GetLocalesQuery["pages"]
+  locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
@@ -273,26 +301,6 @@ function getPageData(
                 : [],
             };
           }
-          case "ComponentSectionNavigationSection": {
-            return {
-              _template: "navigationSection",
-              id: section.id,
-              availableLanguages: (availableLangs as string[]) || null,
-              blocks: section.sections
-                ? filterListNullableItems(section.sections).map<NavBlockData>(
-                    (nav) => {
-                      return {
-                        id: nav.id,
-                        pageName: nav.pageName || null,
-                        path: nav.path || null,
-                        _template: "ComponentBlocksNavigation",
-                      };
-                    }
-                  )
-                : [],
-            };
-          }
-
           default:
             return assertNever(section);
         }

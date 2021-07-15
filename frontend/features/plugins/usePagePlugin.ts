@@ -136,20 +136,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               }),
             };
           }
-          case "navigationSection": {
-            return {
-              __typename: "ComponentSectionNavigationSection",
-              id: section.id,
-              sections: section.blocks?.map((nav) => {
-                return {
-                  id: nav.id,
-                  pageName: nav.pageName,
-                  path: nav.path,
-                };
-              }),
-            };
-          }
-
           default:
             return assertNever(section);
         }

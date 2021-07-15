@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "sections": {
+    "blocks": {
       "type": "component",
       "repeatable": true,
       "component": "blocks.navigation-block"

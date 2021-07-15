@@ -95,28 +95,26 @@ export type ComponentBlocksSingleFeatureInput = {
   urlName?: Maybe<Scalars['String']>;
 };
 
-export type ComponentMenuLink = {
-  __typename?: 'ComponentMenuLink';
+export type ComponentGlobalTopbar = {
+  __typename?: 'ComponentGlobalTopbar';
   id: Scalars['ID'];
-  linkName: Scalars['String'];
-  path?: Maybe<Pages>;
+  menu?: Maybe<Menu>;
 };
 
-export type ComponentMenuLinkInput = {
-  linkName: Scalars['String'];
-  path?: Maybe<Scalars['ID']>;
+export type ComponentGlobalTopbarInput = {
+  menu?: Maybe<Scalars['ID']>;
 };
 
 export type ComponentMenuPageLink = {
   __typename?: 'ComponentMenuPageLink';
   id: Scalars['ID'];
   pageLinkName: Scalars['String'];
-  path?: Maybe<Pages>;
+  link?: Maybe<Pages>;
 };
 
 export type ComponentMenuPageLinkInput = {
   pageLinkName: Scalars['String'];
-  path?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['ID']>;
 };
 
 export type ComponentSectionCardSection = {
@@ -161,11 +159,11 @@ export type ComponentSectionHeroSectionInput = {
 export type ComponentSectionNavigationSection = {
   __typename?: 'ComponentSectionNavigationSection';
   id: Scalars['ID'];
-  sections?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
 };
 
 export type ComponentSectionNavigationSectionInput = {
-  sections?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
 };
 
 export type ComponentSectionSingleFeatureSection = {
@@ -214,6 +212,22 @@ export type FileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type Global = {
+  __typename?: 'Global';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  topbar?: Maybe<ComponentGlobalTopbar>;
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type GlobalInput = {
+  topbar?: Maybe<ComponentGlobalTopbarInput>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type I18NLocale = {
   __typename?: 'I18NLocale';
   id: Scalars['ID'];
@@ -236,10 +250,76 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionNavigationSection | ComponentSectionSingleFeatureSection;
+export type Menu = {
+  __typename?: 'Menu';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  links?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type MenuAggregator = {
+  __typename?: 'MenuAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type MenuConnection = {
+  __typename?: 'MenuConnection';
+  values?: Maybe<Array<Maybe<Menu>>>;
+  groupBy?: Maybe<MenuGroupBy>;
+  aggregate?: Maybe<MenuAggregator>;
+};
+
+export type MenuConnectionCreated_At = {
+  __typename?: 'MenuConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<MenuConnection>;
+};
+
+export type MenuConnectionId = {
+  __typename?: 'MenuConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<MenuConnection>;
+};
+
+export type MenuConnectionPublished_At = {
+  __typename?: 'MenuConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<MenuConnection>;
+};
+
+export type MenuConnectionUpdated_At = {
+  __typename?: 'MenuConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<MenuConnection>;
+};
+
+export type MenuGroupBy = {
+  __typename?: 'MenuGroupBy';
+  id?: Maybe<Array<Maybe<MenuConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<MenuConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<MenuConnectionUpdated_At>>>;
+  published_at?: Maybe<Array<Maybe<MenuConnectionPublished_At>>>;
+};
+
+export type MenuInput = {
+  links?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionNavigationSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
+  updateGlobal?: Maybe<UpdateGlobalPayload>;
+  deleteGlobal?: Maybe<DeleteGlobalPayload>;
+  createMenu?: Maybe<CreateMenuPayload>;
+  updateMenu?: Maybe<UpdateMenuPayload>;
+  deleteMenu?: Maybe<DeleteMenuPayload>;
   createPage?: Maybe<CreatePagePayload>;
   updatePage?: Maybe<UpdatePagePayload>;
   deletePage?: Maybe<DeletePagePayload>;
@@ -266,6 +346,26 @@ export type Mutation = {
   forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+};
+
+
+export type MutationUpdateGlobalArgs = {
+  input?: Maybe<UpdateGlobalInput>;
+};
+
+
+export type MutationCreateMenuArgs = {
+  input?: Maybe<CreateMenuInput>;
+};
+
+
+export type MutationUpdateMenuArgs = {
+  input?: Maybe<UpdateMenuInput>;
+};
+
+
+export type MutationDeleteMenuArgs = {
+  input?: Maybe<DeleteMenuInput>;
 };
 
 
@@ -379,6 +479,8 @@ export type PageInput = {
   pageName: Scalars['String'];
   path: Scalars['String'];
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
+  navigationSection?: Maybe<Array<Maybe<ComponentSectionNavigationSectionInput>>>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -394,6 +496,8 @@ export type Pages = {
   pageName: Scalars['String'];
   path: Scalars['String'];
   sections?: Maybe<Array<Maybe<PagesSectionsDynamicZone>>>;
+  navigationSection?: Maybe<Array<Maybe<ComponentSectionNavigationSection>>>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<Array<Maybe<Pages>>>;
@@ -473,7 +577,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionNavigationSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 
 export enum PublicationState {
@@ -483,6 +587,10 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  global?: Maybe<Global>;
+  menu?: Maybe<Menu>;
+  menus?: Maybe<Array<Maybe<Menu>>>;
+  menusConnection?: Maybe<MenuConnection>;
   page?: Maybe<Pages>;
   pages?: Maybe<Array<Maybe<Pages>>>;
   pagesConnection?: Maybe<PagesConnection>;
@@ -496,6 +604,34 @@ export type Query = {
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
   me?: Maybe<UsersPermissionsMe>;
+};
+
+
+export type QueryGlobalArgs = {
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryMenuArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryMenusArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryMenusConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
 };
 
 
@@ -1026,6 +1162,15 @@ export type UsersPermissionsUserGroupBy = {
   role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
 };
 
+export type CreateMenuInput = {
+  data?: Maybe<MenuInput>;
+};
+
+export type CreateMenuPayload = {
+  __typename?: 'createMenuPayload';
+  menu?: Maybe<Menu>;
+};
+
 export type CreatePageInput = {
   data?: Maybe<PageInput>;
 };
@@ -1060,6 +1205,20 @@ export type DeleteFileInput = {
 export type DeleteFilePayload = {
   __typename?: 'deleteFilePayload';
   file?: Maybe<UploadFile>;
+};
+
+export type DeleteGlobalPayload = {
+  __typename?: 'deleteGlobalPayload';
+  global?: Maybe<Global>;
+};
+
+export type DeleteMenuInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteMenuPayload = {
+  __typename?: 'deleteMenuPayload';
+  menu?: Maybe<Menu>;
 };
 
 export type DeletePageInput = {
@@ -1120,16 +1279,15 @@ export type EditComponentBlocksSingleFeatureInput = {
   urlName?: Maybe<Scalars['String']>;
 };
 
-export type EditComponentMenuLinkInput = {
+export type EditComponentGlobalTopbarInput = {
   id?: Maybe<Scalars['ID']>;
-  linkName?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['ID']>;
+  menu?: Maybe<Scalars['ID']>;
 };
 
 export type EditComponentMenuPageLinkInput = {
   id?: Maybe<Scalars['ID']>;
   pageLinkName?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['ID']>;
 };
 
 export type EditComponentSectionCardSectionInput = {
@@ -1153,7 +1311,7 @@ export type EditComponentSectionHeroSectionInput = {
 
 export type EditComponentSectionNavigationSectionInput = {
   id?: Maybe<Scalars['ID']>;
-  sections?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
+  blocks?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
 };
 
 export type EditComponentSectionSingleFeatureSectionInput = {
@@ -1185,9 +1343,23 @@ export type EditFileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type EditGlobalInput = {
+  topbar?: Maybe<EditComponentGlobalTopbarInput>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type EditLocaleInput = {
   name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditMenuInput = {
+  links?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
+  published_at?: Maybe<Scalars['DateTime']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1196,6 +1368,8 @@ export type EditPageInput = {
   pageName?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
+  navigationSection?: Maybe<Array<Maybe<EditComponentSectionNavigationSectionInput>>>;
+  blocks?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -1225,6 +1399,25 @@ export type EditUserInput = {
   role?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateGlobalInput = {
+  data?: Maybe<EditGlobalInput>;
+};
+
+export type UpdateGlobalPayload = {
+  __typename?: 'updateGlobalPayload';
+  global?: Maybe<Global>;
+};
+
+export type UpdateMenuInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditMenuInput>;
+};
+
+export type UpdateMenuPayload = {
+  __typename?: 'updateMenuPayload';
+  menu?: Maybe<Menu>;
 };
 
 export type UpdatePageInput = {
@@ -1269,6 +1462,29 @@ export type CreatePageMutation = (
     & { page?: Maybe<(
       { __typename?: 'Pages' }
       & Pick<Pages, 'id'>
+    )> }
+  )> }
+);
+
+export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetGlobalQuery = (
+  { __typename?: 'Query' }
+  & { global?: Maybe<(
+    { __typename: 'Global' }
+    & Pick<Global, 'id'>
+    & { topbar?: Maybe<(
+      { __typename?: 'ComponentGlobalTopbar' }
+      & Pick<ComponentGlobalTopbar, 'id'>
+      & { menu?: Maybe<(
+        { __typename?: 'Menu' }
+        & Pick<Menu, 'id'>
+        & { links?: Maybe<Array<Maybe<(
+          { __typename?: 'ComponentBlocksNavigationBlock' }
+          & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
+        )>>> }
+      )> }
     )> }
   )> }
 );
@@ -1320,15 +1536,24 @@ export type GetPagesQuery = (
           & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
         )> }
       )>>> }
-    ) | (
-      { __typename: 'ComponentSectionNavigationSection' }
-      & Pick<ComponentSectionNavigationSection, 'id'>
-      & { sections?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksNavigationBlock' }
-        & Pick<ComponentBlocksNavigationBlock, 'id' | 'pageName' | 'path'>
-      )>>> }
     )>>> }
   )>>> }
+);
+
+export type UpdateGlobalMutationVariables = Exact<{
+  input?: Maybe<UpdateGlobalInput>;
+}>;
+
+
+export type UpdateGlobalMutation = (
+  { __typename?: 'Mutation' }
+  & { updateGlobal?: Maybe<(
+    { __typename?: 'updateGlobalPayload' }
+    & { global?: Maybe<(
+      { __typename?: 'Global' }
+      & Pick<Global, 'id'>
+    )> }
+  )> }
 );
 
 export type UpdatePageMutationVariables = Exact<{
@@ -1353,6 +1578,25 @@ export const CreatePage = `
   createPage(input: $input) {
     page {
       id
+    }
+  }
+}
+    `;
+export const GetGlobal = `
+    query getGlobal {
+  global {
+    id
+    __typename
+    topbar {
+      id
+      menu {
+        id
+        links {
+          id
+          pageName
+          path
+        }
+      }
     }
   }
 }
@@ -1424,15 +1668,15 @@ export const GetPages = `
           urlName
         }
       }
-      ... on ComponentSectionNavigationSection {
-        id
-        __typename
-        sections {
-          id
-          pageName
-          path
-        }
-      }
+    }
+  }
+}
+    `;
+export const UpdateGlobal = `
+    mutation UpdateGlobal($input: updateGlobalInput) {
+  updateGlobal(input: $input) {
+    global {
+      id
     }
   }
 }

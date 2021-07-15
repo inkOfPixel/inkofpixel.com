@@ -45,9 +45,28 @@
       "components": [
         "section.card-section",
         "section.hero-section",
-        "section.single-feature-section",
-        "section.navigation-section"
+        "section.single-feature-section"
       ]
+    },
+    "navigationSection": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "section.navigation-section"
+    },
+    "blocks": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.navigation-block"
     }
   }
 }

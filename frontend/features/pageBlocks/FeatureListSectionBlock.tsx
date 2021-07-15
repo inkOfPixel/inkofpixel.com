@@ -196,6 +196,7 @@ export const featureSectionBlock: Block = {
       sectionTitle: "Default section title",
       title: "Default section title",
       subtitle: "Default section subtitle",
+      paddingTop: 52,
       blocks: [
         {
           _template: "ComponentBlocksSingleFeature",
@@ -222,7 +223,7 @@ export const featureSectionBlock: Block = {
         name: "paddingTop",
         label: "Section padding top",
         component: "number",
-        defaultValue: "paddingTop",
+        defaultValue: 52,
       },
     ],
   },
