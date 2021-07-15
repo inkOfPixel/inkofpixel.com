@@ -5,15 +5,20 @@ import {
   FeatureListSectionBlockData,
 } from "./FeatureListSectionBlock";
 import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
+import {
+  aboutUsSectionBlock,
+  AboutUsSectionBlockData,
+} from "./AboutUsSectionBlock";
 
 export const PAGE_SECTION_BLOCKS = {
-  /** We will define blocks here later */
   heroSection: heroSectionBlock,
   featureSection: featureSectionBlock,
   cardSection: cardSectionBlock,
+  aboutUsSection: aboutUsSectionBlock,
 };
 
 export type PageSectionBlockData =
   | HeroSectionBlockData
   | FeatureListSectionBlockData
-  | CardSectionBlockData;
+  | CardSectionBlockData
+  | AboutUsSectionBlockData;

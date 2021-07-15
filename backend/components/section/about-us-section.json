@@ -1,8 +1,9 @@
 {
-  "collectionName": "components_section_about_sections",
+  "collectionName": "components_section_about_us_sections",
   "info": {
-    "name": "aboutSection",
-    "icon": "angle-double-down"
+    "name": "aboutUsSection",
+    "icon": "ambulance",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,7 +14,7 @@
       "type": "string"
     },
     "subtitle": {
-      "type": "string"
+      "type": "richtext"
     }
   }
 }

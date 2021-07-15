@@ -242,6 +242,15 @@ function getPageData(
                 : [],
             };
           }
+          case "ComponentSectionAboutUsSection": {
+            return {
+              _template: "aboutUsSection",
+              id: section.id,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
+            };
+          }
           default:
             return assertNever(section);
         }

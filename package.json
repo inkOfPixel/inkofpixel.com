@@ -9,7 +9,7 @@
   "scripts": {
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "wait-on http://localhost:1337/admin && cd frontend && npm run dev",
-    "dev": "cross-env FORCE_COLOR=1 npm-run-all -l -p dev:*", 
+    "dev": "cross-env FORCE_COLOR=1 npm-run-all -l -p dev:*",
     "build:backend": "cd backend && npm run dev",
     "build:frontend": "wait-on http://localhost:1337/admin && cd frontend && npm run build",
     "build": "cross-env FORCE_COLOR=1 npm-run-all -l -p build:*",
@@ -22,5 +22,8 @@
     "cross-env": "7.0.3",
     "npm-run-all": "4.1.5",
     "wait-on": "5.2.1"
+  },
+  "dependencies": {
+    "react-markdown": "^6.0.2"
   }
 }
