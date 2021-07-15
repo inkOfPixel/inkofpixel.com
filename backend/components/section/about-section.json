@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_section_about_sections",
+  "info": {
+    "name": "aboutSection",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}
