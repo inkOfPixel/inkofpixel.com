@@ -8,8 +8,8 @@ const fonts = {
 
 const config: ThemeOverride["config"] = {
   // @ts-ignore
-  initialColorMode: "system",
-  useSystemColorMode: true,
+  initialColorMode: "light",
+  useSystemColorMode: false,
 };
 
 const overrides: ThemeOverride = {
