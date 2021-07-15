@@ -9,7 +9,6 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { useCMS } from "tinacms";
 import { BlockTemplateData } from "./types";
 
 export type CardSectionBlockData = BlockTemplateData<
@@ -27,7 +26,6 @@ const StyledInlineTextarea = chakra(InlineTextarea);
 const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function CardSectionBlock(sectionTitle: string) {
-  const cms = useCMS();
   return (
     <Box
       bg="rgb(234, 247, 247)"
