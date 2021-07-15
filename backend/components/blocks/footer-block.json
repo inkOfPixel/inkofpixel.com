@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_blocks_footer_blocks",
+  "info": {
+    "name": "footer",
+    "icon": "arrow-alt-circle-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "city": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "initials": {
+      "type": "string"
+    },
+    "cap": {
+      "type": "integer"
+    }
+  }
+}
