@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
+import Splash from "@components/Splash";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -20,6 +21,8 @@ export type FeatureBlockData = BlockTemplateData<
     title: Nullable<string>;
     description: Nullable<string>;
     url: Nullable<string>;
+    urlName: Nullable<string>;
+    bubbleColor: Nullable<string>;
   }
 >;
 
@@ -32,6 +35,8 @@ interface FeatureImage {
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
   url?: string;
+  urlName?: string;
+  bubbleColor: Nullable<string>;
 }
 
 interface ImageRenderProps {
@@ -42,65 +47,80 @@ interface ImageRenderProps {
 }
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
+const Bubble = chakra(Splash);
 
-export function FeatureBlock({ url, image }: FeatureBlockProps) {
+export function FeatureBlock({
+  url,
+  image,
+  bubbleColor,
+  urlName,
+}: FeatureBlockProps) {
   const cms = useCMS();
+
   return (
-    <Container maxWidth={"full"}>
+    <Container maxWidth="full">
       <Box as="div">
-        <Flex flexDirection="column" pb={16} m={2.5} boxSizing="border-box">
-          {cms.enabled ? (
-            <InlineImage
-              name="image"
-              uploadDir={() => "/"}
-              previewSrc={(imageSrc) => {
-                if (imageSrc === "") {
-                  return "/images/default-image.png";
-                }
-                return imageSrc;
-              }}
-              parse={(media) => {
-                return media as any;
-              }}>
-              {(imageProps: any) => {
-                const { src } = imageProps as ImageRenderProps;
-                let imageSrc: string = src.previewSrc || src.url || "";
-                if (imageSrc === "") {
-                  imageSrc = "/images/default-image.png";
-                } else if (!imageSrc.startsWith("http")) {
-                  imageSrc = `${STRAPI_URL}${imageSrc}`;
-                }
-                return (
-                  <Flex
-                    justifyContent="center"
-                    alignItems="center"
-                    boxSize="100px">
-                    <Img
-                      width="80px"
-                      height="80px"
-                      src={imageSrc}
-                      alt="Cover image"
-                    />
-                  </Flex>
-                );
-              }}
-            </InlineImage>
-          ) : (
-            <Flex justifyContent="center" alignItems="center" boxSize="100px">
-              <Img
-                width="80px"
-                height="80px"
-                src={
-                  image ? STRAPI_URL + image.url : "/images/default-image.png"
-                }></Img>
-            </Flex>
-          )}
+        <Flex flexDirection="column" pb="16" m="2.5" boxSizing="border-box">
+          <Bubble
+            pos="relative"
+            boxSize="24"
+            backgroundColor={bubbleColor ? bubbleColor : "rgb(248, 241, 255)"}>
+            {cms.enabled ? (
+              <InlineImage
+                name="image"
+                uploadDir={() => "/"}
+                previewSrc={(imageSrc) => {
+                  if (imageSrc === "") {
+                    return "/images/default-image.png";
+                  }
+
+                  return imageSrc;
+                }}
+                parse={(media) => {
+                  return media as any;
+                }}>
+                {(imageProps: any) => {
+                  const { src } = imageProps as ImageRenderProps;
+                  let imageSrc: string = src.previewSrc || src.url || "";
+                  if (imageSrc === "") {
+                    imageSrc = "/images/default-image.png";
+                  } else if (!imageSrc.startsWith("http")) {
+                    imageSrc = `${STRAPI_URL}${imageSrc}`;
+                  }
+                  return (
+                    <Flex
+                      justifyContent="center"
+                      alignItems="center"
+                      boxSize="24">
+                      <Img
+                        width="20"
+                        height="20"
+                        src={imageSrc}
+                        alt="Cover image"
+                      />
+                    </Flex>
+                  );
+                }}
+              </InlineImage>
+            ) : (
+              <Flex justifyContent="center" alignItems="center" boxSize="24">
+                <Img
+                  width="20"
+                  height="20"
+                  src={
+                    image ? STRAPI_URL + image.url : "/images/default-image.png"
+                  }></Img>
+              </Flex>
+            )}
+          </Bubble>
           <Box
             fontSize="xl"
+            fontFamily="Roboto Mono"
             fontWeight="bold"
             lineHeight="hero"
             letterSpacing="0.04em"
-            p="20px 0px">
+            py="5"
+            px="0">
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -125,18 +145,18 @@ export function FeatureBlock({ url, image }: FeatureBlockProps) {
               content: "'→'",
               display: "inline-block",
               fontSize: "md",
-              paddingLeft: "10px",
+              paddingLeft: "2.5",
               transition: "0.4s",
               fontWeight: "thin",
             }}
             _hover={{
               color: "rgb(5, 195, 182)",
               _after: {
-                paddingLeft: "20px",
+                paddingLeft: "5",
               },
             }}
-            mt="20px">
-            <Box as={"span"}>
+            mt="5">
+            <Box as="span">
               <Link
                 fontFamily="Roboto Mono"
                 color="dark"
@@ -149,7 +169,7 @@ export function FeatureBlock({ url, image }: FeatureBlockProps) {
                   textDecorationLine: "none",
                 }}
                 href={url}>
-                Learn more
+                {urlName ? urlName : "Learn more"}
               </Link>
             </Box>
           </Box>
@@ -170,11 +190,14 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "Feature",
+    label: "feat",
     defaultItem: {
       title: "Default title",
       description: "Default description",
       url: "/",
+      image: {
+        id: "51",
+      },
     },
     fields: [
       {
@@ -182,6 +205,16 @@ export const featureBlock: Block = {
         label: "Url",
         component: "text",
         defaultValue: "/",
+      },
+      {
+        name: "urlName",
+        label: "Url name",
+        component: "text",
+      },
+      {
+        name: "bubbleColor",
+        label: "Bubble color",
+        component: "color",
       },
     ],
   },

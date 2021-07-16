@@ -3,34 +3,45 @@ import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
+  GetGlobal,
+  GetGlobalQuery,
+  GetGlobalQueryVariables,
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
+import { PageData, usePagePlugin } from "@features/plugins/useSitePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
-  PageSectionBlockData,
-  PAGE_SECTION_BLOCKS,
+  SectionBlockData,
+  SECTION_PAGE_BLOCKS,
 } from "@features/pageBlocks";
-import { assertNever, filterListNullableItems } from "utils";
+import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { GlobalData } from "@features/plugins/useSitePlugin";
+import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
+import { NavigationSectionBlock } from "@features/defaultBlocks/NavigationSectionBlock";
 
 interface DynamicPageProps {
   path: string[];
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  pageData: PageData;
+  allData: {
+    global: GlobalData;
+    page: PageData;
+  };
 }
 
-export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+const StyledInlineBlocks = chakra(InlineBlocks);
+
+export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
 
-  const [_, form] = usePagePlugin(pageData);
+  const [_, form] = usePagePlugin(allData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -38,27 +49,28 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
     };
   }, [preview]);
 
-  if (pageData == null) {
+  if (allData == null) {
     return {
       notFound: true,
     };
   }
 
   return (
-    <DefaultLayout title="InkOfPixel">
-      <InlineForm form={form}>
-        <StyledInlineBlocks
-          color={colorMode == "light" ? "dark" : "white"}
-          name="sections"
-          itemProps={itemProps}
-          blocks={PAGE_SECTION_BLOCKS}
-        />
-      </InlineForm>
-    </DefaultLayout>
+    <div>
+      <DefaultLayout title="inkOfPixel">
+        <InlineForm form={form}>
+          <NavigationSectionBlock />
+          <StyledInlineBlocks
+            color={colorMode == "light" ? "dark" : "white"}
+            name="page.sections"
+            itemProps={itemProps}
+            blocks={SECTION_PAGE_BLOCKS}
+          />
+        </InlineForm>
+      </DefaultLayout>
+    </div>
   );
 }
-
-const StyledInlineBlocks = chakra(InlineBlocks);
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
   if (context.locales == null) {
@@ -134,7 +146,12 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
+  const global = await fetchGraphQL<GetGlobalQuery, GetGlobalQueryVariables>(
+    GetGlobal
+  );
   const pageData = getPageData(availablePages.pages, locale);
+
+  const globalData = getGlobalData(global.global);
 
   if (pageData == null) {
     return {
@@ -142,27 +159,64 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  if (globalData == null)
+    return {
+      notFound: true,
+    };
+
   if (preview) {
     return {
       props: {
-        pageData,
         path: pathParts,
         locale,
         preview,
         previewData: context.previewData,
+        allData: {
+          global: globalData,
+          page: pageData,
+        },
       },
     };
   }
 
   return {
     props: {
-      pageData,
       path: pathParts,
       locale,
       preview,
+      allData: {
+        global: globalData,
+        page: pageData,
+      },
     },
   };
 };
+
+function getGlobalData(
+  global: GetGlobalQuery["global"]
+): GlobalData | undefined {
+  if (global == null) return undefined;
+  if (global.topbar?.menu?.links) {
+    let filteredLinks = filterListNullableItems(global.topbar.menu.links);
+    return {
+      id: global.id,
+      topbar: {
+        id: global.topbar?.id,
+        menu: {
+          id: global.topbar?.menu?.id,
+          links: filteredLinks.map<NavBlockData>((link) => {
+            return {
+              _template: "ComponentBlocksNavigationBlock",
+              id: link?.id,
+              pageName: link?.pageName || null,
+              path: link?.path || null,
+            };
+          }),
+        },
+      },
+    };
+  }
+}
 
 function getPageData(
   pages: GetPagesQuery["pages"],
@@ -170,10 +224,14 @@ function getPageData(
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
+  if (page == null) {
+    return undefined;
+  }
+
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
     const sections =
-      filteredSections.map<PageSectionBlockData>((section) => {
+      filteredSections.map<SectionBlockData>((section) => {
         switch (section.__typename) {
           case "ComponentSectionHeroSection": {
             return {
@@ -181,6 +239,7 @@ function getPageData(
               id: section.id,
               title: section.title || null,
               subtitle: section.subtitle || null,
+              areBubblesActive: section.areBubblesActive || false,
             };
           }
           case "ComponentSectionSingleFeatureSection": {
@@ -190,6 +249,7 @@ function getPageData(
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
+              paddingTop: section.paddingTop || 0,
               blocks: section.sections
                 ? filterListNullableItems(
                     section.sections
@@ -197,7 +257,9 @@ function getPageData(
                     return {
                       id: feature.id,
                       title: feature.title || null,
-                      description: feature.description || null,
+                      description: feature.description
+                        ? feature.description
+                        : null,
                       image:
                         feature.image == null
                           ? null
@@ -207,6 +269,8 @@ function getPageData(
                               altText: feature.image.alternativeText || null,
                             },
                       url: feature.url || null,
+                      urlName: feature.urlName || null,
+                      bubbleColor: feature.bubbleColor || null,
                       _template: "ComponentBlocksSingleFeature",
                     };
                   })
@@ -224,18 +288,19 @@ function getPageData(
                 ? filterListNullableItems(section.sections).map<CardBlockData>(
                     (card) => {
                       return {
+                        _template: "ComponentBlocksCard",
                         id: card.id,
                         title: card.title,
                         description: card.description,
-                        image: card.image
-                          ? {
-                              id: card.image.id,
-                              url: card.image.url,
-                              altText: card.image.alternativeText || null,
-                            }
-                          : null,
-                        url: card.url || null,
-                        _template: "ComponentBlocksCard",
+                        image:
+                          card.image == null
+                            ? null
+                            : {
+                                id: card.image.id,
+                                url: card.image.url,
+                                altText: card.image.alternativeText || null,
+                              },
+                        url: card.url ? card.url : null,
                       };
                     }
                   )
@@ -250,8 +315,8 @@ function getPageData(
     return {
       id: page.id,
       title: page.pageName,
-      sections: sections,
-      path: page.path || undefined,
+      sections: filterListNullableItems(sections),
+      path: page.path ? page.path : undefined,
     };
   }
 }

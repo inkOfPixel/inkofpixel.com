@@ -6,14 +6,13 @@ import {
 } from "./FeatureListSectionBlock";
 import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
 
-export const PAGE_SECTION_BLOCKS = {
-  /** We will define blocks here later */
+export const SECTION_PAGE_BLOCKS = {
   heroSection: heroSectionBlock,
   featureSection: featureSectionBlock,
   cardSection: cardSectionBlock,
 };
 
-export type PageSectionBlockData =
+export type SectionBlockData =
   | HeroSectionBlockData
   | FeatureListSectionBlockData
   | CardSectionBlockData;

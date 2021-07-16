@@ -1,8 +1,10 @@
-import { PageSectionBlockData } from "@features/pageBlocks";
+import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
+import { SectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
-  UpdatePage,
+  SaveChanges,
+  UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
 import { useRouter } from "next/router";
@@ -14,14 +16,13 @@ import {
   useForm,
   usePlugin,
 } from "tinacms";
-import { assertNever, filterListNullableItems } from "@utils";
-import { CardBlockData } from "@features/sectionBlocks/CardBlock";
-import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { assertNever } from "utils";
+
 export interface PageData {
   id: string;
   title?: string;
   path?: string;
-  sections: PageSectionBlockData[];
+  sections: SectionBlockData[];
 }
 
 export interface PageDataCreateInput {
@@ -30,18 +31,60 @@ export interface PageDataCreateInput {
   locale: string;
 }
 
-export function usePagePlugin(pageData: PageData): [PageData, Form] {
+export interface GlobalData {
+  id: string;
+  topbar: {
+    id: string;
+    menu: MenuData;
+  };
+}
+
+export interface MenuData {
+  id: string;
+  links: NavBlockData[];
+}
+
+export interface AllData {
+  global: {
+    id: string;
+    topbar: {
+      id: string;
+      menu: {
+        id: string;
+        links: NavBlockData[];
+      };
+    };
+  };
+  page: {
+    id: string;
+    title?: string;
+    path?: string;
+    sections: SectionBlockData[];
+  };
+}
+
+export function usePagePlugin(allData: AllData): [AllData, Form] {
   const cms = useCMS();
   const router = useRouter();
-  const formConfig: FormOptions<PageData> = {
-    id: pageData,
-    label: "Page",
-    initialValues: pageData,
-    onSubmit: async (values) => {
-      const input = getPageInput(values);
+  console.log("Inizo funzione");
+
+  const formConfig: FormOptions<AllData> = {
+    id: allData.global.id,
+    label: "All",
+    initialValues: allData,
+    onSubmit: async (allData) => {
+      const pageInput = getPageInput(allData.page);
+      const menuInput = getMenuInput(allData.global.topbar.menu);
+      console.log("pageInput", JSON.stringify(pageInput, null, " "));
+      console.log("menuInput", JSON.stringify(menuInput, null, " "));
+      console.log("fuori dal try");
+
       try {
-        const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
-          input,
+        console.log("dentro al try");
+
+        const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
+          pageInput,
+          menuInput,
         });
         if (response.data) {
           cms.alerts.success("Changes saved!");
@@ -55,7 +98,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     },
     fields: [],
   };
-  const [page, form] = useForm<PageData>(formConfig);
+  const [all, form] = useForm<AllData>(formConfig);
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
@@ -63,7 +106,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   });
   usePlugin(creatorPlugin);
 
-  return [page, form];
+  return [all, form];
 }
 
 function getPageInput(data: PageData): UpdatePageInput {
@@ -80,6 +123,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
+              areBubblesActive: section.areBubblesActive,
             };
           }
           case "cardSection": {
@@ -89,27 +133,24 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              sections: section.blocks
-                ? filterListNullableItems(section.blocks).map<CardBlockData>(
-                    (card) => {
-                      return {
-                        id: card.id,
-                        title: card.title,
-                        description: card.description,
-                        image:
-                          card.image == null
-                            ? null
-                            : {
-                                id: card.image.id,
-                                url: card.image.url,
-                                altText: card.image.altText || null,
-                              },
-                        url: card.url || null,
-                        _template: "ComponentBlocksCard",
-                      };
-                    }
-                  )
-                : [],
+              sections: section.blocks?.map((card) => {
+                if (card != null) {
+                  return {
+                    id: card.id,
+                    title: card.title,
+                    description: card.description,
+                    urlName: card.urlName,
+                    image: card.image
+                      ? {
+                          id: card.image.id,
+                          altText: card.image.altText || null,
+                          url: card.image.url,
+                        }
+                      : null,
+                    url: card.url,
+                  };
+                }
+              }),
             };
           }
           case "featureSection": {
@@ -119,27 +160,24 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              sections: section.blocks
-                ? filterListNullableItems(section.blocks).map<FeatureBlockData>(
-                    (feature) => {
-                      return {
-                        id: feature.id,
-                        title: feature.title,
-                        description: feature.description,
-                        image:
-                          feature.image == null
-                            ? null
-                            : {
-                                id: feature.image.id,
-                                url: feature.image.url,
-                                altText: feature.image.altText || null,
-                              },
-                        url: feature.url || null,
-                        _template: "ComponentBlocksSingleFeature",
-                      };
-                    }
-                  )
-                : [],
+              paddingTop: section.paddingTop,
+              sections: section.blocks?.map((feature) => {
+                return {
+                  id: feature.id,
+                  title: feature.title,
+                  description: feature.description,
+                  urlName: feature.urlName,
+                  image: feature.image
+                    ? {
+                        id: feature.image.id,
+                        altText: feature.image.altText || null,
+                        url: feature.image.url,
+                      }
+                    : null,
+                  url: feature.url,
+                  bubbleColor: feature.bubbleColor,
+                };
+              }),
             };
           }
           default:
@@ -187,8 +225,8 @@ function getPageCreatorPlugin(
         label: "Locale",
         name: "locale",
         component: "select",
-        description: "Select a locale for this page",
         defaultValue: "en",
+        description: "Select a locale for this page",
         // @ts-ignore
         options: options.locales,
       },
@@ -219,9 +257,24 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title || "Default",
+      pageName: input.title ? input.title : "Default",
       path: input.path,
       locale: input.locale,
+    },
+  };
+}
+
+function getMenuInput(data: MenuData): UpdateMenuInput {
+  return {
+    where: { id: data.id },
+    data: {
+      links: data.links.map<NavBlockData>((link) => {
+        return {
+          id: link.id,
+          pageName: link.pageName || null,
+          path: link.path || null,
+        };
+      }),
     },
   };
 }

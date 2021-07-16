@@ -19,6 +19,7 @@ export type CardBlockData = BlockTemplateData<
     title: string;
     description: string;
     url?: Nullable<string>;
+    urlName?: Nullable<string>;
   }
 >;
 
@@ -28,10 +29,11 @@ type CardImage = {
   url: string;
 };
 
-type CardBlockProps = {
+interface CardBlockProps {
+  image?: Nullable<CardImage>;
   url?: string;
-  image: Nullable<CardImage>;
-};
+  urlName?: string;
+}
 
 interface ImageRenderProps {
   src: {
@@ -42,11 +44,11 @@ interface ImageRenderProps {
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardBlock({ url, image }: CardBlockProps) {
+export function CardBlock({ url, image, urlName }: CardBlockProps) {
   const cms = useCMS();
+
   return (
     <Flex
-      m={{ base: "auto" }}
       flexDir="column"
       boxSizing="border-box"
       justifyContent="space-between"
@@ -87,8 +89,9 @@ export function CardBlock({ url, image }: CardBlockProps) {
               }
 
               return (
-                <Box pos="relative" overflow="hidden" height="80">
+                <Box pos="relative" overflow="hidden" w="auto" height="auto">
                   <Img
+                    textAlign="center"
                     w="full"
                     h="full"
                     objectFit="cover"
@@ -122,11 +125,11 @@ export function CardBlock({ url, image }: CardBlockProps) {
         <Flex
           flexDir="column"
           w="full"
-          p={8}
+          p="8"
           pos="relative"
           boxSizing="border-box">
           <Box
-            pb={5}
+            pb="5"
             fontFamily="Europa"
             color="dark"
             fontSize="xl"
@@ -134,7 +137,7 @@ export function CardBlock({ url, image }: CardBlockProps) {
             letterSpacing="0.06em"
             fontWeight="bold">
             <StyledInlineTextarea
-              pb={5}
+              pb="5"
               fontFamily="Europa"
               color="dark"
               fontSize="xl"
@@ -170,7 +173,7 @@ export function CardBlock({ url, image }: CardBlockProps) {
           content: "'→'",
           display: "inline-block",
           fontSize: "md",
-          paddingLeft: "10px",
+          paddingLeft: "2.5",
           transition: "0.4s",
           color: "dark",
           fontWeight: "thin",
@@ -181,10 +184,9 @@ export function CardBlock({ url, image }: CardBlockProps) {
             paddingLeft: "20px",
           },
         }}
-        mr={8}
-        ml={8}
-        mb={8}>
-        <Box as="span">Discover more</Box>
+        mx="8"
+        mb="8">
+        <Box as="span">{urlName ? urlName : "Discover more"}</Box>
       </Box>
     </Flex>
   );
@@ -201,12 +203,24 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const cardBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "Card",
+    label: "card",
     defaultItem: {
       title: "Default title",
       description: "Default description",
       url: "Default link",
     },
-    fields: [],
+    fields: [
+      {
+        name: "url",
+        label: "Url",
+        component: "text",
+        defaultValue: "/",
+      },
+      {
+        name: "urlName",
+        label: "Url name",
+        component: "text",
+      },
+    ],
   },
 };

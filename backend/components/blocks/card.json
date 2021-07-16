@@ -27,6 +27,9 @@
     },
     "url": {
       "type": "string"
+    },
+    "urlName": {
+      "type": "string"
     }
   }
 }

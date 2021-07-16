@@ -27,6 +27,12 @@
     },
     "url": {
       "type": "string"
+    },
+    "bubbleColor": {
+      "type": "string"
+    },
+    "urlName": {
+      "type": "string"
     }
   }
 }

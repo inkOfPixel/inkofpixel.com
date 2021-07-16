@@ -12,12 +12,15 @@ query GetPages($where: JSON, $locale: String) {
         sectionTitle
         title
         subtitle
+        paddingTop
         sections {
           __typename
           id
           description
           title
           url
+          urlName
+          bubbleColor
           image {
             id
             name
@@ -33,6 +36,7 @@ query GetPages($where: JSON, $locale: String) {
         id
         title
         subtitle
+        areBubblesActive
       }
       ... on ComponentSectionCardSection {
         __typename
@@ -42,7 +46,6 @@ query GetPages($where: JSON, $locale: String) {
         subtitle
         sections {
           id
-
           title
           description
           image {
@@ -51,6 +54,7 @@ query GetPages($where: JSON, $locale: String) {
             alternativeText
           }
           url
+          urlName
         }
       }
     }

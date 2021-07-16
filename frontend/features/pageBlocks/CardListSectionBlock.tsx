@@ -9,10 +9,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { useCMS } from "tinacms";
-import { BlockTemplateData } from "./types";
+import { SectionBlockTemplateData } from "./types";
 
-export type CardSectionBlockData = BlockTemplateData<
+export type CardSectionBlockData = SectionBlockTemplateData<
   "cardSection",
   {
     id: string;
@@ -23,36 +22,41 @@ export type CardSectionBlockData = BlockTemplateData<
   }
 >;
 
+interface CardListSectionBlockProps {
+  sectionTitle: string;
+}
+
 const StyledInlineTextarea = chakra(InlineTextarea);
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function CardSectionBlock(sectionTitle: string) {
-  const cms = useCMS();
+export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
   return (
     <Box
+      pt="52"
       bg="rgb(234, 247, 247)"
       as="section"
       w={{
         base: "full",
       }}
       m="0 auto"
-      p="150px 0px"
+      py="36"
+      px="0"
       backgroundColor="cardSectionBg">
       <Box
         zIndex="10"
-        p={{
-          base: "0px 26px",
-          sm: "0px 40px",
-          xl: "0px",
+        py="0"
+        px={{
+          base: "6",
+          sm: "10",
+          xl: "0",
         }}
         m="0 auto"
         w={{
           base: "full",
           xl: "1200px",
         }}
-        letterSpacing="0.02em"
-        pos="relative">
-        {sectionTitle != null ? (
+        letterSpacing="0.02em">
+        {sectionTitle == null ? (
           <Box
             color="rgb(5, 195, 182)"
             fontSize="sm"
@@ -60,15 +64,29 @@ export function CardSectionBlock(sectionTitle: string) {
             letterSpacing="0.1em"
             pos="relative"
             w="full"
-            pb={8}
+            pb="8"
             as="h2"
+            fontFamily="Roboto Mono"
+            lineHeight="1.15em">
+            <InlineTextarea name="sectionTitle" />
+          </Box>
+        ) : (
+          <Box
+            as="h2"
+            color="rgb(5, 195, 182)"
+            fontSize="sm"
+            textTransform="uppercase"
+            letterSpacing="0.1em"
+            w="full"
+            pb="8"
+            pos="relative"
             fontFamily="Roboto Mono"
             lineHeight="1.15em"
             _before={{
               content: "''",
               display: "block",
-              h: "2px",
-              w: "60px",
+              h: "0.5",
+              w: "14",
               pos: "absolute",
               top: "7px",
               left: "-68px",
@@ -76,26 +94,12 @@ export function CardSectionBlock(sectionTitle: string) {
             }}>
             <InlineTextarea name="sectionTitle" />
           </Box>
-        ) : (
-          <Box
-            color="rgb(5, 195, 182)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb={8}
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
-            <InlineTextarea name="sectionTitle" />
-          </Box>
         )}
         <Box
           fontFamily="Europa"
-          fontSize={{ base: "32px", md: "40px", lg: "46px" }}
-          pb={25}
-          m={0}
+          fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+          pb="24"
+          m="0"
           fontWeight="bold"
           lineHeight="hero"
           letterSpacing="0.02em">
@@ -108,7 +112,7 @@ export function CardSectionBlock(sectionTitle: string) {
               w: {
                 base: "calc(100% - 30px)",
                 md: "calc(45% - 30px)",
-                lg: "calc(30% - 30px)",
+                lg: "calc(33% - 30px)",
               },
               h: "auto",
               m: "4",
@@ -133,7 +137,7 @@ export function CardSectionBlock(sectionTitle: string) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <CardSectionBlock {...data} />
+      <CardListSectionBlock {...data} />
     </BlocksControls>
   );
 }

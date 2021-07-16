@@ -9,15 +9,16 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "./types";
+import { SectionBlockTemplateData } from "./types";
 
-export type FeatureListSectionBlockData = BlockTemplateData<
+export type FeatureListSectionBlockData = SectionBlockTemplateData<
   "featureSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
+    paddingTop: number;
     blocks: FeatureBlockData[];
   }
 >;
@@ -25,6 +26,7 @@ export type FeatureListSectionBlockData = BlockTemplateData<
 type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
+  paddingTop: number;
 };
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
@@ -33,6 +35,7 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export function FeatureListSectionBlock({
   sectionTitle,
   preview,
+  paddingTop,
 }: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -40,8 +43,10 @@ export function FeatureListSectionBlock({
     };
   }, [preview]);
 
+  if (sectionTitle != null) sectionTitle = sectionTitle.toUpperCase();
+
   return (
-    <Box as="section" pb="36">
+    <Box as="section" pt={paddingTop}>
       <Box
         m={{
           base: "0px",
@@ -191,6 +196,7 @@ export const featureSectionBlock: Block = {
       sectionTitle: "Default section title",
       title: "Default section title",
       subtitle: "Default section subtitle",
+      paddingTop: 52,
       blocks: [
         {
           _template: "ComponentBlocksSingleFeature",
@@ -212,6 +218,13 @@ export const featureSectionBlock: Block = {
         },
       ],
     },
-    fields: [],
+    fields: [
+      {
+        name: "paddingTop",
+        label: "Section padding top",
+        component: "number",
+        defaultValue: 52,
+      },
+    ],
   },
 };

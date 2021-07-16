@@ -38,7 +38,7 @@ export default function AppProviders({
       <StrapiProvider onLogin={enterEditMode} onLogout={exitEditMode}>
         <ChakraProvider theme={customTheme}>
           <Head>
-            <link rel="icon" type="image/x-icon" href="/favicon.png" />
+            <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
           </Head>
           <Box color="white">{children}</Box>
           <EditButton />
@@ -62,6 +62,7 @@ const EditButton = () => {
   const cms = useCMS();
   return (
     <Button
+      zIndex="100"
       position="fixed"
       right="4"
       bottom="4"

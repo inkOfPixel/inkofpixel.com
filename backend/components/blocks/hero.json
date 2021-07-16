@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_heroes",
+  "info": {
+    "name": "hero",
+    "icon": "archway",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "subtitle": {
+      "type": "text"
+    }
+  }
+}

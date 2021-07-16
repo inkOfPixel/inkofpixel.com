@@ -1,7 +1,0 @@
-mutation UpdatePage($input: updatePageInput) {
-  updatePage(input: $input) {
-    page {
-      id
-    }
-  }
-}

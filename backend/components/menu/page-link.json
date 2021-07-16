@@ -12,7 +12,7 @@
       "required": true,
       "unique": true
     },
-    "path": {
+    "link": {
       "model": "pages"
     }
   }
