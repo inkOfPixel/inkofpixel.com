@@ -89,8 +89,9 @@ export function CardBlock({ url, image, urlName }: CardBlockProps) {
               }
 
               return (
-                <Box pos="relative" overflow="hidden" height="80">
+                <Box pos="relative" overflow="hidden" w="auto" height="auto">
                   <Img
+                    textAlign="center"
                     w="full"
                     h="full"
                     objectFit="cover"
