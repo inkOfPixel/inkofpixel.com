@@ -1,8 +1,10 @@
+import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { SectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
-  UpdatePage,
+  SaveChanges,
+  UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
 import { useRouter } from "next/router";
@@ -29,18 +31,60 @@ export interface PageDataCreateInput {
   locale: string;
 }
 
-export function usePagePlugin(pageData: PageData): [PageData, Form] {
+export interface GlobalData {
+  id: string;
+  topbar: {
+    id: string;
+    menu: MenuData;
+  };
+}
+
+export interface MenuData {
+  id: string;
+  links: NavBlockData[];
+}
+
+export interface AllData {
+  global: {
+    id: string;
+    topbar: {
+      id: string;
+      menu: {
+        id: string;
+        links: NavBlockData[];
+      };
+    };
+  };
+  page: {
+    id: string;
+    title?: string;
+    path?: string;
+    sections: SectionBlockData[];
+  };
+}
+
+export function usePagePlugin(allData: AllData): [AllData, Form] {
   const cms = useCMS();
   const router = useRouter();
-  const formConfig: FormOptions<PageData> = {
-    id: pageData,
-    label: "aa",
-    initialValues: pageData,
-    onSubmit: async (values) => {
-      const input = getPageInput(values);
+  console.log("Inizo funzione");
+
+  const formConfig: FormOptions<AllData> = {
+    id: allData.global.id,
+    label: "All",
+    initialValues: allData,
+    onSubmit: async (allData) => {
+      const pageInput = getPageInput(allData.page);
+      const menuInput = getMenuInput(allData.global.topbar.menu);
+      console.log("pageInput", JSON.stringify(pageInput, null, " "));
+      console.log("menuInput", JSON.stringify(menuInput, null, " "));
+      console.log("fuori dal try");
+
       try {
-        const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
-          input,
+        console.log("dentro al try");
+
+        const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
+          pageInput,
+          menuInput,
         });
         if (response.data) {
           cms.alerts.success("Changes saved!");
@@ -54,7 +98,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     },
     fields: [],
   };
-  const [page, form] = useForm<PageData>(formConfig);
+  const [all, form] = useForm<AllData>(formConfig);
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
@@ -62,7 +106,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   });
   usePlugin(creatorPlugin);
 
-  return [page, form];
+  return [all, form];
 }
 
 function getPageInput(data: PageData): UpdatePageInput {
@@ -216,6 +260,21 @@ function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
       pageName: input.title ? input.title : "Default",
       path: input.path,
       locale: input.locale,
+    },
+  };
+}
+
+function getMenuInput(data: MenuData): UpdateMenuInput {
+  return {
+    where: { id: data.id },
+    data: {
+      links: data.links.map<NavBlockData>((link) => {
+        return {
+          id: link.id,
+          pageName: link.pageName || null,
+          path: link.path || null,
+        };
+      }),
     },
   };
 }

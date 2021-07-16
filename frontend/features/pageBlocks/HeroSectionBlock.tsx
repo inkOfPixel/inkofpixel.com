@@ -26,6 +26,7 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
   return (
     <Box
       overflow="hidden"
+      zIndex="-1"
       w="full"
       pb={{
         base: "80",

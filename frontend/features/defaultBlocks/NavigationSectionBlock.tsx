@@ -15,8 +15,8 @@ import {
   BlocksControls,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { NAV_BLOCK } from "@features/sectionBlocks";
-import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
+import { NAV_BLOCK } from "@features/defaultBlocks/";
+import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "../pageBlocks/types";
 import Menu from "@components/Menu";
 import { useCMS } from "tinacms";
@@ -35,29 +35,19 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
-const StyledMenu = chakra(Menu);
-const StyledInlineBlocks = chakra(InlineBlocks);
 const StyledGooeyMenu = chakra(GooeyMenu);
 const StyledDrawer = chakra(Drawer);
+const StyledInlineBlocks = chakra(InlineBlocks);
 
-export function NavigationSectionBlock(data: NavigationSectionBlockData) {
+export function NavigationSectionBlock() {
   const cms = useCMS();
   const router = useRouter();
 
-  const uniqueArray = data.availableLanguages?.filter((item, index) => {
-    const _thing = JSON.stringify(item);
-    return (
-      index ===
-      data.availableLanguages?.findIndex((obj) => {
-        return JSON.stringify(obj) === _thing;
-      })
-    );
-  });
-
   const { isOpen, onOpen, onClose } = useDisclosure();
+  console.log("router", JSON.stringify(router, null, " "));
 
   return (
-    <Flex as="header" w="full" pos="absolute" h="40">
+    <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
       <Box
         h="full"
         px={{
@@ -78,16 +68,16 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               base: "block",
               lg: "none",
             }}>
-            <StyledMenu
+            <Box
               onClick={onOpen}
-              color={"rgb(22,19,56)"}
+              boxSize="40px"
               display={{
                 base: "block",
                 lg: "none",
               }}
-              size="10"
-              _hover={{ cursor: "pointer" }}
-            />
+              _hover={{ cursor: "pointer" }}>
+              <Menu color={"rgb(22,19,56)"} size="40" />
+            </Box>
             <StyledDrawer
               placement="left"
               onClose={onClose}
@@ -105,14 +95,14 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
                     textAlign="center">
                     <Box as={"a"} href={router.locale} ml="1" mb="8">
                       <Icon
-                        width="10"
-                        height="10"
+                        width="40"
+                        height="40"
                         navigationColor={"rgb(22, 19, 56)"}
                       />
                     </Box>
                     <StyledInlineBlocks
                       textAlign="center"
-                      name="blocks"
+                      name="global.topbar.menu.links"
                       blocks={NAV_BLOCK}
                       isOpen={true}
                     />
@@ -152,6 +142,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
             }}
             textAlign={cms.enabled ? "right" : "left"}>
             <StyledInlineBlocks
+              zIndex="1"
               display={{
                 base: "none",
                 lg: "flex",
@@ -161,7 +152,7 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               mr="8"
               justifyContent="flex-end"
               flexDir="row"
-              name="blocks"
+              name="global.topbar.menu.links"
               blocks={NAV_BLOCK}
               direction="horizontal"
               max={6}
@@ -178,8 +169,8 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
               <span className="selected">{router.locale?.toUpperCase()}</span>
             )}
             size="10">
-            {uniqueArray?.map((lang: any, index) => (
-              <span key={index}>{lang.locale.toUpperCase()}</span>
+            {router.locales?.map((lang: any, index) => (
+              <span key={index}>{lang.toUpperCase()}</span>
             ))}
           </StyledGooeyMenu>
         </Flex>
@@ -189,8 +180,6 @@ export function NavigationSectionBlock(data: NavigationSectionBlockData) {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("aa", JSON.stringify(data, null, " "));
-
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <NavigationSectionBlock {...data} />

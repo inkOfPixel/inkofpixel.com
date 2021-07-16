@@ -10,12 +10,21 @@
     "timestamps": true,
     "draftAndPublish": true
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "topbar": {
       "type": "component",
       "repeatable": false,
-      "component": "global.topbar"
+      "component": "global.topbar",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import Link from "next/link";
-import { BlockTemplateData } from "@features/sectionBlocks";
 import React from "react";
 import {
   Block,
@@ -9,14 +8,12 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 
-export type NavBlockData = BlockTemplateData<
-  "ComponentBlocksNavigation",
-  {
-    id: string;
-    pageName?: Nullable<string>;
-    path?: Nullable<string>;
-  }
->;
+export type NavBlockData = {
+  id: string;
+  pageName?: Nullable<string>;
+  path?: Nullable<string>;
+};
+
 interface NavBlockProps {
   path: string;
   isOpen: boolean;

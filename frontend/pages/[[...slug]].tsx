@@ -10,7 +10,7 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
+import { PageData, usePagePlugin } from "@features/plugins/useSitePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
@@ -21,8 +21,8 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
-import { GlobalData, useGlobalPlugin } from "@features/plugins/useGlobalPlugin";
-import { NavBlockData } from "@features/sectionBlocks/NavigationBlock";
+import { GlobalData } from "@features/plugins/useSitePlugin";
+import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { NavigationSectionBlock } from "@features/defaultBlocks/NavigationSectionBlock";
 
 interface DynamicPageProps {
@@ -30,18 +30,18 @@ interface DynamicPageProps {
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  pageData: PageData;
-  globalData: GlobalData;
+  allData: {
+    global: GlobalData;
+    page: PageData;
+  };
 }
 
-export default function DynamicPage({
-  pageData,
-  globalData,
-  preview,
-}: DynamicPageProps) {
+const StyledInlineBlocks = chakra(InlineBlocks);
+
+export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-  const [_, form] = usePagePlugin(pageData);
-  const [__, form2] = useGlobalPlugin(globalData);
+
+  const [_, form] = usePagePlugin(allData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -49,28 +49,20 @@ export default function DynamicPage({
     };
   }, [preview]);
 
-  if (pageData == null) {
+  if (allData == null) {
     return {
       notFound: true,
     };
   }
 
-  const StyledInlineBlocks = chakra(InlineBlocks);
-
   return (
     <div>
       <DefaultLayout title="inkOfPixel">
-        <InlineForm form={form2}>
-          <NavigationSectionBlock
-            _template="navigationSection"
-            id="12"
-            blocks={globalData.links}
-          />
-        </InlineForm>
         <InlineForm form={form}>
+          <NavigationSectionBlock />
           <StyledInlineBlocks
             color={colorMode == "light" ? "dark" : "white"}
-            name="sections"
+            name="page.sections"
             itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
           />
@@ -157,9 +149,6 @@ export const getStaticProps: GetStaticProps<
   const global = await fetchGraphQL<GetGlobalQuery, GetGlobalQueryVariables>(
     GetGlobal
   );
-
-  console.log("Global data", JSON.stringify(global, null, " "));
-
   const pageData = getPageData(availablePages.pages, locale);
 
   const globalData = getGlobalData(global.global);
@@ -170,26 +159,35 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  if (globalData == null)
+    return {
+      notFound: true,
+    };
+
   if (preview) {
     return {
       props: {
-        pageData,
         path: pathParts,
         locale,
         preview,
         previewData: context.previewData,
-        globalData,
+        allData: {
+          global: globalData,
+          page: pageData,
+        },
       },
     };
   }
 
   return {
     props: {
-      pageData,
       path: pathParts,
       locale,
       preview,
-      globalData,
+      allData: {
+        global: globalData,
+        page: pageData,
+      },
     },
   };
 };
@@ -198,18 +196,26 @@ function getGlobalData(
   global: GetGlobalQuery["global"]
 ): GlobalData | undefined {
   if (global == null) return undefined;
-
-  return {
-    id: global.id,
-    links: global.topbar?.menu?.links?.map<NavBlockData>((link) => {
-      return {
-        _template: "ComponentBlocksNavigation",
-        id: link?.id,
-        pageName: link?.pageName,
-        path: link?.path,
-      };
-    }),
-  };
+  if (global.topbar?.menu?.links) {
+    let filteredLinks = filterListNullableItems(global.topbar.menu.links);
+    return {
+      id: global.id,
+      topbar: {
+        id: global.topbar?.id,
+        menu: {
+          id: global.topbar?.menu?.id,
+          links: filteredLinks.map<NavBlockData>((link) => {
+            return {
+              _template: "ComponentBlocksNavigationBlock",
+              id: link?.id,
+              pageName: link?.pageName || null,
+              path: link?.path || null,
+            };
+          }),
+        },
+      },
+    };
+  }
 }
 
 function getPageData(
@@ -282,6 +288,7 @@ function getPageData(
                 ? filterListNullableItems(section.sections).map<CardBlockData>(
                     (card) => {
                       return {
+                        _template: "ComponentBlocksCard",
                         id: card.id,
                         title: card.title,
                         description: card.description,
@@ -294,7 +301,6 @@ function getPageData(
                                 altText: card.image.alternativeText || null,
                               },
                         url: card.url ? card.url : null,
-                        _template: "ComponentBlocksCard",
                       };
                     }
                   )

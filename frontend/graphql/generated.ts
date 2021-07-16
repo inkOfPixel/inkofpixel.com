@@ -1540,6 +1540,29 @@ export type GetPagesQuery = (
   )>>> }
 );
 
+export type SaveChangesMutationVariables = Exact<{
+  pageInput?: Maybe<UpdatePageInput>;
+  menuInput?: Maybe<UpdateMenuInput>;
+}>;
+
+
+export type SaveChangesMutation = (
+  { __typename?: 'Mutation' }
+  & { updatePage?: Maybe<(
+    { __typename?: 'updatePagePayload' }
+    & { page?: Maybe<(
+      { __typename?: 'Pages' }
+      & Pick<Pages, 'id'>
+    )> }
+  )>, updateMenu?: Maybe<(
+    { __typename?: 'updateMenuPayload' }
+    & { menu?: Maybe<(
+      { __typename?: 'Menu' }
+      & Pick<Menu, 'id'>
+    )> }
+  )> }
+);
+
 export type UpdateGlobalMutationVariables = Exact<{
   input?: Maybe<UpdateGlobalInput>;
 }>;
@@ -1552,6 +1575,22 @@ export type UpdateGlobalMutation = (
     & { global?: Maybe<(
       { __typename?: 'Global' }
       & Pick<Global, 'id'>
+    )> }
+  )> }
+);
+
+export type UpdateMenuMutationVariables = Exact<{
+  input2?: Maybe<UpdateMenuInput>;
+}>;
+
+
+export type UpdateMenuMutation = (
+  { __typename?: 'Mutation' }
+  & { updateMenu?: Maybe<(
+    { __typename?: 'updateMenuPayload' }
+    & { menu?: Maybe<(
+      { __typename?: 'Menu' }
+      & Pick<Menu, 'id'>
     )> }
   )> }
 );
@@ -1672,10 +1711,33 @@ export const GetPages = `
   }
 }
     `;
+export const SaveChanges = `
+    mutation saveChanges($pageInput: updatePageInput, $menuInput: updateMenuInput) {
+  updatePage(input: $pageInput) {
+    page {
+      id
+    }
+  }
+  updateMenu(input: $menuInput) {
+    menu {
+      id
+    }
+  }
+}
+    `;
 export const UpdateGlobal = `
     mutation UpdateGlobal($input: updateGlobalInput) {
   updateGlobal(input: $input) {
     global {
+      id
+    }
+  }
+}
+    `;
+export const UpdateMenu = `
+    mutation UpdateMenu($input2: updateMenuInput) {
+  updateMenu(input: $input2) {
+    menu {
       id
     }
   }
