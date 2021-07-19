@@ -66,22 +66,15 @@ export interface AllData {
 export function usePagePlugin(allData: AllData): [AllData, Form] {
   const cms = useCMS();
   const router = useRouter();
-  console.log("Inizo funzione");
 
   const formConfig: FormOptions<AllData> = {
-    id: allData.global.id,
+    id: 1,
     label: "All",
     initialValues: allData,
     onSubmit: async (allData) => {
       const pageInput = getPageInput(allData.page);
       const menuInput = getMenuInput(allData.global.topbar.menu);
-      console.log("pageInput", JSON.stringify(pageInput, null, " "));
-      console.log("menuInput", JSON.stringify(menuInput, null, " "));
-      console.log("fuori dal try");
-
       try {
-        console.log("dentro al try");
-
         const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
           pageInput,
           menuInput,
@@ -98,6 +91,7 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
     },
     fields: [],
   };
+
   const [all, form] = useForm<AllData>(formConfig);
   usePlugin(form);
 

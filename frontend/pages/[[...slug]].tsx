@@ -11,7 +11,7 @@ import {
   GetPagesQueryVariables,
 } from "@graphql/generated";
 import { PageData, usePagePlugin } from "@features/plugins/useSitePlugin";
-import { DefaultLayout } from "@layouts/defaultLayout";
+import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
@@ -24,6 +24,8 @@ import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { NavigationSectionBlock } from "@features/defaultBlocks/NavigationSectionBlock";
+import { Header } from "@components/Header";
+import { Main } from "@components/Main";
 
 interface DynamicPageProps {
   path: string[];
@@ -41,34 +43,33 @@ const StyledInlineBlocks = chakra(InlineBlocks);
 export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
 
-  const [_, form] = usePagePlugin(allData);
-
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
     };
   }, [preview]);
-
   if (allData == null) {
-    return {
-      notFound: true,
-    };
+    return null;
   }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [_, form] = usePagePlugin(allData);
 
   return (
-    <div>
-      <DefaultLayout title="inkOfPixel">
-        <InlineForm form={form}>
+    <SiteLayout title="inkOfPixel">
+      <InlineForm form={form}>
+        <Header>
           <NavigationSectionBlock />
+        </Header>
+        <Main>
           <StyledInlineBlocks
             color={colorMode == "light" ? "dark" : "white"}
             name="page.sections"
             itemProps={itemProps}
             blocks={SECTION_PAGE_BLOCKS}
           />
-        </InlineForm>
-      </DefaultLayout>
-    </div>
+        </Main>
+      </InlineForm>
+    </SiteLayout>
   );
 }
 
@@ -146,12 +147,14 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
-  const global = await fetchGraphQL<GetGlobalQuery, GetGlobalQueryVariables>(
-    GetGlobal
-  );
+  const availableGlobal = await fetchGraphQL<
+    GetGlobalQuery,
+    GetGlobalQueryVariables
+  >(GetGlobal);
+  
   const pageData = getPageData(availablePages.pages, locale);
 
-  const globalData = getGlobalData(global.global);
+  const globalData = getGlobalData(availableGlobal.global);
 
   if (pageData == null) {
     return {
@@ -195,21 +198,23 @@ export const getStaticProps: GetStaticProps<
 function getGlobalData(
   global: GetGlobalQuery["global"]
 ): GlobalData | undefined {
-  if (global == null) return undefined;
+  if (global == null) {
+    return undefined;
+  }
   if (global.topbar?.menu?.links) {
     let filteredLinks = filterListNullableItems(global.topbar.menu.links);
     return {
       id: global.id,
       topbar: {
-        id: global.topbar?.id,
+        id: global.topbar.id,
         menu: {
-          id: global.topbar?.menu?.id,
+          id: global.topbar.menu.id,
           links: filteredLinks.map<NavBlockData>((link) => {
             return {
               _template: "ComponentBlocksNavigationBlock",
-              id: link?.id,
-              pageName: link?.pageName || null,
-              path: link?.path || null,
+              id: link.id,
+              pageName: link.pageName || null,
+              path: link.path || null,
             };
           }),
         },

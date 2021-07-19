@@ -36,7 +36,6 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
 >;
 
 const StyledGooeyMenu = chakra(GooeyMenu);
-const StyledDrawer = chakra(Drawer);
 const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function NavigationSectionBlock() {
@@ -44,137 +43,119 @@ export function NavigationSectionBlock() {
   const router = useRouter();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log("router", JSON.stringify(router, null, " "));
 
   return (
-    <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
+    <Flex h="full" alignItems="center">
       <Box
-        h="full"
-        px={{
-          base: "6",
-          sm: "10",
-          xl: "0",
-        }}
-        w={{
-          base: "full",
-          xl: "1200px",
-        }}
-        m={{
-          base: "0 auto",
+        display={{
+          base: "block",
+          lg: "none",
         }}>
-        <Flex h="full" alignItems="center">
-          <Box
-            display={{
-              base: "block",
-              lg: "none",
-            }}>
-            <Box
-              onClick={onOpen}
-              boxSize="40px"
-              display={{
-                base: "block",
-                lg: "none",
-              }}
-              _hover={{ cursor: "pointer" }}>
-              <Menu color={"rgb(22,19,56)"} size="40" />
-            </Box>
-            <StyledDrawer
-              placement="left"
-              onClose={onClose}
-              isOpen={isOpen}
-              autoFocus={false}
-              onEsc={onClose}>
-              <DrawerOverlay />
-              <DrawerContent>
-                <DrawerBody onClick={onClose}>
-                  <Flex
-                    justifyContent="center"
-                    flexDir="column"
-                    mt="16"
-                    alignItems="center"
-                    textAlign="center">
-                    <Box as={"a"} href={router.locale} ml="1" mb="8">
-                      <Icon
-                        width="40"
-                        height="40"
-                        navigationColor={"rgb(22, 19, 56)"}
-                      />
-                    </Box>
-                    <StyledInlineBlocks
-                      textAlign="center"
-                      name="global.topbar.menu.links"
-                      blocks={NAV_BLOCK}
-                      isOpen={true}
-                    />
-                  </Flex>
-                </DrawerBody>
-              </DrawerContent>
-            </StyledDrawer>
-          </Box>
-          <Flex
-            flex={{
-              base: "1 1 0%",
-              lg: "null",
-            }}
-            mr="4"
-            ml="4"
-            justifyContent={{
-              base: "center",
-              lg: "flex-start",
-            }}>
-            <Link href="/" passHref>
-              <Box
-                color={"rgb(22, 19, 56)"}
-                as="a"
-                width={{
-                  base: "36",
-                  sm: "52",
-                }}
-                height="54px">
-                <Logo width="100%" height="100%" color="rgb(22, 19, 56)" />
-              </Box>
-            </Link>
-          </Flex>
-          <Flex
-            alignItems={"baseline"}
-            flex={{
-              lg: "1 1 0%",
-            }}
-            textAlign={cms.enabled ? "right" : "left"}>
-            <StyledInlineBlocks
-              zIndex="1"
-              display={{
-                base: "none",
-                lg: "flex",
-              }}
-              flex="1 1 0%"
-              w="full"
-              mr="8"
-              justifyContent="flex-end"
-              flexDir="row"
-              name="global.topbar.menu.links"
-              blocks={NAV_BLOCK}
-              direction="horizontal"
-              max={6}
-            />
-          </Flex>
-
-          <StyledGooeyMenu
-            mt="3"
-            mr={{
-              base: "0",
-              xl: "8",
-            }}
-            renderLabel={() => (
-              <span className="selected">{router.locale?.toUpperCase()}</span>
-            )}
-            size="10">
-            {router.locales?.map((lang: any, index) => (
-              <span key={index}>{lang.toUpperCase()}</span>
-            ))}
-          </StyledGooeyMenu>
-        </Flex>
+        <Box
+          onClick={onOpen}
+          boxSize="10"
+          display={{
+            base: "block",
+            lg: "none",
+          }}
+          _hover={{ cursor: "pointer" }}>
+          <Menu color={"rgb(22,19,56)"} size="40" />
+        </Box>
+        <Drawer
+          placement="left"
+          onClose={onClose}
+          isOpen={isOpen}
+          autoFocus={false}
+          onEsc={onClose}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerBody onClick={onClose}>
+              <Flex
+                justifyContent="center"
+                flexDir="column"
+                mt="16"
+                alignItems="center"
+                textAlign="center">
+                <Box as="a" href={router.locale} ml="1" mb="8">
+                  <Icon
+                    width="40"
+                    height="40"
+                    navigationColor={"rgb(22, 19, 56)"}
+                  />
+                </Box>
+                <StyledInlineBlocks
+                  textAlign="center"
+                  name="global.topbar.menu.links"
+                  blocks={NAV_BLOCK}
+                  isOpen={true}
+                />
+              </Flex>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Box>
+      <Flex
+        flex={{
+          base: "1 1 0%",
+          lg: "null",
+        }}
+        mr="4"
+        ml="4"
+        justifyContent={{
+          base: "center",
+          lg: "flex-start",
+        }}>
+        <Link href="/" passHref>
+          <Box
+            color={"rgb(22, 19, 56)"}
+            as="a"
+            width={{
+              base: "36",
+              sm: "52",
+            }}
+            height="54px">
+            <Logo width="100%" height="100%" color="rgb(22, 19, 56)" />
+          </Box>
+        </Link>
+      </Flex>
+      <Flex
+        alignItems={"baseline"}
+        flex={{
+          lg: "1 1 0%",
+        }}
+        textAlign={cms.enabled ? "right" : "left"}>
+        <StyledInlineBlocks
+          zIndex="1"
+          display={{
+            base: "none",
+            lg: "flex",
+          }}
+          flex="1 1 0%"
+          w="full"
+          mr="8"
+          justifyContent="flex-end"
+          flexDir="row"
+          name="global.topbar.menu.links"
+          blocks={NAV_BLOCK}
+          direction="horizontal"
+          max={6}
+        />
+      </Flex>
+
+      <StyledGooeyMenu
+        mt="3"
+        mr={{
+          base: "0",
+          xl: "8",
+        }}
+        renderLabel={() => (
+          <span className="selected">{router.locale?.toUpperCase()}</span>
+        )}
+        size="10">
+        {router.locales?.map((lang: any, index) => (
+          <span key={index}>{lang.toUpperCase()}</span>
+        ))}
+      </StyledGooeyMenu>
     </Flex>
   );
 }

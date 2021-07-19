@@ -9,11 +9,8 @@ export function DefaultLayout({ children, title }: any) {
     <React.Fragment>
       <Head>
         <title>{title}</title>
-        <link rel="shortcut icon" href="/static/favicon.png" />
       </Head>
-      <Box color="black">
-        <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
-      </Box>
+      <Box color={colorMode == "light" ? "black" : "white"}>{children}</Box>
     </React.Fragment>
   );
 }
