@@ -3,11 +3,18 @@ import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
+  GetGlobal,
+  GetGlobalQuery,
+  GetGlobalQueryVariables,
   GetPages,
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
+import {
+  GlobalData,
+  PageData,
+  usePagePlugin,
+} from "@features/plugins/useSitePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
@@ -18,20 +25,21 @@ import {
 import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
-import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
+import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
 
 interface DynamicPageProps {
   path: string[];
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  pageData: PageData;
+  allData: {
+    global: GlobalData;
+    page: PageData;
+  };
 }
 
-export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
+export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-
-  const [_, form] = usePagePlugin(pageData);
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -39,11 +47,7 @@ export default function DynamicPage({ pageData, preview }: DynamicPageProps) {
     };
   }, [preview]);
 
-  if (pageData == null) {
-    return {
-      notFound: true,
-    };
-  }
+  const [_, form] = usePagePlugin(allData);
 
   return (
     <DefaultLayout title="InkOfPixel">
@@ -135,8 +139,14 @@ export const getStaticProps: GetStaticProps<
     },
   });
 
+  const availableGlobal = await fetchGraphQL<
+    GetGlobalQuery,
+    GetGlobalQueryVariables
+  >(GetGlobal);
+
+  const globalData = getGlobalData(availableGlobal.global);
+
   const pageData = getPageData(availablePages.pages, locale);
-  console.log("Page data", JSON.stringify(pageData, null, " "));
 
   if (pageData == null) {
     return {
@@ -144,10 +154,14 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+
   if (preview) {
     return {
       props: {
-        pageData,
+        allData: {
+          global: globalData ? globalData : null,
+          page: pageData,
+        },
         path: pathParts,
         locale,
         preview,
@@ -158,7 +172,10 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      pageData,
+      allData: {
+        global: globalData ? globalData : null,
+        page: pageData,
+      },
       path: pathParts,
       locale,
       preview,
@@ -171,8 +188,6 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
-  console.log("page", JSON.stringify(page, null, " "));
-
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
     const sections =
@@ -245,36 +260,6 @@ function getPageData(
                 : [],
             };
           }
-          case "ComponentSectionFooterSection": {
-            return {
-              _template: "footerSection",
-              id: section.id,
-              cap: section.cap || null,
-              city: section.city || null,
-              email: section.email || null,
-              description: section.description || null,
-              sharedCapital: section.sharedCapital || null,
-              copyright: section.copyright || null,
-              street: section.street || null,
-              vatNumber: section.vatNumber || null,
-              blocks: section.sections
-                ? filterListNullableItems(
-                    section.sections
-                  ).map<FooterBlockData>((footerBlock) => {
-                    return {
-                      _template: "ComponentBlocksFooter",
-                      id: footerBlock.id,
-                      cap: footerBlock.cap || null,
-                      street: footerBlock.street || null,
-                      city: footerBlock.city || null,
-                      initials: footerBlock.initials || null,
-                      type: footerBlock.type || null,
-                      province: footerBlock.province || null,
-                    };
-                  })
-                : [],
-            };
-          }
 
           default:
             return assertNever(section);
@@ -286,6 +271,48 @@ function getPageData(
       title: page.pageName,
       sections: sections,
       path: page.path || undefined,
+    };
+  }
+}
+
+function getGlobalData(
+  global: GetGlobalQuery["global"]
+): GlobalData | undefined {
+  if (global == null) {
+    return undefined;
+  }
+  if (global.bottomBar?.footer?.blocks) {
+    let filteredBlocks = filterListNullableItems(
+      global.bottomBar.footer.blocks
+    );
+    return {
+      id: global.id,
+      bottomBar: {
+        id: global.bottomBar.id,
+        footer: {
+          id: global.bottomBar.footer.id,
+          cap: global.bottomBar.footer.cap || null,
+          city: global.bottomBar.footer.city || null,
+          email: global.bottomBar.footer.email || null,
+          description: global.bottomBar.footer.description || null,
+          sharedCapital: global.bottomBar.footer.sharedCapital || null,
+          copyright: global.bottomBar.footer.copyright || null,
+          street: global.bottomBar.footer.street || null,
+          vatNumber: global.bottomBar.footer.vatNumber || null,
+          blocks: filteredBlocks.map<FooterBlockData>((block) => {
+            return {
+              _template: "ComponentBlocksFooterBlock",
+              id: block.id,
+              cap: block.cap || null,
+              street: block.street || null,
+              city: block.city || null,
+              initials: block.initials || null,
+              type: block.type || null,
+              province: block.province || null,
+            };
+          }),
+        },
+      },
     };
   }
 }

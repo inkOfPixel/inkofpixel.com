@@ -52,28 +52,6 @@ query GetPages($where: JSON, $locale: String) {
           url
         }
       }
-      ... on ComponentSectionFooterSection {
-        __typename
-        id
-        description
-        email
-        copyright
-        sharedCapital
-        street
-        cap
-        city
-        vatNumber
-        sections {
-          __typename
-          id
-          city
-          type
-          street
-          cap
-          province
-          initials
-        }
-      }
     }
   }
 }

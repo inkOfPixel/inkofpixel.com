@@ -1,0 +1,15 @@
+mutation saveChanges(
+  $pageInput: updatePageInput
+  $footerInput: updateFooterInput
+) {
+  updatePage(input: $pageInput) {
+    page {
+      id
+    }
+  }
+  updateFooter(input: $footerInput) {
+    footer {
+      id
+    }
+  }
+}

@@ -2,7 +2,8 @@ import { PageSectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
   CreatePageInput,
-  UpdatePage,
+  SaveChanges,
+  UpdateFooterInput,
   UpdatePageInput,
 } from "@graphql/generated";
 import { useRouter } from "next/router";
@@ -17,7 +18,7 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
-import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
+import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
 export interface PageData {
   id: string;
   title?: string;
@@ -31,19 +32,69 @@ export interface PageDataCreateInput {
   locale: string;
 }
 
-export function usePagePlugin(pageData: PageData): [PageData, Form] {
+export interface GlobalData {
+  id: string;
+  bottomBar: {
+    id: string;
+    footer: FooterData;
+  };
+}
+
+export interface FooterData {
+  id: string;
+  description: Nullable<string>;
+  email: Nullable<string>;
+  sharedCapital: Nullable<number>;
+  street: Nullable<string>;
+  cap: Nullable<number>;
+  city: Nullable<string>;
+  vatNumber: Nullable<number>;
+  copyright: Nullable<string>;
+  blocks: FooterBlockData[];
+}
+
+export interface AllData {
+  global: {
+    id: string;
+    bottomBar: {
+      id: string;
+      footer: {
+        id: string;
+        description: Nullable<string>;
+        email: Nullable<string>;
+        sharedCapital: Nullable<number>;
+        street: Nullable<string>;
+        cap: Nullable<number>;
+        city: Nullable<string>;
+        vatNumber: Nullable<number>;
+        copyright: Nullable<string>;
+        blocks: FooterBlockData[];
+      };
+    };
+  };
+  page: {
+    id: string;
+    title?: string;
+    path?: string;
+    sections: PageSectionBlockData[];
+  };
+}
+
+export function usePagePlugin(allData: AllData): [AllData, Form] {
   const cms = useCMS();
   const router = useRouter();
 
-  const formConfig: FormOptions<PageData> = {
-    id: pageData,
-    label: "Page",
-    initialValues: pageData,
-    onSubmit: async (values) => {
-      const input = getPageInput(values);
+  const formConfig: FormOptions<AllData> = {
+    id: 1,
+    label: "All",
+    initialValues: allData ? allData : undefined,
+    onSubmit: async (allData) => {
+      const pageInput = getPageInput(allData.page);
+      const footerInput = getFooterInput(allData.global.bottomBar.footer);
       try {
-        const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
-          input,
+        const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
+          pageInput,
+          footerInput,
         });
         if (response.data) {
           cms.alerts.success("Changes saved!");
@@ -57,7 +108,7 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
     },
     fields: [],
   };
-  const [page, form] = useForm<PageData>(formConfig);
+  const [all, form] = useForm<AllData>(formConfig);
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
@@ -65,12 +116,10 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
   });
   usePlugin(creatorPlugin);
 
-  return [page, form];
+  return [all, form];
 }
 
 function getPageInput(data: PageData): UpdatePageInput {
-  console.log("DATA", JSON.stringify(data, null, " "));
-
   return {
     where: { id: data.id },
     data: {
@@ -146,36 +195,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                 : [],
             };
           }
-          case "footerSection": {
-            return {
-              __typename: "ComponentSectionFooterSection",
-              id: section.id,
-              cap: section.cap,
-              city: section.city,
-              email: section.email,
-              description: section.description,
-              sharedCapital: section.sharedCapital,
-              copyright: section.copyright,
-              street: section.street,
-              vatNumber: section.vatNumber,
-              sections: section.blocks
-                ? filterListNullableItems(section.blocks).map<FooterBlockData>(
-                    (footerBlock) => {
-                      return {
-                        _template: "ComponentBlocksFooter",
-                        id: footerBlock.id,
-                        cap: footerBlock.cap,
-                        street: footerBlock.street,
-                        city: footerBlock.city,
-                        initials: footerBlock.initials,
-                        type: footerBlock.type,
-                        province: footerBlock.province,
-                      };
-                    }
-                  )
-                : [],
-            };
-          }
+
           default:
             return assertNever(section);
         }
@@ -256,6 +276,33 @@ function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
       pageName: input.title || "Default",
       path: input.path,
       locale: input.locale,
+    },
+  };
+}
+
+function getFooterInput(data: FooterData): UpdateFooterInput {
+  return {
+    where: { id: data.id },
+    data: {
+      cap: data.cap,
+      city: data.city,
+      email: data.email,
+      description: data.description,
+      sharedCapital: data.sharedCapital,
+      copyright: data.copyright,
+      street: data.street,
+      vatNumber: data.vatNumber,
+      blocks: data.blocks.map<FooterBlockData>((block) => {
+        return {
+          id: block.id,
+          cap: block.cap || null,
+          street: block.street || null,
+          city: block.city || null,
+          initials: block.initials || null,
+          type: block.type || null,
+          province: block.province || null,
+        };
+      }),
     },
   };
 }

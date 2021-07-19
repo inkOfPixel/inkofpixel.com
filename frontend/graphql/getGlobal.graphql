@@ -1,0 +1,28 @@
+query GetGlobal {
+  global {
+    id
+    bottomBar {
+      id
+      footer {
+        id
+        description
+        email
+        copyright
+        street
+        city
+        cap
+        vatNumber
+        sharedCapital
+        blocks {
+          id
+          city
+          type
+          street
+          province
+          initials
+          cap
+        }
+      }
+    }
+  }
+}

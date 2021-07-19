@@ -6,10 +6,10 @@ import {
   BlocksControls,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "./types";
+import { BlockTemplateData } from "../pageBlocks/types";
 import Logo from "@components/Logo";
-import { FooterBlockData } from "@features/sectionBlocks/FooterBlock";
-import { FOOTER_BLOCK } from "@features/sectionBlocks";
+import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
+import { FOOTER_BLOCK } from "@features/defaultBlocks";
 
 export type FooterSectionBlockData = BlockTemplateData<
   "footerSection",
@@ -17,7 +17,7 @@ export type FooterSectionBlockData = BlockTemplateData<
     id: string;
     description: Nullable<string>;
     email: Nullable<string>;
-    sharedCapital: Nullable<string>;
+    sharedCapital: Nullable<number>;
     street: Nullable<string>;
     cap: Nullable<number>;
     city: Nullable<string>;
@@ -161,8 +161,9 @@ export default function FooterSectionBlock({
         <Box m="0" pt="12" fontSize="sm" lineHeight="1.4em">
           <Text pb="4">{copyright}</Text>
           <Text>
-            {sharedCapital +
-              " • " +
+            {"Capital €" +
+              sharedCapital +
+              " i.v • " +
               street +
               " - " +
               cap +
@@ -225,7 +226,7 @@ export const footerSectionBlock: Block = {
       {
         name: "sharedCapital",
         label: "Shared Capital",
-        component: "text",
+        component: "number",
         defaultValue: "sharedCapital",
       },
       {

@@ -85,6 +85,16 @@ export type ComponentBlocksSingleFeatureInput = {
   url?: Maybe<Scalars['String']>;
 };
 
+export type ComponentGlobalBottomBar = {
+  __typename?: 'ComponentGlobalBottomBar';
+  id: Scalars['ID'];
+  footer?: Maybe<Footer>;
+};
+
+export type ComponentGlobalBottomBarInput = {
+  footer?: Maybe<Scalars['ID']>;
+};
+
 export type ComponentMenuLink = {
   __typename?: 'ComponentMenuLink';
   id: Scalars['ID'];
@@ -207,6 +217,206 @@ export type FileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type Footer = {
+  __typename?: 'Footer';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  description?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksFooterBlock>>>;
+  sharedCapital?: Maybe<Scalars['Int']>;
+  vatNumber?: Maybe<Scalars['Int']>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  localizations?: Maybe<Array<Maybe<Footer>>>;
+};
+
+
+export type FooterLocalizationsArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type FooterAggregator = {
+  __typename?: 'FooterAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+  sum?: Maybe<FooterAggregatorSum>;
+  avg?: Maybe<FooterAggregatorAvg>;
+  min?: Maybe<FooterAggregatorMin>;
+  max?: Maybe<FooterAggregatorMax>;
+};
+
+export type FooterAggregatorAvg = {
+  __typename?: 'FooterAggregatorAvg';
+  cap?: Maybe<Scalars['Float']>;
+  sharedCapital?: Maybe<Scalars['Float']>;
+  vatNumber?: Maybe<Scalars['Float']>;
+};
+
+export type FooterAggregatorMax = {
+  __typename?: 'FooterAggregatorMax';
+  cap?: Maybe<Scalars['Float']>;
+  sharedCapital?: Maybe<Scalars['Float']>;
+  vatNumber?: Maybe<Scalars['Float']>;
+};
+
+export type FooterAggregatorMin = {
+  __typename?: 'FooterAggregatorMin';
+  cap?: Maybe<Scalars['Float']>;
+  sharedCapital?: Maybe<Scalars['Float']>;
+  vatNumber?: Maybe<Scalars['Float']>;
+};
+
+export type FooterAggregatorSum = {
+  __typename?: 'FooterAggregatorSum';
+  cap?: Maybe<Scalars['Float']>;
+  sharedCapital?: Maybe<Scalars['Float']>;
+  vatNumber?: Maybe<Scalars['Float']>;
+};
+
+export type FooterConnection = {
+  __typename?: 'FooterConnection';
+  values?: Maybe<Array<Maybe<Footer>>>;
+  groupBy?: Maybe<FooterGroupBy>;
+  aggregate?: Maybe<FooterAggregator>;
+};
+
+export type FooterConnectionCap = {
+  __typename?: 'FooterConnectionCap';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionCity = {
+  __typename?: 'FooterConnectionCity';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionCopyright = {
+  __typename?: 'FooterConnectionCopyright';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionCreated_At = {
+  __typename?: 'FooterConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionDescription = {
+  __typename?: 'FooterConnectionDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionEmail = {
+  __typename?: 'FooterConnectionEmail';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionId = {
+  __typename?: 'FooterConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionLocale = {
+  __typename?: 'FooterConnectionLocale';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionPublished_At = {
+  __typename?: 'FooterConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionSharedCapital = {
+  __typename?: 'FooterConnectionSharedCapital';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionStreet = {
+  __typename?: 'FooterConnectionStreet';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionUpdated_At = {
+  __typename?: 'FooterConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterConnectionVatNumber = {
+  __typename?: 'FooterConnectionVatNumber';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<FooterConnection>;
+};
+
+export type FooterGroupBy = {
+  __typename?: 'FooterGroupBy';
+  id?: Maybe<Array<Maybe<FooterConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<FooterConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<FooterConnectionUpdated_At>>>;
+  description?: Maybe<Array<Maybe<FooterConnectionDescription>>>;
+  email?: Maybe<Array<Maybe<FooterConnectionEmail>>>;
+  copyright?: Maybe<Array<Maybe<FooterConnectionCopyright>>>;
+  street?: Maybe<Array<Maybe<FooterConnectionStreet>>>;
+  city?: Maybe<Array<Maybe<FooterConnectionCity>>>;
+  cap?: Maybe<Array<Maybe<FooterConnectionCap>>>;
+  sharedCapital?: Maybe<Array<Maybe<FooterConnectionSharedCapital>>>;
+  vatNumber?: Maybe<Array<Maybe<FooterConnectionVatNumber>>>;
+  locale?: Maybe<Array<Maybe<FooterConnectionLocale>>>;
+  published_at?: Maybe<Array<Maybe<FooterConnectionPublished_At>>>;
+};
+
+export type FooterInput = {
+  description?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksFooterBlockInput>>>;
+  sharedCapital?: Maybe<Scalars['Int']>;
+  vatNumber?: Maybe<Scalars['Int']>;
+  localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type Global = {
+  __typename?: 'Global';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  bottomBar?: Maybe<ComponentGlobalBottomBar>;
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type GlobalInput = {
+  bottomBar?: Maybe<ComponentGlobalBottomBarInput>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type I18NLocale = {
   __typename?: 'I18NLocale';
   id: Scalars['ID'];
@@ -229,10 +439,15 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksFooterBlock | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Footer | FooterConnection | FooterAggregator | FooterAggregatorSum | FooterAggregatorAvg | FooterAggregatorMin | FooterAggregatorMax | FooterGroupBy | FooterConnectionId | FooterConnectionCreated_At | FooterConnectionUpdated_At | FooterConnectionDescription | FooterConnectionEmail | FooterConnectionCopyright | FooterConnectionStreet | FooterConnectionCity | FooterConnectionCap | FooterConnectionSharedCapital | FooterConnectionVatNumber | FooterConnectionLocale | FooterConnectionPublished_At | CreateFooterPayload | UpdateFooterPayload | DeleteFooterPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksFooterBlock | ComponentBlocksSingleFeature | ComponentGlobalBottomBar | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createFooter?: Maybe<CreateFooterPayload>;
+  updateFooter?: Maybe<UpdateFooterPayload>;
+  deleteFooter?: Maybe<DeleteFooterPayload>;
+  updateGlobal?: Maybe<UpdateGlobalPayload>;
+  deleteGlobal?: Maybe<DeleteGlobalPayload>;
   createPage?: Maybe<CreatePagePayload>;
   updatePage?: Maybe<UpdatePagePayload>;
   deletePage?: Maybe<DeletePagePayload>;
@@ -250,6 +465,7 @@ export type Mutation = {
   updateUser?: Maybe<UpdateUserPayload>;
   /** Delete an existing user */
   deleteUser?: Maybe<DeleteUserPayload>;
+  createFooterLocalization: Footer;
   createPageLocalization: Pages;
   upload: UploadFile;
   multipleUpload: Array<Maybe<UploadFile>>;
@@ -259,6 +475,26 @@ export type Mutation = {
   forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+};
+
+
+export type MutationCreateFooterArgs = {
+  input?: Maybe<CreateFooterInput>;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  input?: Maybe<UpdateFooterInput>;
+};
+
+
+export type MutationDeleteFooterArgs = {
+  input?: Maybe<DeleteFooterInput>;
+};
+
+
+export type MutationUpdateGlobalArgs = {
+  input?: Maybe<UpdateGlobalInput>;
 };
 
 
@@ -309,6 +545,11 @@ export type MutationUpdateUserArgs = {
 
 export type MutationDeleteUserArgs = {
   input?: Maybe<DeleteUserInput>;
+};
+
+
+export type MutationCreateFooterLocalizationArgs = {
+  input: UpdateFooterInput;
 };
 
 
@@ -466,7 +707,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionFooterSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 
 export enum PublicationState {
@@ -476,6 +717,10 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  footer?: Maybe<Footer>;
+  footers?: Maybe<Array<Maybe<Footer>>>;
+  footersConnection?: Maybe<FooterConnection>;
+  global?: Maybe<Global>;
   page?: Maybe<Pages>;
   pages?: Maybe<Array<Maybe<Pages>>>;
   pagesConnection?: Maybe<PagesConnection>;
@@ -489,6 +734,36 @@ export type Query = {
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
   me?: Maybe<UsersPermissionsMe>;
+};
+
+
+export type QueryFooterArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryFootersArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryFootersConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryGlobalArgs = {
+  publicationState?: Maybe<PublicationState>;
 };
 
 
@@ -1019,6 +1294,15 @@ export type UsersPermissionsUserGroupBy = {
   role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
 };
 
+export type CreateFooterInput = {
+  data?: Maybe<FooterInput>;
+};
+
+export type CreateFooterPayload = {
+  __typename?: 'createFooterPayload';
+  footer?: Maybe<Footer>;
+};
+
 export type CreatePageInput = {
   data?: Maybe<PageInput>;
 };
@@ -1053,6 +1337,20 @@ export type DeleteFileInput = {
 export type DeleteFilePayload = {
   __typename?: 'deleteFilePayload';
   file?: Maybe<UploadFile>;
+};
+
+export type DeleteFooterInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteFooterPayload = {
+  __typename?: 'deleteFooterPayload';
+  footer?: Maybe<Footer>;
+};
+
+export type DeleteGlobalPayload = {
+  __typename?: 'deleteGlobalPayload';
+  global?: Maybe<Global>;
 };
 
 export type DeletePageInput = {
@@ -1106,6 +1404,11 @@ export type EditComponentBlocksSingleFeatureInput = {
   title?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['ID']>;
   url?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentGlobalBottomBarInput = {
+  id?: Maybe<Scalars['ID']>;
+  footer?: Maybe<Scalars['ID']>;
 };
 
 export type EditComponentMenuLinkInput = {
@@ -1175,6 +1478,30 @@ export type EditFileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type EditFooterInput = {
+  description?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Int']>;
+  blocks?: Maybe<Array<Maybe<EditComponentBlocksFooterBlockInput>>>;
+  sharedCapital?: Maybe<Scalars['Int']>;
+  vatNumber?: Maybe<Scalars['Int']>;
+  localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  locale?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type EditGlobalInput = {
+  bottomBar?: Maybe<EditComponentGlobalBottomBarInput>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type EditLocaleInput = {
   name?: Maybe<Scalars['String']>;
   code?: Maybe<Scalars['String']>;
@@ -1215,6 +1542,25 @@ export type EditUserInput = {
   role?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateFooterInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditFooterInput>;
+};
+
+export type UpdateFooterPayload = {
+  __typename?: 'updateFooterPayload';
+  footer?: Maybe<Footer>;
+};
+
+export type UpdateGlobalInput = {
+  data?: Maybe<EditGlobalInput>;
+};
+
+export type UpdateGlobalPayload = {
+  __typename?: 'updateGlobalPayload';
+  global?: Maybe<Global>;
 };
 
 export type UpdatePageInput = {
@@ -1263,6 +1609,29 @@ export type CreatePageMutation = (
   )> }
 );
 
+export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetGlobalQuery = (
+  { __typename?: 'Query' }
+  & { global?: Maybe<(
+    { __typename?: 'Global' }
+    & Pick<Global, 'id'>
+    & { bottomBar?: Maybe<(
+      { __typename?: 'ComponentGlobalBottomBar' }
+      & Pick<ComponentGlobalBottomBar, 'id'>
+      & { footer?: Maybe<(
+        { __typename?: 'Footer' }
+        & Pick<Footer, 'id' | 'description' | 'email' | 'copyright' | 'street' | 'city' | 'cap' | 'vatNumber' | 'sharedCapital'>
+        & { blocks?: Maybe<Array<Maybe<(
+          { __typename?: 'ComponentBlocksFooterBlock' }
+          & Pick<ComponentBlocksFooterBlock, 'id' | 'city' | 'type' | 'street' | 'province' | 'initials' | 'cap'>
+        )>>> }
+      )> }
+    )> }
+  )> }
+);
+
 export type GetPagesQueryVariables = Exact<{
   where?: Maybe<Scalars['JSON']>;
   locale?: Maybe<Scalars['String']>;
@@ -1299,15 +1668,31 @@ export type GetPagesQuery = (
           & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
         )> }
       )>>> }
-    ) | (
-      { __typename: 'ComponentSectionFooterSection' }
-      & Pick<ComponentSectionFooterSection, 'id' | 'description' | 'email' | 'copyright' | 'sharedCapital' | 'street' | 'cap' | 'city' | 'vatNumber'>
-      & { sections?: Maybe<Array<Maybe<(
-        { __typename: 'ComponentBlocksFooterBlock' }
-        & Pick<ComponentBlocksFooterBlock, 'id' | 'city' | 'type' | 'street' | 'cap' | 'province' | 'initials'>
-      )>>> }
     )>>> }
   )>>> }
+);
+
+export type SaveChangesMutationVariables = Exact<{
+  pageInput?: Maybe<UpdatePageInput>;
+  footerInput?: Maybe<UpdateFooterInput>;
+}>;
+
+
+export type SaveChangesMutation = (
+  { __typename?: 'Mutation' }
+  & { updatePage?: Maybe<(
+    { __typename?: 'updatePagePayload' }
+    & { page?: Maybe<(
+      { __typename?: 'Pages' }
+      & Pick<Pages, 'id'>
+    )> }
+  )>, updateFooter?: Maybe<(
+    { __typename?: 'updateFooterPayload' }
+    & { footer?: Maybe<(
+      { __typename?: 'Footer' }
+      & Pick<Footer, 'id'>
+    )> }
+  )> }
 );
 
 export type UpdatePageMutationVariables = Exact<{
@@ -1332,6 +1717,36 @@ export const CreatePage = `
   createPage(input: $input) {
     page {
       id
+    }
+  }
+}
+    `;
+export const GetGlobal = `
+    query GetGlobal {
+  global {
+    id
+    bottomBar {
+      id
+      footer {
+        id
+        description
+        email
+        copyright
+        street
+        city
+        cap
+        vatNumber
+        sharedCapital
+        blocks {
+          id
+          city
+          type
+          street
+          province
+          initials
+          cap
+        }
+      }
     }
   }
 }
@@ -1391,28 +1806,20 @@ export const GetPages = `
           url
         }
       }
-      ... on ComponentSectionFooterSection {
-        __typename
-        id
-        description
-        email
-        copyright
-        sharedCapital
-        street
-        cap
-        city
-        vatNumber
-        sections {
-          __typename
-          id
-          city
-          type
-          street
-          cap
-          province
-          initials
-        }
-      }
+    }
+  }
+}
+    `;
+export const SaveChanges = `
+    mutation saveChanges($pageInput: updatePageInput, $footerInput: updateFooterInput) {
+  updatePage(input: $pageInput) {
+    page {
+      id
+    }
+  }
+  updateFooter(input: $footerInput) {
+    footer {
+      id
     }
   }
 }

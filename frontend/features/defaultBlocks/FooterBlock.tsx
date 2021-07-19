@@ -1,5 +1,4 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { BlockTemplateData } from "@features/pageBlocks/types";
 import React from "react";
 import {
   Block,
@@ -7,18 +6,15 @@ import {
   BlocksControls,
 } from "react-tinacms-inline";
 
-export type FooterBlockData = BlockTemplateData<
-  "ComponentBlocksFooter",
-  {
-    id: string;
-    city: Nullable<string>;
-    type: Nullable<string>;
-    street: Nullable<string>;
-    cap: Nullable<number>;
-    province: Nullable<string>;
-    initials: Nullable<string>;
-  }
->;
+export type FooterBlockData = {
+  id: string;
+  city: Nullable<string>;
+  type: Nullable<string>;
+  street: Nullable<string>;
+  cap: Nullable<number>;
+  province: Nullable<string>;
+  initials: Nullable<string>;
+};
 
 export function FooterBlock({
   city,
