@@ -6,10 +6,11 @@ query getGlobal {
       id
       menu {
         id
+        menuTitle
         links {
           id
-          pageName
-          path
+          label
+          url
         }
       }
     }

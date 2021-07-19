@@ -202,6 +202,8 @@ function getGlobalData(
   if (global == null) {
     return undefined;
   }
+  console.log("GLOBAL", JSON.stringify(global, null, " "));
+
   if (global.topbar?.menu?.links) {
     let filteredLinks = filterListNullableItems(global.topbar.menu.links);
     return {
@@ -214,8 +216,8 @@ function getGlobalData(
             return {
               _template: "ComponentBlocksNavigationBlock",
               id: link.id,
-              pageName: link.pageName || null,
-              path: link.path || null,
+              label: link.label || null,
+              url: link.url || null,
             };
           }),
         },

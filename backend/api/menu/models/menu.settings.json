@@ -16,6 +16,11 @@
       "type": "component",
       "repeatable": true,
       "component": "blocks.navigation-block"
+    },
+    "menuTitle": {
+      "type": "string",
+      "required": false,
+      "unique": true
     }
   }
 }

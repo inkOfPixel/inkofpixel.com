@@ -7,10 +7,10 @@
   },
   "options": {},
   "attributes": {
-    "pageName": {
+    "label": {
       "type": "string"
     },
-    "path": {
+    "url": {
       "type": "string"
     }
   }

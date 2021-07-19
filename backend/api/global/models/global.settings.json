@@ -19,12 +19,12 @@
     "topbar": {
       "type": "component",
       "repeatable": false,
-      "component": "global.topbar",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "component": "global.topbar"
     }
   }
 }

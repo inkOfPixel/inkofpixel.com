@@ -265,8 +265,8 @@ function getMenuInput(data: MenuData): UpdateMenuInput {
       links: data.links.map<NavBlockData>((link) => {
         return {
           id: link.id,
-          pageName: link.pageName || null,
-          path: link.path || null,
+          label: link.label || null,
+          url: link.url || null,
         };
       }),
     },

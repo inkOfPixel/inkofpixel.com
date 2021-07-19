@@ -10,18 +10,18 @@ import {
 
 export type NavBlockData = {
   id: string;
-  pageName?: Nullable<string>;
-  path?: Nullable<string>;
+  label?: Nullable<string>;
+  url?: Nullable<string>;
 };
 
 interface NavBlockProps {
-  path: string;
+  url: string;
   isOpen: boolean;
 }
 
-export function NavigationBlock({ path, isOpen }: NavBlockProps) {
+export function NavigationBlock({ url, isOpen }: NavBlockProps) {
   return (
-    <Link href={path} passHref>
+    <Link href={url} passHref>
       <Box
         display={isOpen ? "inline-block" : "block"}
         m="0"
@@ -51,7 +51,7 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
             w: "full",
           },
         }}>
-        <InlineTextarea name="pageName" />
+        <InlineTextarea name="label" />
       </Box>
     </Link>
   );
@@ -60,7 +60,7 @@ export function NavigationBlock({ path, isOpen }: NavBlockProps) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <NavigationBlock image={data.image} {...data} />
+      <NavigationBlock {...data} />
     </BlocksControls>
   );
 }
@@ -75,13 +75,13 @@ export const navigationBlock: Block = {
     },
     fields: [
       {
-        name: "path",
-        label: "Url",
+        name: "url",
+        label: "Link rl",
         component: "text",
       },
       {
-        name: "pageName",
-        label: "Page",
+        name: "label",
+        label: "Link label",
         component: "text",
       },
     ],
