@@ -96,7 +96,8 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   const paths = pages.map((page) => {
     const pagePath = page.path?.replace(/^\/+/, "") || "";
-    const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
+    const slugArray: any =
+      pagePath.length > 0 ? pagePath.split("/") : undefined;
     return {
       params: { slug: slugArray },
       locale: page.locale!,
@@ -151,7 +152,7 @@ export const getStaticProps: GetStaticProps<
     GetGlobalQuery,
     GetGlobalQueryVariables
   >(GetGlobal);
-  
+
   const pageData = getPageData(availablePages.pages, locale);
 
   const globalData = getGlobalData(availableGlobal.global);
