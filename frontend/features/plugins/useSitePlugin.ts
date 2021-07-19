@@ -19,6 +19,7 @@ import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
+import { FooterSectionBlockData } from "@features/defaultBlocks/FooterSectionBlock";
 export interface PageData {
   id: string;
   title?: string;
@@ -36,21 +37,8 @@ export interface GlobalData {
   id: string;
   bottomBar: {
     id: string;
-    footer: FooterData;
+    footer: FooterSectionBlockData;
   };
-}
-
-export interface FooterData {
-  id: string;
-  description: Nullable<string>;
-  email: Nullable<string>;
-  sharedCapital: Nullable<number>;
-  street: Nullable<string>;
-  cap: Nullable<number>;
-  city: Nullable<string>;
-  vatNumber: Nullable<number>;
-  copyright: Nullable<string>;
-  blocks: FooterBlockData[];
 }
 
 export interface AllData {
@@ -87,10 +75,11 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
   const formConfig: FormOptions<AllData> = {
     id: 1,
     label: "All",
-    initialValues: allData ? allData : undefined,
+    initialValues: allData,
     onSubmit: async (allData) => {
       const pageInput = getPageInput(allData.page);
       const footerInput = getFooterInput(allData.global.bottomBar.footer);
+
       try {
         const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
           pageInput,
@@ -280,7 +269,7 @@ function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   };
 }
 
-function getFooterInput(data: FooterData): UpdateFooterInput {
+function getFooterInput(data: FooterSectionBlockData): UpdateFooterInput {
   return {
     where: { id: data.id },
     data: {
@@ -295,12 +284,12 @@ function getFooterInput(data: FooterData): UpdateFooterInput {
       blocks: data.blocks.map<FooterBlockData>((block) => {
         return {
           id: block.id,
-          cap: block.cap || null,
-          street: block.street || null,
-          city: block.city || null,
-          initials: block.initials || null,
-          type: block.type || null,
-          province: block.province || null,
+          cap: block.cap,
+          street: block.street,
+          city: block.city,
+          initials: block.initials,
+          type: block.type,
+          province: block.province,
         };
       }),
     },

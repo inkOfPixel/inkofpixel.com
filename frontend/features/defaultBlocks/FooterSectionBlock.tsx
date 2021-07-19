@@ -5,40 +5,30 @@ import {
   BlockComponentProps,
   BlocksControls,
   InlineBlocks,
+  InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "../pageBlocks/types";
 import Logo from "@components/Logo";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
 import { FOOTER_BLOCK } from "@features/defaultBlocks";
 
-export type FooterSectionBlockData = BlockTemplateData<
-  "footerSection",
-  {
-    id: string;
-    description: Nullable<string>;
-    email: Nullable<string>;
-    sharedCapital: Nullable<number>;
-    street: Nullable<string>;
-    cap: Nullable<number>;
-    city: Nullable<string>;
-    vatNumber: Nullable<number>;
-    copyright: Nullable<string>;
-    blocks: FooterBlockData[];
-  }
->;
+export type FooterSectionBlockData = {
+  id: string;
+  description: Nullable<string>;
+  email: Nullable<string>;
+  sharedCapital: Nullable<number>;
+  street: Nullable<string>;
+  cap: Nullable<number>;
+  city: Nullable<string>;
+  vatNumber: Nullable<number>;
+  copyright: Nullable<string>;
+  blocks: FooterBlockData[];
+};
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-export default function FooterSectionBlock({
-  description,
-  email,
-  sharedCapital,
-  street,
-  cap,
-  city,
-  vatNumber,
-  copyright,
-}: FooterSectionBlockData) {
+export default function FooterSectionBlock(asd: FooterSectionBlockData) {
+  console.log("data", JSON.stringify(asd, null, " "));
+
   return (
     <Box
       fontFamily="Roboto Mono"
@@ -77,7 +67,7 @@ export default function FooterSectionBlock({
           alignItems="start">
           <Box
             color="white"
-            as={"a"}
+            as="a"
             width={{
               base: "150px",
               sm: "200px",
@@ -105,13 +95,15 @@ export default function FooterSectionBlock({
               fontSize="sm"
               maxW="500px"
               lineHeight="1.8em">
-              <Box as="span">{description}</Box>
+              <Box as="span">
+                <InlineTextarea name="description" />
+              </Box>
             </Box>
 
             <Box>
               <Link
                 style={{ textDecoration: "none", userSelect: "none" }}
-                href={"mailto:" + email}>
+                href={"mailto:" + asd.email}>
                 <Box
                   as="span"
                   fontFamily="Europa"
@@ -140,7 +132,7 @@ export default function FooterSectionBlock({
                       w: "full",
                     },
                   }}>
-                  {email}
+                  <InlineTextarea name="email" />
                 </Box>
               </Link>
             </Box>
@@ -153,25 +145,25 @@ export default function FooterSectionBlock({
               }}
               fontSize="sm"
               lineHeight="1.4em"
-              name="blocks"
+              name="global.bottomBar.footer.blocks"
               blocks={FOOTER_BLOCK}
             />
           </Flex>
         </Flex>
         <Box m="0" pt="12" fontSize="sm" lineHeight="1.4em">
-          <Text pb="4">{copyright}</Text>
+          <Text pb="4">{asd.copyright}</Text>
           <Text>
             {"Capital €" +
-              sharedCapital +
+              asd.sharedCapital +
               " i.v • " +
-              street +
+              asd.street +
               " - " +
-              cap +
+              asd.cap +
               " " +
-              city +
+              asd.city +
               " • " +
               "VAT Number " +
-              vatNumber +
+              asd.vatNumber +
               " • REA MI - 2081233"}
           </Text>
         </Box>

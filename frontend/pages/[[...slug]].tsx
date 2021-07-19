@@ -26,6 +26,7 @@ import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
+import FooterSectionBlock from "@features/defaultBlocks/FooterSectionBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -40,7 +41,6 @@ interface DynamicPageProps {
 
 export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -54,10 +54,11 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
       <InlineForm form={form}>
         <StyledInlineBlocks
           color={colorMode == "light" ? "dark" : "white"}
-          name="sections"
+          name="page.sections"
           itemProps={itemProps}
           blocks={PAGE_SECTION_BLOCKS}
         />
+        <FooterSectionBlock data={allData.global.bottomBar.footer} />
       </InlineForm>
     </DefaultLayout>
   );
@@ -154,12 +155,17 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
+  if (globalData == null) {
+    return {
+      notFound: true,
+    };
+  }
 
   if (preview) {
     return {
       props: {
         allData: {
-          global: globalData ? globalData : null,
+          global: globalData,
           page: pageData,
         },
         path: pathParts,
@@ -173,7 +179,7 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       allData: {
-        global: globalData ? globalData : null,
+        global: globalData,
         page: pageData,
       },
       path: pathParts,
