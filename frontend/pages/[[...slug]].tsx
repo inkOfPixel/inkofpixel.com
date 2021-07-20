@@ -1,6 +1,6 @@
 import { fetchGraphQL } from "@graphql/utils";
 import { GetStaticPaths, GetStaticProps, PreviewData } from "next";
-import React from "react";
+import * as React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import {
   GetGlobal,
@@ -10,7 +10,11 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { PageData, usePagePlugin } from "@features/plugins/useSitePlugin";
+import {
+  LocalizationsData,
+  PageDataLocalizations,
+  usePagePlugin,
+} from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
@@ -34,11 +38,26 @@ interface DynamicPageProps {
   previewData?: PreviewData;
   allData: {
     global: GlobalData;
-    page: PageData;
+    page: PageDataLocalizations;
   };
 }
 
 const StyledInlineBlocks = chakra(InlineBlocks);
+
+/* Avoid null value on start up */
+const initialLangs = [{ id: "0", path: "/", locale: "EN" }];
+
+export const LocaleContext = React.createContext<LocalizationsData[] | null>(
+  initialLangs
+);
+
+export function useLocaleContext() {
+  const value = React.useContext(LocaleContext);
+  if (value == null) {
+    throw new Error("Can't use useLocaleContext without a LocaleList");
+  }
+  return value;
+}
 
 export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
@@ -48,28 +67,29 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
       isPreview: preview,
     };
   }, [preview]);
-  if (allData == null) {
-    return null;
-  }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const [_, form] = usePagePlugin(allData);
 
+  const value = useLocaleContext();
+
   return (
-    <SiteLayout title="inkOfPixel">
-      <InlineForm form={form}>
-        <Header>
-          <NavigationSectionBlock />
-        </Header>
-        <Main>
-          <StyledInlineBlocks
-            color={colorMode == "light" ? "dark" : "white"}
-            name="page.sections"
-            itemProps={itemProps}
-            blocks={SECTION_PAGE_BLOCKS}
-          />
-        </Main>
-      </InlineForm>
-    </SiteLayout>
+    <LocaleContext.Provider value={allData.page.localizations}>
+      <SiteLayout title="inkOfPixel">
+        <InlineForm form={form}>
+          <Header>
+            <NavigationSectionBlock {...value} />
+          </Header>
+          <Main>
+            <StyledInlineBlocks
+              color={colorMode == "light" ? "dark" : "white"}
+              name="page.sections"
+              itemProps={itemProps}
+              blocks={SECTION_PAGE_BLOCKS}
+            />
+          </Main>
+        </InlineForm>
+      </SiteLayout>
+    </LocaleContext.Provider>
   );
 }
 
@@ -96,6 +116,8 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   const paths = pages.map((page) => {
     const pagePath = page.path?.replace(/^\/+/, "") || "";
+    console.log("pagePath", JSON.stringify(pagePath, null, " "));
+
     const slugArray: any =
       pagePath.length > 0 ? pagePath.split("/") : undefined;
     return {
@@ -202,7 +224,6 @@ function getGlobalData(
   if (global == null) {
     return undefined;
   }
-  console.log("GLOBAL", JSON.stringify(global, null, " "));
 
   if (global.topbar?.menu?.links) {
     let filteredLinks = filterListNullableItems(global.topbar.menu.links);
@@ -229,7 +250,7 @@ function getGlobalData(
 function getPageData(
   pages: GetPagesQuery["pages"],
   locale: string
-): PageData | undefined {
+): PageDataLocalizations | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
   if (page == null) {
@@ -322,9 +343,20 @@ function getPageData(
 
     return {
       id: page.id,
-      title: page.pageName,
+      title: page.title,
       sections: filterListNullableItems(sections),
       path: page.path ? page.path : undefined,
+      localizations: page.localizations
+        ? filterListNullableItems(
+            page.localizations?.map<LocalizationsData>((localization) => {
+              return {
+                id: localization?.id,
+                locale: localization?.locale,
+                path: localization?.path,
+              };
+            })
+          )
+        : [],
     };
   }
 }

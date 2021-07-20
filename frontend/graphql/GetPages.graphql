@@ -2,7 +2,12 @@ query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
     id
     path
-    pageName
+    title
+    localizations {
+      id
+      path
+      locale
+    }
     locale
     __typename
     sections {

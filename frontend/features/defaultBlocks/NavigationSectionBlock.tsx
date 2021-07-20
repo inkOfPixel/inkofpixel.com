@@ -18,9 +18,9 @@ import {
 import { NAV_BLOCK } from "@features/defaultBlocks/";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "../pageBlocks/types";
-import Menu from "@components/Menu";
+import MenuIcon from "@components/MenuIcon";
 import { useCMS } from "tinacms";
-import Icon from "@components/Icon";
+import DrawerLogo from "@components/DrawerLogo";
 import { GooeyMenu } from "@components/GooeyMenu";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -35,7 +35,6 @@ export type NavigationSectionBlockData = SectionBlockTemplateData<
   }
 >;
 
-const StyledGooeyMenu = chakra(GooeyMenu);
 const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function NavigationSectionBlock() {
@@ -51,16 +50,18 @@ export function NavigationSectionBlock() {
           base: "block",
           lg: "none",
         }}>
-        <Box
+        <MenuIcon
           onClick={onOpen}
           boxSize="10"
           display={{
             base: "block",
             lg: "none",
           }}
-          _hover={{ cursor: "pointer" }}>
-          <Menu color={"rgb(22,19,56)"} size="40" />
-        </Box>
+          _hover={{ cursor: "pointer" }}
+          color={"rgb(22,19,56)"}
+          w="40"
+          h="40"
+        />
         <Drawer
           placement="left"
           onClose={onClose}
@@ -77,7 +78,7 @@ export function NavigationSectionBlock() {
                 alignItems="center"
                 textAlign="center">
                 <Box as="a" href={router.locale} ml="1" mb="8">
-                  <Icon
+                  <DrawerLogo
                     width="40"
                     height="40"
                     navigationColor={"rgb(22, 19, 56)"}
@@ -142,7 +143,7 @@ export function NavigationSectionBlock() {
         />
       </Flex>
 
-      <StyledGooeyMenu
+      <GooeyMenu
         mt="3"
         mr={{
           base: "0",
@@ -151,16 +152,15 @@ export function NavigationSectionBlock() {
         renderLabel={() => (
           <span className="selected">{router.locale?.toUpperCase()}</span>
         )}
-        size="10">
-        {router.locales?.map((lang: any, index) => (
-          <span key={index}>{lang.toUpperCase()}</span>
-        ))}
-      </StyledGooeyMenu>
+        size="10"
+      />
     </Flex>
   );
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
+  console.log("data", JSON.stringify(data, null, " "));
+
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <NavigationSectionBlock {...data} />

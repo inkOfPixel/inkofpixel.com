@@ -5,7 +5,7 @@ interface IconInterface {
   height: string;
 }
 
-function Icon({
+function DrawerLogo({
   width = "40px",
   height = "40px",
   navigationColor = "#0000ff",
@@ -15,8 +15,7 @@ function Icon({
       width={width}
       height={height}
       fill={navigationColor}
-      viewBox="0 0 100 100"
-    >
+      viewBox="0 0 100 100">
       <path
         d="M79.65,45.3l20.28-20.28L74.98,0L54.7,20.28c-2.6,2.6-6.81,2.6-9.4,0c0,0,0,0,0,0L25.02,0
 	L0,25.02L20.28,45.3c2.6,2.6,2.6,6.81,0,9.4c0,0,0,0,0,0L0,75.05l25.02,25.02L45.3,79.79c2.6-2.6,6.81-2.6,9.4,0c0,0,0,0,0,0
@@ -28,4 +27,4 @@ function Icon({
   );
 }
 
-export default Icon;
+export default DrawerLogo;

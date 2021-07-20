@@ -1,33 +1,37 @@
 import { Box, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { PropsWithChildren, useState } from "react";
+import { MenuContext, useMenuContext } from "./MenuContext";
 
 export function LocaleMenu(props: PropsWithChildren<unknown>) {
+  const [isOpen, setIsOpen] = useState(false);
+  function toggle() {
+    setIsOpen((isOpen) => !isOpen);
+  }
+
   return (
-    <React.Fragment>
-      <GooeySVGDefs />
-      <Box pos="relative" filter="url(#shadowed-goo1)" overflow="visible">
-        {props.children}
-      </Box>
-    </React.Fragment>
+    <MenuContext.Provider value={{ isOpen, toggle }}>
+      <React.Fragment>
+        <GooeySVGDefs />
+        <Box filter="url(#shadowed-goo1)" overflow="visible" className="BBBBBB">
+          {props.children}
+        </Box>
+      </React.Fragment>
+    </MenuContext.Provider>
   );
 }
 
 export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
-  const [open, setOpen] = useState(false);
-  function handleToggleMenu() {
-    setOpen(!open);
-  }
-
+  const value = useMenuContext();
   return (
-    <Box>
+    <Box className="checkbox e label">
       <Checkbox
         userSelect="none"
         type="checkbox"
         name="gooey-menu-open"
         id="gooey-menu-open"
         display="none"
-        onChange={handleToggleMenu}
+        onChange={value.toggle}
       />
       <FormLabel
         userSelect="none"
@@ -35,9 +39,11 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
         fontFamily="Roboto Mono"
         fontSize="xs"
         pos="relative"
-        backgroundColor="green"
+        backgroundColor="dark"
         borderRadius="100%"
         display="block"
+        zIndex="1"
+        left="4px"
         w="44px"
         h="44px"
         color="white"
@@ -46,19 +52,21 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
         htmlFor="gooey-menu-open"
         transitionDuration="400ms"
         transform={
-          open === true
+          value?.isOpen === true
             ? "scale(0.8, 0.8) translate3d(0, 0, 0)"
             : "scale(1, 1) translate3d(0, 0, 0)"
         }
         cursor="pointer"
         _hover={{
           transform: `${
-            open === false ? "scale(1.1, 1.1) translate3d(0, 0, 0)" : null
+            value?.isOpen === false
+              ? "scale(1.1, 1.1) translate3d(0, 0, 0)"
+              : null
           }`,
         }}
         css={{
           ".toggleButtonContent": {
-            opacity: `${open === true ? "0" : "1"}`,
+            opacity: `${value.isOpen === true ? "0" : "1"}`,
           },
         }}
         sx={{
@@ -66,7 +74,7 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
             pos: "absolute",
             zIndex: "1",
             transition: "all 200ms",
-            opacity: `${open === false ? "0" : "1"}`,
+            opacity: `${value.isOpen === false ? "0" : "1"}`,
             content: "'✕'",
             fontSize: "25px",
             color: "white",
@@ -88,9 +96,8 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
 export function LocaleMenuList(props: PropsWithChildren<unknown>) {
   return (
     <Box
+      mt="-10px"
       pos="absolute"
-      pt="44px"
-      spacing="20px"
       color="white"
       transition="transform ease-out 2000ms"
       backgroundColor="transparent"
@@ -103,6 +110,7 @@ export function LocaleMenuList(props: PropsWithChildren<unknown>) {
           display: "block",
           w: "44px",
           h: "44px",
+          left: "4px",
           color: "white",
           textAlign: "center",
           lineHeight: "44px",
@@ -115,27 +123,36 @@ export function LocaleMenuList(props: PropsWithChildren<unknown>) {
 }
 
 type LocaleMenuLinkProps = {
-  key: number;
+  index: number;
   href: string;
   locale: string;
 };
 
 export function LocaleMenuLink(props: LocaleMenuLinkProps) {
-  return (
-    <Link href={"/" + props.href} locale={props.locale} passHref>
+  const value = useMenuContext();
+
+  return value.isOpen === true ? (
+    <Link href={"/"} locale={props.locale} passHref>
       <Box
         userSelect="none"
         fontFamily="Roboto Mono"
         fontSize="xs"
         transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
-        transitionDuration={300 + 100 * props.key + "ms"}
+        transitionDuration={300 + 100 * (props.index + 1) + "ms"}
         _hover={{
           transform: "scale(1.1, 1.1)",
         }}
-        key={props.key}
         transform="translate3d(0, 0, 0)">
-        {props.locale}
+        {props.locale.toUpperCase()}
       </Box>
+    </Link>
+  ) : (
+    <Link href={"/"} locale={props.locale} passHref>
+      <Box
+        fontFamily="Roboto Mono"
+        fontSize="xs"
+        transitionDuration={300 + 100 * props.index + "ms"}
+        transform={"translate3d(0," + -64 * (props.index + 1) + "px, 0)"}></Box>
     </Link>
   );
 }

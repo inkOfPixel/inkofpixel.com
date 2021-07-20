@@ -18,6 +18,20 @@ import {
 } from "tinacms";
 import { assertNever } from "utils";
 
+export interface PageDataLocalizations {
+  id: string;
+  title?: string;
+  path?: string;
+  sections: SectionBlockData[];
+  localizations: LocalizationsData[];
+}
+
+export interface LocalizationsData {
+  id?: string;
+  path?: string;
+  locale?: Nullable<string>;
+}
+
 export interface PageData {
   id: string;
   title?: string;
@@ -107,7 +121,7 @@ function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
-      pageName: data.title,
+      title: data.title,
       path: data.path,
       sections: data.sections.map((section) => {
         switch (section._template) {
@@ -251,7 +265,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title ? input.title : "Default",
+      title: input.title ? input.title : "Default",
       path: input.path,
       locale: input.locale,
     },

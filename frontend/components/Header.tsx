@@ -1,8 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { Props } from "framer-motion/types/types";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
-export function Header(props: Props) {
+export function Header(props: PropsWithChildren<unknown>) {
   return (
     <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
       <Box
@@ -16,9 +15,8 @@ export function Header(props: Props) {
           base: "full",
           xl: "1200px",
         }}
-        m={{
-          base: "0 auto",
-        }}>
+        my="0"
+        mx="auto">
         {props.children}
       </Box>
     </Flex>
