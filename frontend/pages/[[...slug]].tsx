@@ -30,9 +30,14 @@ import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 
 import { NavBar, NavMenu, MobileNavMenu } from "@components/NavBar";
 import { Main } from "@components/Main";
-import { Logo as LogoLink } from "@components/Logo";
-import { GooeyMenu } from "@components/GooeyMenu";
+import { WordmarkLogo, WordmarkLogoLink } from "@components/WordmarkLogo";
 import { useRouter } from "next/router";
+import {
+  LocaleMenu,
+  LocaleMenuButton,
+  LocaleMenuList,
+  LocaleMenuLink,
+} from "@components/LocaleMenu";
 
 interface DynamicPageProps {
   path: string[];
@@ -65,19 +70,28 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
       <InlineForm form={form}>
         <NavBar>
           <MobileNavMenu />
-          <LogoLink href="/" />
+          <WordmarkLogoLink url="/">
+            <WordmarkLogo color="rgb(19,22,57)" width="200px" height="150px" />
+          </WordmarkLogoLink>
           <NavMenu />
-          <GooeyMenu
-            locales={allData ? allData.page.localizations : null}
-            mt="3"
-            mr={{
-              base: "0",
-              xl: "8",
-            }}
-            renderLabel={() => (
-              <span className="selected">{router.locale?.toUpperCase()}</span>
-            )}
-          />
+          <LocaleMenu>
+            <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
+            <LocaleMenuList>
+              <LocaleMenuLink href={router.pathname} locale={router.locale!}>
+                {router.locale?.toUpperCase()}
+              </LocaleMenuLink>
+              {allData.page.localizations?.map((pageLocale) => {
+                return (
+                  <LocaleMenuLink
+                    key={pageLocale.locale}
+                    href={pageLocale.path!}
+                    locale={pageLocale.locale!}>
+                    {pageLocale.locale?.toUpperCase()}
+                  </LocaleMenuLink>
+                );
+              })}
+            </LocaleMenuList>
+          </LocaleMenu>
         </NavBar>
         <Main>
           <StyledInlineBlocks

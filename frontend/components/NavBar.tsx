@@ -16,7 +16,7 @@ import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 import { SectionBlockTemplateData } from "@features/pageBlocks/types";
 import MenuIcon from "@components/MenuIcon";
 import { useCMS } from "tinacms";
-import DrawerLogo from "@components/DrawerLogo";
+import Logo from "@components/Logo";
 import { useRouter } from "next/router";
 
 export type NavigationSectionBlockData = SectionBlockTemplateData<
@@ -127,11 +127,7 @@ export function MobileNavMenu() {
               alignItems="center"
               textAlign="center">
               <Box as="a" href={router.locale} ml="1" mb="8">
-                <DrawerLogo
-                  width="40"
-                  height="40"
-                  navigationColor={"rgb(22, 19, 56)"}
-                />
+                <Logo width="40px" height="40px" color={"rgb(22, 19, 56)"} />
               </Box>
               <StyledInlineBlocks
                 textAlign="center"

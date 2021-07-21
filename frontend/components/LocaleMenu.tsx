@@ -1,7 +1,22 @@
 import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { PropsWithChildren, useState } from "react";
-import { MenuContext, useMenuContext } from "./MenuContext";
+import { useContext } from "react";
+
+export interface MenuContext {
+  isOpen: boolean;
+  toggle(): void;
+}
+
+export const MenuContext = React.createContext<MenuContext | null>(null);
+
+function useMenuContext() {
+  const value = React.useContext(MenuContext);
+  if (value == null) {
+    throw new Error("Can't use useMenuContext without a LocaleMenu");
+  }
+  return value;
+}
 
 export function LocaleMenu(props: PropsWithChildren<unknown>) {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,21 +67,19 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
         htmlFor="gooey-menu-open"
         transitionDuration="400ms"
         transform={
-          value?.isOpen === true
+          value.isOpen
             ? "scale(0.8, 0.8) translate3d(0, 0, 0)"
             : "scale(1, 1) translate3d(0, 0, 0)"
         }
         cursor="pointer"
         _hover={{
           transform: `${
-            value?.isOpen === false
-              ? "scale(1.1, 1.1) translate3d(0, 0, 0)"
-              : null
+            value.isOpen ? null : "scale(1.1, 1.1) translate3d(0, 0, 0)"
           }`,
         }}
         css={{
           ".toggleButtonContent": {
-            opacity: `${value.isOpen === true ? "0" : "1"}`,
+            opacity: `${value.isOpen ? "0" : "1"}`,
           },
         }}
         sx={{
@@ -74,7 +87,7 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
             pos: "absolute",
             zIndex: "1",
             transition: "all 200ms",
-            opacity: `${value.isOpen === false ? "0" : "1"}`,
+            opacity: `${value.isOpen ? "1" : "0"}`,
             content: "'✕'",
             fontSize: "25px",
             color: "white",
