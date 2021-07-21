@@ -16,7 +16,7 @@ import {
   usePagePlugin,
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
-import { chakra, useColorMode } from "@chakra-ui/react";
+import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
   PageSectionBlockData,
@@ -26,7 +26,11 @@ import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
-import FooterSectionBlock from "@features/defaultBlocks/FooterSectionBlock";
+import FooterSectionBlock, {
+  Footer,
+  UpperFooter,
+} from "@features/defaultBlocks/FooterSectionBlock";
+import Logo from "@components/Logo";
 
 interface DynamicPageProps {
   path: string[];
@@ -58,7 +62,20 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
           itemProps={itemProps}
           blocks={PAGE_SECTION_BLOCKS}
         />
-        <FooterSectionBlock data={allData.global.bottomBar.footer} />
+        <Footer>
+          <UpperFooter>
+            <Box
+              color="white"
+              as="a"
+              width={{
+                base: "150px",
+                sm: "200px",
+              }}
+              height="54px">
+              <Logo width="100%" height="100%" color="white" />
+            </Box>
+          </UpperFooter>
+        </Footer>
       </InlineForm>
     </DefaultLayout>
   );
