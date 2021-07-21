@@ -512,8 +512,6 @@ export type PageInput = {
   title: Scalars['String'];
   path: Scalars['String'];
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
-  navigationSection?: Maybe<Array<Maybe<ComponentSectionNavigationSectionInput>>>;
-  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -529,8 +527,6 @@ export type Pages = {
   title: Scalars['String'];
   path: Scalars['String'];
   sections?: Maybe<Array<Maybe<PagesSectionsDynamicZone>>>;
-  navigationSection?: Maybe<Array<Maybe<ComponentSectionNavigationSection>>>;
-  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<Array<Maybe<Pages>>>;
@@ -1405,8 +1401,6 @@ export type EditPageInput = {
   title?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
-  navigationSection?: Maybe<Array<Maybe<EditComponentSectionNavigationSectionInput>>>;
-  blocks?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;

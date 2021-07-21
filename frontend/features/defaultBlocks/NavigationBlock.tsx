@@ -25,11 +25,11 @@ export function NavigationBlock({ url, isOpen }: NavBlockProps) {
       <Box
         display={isOpen ? "inline-block" : "block"}
         m="0"
+        ml={isOpen ? "0" : "2.5"}
         px="2.5"
         py={isOpen ? "5" : "3"}
-        letterSpacing="0.02em"
+        letterSpacing="0.08em"
         color="dark"
-        className="link"
         position="relative"
         transition="all 0.3s"
         fontSize="sm"
@@ -46,6 +46,7 @@ export function NavigationBlock({ url, isOpen }: NavBlockProps) {
           transform: "translateX(-50%) translateY(-50%)",
         }}
         _hover={{
+          cursor: "pointer",
           _before: {
             opacity: "1",
             w: "full",
@@ -76,7 +77,7 @@ export const navigationBlock: Block = {
     fields: [
       {
         name: "url",
-        label: "Link rl",
+        label: "Link url",
         component: "text",
       },
       {

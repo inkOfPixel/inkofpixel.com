@@ -1,6 +1,6 @@
 import { chakra } from "@chakra-ui/react";
+import { LocalizationsData } from "@features/plugins/useSitePlugin";
 import { useRouter } from "next/router";
-import { useLocaleContext } from "pages/[[...slug]]";
 import React from "react";
 import {
   LocaleMenu,
@@ -9,25 +9,28 @@ import {
   LocaleMenuList,
 } from "./LocaleMenu";
 
-export const GooeyMenu = chakra(() => {
+export interface GooeyMenuProps {
+  locales: Nullable<LocalizationsData[]>;
+}
+
+export const GooeyMenu = chakra(({ locales }: GooeyMenuProps) => {
   const router = useRouter();
-  const value = useLocaleContext();
 
   return (
     <LocaleMenu>
       <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
       <LocaleMenuList>
-        <LocaleMenuLink
-          href={router.pathname}
-          index={0}
-          locale={router.locale ? router.locale : " "}></LocaleMenuLink>
-        {value?.map((lang, index) => {
+        <LocaleMenuLink href={router.pathname} locale={router.locale!}>
+          {router.locale?.toUpperCase()}
+        </LocaleMenuLink>
+        {locales?.map((pageLocale) => {
           return (
             <LocaleMenuLink
-              href={lang.path ? lang.path : " "}
-              index={++index}
-              key={index + 1}
-              locale={lang.locale ? lang.locale : " "}></LocaleMenuLink>
+              key={pageLocale.locale}
+              href={pageLocale.path!}
+              locale={pageLocale.locale!}>
+              {pageLocale.locale?.toUpperCase()}
+            </LocaleMenuLink>
           );
         })}
       </LocaleMenuList>

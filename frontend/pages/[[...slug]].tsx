@@ -27,9 +27,12 @@ import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
-import { NavigationSectionBlock } from "@features/defaultBlocks/NavigationSectionBlock";
-import { Header } from "@components/Header";
+
+import { NavBar, NavMenu, MobileNavMenu } from "@components/NavBar";
 import { Main } from "@components/Main";
+import { Logo as LogoLink } from "@components/Logo";
+import { GooeyMenu } from "@components/GooeyMenu";
+import { useRouter } from "next/router";
 
 interface DynamicPageProps {
   path: string[];
@@ -44,21 +47,6 @@ interface DynamicPageProps {
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-/* Avoid null value on start up */
-const initialLangs = [{ id: "0", path: "/", locale: "EN" }];
-
-export const LocaleContext = React.createContext<LocalizationsData[] | null>(
-  initialLangs
-);
-
-export function useLocaleContext() {
-  const value = React.useContext(LocaleContext);
-  if (value == null) {
-    throw new Error("Can't use useLocaleContext without a LocaleList");
-  }
-  return value;
-}
-
 export default function DynamicPage({ allData, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
 
@@ -70,26 +58,37 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
 
   const [_, form] = usePagePlugin(allData);
 
-  const value = useLocaleContext();
+  const router = useRouter();
 
   return (
-    <LocaleContext.Provider value={allData.page.localizations}>
-      <SiteLayout title="inkOfPixel">
-        <InlineForm form={form}>
-          <Header>
-            <NavigationSectionBlock {...value} />
-          </Header>
-          <Main>
-            <StyledInlineBlocks
-              color={colorMode == "light" ? "dark" : "white"}
-              name="page.sections"
-              itemProps={itemProps}
-              blocks={SECTION_PAGE_BLOCKS}
-            />
-          </Main>
-        </InlineForm>
-      </SiteLayout>
-    </LocaleContext.Provider>
+    <SiteLayout title="inkOfPixel">
+      <InlineForm form={form}>
+        <NavBar>
+          <MobileNavMenu />
+          <LogoLink href="/" />
+          <NavMenu />
+          <GooeyMenu
+            locales={allData ? allData.page.localizations : null}
+            mt="3"
+            mr={{
+              base: "0",
+              xl: "8",
+            }}
+            renderLabel={() => (
+              <span className="selected">{router.locale?.toUpperCase()}</span>
+            )}
+          />
+        </NavBar>
+        <Main>
+          <StyledInlineBlocks
+            color={colorMode == "light" ? "dark" : "white"}
+            name="page.sections"
+            itemProps={itemProps}
+            blocks={SECTION_PAGE_BLOCKS}
+          />
+        </Main>
+      </InlineForm>
+    </SiteLayout>
   );
 }
 
@@ -116,7 +115,6 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   const paths = pages.map((page) => {
     const pagePath = page.path?.replace(/^\/+/, "") || "";
-    console.log("pagePath", JSON.stringify(pagePath, null, " "));
 
     const slugArray: any =
       pagePath.length > 0 ? pagePath.split("/") : undefined;
@@ -185,10 +183,11 @@ export const getStaticProps: GetStaticProps<
     };
   }
 
-  if (globalData == null)
+  if (globalData == null) {
     return {
       notFound: true,
     };
+  }
 
   if (preview) {
     return {

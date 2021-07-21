@@ -27,8 +27,8 @@ export interface PageDataLocalizations {
 }
 
 export interface LocalizationsData {
-  id?: string;
-  path?: string;
+  id?: Nullable<string>;
+  path?: Nullable<string>;
   locale?: Nullable<string>;
 }
 

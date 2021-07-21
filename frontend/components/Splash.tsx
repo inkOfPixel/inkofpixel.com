@@ -1,5 +1,5 @@
 import { Box, chakra, Flex, keyframes } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { PropsWithChildren } from "react";
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -43,48 +43,43 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-const Bubble = chakra(({ className, children }: any) => {
-  const [randomNumber, setRandomNumber] = useState(0);
+function useRandomNumber(min: number, max: number) {
+  const [randomNumber, setRandomNumber] = React.useState(0);
 
-  useEffect(() => {
-    setRandomNumber(random(3, 6));
-  }, []);
+  React.useEffect(() => {
+    setRandomNumber(random(min, max));
+  }, [min, max]);
 
+  return randomNumber;
+}
+
+interface SplashProps {
+  className: string;
+}
+
+const Bubble = chakra((props: PropsWithChildren<SplashProps>) => {
+  const randomNumber = useRandomNumber(3, 6);
+  const randomSpeed = useRandomNumber(5, 12);
   return (
     <Box
-      className={className}
+      className={props.className}
       pos="absolute"
       w="500px"
       h="500px"
-      backgroundColor="red.500"
-      animation={
-        randomNumber +
-        "s linear infinite " +
-        bordertl +
-        "," +
-        randomNumber +
-        "s linear infinite " +
-        bordertr +
-        "," +
-        randomNumber +
-        "s linear infinite " +
-        borderbr +
-        "," +
-        randomNumber +
-        "s linear infinite " +
-        borderbl +
-        "," +
-        "8s linear infinite " +
-        rotate
-      }>
+      backgroundColor="rbg(246, 250, 248)"
+      animation={`${randomNumber}s linear infinite ${bordertl}, 
+                  ${randomNumber}s linear infinite ${bordertr}, 
+                  ${randomNumber}s linear infinite ${borderbr}, 
+                  ${randomNumber}s linear infinite ${borderbl}, 
+                  ${randomSpeed}s linear infinite ${rotate}`}>
       <Flex
         className="content"
         alignItems="center"
         justifyContent="center"
         w="full"
         h="full"
-        animation={"8s " + rotateInverse + " linear infinite"}>
-        {children}
+        animation={`${randomSpeed}s ${rotateInverse} linear infinite`}>
+        {props.children}
       </Flex>
     </Box>
   );

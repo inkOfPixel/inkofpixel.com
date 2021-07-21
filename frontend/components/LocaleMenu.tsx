@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormLabel } from "@chakra-ui/react";
+import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { PropsWithChildren, useState } from "react";
 import { MenuContext, useMenuContext } from "./MenuContext";
@@ -13,7 +13,7 @@ export function LocaleMenu(props: PropsWithChildren<unknown>) {
     <MenuContext.Provider value={{ isOpen, toggle }}>
       <React.Fragment>
         <GooeySVGDefs />
-        <Box filter="url(#shadowed-goo1)" overflow="visible" className="BBBBBB">
+        <Box filter="url(#shadowed-goo1)" overflow="visible">
           {props.children}
         </Box>
       </React.Fragment>
@@ -43,12 +43,12 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
         borderRadius="100%"
         display="block"
         zIndex="1"
-        left="4px"
-        w="44px"
-        h="44px"
+        left="0.5"
+        w="12"
+        h="12"
         color="white"
         textAlign="center"
-        lineHeight="44px"
+        lineHeight="48px"
         htmlFor="gooey-menu-open"
         transitionDuration="400ms"
         transform={
@@ -94,9 +94,15 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
 }
 
 export function LocaleMenuList(props: PropsWithChildren<unknown>) {
+  const children = React.Children.map(props.children, (child, index) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { index });
+    }
+    return child;
+  });
   return (
     <Box
-      mt="-10px"
+      mt="-2.5"
       pos="absolute"
       color="white"
       transition="transform ease-out 2000ms"
@@ -104,9 +110,9 @@ export function LocaleMenuList(props: PropsWithChildren<unknown>) {
       sx={{
         "& > *": {
           pos: "relative",
-          mt: "20px",
+          mt: "5",
           backgroundColor: "dark",
-          borderRadius: "100%",
+          borderRadius: "full",
           display: "block",
           w: "44px",
           h: "44px",
@@ -117,48 +123,50 @@ export function LocaleMenuList(props: PropsWithChildren<unknown>) {
           transition: "transform 200ms ease-out 0",
         },
       }}>
-      {props.children}
+      {children}
     </Box>
   );
 }
 
-type LocaleMenuLinkProps = {
-  index: number;
+type LocaleMenuLinkProps = React.PropsWithChildren<{
+  index?: number;
   href: string;
   locale: string;
-};
+}>;
 
-export function LocaleMenuLink(props: LocaleMenuLinkProps) {
+export function LocaleMenuLink({
+  index = 0,
+  href,
+  locale,
+  children,
+}: LocaleMenuLinkProps) {
   const value = useMenuContext();
 
-  return value.isOpen === true ? (
-    <Link href={"/"} locale={props.locale} passHref>
+  return (
+    <Link href={href} locale={locale} passHref>
       <Box
+        as="a"
         userSelect="none"
         fontFamily="Roboto Mono"
         fontSize="xs"
         transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
-        transitionDuration={300 + 100 * (props.index + 1) + "ms"}
+        transitionDuration={`${300 + 100 * index}ms`}
         _hover={{
           transform: "scale(1.1, 1.1)",
         }}
-        transform="translate3d(0, 0, 0)">
-        {props.locale.toUpperCase()}
+        transform={
+          value.isOpen
+            ? "translate3d(0, 0, 0)"
+            : `translate3d(0, ${-64 * (index + 1)}px, 0)`
+        }>
+        {children}
       </Box>
-    </Link>
-  ) : (
-    <Link href={"/"} locale={props.locale} passHref>
-      <Box
-        fontFamily="Roboto Mono"
-        fontSize="xs"
-        transitionDuration={300 + 100 * props.index + "ms"}
-        transform={"translate3d(0," + -64 * (props.index + 1) + "px, 0)"}></Box>
     </Link>
   );
 }
 
-const GooeySVGDefs = () => (
-  <svg width={0} height={0}>
+const GooeySVGDefs = chakra(() => (
+  <Box as="svg" pos="absolute" width="0" height="0">
     <defs>
       <filter id="shadowed-goo1">
         <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -190,5 +198,5 @@ const GooeySVGDefs = () => (
         <feComposite in2="goo" in="SourceGraphic" result="mix" />
       </filter>
     </defs>
-  </svg>
-);
+  </Box>
+));

@@ -204,7 +204,6 @@ export const featureBlock: Block = {
         name: "url",
         label: "Url",
         component: "text",
-        defaultValue: "/",
       },
       {
         name: "urlName",
