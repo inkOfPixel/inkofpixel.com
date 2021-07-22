@@ -16,18 +16,17 @@ export type NavBlockData = {
 
 interface NavBlockProps {
   url: string;
-  isOpen: boolean;
 }
 
-export function NavigationBlock({ url, isOpen }: NavBlockProps) {
+export function NavigationBlock({ url }: NavBlockProps) {
   return (
     <Link href={url} passHref>
       <Box
-        display={isOpen ? "inline-block" : "block"}
+        display={"block"}
         m="0"
-        ml={isOpen ? "0" : "2.5"}
+        ml="2.5"
         px="2.5"
-        py={isOpen ? "5" : "3"}
+        py="3"
         letterSpacing="0.08em"
         color="dark"
         position="relative"

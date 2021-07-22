@@ -16,7 +16,7 @@ import {
   usePagePlugin,
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
-import { chakra, useColorMode } from "@chakra-ui/react";
+import { chakra, Box, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
   SectionBlockData,
@@ -28,7 +28,10 @@ import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 
-import { NavBar, NavMenu, MobileNavMenu } from "@components/NavBar";
+import Link from "next/link";
+
+import { MobileNavMenu } from "@components/MobileNavBar";
+import { NavBar, NavMenu } from "@components/NavBar";
 import { Main } from "@components/Main";
 import { WordmarkLogo, WordmarkLogoLink } from "@components/WordmarkLogo";
 import { useRouter } from "next/router";
@@ -65,31 +68,42 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
 
   const router = useRouter();
 
+  console.log("allData", JSON.stringify(allData, null, " "));
+
   return (
     <SiteLayout title="inkOfPixel">
       <InlineForm form={form}>
         <NavBar>
-          <MobileNavMenu />
+          <MobileNavMenu>
+            <NavMenu isMobile={true} />
+          </MobileNavMenu>
           <WordmarkLogoLink url="/">
             <WordmarkLogo color="rgb(19,22,57)" width="200px" height="150px" />
           </WordmarkLogoLink>
-          <NavMenu />
+          <NavMenu isMobile={false} />
           <LocaleMenu>
             <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
             <LocaleMenuList>
-              <LocaleMenuLink href={router.pathname} locale={router.locale!}>
+              <LocaleMenuLink href={router.asPath} locale={router.locale!}>
                 {router.locale?.toUpperCase()}
               </LocaleMenuLink>
-              {allData.page.localizations?.map((pageLocale) => {
-                return (
-                  <LocaleMenuLink
-                    key={pageLocale.locale}
-                    href={pageLocale.path!}
-                    locale={pageLocale.locale!}>
-                    {pageLocale.locale?.toUpperCase()}
-                  </LocaleMenuLink>
-                );
-              })}
+              {allData ? (
+                allData.page.localizations?.map((pageLocale) => {
+                  return (
+                    <LocaleMenuLink
+                      key={pageLocale.locale}
+                      href={pageLocale.path!}
+                      locale={pageLocale.locale!}>
+                      {pageLocale.locale?.toUpperCase()}
+                    </LocaleMenuLink>
+                  );
+                })
+              ) : (
+                <LocaleMenuLink
+                  key="1"
+                  href={router.pathname}
+                  locale={router.locale!}></LocaleMenuLink>
+              )}
             </LocaleMenuList>
           </LocaleMenu>
         </NavBar>
@@ -102,6 +116,19 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
           />
         </Main>
       </InlineForm>
+      <Link href="/aa" passHref>
+        <Box
+          as="a"
+          pos="absolute"
+          zIndex="10"
+          right="20px"
+          top="100px"
+          p="20px"
+          borderRadius="15%"
+          border="1px solid black">
+          Click me
+        </Box>
+      </Link>
     </SiteLayout>
   );
 }

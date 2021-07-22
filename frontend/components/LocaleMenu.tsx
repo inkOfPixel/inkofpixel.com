@@ -1,7 +1,6 @@
 import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { PropsWithChildren, useState } from "react";
-import { useContext } from "react";
 
 export interface MenuContext {
   isOpen: boolean;
@@ -39,7 +38,7 @@ export function LocaleMenu(props: PropsWithChildren<unknown>) {
 export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
   const value = useMenuContext();
   return (
-    <Box className="checkbox e label">
+    <Box>
       <Checkbox
         userSelect="none"
         type="checkbox"
@@ -156,7 +155,7 @@ export function LocaleMenuLink({
   const value = useMenuContext();
 
   return (
-    <Link href={href} locale={locale} passHref>
+    <Link locale={locale} href={href} passHref>
       <Box
         as="a"
         userSelect="none"
