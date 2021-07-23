@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "pageName": {
+    "title": {
       "type": "string",
       "required": true,
       "unique": true,
