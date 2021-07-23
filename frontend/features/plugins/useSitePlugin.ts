@@ -106,7 +106,7 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
     fields: [],
   };
 
-  const [all, form] = useForm<AllData>(formConfig);
+  const [all, form] = useForm<AllData>(formConfig, { values: allData });
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
