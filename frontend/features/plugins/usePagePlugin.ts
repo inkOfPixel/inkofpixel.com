@@ -43,10 +43,16 @@ export function usePagePlugin(pageData: PageData): [PageData, Form] {
         const response = await cms.api.strapi.fetchGraphql(UpdatePage, {
           input,
         });
-        if (response.data) {
-          cms.alerts.success("Changes saved!");
-        } else {
+
+        if (response.hasOwnProperty("errors")) {
+          cms.forms.remove;
           cms.alerts.error("Error while saving changes");
+        } else {
+          if (response.data) {
+            cms.alerts.success("Changes saved!");
+          } else {
+            cms.alerts.error("Error while saving changes");
+          }
         }
       } catch (error) {
         console.log(error);

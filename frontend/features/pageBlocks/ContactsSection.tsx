@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   FormControl,
   FormLabel,
@@ -16,6 +17,8 @@ import {
 import { BlockTemplateData } from "./types";
 
 import Link from "next/link";
+import Splash from "@components/Splash";
+import { TwitterIcon } from "@components/SocialIcons";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -93,12 +96,12 @@ export function ContactsSectionBlock() {
           <Flex
             flexBasis={{
               base: "full",
-              md: "74",
-              xl: "96",
+              md: "300px",
+              lg: "400px",
             }}
             mr={{
               base: "0",
-              xl: "36",
+              md: "36",
             }}
             flexDir="column">
             <Box
@@ -124,6 +127,7 @@ export function ContactsSectionBlock() {
             </Link>
           </Flex>
           <FormControl
+            flexWrap="wrap"
             fontFamily="Roboto Mono"
             id="contact"
             mt={{
@@ -136,16 +140,14 @@ export function ContactsSectionBlock() {
             }}
             display="flex"
             flexGrow={1}
-            pt="7"
             pb="20">
             <Box
               w={{
                 base: "calc(100% - 20px)",
                 sm: "calc(50% - 20px)",
-                md: "calc(100% - 20px)",
-                lg: "calc(50% - 20px)",
               }}
               m="2.5"
+              pos="relative"
               display="inline-block">
               <FormLabel
                 fontWeight="400"
@@ -172,19 +174,32 @@ export function ContactsSectionBlock() {
                 resize="none"
                 display="block"
                 lineHeight="1.4em"
+                _focus={{
+                  "& ~ span": {
+                    width: "100%",
+                  },
+                }}
                 type="text"
                 placeholder="Peter Smith"
                 isRequired
               />
+              <Box
+                as="span"
+                pos="absolute"
+                bottom="0"
+                left="0"
+                w="0"
+                h="1px"
+                backgroundColor="dark"
+                transition="all 0.4s ease 0s"></Box>
             </Box>
             <Box
               w={{
                 base: "calc(100% - 20px)",
                 sm: "calc(50% - 20px)",
-                md: "calc(100% - 20px)",
-                lg: "calc(50% - 20px)",
               }}
               m="2.5"
+              pos="relative"
               display="inline-block">
               <FormLabel
                 fontWeight="400"
@@ -211,12 +226,30 @@ export function ContactsSectionBlock() {
                 resize="none"
                 display="block"
                 lineHeight="1.4em"
-                type="email"
+                _focus={{
+                  "& ~ span": {
+                    width: "100%",
+                  },
+                }}
+                type="text"
                 placeholder="example@yourdomain.com"
                 isRequired
               />
+              <Box
+                as="span"
+                pos="absolute"
+                bottom="0"
+                left="0"
+                w="0"
+                h="1px"
+                backgroundColor="dark"
+                transition="all 0.4s ease 0s"></Box>
             </Box>
-            <Box w="calc(100% - 10px)" m="2.5" display="inline-block">
+            <Box
+              w="calc(100% - 10px)"
+              m="2.5"
+              pos="relative"
+              display="inline-block">
               <FormLabel
                 fontWeight="400"
                 fontSize="sm"
@@ -242,6 +275,11 @@ export function ContactsSectionBlock() {
                 resize="none"
                 display="block"
                 lineHeight="1.4em"
+                _focus={{
+                  "& ~ span": {
+                    width: "full",
+                  },
+                }}
                 type="text"
                 placeholder="Hi there..."
                 isRequired
@@ -256,8 +294,87 @@ export function ContactsSectionBlock() {
                 backgroundColor="dark"
                 transition="all 0.4s ease 0s"></Box>
             </Box>
+            <Button
+              borderRadius="0"
+              border="1px solid black"
+              color="dark"
+              backgroundColor="transparent"
+              fontSize="sm"
+              fontWeight="normal"
+              letterSpacing="0.06em"
+              overflow="hidden"
+              display="block"
+              pos="relative"
+              minW="52"
+              h="10"
+              transition="all 0.3s ease 0s"
+              cursor="pointer"
+              _hover={{
+                color: "white",
+
+                "& > span:after": {
+                  w: "full",
+                },
+              }}
+              mt="10"
+              mr="2.5"
+              mb="2.5">
+              <Box
+                as="span"
+                _after={{
+                  background: "rgb(22,19,56)",
+                  content: "''",
+                  pos: "absolute",
+                  zIndex: -1,
+                  transition: "all 0.3s ease 0s",
+                  h: "10",
+                  left: "0",
+                  top: "0",
+                  w: "0",
+                }}>
+                SEND
+              </Box>
+            </Button>
           </FormControl>
         </Flex>
+      </Flex>
+      <Flex justifyContent="flex-end" w="full" mb="32" pr="20">
+        <Link href="https://twitter.com/inkofpixel" passHref>
+          <Box as="a" m="1">
+            <Splash
+              className="asd"
+              backgroundColor="rgba(29, 161, 242, 0.7)"
+              pos="relative"
+              w="60px"
+              h="60px">
+              <TwitterIcon color="white" width="16" height="16" />
+            </Splash>
+          </Box>
+        </Link>
+        <Link href="https://twitter.com/inkofpixel" passHref>
+          <Box as="a" m="1">
+            <Splash
+              className="asd"
+              backgroundColor="rgba(29, 161, 242, 0.7)"
+              pos="relative"
+              w="60px"
+              h="60px">
+              <TwitterIcon color="white" width="16" height="16" />
+            </Splash>
+          </Box>
+        </Link>
+        <Link href="https://twitter.com/inkofpixel" passHref>
+          <Box as="a" m="1">
+            <Splash
+              className="asd"
+              backgroundColor="rgba(29, 161, 242, 0.7)"
+              pos="relative"
+              w="60px"
+              h="60px">
+              <TwitterIcon color="white" width="16" height="16" />
+            </Splash>
+          </Box>
+        </Link>
       </Flex>
     </Box>
   );
