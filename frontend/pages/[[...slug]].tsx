@@ -258,7 +258,7 @@ function getPageData(
 
     return {
       id: page.id,
-      title: page.pageName,
+      title: page.title,
       sections: sections,
       path: page.path || undefined,
     };

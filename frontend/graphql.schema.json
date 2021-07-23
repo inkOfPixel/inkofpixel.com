@@ -1652,7 +1652,7 @@
           },
           {
             "kind": "OBJECT",
-            "name": "PagesConnectionPageName",
+            "name": "PagesConnectionTitle",
             "ofType": null
           },
           {
@@ -2719,7 +2719,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "pageName",
+            "name": "title",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -2893,7 +2893,7 @@
             "deprecationReason": null
           },
           {
-            "name": "pageName",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -3228,41 +3228,6 @@
       },
       {
         "kind": "OBJECT",
-        "name": "PagesConnectionPageName",
-        "description": null,
-        "fields": [
-          {
-            "name": "key",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "connection",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "PagesConnection",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
         "name": "PagesConnectionPath",
         "description": null,
         "fields": [
@@ -3308,6 +3273,41 @@
             "type": {
               "kind": "SCALAR",
               "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "connection",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PagesConnection",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PagesConnectionTitle",
+        "description": null,
+        "fields": [
+          {
+            "name": "key",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3420,7 +3420,7 @@
             "deprecationReason": null
           },
           {
-            "name": "pageName",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -3428,7 +3428,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "PagesConnectionPageName",
+                "name": "PagesConnectionTitle",
                 "ofType": null
               }
             },
@@ -8828,7 +8828,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "pageName",
+            "name": "title",
             "description": null,
             "type": {
               "kind": "SCALAR",
