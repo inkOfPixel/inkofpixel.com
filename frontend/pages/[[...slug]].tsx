@@ -26,11 +26,17 @@ import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
-import FooterSectionBlock, {
-  Footer,
-  UpperFooter,
-} from "@features/defaultBlocks/FooterSectionBlock";
+
 import Logo from "@components/Logo";
+import { Footer } from "@components/Footer/Footer";
+import { LowerFooter } from "@components/Footer/LowerFooter";
+import {
+  UpperFooter,
+  BlocksContainer,
+  FooterDescription,
+  FooterEmail,
+  FooterBlocks,
+} from "@components/Footer/UpperFooter";
 
 interface DynamicPageProps {
   path: string[];
@@ -68,13 +74,19 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
               color="white"
               as="a"
               width={{
-                base: "150px",
-                sm: "200px",
+                base: "36",
+                sm: "52",
               }}
               height="54px">
               <Logo width="100%" height="100%" color="white" />
             </Box>
+            <BlocksContainer>
+              <FooterDescription />
+              <FooterEmail email={allData.global.bottomBar.footer.email} />
+              <FooterBlocks />
+            </BlocksContainer>
           </UpperFooter>
+          <LowerFooter data={allData.global.bottomBar.footer}></LowerFooter>
         </Footer>
       </InlineForm>
     </DefaultLayout>
@@ -291,7 +303,7 @@ function getPageData(
 
     return {
       id: page.id,
-      title: page.pageName,
+      title: page.title,
       sections: sections,
       path: page.path || undefined,
     };
