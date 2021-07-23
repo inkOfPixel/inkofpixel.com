@@ -53,6 +53,14 @@ query GetPages($where: JSON, $locale: String) {
           url
         }
       }
+      ... on ComponentSectionContactsSection {
+        __typename
+        id
+        title
+        subtitle
+        email
+        sectionTitle
+      }
     }
   }
 }

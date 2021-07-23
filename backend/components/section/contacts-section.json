@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_section_contacts_sections",
+  "info": {
+    "name": "contactsSection",
+    "icon": "address-book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "sectionTitle": {
+      "type": "string"
+    },
+    "areBubblesActive": {
+      "type": "boolean"
+    }
+  }
+}

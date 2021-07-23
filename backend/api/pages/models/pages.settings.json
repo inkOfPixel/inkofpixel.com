@@ -45,7 +45,8 @@
       "components": [
         "section.card-section",
         "section.hero-section",
-        "section.single-feature-section"
+        "section.single-feature-section",
+        "section.contacts-section"
       ]
     }
   }

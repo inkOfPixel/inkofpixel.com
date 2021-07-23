@@ -105,6 +105,22 @@ export type ComponentSectionCardSectionInput = {
   sectionTitle?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionContactsSection = {
+  __typename?: 'ComponentSectionContactsSection';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+};
+
+export type ComponentSectionContactsSectionInput = {
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+};
+
 export type ComponentSectionHeroSection = {
   __typename?: 'ComponentSectionHeroSection';
   id: Scalars['ID'];
@@ -183,7 +199,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionPageName | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksSingleFeature | ComponentMenuLink | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionContactsSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -420,7 +436,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionContactsSection;
 
 
 export enum PublicationState {
@@ -1072,6 +1088,14 @@ export type EditComponentSectionCardSectionInput = {
   sectionTitle?: Maybe<Scalars['String']>;
 };
 
+export type EditComponentSectionContactsSectionInput = {
+  id?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+};
+
 export type EditComponentSectionHeroSectionInput = {
   id?: Maybe<Scalars['ID']>;
   title?: Maybe<Scalars['String']>;
@@ -1214,6 +1238,9 @@ export type GetPagesQuery = (
           & Pick<UploadFile, 'id' | 'name' | 'alternativeText' | 'width' | 'height' | 'url'>
         )> }
       )>>> }
+    ) | (
+      { __typename: 'ComponentSectionContactsSection' }
+      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
     )>>> }
   )>>> }
 );
@@ -1305,6 +1332,14 @@ export const GetPages = `
           }
           url
         }
+      }
+      ... on ComponentSectionContactsSection {
+        __typename
+        id
+        title
+        subtitle
+        email
+        sectionTitle
       }
     }
   }

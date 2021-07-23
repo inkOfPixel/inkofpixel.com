@@ -169,6 +169,7 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
+  console.log("page", JSON.stringify(page, null, " "));
 
   if (page?.sections) {
     let filteredSections = filterListNullableItems(page.sections);
@@ -240,6 +241,16 @@ function getPageData(
                     }
                   )
                 : [],
+            };
+          }
+          case "ComponentSectionContactsSection": {
+            return {
+              _template: "contactsSection",
+              id: section.id,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              email: section.email || null,
+              sectionTitle: section.sectionTitle || null,
             };
           }
           default:

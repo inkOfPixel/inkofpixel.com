@@ -142,6 +142,15 @@ function getPageInput(data: PageData): UpdatePageInput {
                 : [],
             };
           }
+          case "contactsSection": {
+            return {
+              __typename: "ComponentSectionContactsSection",
+              id: section.id,
+              title: section.title,
+              subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
+            };
+          }
           default:
             return assertNever(section);
         }
