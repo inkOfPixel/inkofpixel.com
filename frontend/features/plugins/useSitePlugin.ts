@@ -19,7 +19,7 @@ import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
-import { FooterSectionBlockData } from "@features/defaultBlocks/FooterSectionBlock";
+import { FooterSectionBlockData } from "@components/Footer/Footer";
 export interface PageData {
   id: string;
   title?: string;
@@ -95,9 +95,57 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
         cms.alerts.error("Error while saving changes");
       }
     },
-    fields: [],
+    fields: [
+      {
+        name: "global.bottomBar.footer",
+        component: "group",
+        label: "Footer",
+        fields: [
+          {
+            name: "email",
+            component: "text",
+            label: "Email",
+          },
+          {
+            name: "description",
+            component: "textarea",
+            label: "Description",
+          },
+          {
+            name: "copyright",
+            component: "textarea",
+            label: "Copyright",
+          },
+          {
+            name: "sharedCapital",
+            component: "number",
+            label: "Shared capital",
+          },
+          {
+            name: "street",
+            component: "text",
+            label: "Street",
+          },
+          {
+            name: "cap",
+            component: "number",
+            label: "CAP",
+          },
+          {
+            name: "city",
+            component: "text",
+            label: "city",
+          },
+          {
+            name: "vatNumber",
+            component: "number",
+            label: "VAT",
+          },
+        ],
+      },
+    ],
   };
-  const [all, form] = useForm<AllData>(formConfig);
+  const [all, form] = useForm<AllData>(formConfig, { values: allData });
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
@@ -112,7 +160,7 @@ function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
-      pageName: data.title,
+      title: data.title,
       path: data.path,
       sections: data.sections.map((section) => {
         switch (section._template) {
@@ -262,7 +310,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title || "Default",
+      title: input.title || "Default",
       path: input.path,
       locale: input.locale,
     },
