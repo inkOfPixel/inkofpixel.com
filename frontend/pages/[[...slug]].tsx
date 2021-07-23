@@ -16,7 +16,7 @@ import {
   usePagePlugin,
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
-import { chakra, Box, useColorMode } from "@chakra-ui/react";
+import { chakra, useColorMode } from "@chakra-ui/react";
 import {
   BlockItemProps,
   SectionBlockData,
@@ -27,8 +27,6 @@ import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
-
-import Link from "next/link";
 
 import { MobileNavMenu } from "@components/MobileNavBar";
 import { NavBar, NavMenu } from "@components/NavBar";
@@ -116,19 +114,6 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
           />
         </Main>
       </InlineForm>
-      <Link href="/aa" passHref>
-        <Box
-          as="a"
-          pos="absolute"
-          zIndex="10"
-          right="20px"
-          top="100px"
-          p="20px"
-          borderRadius="15%"
-          border="1px solid black">
-          Click me
-        </Box>
-      </Link>
     </SiteLayout>
   );
 }
