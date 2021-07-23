@@ -22,7 +22,7 @@ export function NavigationBlock({ url }: NavBlockProps) {
   return (
     <Link href={url} passHref>
       <Box
-        display={"block"}
+        display="block"
         m="0"
         ml="2.5"
         px="2.5"

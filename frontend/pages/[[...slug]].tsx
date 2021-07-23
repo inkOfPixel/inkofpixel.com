@@ -28,8 +28,8 @@ import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
 
-import { MobileNavMenu } from "@components/MobileNavBar";
-import { NavBar, NavMenu } from "@components/NavBar";
+import { MobileNavDrawer } from "@components/MobileNavDrawer";
+import { NavBar, NavMenuDesktop, NavMenuMobile } from "@components/NavBar";
 import { Main } from "@components/Main";
 import { WordmarkLogo, WordmarkLogoLink } from "@components/WordmarkLogo";
 import { useRouter } from "next/router";
@@ -66,19 +66,17 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
 
   const router = useRouter();
 
-  console.log("allData", JSON.stringify(allData, null, " "));
-
   return (
     <SiteLayout title="inkOfPixel">
       <InlineForm form={form}>
         <NavBar>
-          <MobileNavMenu>
-            <NavMenu isMobile={true} />
-          </MobileNavMenu>
+          <MobileNavDrawer>
+            <NavMenuMobile />
+          </MobileNavDrawer>
           <WordmarkLogoLink url="/">
             <WordmarkLogo color="rgb(19,22,57)" width="200px" height="150px" />
           </WordmarkLogoLink>
-          <NavMenu isMobile={false} />
+          <NavMenuDesktop />
           <LocaleMenu>
             <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
             <LocaleMenuList>

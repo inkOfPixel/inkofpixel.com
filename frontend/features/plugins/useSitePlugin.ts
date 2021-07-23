@@ -93,10 +93,15 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
           pageInput,
           menuInput,
         });
-        if (response.data) {
-          cms.alerts.success("Changes saved!");
-        } else {
+
+        if (response.hasOwnProperty("errors")) {
           cms.alerts.error("Error while saving changes");
+        } else {
+          if (response.data) {
+            cms.alerts.success("Changes saved!");
+          } else {
+            cms.alerts.error("Error while saving changes");
+          }
         }
       } catch (error) {
         console.log(error);
@@ -117,13 +122,18 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
   return [all, form];
 }
 
-function getPageInput(data: PageData): UpdatePageInput {
+function getPageInput({
+  id,
+  sections,
+  path,
+  title,
+}: PageData): UpdatePageInput {
   return {
-    where: { id: data.id },
+    where: { id: id },
     data: {
-      title: data.title,
-      path: data.path,
-      sections: data.sections.map((section) => {
+      title: title,
+      path: path,
+      sections: sections.map((section) => {
         switch (section._template) {
           case "heroSection": {
             return {

@@ -1,6 +1,5 @@
 import {
   Box,
-  chakra,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -9,9 +8,11 @@ import {
   IconProps,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-export function MobileNavMenu(props: PropsWithChildren<unknown>) {
+export function MobileNavDrawer({
+  children,
+}: React.PropsWithChildren<unknown>) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
@@ -23,8 +24,8 @@ export function MobileNavMenu(props: PropsWithChildren<unknown>) {
         onClick={onOpen}
         _hover={{ cursor: "pointer" }}
         color={"rgb(22,19,56)"}
-        w="40px"
-        h="40px"
+        w="10"
+        h="10"
       />
       <Drawer
         placement="left"
@@ -34,21 +35,18 @@ export function MobileNavMenu(props: PropsWithChildren<unknown>) {
         onEsc={onClose}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerBody onClick={onClose}>{props.children}</DrawerBody>
+          <DrawerBody onClick={onClose}>{children}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </Box>
   );
 }
 
-export const MenuIcon = chakra((props: IconProps) => {
+export const MenuIcon = (props: IconProps) => {
   return (
     <Icon
-      as="svg"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      width="40px"
-      height="40px"
       fill="none"
       stroke="dark"
       strokeWidth="1.5"
@@ -58,4 +56,4 @@ export const MenuIcon = chakra((props: IconProps) => {
       <line x1="4" y1="17" x2="20" y2="17" />
     </Icon>
   );
-});
+};

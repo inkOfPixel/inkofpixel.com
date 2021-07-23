@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
-export function Main(props: PropsWithChildren<unknown>) {
-  return <Box as="main">{props.children}</Box>;
+export function Main({ children }: React.PropsWithChildren<unknown>) {
+  return <Box as="main">{children}</Box>;
 }

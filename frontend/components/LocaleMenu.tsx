@@ -1,6 +1,6 @@
 import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { PropsWithChildren, useState } from "react";
+import * as React from "react";
 
 export interface MenuContext {
   isOpen: boolean;
@@ -17,8 +17,8 @@ function useMenuContext() {
   return value;
 }
 
-export function LocaleMenu(props: PropsWithChildren<unknown>) {
-  const [isOpen, setIsOpen] = useState(false);
+export function LocaleMenu({ children }: React.PropsWithChildren<unknown>) {
+  const [isOpen, setIsOpen] = React.useState(false);
   function toggle() {
     setIsOpen((isOpen) => !isOpen);
   }
@@ -28,14 +28,14 @@ export function LocaleMenu(props: PropsWithChildren<unknown>) {
       <React.Fragment>
         <GooeySVGDefs />
         <Box filter="url(#shadowed-goo1)" overflow="visible">
-          {props.children}
+          {children}
         </Box>
       </React.Fragment>
     </MenuContext.Provider>
   );
 }
 
-export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
+export function LocaleMenuButton(props: React.PropsWithChildren<unknown>) {
   const value = useMenuContext();
   return (
     <Box>
@@ -105,7 +105,7 @@ export function LocaleMenuButton(props: PropsWithChildren<unknown>) {
   );
 }
 
-export function LocaleMenuList(props: PropsWithChildren<unknown>) {
+export function LocaleMenuList(props: React.PropsWithChildren<unknown>) {
   const children = React.Children.map(props.children, (child, index) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, { index });

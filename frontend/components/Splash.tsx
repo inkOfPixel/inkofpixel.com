@@ -1,5 +1,5 @@
 import { Box, chakra, Flex, keyframes } from "@chakra-ui/react";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 const random = (min: number, max: number): number => {
   return Math.random() * (max - min) + min;
@@ -57,32 +57,34 @@ interface SplashProps {
   className: string;
 }
 
-const Bubble = chakra((props: PropsWithChildren<SplashProps>) => {
-  const randomNumber = useRandomNumber(3, 6);
-  const randomSpeed = useRandomNumber(5, 12);
-  return (
-    <Box
-      className={props.className}
-      pos="absolute"
-      w="500px"
-      h="500px"
-      backgroundColor="rbg(246, 250, 248)"
-      animation={`${randomNumber}s linear infinite ${bordertl}, 
+const Bubble = chakra(
+  ({ children, className }: React.PropsWithChildren<SplashProps>) => {
+    const randomNumber = useRandomNumber(3, 6);
+    const randomSpeed = useRandomNumber(5, 12);
+    return (
+      <Box
+        className={className}
+        pos="absolute"
+        w="500px"
+        h="500px"
+        backgroundColor="rbg(246, 250, 248)"
+        animation={`${randomNumber}s linear infinite ${bordertl}, 
                   ${randomNumber}s linear infinite ${bordertr}, 
                   ${randomNumber}s linear infinite ${borderbr}, 
                   ${randomNumber}s linear infinite ${borderbl}, 
                   ${randomSpeed}s linear infinite ${rotate}`}>
-      <Flex
-        className="content"
-        alignItems="center"
-        justifyContent="center"
-        w="full"
-        h="full"
-        animation={`${randomSpeed}s ${rotateInverse} linear infinite`}>
-        {props.children}
-      </Flex>
-    </Box>
-  );
-});
+        <Flex
+          className="content"
+          alignItems="center"
+          justifyContent="center"
+          w="full"
+          h="full"
+          animation={`${randomSpeed}s ${rotateInverse} linear infinite`}>
+          {children}
+        </Flex>
+      </Box>
+    );
+  }
+);
 
 export default Bubble;
