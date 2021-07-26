@@ -18,7 +18,7 @@ import { BlockTemplateData } from "./types";
 
 import Link from "next/link";
 import Splash from "@components/Splash";
-import { TwitterIcon } from "@components/SocialIcons";
+import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -28,11 +28,16 @@ export type ContactsSectionBlockData = BlockTemplateData<
     subtitle: Nullable<string>;
     email: Nullable<string>;
     sectionTitle: Nullable<string>;
+    areBubblesActive: Nullable<boolean>;
   }
 >;
 
-export function ContactsSectionBlock() {
-  const sectionTitle = "SECTION TITLE";
+export function ContactsSectionBlock({
+  sectionTitle,
+  areBubblesActive,
+}: ContactsSectionBlockData) {
+  console.log("bubble", areBubblesActive);
+
   return (
     <Box as="section" w="full">
       <Flex
@@ -60,9 +65,7 @@ export function ContactsSectionBlock() {
             pb={8}
             as="h2"
             fontFamily="Roboto Mono"
-            lineHeight="1.15em">
-            {sectionTitle}
-          </Box>
+            lineHeight="1.15em"></Box>
         ) : (
           <Box
             color="rgb(129, 82, 188)"
@@ -85,7 +88,7 @@ export function ContactsSectionBlock() {
               left: "-68px",
               backgroundColor: "rgb(129, 82, 188)",
             }}>
-            {sectionTitle}
+            <InlineTextarea name="sectionTitle" />
           </Box>
         )}
         <Flex
@@ -94,14 +97,15 @@ export function ContactsSectionBlock() {
             md: "row",
           }}>
           <Flex
-            flexBasis={{
-              base: "full",
-              md: "300px",
-              lg: "400px",
+            flex={{
+              base: "0 0 full",
+              md: "0 0 300px",
+              xl: "0 0 400px",
             }}
             mr={{
               base: "0",
-              md: "36",
+              md: "20",
+              lg: "36",
             }}
             flexDir="column">
             <Box
@@ -140,11 +144,19 @@ export function ContactsSectionBlock() {
             }}
             display="flex"
             flexGrow={1}
-            pb="20">
+            pb="20"
+            flexDir={{
+              base: "column",
+              sm: "row",
+              md: "column",
+              lg: "row",
+            }}>
             <Box
               w={{
                 base: "calc(100% - 20px)",
                 sm: "calc(50% - 20px)",
+                md: "calc(100% - 20px)",
+                lg: "calc(50% - 20px)",
               }}
               m="2.5"
               pos="relative"
@@ -156,10 +168,12 @@ export function ContactsSectionBlock() {
                 letterSpacing="0.1em"
                 pos="relative"
                 w="full"
-                display="block">
+                display="block"
+                mb="0">
                 Name
               </FormLabel>
               <Input
+                id="1"
                 borderX="none"
                 borderTop="none"
                 borderRadius="0"
@@ -169,6 +183,7 @@ export function ContactsSectionBlock() {
                 w="full"
                 minH="10"
                 py="2.5"
+                px="0"
                 boxSizing="border-box"
                 fontSize="sm"
                 resize="none"
@@ -197,11 +212,14 @@ export function ContactsSectionBlock() {
               w={{
                 base: "calc(100% - 20px)",
                 sm: "calc(50% - 20px)",
+                md: "calc(100% - 20px)",
+                lg: "calc(50% - 20px)",
               }}
               m="2.5"
               pos="relative"
               display="inline-block">
               <FormLabel
+                mb="0"
                 fontWeight="400"
                 fontSize="sm"
                 textTransform="uppercase"
@@ -212,6 +230,7 @@ export function ContactsSectionBlock() {
                 Email
               </FormLabel>
               <Input
+                id="2"
                 borderX="none"
                 borderTop="none"
                 borderRadius="0"
@@ -221,6 +240,7 @@ export function ContactsSectionBlock() {
                 w="full"
                 minH="10"
                 py="2.5"
+                px="0"
                 boxSizing="border-box"
                 fontSize="sm"
                 resize="none"
@@ -251,6 +271,7 @@ export function ContactsSectionBlock() {
               pos="relative"
               display="inline-block">
               <FormLabel
+                mb="0"
                 fontWeight="400"
                 fontSize="sm"
                 textTransform="uppercase"
@@ -261,6 +282,7 @@ export function ContactsSectionBlock() {
                 Message
               </FormLabel>
               <Input
+                id="3"
                 borderX="none"
                 borderTop="none"
                 borderRadius="0"
@@ -270,6 +292,7 @@ export function ContactsSectionBlock() {
                 w="full"
                 minH="10"
                 py="2.5"
+                px="0"
                 boxSizing="border-box"
                 fontSize="sm"
                 resize="none"
@@ -305,7 +328,7 @@ export function ContactsSectionBlock() {
               overflow="hidden"
               display="block"
               pos="relative"
-              minW="52"
+              w="52"
               h="10"
               transition="all 0.3s ease 0s"
               cursor="pointer"
@@ -337,44 +360,118 @@ export function ContactsSectionBlock() {
             </Button>
           </FormControl>
         </Flex>
-      </Flex>
-      <Flex justifyContent="flex-end" w="full" mb="32" pr="20">
-        <Link href="https://twitter.com/inkofpixel" passHref>
-          <Box as="a" m="1">
-            <Splash
-              className="asd"
-              backgroundColor="rgba(29, 161, 242, 0.7)"
-              pos="relative"
-              w="60px"
-              h="60px">
-              <TwitterIcon color="white" width="16" height="16" />
-            </Splash>
-          </Box>
-        </Link>
-        <Link href="https://twitter.com/inkofpixel" passHref>
-          <Box as="a" m="1">
-            <Splash
-              className="asd"
-              backgroundColor="rgba(29, 161, 242, 0.7)"
-              pos="relative"
-              w="60px"
-              h="60px">
-              <TwitterIcon color="white" width="16" height="16" />
-            </Splash>
-          </Box>
-        </Link>
-        <Link href="https://twitter.com/inkofpixel" passHref>
-          <Box as="a" m="1">
-            <Splash
-              className="asd"
-              backgroundColor="rgba(29, 161, 242, 0.7)"
-              pos="relative"
-              w="60px"
-              h="60px">
-              <TwitterIcon color="white" width="16" height="16" />
-            </Splash>
-          </Box>
-        </Link>
+        {areBubblesActive == true ? (
+          <Flex justifyContent="flex-end" w="full" mb="32">
+            <Link href="https://twitter.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Splash
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(29, 161, 242, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(29, 161, 242, 1)",
+                  }}
+                  pos="relative"
+                  w="60px"
+                  h="60px">
+                  <TwitterIcon color="white" width="4" height="4" />
+                </Splash>
+              </Box>
+            </Link>
+            <Link href="https://facebook.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Splash
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(59, 89, 152, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(59, 89, 152, 1)",
+                  }}
+                  pos="relative"
+                  w="60px"
+                  h="60px">
+                  <FacebookIcon color="white" width="4" height="4" />
+                </Splash>
+              </Box>
+            </Link>
+            <Link href="https://github.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Splash
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(24, 23, 23, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(24, 23, 23, 1)",
+                  }}
+                  pos="relative"
+                  w="60px"
+                  h="60px">
+                  <GithubIcon color="white" width="4" height="4" />
+                </Splash>
+              </Box>
+            </Link>
+          </Flex>
+        ) : (
+          <Flex justifyContent="flex-end" w="full" mb="32">
+            <Link href="https://twitter.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Flex
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(29, 161, 242, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(29, 161, 242, 1)",
+                  }}
+                  pos="relative"
+                  borderRadius="full"
+                  justifyContent="center"
+                  alignItems="center"
+                  w="60px"
+                  h="60px">
+                  <TwitterIcon color="white" width="4" height="4" />
+                </Flex>
+              </Box>
+            </Link>
+            <Link href="https://facebook.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Flex
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(59, 89, 152, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(59, 89, 152, 1)",
+                  }}
+                  pos="relative"
+                  borderRadius="full"
+                  justifyContent="center"
+                  alignItems="center"
+                  w="60px"
+                  h="60px">
+                  <FacebookIcon color="white" width="4" height="4" />
+                </Flex>
+              </Box>
+            </Link>
+            <Link href="https://github.com/inkofpixel" passHref>
+              <Box as="a" m="1">
+                <Flex
+                  className="asd"
+                  transition="0.3s all"
+                  backgroundColor="rgba(24, 23, 23, 0.7)"
+                  _hover={{
+                    backgroundColor: "rgba(24, 23, 23, 1)",
+                  }}
+                  pos="relative"
+                  borderRadius="full"
+                  justifyContent="center"
+                  alignItems="center"
+                  w="60px"
+                  h="60px">
+                  <GithubIcon color="white" width="4" height="4" />
+                </Flex>
+              </Box>
+            </Link>
+          </Flex>
+        )}
       </Flex>
     </Box>
   );
@@ -398,6 +495,12 @@ export const contactsSectionBlock: Block = {
       email: "hello@inkofpixel.com",
       blocks: [],
     },
-    fields: [],
+    fields: [
+      {
+        name: "areBubblesActive",
+        component: "toggle",
+        label: "Activate bubbles",
+      },
+    ],
   },
 };

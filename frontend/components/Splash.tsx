@@ -67,7 +67,7 @@ const Splash = chakra(
         pos="absolute"
         w="500px"
         h="500px"
-        backgroundColor="rbg(246, 250, 248)"
+        backgroundColor="rgb(246, 250, 248)"
         animation={`${randomNumber}s linear infinite ${bordertl}, 
                   ${randomNumber}s linear infinite ${bordertr}, 
                   ${randomNumber}s linear infinite ${borderbr}, 

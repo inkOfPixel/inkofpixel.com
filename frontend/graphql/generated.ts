@@ -112,6 +112,7 @@ export type ComponentSectionContactsSection = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionContactsSectionInput = {
@@ -119,6 +120,7 @@ export type ComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionHeroSection = {
@@ -1094,6 +1096,7 @@ export type EditComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type EditComponentSectionHeroSectionInput = {
@@ -1240,7 +1243,7 @@ export type GetPagesQuery = (
       )>>> }
     ) | (
       { __typename: 'ComponentSectionContactsSection' }
-      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
+      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle' | 'areBubblesActive'>
     )>>> }
   )>>> }
 );
@@ -1340,6 +1343,7 @@ export const GetPages = `
         subtitle
         email
         sectionTitle
+        areBubblesActive
       }
     }
   }
