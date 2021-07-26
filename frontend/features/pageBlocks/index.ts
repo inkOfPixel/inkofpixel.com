@@ -1,4 +1,3 @@
-export * from "./types";
 import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
 import {
   featureSectionBlock,

@@ -1,4 +1,4 @@
-import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
+import { NavBlockData } from "@features/navigationMenu/NavigationBlock";
 import { SectionBlockData } from "@features/pageBlocks";
 import {
   CreatePage,
@@ -7,6 +7,7 @@ import {
   UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
+import { Nullable } from "@types";
 import { useRouter } from "next/router";
 import {
   ContentCreatorPlugin,
@@ -286,7 +287,7 @@ function getMenuInput(data: MenuData): UpdateMenuInput {
   return {
     where: { id: data.id },
     data: {
-      links: data.links.map<NavBlockData>((link) => {
+      links: data.links.map((link) => {
         return {
           id: link.id,
           label: link.label || null,

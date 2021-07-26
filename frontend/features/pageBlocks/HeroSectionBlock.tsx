@@ -1,5 +1,6 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import Splash from "@components/Splash";
+import Bubble from "@components/Bubble";
+import { Nullable } from "@types";
 import React from "react";
 import {
   Block,
@@ -7,9 +8,9 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData } from "@types";
 
-export type HeroSectionBlockData = SectionBlockTemplateData<
+export type HeroSectionBlockData = BlockTemplateData<
   "heroSection",
   {
     id: string;
@@ -20,7 +21,6 @@ export type HeroSectionBlockData = SectionBlockTemplateData<
 >;
 
 const StyledInlineTextarea = chakra(InlineTextarea);
-const Bubble = chakra(Splash);
 
 export function HeroSectionBlock(data: HeroSectionBlockData) {
   return (

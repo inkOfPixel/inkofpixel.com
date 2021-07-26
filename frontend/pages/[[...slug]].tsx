@@ -17,16 +17,12 @@ import {
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
-import {
-  BlockItemProps,
-  SectionBlockData,
-  SECTION_PAGE_BLOCKS,
-} from "@features/pageBlocks";
+import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/pageBlocks";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
-import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
+import { NavBlockData } from "@features/navigationMenu/NavigationBlock";
 
 import { MobileNavDrawer } from "@components/MobileNavDrawer";
 import { NavBar, NavMenuDesktop, NavMenuMobile } from "@components/NavBar";
@@ -39,6 +35,8 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
+
+import { BlockItemProps } from "@types";
 
 interface DynamicPageProps {
   path: string[];
@@ -258,7 +256,7 @@ function getGlobalData(
           id: global.topbar.menu.id,
           links: filteredLinks.map<NavBlockData>((link) => {
             return {
-              _template: "ComponentBlocksNavigationBlock",
+              _template: "navigationLink",
               id: link.id,
               label: link.label || null,
               url: link.url || null,

@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, chakra, Flex } from "@chakra-ui/react";
 import { InlineBlocks } from "react-tinacms-inline";
-import { NAV_BLOCK } from "@features/defaultBlocks/";
-import { NavBlockData } from "@features/defaultBlocks/NavigationBlock";
+import { NAV_BLOCK } from "@features/navigationMenu";
+import { NavBlockData } from "@features/navigationMenu/NavigationBlock";
 import { SectionBlockTemplateData } from "@features/pageBlocks/types";
 import { useCMS } from "tinacms";
 import Logo from "@components/Logo";

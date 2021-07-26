@@ -53,26 +53,22 @@ function useRandomNumber(min: number, max: number) {
   return randomNumber;
 }
 
-interface SplashProps {
-  className: string;
-}
-
 const Bubble = chakra(
-  ({ children, className }: React.PropsWithChildren<SplashProps>) => {
+  ({ children, ...otherProps }: React.PropsWithChildren<unknown>) => {
     const randomNumber = useRandomNumber(3, 6);
     const randomSpeed = useRandomNumber(5, 12);
     return (
       <Box
-        className={className}
         pos="absolute"
         w="500px"
         h="500px"
-        backgroundColor="rbg(246, 250, 248)"
+        backgroundColor="rgb(246, 250, 248)"
         animation={`${randomNumber}s linear infinite ${bordertl}, 
                   ${randomNumber}s linear infinite ${bordertr}, 
                   ${randomNumber}s linear infinite ${borderbr}, 
                   ${randomNumber}s linear infinite ${borderbl}, 
-                  ${randomSpeed}s linear infinite ${rotate}`}>
+                  ${randomSpeed}s linear infinite ${rotate}`}
+        {...otherProps}>
         <Flex
           className="content"
           alignItems="center"

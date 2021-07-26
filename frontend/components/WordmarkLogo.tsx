@@ -2,12 +2,12 @@ import { Box, chakra, Icon, IconProps } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 
-interface WordmarkLogoLink {
+type WordmarkLogoLinkProps = React.PropsWithChildren<{
   url: string;
-}
+}>;
 
 export const WordmarkLogoLink = chakra(
-  ({ children, url }: React.PropsWithChildren<WordmarkLogoLink>) => {
+  ({ children, url }: WordmarkLogoLinkProps) => {
     return (
       <Link href={url} passHref>
         <Box as="a">{children}</Box>

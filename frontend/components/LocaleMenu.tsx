@@ -1,4 +1,4 @@
-import { Box, chakra, Checkbox, FormLabel } from "@chakra-ui/react";
+import { Box, Checkbox, FormLabel } from "@chakra-ui/react";
 import Link from "next/link";
 import * as React from "react";
 
@@ -177,7 +177,7 @@ export function LocaleMenuLink({
   );
 }
 
-const GooeySVGDefs = chakra(() => (
+const GooeySVGDefs = () => (
   <Box as="svg" pos="absolute" width="0" height="0">
     <defs>
       <filter id="shadowed-goo1">
@@ -211,4 +211,4 @@ const GooeySVGDefs = chakra(() => (
       </filter>
     </defs>
   </Box>
-));
+);

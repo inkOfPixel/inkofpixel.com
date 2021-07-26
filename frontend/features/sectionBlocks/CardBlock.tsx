@@ -9,7 +9,7 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
-import { BlockTemplateData } from "./types";
+import { BlockTemplateData, Nullable } from "@types";
 
 export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",

@@ -1,4 +1,6 @@
 import { Box } from "@chakra-ui/react";
+import { BlockTemplateData } from "@types";
+import { Nullable } from "@types";
 import Link from "next/link";
 import React from "react";
 import {
@@ -8,11 +10,14 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 
-export type NavBlockData = {
-  id: string;
-  label?: Nullable<string>;
-  url?: Nullable<string>;
-};
+export type NavBlockData = BlockTemplateData<
+  "navigationLink",
+  {
+    id: string;
+    label?: Nullable<string>;
+    url?: Nullable<string>;
+  }
+>;
 
 interface NavBlockProps {
   url: string;
@@ -65,7 +70,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
   );
 }
 
-export const navigationBlock: Block = {
+export const NavLinkBlock: Block = {
   Component: BlockComponent,
   template: {
     label: "nav",

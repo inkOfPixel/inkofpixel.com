@@ -9,9 +9,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData, Nullable } from "@types";
 
-export type CardSectionBlockData = SectionBlockTemplateData<
+export type CardSectionBlockData = BlockTemplateData<
   "cardSection",
   {
     id: string;

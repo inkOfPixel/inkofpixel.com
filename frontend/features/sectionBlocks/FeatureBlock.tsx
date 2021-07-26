@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
-import Splash from "@components/Splash";
+import Splash from "@components/Bubble";
 import { STRAPI_URL } from "@config/env";
+import { Nullable } from "@types";
 import React from "react";
 import {
   Block,
@@ -11,7 +11,7 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
-import { BlockTemplateData } from "./types";
+import { BlockTemplateData } from "@types";
 
 export type FeatureBlockData = BlockTemplateData<
   "ComponentBlocksSingleFeature",

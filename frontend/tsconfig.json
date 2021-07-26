@@ -28,7 +28,8 @@
         "@features/*": ["features/*"],
         "@assets/*": ["assets/*"],
         "@theme": ["theme"],
-        "@utils": ["utils"]
+        "@utils": ["utils"],
+        "@types": ["@types"]
       }
     },
     "exclude": ["node_modules"],

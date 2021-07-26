@@ -1,5 +1,5 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import { BlockItemProps, FEATURE_BLOCK } from "@features/sectionBlocks";
+import { FEATURE_BLOCK } from "@features/sectionBlocks";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import React from "react";
 import {
@@ -9,9 +9,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { SectionBlockTemplateData } from "./types";
+import { BlockTemplateData, Nullable, BlockItemProps } from "@types";
 
-export type FeatureListSectionBlockData = SectionBlockTemplateData<
+export type FeatureListSectionBlockData = BlockTemplateData<
   "featureSection",
   {
     id: string;
