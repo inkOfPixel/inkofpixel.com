@@ -1,4 +1,4 @@
-import { NavBlockData } from "@features/navigationMenu/NavigationBlock";
+import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
 import { SectionBlockData } from "@features/page";
 import {
   CreatePage,

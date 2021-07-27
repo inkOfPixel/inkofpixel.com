@@ -19,10 +19,10 @@ import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
-import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
-import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
+import { CardBlockData } from "@features/page/sections/CardListSection/blocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
-import { NavBlockData } from "@features/navigationMenu/NavigationBlock";
+import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
 
 import { MobileNavDrawer } from "@components/MobileNavDrawer";
 import { NavBar, NavMenuDesktop, NavMenuMobile } from "@components/NavBar";

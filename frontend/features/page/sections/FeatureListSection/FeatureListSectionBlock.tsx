@@ -1,6 +1,6 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
-import { FEATURE_BLOCK } from "@features/sectionBlocks";
-import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { FEATURE_BLOCK } from "@features/page/sections";
+import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
 import React from "react";
 import {
   Block,

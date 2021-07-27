@@ -1,6 +1,6 @@
 import { Box, chakra } from "@chakra-ui/react";
-import { CARD_BLOCK } from "@features/sectionBlocks";
-import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { CARD_BLOCK } from "@features/page/sections";
+import { CardBlockData } from "@features/page/sections/CardListSection/blocks/CardBlock";
 import React from "react";
 import {
   Block,

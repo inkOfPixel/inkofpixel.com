@@ -1,5 +1,5 @@
-import { cardBlock, CardBlockData } from "./CardBlock";
-import { featureBlock, FeatureBlockData } from "./FeatureBlock";
+import { cardBlock, CardBlockData } from "./CardListSection/blocks/CardBlock";
+import { featureBlock, FeatureBlockData } from "./FeatureListSection/blocks/FeatureBlock";
 
 export const FEATURE_BLOCK = {
   ComponentBlocksSingleFeature: featureBlock,
