@@ -193,19 +193,19 @@ export const featureSectionBlock: Block = {
       subtitle: "Default section subtitle",
       blocks: [
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "singleFeature",
           title: "Default title",
           description: "Default description",
           url: "/",
         },
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "singleFeature",
           title: "Default title",
           description: "Default description",
           url: "/",
         },
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "singleFeature",
           title: "Default title",
           description: "Default description",
           url: "/",

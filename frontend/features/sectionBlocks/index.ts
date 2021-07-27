@@ -1,13 +1,18 @@
 export * from "./types";
 import { cardBlock, CardBlockData } from "./CardBlock";
 import { featureBlock, FeatureBlockData } from "./FeatureBlock";
+import { projectBlock, ProjectBlockData } from "./ProjectBlock";
 
 export const FEATURE_BLOCK = {
-  ComponentBlocksSingleFeature: featureBlock,
+  singleFeature: featureBlock,
 };
 
 export const CARD_BLOCK = {
-  ComponentBlocksCard: cardBlock,
+  card: cardBlock,
 };
 
-export type BlockData = CardBlockData | FeatureBlockData;
+export const PROJECT_BLOCK = {
+  project: projectBlock,
+};
+
+export type BlockData = CardBlockData | FeatureBlockData | ProjectBlockData;

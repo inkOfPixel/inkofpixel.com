@@ -18,6 +18,7 @@ import {
 import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { ProjectBlockData } from "@features/sectionBlocks/ProjectBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -207,7 +208,7 @@ function getPageData(
                               altText: feature.image.alternativeText || null,
                             },
                       url: feature.url || null,
-                      _template: "ComponentBlocksSingleFeature",
+                      _template: "singleFeature",
                     };
                   })
                 : [],
@@ -235,10 +236,41 @@ function getPageData(
                             }
                           : null,
                         url: card.url || null,
-                        _template: "ComponentBlocksCard",
+                        _template: "card",
                       };
                     }
                   )
+                : [],
+            };
+          }
+          case "ComponentSectionProjectsSection": {
+            return {
+              _template: "projectListSection",
+              id: section.id,
+              sectionTitle: section.sectionTitle || null,
+              sectionTitleColor: section.sectionTitleColor || null,
+              projects: section.projects
+                ? filterListNullableItems(
+                    section.projects
+                  ).map<ProjectBlockData>((project) => {
+                    return {
+                      _template: "project",
+                      id: project.id,
+                      companyName: project.companyName || null,
+                      projectType: project.projectType || null,
+                      description: project.description || null,
+                      linkName: project.linkName || null,
+                      linkPath: project.linkPath || null,
+                      image: project.image
+                        ? {
+                            id: project.image.id,
+                            url: project.image.url,
+                            alternativeText:
+                              project.image.alternativeText || null,
+                          }
+                        : null,
+                    };
+                  })
                 : [],
             };
           }

@@ -13,7 +13,7 @@ import { useCMS } from "tinacms";
 import { BlockTemplateData } from "./types";
 
 export type FeatureBlockData = BlockTemplateData<
-  "ComponentBlocksSingleFeature",
+  "singleFeature",
   {
     id: string;
     image: Nullable<FeatureImage>;

@@ -12,7 +12,7 @@ import { useCMS } from "tinacms";
 import { BlockTemplateData } from "./types";
 
 export type CardBlockData = BlockTemplateData<
-  "ComponentBlocksCard",
+  "card",
   {
     id: string;
     image?: Nullable<CardImage>;

@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_blocks_projects",
+  "info": {
+    "name": "project",
+    "icon": "american-sign-language-interpreting"
+  },
+  "options": {},
+  "attributes": {
+    "companyName": {
+      "type": "string"
+    },
+    "projectType": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "linkName": {
+      "type": "string"
+    },
+    "linkPath": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    }
+  }
+}

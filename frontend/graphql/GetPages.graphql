@@ -53,6 +53,25 @@ query GetPages($where: JSON, $locale: String) {
           url
         }
       }
+      ... on ComponentSectionProjectsSection {
+        id
+        __typename
+        sectionTitleColor
+        sectionTitle
+        projects {
+          id
+          companyName
+          projectType
+          description
+          linkName
+          linkPath
+          image {
+            id
+            url
+            alternativeText
+          }
+        }
+      }
     }
   }
 }

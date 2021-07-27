@@ -17,6 +17,7 @@ import {
 import { assertNever, filterListNullableItems } from "@utils";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
+import { ProjectBlockData } from "@features/sectionBlocks/ProjectBlock";
 export interface PageData {
   id: string;
   title?: string;
@@ -105,7 +106,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                                 altText: card.image.altText || null,
                               },
                         url: card.url || null,
-                        _template: "ComponentBlocksCard",
+                        _template: "card",
                       };
                     }
                   )
@@ -135,13 +136,46 @@ function getPageInput(data: PageData): UpdatePageInput {
                                 altText: feature.image.altText || null,
                               },
                         url: feature.url || null,
-                        _template: "ComponentBlocksSingleFeature",
+                        _template: "singleFeature",
                       };
                     }
                   )
                 : [],
             };
           }
+
+          case "projectListSection": {
+            return {
+              __typename: "ComponentSectionProjectsSection",
+              id: section.id,
+              sectionTitle: section.sectionTitle,
+              sectionTitleColor: section.sectionTitleColor,
+              projects: section.projects
+                ? filterListNullableItems(
+                    section.projects
+                  ).map<ProjectBlockData>((project) => {
+                    return {
+                      _template: "project",
+                      id: project.id,
+                      companyName: project.companyName || null,
+                      projectType: project.projectType || null,
+                      description: project.description || null,
+                      linkName: project.linkName || null,
+                      linkPath: project.linkPath || null,
+                      image: project.image
+                        ? {
+                            id: project.image.id,
+                            url: project.image.url,
+                            alternativeText:
+                              project.image.alternativeText || null,
+                          }
+                        : null,
+                    };
+                  })
+                : [],
+            };
+          }
+
           default:
             return assertNever(section);
         }
