@@ -17,7 +17,7 @@ import {
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
-import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/pageBlocks";
+import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
