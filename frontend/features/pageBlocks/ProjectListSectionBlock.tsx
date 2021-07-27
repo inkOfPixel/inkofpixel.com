@@ -9,7 +9,7 @@ import {
   InlineTextarea,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "./types";
+import { BlockItemProps, BlockTemplateData } from "./types";
 
 export type ProjectListSectionData = BlockTemplateData<
   "projectListSection",
@@ -24,12 +24,19 @@ export type ProjectListSectionData = BlockTemplateData<
 interface ProjectListSectionProps {
   sectionTitle: Nullable<string>;
   sectionTitleColor: Nullable<string>;
+  preview: boolean;
 }
 
 export function ProjectListSection({
   sectionTitle,
   sectionTitleColor,
+  preview,
 }: ProjectListSectionProps) {
+  const itemProps = React.useMemo<BlockItemProps>(() => {
+    return {
+      isPreview: preview,
+    };
+  }, [preview]);
   return (
     <Flex
       className="WRAPPER"
@@ -92,18 +99,23 @@ export function ProjectListSection({
         sx={{
           "& > div": {
             w: "full",
+            height: "fit-content",
           },
         }}
-        py="14"
         px="0">
-        <InlineBlocks name="projects" blocks={PROJECT_BLOCK} />
+        <InlineBlocks
+          className="inline-blocks"
+          name="projects"
+          blocks={PROJECT_BLOCK}
+          itemProps={itemProps}
+        />
       </Flex>
     </Flex>
   );
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("data", JSON.stringify(data, null, " "));
+  console.log("datasection", JSON.stringify(data, null, " "));
 
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>

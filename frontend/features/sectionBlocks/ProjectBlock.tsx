@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Text } from "@chakra-ui/react";
+import { Box, Flex, Img } from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
 import { BlockTemplateData } from "@features/pageBlocks";
 import Link from "next/link";
@@ -48,6 +48,7 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
   const cms = useCMS();
   return (
     <Flex
+      pt="14"
       flexDir={{
         base: "column-reverse",
         lg: "row",
@@ -57,11 +58,9 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           base: "full",
           lg: "40%",
         }}
-        py={{
+        p={{
           base: "5",
-          lg: "2.5",
         }}
-        px="0"
         mx="0"
         pr={{
           lg: "16",
@@ -77,7 +76,7 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           as="h3">
           <InlineTextarea name="companyName" />
         </Box>
-        <Text
+        <Box
           fontSize="xs"
           fontWeight="normal"
           textTransform="uppercase"
@@ -87,7 +86,7 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           pb="5"
           color="rgb(5,195,182)">
           <InlineTextarea name="projectType" />
-        </Text>
+        </Box>
         <Box
           fontSize="sm"
           fontFamily="Roboto Mono"
@@ -132,53 +131,56 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
         }}
         h="350px">
         {cms.enabled ? (
-          <Link href={linkPath ? linkPath : "/"} passHref>
-            <InlineImage
-              name="image"
-              uploadDir={() => "/"}
-              previewSrc={(imageSrc) => {
-                if (imageSrc === "") {
-                  return "/images/default-image.png";
-                }
+          <InlineImage
+            name="image"
+            uploadDir={() => "/"}
+            previewSrc={(imageSrc) => {
+              if (imageSrc === "") {
+                return "/images/default-image.png";
+              }
 
-                return imageSrc;
-              }}
-              parse={(media) => {
-                return media as any;
-              }}>
-              {(imageProps: any) => {
-                const { src } = imageProps as ImageRenderProps;
-                let imageSrc: string = src.previewSrc || src.url || "";
-                if (imageSrc === "") {
-                  imageSrc = "/images/default-image.png";
-                } else if (!imageSrc.startsWith("http")) {
-                  imageSrc = `${STRAPI_URL}${imageSrc}`;
-                }
+              return imageSrc;
+            }}
+            parse={(media) => {
+              return media as any;
+            }}>
+            {(imageProps: any) => {
+              const { src } = imageProps as ImageRenderProps;
+              let imageSrc: string = src.previewSrc || src.url || "";
+              if (imageSrc === "") {
+                imageSrc = "/images/default-image.png";
+              } else if (!imageSrc.startsWith("http")) {
+                imageSrc = `${STRAPI_URL}${imageSrc}`;
+              }
 
-                return (
-                  <Box pos="relative" overflow="hidden" height="350px ">
-                    <Img
-                      w="full"
-                      h="full"
-                      objectFit="cover"
-                      objectPosition="center"
-                      opacity="1"
-                      transition="0.5s"
-                      borderStyle="none"
-                      src={imageSrc}
-                      alt="Cover image"
-                    />
-                  </Box>
-                );
-              }}
-            </InlineImage>
-          </Link>
+              return (
+                <Box
+                  pr="10"
+                  pos="relative"
+                  overflow="hidden"
+                  mt="-30px"
+                  height="360px">
+                  <Img
+                    w={image ? "full" : "72"}
+                    h={image ? "full" : "72"}
+                    objectFit="cover"
+                    objectPosition="center"
+                    opacity="1"
+                    transition="0.5s"
+                    borderStyle="none"
+                    src={imageSrc}
+                    alt="Cover image"
+                  />
+                </Box>
+              );
+            }}
+          </InlineImage>
         ) : (
           <Link href={linkPath ? linkPath : "/"} passHref>
-            <Box as="a" pos="relative" overflow="hidden" height="350px">
+            <Box as="a" pos="relative" overflow="hidden" height="90">
               <Img
-                w="full"
-                h="full"
+                w={image ? "full" : "72"}
+                h={image ? "full" : "72"}
                 objectFit="cover"
                 objectPosition="center"
                 opacity="1"
@@ -196,6 +198,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
+  console.log("datablock", JSON.stringify(data, null, " "));
+
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <ProjectBlock {...data} />
@@ -210,7 +214,7 @@ export const projectBlock: Block = {
     defaultItem: {
       companyName: "Default title",
       projectType: "Default type",
-      descritpion: "Default description",
+      description: "Default description",
       linkName: "Deafult link",
       linkPath: "/",
     },

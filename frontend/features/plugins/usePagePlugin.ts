@@ -71,7 +71,7 @@ function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
-      pageName: data.title,
+      title: data.title,
       path: data.path,
       sections: data.sections.map((section) => {
         switch (section._template) {
@@ -253,7 +253,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      pageName: input.title || "Default",
+      title: input.title || "Default",
       path: input.path,
       locale: input.locale,
     },
