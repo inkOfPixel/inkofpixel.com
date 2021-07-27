@@ -25,7 +25,11 @@ import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
 
 import { MobileNavDrawer } from "@components/MobileNavDrawer";
-import { NavBar, NavMenuDesktop, NavMenuMobile } from "@components/NavBar";
+import {
+  NavBar,
+  NavMenuDesktop,
+  NavMenuMobile,
+} from "@features/mainNavigation";
 import { Main } from "@components/Main";
 import { WordmarkLogo, WordmarkLogoLink } from "@components/WordmarkLogo";
 import { useRouter } from "next/router";
