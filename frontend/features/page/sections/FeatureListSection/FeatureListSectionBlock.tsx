@@ -9,16 +9,14 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData, Nullable, BlockItemProps } from "@types";
 
 export type FeatureListSectionBlockData = BlockTemplateData<
-  "featureSection",
+  "featureListSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
-    paddingTop: number;
     blocks: FeatureBlockData[];
   }
 >;
@@ -26,7 +24,6 @@ export type FeatureListSectionBlockData = BlockTemplateData<
 type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
-  paddingTop: number;
 };
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
@@ -35,7 +32,6 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export function FeatureListSectionBlock({
   sectionTitle,
   preview,
-  paddingTop,
 }: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -46,7 +42,7 @@ export function FeatureListSectionBlock({
   if (sectionTitle != null) sectionTitle = sectionTitle.toUpperCase();
 
   return (
-    <Box as="section" pt={paddingTop}>
+    <Box as="section" pt="0">
       <Box
         m={{
           base: "0px",
@@ -61,45 +57,33 @@ export function FeatureListSectionBlock({
           base: "full",
           xl: "1200px",
         }}>
-        {sectionTitle == null ? (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb={8}
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        ) : (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="30px"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em"
-            _before={{
-              content: "''",
-              display: "block",
-              h: "2px",
-              w: "60px",
-              pos: "absolute",
-              top: "7px",
-              left: "-68px",
-              backgroundColor: "rgb(129, 82, 188)",
-            }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        )}
+        <Box
+          color="rgb(129, 82, 188)"
+          fontSize="sm"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="8"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={
+            sectionTitle
+              ? {
+                  content: `""`,
+                  display: "block",
+                  h: "2px",
+                  w: "60px",
+                  pos: "absolute",
+                  top: "7px",
+                  left: "-68px",
+                  backgroundColor: "rgb(129, 82, 188)",
+                }
+              : undefined
+          }>
+          <InlineTextarea name="sectionTitle" />
+        </Box>
 
         <Flex
           flexDirection={{
@@ -110,8 +94,8 @@ export function FeatureListSectionBlock({
             flexDirection="column"
             mr={{
               base: "0px",
-              md: "80px",
-              lg: "150px",
+              md: "20",
+              lg: "36",
             }}
             flexGrow={0}
             flexShrink={0}
@@ -122,16 +106,16 @@ export function FeatureListSectionBlock({
             }}>
             <Box
               fontSize="5xl"
-              p={0}
-              m={0}
+              p="0"
+              m="0"
               fontWeight="bold"
               lineHeight="hero"
               fontFamily="Europa"
               letterSpacing="0.02em">
               <StyledInlineTextarea
                 fontSize="5xl"
-                p={0}
-                m={0}
+                p="0"
+                m="0"
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
@@ -141,10 +125,9 @@ export function FeatureListSectionBlock({
             </Box>
             <Box
               fontSize="sm"
-              pt={5}
-              m={0}
+              m="0"
               w="full"
-              paddingTop={5}
+              pt="5"
               fontWeight="subtitle"
               lineHeight="subtitle"
               color="description"
@@ -152,9 +135,8 @@ export function FeatureListSectionBlock({
               fontFamily="Roboto Mono">
               <StyledInlineTextarea
                 fontSize="sm"
-                p={0}
-                m={0}
-                paddingTop={5}
+                m="0"
+                pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
                 letterSpacing="0.02em"
@@ -196,22 +178,21 @@ export const featureSectionBlock: Block = {
       sectionTitle: "Default section title",
       title: "Default section title",
       subtitle: "Default section subtitle",
-      paddingTop: 52,
       blocks: [
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "feature",
           title: "Default title",
           description: "Default description",
           url: "/",
         },
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "feature",
           title: "Default title",
           description: "Default description",
           url: "/",
         },
         {
-          _template: "ComponentBlocksSingleFeature",
+          _template: "feature",
           title: "Default title",
           description: "Default description",
           url: "/",

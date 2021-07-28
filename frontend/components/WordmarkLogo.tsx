@@ -1,20 +1,5 @@
-import { Box, chakra, Icon, IconProps } from "@chakra-ui/react";
-import Link from "next/link";
+import { Icon, IconProps } from "@chakra-ui/react";
 import React from "react";
-
-type WordmarkLogoLinkProps = React.PropsWithChildren<{
-  url: string;
-}>;
-
-export const WordmarkLogoLink = chakra(
-  ({ children, url }: WordmarkLogoLinkProps) => {
-    return (
-      <Link href={url} passHref>
-        <Box as="a">{children}</Box>
-      </Link>
-    );
-  }
-);
 
 export const WordmarkLogo = ({
   color = "rgb(19,22,57)",

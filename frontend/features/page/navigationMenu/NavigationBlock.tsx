@@ -1,6 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import { BlockTemplateData } from "@types";
-import { Nullable } from "@types";
 import Link from "next/link";
 import React from "react";
 import {
@@ -75,8 +73,8 @@ export const NavLinkBlock: Block = {
   template: {
     label: "nav",
     defaultItem: {
-      pageName: "Link",
-      path: "/",
+      label: "Link",
+      url: "/",
     },
     fields: [
       {

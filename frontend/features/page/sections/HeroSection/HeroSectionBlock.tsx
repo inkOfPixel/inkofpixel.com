@@ -1,6 +1,5 @@
 import { Box, chakra, Flex } from "@chakra-ui/react";
 import Bubble from "@components/Bubble";
-import { Nullable } from "@types";
 import React from "react";
 import {
   Block,
@@ -8,7 +7,6 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "@types";
 
 export type HeroSectionBlockData = BlockTemplateData<
   "heroSection",
@@ -22,7 +20,7 @@ export type HeroSectionBlockData = BlockTemplateData<
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function HeroSectionBlock(data: HeroSectionBlockData) {
+export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
   return (
     <Box
       overflow="hidden"
@@ -30,7 +28,7 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
       w="full"
       pb={{
         base: "80",
-        lg: "400px",
+        lg: "96",
       }}
       pt={{
         base: "52",
@@ -58,7 +56,7 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
           }}
           m="0 auto"
           pos="relative">
-          {data.areBubblesActive === true ? (
+          {areBubblesActive === true && (
             <Box
               w="full"
               pos="absolute"
@@ -68,20 +66,20 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
               className="HeroIllustrator">
               <Bubble
                 top={{
-                  base: "-250px",
-                  sm: "-200px",
+                  base: "-60",
+                  sm: "-52",
                 }}
                 right={{
-                  base: "-200px",
-                  sm: "-200px",
+                  base: "-52",
+                  sm: "-52",
                 }}
                 boxSize="600px"
                 backgroundColor="#f8f1ff"
               />
               <Bubble
-                top="200px"
+                top="44"
                 right="500px"
-                boxSize="280px"
+                boxSize="72"
                 backgroundColor="#ffefe4"
                 display={{
                   base: "none",
@@ -89,47 +87,47 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
                 }}
               />
               <Bubble
-                top="130px"
-                left="-60px"
+                top="32"
+                left="-16"
                 backgroundColor="#f8f1ff"
-                boxSize="150px"
+                boxSize="36"
                 display={{
                   base: "none",
                   sm: "block",
                 }}
               />
               <Bubble
-                top="-100px"
-                left="400px"
+                top="-24"
+                left="96"
                 backgroundColor="#e8fbf6"
-                boxSize="100px"
+                boxSize="24"
                 display={{
                   base: "none",
                   lg: "block",
                 }}
               />
               <Bubble
-                top="230px"
-                left="230px"
+                top="60"
+                left="60"
                 backgroundColor="#e8fbf6"
-                boxSize="60px"
+                boxSize="16"
                 display={{
                   base: "none",
                   xl: "block",
                 }}
               />
               <Bubble
-                top="-20px"
-                left="230px"
+                top="-5"
+                left="60"
                 backgroundColor="#fff7df"
-                boxSize="60px"
+                boxSize="16"
                 display={{
                   base: "none",
                   md: "block",
                 }}
               />
             </Box>
-          ) : null}
+          )}
           <Box
             w={{
               base: "full",
@@ -188,7 +186,7 @@ export function HeroSectionBlock(data: HeroSectionBlockData) {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <HeroSectionBlock active={data.areBubblesActive} {...data} />
+      <HeroSectionBlock {...data} />
     </BlocksControls>
   );
 }

@@ -28,7 +28,7 @@
     "url": {
       "type": "string"
     },
-    "urlName": {
+    "linkLabel": {
       "type": "string"
     }
   }

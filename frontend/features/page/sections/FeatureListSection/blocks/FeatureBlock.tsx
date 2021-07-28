@@ -1,7 +1,6 @@
 import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
 import Splash from "@components/Bubble";
 import { STRAPI_URL } from "@config/env";
-import { Nullable } from "@types";
 import React from "react";
 import {
   Block,
@@ -11,17 +10,16 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
-import { BlockTemplateData } from "@types";
 
 export type FeatureBlockData = BlockTemplateData<
-  "ComponentBlocksSingleFeature",
+  "feature",
   {
     id: string;
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
     url: Nullable<string>;
-    urlName: Nullable<string>;
+    linkLabel: Nullable<string>;
     bubbleColor: Nullable<string>;
   }
 >;
@@ -35,7 +33,7 @@ interface FeatureImage {
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
   url?: string;
-  urlName?: string;
+  linkLabel?: string;
   bubbleColor: Nullable<string>;
 }
 
@@ -53,7 +51,7 @@ export function FeatureBlock({
   url,
   image,
   bubbleColor,
-  urlName,
+  linkLabel: urlName,
 }: FeatureBlockProps) {
   const cms = useCMS();
 
@@ -152,6 +150,7 @@ export function FeatureBlock({
             _hover={{
               color: "rgb(5, 195, 182)",
               _after: {
+                color: "rgb(5, 195, 182)",
                 paddingLeft: "5",
               },
             }}
@@ -190,14 +189,11 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const featureBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "feat",
+    label: "Feature",
     defaultItem: {
       title: "Default title",
       description: "Default description",
       url: "/",
-      image: {
-        id: "51",
-      },
     },
     fields: [
       {
@@ -206,7 +202,7 @@ export const featureBlock: Block = {
         component: "text",
       },
       {
-        name: "urlName",
+        name: "linkLabel",
         label: "Url name",
         component: "text",
       },

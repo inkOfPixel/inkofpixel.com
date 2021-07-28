@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, keyframes } from "@chakra-ui/react";
+import { Box, BoxProps, chakra, Flex, keyframes } from "@chakra-ui/react";
 import React from "react";
 
 const random = (min: number, max: number): number => {
@@ -53,34 +53,32 @@ function useRandomNumber(min: number, max: number) {
   return randomNumber;
 }
 
-const Bubble = chakra(
-  ({ children, ...otherProps }: React.PropsWithChildren<unknown>) => {
-    const randomNumber = useRandomNumber(3, 6);
-    const randomSpeed = useRandomNumber(5, 12);
-    return (
-      <Box
-        pos="absolute"
-        w="500px"
-        h="500px"
-        backgroundColor="rgb(246, 250, 248)"
-        animation={`${randomNumber}s linear infinite ${bordertl}, 
+const Bubble = chakra(({ children, ...otherProps }: BoxProps) => {
+  const randomNumber = useRandomNumber(3, 6);
+  const randomSpeed = useRandomNumber(5, 12);
+  return (
+    <Box
+      pos="absolute"
+      w="500px"
+      h="500px"
+      backgroundColor="rgb(246, 250, 248)"
+      animation={`${randomNumber}s linear infinite ${bordertl}, 
                   ${randomNumber}s linear infinite ${bordertr}, 
                   ${randomNumber}s linear infinite ${borderbr}, 
                   ${randomNumber}s linear infinite ${borderbl}, 
                   ${randomSpeed}s linear infinite ${rotate}`}
-        {...otherProps}>
-        <Flex
-          className="content"
-          alignItems="center"
-          justifyContent="center"
-          w="full"
-          h="full"
-          animation={`${randomSpeed}s ${rotateInverse} linear infinite`}>
-          {children}
-        </Flex>
-      </Box>
-    );
-  }
-);
+      {...otherProps}>
+      <Flex
+        className="content"
+        alignItems="center"
+        justifyContent="center"
+        w="full"
+        h="full"
+        animation={`${randomSpeed}s ${rotateInverse} linear infinite`}>
+        {children}
+      </Flex>
+    </Box>
+  );
+});
 
 export default Bubble;

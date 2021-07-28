@@ -17,14 +17,13 @@ query GetPages($where: JSON, $locale: String) {
         sectionTitle
         title
         subtitle
-        paddingTop
         sections {
           __typename
           id
           description
           title
           url
-          urlName
+          linkLabel
           bubbleColor
           image {
             id
@@ -59,7 +58,7 @@ query GetPages($where: JSON, $locale: String) {
             alternativeText
           }
           url
-          urlName
+          linkLabel
         }
       }
     }

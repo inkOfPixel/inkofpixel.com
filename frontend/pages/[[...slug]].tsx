@@ -16,13 +16,15 @@ import {
   usePagePlugin,
 } from "@features/plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
-import { chakra, useColorMode } from "@chakra-ui/react";
+import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
 import { CardBlockData } from "@features/page/sections/CardListSection/blocks/CardBlock";
 import { GlobalData } from "@features/plugins/useSitePlugin";
 import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
+
+import Link from "next/link";
 
 import { MobileNavDrawer } from "@components/MobileNavDrawer";
 import {
@@ -31,7 +33,7 @@ import {
   NavMenuMobile,
 } from "@features/mainNavigation";
 import { Main } from "@components/Main";
-import { WordmarkLogo, WordmarkLogoLink } from "@components/WordmarkLogo";
+import { WordmarkLogo } from "@components/WordmarkLogo";
 import { useRouter } from "next/router";
 import {
   LocaleMenu,
@@ -39,8 +41,6 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
-
-import { BlockItemProps } from "@types";
 
 interface DynamicPageProps {
   path: string[];
@@ -75,9 +75,11 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
           <MobileNavDrawer>
             <NavMenuMobile />
           </MobileNavDrawer>
-          <WordmarkLogoLink url="/">
-            <WordmarkLogo color="rgb(19,22,57)" width="200px" height="150px" />
-          </WordmarkLogoLink>
+          <Link href="/" passHref>
+            <Box as="a">
+              <WordmarkLogo color="rgb(19,22,57)" width="52" height="36" />
+            </Box>
+          </Link>
           <NavMenuDesktop />
           <LocaleMenu>
             <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
@@ -298,12 +300,11 @@ function getPageData(
           }
           case "ComponentSectionSingleFeatureSection": {
             return {
-              _template: "featureSection",
+              _template: "featureListSection",
               id: section.id,
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
-              paddingTop: section.paddingTop || 0,
               blocks: section.sections
                 ? filterListNullableItems(
                     section.sections
@@ -323,9 +324,9 @@ function getPageData(
                               altText: feature.image.alternativeText || null,
                             },
                       url: feature.url || null,
-                      urlName: feature.urlName || null,
+                      linkLabel: feature.linkLabel || null,
                       bubbleColor: feature.bubbleColor || null,
-                      _template: "ComponentBlocksSingleFeature",
+                      _template: "feature",
                     };
                   })
                 : [],
@@ -333,7 +334,7 @@ function getPageData(
           }
           case "ComponentSectionCardSection": {
             return {
-              _template: "cardSection",
+              _template: "cardListSection",
               id: section.id,
               title: section.title || null,
               subtitle: section.subtitle || null,
@@ -342,7 +343,7 @@ function getPageData(
                 ? filterListNullableItems(section.sections).map<CardBlockData>(
                     (card) => {
                       return {
-                        _template: "ComponentBlocksCard",
+                        _template: "card",
                         id: card.id,
                         title: card.title,
                         description: card.description,
@@ -355,6 +356,7 @@ function getPageData(
                                 altText: card.image.alternativeText || null,
                               },
                         url: card.url ? card.url : null,
+                        linkLabel: card.linkLabel || null,
                       };
                     }
                   )

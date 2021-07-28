@@ -17,7 +17,7 @@
       "repeatable": true,
       "component": "blocks.navigation-block"
     },
-    "menuTitle": {
+    "title": {
       "type": "string",
       "required": false,
       "unique": true

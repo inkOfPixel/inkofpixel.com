@@ -31,7 +31,7 @@
     "bubbleColor": {
       "type": "string"
     },
-    "urlName": {
+    "linkLabel": {
       "type": "string"
     }
   }

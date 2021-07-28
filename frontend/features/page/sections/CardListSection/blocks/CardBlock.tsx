@@ -9,17 +9,16 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
-import { BlockTemplateData, Nullable } from "@types";
 
 export type CardBlockData = BlockTemplateData<
-  "ComponentBlocksCard",
+  "card",
   {
     id: string;
     image?: Nullable<CardImage>;
     title: string;
     description: string;
     url?: Nullable<string>;
-    urlName?: Nullable<string>;
+    linkLabel?: Nullable<string>;
   }
 >;
 
@@ -32,7 +31,7 @@ type CardImage = {
 interface CardBlockProps {
   image?: Nullable<CardImage>;
   url?: string;
-  urlName?: string;
+  linkLabel?: string;
 }
 
 interface ImageRenderProps {
@@ -44,7 +43,7 @@ interface ImageRenderProps {
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardBlock({ url, image, urlName }: CardBlockProps) {
+export function CardBlock({ url, image, linkLabel: urlName }: CardBlockProps) {
   const cms = useCMS();
 
   return (
@@ -89,11 +88,16 @@ export function CardBlock({ url, image, urlName }: CardBlockProps) {
               }
 
               return (
-                <Box pos="relative" overflow="hidden" w="auto" height="auto">
+                <Flex
+                  pos="relative"
+                  justifyContent="center"
+                  overflow="hidden"
+                  w="auto"
+                  height="auto">
                   <Img
                     textAlign="center"
-                    w="full"
-                    h="full"
+                    w={image ? "full" : "72"}
+                    h={image ? "full" : "72"}
                     objectFit="cover"
                     objectPosition="center"
                     opacity="1"
@@ -102,15 +106,19 @@ export function CardBlock({ url, image, urlName }: CardBlockProps) {
                     src={imageSrc}
                     alt="Cover image"
                   />
-                </Box>
+                </Flex>
               );
             }}
           </InlineImage>
         ) : (
-          <Box pos="relative" overflow="hidden" height="72">
+          <Flex
+            justifyContent="center"
+            pos="relative"
+            overflow="hidden"
+            height="72">
             <Img
-              w="full"
-              h="full"
+              w={image ? "full" : "72"}
+              h={image ? "full" : "72"}
               objectFit="cover"
               objectPosition="center"
               opacity="1"
@@ -119,7 +127,7 @@ export function CardBlock({ url, image, urlName }: CardBlockProps) {
               src={
                 image ? STRAPI_URL + image.url : "/images/default-image.png"
               }></Img>
-          </Box>
+          </Flex>
         )}
 
         <Flex
@@ -181,7 +189,8 @@ export function CardBlock({ url, image, urlName }: CardBlockProps) {
         _hover={{
           color: " rgb(5, 195, 182)",
           _after: {
-            paddingLeft: "20px",
+            paddingLeft: "5",
+            color: " rgb(5, 195, 182)",
           },
         }}
         mx="8"
@@ -217,7 +226,7 @@ export const cardBlock: Block = {
         defaultValue: "/",
       },
       {
-        name: "urlName",
+        name: "linkLabel",
         label: "Url name",
         component: "text",
       },

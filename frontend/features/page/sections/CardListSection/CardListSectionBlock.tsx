@@ -9,10 +9,9 @@ import {
   InlineBlocks,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData, Nullable } from "@types";
 
 export type CardSectionBlockData = BlockTemplateData<
-  "cardSection",
+  "cardListSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
@@ -56,45 +55,34 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
           xl: "1200px",
         }}
         letterSpacing="0.02em">
-        {sectionTitle == null ? (
-          <Box
-            color="rgb(5, 195, 182)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="8"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        ) : (
-          <Box
-            as="h2"
-            color="rgb(5, 195, 182)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            w="full"
-            pb="8"
-            pos="relative"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em"
-            _before={{
-              content: "''",
-              display: "block",
-              h: "0.5",
-              w: "14",
-              pos: "absolute",
-              top: "7px",
-              left: "-68px",
-              backgroundColor: "rgb(5, 195, 182)",
-            }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        )}
+        <Box
+          as="h2"
+          color="rgb(5, 195, 182)"
+          fontSize="sm"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          w="full"
+          pb="8"
+          pos="relative"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={
+            sectionTitle
+              ? {
+                  content: `""`,
+                  display: "block",
+                  h: "0.5",
+                  w: "14",
+                  pos: "absolute",
+                  top: "7px",
+                  left: "-68px",
+                  backgroundColor: "rgb(5, 195, 182)",
+                }
+              : undefined
+          }>
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+
         <Box
           fontFamily="Europa"
           fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
@@ -152,19 +140,19 @@ export const cardSectionBlock: Block = {
       subtitle: "Default subtitle",
       blocks: [
         {
-          _template: "ComponentBlocksCard",
+          _template: "card",
           title: "Default title",
           description: "Default description",
           url: "Default link",
         },
         {
-          _template: "ComponentBlocksCard",
+          _template: "card",
           title: "Default title",
           description: "Default description",
           url: "Default link",
         },
         {
-          _template: "ComponentBlocksCard",
+          _template: "card",
           title: "Default title",
           description: "Default description",
           url: "Default link",

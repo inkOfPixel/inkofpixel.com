@@ -7,7 +7,6 @@ import {
   UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
-import { Nullable } from "@types";
 import { useRouter } from "next/router";
 import {
   ContentCreatorPlugin,
@@ -17,7 +16,7 @@ import {
   useForm,
   usePlugin,
 } from "tinacms";
-import { assertNever } from "utils";
+import { assertNever } from "@utils";
 
 export interface PageDataLocalizations {
   id: string;
@@ -60,22 +59,8 @@ export interface MenuData {
 }
 
 export interface AllData {
-  global: {
-    id: string;
-    topbar: {
-      id: string;
-      menu: {
-        id: string;
-        links: NavBlockData[];
-      };
-    };
-  };
-  page: {
-    id: string;
-    title?: string;
-    path?: string;
-    sections: SectionBlockData[];
-  };
+  global: GlobalData;
+  page: PageData;
 }
 
 export function usePagePlugin(allData: AllData): [AllData, Form] {
@@ -83,19 +68,19 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
   const router = useRouter();
 
   const formConfig: FormOptions<AllData> = {
-    id: 1,
-    label: "All",
+    id: allData.page.id,
+    label: "Page settings",
     initialValues: allData,
     onSubmit: async (allData) => {
       const pageInput = getPageInput(allData.page);
       const menuInput = getMenuInput(allData.global.topbar.menu);
+
       try {
         const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
           pageInput,
           menuInput,
         });
-
-        if (response.hasOwnProperty("errors")) {
+        if (response.errors != null) {
           cms.alerts.error("Error while saving changes");
         } else {
           if (response.data) {
@@ -123,18 +108,14 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
   return [all, form];
 }
 
-function getPageInput({
-  id,
-  sections,
-  path,
-  title,
-}: PageData): UpdatePageInput {
+function getPageInput(data: PageData): UpdatePageInput {
   return {
-    where: { id: id },
+    where: { id: data.id },
     data: {
-      title: title,
-      path: path,
-      sections: sections.map((section) => {
+      title: data.title,
+      path: data.path,
+
+      sections: data.sections.map((section) => {
         switch (section._template) {
           case "heroSection": {
             return {
@@ -145,7 +126,8 @@ function getPageInput({
               areBubblesActive: section.areBubblesActive,
             };
           }
-          case "cardSection": {
+
+          case "cardListSection": {
             return {
               __typename: "ComponentSectionCardSection",
               id: section.id,
@@ -153,39 +135,36 @@ function getPageInput({
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
               sections: section.blocks?.map((card) => {
-                if (card != null) {
-                  return {
-                    id: card.id,
-                    title: card.title,
-                    description: card.description,
-                    urlName: card.urlName,
-                    image: card.image
-                      ? {
-                          id: card.image.id,
-                          altText: card.image.altText || null,
-                          url: card.image.url,
-                        }
-                      : null,
-                    url: card.url,
-                  };
-                }
+                return {
+                  id: card.id,
+                  title: card.title,
+                  description: card.description,
+                  linkLabel: card.linkLabel,
+                  image: card.image
+                    ? {
+                        id: card.image.id,
+                        altText: card.image.altText || null,
+                        url: card.image.url,
+                      }
+                    : null,
+                  url: card.url,
+                };
               }),
             };
           }
-          case "featureSection": {
+          case "featureListSection": {
             return {
               __typename: "ComponentSectionSingleFeatureSection",
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle,
-              paddingTop: section.paddingTop,
+              sectionTitle: section.sectionTitle || null,
               sections: section.blocks?.map((feature) => {
                 return {
                   id: feature.id,
                   title: feature.title,
                   description: feature.description,
-                  urlName: feature.urlName,
+                  linkLabel: feature.linkLabel,
                   image: feature.image
                     ? {
                         id: feature.image.id,

@@ -48,7 +48,7 @@ export function NavMenuDesktop() {
 
   return (
     <Flex
-      alignItems={"baseline"}
+      alignItems="baseline"
       flex={{
         lg: "1 1 0%",
       }}

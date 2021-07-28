@@ -76,11 +76,6 @@ export function LocaleMenuButton(props: React.PropsWithChildren<unknown>) {
             value.isOpen ? null : "scale(1.1, 1.1) translate3d(0, 0, 0)"
           }`,
         }}
-        css={{
-          ".toggleButtonContent": {
-            opacity: `${value.isOpen ? "0" : "1"}`,
-          },
-        }}
         sx={{
           "&::before": {
             pos: "absolute",
@@ -118,23 +113,7 @@ export function LocaleMenuList(props: React.PropsWithChildren<unknown>) {
       pos="absolute"
       color="white"
       transition="transform ease-out 2000ms"
-      backgroundColor="transparent"
-      sx={{
-        "& > *": {
-          pos: "relative",
-          mt: "5",
-          backgroundColor: "dark",
-          borderRadius: "full",
-          display: "block",
-          w: "44px",
-          h: "44px",
-          left: "4px",
-          color: "white",
-          textAlign: "center",
-          lineHeight: "44px",
-          transition: "transform 200ms ease-out 0",
-        },
-      }}>
+      backgroundColor="transparent">
       {children}
     </Box>
   );
@@ -158,8 +137,20 @@ export function LocaleMenuLink({
     <Link locale={locale} href={href} passHref>
       <Box
         as="a"
+        pos="relative"
+        display="block"
+        borderRadius="full"
+        w="44px"
+        h="44px"
         userSelect="none"
         fontFamily="Roboto Mono"
+        backgroundColor="dark"
+        mt="5"
+        left="1"
+        color="white"
+        textAlign="center"
+        lineHeight="44px"
+        transition="transform 200ms ease-out 0"
         fontSize="xs"
         transitionTimingFunction="cubic-bezier(0.165, 0.84, 0.44, 1)"
         transitionDuration={`${300 + 100 * index}ms`}
