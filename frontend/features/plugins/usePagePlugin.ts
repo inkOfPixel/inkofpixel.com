@@ -144,38 +144,7 @@ function getPageInput(data: PageData): UpdatePageInput {
             };
           }
 
-          case "projectListSection": {
-            return {
-              __typename: "ComponentSectionProjectsSection",
-              id: section.id,
-              sectionTitle: section.sectionTitle,
-              sectionTitleColor: section.sectionTitleColor,
-              projects: section.projects
-                ? filterListNullableItems(
-                    section.projects
-                  ).map<ProjectBlockData>((project) => {
-                    return {
-                      _template: "project",
-                      id: project.id,
-                      companyName: project.companyName || null,
-                      projectType: project.projectType || null,
-                      description: project.description || null,
-                      linkName: project.linkName || null,
-                      linkPath: project.linkPath || null,
-                      image: project.image
-                        ? {
-                            id: project.image.id,
-                            url: project.image.url,
-                            alternativeText:
-                              project.image.alternativeText || null,
-                          }
-                        : null,
-                    };
-                  })
-                : [],
-            };
-          }
-
+          
           default:
             return assertNever(section);
         }
