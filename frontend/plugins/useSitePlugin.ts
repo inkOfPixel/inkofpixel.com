@@ -1,4 +1,4 @@
-import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
+import { NavBlockData } from "@features/mainNavigation/blocks/NavigationBlock";
 import { SectionBlockData } from "@features/page";
 import {
   CreatePage,
@@ -66,6 +66,7 @@ export interface AllData {
 export function usePagePlugin(allData: AllData): [AllData, Form] {
   const cms = useCMS();
   const router = useRouter();
+  let error = false;
 
   const formConfig: FormOptions<AllData> = {
     id: allData.page.id,
@@ -80,8 +81,11 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
           pageInput,
           menuInput,
         });
-        if (response.errors != null) {
-          cms.alerts.error("Error while saving changes");
+        console.log("response", JSON.stringify(response, null, " "));
+
+        if (response.hasOwnProperty("errors")) {
+          cms.alerts.error("Errore");
+          error = true;
         } else {
           if (response.data) {
             cms.alerts.success("Changes saved!");
@@ -104,6 +108,12 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
     locales: router.locales || [],
   });
   usePlugin(creatorPlugin);
+
+  if (error) {
+    cms.forms.all().forEach((form) => {
+      form.reset();
+    });
+  }
 
   return [all, form];
 }
@@ -139,7 +149,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                   id: card.id,
                   title: card.title,
                   description: card.description,
-                  linkLabel: card.linkLabel,
+                  linkLabel: card.label,
                   image: card.image
                     ? {
                         id: card.image.id,
@@ -164,7 +174,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                   id: feature.id,
                   title: feature.title,
                   description: feature.description,
-                  linkLabel: feature.linkLabel,
+                  linkLabel: feature.label,
                   image: feature.image
                     ? {
                         id: feature.image.id,

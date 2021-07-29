@@ -1,12 +1,11 @@
 import React from "react";
 import { Box, chakra, Flex } from "@chakra-ui/react";
 import { InlineBlocks } from "react-tinacms-inline";
-import { NAV_BLOCK } from "@features/page/navigationMenu";
-import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
+import { NAV_BLOCK } from "@features/mainNavigation/blocks";
+import { NavBlockData } from "@features/mainNavigation/blocks/NavigationBlock";
 import { useCMS } from "tinacms";
 import Logo from "@components/Logo";
 import { useRouter } from "next/router";
-import { BlockTemplateData, Nullable } from "@types";
 
 export type NavigationSectionBlockData = BlockTemplateData<
   "navigationSection",
