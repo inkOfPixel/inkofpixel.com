@@ -1,6 +1,6 @@
-module.exports = nextConfig = {
+module.exports = {
   i18n: {
-    locales: ["en", "it", "de"],
+    locales: ["en", "it"],
     defaultLocale: "en",
   },
 };
