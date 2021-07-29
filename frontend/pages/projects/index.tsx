@@ -61,13 +61,13 @@ function getProjectData(
   if (project != null) {
     return {
       _template: "project",
-      id: project?.id,
-      companyName: project?.companyName || null,
-      projectType: project?.projectType || null,
-      description: project?.description || null,
-      linkName: project?.linkName || null,
-      linkPath: project?.linkPath || null,
-      image: project?.image
+      id: project.id,
+      companyName: project.companyName || null,
+      projectType: project.projectType || null,
+      description: project.description || null,
+      linkName: project.linkName || null,
+      linkPath: project.linkPath || null,
+      image: project.image
         ? {
             id: project.image.id,
             url: project.image.url,
