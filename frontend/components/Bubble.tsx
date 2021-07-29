@@ -1,4 +1,4 @@
-import { Box, BoxProps, chakra, Flex, keyframes } from "@chakra-ui/react";
+import { Box, BoxProps, Flex, keyframes } from "@chakra-ui/react";
 import React from "react";
 
 const random = (min: number, max: number): number => {
@@ -53,7 +53,7 @@ function useRandomNumber(min: number, max: number) {
   return randomNumber;
 }
 
-const Bubble = chakra(({ children, ...otherProps }: BoxProps) => {
+const Bubble = ({ children, ...otherProps }: BoxProps) => {
   const randomNumber = useRandomNumber(3, 6);
   const randomSpeed = useRandomNumber(5, 12);
   return (
@@ -79,6 +79,6 @@ const Bubble = chakra(({ children, ...otherProps }: BoxProps) => {
       </Flex>
     </Box>
   );
-});
+};
 
 export default Bubble;
