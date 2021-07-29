@@ -32,12 +32,15 @@ export type ContactsSectionBlockData = BlockTemplateData<
   }
 >;
 
+interface ContactsSectionBlockProps {
+  sectionTitle: string;
+  areBubblesActive: boolean;
+}
+
 export function ContactsSectionBlock({
   sectionTitle,
   areBubblesActive,
-}: ContactsSectionBlockData) {
-  console.log("bubble", areBubblesActive);
-
+}: ContactsSectionBlockProps) {
   return (
     <Box as="section" w="full">
       <Flex
@@ -51,46 +54,38 @@ export function ContactsSectionBlock({
           sm: "10",
           xl: "0",
         }}
-        m="0 auto"
+        my="0"
+        mx="auto"
         pos="relative"
         flexDir="column">
-        {sectionTitle == null ? (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb={8}
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em"></Box>
-        ) : (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="30px"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em"
-            _before={{
-              content: "''",
-              display: "block",
-              h: "2px",
-              w: "60px",
-              pos: "absolute",
-              top: "7px",
-              left: "-68px",
-              backgroundColor: "rgb(129, 82, 188)",
-            }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        )}
+        <Box
+          color="rgb(129, 82, 188)"
+          fontSize="sm"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="30px"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={
+            sectionTitle
+              ? {
+                  content: "''",
+                  display: "block",
+                  h: "2px",
+                  w: "60px",
+                  pos: "absolute",
+                  top: "7px",
+                  left: "-68px",
+                  backgroundColor: "rgb(129, 82, 188)",
+                }
+              : undefined
+          }>
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+
         <Flex
           flexDir={{
             base: "column",
