@@ -1,5 +1,5 @@
 import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
-import Splash from "@components/Bubble";
+import Bubble from "@components/Bubble";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -19,7 +19,7 @@ export type FeatureBlockData = BlockTemplateData<
     title: Nullable<string>;
     description: Nullable<string>;
     url: Nullable<string>;
-    linkLabel: Nullable<string>;
+    label: Nullable<string>;
     bubbleColor: Nullable<string>;
   }
 >;
@@ -33,7 +33,7 @@ interface FeatureImage {
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
   url?: string;
-  linkLabel?: string;
+  label?: string;
   bubbleColor: Nullable<string>;
 }
 
@@ -45,13 +45,12 @@ interface ImageRenderProps {
 }
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
-const Bubble = chakra(Splash);
 
 export function FeatureBlock({
-  url,
   image,
   bubbleColor,
-  linkLabel: urlName,
+  url,
+  label,
 }: FeatureBlockProps) {
   const cms = useCMS();
 
@@ -167,8 +166,8 @@ export function FeatureBlock({
                   color: "rgb(5, 195, 182)",
                   textDecorationLine: "none",
                 }}
-                href={url}>
-                {urlName ? urlName : "Learn more"}
+                href={url ? url : "/"}>
+                {label ? label : "Learn more"}
               </Link>
             </Box>
           </Box>
@@ -193,6 +192,7 @@ export const featureBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
+      label: "Discover more",
       url: "/",
     },
     fields: [
@@ -202,7 +202,7 @@ export const featureBlock: Block = {
         component: "text",
       },
       {
-        name: "linkLabel",
+        name: "label",
         label: "Url name",
         component: "text",
       },

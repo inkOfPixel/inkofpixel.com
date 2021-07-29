@@ -14,15 +14,15 @@ import {
   LocalizationsData,
   PageDataLocalizations,
   usePagePlugin,
-} from "@features/plugins/useSitePlugin";
+  GlobalData,
+} from "@plugins/useSitePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
 import { CardBlockData } from "@features/page/sections/CardListSection/blocks/CardBlock";
-import { GlobalData } from "@features/plugins/useSitePlugin";
-import { NavBlockData } from "@features/page/navigationMenu/NavigationBlock";
+import { NavBlockData } from "@features/mainNavigation/blocks/NavigationBlock";
 
 import Link from "next/link";
 
@@ -324,7 +324,7 @@ function getPageData(
                               altText: feature.image.alternativeText || null,
                             },
                       url: feature.url || null,
-                      linkLabel: feature.linkLabel || null,
+                      label: feature.label || null,
                       bubbleColor: feature.bubbleColor || null,
                       _template: "feature",
                     };
@@ -356,7 +356,7 @@ function getPageData(
                                 altText: card.image.alternativeText || null,
                               },
                         url: card.url ? card.url : null,
-                        linkLabel: card.linkLabel || null,
+                        label: card.label || null,
                       };
                     }
                   )

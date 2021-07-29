@@ -18,7 +18,7 @@ export type CardBlockData = BlockTemplateData<
     title: string;
     description: string;
     url?: Nullable<string>;
-    linkLabel?: Nullable<string>;
+    label?: Nullable<string>;
   }
 >;
 
@@ -31,7 +31,7 @@ type CardImage = {
 interface CardBlockProps {
   image?: Nullable<CardImage>;
   url?: string;
-  linkLabel?: string;
+  label?: string;
 }
 
 interface ImageRenderProps {
@@ -43,7 +43,7 @@ interface ImageRenderProps {
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function CardBlock({ url, image, linkLabel: urlName }: CardBlockProps) {
+export function CardBlock({ url, label, image }: CardBlockProps) {
   const cms = useCMS();
 
   return (
@@ -195,7 +195,7 @@ export function CardBlock({ url, image, linkLabel: urlName }: CardBlockProps) {
         }}
         mx="8"
         mb="8">
-        <Box as="span">{urlName ? urlName : "Discover more"}</Box>
+        <Box as="span">{label ? label : "Discover more"}</Box>
       </Box>
     </Flex>
   );
@@ -216,17 +216,17 @@ export const cardBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      url: "Default link",
+      label: "Default link",
+      url: "/",
     },
     fields: [
       {
         name: "url",
         label: "Url",
         component: "text",
-        defaultValue: "/",
       },
       {
-        name: "linkLabel",
+        name: "label",
         label: "Url name",
         component: "text",
       },

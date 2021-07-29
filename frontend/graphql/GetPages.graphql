@@ -23,7 +23,7 @@ query GetPages($where: JSON, $locale: String) {
           description
           title
           url
-          linkLabel
+          label
           bubbleColor
           image {
             id
@@ -58,7 +58,7 @@ query GetPages($where: JSON, $locale: String) {
             alternativeText
           }
           url
-          linkLabel
+          label
         }
       }
     }

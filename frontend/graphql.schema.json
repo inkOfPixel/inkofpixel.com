@@ -177,7 +177,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "args": [],
             "type": {
@@ -257,7 +257,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -535,7 +535,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "args": [],
             "type": {
@@ -627,7 +627,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9727,7 +9727,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -9916,7 +9916,7 @@
             "deprecationReason": null
           },
           {
-            "name": "linkLabel",
+            "name": "label",
             "description": null,
             "type": {
               "kind": "SCALAR",
