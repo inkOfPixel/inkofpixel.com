@@ -137,7 +137,7 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
             <Flex flexDirection="column">
               <Box
                 fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
-                m={{ base: 0 }}
+                m="0"
                 w={{
                   base: "full",
                   sm: "75%",
@@ -158,9 +158,8 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                   sm: "75%",
                   md: "600px",
                 }}
-                p={0}
-                m={0}
-                paddingTop={5}
+                m="0"
+                pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
                 fontFamily="Roboto Mono"

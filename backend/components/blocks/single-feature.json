@@ -26,13 +26,15 @@
       "pluginOptions": {}
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "bubbleColor": {
       "type": "string"
     },
     "label": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

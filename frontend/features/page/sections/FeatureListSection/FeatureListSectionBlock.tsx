@@ -101,8 +101,8 @@ export function FeatureListSectionBlock({
             flexShrink={0}
             flexBasis={{
               base: "auto",
-              md: "300px",
-              lg: "400px",
+              md: "80",
+              lg: "96",
             }}>
             <Box
               fontSize="5xl"
@@ -183,29 +183,30 @@ export const featureSectionBlock: Block = {
           _template: "feature",
           title: "Default title",
           description: "Default description",
-          url: "/",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
         {
           _template: "feature",
           title: "Default title",
           description: "Default description",
-          url: "/",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
         {
           _template: "feature",
           title: "Default title",
           description: "Default description",
-          url: "/",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
       ],
     },
-    fields: [
-      {
-        name: "paddingTop",
-        label: "Section padding top",
-        component: "number",
-        defaultValue: 52,
-      },
-    ],
   },
 };

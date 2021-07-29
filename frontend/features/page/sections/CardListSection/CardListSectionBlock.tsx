@@ -143,19 +143,28 @@ export const cardSectionBlock: Block = {
           _template: "card",
           title: "Default title",
           description: "Default description",
-          url: "Default link",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
         {
           _template: "card",
           title: "Default title",
           description: "Default description",
-          url: "Default link",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
         {
           _template: "card",
           title: "Default title",
           description: "Default description",
-          url: "Default link",
+          link: {
+            label: "Default link",
+            url: "/",
+          },
         },
       ],
     },

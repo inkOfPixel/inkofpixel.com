@@ -10,6 +10,7 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
+import { LinkData } from "../../CardListSection/blocks/CardBlock";
 
 export type FeatureBlockData = BlockTemplateData<
   "feature",
@@ -18,8 +19,7 @@ export type FeatureBlockData = BlockTemplateData<
     image: Nullable<FeatureImage>;
     title: Nullable<string>;
     description: Nullable<string>;
-    url: Nullable<string>;
-    label: Nullable<string>;
+    link: LinkData;
     bubbleColor: Nullable<string>;
   }
 >;
@@ -32,8 +32,11 @@ interface FeatureImage {
 
 interface FeatureBlockProps {
   image?: Nullable<FeatureImage>;
-  url?: string;
-  label?: string;
+  link: {
+    url?: string;
+    label?: string;
+  };
+
   bubbleColor: Nullable<string>;
 }
 
@@ -49,8 +52,7 @@ export const StyledInlineTextarea = chakra(InlineTextarea);
 export function FeatureBlock({
   image,
   bubbleColor,
-  url,
-  label,
+  link: { url, label },
 }: FeatureBlockProps) {
   const cms = useCMS();
 
@@ -192,19 +194,34 @@ export const featureBlock: Block = {
     defaultItem: {
       title: "Default title",
       description: "Default description",
-      label: "Discover more",
-      url: "/",
+      link: {
+        label: "Default link",
+        url: "/",
+      },
     },
     fields: [
       {
-        name: "url",
+        name: "link.url",
         label: "Url",
         component: "text",
+        validate(url: string) {
+          if (!url) {
+            return "Required!";
+          }
+          if (!url.startsWith("/")) {
+            return "Url should start with /";
+          }
+        },
       },
       {
-        name: "label",
-        label: "Url name",
+        name: "link.label",
+        label: "Label",
         component: "text",
+        validate(label: string) {
+          if (!label) {
+            return "Required!";
+          }
+        },
       },
       {
         name: "bubbleColor",

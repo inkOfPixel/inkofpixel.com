@@ -39,16 +39,16 @@ export type ComponentBlocksCard = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<UploadFile>;
-  url?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  label: Scalars['String'];
 };
 
 export type ComponentBlocksCardInput = {
   title: Scalars['String'];
   description: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  url?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
+  label: Scalars['String'];
 };
 
 export type ComponentBlocksHero = {
@@ -81,18 +81,18 @@ export type ComponentBlocksSingleFeature = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<UploadFile>;
-  url?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
   bubbleColor?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
 };
 
 export type ComponentBlocksSingleFeatureInput = {
   description: Scalars['String'];
   title: Scalars['String'];
   image?: Maybe<Scalars['ID']>;
-  url?: Maybe<Scalars['String']>;
+  url: Scalars['String'];
   bubbleColor?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
 };
 
 export type ComponentGlobalTopbar = {

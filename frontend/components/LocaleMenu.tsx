@@ -35,7 +35,9 @@ export function LocaleMenu({ children }: React.PropsWithChildren<unknown>) {
   );
 }
 
-export function LocaleMenuButton(props: React.PropsWithChildren<unknown>) {
+export function LocaleMenuButton({
+  children,
+}: React.PropsWithChildren<unknown>) {
   const value = useMenuContext();
   return (
     <Box>
@@ -94,7 +96,7 @@ export function LocaleMenuButton(props: React.PropsWithChildren<unknown>) {
             backgroundColor: "dark",
           },
         }}>
-        {props.children}
+        {children}
       </FormLabel>
     </Box>
   );

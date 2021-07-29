@@ -66,7 +66,6 @@ export interface Data {
 export function usePagePlugin(data: Data): [Data, Form] {
   const cms = useCMS();
   const router = useRouter();
-  let error = false;
 
   const formConfig: FormOptions<Data> = {
     id: data.page.id,
@@ -82,8 +81,10 @@ export function usePagePlugin(data: Data): [Data, Form] {
           menuInput,
         });
 
-        if (response.hasOwnProperty("errors")) {
-          cms.alerts.error("Error while saving changes");
+        console.log("response", JSON.stringify(response, null, " "));
+
+        if (response.errors != null) {
+          cms.alerts.error("Error while saving data", 10000);
         } else {
           if (response.data) {
             cms.alerts.success("Changes saved!");
@@ -107,12 +108,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
   });
   usePlugin(creatorPlugin);
 
-  if (error) {
-    cms.forms.all().forEach((form) => {
-      form.reset();
-    });
-  }
-
   return [formData, form];
 }
 
@@ -122,7 +117,6 @@ function getPageInput(data: PageData): UpdatePageInput {
     data: {
       title: data.title,
       path: data.path,
-
       sections: data.sections.map((section) => {
         switch (section._template) {
           case "heroSection": {
@@ -147,7 +141,7 @@ function getPageInput(data: PageData): UpdatePageInput {
                   id: card.id,
                   title: card.title,
                   description: card.description,
-                  linkLabel: card.label,
+
                   image: card.image
                     ? {
                         id: card.image.id,
@@ -155,7 +149,9 @@ function getPageInput(data: PageData): UpdatePageInput {
                         url: card.image.url,
                       }
                     : null,
-                  url: card.url,
+
+                  label: card.link.label,
+                  url: card.link.url,
                 };
               }),
             };
@@ -172,7 +168,6 @@ function getPageInput(data: PageData): UpdatePageInput {
                   id: feature.id,
                   title: feature.title,
                   description: feature.description,
-                  linkLabel: feature.label,
                   image: feature.image
                     ? {
                         id: feature.image.id,
@@ -180,7 +175,10 @@ function getPageInput(data: PageData): UpdatePageInput {
                         url: feature.image.url,
                       }
                     : null,
-                  url: feature.url,
+
+                  label: feature.link.label,
+                  url: feature.link.url,
+
                   bubbleColor: feature.bubbleColor,
                 };
               }),

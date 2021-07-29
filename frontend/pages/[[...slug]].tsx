@@ -65,7 +65,6 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
   }, [preview]);
 
   const [_, form] = usePagePlugin(data);
-
   const router = useRouter();
 
   return (
@@ -323,8 +322,11 @@ function getPageData(
                               url: feature.image.url,
                               altText: feature.image.alternativeText || null,
                             },
-                      url: feature.url || null,
-                      label: feature.label || null,
+                      link: {
+                        url: feature.url,
+                        label: feature.label,
+                      },
+
                       bubbleColor: feature.bubbleColor || null,
                       _template: "feature",
                     };
@@ -355,8 +357,10 @@ function getPageData(
                                 url: card.image.url,
                                 altText: card.image.alternativeText || null,
                               },
-                        url: card.url ? card.url : null,
-                        label: card.label || null,
+                        link: {
+                          url: card.url,
+                          label: card.label,
+                        },
                       };
                     }
                   )
