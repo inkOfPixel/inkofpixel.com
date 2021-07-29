@@ -18,9 +18,15 @@ export type AboutUsSectionBlockData = BlockTemplateData<
   }
 >;
 
+interface AboutUsSectionBlockProps {
+  sectionTitle: string;
+}
+
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function AboutUsSectionBlock(sectionTitle: string) {
+export function AboutUsSectionBlock({
+  sectionTitle,
+}: AboutUsSectionBlockProps) {
   return (
     <Box as="section" py="52" w="full" pos="relative">
       <Box
@@ -38,45 +44,34 @@ export function AboutUsSectionBlock(sectionTitle: string) {
         boxSizing="border-box"
         pos="relative"
         letterSpacing="0.02em">
-        {sectionTitle == null ? (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="8"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em">
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        ) : (
-          <Box
-            color="rgb(129, 82, 188)"
-            fontSize="sm"
-            textTransform="uppercase"
-            letterSpacing="0.1em"
-            pos="relative"
-            w="full"
-            pb="8"
-            as="h2"
-            fontFamily="Roboto Mono"
-            lineHeight="1.15em"
-            _before={{
-              content: "''",
-              display: "block",
-              h: "0.5",
-              w: "14",
-              pos: "absolute",
-              top: "7px",
-              left: "-68px",
-              backgroundColor: "rgb(129, 82, 188)",
-            }}>
-            <InlineTextarea name="sectionTitle" />
-          </Box>
-        )}
+        <Box
+          color="rgb(129, 82, 188)"
+          fontSize="sm"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="8"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={
+            sectionTitle
+              ? {
+                  content: "''",
+                  display: "block",
+                  h: "0.5",
+                  w: "14",
+                  pos: "absolute",
+                  top: "7px",
+                  left: "-68px",
+                  backgroundColor: "rgb(129, 82, 188)",
+                }
+              : undefined
+          }>
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+
         <Flex flexDirection="column">
           <Box
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
