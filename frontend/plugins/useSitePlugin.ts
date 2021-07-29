@@ -58,20 +58,20 @@ export interface MenuData {
   links: NavBlockData[];
 }
 
-export interface AllData {
+export interface Data {
   global: GlobalData;
   page: PageData;
 }
 
-export function usePagePlugin(allData: AllData): [AllData, Form] {
+export function usePagePlugin(data: Data): [Data, Form] {
   const cms = useCMS();
   const router = useRouter();
   let error = false;
 
-  const formConfig: FormOptions<AllData> = {
-    id: allData.page.id,
+  const formConfig: FormOptions<Data> = {
+    id: data.page.id,
     label: "Page settings",
-    initialValues: allData,
+    initialValues: data,
     onSubmit: async (allData) => {
       const pageInput = getPageInput(allData.page);
       const menuInput = getMenuInput(allData.global.topbar.menu);
@@ -81,11 +81,9 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
           pageInput,
           menuInput,
         });
-        console.log("response", JSON.stringify(response, null, " "));
 
         if (response.hasOwnProperty("errors")) {
-          cms.alerts.error("Errore");
-          error = true;
+          cms.alerts.error("Error while saving changes");
         } else {
           if (response.data) {
             cms.alerts.success("Changes saved!");
@@ -101,7 +99,7 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
     fields: [],
   };
 
-  const [all, form] = useForm<AllData>(formConfig, { values: allData });
+  const [formData, form] = useForm<Data>(formConfig, { values: data });
   usePlugin(form);
 
   const creatorPlugin = getPageCreatorPlugin({
@@ -115,7 +113,7 @@ export function usePagePlugin(allData: AllData): [AllData, Form] {
     });
   }
 
-  return [all, form];
+  return [formData, form];
 }
 
 function getPageInput(data: PageData): UpdatePageInput {

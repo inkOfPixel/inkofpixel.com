@@ -47,7 +47,7 @@ interface DynamicPageProps {
   locale: string;
   preview: boolean;
   previewData?: PreviewData;
-  allData: {
+  data: {
     global: GlobalData;
     page: PageDataLocalizations;
   };
@@ -55,7 +55,7 @@ interface DynamicPageProps {
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-export default function DynamicPage({ allData, preview }: DynamicPageProps) {
+export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
@@ -64,7 +64,7 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
     };
   }, [preview]);
 
-  const [_, form] = usePagePlugin(allData);
+  const [_, form] = usePagePlugin(data);
 
   const router = useRouter();
 
@@ -87,8 +87,8 @@ export default function DynamicPage({ allData, preview }: DynamicPageProps) {
               <LocaleMenuLink href={router.asPath} locale={router.locale!}>
                 {router.locale?.toUpperCase()}
               </LocaleMenuLink>
-              {allData ? (
-                allData.page.localizations?.map((pageLocale) => {
+              {data ? (
+                data.page.localizations?.map((pageLocale) => {
                   return (
                     <LocaleMenuLink
                       key={pageLocale.locale}
@@ -224,7 +224,7 @@ export const getStaticProps: GetStaticProps<
         locale,
         preview,
         previewData: context.previewData,
-        allData: {
+        data: {
           global: globalData,
           page: pageData,
         },
@@ -237,7 +237,7 @@ export const getStaticProps: GetStaticProps<
       path: pathParts,
       locale,
       preview,
-      allData: {
+      data: {
         global: globalData,
         page: pageData,
       },
