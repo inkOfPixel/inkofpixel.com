@@ -18,25 +18,18 @@ import {
 } from "tinacms";
 import { assertNever } from "@utils";
 
-export interface PageDataLocalizations {
+export interface PageData {
   id: string;
   title?: string;
   path?: string;
   sections: SectionBlockData[];
-  localizations: LocalizationsData[];
+  localizations?: LocalizationsData[];
 }
 
 export interface LocalizationsData {
   id?: Nullable<string>;
   path?: Nullable<string>;
   locale?: Nullable<string>;
-}
-
-export interface PageData {
-  id: string;
-  title?: string;
-  path?: string;
-  sections: SectionBlockData[];
 }
 
 export interface PageDataCreateInput {
