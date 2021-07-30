@@ -1,0 +1,18 @@
+query getGlobal {
+  global {
+    id
+    __typename
+    topbar {
+      id
+      menu {
+        id
+        title
+        links {
+          id
+          label
+          url
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+mutation saveChanges($pageInput: updatePageInput, $menuInput: updateMenuInput) {
+  updatePage(input: $pageInput) {
+    page {
+      id
+    }
+  }
+  updateMenu(input: $menuInput) {
+    menu {
+      id
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_section_navigation_sections",
+  "info": {
+    "name": "navigationSection",
+    "icon": "at",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "blocks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.navigation-block"
+    }
+  }
+}
