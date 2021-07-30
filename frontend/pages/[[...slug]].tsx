@@ -12,10 +12,10 @@ import {
 } from "@graphql/generated";
 import {
   LocalizationsData,
-  PageDataLocalizations,
+  PageData,
   usePagePlugin,
   GlobalData,
-} from "@plugins/useSitePlugin";
+} from "@plugins/usePagePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
@@ -49,7 +49,7 @@ interface DynamicPageProps {
   previewData?: PreviewData;
   data: {
     global: GlobalData;
-    page: PageDataLocalizations;
+    page: PageData;
   };
 }
 
@@ -276,7 +276,7 @@ function getGlobalData(
 function getPageData(
   pages: GetPagesQuery["pages"],
   locale: string
-): PageDataLocalizations | undefined {
+): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
 
   if (page == null) {
