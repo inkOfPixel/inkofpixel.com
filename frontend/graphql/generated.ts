@@ -266,7 +266,7 @@ export type Menu = {
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   links?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   published_at?: Maybe<Scalars['DateTime']>;
 };
 
@@ -507,7 +507,7 @@ export type MutationEmailConfirmationArgs = {
 };
 
 export type PageInput = {
-  title: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
   path: Scalars['String'];
   sections?: Maybe<Array<Scalars['PagesSectionsDynamicZoneInput']>>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;

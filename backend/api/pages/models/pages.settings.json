@@ -24,7 +24,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "default": "Page title"
     },
     "path": {
       "type": "string",

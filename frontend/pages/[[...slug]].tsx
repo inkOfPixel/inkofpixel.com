@@ -250,7 +250,6 @@ function getGlobalData(
   if (global == null) {
     return undefined;
   }
-
   if (global.topbar?.menu?.links) {
     let filteredLinks = filterListNullableItems(global.topbar.menu.links);
     return {
@@ -259,6 +258,7 @@ function getGlobalData(
         id: global.topbar.id,
         menu: {
           id: global.topbar.menu.id,
+          title: global.topbar.menu.title,
           links: filteredLinks.map<NavBlockData>((link) => {
             return {
               _template: "navigationLink",
@@ -374,7 +374,7 @@ function getPageData(
 
     return {
       id: page.id,
-      title: page.title,
+      title: page.title == "" ? page.title : "Default title",
       sections: filterListNullableItems(sections),
       path: page.path ? page.path : undefined,
       localizations: page.localizations

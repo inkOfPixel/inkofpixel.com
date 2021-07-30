@@ -55,6 +55,7 @@ export interface GlobalData {
 
 export interface MenuData {
   id: string;
+  title: string;
   links: NavBlockData[];
 }
 
@@ -115,7 +116,6 @@ function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
-      title: data.title,
       path: data.path,
       sections: data.sections.map((section) => {
         switch (section._template) {
@@ -272,6 +272,7 @@ function getMenuInput(data: MenuData): UpdateMenuInput {
   return {
     where: { id: data.id },
     data: {
+      title: data.title,
       links: data.links.map((link) => {
         return {
           id: link.id,

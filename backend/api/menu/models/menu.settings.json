@@ -19,8 +19,9 @@
     },
     "title": {
       "type": "string",
-      "required": false,
-      "unique": true
+      "required": true,
+      "unique": true,
+      "default": "Default title"
     }
   }
 }
