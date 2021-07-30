@@ -17,11 +17,11 @@ export type NavBlockData = BlockTemplateData<
   }
 >;
 
-interface NavBlockProps {
+interface NavigationBlockProps {
   url: string;
 }
 
-export function NavigationBlock({ url }: NavBlockProps) {
+export function NavigationBlock({ url }: NavigationBlockProps) {
   return (
     <Link href={url} passHref>
       <Box
