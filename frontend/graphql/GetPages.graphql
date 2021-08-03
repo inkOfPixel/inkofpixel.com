@@ -65,6 +65,7 @@ query GetPages($where: JSON, $locale: String) {
         __typename
         id
         sectionTitle
+        sectionTitleColor
         title
         subtitle
       }

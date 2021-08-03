@@ -6,13 +6,13 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "./types";
 
 export type AboutUsSectionBlockData = BlockTemplateData<
   "aboutUsSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
+    sectionTitleColor: Nullable<string>;
     title: Nullable<string>;
     subtitle: Nullable<string>;
   }
@@ -20,12 +20,14 @@ export type AboutUsSectionBlockData = BlockTemplateData<
 
 interface AboutUsSectionBlockProps {
   sectionTitle: string;
+  sectionTitleColor: string;
 }
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
 export function AboutUsSectionBlock({
   sectionTitle,
+  sectionTitleColor,
 }: AboutUsSectionBlockProps) {
   return (
     <Box as="section" py="52" w="full" pos="relative">
@@ -45,7 +47,7 @@ export function AboutUsSectionBlock({
         pos="relative"
         letterSpacing="0.02em">
         <Box
-          color="rgb(129, 82, 188)"
+          color={sectionTitleColor || "black"}
           fontSize="sm"
           textTransform="uppercase"
           letterSpacing="0.1em"
@@ -65,7 +67,7 @@ export function AboutUsSectionBlock({
                   pos: "absolute",
                   top: "7px",
                   left: "-68px",
-                  backgroundColor: "rgb(129, 82, 188)",
+                  backgroundColor: sectionTitleColor || "black",
                 }
               : undefined
           }>
@@ -126,6 +128,12 @@ export const aboutUsSectionBlock: Block = {
       subtitle: "Default subtitle",
       sectionTitle: "Default section title",
     },
-    fields: [],
+    fields: [
+      {
+        name: "sectionTitleColor",
+        component: "color",
+        label: "Section title color",
+      },
+    ],
   },
 };

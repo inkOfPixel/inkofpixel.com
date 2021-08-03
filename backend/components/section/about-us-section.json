@@ -2,19 +2,21 @@
   "collectionName": "components_section_about_us_sections",
   "info": {
     "name": "aboutUsSection",
-    "icon": "ambulance",
-    "description": ""
+    "icon": "angle-double-right"
   },
   "options": {},
   "attributes": {
     "sectionTitle": {
       "type": "string"
     },
+    "sectionTitleColor": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
     "subtitle": {
-      "type": "richtext"
+      "type": "string"
     }
   }
 }

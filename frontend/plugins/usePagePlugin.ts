@@ -182,6 +182,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               __typename: "ComponentSectionAboutUsSection",
               id: section.id,
               sectionTitle: section.sectionTitle,
+              sectionTitleColor: section.sectionTitleColor,
               title: section.title,
               subtitle: section.subtitle,
             };

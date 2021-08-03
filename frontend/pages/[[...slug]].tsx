@@ -374,6 +374,7 @@ function getPageData(
               title: section.title || null,
               subtitle: section.subtitle || null,
               sectionTitle: section.sectionTitle || null,
+              sectionTitleColor: section.sectionTitleColor || null,
             };
           }
           default:

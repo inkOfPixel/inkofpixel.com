@@ -1,14 +1,19 @@
-export * from "./types";
-import { heroSectionBlock, HeroSectionBlockData } from "./HeroSectionBlock";
+import {
+  cardSectionBlock,
+  CardSectionBlockData,
+} from "@features/page/sections/CardListSection/CardListSectionBlock";
 import {
   featureSectionBlock,
   FeatureListSectionBlockData,
-} from "./FeatureListSectionBlock";
-import { cardSectionBlock, CardSectionBlockData } from "./CardListSectionBlock";
+} from "@features/page/sections/FeatureListSection/FeatureListSectionBlock";
+import {
+  heroSectionBlock,
+  HeroSectionBlockData,
+} from "@features/page/sections/HeroSection/HeroSectionBlock";
 import {
   aboutUsSectionBlock,
   AboutUsSectionBlockData,
-} from "./AboutUsSectionBlock";
+} from "../page/sections/AboutUsSection/blocks/AboutUsSectionBlock";
 
 export const PAGE_SECTION_BLOCKS = {
   heroSection: heroSectionBlock,
