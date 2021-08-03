@@ -26,7 +26,15 @@
       "pluginOptions": {}
     },
     "url": {
+      "type": "string",
+      "required": true
+    },
+    "bubbleColor": {
       "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "required": true
     }
   }
 }
