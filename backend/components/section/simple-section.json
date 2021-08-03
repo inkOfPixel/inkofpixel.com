@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_section_simple_sections",
+  "info": {
+    "name": "simpleSection",
+    "icon": "angle-double-down"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "sectionTitleColor": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}

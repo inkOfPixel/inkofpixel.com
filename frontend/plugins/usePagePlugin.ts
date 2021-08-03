@@ -177,6 +177,16 @@ function getPageInput(data: PageData): UpdatePageInput {
               }),
             };
           }
+          case "simpleSection": {
+            return {
+              __typename: "ComponentSectionSimpleSection",
+              id: section.id,
+              sectionTitle: section.sectionTitle,
+              sectionTitleColor: section.sectionTitleColor,
+              title: section.title,
+              subtitle: section.subtitle,
+            };
+          }
           default:
             return assertNever(section);
         }
@@ -254,7 +264,7 @@ function getPageCreatorPlugin(
 function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   return {
     data: {
-      title: input.title ? input.title : "Default",
+      title: input.title || "Default",
       path: input.path,
       locale: input.locale,
     },

@@ -367,6 +367,16 @@ function getPageData(
                 : [],
             };
           }
+          case "ComponentSectionSimpleSection": {
+            return {
+              _template: "simpleSection",
+              id: section.id,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              sectionTitle: section.sectionTitle || null,
+              sectionTitleColor: section.sectionTitleColor || null,
+            };
+          }
           default:
             return assertNever(section);
         }
