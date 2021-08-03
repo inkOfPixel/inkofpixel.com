@@ -14,7 +14,6 @@ import {
   BlocksControls,
   InlineTextarea,
 } from "react-tinacms-inline";
-import { BlockTemplateData } from "./types";
 
 import Link from "next/link";
 import Splash from "@components/Splash";

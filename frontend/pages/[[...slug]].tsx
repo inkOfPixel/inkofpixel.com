@@ -379,7 +379,7 @@ function getPageData(
               areBubblesActive: section.areBubblesActive || null,
             };
           }
-          
+
           case "ComponentSectionSimpleSection": {
             return {
               _template: "simpleSection",

@@ -14,7 +14,7 @@ export type HeroSectionBlockData = BlockTemplateData<
     id: string;
     title: Nullable<string>;
     subtitle: Nullable<string>;
-    areBubblesActive: boolean;
+    areBubblesActive: Nullable<boolean>;
   }
 >;
 
