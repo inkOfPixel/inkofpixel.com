@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_section_about_us_sections",
+  "collectionName": "components_section_simple_sections",
   "info": {
-    "name": "aboutUsSection",
-    "icon": "angle-double-right"
+    "name": "simpleSection",
+    "icon": "angle-double-down"
   },
   "options": {},
   "attributes": {

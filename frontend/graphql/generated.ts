@@ -51,18 +51,6 @@ export type ComponentBlocksCardInput = {
   label: Scalars['String'];
 };
 
-export type ComponentBlocksHero = {
-  __typename?: 'ComponentBlocksHero';
-  id: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
-export type ComponentBlocksHeroInput = {
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type ComponentBlocksNavigationBlock = {
   __typename?: 'ComponentBlocksNavigationBlock';
   id: Scalars['ID'];
@@ -117,22 +105,6 @@ export type ComponentMenuPageLinkInput = {
   link?: Maybe<Scalars['ID']>;
 };
 
-export type ComponentSectionAboutUsSection = {
-  __typename?: 'ComponentSectionAboutUsSection';
-  id: Scalars['ID'];
-  sectionTitle?: Maybe<Scalars['String']>;
-  sectionTitleColor?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
-export type ComponentSectionAboutUsSectionInput = {
-  sectionTitle?: Maybe<Scalars['String']>;
-  sectionTitleColor?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type ComponentSectionCardSection = {
   __typename?: 'ComponentSectionCardSection';
   id: Scalars['ID'];
@@ -172,14 +144,20 @@ export type ComponentSectionHeroSectionInput = {
   areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
-export type ComponentSectionNavigationSection = {
-  __typename?: 'ComponentSectionNavigationSection';
+export type ComponentSectionSimpleSection = {
+  __typename?: 'ComponentSectionSimpleSection';
   id: Scalars['ID'];
-  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlock>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
+  sectionTitleColor?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
 };
 
-export type ComponentSectionNavigationSectionInput = {
-  blocks?: Maybe<Array<Maybe<ComponentBlocksNavigationBlockInput>>>;
+export type ComponentSectionSimpleSectionInput = {
+  sectionTitle?: Maybe<Scalars['String']>;
+  sectionTitleColor?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionSingleFeatureSection = {
@@ -346,7 +324,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksHero | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionAboutUsSection | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionNavigationSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -620,7 +598,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionAboutUsSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionSimpleSection;
 
 
 export enum PublicationState {
@@ -1301,12 +1279,6 @@ export type EditComponentBlocksCardInput = {
   label?: Maybe<Scalars['String']>;
 };
 
-export type EditComponentBlocksHeroInput = {
-  id?: Maybe<Scalars['ID']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type EditComponentBlocksNavigationBlockInput = {
   id?: Maybe<Scalars['ID']>;
   label?: Maybe<Scalars['String']>;
@@ -1334,14 +1306,6 @@ export type EditComponentMenuPageLinkInput = {
   link?: Maybe<Scalars['ID']>;
 };
 
-export type EditComponentSectionAboutUsSectionInput = {
-  id?: Maybe<Scalars['ID']>;
-  sectionTitle?: Maybe<Scalars['String']>;
-  sectionTitleColor?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  subtitle?: Maybe<Scalars['String']>;
-};
-
 export type EditComponentSectionCardSectionInput = {
   id?: Maybe<Scalars['ID']>;
   title?: Maybe<Scalars['String']>;
@@ -1361,9 +1325,12 @@ export type EditComponentSectionHeroSectionInput = {
   areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
-export type EditComponentSectionNavigationSectionInput = {
+export type EditComponentSectionSimpleSectionInput = {
   id?: Maybe<Scalars['ID']>;
-  blocks?: Maybe<Array<Maybe<EditComponentBlocksNavigationBlockInput>>>;
+  sectionTitle?: Maybe<Scalars['String']>;
+  sectionTitleColor?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentSectionSingleFeatureSectionInput = {
@@ -1542,8 +1509,8 @@ export type GetPagesQuery = (
         )> }
       )>>> }
     ) | (
-      { __typename: 'ComponentSectionAboutUsSection' }
-      & Pick<ComponentSectionAboutUsSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
+      { __typename: 'ComponentSectionSimpleSection' }
+      & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
     )>>> }
   )>>> }
 );
@@ -1691,7 +1658,7 @@ export const GetPages = `
           label
         }
       }
-      ... on ComponentSectionAboutUsSection {
+      ... on ComponentSectionSimpleSection {
         __typename
         id
         sectionTitle

@@ -367,9 +367,9 @@ function getPageData(
                 : [],
             };
           }
-          case "ComponentSectionAboutUsSection": {
+          case "ComponentSectionSimpleSection": {
             return {
-              _template: "aboutUsSection",
+              _template: "simpleSection",
               id: section.id,
               title: section.title || null,
               subtitle: section.subtitle || null,

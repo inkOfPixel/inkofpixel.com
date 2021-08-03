@@ -61,7 +61,7 @@ query GetPages($where: JSON, $locale: String) {
           label
         }
       }
-      ... on ComponentSectionAboutUsSection {
+      ... on ComponentSectionSimpleSection {
         __typename
         id
         sectionTitle

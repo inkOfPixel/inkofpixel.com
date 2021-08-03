@@ -177,9 +177,9 @@ function getPageInput(data: PageData): UpdatePageInput {
               }),
             };
           }
-          case "aboutUsSection": {
+          case "simpleSection": {
             return {
-              __typename: "ComponentSectionAboutUsSection",
+              __typename: "ComponentSectionSimpleSection",
               id: section.id,
               sectionTitle: section.sectionTitle,
               sectionTitleColor: section.sectionTitleColor,

@@ -7,8 +7,8 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 
-export type AboutUsSectionBlockData = BlockTemplateData<
-  "aboutUsSection",
+export type SimpleSectionBlockData = BlockTemplateData<
+  "simpleSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
@@ -18,17 +18,17 @@ export type AboutUsSectionBlockData = BlockTemplateData<
   }
 >;
 
-interface AboutUsSectionBlockProps {
+interface SimpleSectionBlockProps {
   sectionTitle: string;
   sectionTitleColor: string;
 }
 
 const StyledInlineTextarea = chakra(InlineTextarea);
 
-export function AboutUsSectionBlock({
+export function SimpleSectionBlock({
   sectionTitle,
   sectionTitleColor,
-}: AboutUsSectionBlockProps) {
+}: SimpleSectionBlockProps) {
   return (
     <Box as="section" py="52" w="full" pos="relative">
       <Box
@@ -114,15 +114,15 @@ export function AboutUsSectionBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <AboutUsSectionBlock {...data} />
+      <SimpleSectionBlock {...data} />
     </BlocksControls>
   );
 }
 
-export const aboutUsSectionBlock: Block = {
+export const simpleSectionBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "About us Section",
+    label: "Simple Section",
     defaultItem: {
       title: "Default title",
       subtitle: "Default subtitle",

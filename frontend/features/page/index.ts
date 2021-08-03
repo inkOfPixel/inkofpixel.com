@@ -11,19 +11,19 @@ import {
   CardSectionBlockData,
 } from "./sections/CardListSection/CardListSectionBlock";
 import {
-  AboutUsSectionBlockData,
-  aboutUsSectionBlock,
-} from "./sections/AboutUsSection/blocks/AboutUsSectionBlock";
+  SimpleSectionBlockData,
+  simpleSectionBlock,
+} from "./sections/AboutUsSection/blocks/SimpleSectionBlock";
 
 export const SECTION_PAGE_BLOCKS = {
   heroSection: heroSectionBlock,
   featureListSection: featureSectionBlock,
   cardListSection: cardSectionBlock,
-  aboutUsSection: aboutUsSectionBlock,
+  simpleSection: simpleSectionBlock,
 };
 
 export type SectionBlockData =
   | HeroSectionBlockData
   | FeatureListSectionBlockData
   | CardSectionBlockData
-  | AboutUsSectionBlockData;
+  | SimpleSectionBlockData;
