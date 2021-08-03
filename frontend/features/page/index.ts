@@ -13,7 +13,7 @@ import {
 import {
   SimpleSectionBlockData,
   simpleSectionBlock,
-} from "./sections/AboutUsSection/blocks/SimpleSectionBlock";
+} from "./sections/SimpleSection/blocks/SimpleSectionBlock";
 
 export const SECTION_PAGE_BLOCKS = {
   heroSection: heroSectionBlock,
