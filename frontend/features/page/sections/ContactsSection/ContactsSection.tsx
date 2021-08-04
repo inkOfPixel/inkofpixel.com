@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Input,
   Text,
@@ -163,31 +162,47 @@ export function ContactsSectionBlock({
   );
 }
 
+const blankForm = {
+  name: "",
+  email: "",
+  message: "",
+  isSubmitted: false,
+};
+
+function reducer(state: any, action: any) {
+  switch (action.type) {
+    case "setName":
+      return {
+        ...state,
+        name: action.value,
+      };
+    case "setEmail":
+      return {
+        ...state,
+        email: action.value,
+      };
+    case "setMessage":
+      return {
+        ...state,
+        message: action.value,
+      };
+    case "setIsSubmitted":
+      return {
+        ...state,
+        isSubmitted: !state.isSubmitted,
+      };
+  }
+}
+
 function ContactsForm() {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
-
-  const [isSubmitted, setIsSubmited] = React.useState(false);
-
-  function handleNameChange(event: any) {
-    setName(event.target.value);
-  }
-
-  function handleEmailChange(event: any) {
-    setEmail(event.target.value);
-  }
-
-  function handleMessageChange(event: any) {
-    setMessage(event.target.value);
-  }
+  const [state, dispatch] = React.useReducer(reducer, blankForm);
 
   async function sendMessage(event: Event) {
     const input: CreateFormMessageInput = {
       data: {
-        name: name,
-        email: email,
-        message: message,
+        name: state.name,
+        email: state.email,
+        message: state.message,
       },
     };
 
@@ -198,17 +213,7 @@ function ContactsForm() {
       InsertFormMessageMutation,
       InsertFormMessageMutationVariables
     >(InsertFormMessage, { input });
-    setIsSubmited(!isSubmitted);
-  }
-
-  function validateName(value: string) {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value.toLowerCase() !== "naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error;
+    dispatch({ type: "setIsSubmitted" });
   }
 
   return (
@@ -233,7 +238,7 @@ function ContactsForm() {
         md: "column",
         lg: "row",
       }}>
-      <Box display={isSubmitted ? "inline-block" : "none"} pb="12">
+      <Box display={state.isSubmitted ? "inline-block" : "none"} pb="12">
         <Text
           as="h3"
           fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
@@ -249,7 +254,7 @@ function ContactsForm() {
       </Box>
       <Box
         as="form"
-        display={isSubmitted ? "none" : "inline-block"}
+        display={state.isSubmitted ? "none" : "inline-block"}
         onSubmit={sendMessage}>
         <Box
           w={{
@@ -274,8 +279,10 @@ function ContactsForm() {
               Name
             </FormLabel>
             <Input
-              onChange={handleNameChange}
-              value={name}
+              onChange={(event) => {
+                dispatch({ type: "setName", value: event.target.value });
+              }}
+              value={state.name}
               id="1"
               borderX="none"
               borderTop="none"
@@ -300,7 +307,6 @@ function ContactsForm() {
               type="text"
               placeholder="Peter Smith"
             />
-            <FormErrorMessage>{validateName}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -335,8 +341,11 @@ function ContactsForm() {
               Email
             </FormLabel>
             <Input
-              onChange={handleEmailChange}
+              onChange={(event) => {
+                dispatch({ type: "setEmail", value: event.target.value });
+              }}
               id="2"
+              value={state.email}
               borderX="none"
               borderTop="none"
               borderRadius="0"
@@ -360,8 +369,6 @@ function ContactsForm() {
               type="email"
               placeholder="example@yourdomain.com"
             />
-            <FormErrorMessage>{email}</FormErrorMessage>
-
             <Box
               as="span"
               pos="absolute"
@@ -392,8 +399,11 @@ function ContactsForm() {
               Message
             </FormLabel>
             <Input
-              onChange={handleMessageChange}
+              onChange={(event) => {
+                dispatch({ type: "setMessage", value: event.target.value });
+              }}
               id="3"
+              value={state.message}
               borderX="none"
               borderTop="none"
               borderRadius="0"
@@ -417,7 +427,6 @@ function ContactsForm() {
               type="text"
               placeholder="Hi there..."
             />
-            <FormErrorMessage>{message}</FormErrorMessage>
 
             <Box
               userSelect="none"
