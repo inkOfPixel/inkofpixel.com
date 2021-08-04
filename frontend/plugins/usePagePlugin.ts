@@ -75,8 +75,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
           menuInput,
         });
 
-        console.log("response", JSON.stringify(response, null, " "));
-
         if (response.errors != null) {
           cms.alerts.error("Error while saving data", 10000);
         } else {
