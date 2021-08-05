@@ -182,14 +182,14 @@ type Action = {
   fieldName?: FormFieldName;
 };
 
-interface State {
+/* interface State {
   name: string;
   email: string;
   message: string;
   isSubmitted: boolean;
-}
+} */
 
-function reducer(state: State, action: Action) {
+function reducer(state: any, action: Action) {
   switch (action.type) {
     case "update-field":
       switch (action.fieldName) {
@@ -219,11 +219,11 @@ function reducer(state: State, action: Action) {
         ...state,
         isSubmitted: true,
       };
-      break;
     }
 
     case "failed": {
       alert("Failed");
+      break;
     }
   }
 }
