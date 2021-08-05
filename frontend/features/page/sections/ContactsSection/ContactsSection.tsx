@@ -182,12 +182,12 @@ type Action = {
   fieldName?: FormFieldName;
 };
 
-type State = {
+interface State {
   name: string;
   email: string;
   message: string;
   isSubmitted: boolean;
-};
+}
 
 function reducer(state: State, action: Action) {
   switch (action.type) {
@@ -372,7 +372,7 @@ export function ContactsForm() {
           m="2.5"
           pos="relative"
           display="inline-block">
-          <FormControl id="email" isRequired>
+          <FormControl id="email" isInvalid={state.email === "" ? true : false}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -394,6 +394,7 @@ export function ContactsForm() {
               }}
               id="2"
               value={state.email}
+              isRequired
               borderX="none"
               borderTop="none"
               borderRadius="0"
@@ -417,6 +418,7 @@ export function ContactsForm() {
               type="email"
               placeholder="example@yourdomain.com"
             />
+            <FormErrorMessage>{"Email is required"}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -434,7 +436,9 @@ export function ContactsForm() {
           m="2.5"
           pos="relative"
           display="inline-block">
-          <FormControl id="message" isRequired>
+          <FormControl
+            id="message"
+            isInvalid={state.message == "" ? true : false}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -479,7 +483,7 @@ export function ContactsForm() {
               type="text"
               placeholder="Hi there..."
             />
-
+            <FormErrorMessage>{"Message is required"}</FormErrorMessage>
             <Box
               userSelect="none"
               as="span"
