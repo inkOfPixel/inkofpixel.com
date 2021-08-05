@@ -278,7 +278,6 @@ function getPageData(
   locale: string
 ): PageData | undefined {
   const page = pages?.find((page) => page?.locale === locale);
-  console.log("page", JSON.stringify(page, null, " "));
 
   if (page == null) {
     return undefined;

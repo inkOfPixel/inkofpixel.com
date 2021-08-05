@@ -25,7 +25,7 @@ import {
   InsertFormMessageMutation,
   InsertFormMessageMutationVariables,
 } from "@graphql/generated";
-import { Social } from "@components/Social";
+import { SocialLink } from "@components/SocialLink";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -133,24 +133,24 @@ export function ContactsSectionBlock({
         </Flex>
 
         <Flex justifyContent="flex-end" w="full" mb="32">
-          <Social
-            link="https://twitter.com/inkofpixel"
+          <SocialLink
+            href="https://twitter.com/inkofpixel"
             color="rgba(29, 161, 242, 0.7)"
             onHoverColor="rgba(29, 161, 242, 1)">
             <TwitterIcon color="white" />
-          </Social>
-          <Social
-            link="https://facebook.com/inkofpixel"
+          </SocialLink>
+          <SocialLink
+            href="https://facebook.com/inkofpixel"
             color="rgba(59, 89, 152, 0.7)"
             onHoverColor="rgba(59, 89, 152, 1)">
             <FacebookIcon color="white" />
-          </Social>
-          <Social
-            link="https://github.com/inkofpixel"
+          </SocialLink>
+          <SocialLink
+            href="https://github.com/inkofpixel"
             color="rgba(24, 23, 23, 0.7)"
             onHoverColor="rgba(24, 23, 23, 1)">
             <GithubIcon color="white" />
-          </Social>
+          </SocialLink>
         </Flex>
       </Flex>
     </Box>
@@ -164,55 +164,42 @@ const blankForm = {
   isSubmitted: false,
 };
 
+interface UpdateFieldAction {
+  type: FormActionType.UpdateField;
+  name: string;
+  value: string;
+}
+
+interface SuccessAction {
+  type: FormActionType.Success;
+}
+
+interface FailAction {
+  type: FormActionType.Failed;
+}
+
 enum FormActionType {
   UpdateField = "update-field",
   Success = "success",
   Failed = "failed",
 }
 
-enum FormFieldName {
-  Name = "name",
-  Message = "message",
-  Email = "email",
-}
+type FormAction = UpdateFieldAction | SuccessAction | FailAction;
 
-type Action = {
-  type: FormActionType;
-  value?: string;
-  fieldName?: FormFieldName;
-};
-
-/* interface State {
+interface State {
   name: string;
   email: string;
   message: string;
   isSubmitted: boolean;
-} */
+}
 
-function reducer(state: any, action: Action) {
+function reducer(state: State, action: FormAction) {
   switch (action.type) {
     case "update-field":
-      switch (action.fieldName) {
-        case "name": {
-          return {
-            ...state,
-            name: action.value,
-          };
-        }
-        case "email": {
-          return {
-            ...state,
-            email: action.value,
-          };
-        }
-        case "message": {
-          return {
-            ...state,
-            message: action.value,
-          };
-        }
-      }
-      break;
+      return {
+        ...state,
+        [action.name]: action.value?.toString(),
+      };
 
     case "success": {
       return {
@@ -321,7 +308,7 @@ export function ContactsForm() {
                 dispatch({
                   type: FormActionType.UpdateField,
                   value: event.target.value,
-                  fieldName: FormFieldName.Name,
+                  name: "name",
                 });
               }}
               value={state.name}
@@ -389,7 +376,7 @@ export function ContactsForm() {
                 dispatch({
                   type: FormActionType.UpdateField,
                   value: event.target.value,
-                  fieldName: FormFieldName.Email,
+                  name: "email",
                 });
               }}
               id="2"
@@ -455,7 +442,7 @@ export function ContactsForm() {
                 dispatch({
                   type: FormActionType.UpdateField,
                   value: event.target.value,
-                  fieldName: FormFieldName.Message,
+                  name: "message",
                 });
               }}
               id="3"

@@ -3,15 +3,15 @@ import Link from "next/link";
 import React from "react";
 import Splash from "./Splash";
 
-export type SocialProps = React.PropsWithChildren<{
-  link: string;
+export type SocialLinkProps = React.PropsWithChildren<{
+  href: string;
   color: string;
   onHoverColor: string;
 }>;
 
-export function Social({ link, color, onHoverColor, children }: SocialProps) {
+export function SocialLink({ href, color, onHoverColor, children }: SocialLinkProps) {
   return (
-    <Link href={link} passHref>
+    <Link href={href} passHref>
       <Box as="a" m="1">
         <Splash
           className="contactBubble"
