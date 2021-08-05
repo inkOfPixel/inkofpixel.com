@@ -18,9 +18,6 @@
     },
     "sectionTitle": {
       "type": "string"
-    },
-    "areBubblesActive": {
-      "type": "boolean"
     }
   }
 }

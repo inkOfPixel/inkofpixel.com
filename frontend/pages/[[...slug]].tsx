@@ -376,7 +376,6 @@ function getPageData(
               subtitle: section.subtitle || null,
               email: section.email || null,
               sectionTitle: section.sectionTitle || null,
-              areBubblesActive: section.areBubblesActive || null,
             };
           }
 

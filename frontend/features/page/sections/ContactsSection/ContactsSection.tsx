@@ -3,6 +3,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Text,
@@ -34,18 +35,15 @@ export type ContactsSectionBlockData = BlockTemplateData<
     subtitle: Nullable<string>;
     email: Nullable<string>;
     sectionTitle: Nullable<string>;
-    areBubblesActive: Nullable<boolean>;
   }
 >;
 
 interface ContactsSectionBlockProps {
   sectionTitle: string;
-  areBubblesActive: boolean;
 }
 
 export function ContactsSectionBlock({
   sectionTitle,
-  areBubblesActive,
 }: ContactsSectionBlockProps) {
   return (
     <Box as="section" w="full">
@@ -136,21 +134,18 @@ export function ContactsSectionBlock({
 
         <Flex justifyContent="flex-end" w="full" mb="32">
           <Social
-            isBubbleActive={areBubblesActive}
             link="https://twitter.com/inkofpixel"
             color="rgba(29, 161, 242, 0.7)"
             onHoverColor="rgba(29, 161, 242, 1)">
             <TwitterIcon color="white" />
           </Social>
           <Social
-            isBubbleActive={areBubblesActive}
             link="https://facebook.com/inkofpixel"
             color="rgba(59, 89, 152, 0.7)"
             onHoverColor="rgba(59, 89, 152, 1)">
             <FacebookIcon color="white" />
           </Social>
           <Social
-            isBubbleActive={areBubblesActive}
             link="https://github.com/inkofpixel"
             color="rgba(24, 23, 23, 0.7)"
             onHoverColor="rgba(24, 23, 23, 1)">
@@ -169,35 +164,74 @@ const blankForm = {
   isSubmitted: false,
 };
 
-function reducer(state: any, action: any) {
+enum FormActionType {
+  UpdateField = "update-field",
+  Success = "success",
+  Failed = "failed",
+}
+
+enum FormFieldName {
+  Name = "name",
+  Message = "message",
+  Email = "email",
+}
+
+type Action = {
+  type: FormActionType;
+  value?: string;
+  fieldName?: FormFieldName;
+};
+
+type State = {
+  name: string;
+  email: string;
+  message: string;
+  isSubmitted: boolean;
+};
+
+function reducer(state: State, action: Action) {
   switch (action.type) {
-    case "setName":
+    case "update-field":
+      switch (action.fieldName) {
+        case "name": {
+          return {
+            ...state,
+            name: action.value,
+          };
+        }
+        case "email": {
+          return {
+            ...state,
+            email: action.value,
+          };
+        }
+        case "message": {
+          return {
+            ...state,
+            message: action.value,
+          };
+        }
+      }
+      break;
+
+    case "success": {
       return {
         ...state,
-        name: action.value,
+        isSubmitted: true,
       };
-    case "setEmail":
-      return {
-        ...state,
-        email: action.value,
-      };
-    case "setMessage":
-      return {
-        ...state,
-        message: action.value,
-      };
-    case "setIsSubmitted":
-      return {
-        ...state,
-        isSubmitted: !state.isSubmitted,
-      };
+      break;
+    }
+
+    case "failed": {
+      alert("Failed");
+    }
   }
 }
 
-function ContactsForm() {
+export function ContactsForm() {
   const [state, dispatch] = React.useReducer(reducer, blankForm);
 
-  async function sendMessage(event: Event) {
+  async function onFormSubmit(event: React.FormEvent) {
     const input: CreateFormMessageInput = {
       data: {
         name: state.name,
@@ -207,13 +241,17 @@ function ContactsForm() {
     };
 
     event.preventDefault();
-    console.log(input);
 
-    await fetchGraphQL<
+    const response = await fetchGraphQL<
       InsertFormMessageMutation,
       InsertFormMessageMutationVariables
     >(InsertFormMessage, { input });
-    dispatch({ type: "setIsSubmitted" });
+
+    if (response) {
+      dispatch({ type: FormActionType.Success });
+    } else {
+      dispatch({ type: FormActionType.Failed });
+    }
   }
 
   return (
@@ -254,8 +292,8 @@ function ContactsForm() {
       </Box>
       <Box
         as="form"
-        display={state.isSubmitted ? "none" : "inline-block"}
-        onSubmit={sendMessage}>
+        onSubmit={onFormSubmit}
+        display={state.isSubmitted ? "none" : "inline-block"}>
         <Box
           w={{
             base: "calc(100% - 20px)",
@@ -266,7 +304,7 @@ function ContactsForm() {
           m="2.5"
           display="inline-block"
           pos="relative">
-          <FormControl id="name" isRequired>
+          <FormControl id="name" isInvalid={state.name == "" ? true : false}>
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -280,7 +318,11 @@ function ContactsForm() {
             </FormLabel>
             <Input
               onChange={(event) => {
-                dispatch({ type: "setName", value: event.target.value });
+                dispatch({
+                  type: FormActionType.UpdateField,
+                  value: event.target.value,
+                  fieldName: FormFieldName.Name,
+                });
               }}
               value={state.name}
               id="1"
@@ -306,7 +348,9 @@ function ContactsForm() {
               }}
               type="text"
               placeholder="Peter Smith"
+              isRequired
             />
+            <FormErrorMessage>{"Name is required"}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -342,7 +386,11 @@ function ContactsForm() {
             </FormLabel>
             <Input
               onChange={(event) => {
-                dispatch({ type: "setEmail", value: event.target.value });
+                dispatch({
+                  type: FormActionType.UpdateField,
+                  value: event.target.value,
+                  fieldName: FormFieldName.Email,
+                });
               }}
               id="2"
               value={state.email}
@@ -400,7 +448,11 @@ function ContactsForm() {
             </FormLabel>
             <Input
               onChange={(event) => {
-                dispatch({ type: "setMessage", value: event.target.value });
+                dispatch({
+                  type: FormActionType.UpdateField,
+                  value: event.target.value,
+                  fieldName: FormFieldName.Message,
+                });
               }}
               id="3"
               value={state.message}
@@ -506,12 +558,6 @@ export const contactsSectionBlock: Block = {
       email: "hello@inkofpixel.com",
       blocks: [],
     },
-    fields: [
-      {
-        name: "areBubblesActive",
-        component: "toggle",
-        label: "Activate bubbles",
-      },
-    ],
+    fields: [],
   },
 };

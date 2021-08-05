@@ -128,7 +128,6 @@ export type ComponentSectionContactsSection = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
-  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionContactsSectionInput = {
@@ -136,7 +135,6 @@ export type ComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
-  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionFooterSection = {
@@ -1486,7 +1484,6 @@ export type EditComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
-  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type EditComponentSectionFooterSectionInput = {
@@ -1704,7 +1701,7 @@ export type GetPagesQuery = (
       )>>> }
     ) | (
       { __typename: 'ComponentSectionContactsSection' }
-      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle' | 'areBubblesActive'>
+      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
     ) | (
       { __typename: 'ComponentSectionSimpleSection' }
       & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
@@ -1878,7 +1875,6 @@ export const GetPages = `
         subtitle
         email
         sectionTitle
-        areBubblesActive
       }
       ... on ComponentSectionSimpleSection {
         __typename

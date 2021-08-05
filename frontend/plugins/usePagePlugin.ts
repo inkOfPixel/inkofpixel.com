@@ -193,7 +193,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               email: section.email,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              areBubblesActive: section.areBubblesActive,
             };
           }
           default:

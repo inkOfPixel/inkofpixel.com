@@ -68,7 +68,6 @@ query GetPages($where: JSON, $locale: String) {
         subtitle
         email
         sectionTitle
-        areBubblesActive
       }
       ... on ComponentSectionSimpleSection {
         __typename
