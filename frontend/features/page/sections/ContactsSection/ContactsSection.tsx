@@ -26,6 +26,7 @@ import {
   InsertFormMessageMutationVariables,
 } from "@graphql/generated";
 import { SocialLink } from "@components/SocialLink";
+import { assertNever } from "@utils";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -157,11 +158,17 @@ export function ContactsSectionBlock({
   );
 }
 
+enum FormStatus {
+  Idle = "idle",
+  Submitting = "submitting",
+  Submitted = "submitted",
+}
+
 const blankForm = {
-  name: "",
-  email: "",
-  message: "",
-  isSubmitted: false,
+  status: FormStatus.Idle,
+  values: { name: "", email: "", message: "" },
+  validationErros: { name: null, email: null, message: null },
+  submitError: "",
 };
 
 interface UpdateFieldAction {
@@ -178,39 +185,113 @@ interface FailAction {
   type: FormActionType.Failed;
 }
 
+interface SubmitAction {
+  type: FormActionType.Submit;
+}
+
 enum FormActionType {
   UpdateField = "update-field",
   Success = "success",
   Failed = "failed",
+  Submit = "submit",
 }
 
-type FormAction = UpdateFieldAction | SuccessAction | FailAction;
+type FormAction = UpdateFieldAction | SuccessAction | FailAction | SubmitAction;
 
-interface State {
-  name: string;
-  email: string;
-  message: string;
-  isSubmitted: boolean;
+interface FormState {
+  status: FormStatus;
+  values: {
+    name: string;
+    email: string;
+    message: string;
+  };
+  validationErros: {
+    name: Nullable<string>;
+    email: Nullable<string>;
+    message: Nullable<string>;
+  };
+  submitError: string;
 }
 
-function reducer(state: State, action: FormAction) {
+function reducer(state: FormState, action: FormAction) {
+  const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
   switch (action.type) {
-    case "update-field":
+    case FormActionType.UpdateField: {
       return {
         ...state,
-        [action.name]: action.value?.toString(),
-      };
-
-    case "success": {
-      return {
-        ...state,
-        isSubmitted: true,
+        values: {
+          ...state.values,
+          [action.name]: action.value,
+        },
       };
     }
 
-    case "failed": {
-      alert("Failed");
-      break;
+    case FormActionType.Submit: {
+      //Check errors
+      console.log("values", JSON.stringify(state.values, null, " "));
+      console.log("errors", JSON.stringify(state.validationErros, null, " "));
+
+      let error = false;
+      if (
+        state.values.name == "" ||
+        !state.values ||
+        state.values.name?.replace(/\s/g, "").length == 0
+      ) {
+        state.validationErros.name = "Please insert your name";
+        error = true;
+      } else {
+        if (
+          state.values.email == "" ||
+          !state.values.email ||
+          state.values.email?.replace(/\s/g, "").length == 0
+        ) {
+          state.validationErros.email = "Please insert your email";
+          error = true;
+        } else {
+          if (regex.test(state.values.email)) {
+            state.validationErros.email = "Please insert a valid email";
+            error = true;
+          } else {
+            if (state.values.message == "" || !state.values.message) {
+              state.validationErros.message = "Please insert a message";
+              error = true;
+            }
+          }
+        }
+      }
+
+      event?.preventDefault();
+
+      if (error) {
+        return {
+          ...state,
+          status: FormStatus.Idle,
+        };
+      }
+
+      return {
+        ...state,
+        status: FormStatus.Submitting,
+      };
+    }
+
+    case FormActionType.Success:
+      return {
+        // Display thanks page
+        ...state,
+        status: FormStatus.Submitted,
+      };
+
+    case FormActionType.Failed:
+      return {
+        // Resta in idle e setta errore
+        ...state,
+        submitError: "Error while sending your message",
+        status: FormStatus.Idle,
+      };
+
+    default: {
+      assertNever(action);
     }
   }
 }
@@ -218,28 +299,27 @@ function reducer(state: State, action: FormAction) {
 export function ContactsForm() {
   const [state, dispatch] = React.useReducer(reducer, blankForm);
 
-  async function onFormSubmit(event: React.FormEvent) {
-    const input: CreateFormMessageInput = {
-      data: {
-        name: state.name,
-        email: state.email,
-        message: state.message,
-      },
-    };
+  React.useEffect(() => {
+    if (state.status === FormStatus.Submitting) {
+      async function sendMessage() {
+        const input: CreateFormMessageInput = {
+          data: {
+            name: state.values.name,
+            email: state.values.email,
+            message: state.values.message,
+          },
+        };
+        const response = await fetchGraphQL<
+          InsertFormMessageMutation,
+          InsertFormMessageMutationVariables
+        >(InsertFormMessage, { input });
 
-    event.preventDefault();
-
-    const response = await fetchGraphQL<
-      InsertFormMessageMutation,
-      InsertFormMessageMutationVariables
-    >(InsertFormMessage, { input });
-
-    if (response) {
+        console.log("response", JSON.stringify(response, null, " "));
+      }
+      sendMessage();
       dispatch({ type: FormActionType.Success });
-    } else {
-      dispatch({ type: FormActionType.Failed });
     }
-  }
+  }, [state.status, state.values]);
 
   return (
     <Box
@@ -263,7 +343,9 @@ export function ContactsForm() {
         md: "column",
         lg: "row",
       }}>
-      <Box display={state.isSubmitted ? "inline-block" : "none"} pb="12">
+      <Box
+        display={state.status == FormStatus.Submitted ? "inline-block" : "none"}
+        pb="12">
         <Text
           as="h3"
           fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
@@ -278,9 +360,12 @@ export function ContactsForm() {
         </Text>
       </Box>
       <Box
+        noValidate
+        onSubmit={() => dispatch({ type: FormActionType.Submit })}
         as="form"
-        onSubmit={onFormSubmit}
-        display={state.isSubmitted ? "none" : "inline-block"}>
+        display={
+          state.status == FormStatus.Submitted ? "none" : "inline-block"
+        }>
         <Box
           w={{
             base: "calc(100% - 20px)",
@@ -291,7 +376,9 @@ export function ContactsForm() {
           m="2.5"
           display="inline-block"
           pos="relative">
-          <FormControl id="name" isInvalid={state.name == "" ? true : false}>
+          <FormControl
+            id="name"
+            isInvalid={state.validationErros.name == "" ? false : true}>
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -311,7 +398,7 @@ export function ContactsForm() {
                   name: "name",
                 });
               }}
-              value={state.name}
+              value={state.values.name}
               id="1"
               borderX="none"
               borderTop="none"
@@ -337,7 +424,7 @@ export function ContactsForm() {
               placeholder="Peter Smith"
               isRequired
             />
-            <FormErrorMessage>{"Name is required"}</FormErrorMessage>
+            <FormErrorMessage>{state.validationErros.name}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -359,7 +446,9 @@ export function ContactsForm() {
           m="2.5"
           pos="relative"
           display="inline-block">
-          <FormControl id="email" isInvalid={state.email === "" ? true : false}>
+          <FormControl
+            id="email"
+            isInvalid={state.validationErros.email == "" ? true : false}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -380,7 +469,7 @@ export function ContactsForm() {
                 });
               }}
               id="2"
-              value={state.email}
+              value={state.values.email}
               isRequired
               borderX="none"
               borderTop="none"
@@ -405,7 +494,7 @@ export function ContactsForm() {
               type="email"
               placeholder="example@yourdomain.com"
             />
-            <FormErrorMessage>{"Email is required"}</FormErrorMessage>
+            <FormErrorMessage>{state.validationErros.email}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -425,7 +514,7 @@ export function ContactsForm() {
           display="inline-block">
           <FormControl
             id="message"
-            isInvalid={state.message == "" ? true : false}>
+            isInvalid={state.validationErros.message == "" ? true : false}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -446,7 +535,7 @@ export function ContactsForm() {
                 });
               }}
               id="3"
-              value={state.message}
+              value={state.values.message}
               borderX="none"
               borderTop="none"
               borderRadius="0"
@@ -470,7 +559,7 @@ export function ContactsForm() {
               type="text"
               placeholder="Hi there..."
             />
-            <FormErrorMessage>{"Message is required"}</FormErrorMessage>
+            <FormErrorMessage>{state.validationErros.message}</FormErrorMessage>
             <Box
               userSelect="none"
               as="span"
