@@ -167,7 +167,7 @@ enum FormStatus {
 const blankForm = {
   status: FormStatus.Idle,
   values: { name: "", email: "", message: "" },
-  validationErros: { name: null, email: null, message: null },
+  validationErrors: { name: null, email: null, message: null },
   submitError: "",
 };
 
@@ -205,7 +205,7 @@ interface FormState {
     email: string;
     message: string;
   };
-  validationErros: {
+  validationErrors: {
     name: Nullable<string>;
     email: Nullable<string>;
     message: Nullable<string>;
@@ -223,13 +223,16 @@ function reducer(state: FormState, action: FormAction) {
           ...state.values,
           [action.name]: action.value,
         },
+        validationErrors: {
+          ...state.validationErrors,
+          [action.name]: "",
+        },
+        submitError: "",
       };
     }
 
     case FormActionType.Submit: {
       //Check errors
-      console.log("values", JSON.stringify(state.values, null, " "));
-      console.log("errors", JSON.stringify(state.validationErros, null, " "));
 
       let error = false;
       if (
@@ -237,24 +240,28 @@ function reducer(state: FormState, action: FormAction) {
         !state.values ||
         state.values.name?.replace(/\s/g, "").length == 0
       ) {
-        state.validationErros.name = "Please insert your name";
+        state.validationErrors.name = "Please insert your name";
         error = true;
       } else {
+        state.validationErrors.name = "";
         if (
           state.values.email == "" ||
           !state.values.email ||
           state.values.email?.replace(/\s/g, "").length == 0
         ) {
-          state.validationErros.email = "Please insert your email";
+          state.validationErrors.email = "Please insert your email";
           error = true;
         } else {
-          if (regex.test(state.values.email)) {
-            state.validationErros.email = "Please insert a valid email";
+          if (!regex.test(state.values.email)) {
+            state.validationErrors.email = "Please insert a valid email";
             error = true;
           } else {
+            state.validationErrors.email = "";
             if (state.values.message == "" || !state.values.message) {
-              state.validationErros.message = "Please insert a message";
+              state.validationErrors.message = "Please insert a message";
               error = true;
+            } else {
+              state.validationErrors.message = "";
             }
           }
         }
@@ -284,8 +291,13 @@ function reducer(state: FormState, action: FormAction) {
 
     case FormActionType.Failed:
       return {
-        // Resta in idle e setta errore
+        // Resta in idle, setta errore e resetta i campi?
         ...state,
+        values: {
+          name: "",
+          email: "",
+          message: "",
+        },
         submitError: "Error while sending your message",
         status: FormStatus.Idle,
       };
@@ -298,7 +310,6 @@ function reducer(state: FormState, action: FormAction) {
 
 export function ContactsForm() {
   const [state, dispatch] = React.useReducer(reducer, blankForm);
-
   React.useEffect(() => {
     if (state.status === FormStatus.Submitting) {
       async function sendMessage() {
@@ -314,10 +325,13 @@ export function ContactsForm() {
           InsertFormMessageMutationVariables
         >(InsertFormMessage, { input });
 
-        console.log("response", JSON.stringify(response, null, " "));
+        if (response.createFormMessage == null) {
+          dispatch({ type: FormActionType.Failed });
+        } else {
+          dispatch({ type: FormActionType.Success });
+        }
       }
       sendMessage();
-      dispatch({ type: FormActionType.Success });
     }
   }, [state.status, state.values]);
 
@@ -378,7 +392,12 @@ export function ContactsForm() {
           pos="relative">
           <FormControl
             id="name"
-            isInvalid={state.validationErros.name == "" ? false : true}>
+            isInvalid={
+              state.validationErrors.name == "" ||
+              state.validationErrors.name == null
+                ? false
+                : true
+            }>
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -424,7 +443,7 @@ export function ContactsForm() {
               placeholder="Peter Smith"
               isRequired
             />
-            <FormErrorMessage>{state.validationErros.name}</FormErrorMessage>
+            <FormErrorMessage>{state.validationErrors.name}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -448,7 +467,12 @@ export function ContactsForm() {
           display="inline-block">
           <FormControl
             id="email"
-            isInvalid={state.validationErros.email == "" ? true : false}>
+            isInvalid={
+              state.validationErrors.email == "" ||
+              state.validationErrors.email == null
+                ? false
+                : true
+            }>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -494,7 +518,7 @@ export function ContactsForm() {
               type="email"
               placeholder="example@yourdomain.com"
             />
-            <FormErrorMessage>{state.validationErros.email}</FormErrorMessage>
+            <FormErrorMessage>{state.validationErrors.email}</FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -514,7 +538,12 @@ export function ContactsForm() {
           display="inline-block">
           <FormControl
             id="message"
-            isInvalid={state.validationErros.message == "" ? true : false}>
+            isInvalid={
+              state.validationErrors.message == "" ||
+              state.validationErrors.message == null
+                ? false
+                : true
+            }>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -559,7 +588,9 @@ export function ContactsForm() {
               type="text"
               placeholder="Hi there..."
             />
-            <FormErrorMessage>{state.validationErros.message}</FormErrorMessage>
+            <FormErrorMessage>
+              {state.validationErrors.message}
+            </FormErrorMessage>
             <Box
               userSelect="none"
               as="span"
@@ -572,6 +603,7 @@ export function ContactsForm() {
               transition="all 0.4s ease 0s"></Box>
           </FormControl>
         </Box>
+        <Text color="red">{state.submitError ? state.submitError : ""}</Text>
         <Button
           type="submit"
           userSelect="none"
