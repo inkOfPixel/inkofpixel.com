@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_feature_descriptions",
+  "info": {
+    "name": "featureDescription",
+    "icon": "angle-double-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    }
+  }
+}

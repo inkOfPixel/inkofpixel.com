@@ -61,6 +61,23 @@ query GetPages($where: JSON, $locale: String) {
           label
         }
       }
+      ... on ComponentBlocksMultiFeatureBlock {
+        __typename
+        id
+        title
+        description
+        image {
+          id
+          url
+          alternativeText
+        }
+        bubbleColor
+        checkColor
+        blocks {
+          id
+          description
+        }
+      }
       ... on ComponentSectionSimpleSection {
         __typename
         id

@@ -41,6 +41,7 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
+import { MultiFeatureDescriptionBlockData } from "@features/page/sections/CardListSection/blocks/MultiFeatureDescritpionBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -377,6 +378,39 @@ function getPageData(
               sectionTitleColor: section.sectionTitleColor || null,
             };
           }
+
+          case "ComponentBlocksMultiFeatureBlock": {
+            return {
+              _template: "multiFeatureBlock",
+              id: section.id,
+              title: section.title || null,
+              description: section.description || null,
+              image: section.image
+                ? {
+                    id: section.image.id,
+                    url: section.image.url,
+                    alternativeText: section.image.alternativeText || null,
+                  }
+                : null,
+              bubbleColor: section.bubbleColor || null,
+              checkColor: section.checkColor || null,
+
+              blocks: section.blocks
+                ? filterListNullableItems(
+                    section.blocks
+                  ).map<MultiFeatureDescriptionBlockData>((feature) => {
+                    return {
+                      _template: "multiFeature",
+                      id: feature.id,
+                      description: feature.description || null,
+                      bubbleColor: section.bubbleColor || null,
+                      checkColor: section.checkColor || null,
+                    };
+                  })
+                : [],
+            };
+          }
+
           default:
             return assertNever(section);
         }

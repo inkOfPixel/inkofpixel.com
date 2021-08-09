@@ -1,4 +1,9 @@
 import { cardBlock, CardBlockData } from "./CardListSection/blocks/CardBlock";
+
+import {
+  multiFeatureDescriptionBlock,
+  MultiFeatureDescriptionBlockData,
+} from "./CardListSection/blocks/MultiFeatureDescritpionBlock";
 import {
   featureBlock,
   FeatureBlockData,
@@ -12,4 +17,11 @@ export const CARD_BLOCK = {
   card: cardBlock,
 };
 
-export type BlockData = CardBlockData | FeatureBlockData;
+export const MULTI_FEATURE_BLOCK = {
+  multiFeature: multiFeatureDescriptionBlock,
+};
+
+export type BlockData =
+  | CardBlockData
+  | FeatureBlockData
+  | MultiFeatureDescriptionBlockData;
