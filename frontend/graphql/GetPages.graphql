@@ -62,6 +62,7 @@ query GetPages($where: JSON, $locale: String) {
         }
       }
       ... on ComponentBlocksMultiFeatureBlock {
+        __typename
         id
         title
         description
@@ -70,21 +71,21 @@ query GetPages($where: JSON, $locale: String) {
           url
           alternativeText
         }
-        imageColor
+        bubbleColor
+        checkColor
         blocks {
           id
-          descritpion
-        }
-        ... on ComponentSectionSimpleSection {
-          __typename
-          id
-          sectionTitle
-          sectionTitleColor
-          title
-          subtitle
+          description
         }
       }
+      ... on ComponentSectionSimpleSection {
+        __typename
+        id
+        sectionTitle
+        sectionTitleColor
+        title
+        subtitle
+      }
     }
- 
   }
 }

@@ -10,9 +10,6 @@
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "string"
-    },
     "image": {
       "model": "file",
       "via": "related",
@@ -23,13 +20,19 @@
       "required": false,
       "pluginOptions": {}
     },
-    "imageColor": {
+    "bubbleColor": {
       "type": "string"
     },
     "blocks": {
       "type": "component",
       "repeatable": true,
       "component": "blocks.feature-description"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "checkColor": {
+      "type": "string"
     }
   }
 }

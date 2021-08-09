@@ -51,6 +51,36 @@ export type ComponentBlocksCardInput = {
   label: Scalars['String'];
 };
 
+export type ComponentBlocksFeatureDescription = {
+  __typename?: 'ComponentBlocksFeatureDescription';
+  id: Scalars['ID'];
+  description?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksFeatureDescriptionInput = {
+  description?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksMultiFeatureBlock = {
+  __typename?: 'ComponentBlocksMultiFeatureBlock';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  image?: Maybe<UploadFile>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksFeatureDescription>>>;
+  description?: Maybe<Scalars['String']>;
+  checkColor?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksMultiFeatureBlockInput = {
+  title?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<ComponentBlocksFeatureDescriptionInput>>>;
+  description?: Maybe<Scalars['String']>;
+  checkColor?: Maybe<Scalars['String']>;
+};
+
 export type ComponentBlocksNavigationBlock = {
   __typename?: 'ComponentBlocksNavigationBlock';
   id: Scalars['ID'];
@@ -324,7 +354,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksFeatureDescription | ComponentBlocksMultiFeatureBlock | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -598,7 +628,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionSimpleSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentBlocksMultiFeatureBlock | ComponentSectionSimpleSection;
 
 
 export enum PublicationState {
@@ -1279,6 +1309,21 @@ export type EditComponentBlocksCardInput = {
   label?: Maybe<Scalars['String']>;
 };
 
+export type EditComponentBlocksFeatureDescriptionInput = {
+  id?: Maybe<Scalars['ID']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentBlocksMultiFeatureBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<EditComponentBlocksFeatureDescriptionInput>>>;
+  description?: Maybe<Scalars['String']>;
+  checkColor?: Maybe<Scalars['String']>;
+};
+
 export type EditComponentBlocksNavigationBlockInput = {
   id?: Maybe<Scalars['ID']>;
   label?: Maybe<Scalars['String']>;
@@ -1509,6 +1554,16 @@ export type GetPagesQuery = (
         )> }
       )>>> }
     ) | (
+      { __typename: 'ComponentBlocksMultiFeatureBlock' }
+      & Pick<ComponentBlocksMultiFeatureBlock, 'id' | 'title' | 'description' | 'bubbleColor' | 'checkColor'>
+      & { image?: Maybe<(
+        { __typename?: 'UploadFile' }
+        & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+      )>, blocks?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksFeatureDescription' }
+        & Pick<ComponentBlocksFeatureDescription, 'id' | 'description'>
+      )>>> }
+    ) | (
       { __typename: 'ComponentSectionSimpleSection' }
       & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
     )>>> }
@@ -1656,6 +1711,23 @@ export const GetPages = `
           }
           url
           label
+        }
+      }
+      ... on ComponentBlocksMultiFeatureBlock {
+        __typename
+        id
+        title
+        description
+        image {
+          id
+          url
+          alternativeText
+        }
+        bubbleColor
+        checkColor
+        blocks {
+          id
+          description
         }
       }
       ... on ComponentSectionSimpleSection {

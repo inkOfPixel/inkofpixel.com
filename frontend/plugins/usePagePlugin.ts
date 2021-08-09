@@ -17,6 +17,7 @@ import {
   usePlugin,
 } from "tinacms";
 import { assertNever } from "@utils";
+import { MultiFeatureDescriptionBlockData } from "@features/page/sections/CardListSection/blocks/MultiFeatureDescritpionBlock";
 
 export interface PageData {
   id: string;
@@ -74,8 +75,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
           pageInput,
           menuInput,
         });
-
-        console.log("response", JSON.stringify(response, null, " "));
 
         if (response.errors != null) {
           cms.alerts.error("Error while saving data", 10000);
@@ -185,6 +184,33 @@ function getPageInput(data: PageData): UpdatePageInput {
               sectionTitleColor: section.sectionTitleColor,
               title: section.title,
               subtitle: section.subtitle,
+            };
+          }
+          case "multiFeatureBlock": {
+            return {
+              __typename: "ComponentBlocksMultiFeatureBlock",
+              id: section.id,
+              title: section.title || null,
+              description: section.description || null,
+              image: section.image
+                ? {
+                    id: section.image.id,
+                    url: section.image.url,
+                    alternativeText: section.image.alternativeText || null,
+                  }
+                : null,
+              bubbleColor: section.bubbleColor || null,
+              blocks: section.blocks.map<MultiFeatureDescriptionBlockData>(
+                (feature) => {
+                  return {
+                    _template: "multiFeature",
+                    id: feature.id,
+                    description: feature.description || null,
+                    bubbleColor: section.bubbleColor || null,
+                    checkColor: section.checkColor || null,
+                  };
+                }
+              ),
             };
           }
           default:

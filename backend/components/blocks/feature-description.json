@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "descritpion": {
+    "description": {
       "type": "string"
     }
   }
