@@ -2,7 +2,7 @@ query GetPages($where: JSON, $locale: String) {
   pages(where: $where, locale: $locale) {
     id
     path
-    pageName
+    title
     locale
     __typename
     sections {
@@ -51,6 +51,21 @@ query GetPages($where: JSON, $locale: String) {
             alternativeText
           }
           url
+        }
+      }
+      ... on ComponentBlocksMultiFeatureBlock {
+        id
+        title
+        description
+        image {
+          id
+          url
+          alternativeText
+        }
+        imageColor
+        blocks {
+          id
+          descritpion
         }
       }
     }

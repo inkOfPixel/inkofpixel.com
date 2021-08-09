@@ -1,4 +1,3 @@
-export * from "./types";
 import { cardBlock, CardBlockData } from "./CardBlock";
 import { featureBlock, FeatureBlockData } from "./FeatureBlock";
 

@@ -1,5 +1,6 @@
 import { Box, chakra, Flex, Img } from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
+import { Nullable } from "@types";
 import React from "react";
 import {
   Block,
@@ -9,7 +10,7 @@ import {
   InlineTextarea,
 } from "react-tinacms-inline";
 import { useCMS } from "tinacms";
-import { BlockTemplateData } from "./types";
+import { BlockTemplateData } from "@types";
 
 export type CardBlockData = BlockTemplateData<
   "ComponentBlocksCard",

@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "pageName": {
+    "title": {
       "type": "string",
       "required": true,
       "unique": true,
@@ -45,7 +45,8 @@
       "components": [
         "section.card-section",
         "section.hero-section",
-        "section.single-feature-section"
+        "section.single-feature-section",
+        "blocks.multi-feature-block"
       ]
     }
   }

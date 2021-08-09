@@ -11,13 +11,13 @@ import { PageData, usePagePlugin } from "@features/plugins/usePagePlugin";
 import { DefaultLayout } from "@layouts/defaultLayout";
 import { chakra, useColorMode } from "@chakra-ui/react";
 import {
-  BlockItemProps,
   PageSectionBlockData,
   PAGE_SECTION_BLOCKS,
 } from "@features/pageBlocks";
 import { assertNever, filterListNullableItems } from "utils";
 import { FeatureBlockData } from "@features/sectionBlocks/FeatureBlock";
 import { CardBlockData } from "@features/sectionBlocks/CardBlock";
+import { BlockItemProps } from "@types";
 
 interface DynamicPageProps {
   path: string[];
@@ -249,7 +249,7 @@ function getPageData(
 
     return {
       id: page.id,
-      title: page.pageName,
+      title: page.title,
       sections: sections,
       path: page.path || undefined,
     };

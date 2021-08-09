@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_blocks_multi_feature_blocks",
+  "info": {
+    "name": "multiFeatureBlock",
+    "icon": "arrow-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "imageColor": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.feature-description"
+    }
+  }
+}
