@@ -29,7 +29,8 @@
         "@assets/*": ["assets/*"],
         "@theme": ["theme"],
         "@utils": ["utils"],
-        "@types": ["@types"]
+        "@types": ["@types"],
+        "@plugins/*" : ["plugins/*"]
       }
     },
     "exclude": ["node_modules"],
