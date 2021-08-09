@@ -2,16 +2,20 @@ query GetProjects($where: JSON, $locale: String) {
   projects(where: $where, locale: $locale) {
     id
     locale
-    path
-    projectType
-    companyName
-    description
-    linkName
-    linkPath
-    image {
+
+    projects {
       id
-      url
-      alternativeText
+      path
+      projectType
+      companyName
+      description
+      linkName
+      linkPath
+      image {
+        id
+        url
+        alternativeText
+      }
     }
   }
 }

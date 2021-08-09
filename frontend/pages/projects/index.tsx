@@ -10,12 +10,12 @@ import {
   UpdateProjectInput,
 } from "@graphql/generated";
 import { fetchGraphQL } from "@graphql/utils";
-import { useRouter } from "next/router";
+import { GetStaticProps } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
 import { ContentCreatorPlugin, useForm, usePlugin } from "tinacms";
 import { Form, FormOptions, useCMS } from "tinacms";
-import { ProjectData } from "./[handle]";
+import { ProjectData, wrap } from "./[handle]";
 
 export interface ProjectDataCreateInput {
   companyName: string;
@@ -27,22 +27,21 @@ export interface ProjectDataCreateInput {
   locale: string;
 }
 
-export default async function Index() {
-  const router = useRouter();
-  const locale = router.locale;
-  const path = router.asPath;
+type ProjectsListData = {
+  id?: string;
+  projects: ProjectData[];
+};
 
-  const availableProjects = await fetchGraphQL<
-    GetProjectsQuery,
-    GetProjectsQueryVariables
-  >(GetProjects, {
-    locale,
-    where: {
-      path,
-    },
-  });
-  const projectData = getProjectData(availableProjects.projects, locale!);
-  const [_, form] = useProjectPlugin(projectData);
+interface DynamicPageProps {
+  locale: string;
+  preview: boolean;
+  projects: ProjectData[];
+}
+
+export default async function Index({ projects }: DynamicPageProps) {
+  const [_, form] = useProjectPlugin(projects);
+
+  console.log("projects", JSON.stringify(projects, null, " "));
 
   return (
     <Box color="black">
@@ -51,6 +50,86 @@ export default async function Index() {
       </InlineForm>
     </Box>
   );
+}
+
+export const getStaticProps: GetStaticProps<
+  DynamicPageProps | { notFound: boolean }
+> = async (context) => {
+  const pathParts = wrap(context.params?.handle || []);
+
+  const locale = context.locale;
+  if (locale == null) {
+    throw new Error(`Path "${pathParts.join("/")}" has no locale!`);
+  }
+  const preview = context.preview === true;
+
+  const localeProjects = await fetchGraphQL<
+    GetProjectsQuery,
+    GetProjectsQueryVariables
+  >(GetProjects, {
+    locale,
+  });
+
+  console.log("localeProjects", JSON.stringify(localeProjects, null, " "));
+
+  if (localeProjects.projects == null) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const projectData = getProjectsListData(localeProjects.projects, locale);
+
+  console.log("projectData", JSON.stringify(projectData, null, " "));
+
+  if (projectData == null) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (preview) {
+    return {
+      props: {
+        projects: projectData,
+        locale,
+        preview,
+        previewData: context.previewData,
+      },
+    };
+  }
+
+  return {
+    props: {
+      projects: projectData,
+      locale,
+      preview,
+    },
+  };
+};
+
+function getProjectsListData(
+  projects: GetProjectsQuery["projects"],
+  locale: string
+): ProjectData[] | undefined {
+  const projectsList = projects?.find((list) => list?.locale === locale);
+  if (projectsList) {
+    return {
+      id: projectsList?.id,
+      companyName: projectsList.companyName || null,
+      projectType: projectsList.projectType || null,
+      description: projectsList.description || null,
+      linkName: projectsList.linkName || null,
+      linkPath: projectsList.linkPath || null,
+      image: projectsList.image
+        ? {
+            id: projectsList.image.id,
+            url: projectsList.image.url,
+            alternativeText: projectsList.image.alternativeText || null,
+          }
+        : null,
+    };
+  }
 }
 
 function getProjectData(

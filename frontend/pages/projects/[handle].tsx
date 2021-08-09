@@ -37,15 +37,7 @@ interface ProjectImage {
   alternativeText: Nullable<string>;
 }
 
-export default function DynamicPage({
-  project,
-  path,
-  locale,
-  preview,
-}: DynamicPageProps) {
-  console.log(path, locale, preview);
-
-  console.log("Project", JSON.stringify(project, null, " "));
+export default function DynamicPage({ project }: DynamicPageProps) {
   return (
     <Flex
       pt="14"
@@ -193,7 +185,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   return { paths, fallback: true };
 };
 
-function wrap<T>(value: T | T[]): T[] {
+export function wrap<T>(value: T | T[]): T[] {
   if (Array.isArray(value)) {
     return value;
   }

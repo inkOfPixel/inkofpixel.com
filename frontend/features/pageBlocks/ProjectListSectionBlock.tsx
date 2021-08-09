@@ -39,7 +39,6 @@ export function ProjectListSection({
   }, [preview]);
   return (
     <Flex
-      className="WRAPPER"
       py="14"
       flexDir="column"
       w={{
