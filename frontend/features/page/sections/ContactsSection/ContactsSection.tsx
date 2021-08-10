@@ -263,8 +263,6 @@ function reducer(state: FormState, action: FormAction) {
         state.validationErrors.message = null;
       }
 
-      event?.preventDefault();
-
       return {
         ...state,
         validationErrors: result.validationErrors,
