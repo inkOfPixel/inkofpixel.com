@@ -263,8 +263,6 @@ function reducer(state: FormState, action: FormAction) {
         state.validationErrors.message = null;
       }
 
-      event?.preventDefault();
-
       return {
         ...state,
         validationErrors: result.validationErrors,
@@ -333,6 +331,13 @@ export function ContactsForm() {
     []
   );
 
+  function onSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    dispatch({
+      type: FormActionType.Submit,
+    });
+  }
+
   return (
     <Box
       flexWrap="wrap"
@@ -375,7 +380,7 @@ export function ContactsForm() {
       </Box>
       <Box
         noValidate
-        onSubmit={() => dispatch({ type: FormActionType.Submit })}
+        onSubmit={onSubmit}
         as="form"
         display={
           state.status === FormStatus.Submitted ? "none" : "inline-block"
