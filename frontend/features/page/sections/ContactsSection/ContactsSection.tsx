@@ -41,13 +41,15 @@ export type ContactsSectionBlockData = BlockTemplateData<
 
 interface ContactsSectionBlockProps {
   sectionTitle: string;
+  index: number;
 }
 
 export function ContactsSectionBlock({
   sectionTitle,
+  index,
 }: ContactsSectionBlockProps) {
   return (
-    <Box as="section" w="full">
+    <Box as="section" pt={index == 0 ? "52" : "0"} w="full">
       <Flex
         w={{
           base: "full",
@@ -168,7 +170,7 @@ const blankForm = {
   status: FormStatus.Idle,
   values: { name: "", email: "", message: "" },
   validationErrors: { name: null, email: null, message: null },
-  submitError: "",
+  submitError: null,
 };
 
 interface UpdateFieldAction {
@@ -210,7 +212,7 @@ interface FormState {
     email: Nullable<string>;
     message: Nullable<string>;
   };
-  submitError: string;
+  submitError: Nullable<string>;
 }
 
 function reducer(state: FormState, action: FormAction) {
@@ -225,60 +227,48 @@ function reducer(state: FormState, action: FormAction) {
         },
         validationErrors: {
           ...state.validationErrors,
-          [action.name]: "",
+          [action.name]: null,
         },
-        submitError: "",
+        submitError: null,
       };
     }
 
     case FormActionType.Submit: {
       //Check errors
+      let result: FormState = {
+        status: FormStatus.Idle,
+        values: { name: "", email: "", message: "" },
+        validationErrors: { name: null, email: null, message: null },
+        submitError: null,
+      };
+      let hasValidationErrors = false;
 
-      let error = false;
-      if (
-        state.values.name == "" ||
-        !state.values ||
-        state.values.name?.replace(/\s/g, "").length == 0
-      ) {
-        state.validationErrors.name = "Please insert your name";
-        error = true;
+      if (state.values.name.trim().length === 0) {
+        result.validationErrors.name = "Please insert your name";
+        hasValidationErrors = true;
       } else {
-        state.validationErrors.name = "";
-        if (
-          state.values.email == "" ||
-          !state.values.email ||
-          state.values.email?.replace(/\s/g, "").length == 0
-        ) {
-          state.validationErrors.email = "Please insert your email";
-          error = true;
-        } else {
-          if (!regex.test(state.values.email)) {
-            state.validationErrors.email = "Please insert a valid email";
-            error = true;
-          } else {
-            state.validationErrors.email = "";
-            if (state.values.message == "" || !state.values.message) {
-              state.validationErrors.message = "Please insert a message";
-              error = true;
-            } else {
-              state.validationErrors.message = "";
-            }
-          }
-        }
+        state.validationErrors.name = null;
+      }
+
+      if (!regex.test(state.values.email)) {
+        result.validationErrors.email = "Please insert a valid email";
+        hasValidationErrors = true;
+      } else {
+        state.validationErrors.email = null;
+      }
+      if (state.values.message.trim().length == 0) {
+        result.validationErrors.message = "Please insert a message";
+        hasValidationErrors = true;
+      } else {
+        state.validationErrors.message = null;
       }
 
       event?.preventDefault();
 
-      if (error) {
-        return {
-          ...state,
-          status: FormStatus.Idle,
-        };
-      }
-
       return {
         ...state,
-        status: FormStatus.Submitting,
+        validationErrors: result.validationErrors,
+        status: hasValidationErrors ? FormStatus.Idle : FormStatus.Submitting,
       };
     }
 
@@ -293,11 +283,7 @@ function reducer(state: FormState, action: FormAction) {
       return {
         // Resta in idle, setta errore e resetta i campi?
         ...state,
-        values: {
-          name: "",
-          email: "",
-          message: "",
-        },
+
         submitError: "Error while sending your message",
         status: FormStatus.Idle,
       };
@@ -335,6 +321,18 @@ export function ContactsForm() {
     }
   }, [state.status, state.values]);
 
+  const onFieldChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+      dispatch({
+        type: FormActionType.UpdateField,
+        name,
+        value,
+      });
+    },
+    []
+  );
+
   return (
     <Box
       flexWrap="wrap"
@@ -358,7 +356,9 @@ export function ContactsForm() {
         lg: "row",
       }}>
       <Box
-        display={state.status == FormStatus.Submitted ? "inline-block" : "none"}
+        display={
+          state.status === FormStatus.Submitted ? "inline-block" : "none"
+        }
         pb="12">
         <Text
           as="h3"
@@ -378,7 +378,7 @@ export function ContactsForm() {
         onSubmit={() => dispatch({ type: FormActionType.Submit })}
         as="form"
         display={
-          state.status == FormStatus.Submitted ? "none" : "inline-block"
+          state.status === FormStatus.Submitted ? "none" : "inline-block"
         }>
         <Box
           w={{
@@ -393,7 +393,7 @@ export function ContactsForm() {
           <FormControl
             id="name"
             isInvalid={
-              state.validationErrors.name == "" ||
+              state.validationErrors.name === "" ||
               state.validationErrors.name == null
                 ? false
                 : true
@@ -410,15 +410,10 @@ export function ContactsForm() {
               Name
             </FormLabel>
             <Input
-              onChange={(event) => {
-                dispatch({
-                  type: FormActionType.UpdateField,
-                  value: event.target.value,
-                  name: "name",
-                });
-              }}
+              onChange={onFieldChange}
               value={state.values.name}
               id="1"
+              name="name"
               borderX="none"
               borderTop="none"
               borderRadius="0"
@@ -468,7 +463,7 @@ export function ContactsForm() {
           <FormControl
             id="email"
             isInvalid={
-              state.validationErrors.email == "" ||
+              state.validationErrors.email === "" ||
               state.validationErrors.email == null
                 ? false
                 : true
@@ -485,15 +480,10 @@ export function ContactsForm() {
               Email
             </FormLabel>
             <Input
-              onChange={(event) => {
-                dispatch({
-                  type: FormActionType.UpdateField,
-                  value: event.target.value,
-                  name: "email",
-                });
-              }}
+              onChange={onFieldChange}
               id="2"
               value={state.values.email}
+              name="email"
               isRequired
               borderX="none"
               borderTop="none"
@@ -539,7 +529,7 @@ export function ContactsForm() {
           <FormControl
             id="message"
             isInvalid={
-              state.validationErrors.message == "" ||
+              state.validationErrors.message === "" ||
               state.validationErrors.message == null
                 ? false
                 : true
@@ -556,14 +546,9 @@ export function ContactsForm() {
               Message
             </FormLabel>
             <Input
-              onChange={(event) => {
-                dispatch({
-                  type: FormActionType.UpdateField,
-                  value: event.target.value,
-                  name: "message",
-                });
-              }}
+              onChange={onFieldChange}
               id="3"
+              name="message"
               value={state.values.message}
               borderX="none"
               borderTop="none"
@@ -603,7 +588,7 @@ export function ContactsForm() {
               transition="all 0.4s ease 0s"></Box>
           </FormControl>
         </Box>
-        <Text color="red">{state.submitError ? state.submitError : ""}</Text>
+        <Text color="red">{state.submitError}</Text>
         <Button
           type="submit"
           userSelect="none"
@@ -655,7 +640,7 @@ export function ContactsForm() {
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <ContactsSectionBlock {...data} />
+      <ContactsSectionBlock index={index} {...data} />
     </BlocksControls>
   );
 }
@@ -665,6 +650,7 @@ export const contactsSectionBlock: Block = {
   template: {
     label: "Contacts Section",
     defaultItem: {
+      sectionTitle: "Default section title",
       title: "Default title",
       subtitle: "Default subtitle",
       email: "hello@inkofpixel.com",
