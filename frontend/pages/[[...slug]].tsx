@@ -41,6 +41,7 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
+import { SocialBubbleBlockData } from "@features/page/sections/ContactsSection/blocks/SocialBubbleBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -92,7 +93,8 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
                     <LocaleMenuLink
                       key={pageLocale.locale}
                       href={pageLocale.path!}
-                      locale={pageLocale.locale!}>
+                      locale={pageLocale.locale!}
+                    >
                       {pageLocale.locale?.toUpperCase()}
                     </LocaleMenuLink>
                   );
@@ -101,7 +103,8 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
                 <LocaleMenuLink
                   key="1"
                   href={router.pathname}
-                  locale={router.locale!}></LocaleMenuLink>
+                  locale={router.locale!}
+                ></LocaleMenuLink>
               )}
             </LocaleMenuList>
           </LocaleMenu>
@@ -375,6 +378,28 @@ function getPageData(
               subtitle: section.subtitle || null,
               email: section.email || null,
               sectionTitle: section.sectionTitle || null,
+              socialBubbles: section.socialBubbles
+                ? filterListNullableItems(
+                    section.socialBubbles
+                  ).map<SocialBubbleBlockData>((social) => {
+                    return {
+                      _template: "socialBubble",
+                      id: social.id,
+                      bubbleColor: social.bubbleColor || null,
+                      bubbleHoverColor: social.bubbleHoverColor || null,
+                      url: social.url || null,
+                      image:
+                        social.image == null
+                          ? null
+                          : {
+                              id: social.image.id,
+                              url: social.image.url,
+                              alternativeText:
+                                social.image.alternativeText || null,
+                            },
+                    };
+                  })
+                : [],
             };
           }
 

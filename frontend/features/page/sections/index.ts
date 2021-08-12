@@ -1,5 +1,9 @@
 import { cardBlock, CardBlockData } from "./CardListSection/blocks/CardBlock";
 import {
+  socialBlock,
+  SocialBubbleBlockData,
+} from "./ContactsSection/blocks/SocialBubbleBlock";
+import {
   featureBlock,
   FeatureBlockData,
 } from "./FeatureListSection/blocks/FeatureBlock";
@@ -12,4 +16,11 @@ export const CARD_BLOCK = {
   card: cardBlock,
 };
 
-export type BlockData = CardBlockData | FeatureBlockData;
+export const SOCIAL_BLOCK = {
+  socialBubble: socialBlock,
+};
+
+export type BlockData =
+  | CardBlockData
+  | FeatureBlockData
+  | SocialBubbleBlockData;

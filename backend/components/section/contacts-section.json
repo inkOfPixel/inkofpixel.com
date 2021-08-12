@@ -18,6 +18,11 @@
     },
     "sectionTitle": {
       "type": "string"
+    },
+    "socialBubbles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.social-bubble"
     }
   }
 }

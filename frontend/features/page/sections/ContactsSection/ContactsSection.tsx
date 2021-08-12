@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  chakra,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -14,10 +15,10 @@ import {
   Block,
   BlocksControls,
   InlineTextarea,
+  InlineBlocks,
 } from "react-tinacms-inline";
 
 import Link from "next/link";
-import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
 import { fetchGraphQL } from "@graphql/utils";
 import {
   CreateFormMessageInput,
@@ -25,8 +26,9 @@ import {
   InsertFormMessageMutation,
   InsertFormMessageMutationVariables,
 } from "@graphql/generated";
-import { SocialLink } from "@components/SocialLink";
 import { assertNever } from "@utils";
+import { SocialBubbleBlockData } from "@features/page/sections/ContactsSection/blocks/SocialBubbleBlock";
+import { SOCIAL_BLOCK } from "..";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -36,20 +38,25 @@ export type ContactsSectionBlockData = BlockTemplateData<
     subtitle: Nullable<string>;
     email: Nullable<string>;
     sectionTitle: Nullable<string>;
+    socialBubbles: SocialBubbleBlockData[];
   }
 >;
 
 interface ContactsSectionBlockProps {
   sectionTitle: string;
   index: number;
+  email: string;
 }
+
+const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function ContactsSectionBlock({
   sectionTitle,
   index,
+  email,
 }: ContactsSectionBlockProps) {
   return (
-    <Box as="section" pt={index == 0 ? "52" : "0"} w="full">
+    <Box as="section" pt={index === 0 ? "52" : "0"} w="full">
       <Flex
         w={{
           base: "full",
@@ -123,10 +130,10 @@ export function ContactsSectionBlock({
             >
               <InlineTextarea name="title" />
             </Box>
-            <Text fontSize="sm" pt="5" color="description">
+            <Box fontSize="sm" pt="5" color="description">
               <InlineTextarea name="subtitle" />
-            </Text>
-            <Link href="mailto:DA INSERIRE" passHref>
+            </Box>
+            <Link href={`mailto:${email}`} passHref>
               <Box
                 as="a"
                 fontSize="sm"
@@ -142,27 +149,12 @@ export function ContactsSectionBlock({
         </Flex>
 
         <Flex justifyContent="flex-end" w="full" mb="32">
-          <SocialLink
-            href="https://twitter.com/inkofpixel"
-            color="rgba(29, 161, 242, 0.7)"
-            onHoverColor="rgba(29, 161, 242, 1)"
-          >
-            <TwitterIcon color="white" />
-          </SocialLink>
-          <SocialLink
-            href="https://facebook.com/inkofpixel"
-            color="rgba(59, 89, 152, 0.7)"
-            onHoverColor="rgba(59, 89, 152, 1)"
-          >
-            <FacebookIcon color="white" />
-          </SocialLink>
-          <SocialLink
-            href="https://github.com/inkofpixel"
-            color="rgba(24, 23, 23, 0.7)"
-            onHoverColor="rgba(24, 23, 23, 1)"
-          >
-            <GithubIcon color="white" />
-          </SocialLink>
+          <StyledInlineBlocks
+            display="flex"
+            name="socialBubbles"
+            blocks={SOCIAL_BLOCK}
+            direction="horizontal"
+          />
         </Flex>
       </Flex>
     </Box>
@@ -244,38 +236,36 @@ function reducer(state: FormState, action: FormAction) {
 
     case FormActionType.Submit: {
       //Check errors
-      let result: FormState = {
-        status: FormStatus.Idle,
-        values: { name: "", email: "", message: "" },
-        validationErrors: { name: null, email: null, message: null },
-        submitError: null,
+      const result: FormState["validationErrors"] = {
+        name: null,
+        email: null,
+        message: null,
       };
-      let hasValidationErrors = false;
 
       if (state.values.name.trim().length === 0) {
-        result.validationErrors.name = "Please insert your name";
-        hasValidationErrors = true;
+        result.name = "Please insert your name";
       } else {
         state.validationErrors.name = null;
       }
 
       if (!regex.test(state.values.email)) {
-        result.validationErrors.email = "Please insert a valid email";
-        hasValidationErrors = true;
+        result.email = "Please insert a valid email";
       } else {
         state.validationErrors.email = null;
       }
       if (state.values.message.trim().length == 0) {
-        result.validationErrors.message = "Please insert a message";
-        hasValidationErrors = true;
+        result.message = "Please insert a message";
       } else {
         state.validationErrors.message = null;
       }
 
+      const isEmpty = Object.values(result).every((x) => x == null);
+      console.log(isEmpty);
+
       return {
         ...state,
-        validationErrors: result.validationErrors,
-        status: hasValidationErrors ? FormStatus.Idle : FormStatus.Submitting,
+        validationErrors: result,
+        status: isEmpty ? FormStatus.Submitting : FormStatus.Idle,
       };
     }
 
@@ -370,26 +360,29 @@ export function ContactsForm() {
         lg: "row",
       }}
     >
-      <Box
-        display={
-          state.status === FormStatus.Submitted ? "inline-block" : "none"
-        }
-        pb="12"
-      >
-        <Text
-          as="h3"
-          fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
-          fontWeight="bold"
-          fontFamily="Europa"
-          lineHeight="1.1em"
-          pb="5"
+      {state.status === FormStatus.Submitted && (
+        <Box
+          display={
+            state.status === FormStatus.Submitted ? "inline-block" : "none"
+          }
+          pb="12"
         >
-          Thank you!
-        </Text>
-        <Text as="p" fontSize="sm" color="#5c5c5c">
-          We&apos;ll get in touch soon.
-        </Text>
-      </Box>
+          <Text
+            as="h3"
+            fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
+            fontWeight="bold"
+            fontFamily="Europa"
+            lineHeight="1.1em"
+            pb="5"
+          >
+            Thank you!
+          </Text>
+          <Text as="p" fontSize="sm" color="#5c5c5c">
+            We&apos;ll get in touch soon.
+          </Text>
+        </Box>
+      )}
+
       <Box
         noValidate
         onSubmit={onFormSubmit}
@@ -405,18 +398,14 @@ export function ContactsForm() {
             md: "calc(100% - 20px)",
             lg: "calc(50% - 20px)",
           }}
-          m="2.5"
+          mx="2.5"
+          my="5"
           display="inline-block"
           pos="relative"
         >
           <FormControl
             id="name"
-            isInvalid={
-              state.validationErrors.name === "" ||
-              state.validationErrors.name == null
-                ? false
-                : true
-            }
+            isInvalid={state.validationErrors.name == null ? false : true}
           >
             <FormLabel
               fontWeight="400"
@@ -459,7 +448,9 @@ export function ContactsForm() {
               placeholder="Peter Smith"
               isRequired
             />
-            <FormErrorMessage>{state.validationErrors.name}</FormErrorMessage>
+            <FormErrorMessage pos="absolute">
+              {state.validationErrors.name}
+            </FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -479,18 +470,14 @@ export function ContactsForm() {
             md: "calc(100% - 20px)",
             lg: "calc(50% - 20px)",
           }}
-          m="2.5"
+          mx="2.5"
+          my="5"
           pos="relative"
           display="inline-block"
         >
           <FormControl
             id="email"
-            isInvalid={
-              state.validationErrors.email === "" ||
-              state.validationErrors.email == null
-                ? false
-                : true
-            }
+            isInvalid={state.validationErrors.email == null ? false : true}
           >
             <FormLabel
               mb="0"
@@ -533,7 +520,9 @@ export function ContactsForm() {
               type="email"
               placeholder="example@yourdomain.com"
             />
-            <FormErrorMessage>{state.validationErrors.email}</FormErrorMessage>
+            <FormErrorMessage pos="absolute">
+              {state.validationErrors.email}
+            </FormErrorMessage>
             <Box
               as="span"
               pos="absolute"
@@ -549,18 +538,14 @@ export function ContactsForm() {
 
         <Box
           w="calc(100% - 10px)"
-          m="2.5"
+          mx="2.5"
+          my="5"
           pos="relative"
           display="inline-block"
         >
           <FormControl
             id="message"
-            isInvalid={
-              state.validationErrors.message === "" ||
-              state.validationErrors.message == null
-                ? false
-                : true
-            }
+            isInvalid={state.validationErrors.message == null ? false : true}
           >
             <FormLabel
               mb="0"
@@ -602,7 +587,7 @@ export function ContactsForm() {
               type="text"
               placeholder="Hi there..."
             />
-            <FormErrorMessage>
+            <FormErrorMessage pos="absolute">
               {state.validationErrors.message}
             </FormErrorMessage>
             <Box

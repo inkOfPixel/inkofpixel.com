@@ -68,6 +68,17 @@ query GetPages($where: JSON, $locale: String) {
         subtitle
         email
         sectionTitle
+        socialBubbles {
+          id
+          url
+          bubbleColor
+          bubbleHoverColor
+          image {
+            id
+            url
+            alternativeText
+          }
+        }
       }
       ... on ComponentSectionSimpleSection {
         __typename

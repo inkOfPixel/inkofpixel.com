@@ -83,6 +83,30 @@ export type ComponentBlocksSingleFeatureInput = {
   label: Scalars['String'];
 };
 
+export type ComponentBlocksSocialBubble = {
+  __typename?: 'ComponentBlocksSocialBubble';
+  id: Scalars['ID'];
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<Array<Maybe<UploadFile>>>;
+};
+
+
+export type ComponentBlocksSocialBubbleImageArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+};
+
+export type ComponentBlocksSocialBubbleInput = {
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
+};
+
 export type ComponentGlobalTopbar = {
   __typename?: 'ComponentGlobalTopbar';
   id: Scalars['ID'];
@@ -128,6 +152,7 @@ export type ComponentSectionContactsSection = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<ComponentBlocksSocialBubble>>>;
 };
 
 export type ComponentSectionContactsSectionInput = {
@@ -135,6 +160,7 @@ export type ComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<ComponentBlocksSocialBubbleInput>>>;
 };
 
 export type ComponentSectionFooterSection = {
@@ -426,7 +452,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | FormMessages | FormMessagesConnection | FormMessagesAggregator | FormMessagesGroupBy | FormMessagesConnectionId | FormMessagesConnectionCreated_At | FormMessagesConnectionUpdated_At | FormMessagesConnectionEmail | FormMessagesConnectionName | FormMessagesConnectionMessage | FormMessagesConnectionPublished_At | CreateFormMessagePayload | UpdateFormMessagePayload | DeleteFormMessagePayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionContactsSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | FormMessages | FormMessagesConnection | FormMessagesAggregator | FormMessagesGroupBy | FormMessagesConnectionId | FormMessagesConnectionCreated_At | FormMessagesConnectionUpdated_At | FormMessagesConnectionEmail | FormMessagesConnectionName | FormMessagesConnectionMessage | FormMessagesConnectionPublished_At | CreateFormMessagePayload | UpdateFormMessagePayload | DeleteFormMessagePayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentBlocksSocialBubble | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionContactsSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -1459,6 +1485,14 @@ export type EditComponentBlocksSingleFeatureInput = {
   label?: Maybe<Scalars['String']>;
 };
 
+export type EditComponentBlocksSocialBubbleInput = {
+  id?: Maybe<Scalars['ID']>;
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
+};
+
 export type EditComponentGlobalTopbarInput = {
   id?: Maybe<Scalars['ID']>;
   menu?: Maybe<Scalars['ID']>;
@@ -1484,6 +1518,7 @@ export type EditComponentSectionContactsSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<EditComponentBlocksSocialBubbleInput>>>;
 };
 
 export type EditComponentSectionFooterSectionInput = {
@@ -1702,6 +1737,14 @@ export type GetPagesQuery = (
     ) | (
       { __typename: 'ComponentSectionContactsSection' }
       & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
+      & { socialBubbles?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksSocialBubble' }
+        & Pick<ComponentBlocksSocialBubble, 'id' | 'url' | 'bubbleColor' | 'bubbleHoverColor'>
+        & { image?: Maybe<Array<Maybe<(
+          { __typename?: 'UploadFile' }
+          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+        )>>> }
+      )>>> }
     ) | (
       { __typename: 'ComponentSectionSimpleSection' }
       & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
@@ -1875,6 +1918,17 @@ export const GetPages = `
         subtitle
         email
         sectionTitle
+        socialBubbles {
+          id
+          url
+          bubbleColor
+          bubbleHoverColor
+          image {
+            id
+            url
+            alternativeText
+          }
+        }
       }
       ... on ComponentSectionSimpleSection {
         __typename
