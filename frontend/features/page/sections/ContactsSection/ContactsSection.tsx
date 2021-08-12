@@ -64,7 +64,8 @@ export function ContactsSectionBlock({
         my="0"
         mx="auto"
         pos="relative"
-        flexDir="column">
+        flexDir="column"
+      >
         <Box
           color="rgb(129, 82, 188)"
           fontSize="sm"
@@ -89,7 +90,8 @@ export function ContactsSectionBlock({
                   backgroundColor: "rgb(129, 82, 188)",
                 }
               : undefined
-          }>
+          }
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
 
@@ -97,7 +99,8 @@ export function ContactsSectionBlock({
           flexDir={{
             base: "column",
             md: "row",
-          }}>
+          }}
+        >
           <Flex
             flex={{
               base: "0 0 full",
@@ -109,13 +112,15 @@ export function ContactsSectionBlock({
               md: "20",
               lg: "36",
             }}
-            flexDir="column">
+            flexDir="column"
+          >
             <Box
               as="h2"
               fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
               fontFamily="Europa"
               fontWeight="bold"
-              lineHeight="1.1em">
+              lineHeight="1.1em"
+            >
               <InlineTextarea name="title" />
             </Box>
             <Text fontSize="sm" pt="5" color="description">
@@ -127,7 +132,8 @@ export function ContactsSectionBlock({
                 fontSize="sm"
                 pt="14"
                 lineHeight="1.8em"
-                textDecoration="none">
+                textDecoration="none"
+              >
                 <InlineTextarea name="email" />
               </Box>
             </Link>
@@ -139,19 +145,22 @@ export function ContactsSectionBlock({
           <SocialLink
             href="https://twitter.com/inkofpixel"
             color="rgba(29, 161, 242, 0.7)"
-            onHoverColor="rgba(29, 161, 242, 1)">
+            onHoverColor="rgba(29, 161, 242, 1)"
+          >
             <TwitterIcon color="white" />
           </SocialLink>
           <SocialLink
             href="https://facebook.com/inkofpixel"
             color="rgba(59, 89, 152, 0.7)"
-            onHoverColor="rgba(59, 89, 152, 1)">
+            onHoverColor="rgba(59, 89, 152, 1)"
+          >
             <FacebookIcon color="white" />
           </SocialLink>
           <SocialLink
             href="https://github.com/inkofpixel"
             color="rgba(24, 23, 23, 0.7)"
-            onHoverColor="rgba(24, 23, 23, 1)">
+            onHoverColor="rgba(24, 23, 23, 1)"
+          >
             <GithubIcon color="white" />
           </SocialLink>
         </Flex>
@@ -275,6 +284,7 @@ function reducer(state: FormState, action: FormAction) {
         // Display thanks page
         ...state,
         status: FormStatus.Submitted,
+        // API call POST to slack :)
       };
 
     case FormActionType.Failed:
@@ -359,19 +369,22 @@ export function ContactsForm() {
         sm: "row",
         md: "column",
         lg: "row",
-      }}>
+      }}
+    >
       <Box
         display={
           state.status === FormStatus.Submitted ? "inline-block" : "none"
         }
-        pb="12">
+        pb="12"
+      >
         <Text
           as="h3"
           fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
           fontWeight="bold"
           fontFamily="Europa"
           lineHeight="1.1em"
-          pb="5">
+          pb="5"
+        >
           Thank you!
         </Text>
         <Text as="p" fontSize="sm" color="#5c5c5c">
@@ -384,7 +397,8 @@ export function ContactsForm() {
         as="form"
         display={
           state.status === FormStatus.Submitted ? "none" : "inline-block"
-        }>
+        }
+      >
         <Box
           w={{
             base: "calc(100% - 20px)",
@@ -394,7 +408,8 @@ export function ContactsForm() {
           }}
           m="2.5"
           display="inline-block"
-          pos="relative">
+          pos="relative"
+        >
           <FormControl
             id="name"
             isInvalid={
@@ -402,7 +417,8 @@ export function ContactsForm() {
               state.validationErrors.name == null
                 ? false
                 : true
-            }>
+            }
+          >
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -411,7 +427,8 @@ export function ContactsForm() {
               pos="relative"
               w="full"
               display="block"
-              mb="0">
+              mb="0"
+            >
               Name
             </FormLabel>
             <Input
@@ -452,7 +469,8 @@ export function ContactsForm() {
               w="0"
               h="1px"
               backgroundColor="dark"
-              transition="all 0.4s ease 0s"></Box>
+              transition="all 0.4s ease 0s"
+            ></Box>
           </FormControl>
         </Box>
         <Box
@@ -464,7 +482,8 @@ export function ContactsForm() {
           }}
           m="2.5"
           pos="relative"
-          display="inline-block">
+          display="inline-block"
+        >
           <FormControl
             id="email"
             isInvalid={
@@ -472,7 +491,8 @@ export function ContactsForm() {
               state.validationErrors.email == null
                 ? false
                 : true
-            }>
+            }
+          >
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -481,7 +501,8 @@ export function ContactsForm() {
               letterSpacing="0.1em"
               pos="relative"
               w="full"
-              display="block">
+              display="block"
+            >
               Email
             </FormLabel>
             <Input
@@ -522,7 +543,8 @@ export function ContactsForm() {
               w="0"
               h="1px"
               backgroundColor="dark"
-              transition="all 0.4s ease 0s"></Box>
+              transition="all 0.4s ease 0s"
+            ></Box>
           </FormControl>
         </Box>
 
@@ -530,7 +552,8 @@ export function ContactsForm() {
           w="calc(100% - 10px)"
           m="2.5"
           pos="relative"
-          display="inline-block">
+          display="inline-block"
+        >
           <FormControl
             id="message"
             isInvalid={
@@ -538,7 +561,8 @@ export function ContactsForm() {
               state.validationErrors.message == null
                 ? false
                 : true
-            }>
+            }
+          >
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -547,7 +571,8 @@ export function ContactsForm() {
               letterSpacing="0.1em"
               pos="relative"
               w="full"
-              display="block">
+              display="block"
+            >
               Message
             </FormLabel>
             <Input
@@ -590,7 +615,8 @@ export function ContactsForm() {
               w="0"
               h="1px"
               backgroundColor="dark"
-              transition="all 0.4s ease 0s"></Box>
+              transition="all 0.4s ease 0s"
+            ></Box>
           </FormControl>
         </Box>
         <Text color="red">{state.submitError}</Text>
@@ -620,7 +646,8 @@ export function ContactsForm() {
           }}
           mt="10"
           mr="2.5"
-          mb="2.5">
+          mb="2.5"
+        >
           <Box
             as="span"
             _after={{
@@ -633,7 +660,8 @@ export function ContactsForm() {
               left: "0",
               top: "0",
               w: "0",
-            }}>
+            }}
+          >
             SEND
           </Box>
         </Button>
