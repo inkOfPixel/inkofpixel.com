@@ -61,8 +61,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
   const cms = useCMS();
   const router = useRouter();
 
-  console.log("data", JSON.stringify(data, null, " "));
-
   const formConfig: FormOptions<Data> = {
     id: data.page.id,
     label: "Page settings",

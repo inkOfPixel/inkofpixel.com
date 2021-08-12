@@ -260,7 +260,6 @@ function reducer(state: FormState, action: FormAction) {
       }
 
       const isEmpty = Object.values(result).every((x) => x == null);
-      console.log(isEmpty);
 
       return {
         ...state,
