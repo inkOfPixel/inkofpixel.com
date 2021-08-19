@@ -243,9 +243,20 @@ enum FormActionType {
   Success = "success",
   Failed = "failed",
   Submit = "submit",
+  ValidationFailed = "validation - failed",
 }
 
-type FormAction = UpdateFieldAction | SuccessAction | FailAction | SubmitAction;
+interface ValidationFailed {
+  type: FormActionType.ValidationFailed;
+  validationErrors: FormState["validationErrors"];
+}
+
+type FormAction =
+  | UpdateFieldAction
+  | SuccessAction
+  | FailAction
+  | SubmitAction
+  | ValidationFailed;
 
 interface FormState {
   status: FormStatus;
@@ -263,7 +274,6 @@ interface FormState {
 }
 
 function reducer(state: FormState, action: FormAction) {
-  const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
   switch (action.type) {
     case FormActionType.UpdateField: {
       return {
@@ -282,35 +292,14 @@ function reducer(state: FormState, action: FormAction) {
 
     case FormActionType.Submit: {
       //Check errors
-      const result: FormState["validationErrors"] = {
-        name: null,
-        email: null,
-        message: null,
-      };
 
-      if (state.values.name.trim().length === 0) {
-        result.name = "Please insert your name";
-      } else {
-        state.validationErrors.name = null;
-      }
-
-      if (!regex.test(state.values.email)) {
-        result.email = "Please insert a valid email";
-      } else {
-        state.validationErrors.email = null;
-      }
-      if (state.values.message.trim().length == 0) {
-        result.message = "Please insert a message";
-      } else {
-        state.validationErrors.message = null;
-      }
-
-      const isEmpty = Object.values(result).every((x) => x == null);
+      const hasNoErrors = Object.values(state.validationErrors).every(
+        (prop) => prop == null || prop === ""
+      );
 
       return {
         ...state,
-        validationErrors: result,
-        status: isEmpty ? FormStatus.Submitting : FormStatus.Idle,
+        status: hasNoErrors ? FormStatus.Submitting : FormStatus.Idle,
       };
     }
 
@@ -330,6 +319,12 @@ function reducer(state: FormState, action: FormAction) {
         status: FormStatus.Idle,
       };
 
+    case FormActionType.ValidationFailed:
+      return {
+        ...state,
+        validationErrors: action.validationErrors,
+      };
+
     default: {
       assertNever(action);
     }
@@ -338,6 +333,35 @@ function reducer(state: FormState, action: FormAction) {
 
 export function ContactsForm() {
   const [state, dispatch] = React.useReducer(reducer, blankForm);
+
+  function validateErrors(values: FormState["values"]) {
+    const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
+
+    const validationErrors: FormState["validationErrors"] = {
+      name: null,
+      email: null,
+      message: null,
+    };
+
+    if (values.name.trim().length === 0) {
+      validationErrors.name = "Please insert your name";
+    } else {
+      validationErrors.name = null;
+    }
+
+    if (!regex.test(state.values.email)) {
+      validationErrors.email = "Please insert a valid email";
+    } else {
+      validationErrors.email = null;
+    }
+    if (state.values.message.trim().length == 0) {
+      validationErrors.message = "Please insert a message";
+    } else {
+      validationErrors.message = null;
+    }
+    return validationErrors;
+  }
+
   React.useEffect(() => {
     if (state.status === FormStatus.Submitting) {
       async function sendMessage() {
@@ -375,12 +399,24 @@ export function ContactsForm() {
     []
   );
 
-  function onFormSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    dispatch({
-      type: FormActionType.Submit,
-    });
-  }
+  const onFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const validationErrors = validateErrors(state.values);
+
+    const hasNoErrors = Object.values(validationErrors).every(
+      (prop) => prop == null || prop === ""
+    );
+
+    if (hasNoErrors) {
+      dispatch({ type: FormActionType.Submit });
+    } else {
+      dispatch({
+        type: FormActionType.ValidationFailed,
+        validationErrors: validationErrors,
+      });
+    }
+  };
 
   return (
     <Box
