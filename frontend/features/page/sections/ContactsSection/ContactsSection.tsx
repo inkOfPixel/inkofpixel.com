@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  chakra,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -15,7 +14,6 @@ import {
   Block,
   BlocksControls,
   InlineTextarea,
-  InlineBlocks,
 } from "react-tinacms-inline";
 
 import Link from "next/link";
@@ -48,8 +46,6 @@ interface ContactsSectionBlockProps {
   index: number;
   email: string;
 }
-
-const StyledInlineBlocks = chakra(InlineBlocks);
 
 export function ContactsSectionBlock({
   sectionTitle,
@@ -453,7 +449,6 @@ export function ContactsForm() {
           pos="relative"
         >
           <FormControl
-            id="name"
             isInvalid={state.validationErrors.name == null ? false : true}
           >
             <FormLabel
@@ -471,7 +466,6 @@ export function ContactsForm() {
             <Input
               onChange={onFieldChange}
               value={state.values.name}
-              id="1"
               name="name"
               borderX="none"
               borderTop="none"
@@ -525,7 +519,6 @@ export function ContactsForm() {
           display="inline-block"
         >
           <FormControl
-            id="email"
             isInvalid={state.validationErrors.email == null ? false : true}
           >
             <FormLabel
@@ -542,7 +535,6 @@ export function ContactsForm() {
             </FormLabel>
             <Input
               onChange={onFieldChange}
-              id="2"
               value={state.values.email}
               name="email"
               isRequired
@@ -593,7 +585,6 @@ export function ContactsForm() {
           display="inline-block"
         >
           <FormControl
-            id="message"
             isInvalid={state.validationErrors.message == null ? false : true}
           >
             <FormLabel
@@ -610,7 +601,6 @@ export function ContactsForm() {
             </FormLabel>
             <Input
               onChange={onFieldChange}
-              id="3"
               name="message"
               value={state.values.message}
               borderX="none"
@@ -720,7 +710,7 @@ export const contactsSectionBlock: Block = {
       title: "Default title",
       subtitle: "Default subtitle",
       email: "hello@inkofpixel.com",
-      blocks: [],
+      socialBubbles: [],
     },
     fields: [],
   },
