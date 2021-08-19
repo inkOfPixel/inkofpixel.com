@@ -1,15 +1,16 @@
 import { Box, Flex, Img } from "@chakra-ui/react";
 import Link from "next/link";
 import { BlockTemplateData } from "@features/pageBlocks";
-import {
-  GetProjects,
-  GetProjectsQuery,
-  GetProjectsQueryVariables,
-} from "@graphql/generated";
+
 import { fetchGraphQL } from "@graphql/utils";
 import { filterListNullableItems } from "@utils";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
+import {
+  GetProjectsListQuery,
+  GetProjectsListQueryVariables,
+  GetProjectsList,
+} from "@graphql/generated";
 
 interface DynamicPageProps {
   path: string[];
@@ -28,6 +29,7 @@ export type ProjectData = BlockTemplateData<
     linkName: Nullable<string>;
     linkPath: Nullable<string>;
     image: Nullable<ProjectImage>;
+    path: Nullable<string>;
   }
 >;
 
@@ -44,7 +46,8 @@ export default function DynamicPage({ project }: DynamicPageProps) {
       flexDir={{
         base: "column-reverse",
         lg: "row",
-      }}>
+      }}
+    >
       <Box
         w={{
           base: "full",
@@ -57,7 +60,8 @@ export default function DynamicPage({ project }: DynamicPageProps) {
         pr={{
           lg: "16",
         }}
-        boxSizing="border-box">
+        boxSizing="border-box"
+      >
         <Box
           fontWeight="bold"
           fontFamily="Europa"
@@ -65,7 +69,8 @@ export default function DynamicPage({ project }: DynamicPageProps) {
           pb="2.5"
           letterSpacing="0.04em"
           color="dark"
-          as="h3">
+          as="h3"
+        >
           {project.companyName}
         </Box>
         <Box
@@ -76,14 +81,16 @@ export default function DynamicPage({ project }: DynamicPageProps) {
           pos="relative"
           w="full"
           pb="5"
-          color="rgb(5,195,182)">
+          color="rgb(5,195,182)"
+        >
           {project.projectType}
         </Box>
         <Box
           fontSize="sm"
           fontFamily="Roboto Mono"
           color="description"
-          lineHeight="1.8em">
+          lineHeight="1.8em"
+        >
           {project.description}
         </Box>
         <Box>
@@ -110,7 +117,8 @@ export default function DynamicPage({ project }: DynamicPageProps) {
                 _after: {
                   paddingLeft: "20px",
                 },
-              }}>
+              }}
+            >
               {project.linkName}
             </Box>
           </Link>
@@ -121,7 +129,8 @@ export default function DynamicPage({ project }: DynamicPageProps) {
           base: "full",
           lg: "60%",
         }}
-        h="350px">
+        h="350px"
+      >
         {project.image ? (
           <Img
             w={project.image ? "full" : "72"}
@@ -157,16 +166,11 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   }
   const allProjectsRequests = context.locales.map(async (locale) => {
     const localeProjects = await fetchGraphQL<
-      GetProjectsQuery,
-      GetProjectsQueryVariables
-    >(GetProjects, {
-      locale,
-    });
+      GetProjectsListQuery,
+      GetProjectsListQueryVariables
+    >(GetProjectsList);
 
-    if (localeProjects.projects) {
-      return filterListNullableItems(localeProjects.projects);
-    }
-    return [];
+   
   });
 
   const allProjects = await Promise.all(allProjectsRequests);
@@ -265,7 +269,7 @@ export const getStaticProps: GetStaticProps<
     },
   };
 };
-
+/*
 function getProjectData(
   projects: GetProjectsQuery["projects"],
   locale: string
@@ -292,7 +296,7 @@ function getProjectData(
   return undefined;
 }
 
-/*
+
 case "ComponentSectionProjectsSection": {
             return {
               _template: "projectListSection",

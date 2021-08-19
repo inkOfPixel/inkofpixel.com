@@ -1901,62 +1901,62 @@
           },
           {
             "kind": "OBJECT",
-            "name": "Projects",
+            "name": "ProjectsList",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnection",
+            "name": "ProjectsListConnection",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsAggregator",
+            "name": "ProjectsListAggregator",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsGroupBy",
+            "name": "ProjectsListGroupBy",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnectionId",
+            "name": "ProjectsListConnectionId",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnectionCreated_at",
+            "name": "ProjectsListConnectionCreated_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnectionUpdated_at",
+            "name": "ProjectsListConnectionUpdated_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnectionLocale",
+            "name": "ProjectsListConnectionLocale",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsConnectionPublished_at",
+            "name": "ProjectsListConnectionPublished_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "createProjectPayload",
+            "name": "createProjectsListPayload",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "updateProjectPayload",
+            "name": "updateProjectsListPayload",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "deleteProjectPayload",
+            "name": "deleteProjectsListPayload",
             "ofType": null
           },
           {
@@ -2362,7 +2362,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createProject",
+            "name": "createProjectsList",
             "description": null,
             "args": [
               {
@@ -2370,7 +2370,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "createProjectInput",
+                  "name": "createProjectsListInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -2380,14 +2380,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "createProjectPayload",
+              "name": "createProjectsListPayload",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateProject",
+            "name": "updateProjectsList",
             "description": null,
             "args": [
               {
@@ -2395,7 +2395,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "updateProjectInput",
+                  "name": "updateProjectsListInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -2405,14 +2405,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "updateProjectPayload",
+              "name": "updateProjectsListPayload",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "deleteProject",
+            "name": "deleteProjectsList",
             "description": null,
             "args": [
               {
@@ -2420,7 +2420,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "deleteProjectInput",
+                  "name": "deleteProjectsListInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -2430,7 +2430,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "deleteProjectPayload",
+              "name": "deleteProjectsListPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2645,7 +2645,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createProjectLocalization",
+            "name": "createProjectsListLocalization",
             "description": null,
             "args": [
               {
@@ -2656,7 +2656,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "updateProjectInput",
+                    "name": "updateProjectsListInput",
                     "ofType": null
                   }
                 },
@@ -2670,7 +2670,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Projects",
+                "name": "ProjectsList",
                 "ofType": null
               }
             },
@@ -3913,99 +3913,8 @@
         "possibleTypes": null
       },
       {
-        "kind": "INPUT_OBJECT",
-        "name": "ProjectInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "projects",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "ComponentBlocksProjectInput",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "localizations",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "locale",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "published_at",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_by",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updated_by",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "ID",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
-        "name": "Projects",
+        "name": "ProjectsList",
         "description": null,
         "fields": [
           {
@@ -4154,7 +4063,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Projects",
+                "name": "ProjectsList",
                 "ofType": null
               }
             },
@@ -4169,7 +4078,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsAggregator",
+        "name": "ProjectsListAggregator",
         "description": null,
         "fields": [
           {
@@ -4204,7 +4113,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnection",
+        "name": "ProjectsListConnection",
         "description": null,
         "fields": [
           {
@@ -4216,7 +4125,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Projects",
+                "name": "ProjectsList",
                 "ofType": null
               }
             },
@@ -4229,7 +4138,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsGroupBy",
+              "name": "ProjectsListGroupBy",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4241,7 +4150,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsAggregator",
+              "name": "ProjectsListAggregator",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4255,7 +4164,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnectionCreated_at",
+        "name": "ProjectsListConnectionCreated_at",
         "description": null,
         "fields": [
           {
@@ -4276,7 +4185,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4290,7 +4199,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnectionId",
+        "name": "ProjectsListConnectionId",
         "description": null,
         "fields": [
           {
@@ -4311,7 +4220,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4325,7 +4234,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnectionLocale",
+        "name": "ProjectsListConnectionLocale",
         "description": null,
         "fields": [
           {
@@ -4346,7 +4255,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4360,7 +4269,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnectionPublished_at",
+        "name": "ProjectsListConnectionPublished_at",
         "description": null,
         "fields": [
           {
@@ -4381,7 +4290,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4395,7 +4304,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsConnectionUpdated_at",
+        "name": "ProjectsListConnectionUpdated_at",
         "description": null,
         "fields": [
           {
@@ -4416,7 +4325,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4430,7 +4339,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsGroupBy",
+        "name": "ProjectsListGroupBy",
         "description": null,
         "fields": [
           {
@@ -4442,7 +4351,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsConnectionId",
+                "name": "ProjectsListConnectionId",
                 "ofType": null
               }
             },
@@ -4458,7 +4367,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsConnectionCreated_at",
+                "name": "ProjectsListConnectionCreated_at",
                 "ofType": null
               }
             },
@@ -4474,7 +4383,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsConnectionUpdated_at",
+                "name": "ProjectsListConnectionUpdated_at",
                 "ofType": null
               }
             },
@@ -4490,7 +4399,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsConnectionLocale",
+                "name": "ProjectsListConnectionLocale",
                 "ofType": null
               }
             },
@@ -4506,7 +4415,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsConnectionPublished_at",
+                "name": "ProjectsListConnectionPublished_at",
                 "ofType": null
               }
             },
@@ -4516,6 +4425,97 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ProjectsListInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "projects",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "ComponentBlocksProjectInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "localizations",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "locale",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "published_at",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "created_by",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updated_by",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -4751,7 +4751,7 @@
             "deprecationReason": null
           },
           {
-            "name": "project",
+            "name": "projectsList",
             "description": null,
             "args": [
               {
@@ -4785,14 +4785,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "Projects",
+              "name": "ProjectsList",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "projects",
+            "name": "projectsLists",
             "description": null,
             "args": [
               {
@@ -4873,7 +4873,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Projects",
+                "name": "ProjectsList",
                 "ofType": null
               }
             },
@@ -4881,7 +4881,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectsConnection",
+            "name": "projectsListsConnection",
             "description": null,
             "args": [
               {
@@ -4947,7 +4947,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsConnection",
+              "name": "ProjectsListConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8969,7 +8969,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "createProjectInput",
+        "name": "createProjectsListInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -8978,7 +8978,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ProjectInput",
+              "name": "ProjectsListInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -8992,16 +8992,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "createProjectPayload",
+        "name": "createProjectsListPayload",
         "description": null,
         "fields": [
           {
-            "name": "project",
+            "name": "projectsList",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Projects",
+              "name": "ProjectsList",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9199,7 +9199,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "deleteProjectInput",
+        "name": "deleteProjectsListInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -9222,16 +9222,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "deleteProjectPayload",
+        "name": "deleteProjectsListPayload",
         "description": null,
         "fields": [
           {
-            "name": "project",
+            "name": "projectsList",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Projects",
+              "name": "ProjectsList",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10337,7 +10337,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "editProjectInput",
+        "name": "editProjectsListInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -10732,7 +10732,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "updateProjectInput",
+        "name": "updateProjectsListInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -10753,7 +10753,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "editProjectInput",
+              "name": "editProjectsListInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -10767,16 +10767,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "updateProjectPayload",
+        "name": "updateProjectsListPayload",
         "description": null,
         "fields": [
           {
-            "name": "project",
+            "name": "projectsList",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Projects",
+              "name": "ProjectsList",
               "ofType": null
             },
             "isDeprecated": false,

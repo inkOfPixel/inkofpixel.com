@@ -1,19 +1,18 @@
-import { Box } from "@chakra-ui/react";
 import { PROJECT_BLOCK } from "@features/sectionBlocks";
 import {
-  CreateProject,
-  CreateProjectInput,
-  GetProjects,
-  GetProjectsQuery,
-  GetProjectsQueryVariables,
-  UpdateProject,
-  UpdateProjectInput,
+  GetProjectsList,
+  GetProjectsListQuery,
+  GetProjectsListQueryVariables,
+  UpdateProjectsList,
+  UpdateProjectsListInput,
 } from "@graphql/generated";
 import { fetchGraphQL } from "@graphql/utils";
+import { DefaultLayout } from "@layouts/defaultLayout";
+import { filterListNullableItems } from "@utils";
 import { GetStaticProps } from "next";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
-import { ContentCreatorPlugin, useForm, usePlugin } from "tinacms";
+import { useForm, usePlugin } from "tinacms";
 import { Form, FormOptions, useCMS } from "tinacms";
 import { ProjectData, wrap } from "./[handle]";
 
@@ -28,27 +27,25 @@ export interface ProjectDataCreateInput {
 }
 
 type ProjectsListData = {
-  id?: string;
-  projects: ProjectData[];
+  id: string;
+  projects?: ProjectData[];
 };
 
 interface DynamicPageProps {
   locale: string;
   preview: boolean;
-  projects: ProjectData[];
+  projects: ProjectsListData;
 }
 
-export default async function Index({ projects }: DynamicPageProps) {
+export default function Index({ projects }: DynamicPageProps) {
   const [_, form] = useProjectPlugin(projects);
 
-  console.log("projects", JSON.stringify(projects, null, " "));
-
   return (
-    <Box color="black">
+    <DefaultLayout title="InkOfPixel">
       <InlineForm form={form}>
         <InlineBlocks name="projects" blocks={PROJECT_BLOCK} />
       </InlineForm>
-    </Box>
+    </DefaultLayout>
   );
 }
 
@@ -63,24 +60,18 @@ export const getStaticProps: GetStaticProps<
   }
   const preview = context.preview === true;
 
-  const localeProjects = await fetchGraphQL<
-    GetProjectsQuery,
-    GetProjectsQueryVariables
-  >(GetProjects, {
-    locale,
-  });
+  const localeProjectsList = await fetchGraphQL<
+    GetProjectsListQuery,
+    GetProjectsListQueryVariables
+  >(GetProjectsList);
 
-  console.log("localeProjects", JSON.stringify(localeProjects, null, " "));
-
-  if (localeProjects.projects == null) {
+  if (localeProjectsList.projectsList == null) {
     return {
       notFound: true,
     };
   }
 
-  const projectData = getProjectsListData(localeProjects.projects, locale);
-
-  console.log("projectData", JSON.stringify(projectData, null, " "));
+  const projectData = getProjectsListData(localeProjectsList.projectsList);
 
   if (projectData == null) {
     return {
@@ -109,65 +100,47 @@ export const getStaticProps: GetStaticProps<
 };
 
 function getProjectsListData(
-  projects: GetProjectsQuery["projects"],
-  locale: string
-): ProjectData[] | undefined {
-  const projectsList = projects?.find((list) => list?.locale === locale);
-  if (projectsList) {
-    return {
-      id: projectsList?.id,
-      companyName: projectsList.companyName || null,
-      projectType: projectsList.projectType || null,
-      description: projectsList.description || null,
-      linkName: projectsList.linkName || null,
-      linkPath: projectsList.linkPath || null,
-      image: projectsList.image
-        ? {
-            id: projectsList.image.id,
-            url: projectsList.image.url,
-            alternativeText: projectsList.image.alternativeText || null,
-          }
-        : null,
-    };
+  projectsList: GetProjectsListQuery["projectsList"]
+): ProjectsListData | undefined {
+  if (projectsList == null) {
+    return undefined;
   }
+  return {
+    id: projectsList.id,
+    projects: projectsList.projects
+      ? filterListNullableItems(projectsList.projects).map((project) => {
+          return {
+            _template: "project",
+            id: project.id,
+            companyName: project.companyName || null,
+            projectType: project.projectType || null,
+            linkName: project.linkName || null,
+            linkPath: project.linkPath || null,
+            description: project.description || null,
+            image: project.image
+              ? {
+                  id: project.image.id,
+                  url: project.image.url,
+                  alternativeText: project.image.alternativeText || null,
+                }
+              : null,
+            path: project.path || null,
+          };
+        })
+      : [],
+  };
 }
 
-function getProjectData(
-  projects: GetProjectsQuery["projects"],
-  locale: string
-): ProjectData | undefined {
-  const project = projects?.find((page) => page?.locale === locale);
-  if (project != null) {
-    return {
-      _template: "project",
-      id: project.id,
-      companyName: project.companyName || null,
-      projectType: project.projectType || null,
-      description: project.description || null,
-      linkName: project.linkName || null,
-      linkPath: project.linkPath || null,
-      image: project.image
-        ? {
-            id: project.image.id,
-            url: project.image.url,
-            alternativeText: project.image.alternativeText || null,
-          }
-        : null,
-    };
-  }
-  return undefined;
-}
-
-function useProjectPlugin(data: ProjectData): [ProjectData, Form] {
+function useProjectPlugin(data: ProjectsListData): [ProjectsListData, Form] {
   const cms = useCMS();
-  const formConfig: FormOptions<ProjectData> = {
+  const formConfig: FormOptions<ProjectsListData> = {
     id: data,
     label: "Page",
     initialValues: data,
     onSubmit: async (values) => {
       const input = getProjectInput(values);
       try {
-        const response = await cms.api.strapi.fetchGraphql(UpdateProject, {
+        const response = await cms.api.strapi.fetchGraphql(UpdateProjectsList, {
           input,
         });
         if (response.data) {
@@ -188,102 +161,22 @@ function useProjectPlugin(data: ProjectData): [ProjectData, Form] {
   return [projects, form];
 }
 
-function getProjectInput(data: ProjectData): UpdateProjectInput {
+function getProjectInput(data: ProjectsListData): UpdateProjectsListInput {
   return {
     where: { id: data.id },
     data: {
-      companyName: data.companyName,
-      description: data.description,
-      linkName: data.linkName,
-      linkPath: data.linkPath,
-      projectType: data.projectType,
-      image: data.image
-        ? {
-            id: data.image?.id,
-            url: data.image.url,
-            alternativeText: data.image.alternativeText,
-          }
-        : null,
-    },
-  };
-}
-
-interface ProjectCreatorPluginOptions {
-  locales: string[];
-}
-
-function getProjectCreatorPlugin(
-  options: ProjectCreatorPluginOptions
-): ContentCreatorPlugin<ProjectDataCreateInput> {
-  return {
-    __type: "content-creator",
-    name: "Add new project",
-    fields: [
-      {
-        label: "Company name",
-        name: "companyName",
-        component: "text",
-        validate(title: string) {
-          if (!title) return "Required.";
-        },
-      },
-      {
-        label: "Path",
-        name: "path",
-        component: "text",
-        description: "The path to the page ( e.g. /about )",
-        validate(path: string) {
-          if (!path) {
-            return "Required.";
-          }
-          if (!path.startsWith("/")) {
-            return "Path should start with /";
-          }
-        },
-      },
-      {
-        label: "Locale",
-        name: "locale",
-        component: "select",
-        description: "Select a locale for this page",
-        defaultValue: "en",
-        // @ts-ignore
-        options: options.locales,
-      },
-    ],
-    onSubmit: async (values, cms) => {
-      const input = getPageCreateInput(values);
-      try {
-        const response = await cms.api.strapi.fetchGraphql(CreateProject, {
-          input,
-        });
-        if (response.data) {
-          // @ts-ignore
-          cms.alerts.success("Changes saved!");
-          window.location.href = `/${values.locale}${values.path}`;
-        } else {
-          // @ts-ignore
-          cms.alerts.error("Error while saving changes");
-        }
-      } catch (error) {
-        console.log(error);
-        // @ts-ignore
-        cms.alerts.error("Error while saving changes");
-      }
-    },
-  };
-}
-
-function getPageCreateInput(input: ProjectDataCreateInput): CreateProjectInput {
-  return {
-    data: {
-      companyName: input.companyName,
-      description: input.description,
-      projectType: input.projectType,
-      linkName: input.linkName,
-      linkPath: input.linkPath,
-      path: input.path,
-      locale: input.locale,
+      projects: data.projects?.map((project) => {
+        return {
+          id: project.id,
+          companyName: project.companyName,
+          description: project.description,
+          linkName: project.linkName,
+          linkPath: project.linkPath,
+          path: project.path,
+          projectType: project.projectType,
+          image: project.image ? project.image.id : null,
+        };
+      }),
     },
   };
 }

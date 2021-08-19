@@ -1,7 +1,0 @@
-mutation UpdateProject($input: updateProjectInput) {
-  updateProject(input: $input) {
-    project {
-      id
-    }
-  }
-}

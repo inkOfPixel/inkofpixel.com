@@ -1,13 +1,12 @@
-query GetProjects($where: JSON, $locale: String) {
-  projects(where: $where, locale: $locale) {
+query getProjectsList {
+  projectsList(id: 1) {
     id
     locale
-
     projects {
       id
       path
-      projectType
       companyName
+      projectType
       description
       linkName
       linkPath

@@ -1,0 +1,7 @@
+mutation UpdateProjectsList($input: updateProjectsListInput) {
+  updateProjectsList(input: $input) {
+    projectsList {
+      id
+    }
+  }
+}

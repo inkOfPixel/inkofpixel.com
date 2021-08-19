@@ -1,7 +1,0 @@
-mutation CreateProject($input: createProjectInput) {
-  createProject(input: $input) {
-    project {
-      id
-    }
-  }
-}
