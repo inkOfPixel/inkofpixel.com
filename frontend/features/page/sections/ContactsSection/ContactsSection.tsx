@@ -28,7 +28,8 @@ import {
 } from "@graphql/generated";
 import { assertNever } from "@utils";
 import { SocialBubbleBlockData } from "@features/page/sections/ContactsSection/blocks/SocialBubbleBlock";
-import { SOCIAL_BLOCK } from "..";
+import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
+import Splash from "@components/Splash";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -149,12 +150,61 @@ export function ContactsSectionBlock({
         </Flex>
 
         <Flex justifyContent="flex-end" w="full" mb="32">
-          <StyledInlineBlocks
-            display="flex"
-            name="socialBubbles"
-            blocks={SOCIAL_BLOCK}
-            direction="horizontal"
-          />
+          <Link href="https://www.twitter.com/inkofpixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(29,161,242, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(29,161,242, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <TwitterIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
+          <Link href="https://www.facebook.com/inkOfPixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(59,89,152, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(59,89,152, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <FacebookIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
+
+          <Link href="https://www.github.com/inkOfPixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(24,23,23, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(24,23,23, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <GithubIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
         </Flex>
       </Flex>
     </Box>
