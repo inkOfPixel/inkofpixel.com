@@ -90,17 +90,6 @@ export const socialBlock: Block = {
       label: "Link",
       url: "/",
     },
-    fields: [
-      {
-        name: "url",
-        label: "Link url",
-        component: "text",
-      },
-      {
-        name: "label",
-        label: "Link label",
-        component: "text",
-      },
-    ],
+    fields: [],
   },
 };
