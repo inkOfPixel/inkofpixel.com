@@ -26,7 +26,12 @@
       "pluginOptions": {}
     },
     "url": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
     }
   }
 }

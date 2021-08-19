@@ -28,7 +28,9 @@
         "@features/*": ["features/*"],
         "@assets/*": ["assets/*"],
         "@theme": ["theme"],
-        "@utils": ["utils"]
+        "@utils": ["utils"],
+        "@types": ["@types"],
+        "@plugins/*" : ["plugins/*"]
       }
     },
     "exclude": ["node_modules"],

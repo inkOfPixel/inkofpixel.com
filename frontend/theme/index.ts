@@ -3,11 +3,11 @@ import { theme as chakraTheme } from "@chakra-ui/react";
 
 const fonts = {
   ...chakraTheme.fonts,
-  body: `"Europa","Roboto Mono", monospace`,
-  heading: `Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  body: `"Roboto Mono", monospace`,
 };
 
 const config: ThemeOverride["config"] = {
+  // @ts-ignore
   initialColorMode: "light",
   useSystemColorMode: false,
 };
@@ -15,7 +15,6 @@ const config: ThemeOverride["config"] = {
 const overrides: ThemeOverride = {
   config,
   fonts,
-
   fontWeights: {
     normal: 300,
     subtitle: 400,
@@ -23,6 +22,7 @@ const overrides: ThemeOverride = {
     bold: 700,
   },
   fontsizes: {
+    footer: "10px",
     xs: "12px",
     sm: "14px",
     md: "16px",
@@ -41,6 +41,7 @@ const overrides: ThemeOverride = {
   colors: {
     dark: "rgb(22,19,56)",
     description: "rgb(92,92,92)",
+    cardSectionBg: "rgb(234, 247, 247)",
   },
   components: {
     /*
