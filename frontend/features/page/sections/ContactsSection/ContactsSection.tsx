@@ -6,6 +6,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
+  Text,
 } from "@chakra-ui/react";
 import * as React from "react";
 import {
@@ -16,16 +17,17 @@ import {
 } from "react-tinacms-inline";
 
 import Link from "next/link";
-import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
 import { fetchGraphQL } from "@graphql/utils";
+
+import { assertNever } from "@utils";
+import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
+import Splash from "@components/Splash";
 import {
   CreateFormMessageInput,
-  InsertFormMessage,
   InsertFormMessageMutation,
   InsertFormMessageMutationVariables,
+  InsertFormMessage,
 } from "@graphql/generated";
-import { SocialLink } from "@components/SocialLink";
-import { assertNever } from "@utils";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -41,14 +43,16 @@ export type ContactsSectionBlockData = BlockTemplateData<
 interface ContactsSectionBlockProps {
   sectionTitle: string;
   index: number;
+  email: string;
 }
 
 export function ContactsSectionBlock({
   sectionTitle,
   index,
+  email,
 }: ContactsSectionBlockProps) {
   return (
-    <Box as="section" pt={index == 0 ? "52" : "0"} w="full">
+    <Box as="section" pt={index === 0 ? "52" : "0"} w="full">
       <Flex
         w={{
           base: "full",
@@ -125,7 +129,7 @@ export function ContactsSectionBlock({
             <Box fontSize="sm" pt="5" color="description">
               <InlineTextarea name="subtitle" />
             </Box>
-            <Link href="mailto:DA INSERIRE" passHref>
+            <Link href={`mailto:${email}`} passHref>
               <Box
                 as="a"
                 fontSize="sm"
@@ -141,27 +145,61 @@ export function ContactsSectionBlock({
         </Flex>
 
         <Flex justifyContent="flex-end" w="full" mb="32">
-          <SocialLink
-            href="https://twitter.com/inkofpixel"
-            color="rgba(29, 161, 242, 0.7)"
-            onHoverColor="rgba(29, 161, 242, 1)"
-          >
-            <TwitterIcon color="white" />
-          </SocialLink>
-          <SocialLink
-            href="https://facebook.com/inkofpixel"
-            color="rgba(59, 89, 152, 0.7)"
-            onHoverColor="rgba(59, 89, 152, 1)"
-          >
-            <FacebookIcon color="white" />
-          </SocialLink>
-          <SocialLink
-            href="https://github.com/inkofpixel"
-            color="rgba(24, 23, 23, 0.7)"
-            onHoverColor="rgba(24, 23, 23, 1)"
-          >
-            <GithubIcon color="white" />
-          </SocialLink>
+          <Link href="https://www.twitter.com/inkofpixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(29,161,242, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(29,161,242, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <TwitterIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
+          <Link href="https://www.facebook.com/inkOfPixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(59,89,152, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(59,89,152, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <FacebookIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
+
+          <Link href="https://www.github.com/inkOfPixel" passHref>
+            <Box as="a">
+              <Splash
+                mx="1"
+                className="contactBubble"
+                transition="0.3s all"
+                backgroundColor="rgba(24,23,23, 0.7)"
+                _hover={{
+                  backgroundColor: "rgba(24,23,23, 1)",
+                }}
+                pos="relative"
+                w="60px"
+                h="60px"
+              >
+                <GithubIcon color="white" />
+              </Splash>
+            </Box>
+          </Link>
         </Flex>
       </Flex>
     </Box>
@@ -199,17 +237,17 @@ interface SubmitAction {
   type: FormActionType.Submit;
 }
 
-interface ValidationFailed {
-  type: FormActionType.ValidationFailed;
-  validationErrors: FormState["validationErrors"];
-}
-
 enum FormActionType {
   UpdateField = "update-field",
   Success = "success",
   Failed = "failed",
   Submit = "submit",
-  ValidationFailed = "validationFailed",
+  ValidationFailed = "validation-failed",
+}
+
+interface ValidationFailedAction {
+  type: FormActionType.ValidationFailed;
+  validationErrors: FormState["validationErrors"];
 }
 
 type FormAction =
@@ -217,7 +255,7 @@ type FormAction =
   | SuccessAction
   | FailAction
   | SubmitAction
-  | ValidationFailed;
+  | ValidationFailedAction;
 
 interface FormState {
   status: FormStatus;
@@ -227,9 +265,9 @@ interface FormState {
     message: string;
   };
   validationErrors: {
-    name: Nullable<string>;
-    email: Nullable<string>;
-    message: Nullable<string>;
+    name?: Nullable<string>;
+    email?: Nullable<string>;
+    message?: Nullable<string>;
   };
   submitError: Nullable<string>;
 }
@@ -252,21 +290,14 @@ function reducer(state: FormState, action: FormAction) {
     }
 
     case FormActionType.Submit: {
-      //Check errors
-
-      const hasNoErrors = Object.values(state.validationErrors).every(
-        (prop) => prop == null || prop === ""
-      );
-
       return {
         ...state,
-        status: hasNoErrors ? FormStatus.Submitting : FormStatus.Idle,
+        status: FormStatus.Submitting,
       };
     }
 
     case FormActionType.Success:
       return {
-        // Display thanks page
         ...state,
         status: FormStatus.Submitted,
         // API POST call to slack :)
@@ -274,7 +305,6 @@ function reducer(state: FormState, action: FormAction) {
 
     case FormActionType.Failed:
       return {
-        // Resta in idle, setta errore e resetta i campi?
         ...state,
         submitError: "Error while sending your message",
         status: FormStatus.Idle,
@@ -292,61 +322,26 @@ function reducer(state: FormState, action: FormAction) {
   }
 }
 
-export function ContactsForm() {
-  const [state, dispatch] = React.useReducer(reducer, blankForm);
+function validateErrors(values: FormState["values"]) {
+  const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
 
-  function validateErrors(values: FormState["values"]) {
-    const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
+  const validationErrors: FormState["validationErrors"] = {};
 
-    const validationErrors: FormState["validationErrors"] = {
-      name: null,
-      email: null,
-      message: null,
-    };
-
-    if (values.name.trim().length === 0) {
-      validationErrors.name = "Please insert your name";
-    } else {
-      validationErrors.name = null;
-    }
-
-    if (!regex.test(state.values.email)) {
-      validationErrors.email = "Please insert a valid email";
-    } else {
-      validationErrors.email = null;
-    }
-    if (state.values.message.trim().length == 0) {
-      validationErrors.message = "Please insert a message";
-    } else {
-      validationErrors.message = null;
-    }
-    return validationErrors;
+  if (values.name.trim().length === 0) {
+    validationErrors.name = "Please insert your name";
   }
 
-  React.useEffect(() => {
-    if (state.status === FormStatus.Submitting) {
-      async function sendMessage() {
-        const input: CreateFormMessageInput = {
-          data: {
-            name: state.values.name,
-            email: state.values.email,
-            message: state.values.message,
-          },
-        };
-        const response = await fetchGraphQL<
-          InsertFormMessageMutation,
-          InsertFormMessageMutationVariables
-        >(InsertFormMessage, { input });
+  if (!regex.test(values.email)) {
+    validationErrors.email = "Please insert a valid email";
+  }
+  if (values.message.trim().length === 0) {
+    validationErrors.message = "Please insert a message";
+  }
+  return validationErrors;
+}
 
-        if (response.createFormMessage == null) {
-          dispatch({ type: FormActionType.Failed });
-        } else {
-          dispatch({ type: FormActionType.Success });
-        }
-      }
-      sendMessage();
-    }
-  }, [state.status, state.values]);
+export function ContactsForm() {
+  const [state, dispatch] = React.useReducer(reducer, blankForm);
 
   const onFieldChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -363,27 +358,40 @@ export function ContactsForm() {
   const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const input: CreateFormMessageInput = {
+      data: {
+        name: state.values.name,
+        email: state.values.email,
+        message: state.values.message,
+      },
+    };
+
     const validationErrors = validateErrors(state.values);
 
-    const hasNoErrors = Object.values(validationErrors).every(
-      (prop) => prop == null || prop === ""
-    );
+    const hasErrors = Object.values(validationErrors).length > 0;
 
-    if (hasNoErrors) {
-      try {
-        dispatch({ type: FormActionType.Submit });
-        await fetch("/api/send", {
-          body: JSON.stringify({ data: state.values }),
-          method: "POST",
-        });
-      } catch (error) {
-        dispatch({ type: FormActionType.Failed });
-      }
-    } else {
+    if (hasErrors) {
       dispatch({
         type: FormActionType.ValidationFailed,
-        validationErrors: validationErrors,
+        validationErrors,
       });
+    } else {
+      dispatch({ type: FormActionType.Submit });
+
+      try {
+        const response = await fetchGraphQL<
+          InsertFormMessageMutation,
+          InsertFormMessageMutationVariables
+        >(InsertFormMessage, { input });
+
+        if (response.createFormMessage) {
+          dispatch({ type: FormActionType.Success });
+        } else {
+          dispatch({ type: FormActionType.Failed });
+        }
+      } catch (exception) {
+        dispatch({ type: FormActionType.Failed });
+      }
     }
   };
 
@@ -410,26 +418,24 @@ export function ContactsForm() {
         lg: "row",
       }}
     >
-      <Box
-        display={
-          state.status === FormStatus.Submitted ? "inline-block" : "none"
-        }
-        pb="12"
-      >
-        <Box
-          as="h3"
-          fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
-          fontWeight="bold"
-          fontFamily="Europa"
-          lineHeight="1.1em"
-          pb="5"
-        >
-          Thank you!
+      {state.status === FormStatus.Submitted && (
+        <Box display="inline-block" pb="12">
+          <Text
+            as="h3"
+            fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
+            fontWeight="bold"
+            fontFamily="Europa"
+            lineHeight="1.1em"
+            pb="5"
+          >
+            Thank you!
+          </Text>
+          <Text as="p" fontSize="sm" color="#5c5c5c">
+            We&apos;ll get in touch soon.
+          </Text>
         </Box>
-        <Box as="p" fontSize="sm" color="#5c5c5c">
-          We&apos;ll get in touch soon.
-        </Box>
-      </Box>
+      )}
+
       <Box
         noValidate
         onSubmit={onFormSubmit}
@@ -450,15 +456,7 @@ export function ContactsForm() {
           display="inline-block"
           pos="relative"
         >
-          <FormControl
-            id="name"
-            isInvalid={
-              state.validationErrors.name === "" ||
-              state.validationErrors.name == null
-                ? false
-                : true
-            }
-          >
+          <FormControl isInvalid={state.validationErrors.name != null}>
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -474,7 +472,6 @@ export function ContactsForm() {
             <Input
               onChange={onFieldChange}
               value={state.values.name}
-              id="1"
               name="name"
               borderX="none"
               borderTop="none"
@@ -527,15 +524,7 @@ export function ContactsForm() {
           pos="relative"
           display="inline-block"
         >
-          <FormControl
-            id="email"
-            isInvalid={
-              state.validationErrors.email === "" ||
-              state.validationErrors.email == null
-                ? false
-                : true
-            }
-          >
+          <FormControl isInvalid={state.validationErrors.email != null}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -550,7 +539,6 @@ export function ContactsForm() {
             </FormLabel>
             <Input
               onChange={onFieldChange}
-              id="2"
               value={state.values.email}
               name="email"
               isRequired
@@ -600,15 +588,7 @@ export function ContactsForm() {
           pos="relative"
           display="inline-block"
         >
-          <FormControl
-            id="message"
-            isInvalid={
-              state.validationErrors.message === "" ||
-              state.validationErrors.message == null
-                ? false
-                : true
-            }
-          >
+          <FormControl isInvalid={state.validationErrors.message != null}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -623,7 +603,6 @@ export function ContactsForm() {
             </FormLabel>
             <Input
               onChange={onFieldChange}
-              id="3"
               name="message"
               value={state.values.message}
               borderX="none"
@@ -733,7 +712,7 @@ export const contactsSectionBlock: Block = {
       title: "Default title",
       subtitle: "Default subtitle",
       email: "hello@inkofpixel.com",
-      blocks: [],
+      socialBubbles: [],
     },
     fields: [],
   },

@@ -19,7 +19,7 @@
       "type": "string"
     },
     "message": {
-      "type": "richtext"
+      "type": "text"
     }
   }
 }
