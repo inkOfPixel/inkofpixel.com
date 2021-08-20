@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects_lists",
+  "collectionName": "projects_collections",
   "info": {
-    "name": "ProjectsList",
+    "name": "ProjectsCollection",
     "description": ""
   },
   "options": {
@@ -16,10 +16,10 @@
     }
   },
   "attributes": {
-    "projects": {
+    "projectsList": {
       "type": "component",
       "repeatable": true,
-      "component": "blocks.project",
+      "component": "section.projects-section",
       "pluginOptions": {
         "i18n": {
           "localized": true
