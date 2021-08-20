@@ -92,7 +92,8 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
                     <LocaleMenuLink
                       key={pageLocale.locale}
                       href={pageLocale.path!}
-                      locale={pageLocale.locale!}>
+                      locale={pageLocale.locale!}
+                    >
                       {pageLocale.locale?.toUpperCase()}
                     </LocaleMenuLink>
                   );
@@ -101,7 +102,8 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
                 <LocaleMenuLink
                   key="1"
                   href={router.pathname}
-                  locale={router.locale!}></LocaleMenuLink>
+                  locale={router.locale!}
+                ></LocaleMenuLink>
               )}
             </LocaleMenuList>
           </LocaleMenu>
@@ -151,7 +153,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     };
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 function wrap<T>(value: T | T[]): T[] {
@@ -367,6 +369,17 @@ function getPageData(
                 : [],
             };
           }
+          case "ComponentSectionContactsSection": {
+            return {
+              _template: "contactsSection",
+              id: section.id,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              email: section.email || null,
+              sectionTitle: section.sectionTitle || null,
+            };
+          }
+
           case "ComponentSectionSimpleSection": {
             return {
               _template: "simpleSection",

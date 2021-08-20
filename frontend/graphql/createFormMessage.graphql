@@ -1,0 +1,10 @@
+mutation insertFormMessage($input: createFormMessageInput) {
+  createFormMessage(input: $input) {
+    formMessage {
+      id
+      name
+      email
+      message
+    }
+  }
+}

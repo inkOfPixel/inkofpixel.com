@@ -75,8 +75,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
           menuInput,
         });
 
-        console.log("response", JSON.stringify(response, null, " "));
-
         if (response.errors != null) {
           cms.alerts.error("Error while saving data", 10000);
         } else {
@@ -185,6 +183,16 @@ function getPageInput(data: PageData): UpdatePageInput {
               sectionTitleColor: section.sectionTitleColor,
               title: section.title,
               subtitle: section.subtitle,
+            };
+          }
+          case "contactsSection": {
+            return {
+              __typename: "ComponentSectionContactsSection",
+              id: section.id,
+              title: section.title,
+              email: section.email,
+              subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle,
             };
           }
           default:
