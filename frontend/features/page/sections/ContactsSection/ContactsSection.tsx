@@ -305,7 +305,6 @@ function reducer(state: FormState, action: FormAction) {
     case FormActionType.Failed:
       return {
         ...state,
-
         submitError: "Error while sending your message",
         status: FormStatus.Idle,
       };
@@ -334,7 +333,7 @@ function validateErrors(values: FormState["values"]) {
   if (!regex.test(values.email)) {
     validationErrors.email = "Please insert a valid email";
   }
-  if (values.message.trim().length == 0) {
+  if (values.message.trim().length === 0) {
     validationErrors.message = "Please insert a message";
   }
   return validationErrors;
