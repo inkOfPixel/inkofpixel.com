@@ -1,8 +1,5 @@
 import { cardBlock, CardBlockData } from "./CardListSection/blocks/CardBlock";
-import {
-  socialBlock,
-  SocialBubbleBlockData,
-} from "./ContactsSection/blocks/SocialBubbleBlock";
+
 import {
   featureBlock,
   FeatureBlockData,
@@ -16,11 +13,4 @@ export const CARD_BLOCK = {
   card: cardBlock,
 };
 
-export const SOCIAL_BLOCK = {
-  socialBubble: socialBlock,
-};
-
-export type BlockData =
-  | CardBlockData
-  | FeatureBlockData
-  | SocialBubbleBlockData;
+export type BlockData = CardBlockData | FeatureBlockData;
