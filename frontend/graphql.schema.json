@@ -3133,62 +3133,62 @@
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsList",
+            "name": "ProjectsCollection",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnection",
+            "name": "ProjectsCollectionConnection",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListAggregator",
+            "name": "ProjectsCollectionAggregator",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListGroupBy",
+            "name": "ProjectsCollectionGroupBy",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnectionId",
+            "name": "ProjectsCollectionConnectionId",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnectionCreated_at",
+            "name": "ProjectsCollectionConnectionCreated_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnectionUpdated_at",
+            "name": "ProjectsCollectionConnectionUpdated_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnectionLocale",
+            "name": "ProjectsCollectionConnectionLocale",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "ProjectsListConnectionPublished_at",
+            "name": "ProjectsCollectionConnectionPublished_at",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "createProjectsListPayload",
+            "name": "createProjectsCollectionPayload",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "updateProjectsListPayload",
+            "name": "updateProjectsCollectionPayload",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "deleteProjectsListPayload",
+            "name": "deleteProjectsCollectionPayload",
             "ofType": null
           },
           {
@@ -3746,7 +3746,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createProjectsList",
+            "name": "createProjectsCollection",
             "description": null,
             "args": [
               {
@@ -3754,7 +3754,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "createProjectsListInput",
+                  "name": "createProjectsCollectionInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -3764,14 +3764,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "createProjectsListPayload",
+              "name": "createProjectsCollectionPayload",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateProjectsList",
+            "name": "updateProjectsCollection",
             "description": null,
             "args": [
               {
@@ -3779,7 +3779,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "updateProjectsListInput",
+                  "name": "updateProjectsCollectionInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -3789,14 +3789,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "updateProjectsListPayload",
+              "name": "updateProjectsCollectionPayload",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "deleteProjectsList",
+            "name": "deleteProjectsCollection",
             "description": null,
             "args": [
               {
@@ -3804,7 +3804,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "deleteProjectsListInput",
+                  "name": "deleteProjectsCollectionInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -3814,7 +3814,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "deleteProjectsListPayload",
+              "name": "deleteProjectsCollectionPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4062,7 +4062,7 @@
             "deprecationReason": null
           },
           {
-            "name": "createProjectsListLocalization",
+            "name": "createProjectsCollectionLocalization",
             "description": null,
             "args": [
               {
@@ -4073,7 +4073,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "updateProjectsListInput",
+                    "name": "updateProjectsCollectionInput",
                     "ofType": null
                   }
                 },
@@ -4087,7 +4087,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsList",
+                "name": "ProjectsCollection",
                 "ofType": null
               }
             },
@@ -5332,7 +5332,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsList",
+        "name": "ProjectsCollection",
         "description": null,
         "fields": [
           {
@@ -5384,7 +5384,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projects",
+            "name": "projectsList",
             "description": null,
             "args": [],
             "type": {
@@ -5392,7 +5392,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ComponentBlocksProject",
+                "name": "ComponentSectionProjectsSection",
                 "ofType": null
               }
             },
@@ -5481,7 +5481,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsList",
+                "name": "ProjectsCollection",
                 "ofType": null
               }
             },
@@ -5496,7 +5496,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListAggregator",
+        "name": "ProjectsCollectionAggregator",
         "description": null,
         "fields": [
           {
@@ -5531,7 +5531,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnection",
+        "name": "ProjectsCollectionConnection",
         "description": null,
         "fields": [
           {
@@ -5543,7 +5543,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsList",
+                "name": "ProjectsCollection",
                 "ofType": null
               }
             },
@@ -5556,7 +5556,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListGroupBy",
+              "name": "ProjectsCollectionGroupBy",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5568,7 +5568,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListAggregator",
+              "name": "ProjectsCollectionAggregator",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5582,7 +5582,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnectionCreated_at",
+        "name": "ProjectsCollectionConnectionCreated_at",
         "description": null,
         "fields": [
           {
@@ -5603,7 +5603,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5617,7 +5617,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnectionId",
+        "name": "ProjectsCollectionConnectionId",
         "description": null,
         "fields": [
           {
@@ -5638,7 +5638,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5652,7 +5652,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnectionLocale",
+        "name": "ProjectsCollectionConnectionLocale",
         "description": null,
         "fields": [
           {
@@ -5673,7 +5673,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5687,7 +5687,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnectionPublished_at",
+        "name": "ProjectsCollectionConnectionPublished_at",
         "description": null,
         "fields": [
           {
@@ -5708,7 +5708,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5722,7 +5722,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListConnectionUpdated_at",
+        "name": "ProjectsCollectionConnectionUpdated_at",
         "description": null,
         "fields": [
           {
@@ -5743,7 +5743,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5757,7 +5757,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ProjectsListGroupBy",
+        "name": "ProjectsCollectionGroupBy",
         "description": null,
         "fields": [
           {
@@ -5769,7 +5769,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsListConnectionId",
+                "name": "ProjectsCollectionConnectionId",
                 "ofType": null
               }
             },
@@ -5785,7 +5785,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsListConnectionCreated_at",
+                "name": "ProjectsCollectionConnectionCreated_at",
                 "ofType": null
               }
             },
@@ -5801,7 +5801,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsListConnectionUpdated_at",
+                "name": "ProjectsCollectionConnectionUpdated_at",
                 "ofType": null
               }
             },
@@ -5817,7 +5817,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsListConnectionLocale",
+                "name": "ProjectsCollectionConnectionLocale",
                 "ofType": null
               }
             },
@@ -5833,7 +5833,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsListConnectionPublished_at",
+                "name": "ProjectsCollectionConnectionPublished_at",
                 "ofType": null
               }
             },
@@ -5848,19 +5848,19 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ProjectsListInput",
+        "name": "ProjectsCollectionInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "projects",
+            "name": "projectsList",
             "description": null,
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "ComponentBlocksProjectInput",
+                "name": "ComponentSectionProjectsSectionInput",
                 "ofType": null
               }
             },
@@ -6385,7 +6385,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectsList",
+            "name": "projectsCollection",
             "description": null,
             "args": [
               {
@@ -6419,14 +6419,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsList",
+              "name": "ProjectsCollection",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "projectsLists",
+            "name": "projectsCollections",
             "description": null,
             "args": [
               {
@@ -6507,7 +6507,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "ProjectsList",
+                "name": "ProjectsCollection",
                 "ofType": null
               }
             },
@@ -6515,7 +6515,7 @@
             "deprecationReason": null
           },
           {
-            "name": "projectsListsConnection",
+            "name": "projectsCollectionsConnection",
             "description": null,
             "args": [
               {
@@ -6581,7 +6581,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsListConnection",
+              "name": "ProjectsCollectionConnection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10639,7 +10639,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "createProjectsListInput",
+        "name": "createProjectsCollectionInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -10648,7 +10648,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ProjectsListInput",
+              "name": "ProjectsCollectionInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -10662,16 +10662,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "createProjectsListPayload",
+        "name": "createProjectsCollectionPayload",
         "description": null,
         "fields": [
           {
-            "name": "projectsList",
+            "name": "projectsCollection",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsList",
+              "name": "ProjectsCollection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10938,7 +10938,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "deleteProjectsListInput",
+        "name": "deleteProjectsCollectionInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -10961,16 +10961,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "deleteProjectsListPayload",
+        "name": "deleteProjectsCollectionPayload",
         "description": null,
         "fields": [
           {
-            "name": "projectsList",
+            "name": "projectsCollection",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsList",
+              "name": "ProjectsCollection",
               "ofType": null
             },
             "isDeprecated": false,
@@ -12415,19 +12415,19 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "editProjectsListInput",
+        "name": "editProjectsCollectionInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "projects",
+            "name": "projectsList",
             "description": null,
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "editComponentBlocksProjectInput",
+                "name": "editComponentSectionProjectsSectionInput",
                 "ofType": null
               }
             },
@@ -12914,7 +12914,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "updateProjectsListInput",
+        "name": "updateProjectsCollectionInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -12935,7 +12935,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "editProjectsListInput",
+              "name": "editProjectsCollectionInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -12949,16 +12949,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "updateProjectsListPayload",
+        "name": "updateProjectsCollectionPayload",
         "description": null,
         "fields": [
           {
-            "name": "projectsList",
+            "name": "projectsCollection",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "ProjectsList",
+              "name": "ProjectsCollection",
               "ofType": null
             },
             "isDeprecated": false,

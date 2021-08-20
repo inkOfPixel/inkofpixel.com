@@ -1,0 +1,25 @@
+query getProjects($locale: string) {
+  projectsCollections(locale: $locale) {
+    id
+    locale
+    projectsList {
+      id
+      sectionTitle
+      sectionTitleColor
+      projects {
+        id
+        path
+        companyName
+        projectType
+        description
+        linkName
+        linkPath
+        image {
+          id
+          url
+          alternativeText
+        }
+      }
+    }
+  }
+}
