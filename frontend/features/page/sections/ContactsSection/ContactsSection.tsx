@@ -25,7 +25,6 @@ import {
   InsertFormMessageMutationVariables,
 } from "@graphql/generated";
 import { assertNever } from "@utils";
-import { SocialBubbleBlockData } from "@features/page/sections/ContactsSection/blocks/SocialBubbleBlock";
 import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
 import Splash from "@components/Splash";
 
@@ -37,7 +36,6 @@ export type ContactsSectionBlockData = BlockTemplateData<
     subtitle: Nullable<string>;
     email: Nullable<string>;
     sectionTitle: Nullable<string>;
-    socialBubbles: SocialBubbleBlockData[];
   }
 >;
 
@@ -293,13 +291,9 @@ function reducer(state: FormState, action: FormAction) {
     case FormActionType.Submit: {
       //Check errors
 
-      const hasNoErrors = Object.values(state.validationErrors).every(
-        (prop) => prop == null || prop === ""
-      );
-
       return {
         ...state,
-        status: hasNoErrors ? FormStatus.Submitting : FormStatus.Idle,
+        status: FormStatus.Submitting,
       };
     }
 
@@ -331,61 +325,36 @@ function reducer(state: FormState, action: FormAction) {
   }
 }
 
-export function ContactsForm() {
-  const [state, dispatch] = React.useReducer(reducer, blankForm);
+function validateErrors(values: FormState["values"], state: FormState) {
+  const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
 
-  function validateErrors(values: FormState["values"]) {
-    const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
+  const validationErrors: FormState["validationErrors"] = {
+    name: null,
+    email: null,
+    message: null,
+  };
 
-    const validationErrors: FormState["validationErrors"] = {
-      name: null,
-      email: null,
-      message: null,
-    };
-
-    if (values.name.trim().length === 0) {
-      validationErrors.name = "Please insert your name";
-    } else {
-      validationErrors.name = null;
-    }
-
-    if (!regex.test(state.values.email)) {
-      validationErrors.email = "Please insert a valid email";
-    } else {
-      validationErrors.email = null;
-    }
-    if (state.values.message.trim().length == 0) {
-      validationErrors.message = "Please insert a message";
-    } else {
-      validationErrors.message = null;
-    }
-    return validationErrors;
+  if (values.name.trim().length === 0) {
+    validationErrors.name = "Please insert your name";
+  } else {
+    validationErrors.name = null;
   }
 
-  React.useEffect(() => {
-    if (state.status === FormStatus.Submitting) {
-      async function sendMessage() {
-        const input: CreateFormMessageInput = {
-          data: {
-            name: state.values.name,
-            email: state.values.email,
-            message: state.values.message,
-          },
-        };
-        const response = await fetchGraphQL<
-          InsertFormMessageMutation,
-          InsertFormMessageMutationVariables
-        >(InsertFormMessage, { input });
+  if (!regex.test(state.values.email)) {
+    validationErrors.email = "Please insert a valid email";
+  } else {
+    validationErrors.email = null;
+  }
+  if (state.values.message.trim().length == 0) {
+    validationErrors.message = "Please insert a message";
+  } else {
+    validationErrors.message = null;
+  }
+  return validationErrors;
+}
 
-        if (response.createFormMessage == null) {
-          dispatch({ type: FormActionType.Failed });
-        } else {
-          dispatch({ type: FormActionType.Success });
-        }
-      }
-      sendMessage();
-    }
-  }, [state.status, state.values]);
+export function ContactsForm() {
+  const [state, dispatch] = React.useReducer(reducer, blankForm);
 
   const onFieldChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -402,19 +371,42 @@ export function ContactsForm() {
   const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const validationErrors = validateErrors(state.values);
+    const input: CreateFormMessageInput = {
+      data: {
+        name: state.values.name,
+        email: state.values.email,
+        message: state.values.message,
+      },
+    };
 
-    const hasNoErrors = Object.values(validationErrors).every(
-      (prop) => prop == null || prop === ""
+    const validationErrors = validateErrors(state.values, state);
+
+    const hasErrors = Object.values(validationErrors).some(
+      (prop) => prop != null
     );
 
-    if (hasNoErrors) {
-      dispatch({ type: FormActionType.Submit });
-    } else {
+    if (hasErrors) {
       dispatch({
         type: FormActionType.ValidationFailed,
         validationErrors: validationErrors,
       });
+    } else {
+      dispatch({ type: FormActionType.Submit });
+
+      try {
+        const response = await fetchGraphQL<
+          InsertFormMessageMutation,
+          InsertFormMessageMutationVariables
+        >(InsertFormMessage, { input });
+
+        if (response.createFormMessage) {
+          dispatch({ type: FormActionType.Success });
+        } else {
+          dispatch({ type: FormActionType.Failed });
+        }
+      } catch (exception) {
+        dispatch({ type: FormActionType.Failed });
+      }
     }
   };
 
@@ -442,12 +434,7 @@ export function ContactsForm() {
       }}
     >
       {state.status === FormStatus.Submitted && (
-        <Box
-          display={
-            state.status === FormStatus.Submitted ? "inline-block" : "none"
-          }
-          pb="12"
-        >
+        <Box display="inline-block" pb="12">
           <Text
             as="h3"
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
@@ -484,9 +471,7 @@ export function ContactsForm() {
           display="inline-block"
           pos="relative"
         >
-          <FormControl
-            isInvalid={state.validationErrors.name == null ? false : true}
-          >
+          <FormControl isInvalid={state.validationErrors.name != null}>
             <FormLabel
               fontWeight="400"
               fontSize="sm"
@@ -554,9 +539,7 @@ export function ContactsForm() {
           pos="relative"
           display="inline-block"
         >
-          <FormControl
-            isInvalid={state.validationErrors.email == null ? false : true}
-          >
+          <FormControl isInvalid={state.validationErrors.email != null}>
             <FormLabel
               mb="0"
               fontWeight="400"
@@ -620,9 +603,7 @@ export function ContactsForm() {
           pos="relative"
           display="inline-block"
         >
-          <FormControl
-            isInvalid={state.validationErrors.message == null ? false : true}
-          >
+          <FormControl isInvalid={state.validationErrors.message != null}>
             <FormLabel
               mb="0"
               fontWeight="400"
