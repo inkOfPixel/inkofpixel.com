@@ -300,7 +300,6 @@ function reducer(state: FormState, action: FormAction) {
       return {
         ...state,
         status: FormStatus.Submitted,
-        // API POST call to slack :)
       };
 
     case FormActionType.Failed:
@@ -385,6 +384,10 @@ export function ContactsForm() {
         >(InsertFormMessage, { input });
 
         if (response.createFormMessage) {
+          fetch(`api/send`, {
+            method: "POST",
+            body: JSON.stringify({ data: state.values }),
+          });
           dispatch({ type: FormActionType.Success });
         } else {
           dispatch({ type: FormActionType.Failed });

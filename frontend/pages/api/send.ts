@@ -5,8 +5,6 @@ const url = process.env.SLACK_WEBHOOK_URL!;
 
 const webhook = new IncomingWebhook(url);
 
-console.log("url", url);
-
 export default async function handler(req: NextApiRequest) {
   const parsedBody = JSON.parse(req.body);
   await webhook.send({
