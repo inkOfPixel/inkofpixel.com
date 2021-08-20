@@ -18,15 +18,16 @@ import {
 
 import Link from "next/link";
 import { fetchGraphQL } from "@graphql/utils";
-import {
-  CreateFormMessageInput,
-  InsertFormMessage,
-  InsertFormMessageMutation,
-  InsertFormMessageMutationVariables,
-} from "@graphql/generated";
+
 import { assertNever } from "@utils";
 import { FacebookIcon, GithubIcon, TwitterIcon } from "@components/SocialIcons";
 import Splash from "@components/Splash";
+import {
+  CreateFormMessageInput,
+  InsertFormMessageMutation,
+  InsertFormMessageMutationVariables,
+  InsertFormMessage,
+} from "@graphql/generated";
 
 export type ContactsSectionBlockData = BlockTemplateData<
   "contactsSection",
@@ -244,7 +245,7 @@ enum FormActionType {
   ValidationFailed = "validation - failed",
 }
 
-interface ValidationFailed {
+interface ValidationFailedAction {
   type: FormActionType.ValidationFailed;
   validationErrors: FormState["validationErrors"];
 }
@@ -254,7 +255,7 @@ type FormAction =
   | SuccessAction
   | FailAction
   | SubmitAction
-  | ValidationFailed;
+  | ValidationFailedAction;
 
 interface FormState {
   status: FormStatus;
@@ -264,9 +265,9 @@ interface FormState {
     message: string;
   };
   validationErrors: {
-    name: Nullable<string>;
-    email: Nullable<string>;
-    message: Nullable<string>;
+    name?: Nullable<string>;
+    email?: Nullable<string>;
+    message?: Nullable<string>;
   };
   submitError: Nullable<string>;
 }
@@ -289,8 +290,6 @@ function reducer(state: FormState, action: FormAction) {
     }
 
     case FormActionType.Submit: {
-      //Check errors
-
       return {
         ...state,
         status: FormStatus.Submitting,
@@ -299,14 +298,12 @@ function reducer(state: FormState, action: FormAction) {
 
     case FormActionType.Success:
       return {
-        // Display thanks page
         ...state,
         status: FormStatus.Submitted,
       };
 
     case FormActionType.Failed:
       return {
-        // Resta in idle, setta errore e resetta i campi?
         ...state,
 
         submitError: "Error while sending your message",
@@ -325,30 +322,20 @@ function reducer(state: FormState, action: FormAction) {
   }
 }
 
-function validateErrors(values: FormState["values"], state: FormState) {
+function validateErrors(values: FormState["values"]) {
   const regex = /^[^@\s]+@[^@\s\.]+\.[^@\.\s]+$/;
 
-  const validationErrors: FormState["validationErrors"] = {
-    name: null,
-    email: null,
-    message: null,
-  };
+  const validationErrors: FormState["validationErrors"] = {};
 
   if (values.name.trim().length === 0) {
     validationErrors.name = "Please insert your name";
-  } else {
-    validationErrors.name = null;
   }
 
-  if (!regex.test(state.values.email)) {
+  if (!regex.test(values.email)) {
     validationErrors.email = "Please insert a valid email";
-  } else {
-    validationErrors.email = null;
   }
-  if (state.values.message.trim().length == 0) {
+  if (values.message.trim().length == 0) {
     validationErrors.message = "Please insert a message";
-  } else {
-    validationErrors.message = null;
   }
   return validationErrors;
 }
@@ -379,16 +366,14 @@ export function ContactsForm() {
       },
     };
 
-    const validationErrors = validateErrors(state.values, state);
+    const validationErrors = validateErrors(state.values);
 
-    const hasErrors = Object.values(validationErrors).some(
-      (prop) => prop != null
-    );
+    const hasErrors = Object.values(validationErrors).length > 0;
 
     if (hasErrors) {
       dispatch({
         type: FormActionType.ValidationFailed,
-        validationErrors: validationErrors,
+        validationErrors,
       });
     } else {
       dispatch({ type: FormActionType.Submit });
