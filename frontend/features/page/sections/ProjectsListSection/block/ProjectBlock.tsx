@@ -1,6 +1,5 @@
 import { Box, Flex, Img } from "@chakra-ui/react";
 import { STRAPI_URL } from "@config/env";
-import { BlockTemplateData } from "@features/pageBlocks";
 import Link from "next/link";
 import React from "react";
 import {
@@ -22,6 +21,7 @@ export type ProjectBlockData = BlockTemplateData<
     linkName: Nullable<string>;
     linkPath: Nullable<string>;
     image: Nullable<ProjectImage>;
+    path: Nullable<string>;
   }
 >;
 
@@ -52,7 +52,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
       flexDir={{
         base: "column-reverse",
         lg: "row",
-      }}>
+      }}
+    >
       <Box
         w={{
           base: "full",
@@ -65,7 +66,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
         pr={{
           lg: "16",
         }}
-        boxSizing="border-box">
+        boxSizing="border-box"
+      >
         <Box
           fontWeight="bold"
           fontFamily="Europa"
@@ -73,7 +75,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           pb="2.5"
           letterSpacing="0.04em"
           color="dark"
-          as="h3">
+          as="h3"
+        >
           <InlineTextarea name="companyName" />
         </Box>
         <Box
@@ -84,14 +87,16 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           pos="relative"
           w="full"
           pb="5"
-          color="rgb(5,195,182)">
+          color="rgb(5,195,182)"
+        >
           <InlineTextarea name="projectType" />
         </Box>
         <Box
           fontSize="sm"
           fontFamily="Roboto Mono"
           color="description"
-          lineHeight="1.8em">
+          lineHeight="1.8em"
+        >
           <InlineTextarea name="description" />
         </Box>
         <Box>
@@ -118,7 +123,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
                 _after: {
                   paddingLeft: "20px",
                 },
-              }}>
+              }}
+            >
               {linkName}
             </Box>
           </Link>
@@ -129,7 +135,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           base: "full",
           lg: "60%",
         }}
-        h="350px">
+        h="350px"
+      >
         {cms.enabled ? (
           <InlineImage
             name="image"
@@ -143,7 +150,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
             }}
             parse={(media) => {
               return media as any;
-            }}>
+            }}
+          >
             {(imageProps: any) => {
               const { src } = imageProps as ImageRenderProps;
               let imageSrc: string = src.previewSrc || src.url || "";
@@ -159,7 +167,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
                   pos="relative"
                   overflow="hidden"
                   mt="-30px"
-                  height="360px">
+                  height="360px"
+                >
                   <Img
                     w={image ? "full" : "72"}
                     h={image ? "full" : "72"}
@@ -188,7 +197,8 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
                 borderStyle="none"
                 src={
                   image ? STRAPI_URL + image.url : "/images/default-image.png"
-                }></Img>
+                }
+              ></Img>
             </Box>
           </Link>
         )}
@@ -198,8 +208,6 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("datablock", JSON.stringify(data, null, " "));
-
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <ProjectBlock {...data} />

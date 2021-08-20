@@ -14,12 +14,17 @@ import {
   SimpleSectionBlockData,
   simpleSectionBlock,
 } from "./sections/SimpleSection/blocks/SimpleSectionBlock";
+import { projectListSectionBlock } from "./sections/ProjectsListSection/ProjectsListSectionBlock";
 
 export const SECTION_PAGE_BLOCKS = {
   heroSection: heroSectionBlock,
   featureListSection: featureSectionBlock,
   cardListSection: cardSectionBlock,
   simpleSection: simpleSectionBlock,
+};
+
+export const PROJECTS_LIST_BLOCK = {
+  projectsList: projectListSectionBlock,
 };
 
 export type SectionBlockData =

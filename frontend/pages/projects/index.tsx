@@ -1,13 +1,15 @@
-import { PROJECT_BLOCK } from "@features/sectionBlocks";
+import { PROJECTS_LIST_BLOCK } from "@features/page";
+import { ProjectBlockData } from "@features/page/sections/ProjectsListSection/block/ProjectBlock";
+import { ProjectListSectionData } from "@features/page/sections/ProjectsListSection/ProjectsListSectionBlock";
 import {
-  GetProjectsList,
-  GetProjectsListQuery,
-  GetProjectsListQueryVariables,
+  GetProjectsCollection,
+  GetProjectsCollectionQuery,
+  GetProjectsCollectionQueryVariables,
+  UpdateProjectsCollectionInput,
   UpdateProjectsList,
-  UpdateProjectsListInput,
 } from "@graphql/generated";
 import { fetchGraphQL } from "@graphql/utils";
-import { DefaultLayout } from "@layouts/defaultLayout";
+import { DefaultLayout } from "@layouts/siteLayout";
 import { filterListNullableItems } from "@utils";
 import { GetStaticProps } from "next";
 import React from "react";
@@ -26,24 +28,35 @@ export interface ProjectDataCreateInput {
   locale: string;
 }
 
-type ProjectsListData = {
+type ProjectsListCollection = {
   id: string;
-  projects?: ProjectData[];
+  locale?: Nullable<string>;
+  projectsList: ProjectListSectionData[];
 };
 
 interface DynamicPageProps {
   locale: string;
   preview: boolean;
-  projects: ProjectsListData;
+  projects: ProjectsListCollection;
 }
 
-export default function Index({ projects }: DynamicPageProps) {
+export default function Index({ projects, preview }: DynamicPageProps) {
   const [_, form] = useProjectPlugin(projects);
+
+  const itemProps = React.useMemo<BlockItemProps>(() => {
+    return {
+      isPreview: preview,
+    };
+  }, [preview]);
 
   return (
     <DefaultLayout title="InkOfPixel">
       <InlineForm form={form}>
-        <InlineBlocks name="projects" blocks={PROJECT_BLOCK} />
+        <InlineBlocks
+          name="projectsList"
+          blocks={PROJECTS_LIST_BLOCK}
+          itemProps={itemProps}
+        />
       </InlineForm>
     </DefaultLayout>
   );
@@ -61,17 +74,19 @@ export const getStaticProps: GetStaticProps<
   const preview = context.preview === true;
 
   const localeProjectsList = await fetchGraphQL<
-    GetProjectsListQuery,
-    GetProjectsListQueryVariables
-  >(GetProjectsList);
+    GetProjectsCollectionQuery,
+    GetProjectsCollectionQueryVariables
+  >(GetProjectsCollection);
 
-  if (localeProjectsList.projectsList == null) {
+  if (localeProjectsList.projectsCollection == null) {
     return {
       notFound: true,
     };
   }
 
-  const projectData = getProjectsListData(localeProjectsList.projectsList);
+  const projectData = getProjectsListData(
+    localeProjectsList.projectsCollection
+  );
 
   if (projectData == null) {
     return {
@@ -100,40 +115,58 @@ export const getStaticProps: GetStaticProps<
 };
 
 function getProjectsListData(
-  projectsList: GetProjectsListQuery["projectsList"]
-): ProjectsListData | undefined {
-  if (projectsList == null) {
+  projectsCollection: GetProjectsCollectionQuery["projectsCollection"]
+): ProjectsListCollection | undefined {
+  if (projectsCollection == null) {
     return undefined;
   }
   return {
-    id: projectsList.id,
-    projects: projectsList.projects
-      ? filterListNullableItems(projectsList.projects).map((project) => {
+    id: projectsCollection.id,
+    locale: projectsCollection.locale,
+    projectsList: projectsCollection.projectsList
+      ? filterListNullableItems(
+          projectsCollection.projectsList
+        ).map<ProjectListSectionData>((project) => {
           return {
-            _template: "project",
+            _template: "projectsList",
             id: project.id,
-            companyName: project.companyName || null,
-            projectType: project.projectType || null,
-            linkName: project.linkName || null,
-            linkPath: project.linkPath || null,
-            description: project.description || null,
-            image: project.image
-              ? {
-                  id: project.image.id,
-                  url: project.image.url,
-                  alternativeText: project.image.alternativeText || null,
-                }
-              : null,
-            path: project.path || null,
+            sectionTitle: project.sectionTitle || null,
+            sectionTitleColor: project.sectionTitleColor || null,
+            projects: project.projects
+              ? filterListNullableItems(project.projects).map<ProjectBlockData>(
+                  (project) => {
+                    return {
+                      _template: "project",
+                      id: project.id,
+                      companyName: project.companyName || null,
+                      projectType: project.projectType || null,
+                      linkName: project.linkName || null,
+                      linkPath: project.linkPath || null,
+                      description: project.description || null,
+                      image: project.image
+                        ? {
+                            id: project.image.id,
+                            url: project.image.url,
+                            alternativeText:
+                              project.image.alternativeText || null,
+                          }
+                        : null,
+                      path: project.path || null,
+                    };
+                  }
+                )
+              : [],
           };
         })
       : [],
   };
 }
 
-function useProjectPlugin(data: ProjectsListData): [ProjectsListData, Form] {
+function useProjectPlugin(
+  data: ProjectsListCollection
+): [ProjectsListCollection, Form] {
   const cms = useCMS();
-  const formConfig: FormOptions<ProjectsListData> = {
+  const formConfig: FormOptions<ProjectsListCollection> = {
     id: data,
     label: "Page",
     initialValues: data,
@@ -161,236 +194,31 @@ function useProjectPlugin(data: ProjectsListData): [ProjectsListData, Form] {
   return [projects, form];
 }
 
-function getProjectInput(data: ProjectsListData): UpdateProjectsListInput {
+function getProjectInput(
+  data: ProjectsListCollection
+): UpdateProjectsCollectionInput {
   return {
     where: { id: data.id },
     data: {
-      projects: data.projects?.map((project) => {
+      projectsList: data.projectsList.map((list) => {
         return {
-          id: project.id,
-          companyName: project.companyName,
-          description: project.description,
-          linkName: project.linkName,
-          linkPath: project.linkPath,
-          path: project.path,
-          projectType: project.projectType,
-          image: project.image ? project.image.id : null,
+          id: list.id,
+          sectionTitle: list.sectionTitle,
+          sectionTitleColor: list.sectionTitleColor,
+          projects: list.projects.map((project) => {
+            return {
+              id: project.id,
+              companyName: project.companyName,
+              projectType: project.projectType,
+              linkName: project.linkName,
+              linkPath: project.linkPath,
+              description: project.description,
+              image: project.image?.id,
+              path: project.path,
+            };
+          }),
         };
       }),
     },
   };
 }
-
-/* import { Box } from "@chakra-ui/react";
-import { BlockTemplateData } from "@features/pageBlocks";
-import {
-  GetProjects,
-  GetProjectsQuery,
-  GetProjectsQueryVariables,
-} from "@graphql/generated";
-import { fetchGraphQL } from "@graphql/utils";
-import { filterListNullableItems } from "@utils";
-import { GetStaticPaths, GetStaticProps } from "next";
-import React from "react";
-
-interface DynamicPageProps {
-  path: string[];
-  locale: string;
-  preview: boolean;
-  Project: ProjectBlockData;
-}
-
-export type ProjectBlockData = BlockTemplateData<
-  "project",
-  {
-    id: string;
-    path: string;
-    companyName: Nullable<string>;
-    projectType: Nullable<string>;
-    description: Nullable<string>;
-    linkName: Nullable<string>;
-    linkPath: Nullable<string>;
-    image: Nullable<ProjectImage>;
-  }
->;
-
-interface ProjectImage {
-  id: string;
-  url: string;
-  alternativeText: Nullable<string>;
-}
-
-export default function DynamicPage({ Project }: DynamicPageProps) {
-  return <Box color="black">{Project}</Box>;
-}
-
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  if (context.locales == null) {
-    throw new Error("No locale has been defined!");
-  }
-  const allProjectsRequests = context.locales.map(async (locale) => {
-    const localeProjects = await fetchGraphQL<
-      GetProjectsQuery,
-      GetProjectsQueryVariables
-    >(GetProjects, {
-      locale,
-    });
-
-    if (localeProjects.projects) {
-      return filterListNullableItems(localeProjects.projects);
-    }
-    return [];
-  });
-
-  const allProjects = await Promise.all(allProjectsRequests);
-  const projects = allProjects.flat();
-
-  const paths = projects.map((project) => {
-    const pagePath = project.path?.replace(/^\/+/, "") || "";
-    const slugArray: any = pagePath.length > 0 ? pagePath.split("/") : false;
-    return {
-      params: { slug: slugArray },
-      locale: project.locale!,
-    };
-  });
-
-  return { paths, fallback: true };
-};
-
-function wrap<T>(value: T | T[]): T[] {
-  if (Array.isArray(value)) {
-    return value;
-  }
-  return [value];
-}
-
-export const getStaticProps: GetStaticProps<
-  DynamicPageProps | { notFound: boolean }
-> = async (context) => {
-  const pathParts = wrap(context.params?.slug || []);
-  const path = `/${pathParts.join("/")}`;
-  const locale = context.locale;
-  if (locale == null) {
-    throw new Error(`Path "${pathParts.join("/")}" has no locale!`);
-  }
-  const preview = context.preview === true;
-
-  const localeProjects = await fetchGraphQL<
-    GetProjectsQuery,
-    GetProjectsQueryVariables
-  >(GetProjects, {
-    locale,
-  });
-
-  if (localeProjects.projects == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const ProjectsList = await fetchGraphQL<
-    GetProjectsQuery,
-    GetProjectsQueryVariables
-  >(GetProjects, {
-    locale,
-    where: {
-      path,
-    },
-  });
-
-  if (ProjectsList.projects == null) {
-    return {
-      notFound: true,
-    };
-  }
-
-  if (preview) {
-    return {
-      props: {
-        ProjectsList,
-        path: pathParts,
-        locale,
-        preview,
-        previewData: context.previewData,
-      },
-    };
-  }
-
-  return {
-    props: {
-      ProjectsList,
-      path: pathParts,
-      locale,
-      preview,
-    },
-  };
-};
-
-/*
-case "ComponentSectionProjectsSection": {
-            return {
-              _template: "projectListSection",
-              id: section.id,
-              sectionTitle: section.sectionTitle || null,
-              sectionTitleColor: section.sectionTitleColor || null,
-              projects: section.projects
-                ? filterListNullableItems(
-                    section.projects
-                  ).map<ProjectBlockData>((project) => {
-                    return {
-                      _template: "project",
-                      id: project.id,
-                      companyName: project.companyName || null,
-                      projectType: project.projectType || null,
-                      description: project.description || null,
-                      linkName: project.linkName || null,
-                      linkPath: project.linkPath || null,
-                      image: project.image
-                        ? {
-                            id: project.image.id,
-                            url: project.image.url,
-                            alternativeText:
-                              project.image.alternativeText || null,
-                          }
-                        : null,
-                    };
-                  })
-                : [],
-            };
-          }
-
-
-
-          case "projectListSection": {
-            return {
-              __typename: "ComponentSectionProjectsSection",
-              id: section.id,
-              sectionTitle: section.sectionTitle,
-              sectionTitleColor: section.sectionTitleColor,
-              projects: section.projects
-                ? filterListNullableItems(
-                    section.projects
-                  ).map<ProjectBlockData>((project) => {
-                    return {
-                      _template: "project",
-                      id: project.id,
-                      companyName: project.companyName || null,
-                      projectType: project.projectType || null,
-                      description: project.description || null,
-                      linkName: project.linkName || null,
-                      linkPath: project.linkPath || null,
-                      image: project.image
-                        ? {
-                            id: project.image.id,
-                            url: project.image.url,
-                            alternativeText:
-                              project.image.alternativeText || null,
-                          }
-                        : null,
-                    };
-                  })
-                : [],
-            };
-          }
-
-*/

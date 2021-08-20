@@ -186,7 +186,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   });
   console.log("paths", JSON.stringify(paths, null, " "));
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 export function wrap<T>(value: T | T[]): T[] {

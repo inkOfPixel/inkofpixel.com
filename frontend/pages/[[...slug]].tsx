@@ -10,7 +10,12 @@ import {
   GetPagesQuery,
   GetPagesQueryVariables,
 } from "@graphql/generated";
-import { PageData, usePagePlugin, GlobalData } from "@plugins/usePagePlugin";
+import {
+  PageData,
+  usePagePlugin,
+  GlobalData,
+  LocalizationsData,
+} from "@plugins/usePagePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
 import { Box, chakra, useColorMode } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";

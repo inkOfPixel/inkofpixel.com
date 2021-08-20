@@ -1,6 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { PROJECT_BLOCK } from "@features/sectionBlocks";
-import { ProjectBlockData } from "@features/sectionBlocks/ProjectBlock";
+
 import React from "react";
 import {
   BlockComponentProps,
@@ -9,10 +8,11 @@ import {
   InlineTextarea,
   InlineBlocks,
 } from "react-tinacms-inline";
-import { BlockItemProps, BlockTemplateData } from "./types";
+import { PROJECT_BLOCK } from "..";
+import { ProjectBlockData } from "./block/ProjectBlock";
 
 export type ProjectListSectionData = BlockTemplateData<
-  "projectListSection",
+  "projectsList",
   {
     id: string;
     sectionTitle: Nullable<string>;
@@ -52,7 +52,8 @@ export function ProjectListSection({
       m={{
         base: "0 auto",
       }}
-      pos="relative">
+      pos="relative"
+    >
       {sectionTitle == null ? (
         <Box
           color={sectionTitleColor ? sectionTitleColor : "black"}
@@ -64,7 +65,8 @@ export function ProjectListSection({
           pb={8}
           as="h2"
           fontFamily="Roboto Mono"
-          lineHeight="1.15em">
+          lineHeight="1.15em"
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
       ) : (
@@ -90,7 +92,8 @@ export function ProjectListSection({
             backgroundColor: `${
               sectionTitleColor ? sectionTitleColor : "black"
             }`,
-          }}>
+          }}
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
       )}
@@ -101,9 +104,9 @@ export function ProjectListSection({
             height: "fit-content",
           },
         }}
-        px="0">
+        px="0"
+      >
         <InlineBlocks
-          className="inline-blocks"
           name="projects"
           blocks={PROJECT_BLOCK}
           itemProps={itemProps}
@@ -114,8 +117,6 @@ export function ProjectListSection({
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
-  console.log("datasection", JSON.stringify(data, null, " "));
-
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
       <ProjectListSection {...data} />
