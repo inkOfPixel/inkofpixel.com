@@ -193,14 +193,6 @@ function getPageInput(data: PageData): UpdatePageInput {
               email: section.email,
               subtitle: section.subtitle,
               sectionTitle: section.sectionTitle,
-              socialBubbles: section.socialBubbles.map((social) => {
-                return {
-                  id: social.id,
-                  bubbleColor: social.bubbleColor,
-                  bubbleHoverColor: social.bubbleHoverColor,
-                  url: social.url,
-                };
-              }),
             };
           }
           default:

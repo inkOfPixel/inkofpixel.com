@@ -89,22 +89,14 @@ export type ComponentBlocksSocialBubble = {
   url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
   bubbleHoverColor?: Maybe<Scalars['String']>;
-  image?: Maybe<Array<Maybe<UploadFile>>>;
-};
-
-
-export type ComponentBlocksSocialBubbleImageArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+  image?: Maybe<UploadFile>;
 };
 
 export type ComponentBlocksSocialBubbleInput = {
   url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
   bubbleHoverColor?: Maybe<Scalars['String']>;
-  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  image?: Maybe<Scalars['ID']>;
 };
 
 export type ComponentGlobalTopbar = {
@@ -1490,7 +1482,7 @@ export type EditComponentBlocksSocialBubbleInput = {
   url?: Maybe<Scalars['String']>;
   bubbleColor?: Maybe<Scalars['String']>;
   bubbleHoverColor?: Maybe<Scalars['String']>;
-  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  image?: Maybe<Scalars['ID']>;
 };
 
 export type EditComponentGlobalTopbarInput = {
@@ -1737,14 +1729,6 @@ export type GetPagesQuery = (
     ) | (
       { __typename: 'ComponentSectionContactsSection' }
       & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
-      & { socialBubbles?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksSocialBubble' }
-        & Pick<ComponentBlocksSocialBubble, 'id' | 'url' | 'bubbleColor' | 'bubbleHoverColor'>
-        & { image?: Maybe<Array<Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
-        )>>> }
-      )>>> }
     ) | (
       { __typename: 'ComponentSectionSimpleSection' }
       & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
@@ -1918,17 +1902,6 @@ export const GetPages = `
         subtitle
         email
         sectionTitle
-        socialBubbles {
-          id
-          url
-          bubbleColor
-          bubbleHoverColor
-          image {
-            id
-            url
-            alternativeText
-          }
-        }
       }
       ... on ComponentSectionSimpleSection {
         __typename

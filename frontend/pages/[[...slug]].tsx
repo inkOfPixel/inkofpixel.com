@@ -41,7 +41,6 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
-import { SocialBubbleBlockData } from "@features/page/sections/ContactsSection/blocks/SocialBubbleBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -154,7 +153,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     };
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 function wrap<T>(value: T | T[]): T[] {
@@ -378,28 +377,6 @@ function getPageData(
               subtitle: section.subtitle || null,
               email: section.email || null,
               sectionTitle: section.sectionTitle || null,
-              socialBubbles: section.socialBubbles
-                ? filterListNullableItems(
-                    section.socialBubbles
-                  ).map<SocialBubbleBlockData>((social) => {
-                    return {
-                      _template: "socialBubble",
-                      id: social.id,
-                      bubbleColor: social.bubbleColor || null,
-                      bubbleHoverColor: social.bubbleHoverColor || null,
-                      url: social.url || null,
-                      image:
-                        social.image == null
-                          ? null
-                          : {
-                              id: social.image.id,
-                              url: social.image.url,
-                              alternativeText:
-                                social.image.alternativeText || null,
-                            },
-                    };
-                  })
-                : [],
             };
           }
 
