@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
+import { FooterBlockData } from "@features/Footer/blocks/FooterBlock";
 import React, { PropsWithChildren } from "react";
 
 export type FooterSectionBlockData = {

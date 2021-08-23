@@ -1,7 +1,7 @@
 import { Box, chakra, Flex, Link } from "@chakra-ui/react";
-import { FOOTER_BLOCK } from "@features/defaultBlocks";
 import React, { PropsWithChildren } from "react";
 import { InlineBlocks, InlineTextarea } from "react-tinacms-inline";
+import { FOOTER_BLOCK } from ".";
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
@@ -14,7 +14,8 @@ export function UpperFooter(props: PropsWithChildren<unknown>) {
       }}
       m="0"
       p="0"
-      alignItems="start">
+      alignItems="start"
+    >
       {props.children}
     </Flex>
   );
@@ -27,7 +28,8 @@ export function FooterDescription() {
       mb="6"
       fontSize="sm"
       maxW="500px"
-      lineHeight="1.8em">
+      lineHeight="1.8em"
+    >
       <Box as="span">
         <InlineTextarea name="global.bottomBar.footer.description" />
       </Box>
@@ -39,12 +41,13 @@ interface EmailProps {
   email: Nullable<string>;
 }
 
-export function FooterEmail(props: EmailProps) {
+export function FooterEmail({ email }: EmailProps) {
   return (
     <Box>
       <Link
         style={{ textDecoration: "none", userSelect: "none" }}
-        href={"mailto:" + props.email}>
+        href={`mailto: ${email}`}
+      >
         <Box
           as="span"
           fontFamily="Europa"
@@ -72,7 +75,8 @@ export function FooterEmail(props: EmailProps) {
               opacity: "1",
               w: "full",
             },
-          }}>
+          }}
+        >
           <InlineTextarea name="global.bottomBar.footer.email" />
         </Box>
       </Link>
@@ -95,7 +99,8 @@ export function BlocksContainer(props: PropsWithChildren<unknown>) {
       flexDirection="column"
       flexGrow={1}
       flexShrink={0}
-      flexBasis="auto">
+      flexBasis="auto"
+    >
       {props.children}
     </Flex>
   );
@@ -109,8 +114,10 @@ export function FooterBlocks() {
         base: "column",
         sm: "row",
       }}
+      direction="horizontal"
       fontSize="sm"
       lineHeight="1.4em"
+      max={3}
       name="global.bottomBar.footer.blocks"
       blocks={FOOTER_BLOCK}
     />
