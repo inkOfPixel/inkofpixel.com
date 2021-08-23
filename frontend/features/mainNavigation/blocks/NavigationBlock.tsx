@@ -63,7 +63,16 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
 
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
-    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+    <BlocksControls
+      index={index}
+      focusRing={{
+        offset: {
+          x: 0,
+          y: 50,
+        },
+      }}
+      insetControls
+    >
       <NavigationBlock {...data} />
     </BlocksControls>
   );
