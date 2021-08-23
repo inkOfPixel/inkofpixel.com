@@ -41,17 +41,16 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
-import { Footer } from "@components/Footer/Footer";
-import { LowerFooter } from "@components/Footer/LowerFooter";
+import { Footer } from "@features/Footer/Footer";
+import { LowerFooter } from "@features/Footer/LowerFooter";
 import {
   UpperFooter,
   BlocksContainer,
   FooterDescription,
   FooterEmail,
   FooterBlocks,
-} from "@components/Footer/UpperFooter";
-import Logo from "@components/Logo";
-import { FooterBlockData } from "@features/defaultBlocks/FooterBlock";
+} from "@features/Footer/UpperFooter";
+import { FooterBlockData } from "@features/Footer/blocks/FooterBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -138,7 +137,7 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
               }}
               height="54px"
             >
-              <Logo width="100%" height="100%" color="white" />
+              <WordmarkLogo width="100%" height="100%" color="white" />
             </Box>
             <BlocksContainer>
               <FooterDescription />
@@ -334,7 +333,7 @@ function getGlobalData(
                 global.bottomBar.footer.blocks
               ).map<FooterBlockData>((block) => {
                 return {
-                  _template: "ComponentBlocksFooterBlock",
+                  _template: "footer",
                   id: block.id,
                   cap: block.cap || null,
                   street: block.street || null,
@@ -361,7 +360,7 @@ function getPageData(
     return undefined;
   }
 
-  if (page?.sections) {
+  if (page.sections) {
     let filteredSections = filterListNullableItems(page.sections);
     const sections =
       filteredSections.map<SectionBlockData>((section) => {
