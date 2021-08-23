@@ -1,15 +1,45 @@
 mutation saveChanges(
   $pageInput: updatePageInput
   $footerInput: updateFooterInput
+  $topbarInput: updateMenuInput
 ) {
   updatePage(input: $pageInput) {
     page {
       id
     }
   }
+
   updateFooter(input: $footerInput) {
     footer {
       id
+      description
+      email
+      copyright
+      street
+      city
+      cap
+      sharedCapital
+      vatNumber
+      blocks {
+        id
+        city
+        type
+        street
+        province
+        initials
+        cap
+      }
+    }
+  }
+  updateMenu(input: $topbarInput) {
+    menu {
+      id
+      title
+      links {
+        id
+        url
+        label
+      }
     }
   }
 }

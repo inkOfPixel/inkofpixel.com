@@ -12,6 +12,11 @@
     },
     "subtitle": {
       "type": "text"
+    },
+    "areBubblesActive": {
+      "type": "boolean",
+      "required": false,
+      "default": true
     }
   }
 }

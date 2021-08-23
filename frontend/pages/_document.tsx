@@ -12,6 +12,7 @@ export default class Document extends NextDocument {
           <link
             href="//db.onlinewebfonts.com/c/23c0fcab84d99da0de762de7e220a6e1?family=Europa"
             rel="stylesheet"
+            type="text/css"
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"

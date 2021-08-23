@@ -15,7 +15,17 @@
     "bottomBar": {
       "type": "component",
       "repeatable": false,
-      "component": "global.bottom-bar"
+      "component": "global.bottom-bar",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "topbar": {
+      "type": "component",
+      "repeatable": false,
+      "component": "global.topbar"
     }
   }
 }

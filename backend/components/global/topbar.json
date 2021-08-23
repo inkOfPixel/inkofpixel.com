@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_global_topbars",
+  "info": {
+    "name": "topbar",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "menu": {
+      "model": "menu"
+    }
+  }
+}

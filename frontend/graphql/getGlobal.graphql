@@ -24,5 +24,17 @@ query GetGlobal {
         }
       }
     }
+    topbar {
+      id
+      menu {
+        id
+        title
+        links {
+          id
+          label
+          url
+        }
+      }
+    }
   }
 }
