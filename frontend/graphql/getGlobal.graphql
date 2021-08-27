@@ -1,29 +1,6 @@
 query GetGlobal {
   global {
     id
-    bottomBar {
-      id
-      footer {
-        id
-        description
-        email
-        copyright
-        street
-        city
-        cap
-        vatNumber
-        sharedCapital
-        blocks {
-          id
-          city
-          type
-          street
-          province
-          initials
-          cap
-        }
-      }
-    }
     topbar {
       id
       menu {
@@ -35,6 +12,29 @@ query GetGlobal {
           url
         }
       }
+    }
+    companyData {
+      id
+      primaryEmail
+      companyName
+      copyright
+      vatId
+      capital
+      additionalLegalInfo
+      locations {
+        __typename
+        id
+        province
+        provinceInitials
+        type
+        street
+        city
+        cap
+      }
+    }
+    footer {
+      id
+      description
     }
   }
 }
