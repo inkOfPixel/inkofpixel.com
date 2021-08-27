@@ -5,9 +5,5 @@
     "icon": "angle-double-down"
   },
   "options": {},
-  "attributes": {
-    "footer": {
-      "model": "footer"
-    }
-  }
+  "attributes": {}
 }

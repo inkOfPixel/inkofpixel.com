@@ -28,11 +28,6 @@
     "vatNumber": {
       "type": "integer"
     },
-    "sections": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.footer-block"
-    },
     "cap": {
       "type": "integer"
     }

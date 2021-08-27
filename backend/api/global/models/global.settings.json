@@ -12,20 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "bottomBar": {
-      "type": "component",
-      "repeatable": false,
-      "component": "global.bottom-bar",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "topbar": {
       "type": "component",
       "repeatable": false,
       "component": "global.topbar"
+    },
+    "companyData": {
+      "type": "component",
+      "repeatable": false,
+      "component": "global.company-data"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "global.footer-data"
     }
   }
 }
