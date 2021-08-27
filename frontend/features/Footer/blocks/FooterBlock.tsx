@@ -10,12 +10,12 @@ export type FooterBlockData = BlockTemplateData<
   "footer",
   {
     id: string;
-    city: string;
-    type: string;
-    street: string;
-    cap: number;
-    province: string;
-    initials: string;
+    city: Nullable<string>;
+    type: Nullable<string>;
+    street: Nullable<string>;
+    cap: Nullable<number>;
+    province: Nullable<string>;
+    provinceInitials: Nullable<string>;
   }
 >;
 
@@ -25,7 +25,7 @@ interface FooterBlockProps {
   street: Nullable<string>;
   cap: Nullable<number>;
   province: Nullable<string>;
-  initials: Nullable<string>;
+  provinceInitials: Nullable<string>;
 }
 
 export function FooterBlock({
@@ -34,7 +34,7 @@ export function FooterBlock({
   street,
   cap,
   province,
-  initials,
+  provinceInitials,
 }: FooterBlockProps) {
   return (
     <Flex flexGrow={1} flexDir="column" pt="12">
@@ -46,7 +46,7 @@ export function FooterBlock({
       </Box>
       <Box>{street}</Box>
       <Box>{city}</Box>
-      <Box>{cap + " (" + initials + ")"}</Box>
+      <Box>{`${cap} (${provinceInitials})`}</Box>
     </Flex>
   );
 }
@@ -69,7 +69,7 @@ export const footerBlock: Block = {
       type: "Default type",
       city: "Default city",
       cap: parseInt("12345"),
-      initials: "XX",
+      provinceInitials: "XX",
     },
     fields: [
       {
@@ -103,10 +103,10 @@ export const footerBlock: Block = {
         defaultValue: "province",
       },
       {
-        name: "initials",
+        name: "provinceInitials",
         label: "Initials",
         component: "text",
-        defaultValue: "initials",
+        defaultValue: "provinceInitials",
       },
     ],
   },

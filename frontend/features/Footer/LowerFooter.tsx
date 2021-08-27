@@ -2,23 +2,30 @@ import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface LowerFooterProps {
-  data: {
-    copyright: Nullable<string>;
-    sharedCapital: Nullable<number>;
-    cap: Nullable<number>;
-    city: Nullable<string>;
-    vatNumber: Nullable<number>;
-    street: Nullable<string>;
-  };
+  additionalLegalInfo: Nullable<string>;
+  vatId: Nullable<string>;
+  capital: Nullable<number>;
+  copyright: Nullable<string>;
+  street: Nullable<string>;
+  cap: Nullable<number>;
+  city: Nullable<string>;
 }
 
-export function LowerFooter({ data }: LowerFooterProps) {
+export function LowerFooter({
+  additionalLegalInfo,
+  vatId,
+  capital,
+  street,
+  city,
+  cap,
+  copyright,
+}: LowerFooterProps) {
   return (
     <Box>
       <Box m="0" pt="12" fontSize="13px" lineHeight="1.4em">
-        <Text pb="4">{data.copyright}</Text>
+        <Text pb="4">{copyright}</Text>
         <Text>
-          {`Capital € ${data.sharedCapital} i.v • ${data.street} - ${data.cap} ${data.city} • VAT Number ${data.vatNumber} • REA MI - 2081233`}
+          {`Capital € ${capital} i.v • ${street} - ${cap} ${city} • VAT Number ${vatId} • ${additionalLegalInfo}`}
         </Text>
       </Box>
     </Box>

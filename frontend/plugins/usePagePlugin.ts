@@ -4,7 +4,7 @@ import {
   CreatePage,
   CreatePageInput,
   SaveChanges,
-  UpdateFooterInput,
+  UpdateGlobalInput,
   UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
@@ -18,7 +18,6 @@ import {
   usePlugin,
 } from "tinacms";
 import { assertNever } from "@utils";
-import { FooterSectionBlockData } from "@features/Footer/Footer";
 
 export interface PageData {
   id: string;
@@ -46,9 +45,10 @@ export interface GlobalData {
     id: string;
     menu: MenuData;
   };
-  bottomBar: {
+  companyData: CompanyData;
+  footer: {
     id: string;
-    footer: FooterSectionBlockData;
+    description: Nullable<string>;
   };
 }
 
@@ -56,6 +56,27 @@ export interface MenuData {
   id: string;
   title: string;
   links: NavBlockData[];
+}
+
+export interface CompanyData {
+  id: string;
+  primaryEmail: Nullable<string>;
+  companyName: Nullable<string>;
+  copyright: Nullable<string>;
+  vatId: Nullable<string>;
+  capital: Nullable<number>;
+  additionalLegalInfo: Nullable<string>;
+  locations: LocationsData[];
+}
+
+export interface LocationsData {
+  id: string;
+  province: Nullable<string>;
+  provinceInitials: Nullable<string>;
+  type: Nullable<string>;
+  street: Nullable<string>;
+  city: Nullable<string>;
+  cap: Nullable<number>;
 }
 
 export interface Data {
@@ -73,7 +94,7 @@ export function usePagePlugin(data: Data): [Data, Form] {
     initialValues: data,
     onSubmit: async (data) => {
       const pageInput = getPageInput(data.page);
-      const footerInput = getFooterInput(data.global.bottomBar);
+      const footerInput = getFooterInput(data.global);
       const topbarInput = getTopbarInput(data.global.topbar);
 
       try {
@@ -99,48 +120,34 @@ export function usePagePlugin(data: Data): [Data, Form] {
     },
     fields: [
       {
-        name: "global.bottomBar.footer",
+        name: "global",
         component: "group",
         label: "Footer",
         fields: [
           {
-            name: "email",
+            name: "companyData.primaryEmail",
             component: "text",
             label: "Email",
           },
           {
-            name: "description",
+            name: "footer.description",
             component: "textarea",
             label: "Description",
           },
           {
-            name: "copyright",
+            name: "companyData.copyright",
             component: "textarea",
             label: "Copyright",
           },
           {
-            name: "sharedCapital",
+            name: "companyData.capital",
             component: "number",
-            label: "Shared capital",
+            label: "Capital",
           },
+
           {
-            name: "street",
+            name: "companyData.vatId",
             component: "text",
-            label: "Street",
-          },
-          {
-            name: "cap",
-            component: "number",
-            label: "CAP",
-          },
-          {
-            name: "city",
-            component: "text",
-            label: "city",
-          },
-          {
-            name: "vatNumber",
-            component: "number",
             label: "VAT",
           },
         ],
@@ -335,31 +342,33 @@ function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   };
 }
 
-function getFooterInput(data: GlobalData["bottomBar"]): UpdateFooterInput {
+function getFooterInput(data: GlobalData): UpdateGlobalInput {
   return {
-    where: {
-      id: data.id,
-    },
     data: {
-      cap: data.footer.cap,
-      city: data.footer.city,
-      email: data.footer.email,
-      description: data.footer.description,
-      sharedCapital: data.footer.sharedCapital,
-      copyright: data.footer.copyright,
-      street: data.footer.street,
-      vatNumber: data.footer.vatNumber,
-      blocks: data.footer.blocks.map((block) => {
-        return {
-          id: block.id,
-          cap: block.cap,
-          street: block.street || null,
-          city: block.city || null,
-          initials: block.initials || null,
-          type: block.type || null,
-          province: block.province || null,
-        };
-      }),
+      companyData: {
+        id: data.id,
+        companyName: data.companyData.companyName,
+        primaryEmail: data.companyData.primaryEmail,
+        copyright: data.companyData.copyright,
+        capital: data.companyData.capital,
+        vatId: data.companyData.vatId,
+        additionalLegalInfo: data.companyData.additionalLegalInfo,
+        locations: data.companyData.locations.map((location) => {
+          return {
+            id: location.id,
+            cap: location.cap,
+            street: location.street,
+            city: location.city,
+            provinceInitials: location.provinceInitials,
+            type: location.type,
+            province: location.province,
+          };
+        }),
+      },
+      footer: {
+        id: data.footer.id,
+        description: data.footer.description,
+      },
     },
   };
 }

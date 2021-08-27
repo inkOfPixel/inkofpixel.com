@@ -1,6 +1,6 @@
-import { Box, chakra, Flex, Link } from "@chakra-ui/react";
+import { Box, chakra, Flex, Link, Text } from "@chakra-ui/react";
 import React, { PropsWithChildren } from "react";
-import { InlineBlocks, InlineTextarea } from "react-tinacms-inline";
+import { InlineBlocks } from "react-tinacms-inline";
 import { FOOTER_BLOCK } from ".";
 
 const StyledInlineBlocks = chakra(InlineBlocks);
@@ -21,7 +21,11 @@ export function UpperFooter(props: PropsWithChildren<unknown>) {
   );
 }
 
-export function FooterDescription() {
+interface FooterDescriptionProps {
+  description: Nullable<string>;
+}
+
+export function FooterDescription({ description }: FooterDescriptionProps) {
   return (
     <Box
       className="caption"
@@ -30,9 +34,7 @@ export function FooterDescription() {
       maxW="500px"
       lineHeight="1.8em"
     >
-      <Box as="span">
-        <InlineTextarea name="global.bottomBar.footer.description" />
-      </Box>
+      <Box as="span">{description}</Box>
     </Box>
   );
 }
@@ -77,7 +79,7 @@ export function FooterEmail({ email }: EmailProps) {
             },
           }}
         >
-          <InlineTextarea name="global.bottomBar.footer.email" />
+          <Text>{email}</Text>
         </Box>
       </Link>
     </Box>
@@ -118,7 +120,7 @@ export function FooterBlocks() {
       fontSize="sm"
       lineHeight="1.4em"
       max={3}
-      name="global.bottomBar.footer.blocks"
+      name="global.companyData.locations"
       blocks={FOOTER_BLOCK}
     />
   );

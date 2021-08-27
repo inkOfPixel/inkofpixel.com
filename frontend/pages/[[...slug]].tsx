@@ -65,7 +65,7 @@ interface DynamicPageProps {
 
 const StyledInlineBlocks = chakra(InlineBlocks);
 
-export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
+export default function DynamicPage({ data, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
 
   const itemProps = React.useMemo<BlockItemProps>(() => {
@@ -140,12 +140,20 @@ export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
               <WordmarkLogo width="100%" height="100%" color="white" />
             </Box>
             <BlocksContainer>
-              <FooterDescription />
-              <FooterEmail email={data.global.bottomBar.footer.email} />
+              <FooterDescription description={data.global.footer.description} />
+              <FooterEmail email={data.global.companyData.primaryEmail} />
               <FooterBlocks />
             </BlocksContainer>
           </UpperFooter>
-          <LowerFooter data={data.global.bottomBar.footer}></LowerFooter>
+          <LowerFooter
+            capital={data.global.companyData.capital}
+            vatId={data.global.companyData.vatId}
+            additionalLegalInfo={data.global.companyData.additionalLegalInfo}
+            copyright={data.global.companyData.copyright}
+            street={data.global.companyData.locations[0].street}
+            city={data.global.companyData.locations[0].city}
+            cap={data.global.companyData.locations[0].cap}
+          ></LowerFooter>
         </Footer>
       </InlineForm>
     </SiteLayout>
@@ -288,11 +296,11 @@ function getGlobalData(
     return undefined;
   }
 
-  if (global.bottomBar == null) {
+  if (global.companyData == null) {
     return undefined;
   }
 
-  if (global.bottomBar.footer == null) {
+  if (global.footer == null) {
     return undefined;
   }
 
@@ -316,35 +324,35 @@ function getGlobalData(
           }),
         },
       },
-      bottomBar: {
-        id: global.bottomBar.id,
-        footer: {
-          id: global.bottomBar.footer.id,
-          cap: global.bottomBar.footer.cap || null,
-          city: global.bottomBar.footer.city || null,
-          email: global.bottomBar.footer.email || null,
-          description: global.bottomBar.footer.description || null,
-          sharedCapital: global.bottomBar.footer.sharedCapital || null,
-          copyright: global.bottomBar.footer.copyright || null,
-          street: global.bottomBar.footer.street || null,
-          vatNumber: global.bottomBar.footer.vatNumber || null,
-          blocks: global.bottomBar.footer?.blocks
-            ? filterListNullableItems(
-                global.bottomBar.footer.blocks
-              ).map<FooterBlockData>((block) => {
-                return {
-                  _template: "footer",
-                  id: block.id,
-                  cap: block.cap || null,
-                  street: block.street || null,
-                  city: block.city || null,
-                  initials: block.initials || null,
-                  type: block.type || null,
-                  province: block.province || null,
-                };
-              })
-            : [],
-        },
+
+      companyData: {
+        id: global.companyData.id,
+        companyName: global.companyData.companyName || null,
+        primaryEmail: global.companyData.primaryEmail || null,
+        copyright: global.companyData.copyright || null,
+        capital: global.companyData.capital || null,
+        vatId: global.companyData.vatId || null,
+        additionalLegalInfo: global.companyData.additionalLegalInfo || null,
+        locations: global.companyData.locations
+          ? filterListNullableItems(
+              global.companyData.locations
+            ).map<FooterBlockData>((location) => {
+              return {
+                _template: "footer",
+                id: location.id,
+                cap: location.cap || null,
+                street: location.street || null,
+                city: location.city || null,
+                provinceInitials: location.provinceInitials || null,
+                type: location.type || null,
+                province: location.province || null,
+              };
+            })
+          : [],
+      },
+      footer: {
+        id: global.footer.id,
+        description: global.footer.description || null,
       },
     };
   }
