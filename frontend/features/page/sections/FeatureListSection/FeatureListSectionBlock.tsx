@@ -24,6 +24,7 @@ export type FeatureListSectionBlockData = BlockTemplateData<
 type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
+  index: number;
 };
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
@@ -32,6 +33,7 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export function FeatureListSectionBlock({
   sectionTitle,
   preview,
+  index,
 }: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -44,7 +46,7 @@ export function FeatureListSectionBlock({
   }
 
   return (
-    <Box as="section" pt="0">
+    <Box as="section" pt={index === 0 ? "44" : "0"}>
       <Box
         m={{
           base: "0px",
@@ -58,7 +60,8 @@ export function FeatureListSectionBlock({
         w={{
           base: "full",
           xl: "1200px",
-        }}>
+        }}
+      >
         <Box
           color="rgb(129, 82, 188)"
           fontSize="sm"
@@ -83,7 +86,8 @@ export function FeatureListSectionBlock({
                   backgroundColor: "rgb(129, 82, 188)",
                 }
               : undefined
-          }>
+          }
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
 
@@ -91,7 +95,8 @@ export function FeatureListSectionBlock({
           flexDirection={{
             base: "column",
             md: "row",
-          }}>
+          }}
+        >
           <Flex
             flexDirection="column"
             mr={{
@@ -105,7 +110,8 @@ export function FeatureListSectionBlock({
               base: "auto",
               md: "80",
               lg: "96",
-            }}>
+            }}
+          >
             <Box
               fontSize="5xl"
               p="0"
@@ -113,7 +119,8 @@ export function FeatureListSectionBlock({
               fontWeight="bold"
               lineHeight="hero"
               fontFamily="Europa"
-              letterSpacing="0.02em">
+              letterSpacing="0.02em"
+            >
               <StyledInlineTextarea
                 fontSize="5xl"
                 p="0"
@@ -134,7 +141,8 @@ export function FeatureListSectionBlock({
               lineHeight="subtitle"
               color="description"
               letterSpacing="0.04em"
-              fontFamily="Roboto Mono">
+              fontFamily="Roboto Mono"
+            >
               <StyledInlineTextarea
                 fontSize="sm"
                 m="0"
@@ -167,7 +175,7 @@ export function FeatureListSectionBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureListSectionBlock {...data} />
+      <FeatureListSectionBlock index={index} {...data} />
     </BlocksControls>
   );
 }

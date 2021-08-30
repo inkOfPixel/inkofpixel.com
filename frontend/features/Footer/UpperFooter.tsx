@@ -86,7 +86,7 @@ export function FooterEmail({ email }: EmailProps) {
   );
 }
 
-export function BlocksContainer(props: PropsWithChildren<unknown>) {
+export function Container(props: PropsWithChildren<unknown>) {
   return (
     <Flex
       pl={{

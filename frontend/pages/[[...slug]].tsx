@@ -45,7 +45,7 @@ import { Footer } from "@features/Footer/Footer";
 import { LowerFooter } from "@features/Footer/LowerFooter";
 import {
   UpperFooter,
-  BlocksContainer,
+  Container,
   FooterDescription,
   FooterEmail,
   FooterBlocks,
@@ -74,7 +74,7 @@ export default function DynamicPage({ data, preview }: DynamicPageProps) {
     };
   }, [preview]);
 
-  const [_, form] = usePagePlugin(data);
+  const [values, form] = usePagePlugin(data);
   const router = useRouter();
 
   return (
@@ -139,20 +139,22 @@ export default function DynamicPage({ data, preview }: DynamicPageProps) {
             >
               <WordmarkLogo width="100%" height="100%" color="white" />
             </Box>
-            <BlocksContainer>
-              <FooterDescription description={data.global.footer.description} />
-              <FooterEmail email={data.global.companyData.primaryEmail} />
+            <Container>
+              <FooterDescription
+                description={values.global.footer.description}
+              />
+              <FooterEmail email={values.global.companyData.primaryEmail} />
               <FooterBlocks />
-            </BlocksContainer>
+            </Container>
           </UpperFooter>
           <LowerFooter
-            capital={data.global.companyData.capital}
-            vatId={data.global.companyData.vatId}
-            additionalLegalInfo={data.global.companyData.additionalLegalInfo}
-            copyright={data.global.companyData.copyright}
-            street={data.global.companyData.locations[0].street}
-            city={data.global.companyData.locations[0].city}
-            cap={data.global.companyData.locations[0].cap}
+            capital={values.global.companyData.capital}
+            vatId={values.global.companyData.vatId}
+            additionalLegalInfo={values.global.companyData.additionalLegalInfo}
+            copyright={values.global.companyData.copyright}
+            street={values.global.companyData.locations[0].street}
+            city={values.global.companyData.locations[0].city}
+            cap={values.global.companyData.locations[0].cap}
           ></LowerFooter>
         </Footer>
       </InlineForm>
