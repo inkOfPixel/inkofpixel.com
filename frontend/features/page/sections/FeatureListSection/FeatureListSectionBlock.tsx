@@ -44,7 +44,7 @@ export function FeatureListSectionBlock({
   }
 
   return (
-    <Box as="section" pt="0">
+    <Box as="section" pt="44">
       <Box
         m={{
           base: "0px",

@@ -12,7 +12,7 @@ import { PROJECT_BLOCK } from "..";
 import { ProjectBlockData } from "./block/ProjectBlock";
 
 export type ProjectListSectionData = BlockTemplateData<
-  "projectsList",
+  "projectsSection",
   {
     id: string;
     sectionTitle: Nullable<string>;
@@ -25,101 +25,92 @@ interface ProjectListSectionProps {
   sectionTitle: Nullable<string>;
   sectionTitleColor: Nullable<string>;
   preview: boolean;
+  index: number;
 }
 
 export function ProjectListSection({
   sectionTitle,
   sectionTitleColor,
   preview,
+  index,
 }: ProjectListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
     };
   }, [preview]);
+
   return (
-    <Flex
-      py="14"
-      flexDir="column"
-      w={{
-        base: "full",
-        xl: "1200px",
-      }}
-      px={{
-        base: "10",
-        xl: "0",
-      }}
-      m={{
-        base: "0 auto",
-      }}
-      pos="relative"
-    >
-      {sectionTitle == null ? (
-        <Box
-          color={sectionTitleColor ? sectionTitleColor : "black"}
-          fontSize="sm"
-          textTransform="uppercase"
-          letterSpacing="0.1em"
-          pos="relative"
-          w="full"
-          pb={8}
-          as="h2"
-          fontFamily="Roboto Mono"
-          lineHeight="1.15em"
-        >
-          <InlineTextarea name="sectionTitle" />
-        </Box>
-      ) : (
-        <Box
-          color={sectionTitleColor ? sectionTitleColor : "black"}
-          fontSize="sm"
-          textTransform="uppercase"
-          letterSpacing="0.1em"
-          pos="relative"
-          w="full"
-          pb="30px"
-          as="h2"
-          fontFamily="Roboto Mono"
-          lineHeight="1.15em"
-          _before={{
-            content: "''",
-            display: "block",
-            h: "2px",
-            w: "60px",
-            pos: "absolute",
-            top: "7px",
-            left: "-68px",
-            backgroundColor: `${
-              sectionTitleColor ? sectionTitleColor : "black"
-            }`,
-          }}
-        >
-          <InlineTextarea name="sectionTitle" />
-        </Box>
-      )}
+    <Box as="section" w="full" pos="relative">
       <Flex
-        sx={{
-          "& > div": {
-            w: "full",
-            height: "fit-content",
-          },
+        pt={index === 0 ? "52" : "0"}
+        pb="5"
+        flexDir="column"
+        w={{
+          base: "full",
+          xl: "1200px",
         }}
-        px="0"
+        px={{
+          base: "10",
+          xl: "0",
+        }}
+        mx="auto"
+        pos="relative"
       >
-        <InlineBlocks
-          name="projects"
-          blocks={PROJECT_BLOCK}
-          itemProps={itemProps}
-        />
+        <Box
+          color={sectionTitleColor ? sectionTitleColor : "rgb(129, 82, 188)"}
+          fontSize="sm"
+          textTransform="uppercase"
+          letterSpacing="0.1em"
+          pos="relative"
+          w="full"
+          pb="8"
+          as="h2"
+          fontFamily="Roboto Mono"
+          lineHeight="1.15em"
+          _before={
+            sectionTitle
+              ? {
+                  content: `""`,
+                  display: "block",
+                  h: "2px",
+                  w: "60px",
+                  pos: "absolute",
+                  top: "7px",
+                  left: "-68px",
+                  backgroundColor: sectionTitleColor
+                    ? sectionTitleColor
+                    : "rgb(129, 82, 188)",
+                }
+              : undefined
+          }
+        >
+          <InlineTextarea name="sectionTitle" />
+        </Box>
+        <Flex
+          sx={{
+            "& > div": {
+              w: "full",
+              height: "fit-content",
+            },
+          }}
+          px="0"
+        >
+          <InlineBlocks
+            name="projects"
+            blocks={PROJECT_BLOCK}
+            itemProps={itemProps}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   );
 }
 
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <ProjectListSection {...data} />
+      <ProjectListSection index={index} {...data} />
     </BlocksControls>
   );
 }

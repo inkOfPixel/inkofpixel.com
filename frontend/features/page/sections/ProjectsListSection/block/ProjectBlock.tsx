@@ -83,7 +83,7 @@ export function ProjectBlock({ image, linkName, linkPath }: ProjectBlockProps) {
           fontSize="xs"
           fontWeight="normal"
           textTransform="uppercase"
-          letterSpacing="0.01em"
+          letterSpacing="0.1em"
           pos="relative"
           w="full"
           pb="5"
