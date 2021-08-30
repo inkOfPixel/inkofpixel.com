@@ -19,7 +19,8 @@ export function MobileNavDrawer({
       display={{
         base: "block",
         lg: "none",
-      }}>
+      }}
+    >
       <MenuIcon
         onClick={onOpen}
         _hover={{ cursor: "pointer" }}
@@ -32,7 +33,8 @@ export function MobileNavDrawer({
         onClose={onClose}
         isOpen={isOpen}
         autoFocus={false}
-        onEsc={onClose}>
+        onEsc={onClose}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerBody onClick={onClose}>{children}</DrawerBody>
@@ -50,7 +52,8 @@ export const MenuIcon = (props: IconProps) => {
       fill="none"
       stroke="dark"
       strokeWidth="1.5"
-      {...props}>
+      {...props}
+    >
       <line x1="4" y1="7" x2="20" y2="7" />
       <line x1="6" y1="12" x2="18" y2="12" />
       <line x1="4" y1="17" x2="20" y2="17" />

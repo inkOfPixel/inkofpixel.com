@@ -20,7 +20,7 @@ const NavigationInlineBlocks = chakra(InlineBlocks);
 
 export function NavBar({ children }: React.PropsWithChildren<unknown>) {
   return (
-    <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
+    <Box as="header" w="full" pos="absolute" top="0px" zIndex="1" h="40">
       <Box
         h="full"
         px={{
@@ -33,12 +33,13 @@ export function NavBar({ children }: React.PropsWithChildren<unknown>) {
           xl: "1200px",
         }}
         my="0"
-        mx="auto">
+        mx="auto"
+      >
         <Flex h="full" justifyContent="space-between" alignItems="center">
           {children}
         </Flex>
       </Box>
-    </Flex>
+    </Box>
   );
 }
 
@@ -57,7 +58,8 @@ export function NavMenuDesktop() {
         base: "none",
         lg: "block",
       }}
-      textAlign={cms.enabled ? "right" : "left"}>
+      textAlign={cms.enabled ? "right" : "left"}
+    >
       <NavigationInlineBlocks
         sx={{
           "& > div": {
@@ -91,7 +93,8 @@ export function NavMenuMobile() {
       flexDir="column"
       mt="16"
       alignItems="center"
-      textAlign="center">
+      textAlign="center"
+    >
       <Box as="a" href={router.locale} ml="1" mb="8">
         <Logo width="10" height="10" color={"rgb(22, 19, 56)"} />
       </Box>
