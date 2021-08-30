@@ -24,7 +24,7 @@ export const SECTION_PAGE_BLOCKS = {
 };
 
 export const PROJECTS_LIST_BLOCK = {
-  projectsList: projectListSectionBlock,
+  projectsSection: projectListSectionBlock,
 };
 
 export type SectionBlockData =

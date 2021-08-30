@@ -75,8 +75,6 @@ export function usePagePlugin(data: Data): [Data, Form] {
           menuInput,
         });
 
-        console.log("response", JSON.stringify(response, null, " "));
-
         if (response.errors != null) {
           cms.alerts.error("Error while saving data", 10000);
         } else {
@@ -201,7 +199,7 @@ interface PageCreatorPluginOptions {
   locales: string[];
 }
 
-function getPageCreatorPlugin(
+export function getPageCreatorPlugin(
   options: PageCreatorPluginOptions
 ): ContentCreatorPlugin<PageDataCreateInput> {
   return {
@@ -263,7 +261,9 @@ function getPageCreatorPlugin(
   };
 }
 
-function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
+export function getPageCreateInput(
+  input: PageDataCreateInput
+): CreatePageInput {
   return {
     data: {
       title: input.title || "Default",
