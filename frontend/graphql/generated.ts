@@ -19,6 +19,8 @@ export type Scalars = {
   Long: any;
   /** Input type for dynamic zone sections of Pages */
   PagesSectionsDynamicZoneInput: any;
+  /** Input type for dynamic zone blocks of Project */
+  ProjectBlocksDynamicZoneInput: any;
   /** A time string with format: HH:mm:ss.SSS */
   Time: any;
   /** The `Upload` scalar type represents a file upload. */
@@ -63,28 +65,6 @@ export type ComponentBlocksNavigationBlockInput = {
   url?: Maybe<Scalars['String']>;
 };
 
-export type ComponentBlocksProject = {
-  __typename?: 'ComponentBlocksProject';
-  id: Scalars['ID'];
-  companyName?: Maybe<Scalars['String']>;
-  projectType?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  linkName?: Maybe<Scalars['String']>;
-  linkPath?: Maybe<Scalars['String']>;
-  image?: Maybe<UploadFile>;
-  path?: Maybe<Scalars['String']>;
-};
-
-export type ComponentBlocksProjectInput = {
-  companyName?: Maybe<Scalars['String']>;
-  projectType?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  linkName?: Maybe<Scalars['String']>;
-  linkPath?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['ID']>;
-  path?: Maybe<Scalars['String']>;
-};
-
 export type ComponentBlocksSingleFeature = {
   __typename?: 'ComponentBlocksSingleFeature';
   id: Scalars['ID'];
@@ -125,6 +105,46 @@ export type ComponentMenuPageLink = {
 export type ComponentMenuPageLinkInput = {
   pageLinkName: Scalars['String'];
   link?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentProjectBlockquoteBlock = {
+  __typename?: 'ComponentProjectBlockquoteBlock';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentProjectBlockquoteBlockInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentProjectImageBlock = {
+  __typename?: 'ComponentProjectImageBlock';
+  id: Scalars['ID'];
+  image?: Maybe<UploadFile>;
+};
+
+export type ComponentProjectImageBlockInput = {
+  image?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentProjectParagraphBlock = {
+  __typename?: 'ComponentProjectParagraphBlock';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentProjectParagraphBlockInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentProjectTitleBlock = {
+  __typename?: 'ComponentProjectTitleBlock';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentProjectTitleBlockInput = {
+  title?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionCardSection = {
@@ -170,13 +190,11 @@ export type ComponentSectionProjectsSection = {
   __typename?: 'ComponentSectionProjectsSection';
   id: Scalars['ID'];
   sectionTitle?: Maybe<Scalars['String']>;
-  projects?: Maybe<Array<Maybe<ComponentBlocksProject>>>;
   sectionTitleColor?: Maybe<Scalars['String']>;
 };
 
 export type ComponentSectionProjectsSectionInput = {
   sectionTitle?: Maybe<Scalars['String']>;
-  projects?: Maybe<Array<Maybe<ComponentBlocksProjectInput>>>;
   sectionTitleColor?: Maybe<Scalars['String']>;
 };
 
@@ -360,7 +378,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | ProjectsCollection | ProjectsCollectionConnection | ProjectsCollectionAggregator | ProjectsCollectionGroupBy | ProjectsCollectionConnectionId | ProjectsCollectionConnectionCreated_At | ProjectsCollectionConnectionUpdated_At | ProjectsCollectionConnectionLocale | ProjectsCollectionConnectionPublished_At | CreateProjectsCollectionPayload | UpdateProjectsCollectionPayload | DeleteProjectsCollectionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksProject | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentProjectTitleBlock | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -372,9 +390,9 @@ export type Mutation = {
   createPage?: Maybe<CreatePagePayload>;
   updatePage?: Maybe<UpdatePagePayload>;
   deletePage?: Maybe<DeletePagePayload>;
-  createProjectsCollection?: Maybe<CreateProjectsCollectionPayload>;
-  updateProjectsCollection?: Maybe<UpdateProjectsCollectionPayload>;
-  deleteProjectsCollection?: Maybe<DeleteProjectsCollectionPayload>;
+  createProject?: Maybe<CreateProjectPayload>;
+  updateProject?: Maybe<UpdateProjectPayload>;
+  deleteProject?: Maybe<DeleteProjectPayload>;
   /** Delete one file */
   deleteFile?: Maybe<DeleteFilePayload>;
   /** Create a new role */
@@ -391,7 +409,7 @@ export type Mutation = {
   deleteUser?: Maybe<DeleteUserPayload>;
   createGlobalLocalization: Global;
   createPageLocalization: Pages;
-  createProjectsCollectionLocalization: ProjectsCollection;
+  createProjectLocalization: Project;
   upload: UploadFile;
   multipleUpload: Array<Maybe<UploadFile>>;
   updateFileInfo: UploadFile;
@@ -444,18 +462,18 @@ export type MutationDeletePageArgs = {
 };
 
 
-export type MutationCreateProjectsCollectionArgs = {
-  input?: Maybe<CreateProjectsCollectionInput>;
+export type MutationCreateProjectArgs = {
+  input?: Maybe<CreateProjectInput>;
 };
 
 
-export type MutationUpdateProjectsCollectionArgs = {
-  input?: Maybe<UpdateProjectsCollectionInput>;
+export type MutationUpdateProjectArgs = {
+  input?: Maybe<UpdateProjectInput>;
 };
 
 
-export type MutationDeleteProjectsCollectionArgs = {
-  input?: Maybe<DeleteProjectsCollectionInput>;
+export type MutationDeleteProjectArgs = {
+  input?: Maybe<DeleteProjectInput>;
 };
 
 
@@ -504,8 +522,8 @@ export type MutationCreatePageLocalizationArgs = {
 };
 
 
-export type MutationCreateProjectsCollectionLocalizationArgs = {
-  input: UpdateProjectsCollectionInput;
+export type MutationCreateProjectLocalizationArgs = {
+  input: UpdateProjectInput;
 };
 
 
@@ -661,79 +679,145 @@ export type PagesGroupBy = {
 export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionSimpleSection;
 
 
-export type ProjectsCollection = {
-  __typename?: 'ProjectsCollection';
+export type Project = {
+  __typename?: 'Project';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  projectsList?: Maybe<Array<Maybe<ComponentSectionProjectsSection>>>;
+  projectType?: Maybe<Scalars['String']>;
+  linkPath?: Maybe<Scalars['String']>;
+  linkLabel?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Maybe<ProjectBlocksDynamicZone>>>;
+  path: Scalars['String'];
+  companyName?: Maybe<Scalars['String']>;
+  image?: Maybe<UploadFile>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
-  localizations?: Maybe<Array<Maybe<ProjectsCollection>>>;
+  localizations?: Maybe<Array<Maybe<Project>>>;
 };
 
 
-export type ProjectsCollectionLocalizationsArgs = {
+export type ProjectLocalizationsArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
 };
 
-export type ProjectsCollectionAggregator = {
-  __typename?: 'ProjectsCollectionAggregator';
+export type ProjectAggregator = {
+  __typename?: 'ProjectAggregator';
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
 };
 
-export type ProjectsCollectionConnection = {
-  __typename?: 'ProjectsCollectionConnection';
-  values?: Maybe<Array<Maybe<ProjectsCollection>>>;
-  groupBy?: Maybe<ProjectsCollectionGroupBy>;
-  aggregate?: Maybe<ProjectsCollectionAggregator>;
+export type ProjectBlocksDynamicZone = ComponentProjectTitleBlock | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock;
+
+
+export type ProjectConnection = {
+  __typename?: 'ProjectConnection';
+  values?: Maybe<Array<Maybe<Project>>>;
+  groupBy?: Maybe<ProjectGroupBy>;
+  aggregate?: Maybe<ProjectAggregator>;
 };
 
-export type ProjectsCollectionConnectionCreated_At = {
-  __typename?: 'ProjectsCollectionConnectionCreated_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<ProjectsCollectionConnection>;
-};
-
-export type ProjectsCollectionConnectionId = {
-  __typename?: 'ProjectsCollectionConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<ProjectsCollectionConnection>;
-};
-
-export type ProjectsCollectionConnectionLocale = {
-  __typename?: 'ProjectsCollectionConnectionLocale';
+export type ProjectConnectionCompanyName = {
+  __typename?: 'ProjectConnectionCompanyName';
   key?: Maybe<Scalars['String']>;
-  connection?: Maybe<ProjectsCollectionConnection>;
+  connection?: Maybe<ProjectConnection>;
 };
 
-export type ProjectsCollectionConnectionPublished_At = {
-  __typename?: 'ProjectsCollectionConnectionPublished_at';
+export type ProjectConnectionCreated_At = {
+  __typename?: 'ProjectConnectionCreated_at';
   key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<ProjectsCollectionConnection>;
+  connection?: Maybe<ProjectConnection>;
 };
 
-export type ProjectsCollectionConnectionUpdated_At = {
-  __typename?: 'ProjectsCollectionConnectionUpdated_at';
+export type ProjectConnectionDescription = {
+  __typename?: 'ProjectConnectionDescription';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionId = {
+  __typename?: 'ProjectConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionImage = {
+  __typename?: 'ProjectConnectionImage';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionLinkLabel = {
+  __typename?: 'ProjectConnectionLinkLabel';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionLinkPath = {
+  __typename?: 'ProjectConnectionLinkPath';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionLocale = {
+  __typename?: 'ProjectConnectionLocale';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionPath = {
+  __typename?: 'ProjectConnectionPath';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionProjectType = {
+  __typename?: 'ProjectConnectionProjectType';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<ProjectConnection>;
+};
+
+export type ProjectConnectionPublished_At = {
+  __typename?: 'ProjectConnectionPublished_at';
   key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<ProjectsCollectionConnection>;
+  connection?: Maybe<ProjectConnection>;
 };
 
-export type ProjectsCollectionGroupBy = {
-  __typename?: 'ProjectsCollectionGroupBy';
-  id?: Maybe<Array<Maybe<ProjectsCollectionConnectionId>>>;
-  created_at?: Maybe<Array<Maybe<ProjectsCollectionConnectionCreated_At>>>;
-  updated_at?: Maybe<Array<Maybe<ProjectsCollectionConnectionUpdated_At>>>;
-  locale?: Maybe<Array<Maybe<ProjectsCollectionConnectionLocale>>>;
-  published_at?: Maybe<Array<Maybe<ProjectsCollectionConnectionPublished_At>>>;
+export type ProjectConnectionUpdated_At = {
+  __typename?: 'ProjectConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<ProjectConnection>;
 };
 
-export type ProjectsCollectionInput = {
-  projectsList?: Maybe<Array<Maybe<ComponentSectionProjectsSectionInput>>>;
+export type ProjectGroupBy = {
+  __typename?: 'ProjectGroupBy';
+  id?: Maybe<Array<Maybe<ProjectConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<ProjectConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<ProjectConnectionUpdated_At>>>;
+  projectType?: Maybe<Array<Maybe<ProjectConnectionProjectType>>>;
+  linkPath?: Maybe<Array<Maybe<ProjectConnectionLinkPath>>>;
+  linkLabel?: Maybe<Array<Maybe<ProjectConnectionLinkLabel>>>;
+  description?: Maybe<Array<Maybe<ProjectConnectionDescription>>>;
+  path?: Maybe<Array<Maybe<ProjectConnectionPath>>>;
+  companyName?: Maybe<Array<Maybe<ProjectConnectionCompanyName>>>;
+  image?: Maybe<Array<Maybe<ProjectConnectionImage>>>;
+  locale?: Maybe<Array<Maybe<ProjectConnectionLocale>>>;
+  published_at?: Maybe<Array<Maybe<ProjectConnectionPublished_At>>>;
+};
+
+export type ProjectInput = {
+  projectType?: Maybe<Scalars['String']>;
+  linkPath?: Maybe<Scalars['String']>;
+  linkLabel?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['ProjectBlocksDynamicZoneInput']>>;
+  path: Scalars['String'];
+  companyName?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -755,9 +839,9 @@ export type Query = {
   page?: Maybe<Pages>;
   pages?: Maybe<Array<Maybe<Pages>>>;
   pagesConnection?: Maybe<PagesConnection>;
-  projectsCollection?: Maybe<ProjectsCollection>;
-  projectsCollections?: Maybe<Array<Maybe<ProjectsCollection>>>;
-  projectsCollectionsConnection?: Maybe<ProjectsCollectionConnection>;
+  project?: Maybe<Project>;
+  projects?: Maybe<Array<Maybe<Project>>>;
+  projectsConnection?: Maybe<ProjectConnection>;
   files?: Maybe<Array<Maybe<UploadFile>>>;
   filesConnection?: Maybe<UploadFileConnection>;
   role?: Maybe<UsersPermissionsRole>;
@@ -825,13 +909,13 @@ export type QueryPagesConnectionArgs = {
 };
 
 
-export type QueryProjectsCollectionArgs = {
+export type QueryProjectArgs = {
   id: Scalars['ID'];
   publicationState?: Maybe<PublicationState>;
 };
 
 
-export type QueryProjectsCollectionsArgs = {
+export type QueryProjectsArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
@@ -841,7 +925,7 @@ export type QueryProjectsCollectionsArgs = {
 };
 
 
-export type QueryProjectsCollectionsConnectionArgs = {
+export type QueryProjectsConnectionArgs = {
   sort?: Maybe<Scalars['String']>;
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
@@ -1370,13 +1454,13 @@ export type CreatePagePayload = {
   page?: Maybe<Pages>;
 };
 
-export type CreateProjectsCollectionInput = {
-  data?: Maybe<ProjectsCollectionInput>;
+export type CreateProjectInput = {
+  data?: Maybe<ProjectInput>;
 };
 
-export type CreateProjectsCollectionPayload = {
-  __typename?: 'createProjectsCollectionPayload';
-  projectsCollection?: Maybe<ProjectsCollection>;
+export type CreateProjectPayload = {
+  __typename?: 'createProjectPayload';
+  project?: Maybe<Project>;
 };
 
 export type CreateRoleInput = {
@@ -1429,13 +1513,13 @@ export type DeletePagePayload = {
   page?: Maybe<Pages>;
 };
 
-export type DeleteProjectsCollectionInput = {
+export type DeleteProjectInput = {
   where?: Maybe<InputId>;
 };
 
-export type DeleteProjectsCollectionPayload = {
-  __typename?: 'deleteProjectsCollectionPayload';
-  projectsCollection?: Maybe<ProjectsCollection>;
+export type DeleteProjectPayload = {
+  __typename?: 'deleteProjectPayload';
+  project?: Maybe<Project>;
 };
 
 export type DeleteRoleInput = {
@@ -1471,17 +1555,6 @@ export type EditComponentBlocksNavigationBlockInput = {
   url?: Maybe<Scalars['String']>;
 };
 
-export type EditComponentBlocksProjectInput = {
-  id?: Maybe<Scalars['ID']>;
-  companyName?: Maybe<Scalars['String']>;
-  projectType?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  linkName?: Maybe<Scalars['String']>;
-  linkPath?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['ID']>;
-  path?: Maybe<Scalars['String']>;
-};
-
 export type EditComponentBlocksSingleFeatureInput = {
   id?: Maybe<Scalars['ID']>;
   description?: Maybe<Scalars['String']>;
@@ -1501,6 +1574,26 @@ export type EditComponentMenuPageLinkInput = {
   id?: Maybe<Scalars['ID']>;
   pageLinkName?: Maybe<Scalars['String']>;
   link?: Maybe<Scalars['ID']>;
+};
+
+export type EditComponentProjectBlockquoteBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentProjectImageBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  image?: Maybe<Scalars['ID']>;
+};
+
+export type EditComponentProjectParagraphBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentProjectTitleBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentSectionCardSectionInput = {
@@ -1525,7 +1618,6 @@ export type EditComponentSectionHeroSectionInput = {
 export type EditComponentSectionProjectsSectionInput = {
   id?: Maybe<Scalars['ID']>;
   sectionTitle?: Maybe<Scalars['String']>;
-  projects?: Maybe<Array<Maybe<EditComponentBlocksProjectInput>>>;
   sectionTitleColor?: Maybe<Scalars['String']>;
 };
 
@@ -1600,8 +1692,15 @@ export type EditPageInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type EditProjectsCollectionInput = {
-  projectsList?: Maybe<Array<Maybe<EditComponentSectionProjectsSectionInput>>>;
+export type EditProjectInput = {
+  projectType?: Maybe<Scalars['String']>;
+  linkPath?: Maybe<Scalars['String']>;
+  linkLabel?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  blocks?: Maybe<Array<Scalars['ProjectBlocksDynamicZoneInput']>>;
+  path?: Maybe<Scalars['String']>;
+  companyName?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -1662,14 +1761,14 @@ export type UpdatePagePayload = {
   page?: Maybe<Pages>;
 };
 
-export type UpdateProjectsCollectionInput = {
+export type UpdateProjectInput = {
   where?: Maybe<InputId>;
-  data?: Maybe<EditProjectsCollectionInput>;
+  data?: Maybe<EditProjectInput>;
 };
 
-export type UpdateProjectsCollectionPayload = {
-  __typename?: 'updateProjectsCollectionPayload';
-  projectsCollection?: Maybe<ProjectsCollection>;
+export type UpdateProjectPayload = {
+  __typename?: 'updateProjectPayload';
+  project?: Maybe<Project>;
 };
 
 export type UpdateRoleInput = {
@@ -1777,27 +1876,40 @@ export type GetGlobalQuery = (
   )> }
 );
 
-export type GetProjectsCollectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetProjectsQueryVariables = Exact<{
+  locale?: Maybe<Scalars['String']>;
+}>;
 
 
-export type GetProjectsCollectionQuery = (
+export type GetProjectsQuery = (
   { __typename?: 'Query' }
-  & { projectsCollection?: Maybe<(
-    { __typename?: 'ProjectsCollection' }
-    & Pick<ProjectsCollection, 'id' | 'locale'>
-    & { projectsList?: Maybe<Array<Maybe<(
-      { __typename?: 'ComponentSectionProjectsSection' }
-      & Pick<ComponentSectionProjectsSection, 'id' | 'sectionTitle' | 'sectionTitleColor'>
-      & { projects?: Maybe<Array<Maybe<(
-        { __typename?: 'ComponentBlocksProject' }
-        & Pick<ComponentBlocksProject, 'id' | 'path' | 'companyName' | 'projectType' | 'description' | 'linkName' | 'linkPath'>
-        & { image?: Maybe<(
-          { __typename?: 'UploadFile' }
-          & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
-        )> }
-      )>>> }
+  & { projects?: Maybe<Array<Maybe<(
+    { __typename?: 'Project' }
+    & Pick<Project, 'id' | 'linkPath' | 'linkLabel' | 'projectType' | 'companyName' | 'description' | 'path' | 'locale'>
+    & { localizations?: Maybe<Array<Maybe<(
+      { __typename?: 'Project' }
+      & Pick<Project, 'id' | 'path' | 'locale'>
+    )>>>, image?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+    )>, blocks?: Maybe<Array<Maybe<(
+      { __typename: 'ComponentProjectTitleBlock' }
+      & Pick<ComponentProjectTitleBlock, 'id' | 'title'>
+    ) | (
+      { __typename: 'ComponentProjectBlockquoteBlock' }
+      & Pick<ComponentProjectBlockquoteBlock, 'id' | 'text'>
+    ) | (
+      { __typename: 'ComponentProjectImageBlock' }
+      & Pick<ComponentProjectImageBlock, 'id'>
+      & { image?: Maybe<(
+        { __typename?: 'UploadFile' }
+        & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+      )> }
+    ) | (
+      { __typename: 'ComponentProjectParagraphBlock' }
+      & Pick<ComponentProjectParagraphBlock, 'id' | 'text'>
     )>>> }
-  )> }
+  )>>> }
 );
 
 export type SaveChangesMutationVariables = Exact<{
@@ -1839,18 +1951,18 @@ export type UpdateGlobalMutation = (
   )> }
 );
 
-export type UpdateProjectsListMutationVariables = Exact<{
-  input?: Maybe<UpdateProjectsCollectionInput>;
+export type UpdateMenuMutationVariables = Exact<{
+  input?: Maybe<UpdateMenuInput>;
 }>;
 
 
-export type UpdateProjectsListMutation = (
+export type UpdateMenuMutation = (
   { __typename?: 'Mutation' }
-  & { updateProjectsCollection?: Maybe<(
-    { __typename?: 'updateProjectsCollectionPayload' }
-    & { projectsCollection?: Maybe<(
-      { __typename?: 'ProjectsCollection' }
-      & Pick<ProjectsCollection, 'id'>
+  & { updateMenu?: Maybe<(
+    { __typename?: 'updateMenuPayload' }
+    & { menu?: Maybe<(
+      { __typename?: 'Menu' }
+      & Pick<Menu, 'id'>
     )> }
   )> }
 );
@@ -1961,28 +2073,51 @@ export const GetGlobal = `
   }
 }
     `;
-export const GetProjectsCollection = `
-    query getProjectsCollection {
-  projectsCollection(id: 1) {
+export const GetProjects = `
+    query getProjects($locale: String) {
+  projects(locale: $locale) {
     id
+    linkPath
+    linkLabel
+    projectType
+    companyName
+    description
+    path
     locale
-    projectsList {
+    localizations {
       id
-      sectionTitle
-      sectionTitleColor
-      projects {
+      path
+      locale
+    }
+    image {
+      id
+      url
+      alternativeText
+    }
+    blocks {
+      ... on ComponentProjectTitleBlock {
+        __typename
         id
-        path
-        companyName
-        projectType
-        description
-        linkName
-        linkPath
+        title
+      }
+      ... on ComponentProjectBlockquoteBlock {
+        __typename
+        id
+        text
+      }
+      ... on ComponentProjectImageBlock {
+        __typename
+        id
         image {
           id
           url
           alternativeText
         }
+      }
+      ... on ComponentProjectParagraphBlock {
+        __typename
+        id
+        text
       }
     }
   }
@@ -2011,10 +2146,10 @@ export const UpdateGlobal = `
   }
 }
     `;
-export const UpdateProjectsList = `
-    mutation UpdateProjectsList($input: updateProjectsCollectionInput) {
-  updateProjectsCollection(input: $input) {
-    projectsCollection {
+export const UpdateMenu = `
+    mutation updateMenu($input: updateMenuInput) {
+  updateMenu(input: $input) {
+    menu {
       id
     }
   }

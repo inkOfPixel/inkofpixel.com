@@ -1,0 +1,7 @@
+mutation updateMenu($input: updateMenuInput) {
+  updateMenu(input: $input) {
+    menu {
+      id
+    }
+  }
+}

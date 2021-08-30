@@ -1,24 +1,47 @@
-query getProjects($locale: string) {
-  projectsCollections(locale: $locale) {
+query getProjects($locale: String) {
+  projects(locale: $locale) {
     id
+    linkPath
+    linkLabel
+    projectType
+    companyName
+    description
+    path
     locale
-    projectsList {
+    localizations {
       id
-      sectionTitle
-      sectionTitleColor
-      projects {
+      path
+      locale
+    }
+    image {
+      id
+      url
+      alternativeText
+    }
+    blocks {
+      ... on ComponentProjectTitleBlock {
+        __typename
         id
-        path
-        companyName
-        projectType
-        description
-        linkName
-        linkPath
+        title
+      }
+      ... on ComponentProjectBlockquoteBlock {
+        __typename
+        id
+        text
+      }
+      ... on ComponentProjectImageBlock {
+        __typename
+        id
         image {
           id
           url
           alternativeText
         }
+      }
+      ... on ComponentProjectParagraphBlock {
+        __typename
+        id
+        text
       }
     }
   }
