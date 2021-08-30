@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_title_blocks",
+  "info": {
+    "name": "titleBlock",
+    "icon": "angle-up"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

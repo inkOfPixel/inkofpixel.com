@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_blockquote_blocks",
+  "info": {
+    "name": "blockquoteBlock",
+    "icon": "align-right"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

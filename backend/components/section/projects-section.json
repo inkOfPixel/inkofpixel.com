@@ -10,11 +10,6 @@
     "sectionTitle": {
       "type": "string"
     },
-    "projects": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.project"
-    },
     "sectionTitleColor": {
       "type": "string"
     }
