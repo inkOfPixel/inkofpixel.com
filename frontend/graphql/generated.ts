@@ -53,6 +53,16 @@ export type ComponentBlocksCardInput = {
   label: Scalars['String'];
 };
 
+export type ComponentBlocksListItem = {
+  __typename?: 'ComponentBlocksListItem';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksListItemInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
 export type ComponentBlocksNavigationBlock = {
   __typename?: 'ComponentBlocksNavigationBlock';
   id: Scalars['ID'];
@@ -131,20 +141,14 @@ export type ComponentProjectParagraphBlock = {
   __typename?: 'ComponentProjectParagraphBlock';
   id: Scalars['ID'];
   text?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  listItems?: Maybe<Array<Maybe<ComponentBlocksListItem>>>;
 };
 
 export type ComponentProjectParagraphBlockInput = {
   text?: Maybe<Scalars['String']>;
-};
-
-export type ComponentProjectTitleBlock = {
-  __typename?: 'ComponentProjectTitleBlock';
-  id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
-};
-
-export type ComponentProjectTitleBlockInput = {
-  title?: Maybe<Scalars['String']>;
+  listItems?: Maybe<Array<Maybe<ComponentBlocksListItemInput>>>;
 };
 
 export type ComponentSectionCardSection = {
@@ -378,7 +382,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentProjectTitleBlock | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksListItem | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -711,7 +715,7 @@ export type ProjectAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
-export type ProjectBlocksDynamicZone = ComponentProjectTitleBlock | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock;
+export type ProjectBlocksDynamicZone = ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock;
 
 
 export type ProjectConnection = {
@@ -1549,6 +1553,11 @@ export type EditComponentBlocksCardInput = {
   label?: Maybe<Scalars['String']>;
 };
 
+export type EditComponentBlocksListItemInput = {
+  id?: Maybe<Scalars['ID']>;
+  text?: Maybe<Scalars['String']>;
+};
+
 export type EditComponentBlocksNavigationBlockInput = {
   id?: Maybe<Scalars['ID']>;
   label?: Maybe<Scalars['String']>;
@@ -1589,11 +1598,8 @@ export type EditComponentProjectImageBlockInput = {
 export type EditComponentProjectParagraphBlockInput = {
   id?: Maybe<Scalars['ID']>;
   text?: Maybe<Scalars['String']>;
-};
-
-export type EditComponentProjectTitleBlockInput = {
-  id?: Maybe<Scalars['ID']>;
   title?: Maybe<Scalars['String']>;
+  listItems?: Maybe<Array<Maybe<EditComponentBlocksListItemInput>>>;
 };
 
 export type EditComponentSectionCardSectionInput = {
@@ -1893,9 +1899,6 @@ export type GetProjectsQuery = (
       { __typename?: 'UploadFile' }
       & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
     )>, blocks?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentProjectTitleBlock' }
-      & Pick<ComponentProjectTitleBlock, 'id' | 'title'>
-    ) | (
       { __typename: 'ComponentProjectBlockquoteBlock' }
       & Pick<ComponentProjectBlockquoteBlock, 'id' | 'text'>
     ) | (
@@ -1907,7 +1910,11 @@ export type GetProjectsQuery = (
       )> }
     ) | (
       { __typename: 'ComponentProjectParagraphBlock' }
-      & Pick<ComponentProjectParagraphBlock, 'id' | 'text'>
+      & Pick<ComponentProjectParagraphBlock, 'id' | 'title' | 'text'>
+      & { listItems?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksListItem' }
+        & Pick<ComponentBlocksListItem, 'id' | 'text'>
+      )>>> }
     )>>> }
   )>>> }
 );
@@ -2095,11 +2102,6 @@ export const GetProjects = `
       alternativeText
     }
     blocks {
-      ... on ComponentProjectTitleBlock {
-        __typename
-        id
-        title
-      }
       ... on ComponentProjectBlockquoteBlock {
         __typename
         id
@@ -2117,7 +2119,12 @@ export const GetProjects = `
       ... on ComponentProjectParagraphBlock {
         __typename
         id
+        title
         text
+        listItems {
+          id
+          text
+        }
       }
     }
   }

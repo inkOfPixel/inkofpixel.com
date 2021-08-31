@@ -19,11 +19,6 @@ query getProjects($locale: String) {
       alternativeText
     }
     blocks {
-      ... on ComponentProjectTitleBlock {
-        __typename
-        id
-        title
-      }
       ... on ComponentProjectBlockquoteBlock {
         __typename
         id
@@ -41,7 +36,12 @@ query getProjects($locale: String) {
       ... on ComponentProjectParagraphBlock {
         __typename
         id
+        title
         text
+        listItems {
+          id
+          text
+        }
       }
     }
   }

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_list_items",
+  "info": {
+    "name": "listItem",
+    "icon": "address-book"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

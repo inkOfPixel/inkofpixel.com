@@ -51,7 +51,6 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "project.title-block",
         "project.blockquote-block",
         "project.image-block",
         "project.paragraph-block"
