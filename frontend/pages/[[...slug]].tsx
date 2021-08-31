@@ -17,7 +17,7 @@ import {
   GlobalData,
 } from "@plugins/usePagePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
-import { Box, chakra, useColorMode } from "@chakra-ui/react";
+import { Box, chakra, Flex, useColorMode, VStack } from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
@@ -41,16 +41,17 @@ import {
   LocaleMenuList,
   LocaleMenuLink,
 } from "@components/LocaleMenu";
-import { Footer } from "@features/Footer/Footer";
-import { LowerFooter } from "@features/Footer/LowerFooter";
 import {
-  UpperFooter,
-  Container,
+  Copyright,
+  Footer,
+  LocationsBlocks,
   FooterDescription,
   FooterEmail,
-  FooterBlocks,
-} from "@features/Footer/UpperFooter";
-import { FooterBlockData } from "@features/Footer/blocks/FooterBlock";
+  FooterHomeLink,
+  LegalInfo,
+} from "@features/Footer/Footer";
+
+import { LocationBlockData } from "@features/Footer/blocks/LocationBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -127,35 +128,30 @@ export default function DynamicPage({ data, preview }: DynamicPageProps) {
           />
         </Main>
         <Footer>
-          <UpperFooter>
-            <Box
-              color="white"
-              as="a"
-              width={{
-                base: "36",
-                sm: "52",
-              }}
-              height="54px"
-            >
-              <WordmarkLogo width="100%" height="100%" color="white" />
-            </Box>
-            <Container>
-              <FooterDescription
-                description={values.global.footer.description}
-              />
-              <FooterEmail email={values.global.companyData.primaryEmail} />
-              <FooterBlocks />
-            </Container>
-          </UpperFooter>
-          <LowerFooter
-            capital={values.global.companyData.capital}
-            vatId={values.global.companyData.vatId}
-            additionalLegalInfo={values.global.companyData.additionalLegalInfo}
-            copyright={values.global.companyData.copyright}
-            street={values.global.companyData.locations[0].street}
-            city={values.global.companyData.locations[0].city}
-            cap={values.global.companyData.locations[0].cap}
-          ></LowerFooter>
+          <Flex
+            flexDirection={{
+              base: "column",
+              md: "row",
+            }}
+            alignItems="start"
+          >
+            <FooterHomeLink>
+              <WordmarkLogo width="200px" height="100%" color="white" />
+            </FooterHomeLink>
+            <VStack align="flex-start" w="full" pl="24">
+              <FooterDescription>
+                {values.global.footer.description}
+              </FooterDescription>
+              <FooterEmail>
+                {values.global.companyData.primaryEmail}
+              </FooterEmail>
+              <LocationsBlocks />
+            </VStack>
+          </Flex>
+          <VStack align="flex-start" pt="12" fontSize="13px" lineHeight="1.4em">
+            <Copyright>{values.global.companyData.copyright}</Copyright>
+            <LegalInfo company={values.global.companyData}></LegalInfo>
+          </VStack>
         </Footer>
       </InlineForm>
     </SiteLayout>
@@ -338,9 +334,9 @@ function getGlobalData(
         locations: global.companyData.locations
           ? filterListNullableItems(
               global.companyData.locations
-            ).map<FooterBlockData>((location) => {
+            ).map<LocationBlockData>((location) => {
               return {
-                _template: "footer",
+                _template: "location",
                 id: location.id,
                 cap: location.cap || null,
                 street: location.street || null,
