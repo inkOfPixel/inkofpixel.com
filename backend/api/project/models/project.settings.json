@@ -51,10 +51,10 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "project.title-block",
         "project.blockquote-block",
         "project.image-block",
-        "project.paragraph-block"
+        "project.paragraph-block",
+        "project.list-block"
       ],
       "pluginOptions": {
         "i18n": {

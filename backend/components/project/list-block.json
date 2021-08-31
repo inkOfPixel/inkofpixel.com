@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_project_list_blocks",
+  "info": {
+    "name": "listBlock",
+    "icon": "list-ul"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.list-item"
+    }
+  }
+}
