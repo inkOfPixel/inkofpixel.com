@@ -23,7 +23,7 @@ export default function AppProviders({
     () =>
       new TinaCMS({
         sidebar: {
-          position: "overlay",
+          position: "displace",
         },
         enabled: preview,
         toolbar: preview,
