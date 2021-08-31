@@ -12,11 +12,6 @@
     },
     "title": {
       "type": "string"
-    },
-    "listItems": {
-      "type": "component",
-      "repeatable": true,
-      "component": "blocks.list-item"
     }
   }
 }

@@ -38,10 +38,6 @@ query getProjects($locale: String) {
         id
         title
         text
-        listItems {
-          id
-          text
-        }
       }
     }
   }
