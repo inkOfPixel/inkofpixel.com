@@ -48,7 +48,6 @@ export function SimpleSectionBlock({
       >
         <Box
           color={sectionTitleColor || "black"}
-          fontSize="sm"
           textTransform="uppercase"
           letterSpacing="0.1em"
           pos="relative"
@@ -91,9 +90,6 @@ export function SimpleSectionBlock({
               lg: "65%",
             }}
             wordBreak="keep-all"
-            fontSize={{
-              base: "sm",
-            }}
             pt="5"
             m="0"
             fontWeight="subtitle"

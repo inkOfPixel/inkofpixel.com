@@ -34,7 +34,6 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
         color="dark"
         position="relative"
         transition="all 0.3s"
-        fontSize="sm"
         fontWeight="subtitle"
         _before={{
           background: "rgb(22,19,56)",

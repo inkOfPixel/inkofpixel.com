@@ -155,9 +155,6 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                 <StyledInlineTextarea name="title" />
               </Box>
               <Box
-                fontSize={{
-                  base: "sm",
-                }}
                 w={{
                   base: "full",
                   sm: "75%",

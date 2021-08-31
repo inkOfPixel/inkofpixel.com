@@ -165,14 +165,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
               fontWeight="bold"
             />
           </Box>
-          <Box
-            fontSize="sm"
-            lineHeight="1.6em"
-            color="cardDescription"
-            name="description"
-          >
+          <Box lineHeight="1.6em" color="cardDescription" name="description">
             <StyledInlineTextarea
-              fontSize="sm"
               lineHeight="1.6em"
               color="cardDescription"
               name="description"

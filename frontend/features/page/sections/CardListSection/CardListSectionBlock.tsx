@@ -58,7 +58,6 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
         <Box
           as="h2"
           color="emerald.300"
-          fontSize="sm"
           textTransform="uppercase"
           letterSpacing="0.1em"
           w="full"

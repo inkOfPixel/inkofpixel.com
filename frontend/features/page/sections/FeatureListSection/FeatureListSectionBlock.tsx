@@ -64,7 +64,6 @@ export function FeatureListSectionBlock({
       >
         <Box
           color="rgb(129, 82, 188)"
-          fontSize="sm"
           textTransform="uppercase"
           letterSpacing="0.1em"
           pos="relative"
@@ -130,7 +129,6 @@ export function FeatureListSectionBlock({
               />
             </Box>
             <Box
-              fontSize="sm"
               m="0"
               w="full"
               pt="5"
@@ -140,7 +138,6 @@ export function FeatureListSectionBlock({
               letterSpacing="0.04em"
             >
               <StyledInlineTextarea
-                fontSize="sm"
                 m="0"
                 pt="5"
                 fontWeight="subtitle"

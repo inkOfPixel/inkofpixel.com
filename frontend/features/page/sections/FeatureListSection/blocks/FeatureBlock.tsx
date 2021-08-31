@@ -126,12 +126,7 @@ export function FeatureBlock({
           >
             <StyledInlineTextarea name="title" />
           </Box>
-          <Box
-            fontSize="sm"
-            fontWeight="subtitle"
-            lineHeight="subtitle"
-            color="description"
-          >
+          <Box fontWeight="subtitle" lineHeight="subtitle" color="description">
             <StyledInlineTextarea
               color="description"
               height="auto"
@@ -164,7 +159,6 @@ export function FeatureBlock({
               <Link
                 color="dark"
                 fontWeight="light"
-                fontSize="sm"
                 userSelect="none"
                 _hover={{
                   color: "rgb(5, 195, 182)",
