@@ -135,7 +135,7 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
           <Box
             w={{
               base: "full",
-              xl: "1200px",
+              xl: "container.xl",
             }}
             height="fit-content"
           >
@@ -151,7 +151,6 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
-                letterSpacing="0.02em"
               >
                 <StyledInlineTextarea name="title" />
               </Box>
@@ -168,8 +167,6 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                 pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
-                fontFamily="Roboto Mono"
-                letterSpacing="0.02em"
               >
                 <StyledInlineTextarea
                   w={{
@@ -177,7 +174,6 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                     sm: "75%",
                     md: "50%",
                   }}
-                  fontFamily="Roboto Mono"
                   name="subtitle"
                 />
               </Box>

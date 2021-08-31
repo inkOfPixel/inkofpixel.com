@@ -71,7 +71,6 @@ export function FeatureListSectionBlock({
           w="full"
           pb="8"
           as="h2"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -119,7 +118,6 @@ export function FeatureListSectionBlock({
               fontWeight="bold"
               lineHeight="hero"
               fontFamily="Europa"
-              letterSpacing="0.02em"
             >
               <StyledInlineTextarea
                 fontSize="5xl"
@@ -128,7 +126,6 @@ export function FeatureListSectionBlock({
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
-                letterSpacing="0.02em"
                 name="title"
               />
             </Box>
@@ -141,7 +138,6 @@ export function FeatureListSectionBlock({
               lineHeight="subtitle"
               color="description"
               letterSpacing="0.04em"
-              fontFamily="Roboto Mono"
             >
               <StyledInlineTextarea
                 fontSize="sm"
@@ -149,7 +145,6 @@ export function FeatureListSectionBlock({
                 pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
-                letterSpacing="0.02em"
                 color="description"
                 name="subtitle"
               />

@@ -20,7 +20,7 @@ export default class Document extends NextDocument {
           />
         </Head>
 
-        <body>
+        <body style={{ letterSpacing: "var(--chakra-letterSpacings-body)" }}>
           <ColorModeScript initialColorMode={Theme.config?.initialColorMode} />
           <Main />
           <NextScript />

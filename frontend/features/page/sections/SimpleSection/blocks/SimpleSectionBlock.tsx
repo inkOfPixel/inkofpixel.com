@@ -45,7 +45,7 @@ export function SimpleSectionBlock({
         m="0 auto"
         boxSizing="border-box"
         pos="relative"
-        letterSpacing="0.02em">
+      >
         <Box
           color={sectionTitleColor || "black"}
           fontSize="sm"
@@ -55,7 +55,6 @@ export function SimpleSectionBlock({
           w="full"
           pb="8"
           as="h2"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -70,7 +69,8 @@ export function SimpleSectionBlock({
                   backgroundColor: sectionTitleColor || "black",
                 }
               : undefined
-          }>
+          }
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
 
@@ -81,7 +81,7 @@ export function SimpleSectionBlock({
             fontWeight="bold"
             lineHeight="hero"
             fontFamily="Europa"
-            letterSpacing="0.02em">
+          >
             <StyledInlineTextarea name="title" />
           </Box>
           <Box
@@ -98,12 +98,8 @@ export function SimpleSectionBlock({
             m="0"
             fontWeight="subtitle"
             lineHeight="subtitle"
-            fontFamily="Roboto Mono"
-            letterSpacing="0.02em">
-            <StyledInlineTextarea
-              pt="5"
-              fontFamily="Roboto Mono"
-              name="subtitle"></StyledInlineTextarea>
+          >
+            <StyledInlineTextarea pt="5" name="subtitle" />
           </Box>
         </Flex>
       </Box>

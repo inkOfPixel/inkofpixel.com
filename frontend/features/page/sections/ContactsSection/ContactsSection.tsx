@@ -78,7 +78,6 @@ export function ContactsSectionBlock({
           w="full"
           pb="30px"
           as="h2"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -397,7 +396,6 @@ export function ContactsForm() {
   return (
     <Box
       flexWrap="wrap"
-      fontFamily="Roboto Mono"
       id="contact"
       mt={{
         base: "20",

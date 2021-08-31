@@ -68,7 +68,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
         boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.15)",
         transform: "scale(1.01, 1.01)",
         transition: "0.8s",
-      }}>
+      }}
+    >
       <Flex flexDir={"column"}>
         {cms.enabled ? (
           <InlineImage
@@ -83,7 +84,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
             }}
             parse={(media) => {
               return media as any;
-            }}>
+            }}
+          >
             {(imageProps: any) => {
               const { src } = imageProps as ImageRenderProps;
               let imageSrc: string = src.previewSrc || src.url || "";
@@ -99,7 +101,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
                   justifyContent="center"
                   overflow="hidden"
                   w="auto"
-                  height="auto">
+                  height="auto"
+                >
                   <Img
                     textAlign="center"
                     w={image ? "full" : "72"}
@@ -121,7 +124,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
             justifyContent="center"
             pos="relative"
             overflow="hidden"
-            height="72">
+            height="72"
+          >
             <Img
               w={image ? "full" : "72"}
               h={image ? "full" : "72"}
@@ -130,9 +134,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
               opacity="1"
               transition="0.5s"
               borderStyle="none"
-              src={
-                image ? STRAPI_URL + image.url : "/images/default-image.png"
-              }></Img>
+              src={image ? STRAPI_URL + image.url : "/images/default-image.png"}
+            ></Img>
           </Flex>
         )}
 
@@ -141,7 +144,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
           w="full"
           p="8"
           pos="relative"
-          boxSizing="border-box">
+          boxSizing="border-box"
+        >
           <Box
             pb="5"
             fontFamily="Europa"
@@ -149,7 +153,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
             fontSize="xl"
             name="title"
             letterSpacing="0.06em"
-            fontWeight="bold">
+            fontWeight="bold"
+          >
             <StyledInlineTextarea
               pb="5"
               fontFamily="Europa"
@@ -161,18 +166,15 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
             />
           </Box>
           <Box
-            fontFamily="Roboto Mono"
             fontSize="sm"
             lineHeight="1.6em"
             color="cardDescription"
-            letterSpacing="0.02em"
-            name="description">
+            name="description"
+          >
             <StyledInlineTextarea
-              fontFamily="Roboto Mono"
               fontSize="sm"
               lineHeight="1.6em"
               color="cardDescription"
-              letterSpacing="0.02em"
               name="description"
             />
           </Box>
@@ -200,7 +202,8 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
           },
         }}
         mx="8"
-        mb="8">
+        mb="8"
+      >
         <Box as="span">{label ? label : "Discover more"}</Box>
       </Box>
     </Flex>
