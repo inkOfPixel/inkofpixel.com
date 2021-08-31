@@ -580,8 +580,8 @@ export function getProjectCreatorPlugin(
           if (!path.startsWith("/projects/")) {
             return "Path must start with /projects/";
           }
-          if(!path.charAt(10)){
-            return "Path must contain something after /projects/"
+          if (!path.charAt(10)) {
+            return "Path must contain something after /projects/";
           }
         },
       },
@@ -639,17 +639,6 @@ export function getProjectCreatorPlugin(
           }
           return imageSrc.previewSrc;
         },
-        /*uploadDir={() => "/"}
-          previewSrc={(imageSrc) => {
-            if (imageSrc === "") {
-              return "/images/default-image.png";
-            }
-
-            return imageSrc;
-          }}
-          parse={(media) => {
-            return media as any;
-          }}*/
       },
     ],
     onSubmit: async (values, cms) => {
