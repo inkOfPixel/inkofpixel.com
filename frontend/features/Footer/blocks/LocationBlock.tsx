@@ -6,8 +6,8 @@ import {
   BlocksControls,
 } from "react-tinacms-inline";
 
-export type FooterBlockData = BlockTemplateData<
-  "footer",
+export type LocationBlockData = BlockTemplateData<
+  "location",
   {
     id: string;
     city: Nullable<string>;
@@ -19,7 +19,7 @@ export type FooterBlockData = BlockTemplateData<
   }
 >;
 
-interface FooterBlockProps {
+interface LocationBlockProps {
   city: Nullable<string>;
   type: Nullable<string>;
   street: Nullable<string>;
@@ -28,14 +28,14 @@ interface FooterBlockProps {
   provinceInitials: Nullable<string>;
 }
 
-export function FooterBlock({
+export function LocationBlock({
   city,
   type,
   street,
   cap,
   province,
   provinceInitials,
-}: FooterBlockProps) {
+}: LocationBlockProps) {
   return (
     <Flex flexGrow={1} flexDir="column" pt="12">
       <Box fontFamily="Europa" fontSize="2xl" fontWeight="bold">
@@ -54,15 +54,15 @@ export function FooterBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FooterBlock {...data} />
+      <LocationBlock {...data} />
     </BlocksControls>
   );
 }
 
-export const footerBlock: Block = {
+export const locationBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "Footer Block",
+    label: "Location Block",
     defaultItem: {
       province: "Default province",
       street: "Default street",

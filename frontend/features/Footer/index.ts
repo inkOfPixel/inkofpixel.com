@@ -1,5 +1,5 @@
-import { footerBlock } from "./blocks/FooterBlock";
+import { locationBlock } from "./blocks/LocationBlock";
 
-export const FOOTER_BLOCK = {
-  footer: footerBlock,
+export const LOCATION_BLOCK = {
+  location: locationBlock,
 };
