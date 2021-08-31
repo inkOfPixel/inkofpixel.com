@@ -189,7 +189,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sections: section.blocks?.map((card) => {
                 return {
                   id: card.id,
@@ -216,7 +216,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle || null,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sections: section.blocks?.map((feature) => {
                 return {
                   id: feature.id,
@@ -242,7 +242,7 @@ function getPageInput(data: PageData): UpdatePageInput {
             return {
               __typename: "ComponentSectionSimpleSection",
               id: section.id,
-              sectionTitle: section.sectionTitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sectionTitleColor: section.sectionTitleColor,
               title: section.title,
               subtitle: section.subtitle,
@@ -255,7 +255,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               title: section.title,
               email: section.email,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
             };
           }
           default:
