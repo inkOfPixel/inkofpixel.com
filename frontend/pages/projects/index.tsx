@@ -577,11 +577,11 @@ export function getProjectCreatorPlugin(
         defaultValue: "/projects/",
         description: "The path to the page ( e.g. /projects/something )",
         validate(path: string) {
-          if (!path) {
-            return "Required.";
+          if (!path.startsWith("/projects/")) {
+            return "Path must start with /projects/";
           }
-          if (!path.startsWith("/projects")) {
-            return "Path must start with /projects";
+          if(!path.charAt(10)){
+            return "Path must contain something after /projects/"
           }
         },
       },
