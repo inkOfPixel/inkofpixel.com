@@ -200,7 +200,7 @@ export default function DynamicPage({ data: data }: DynamicPageProps) {
             pos="relative"
           >
             <Box py="12" color="dark">
-              Blocchi
+              Blocks
             </Box>
           </Box>
         </InlineForm>
