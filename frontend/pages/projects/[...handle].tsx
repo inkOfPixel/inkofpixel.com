@@ -78,7 +78,7 @@ export default function DynamicPage({ data: data }: DynamicPageProps) {
 
   return (
     <SiteLayout title={`${data.project.companyName} | inkOfPixel`}>
-      <Box color="white" className="WhiteWords">
+      <Box color="white">
         <InlineForm form={form}>
           <NavBar>
             <MobileNavDrawer>
