@@ -24,7 +24,7 @@ export function FooterHomeLink(props: PropsWithChildren<unknown>) {
 
 export function Footer(props: PropsWithChildren<unknown>) {
   return (
-    <Box py="36" backgroundColor="rgb(5,195,182)" color="white" as="footer">
+    <Box py="36" backgroundColor="emerald.500" color="white" as="footer">
       <Box
         px={{
           base: "7",
@@ -47,37 +47,9 @@ export function Copyright({ children }: PropsWithChildren<unknown>) {
   return <Text pb="4">{children}</Text>;
 }
 
-interface LegalInfoProps {
-  company: {
-    additionalLegalInfo: Nullable<string>;
-    vatId: Nullable<string>;
-    capital: Nullable<number>;
-    copyright: Nullable<string>;
-    locations: Array<{
-      street: Nullable<string>;
-      cap: Nullable<number>;
-      city: Nullable<string>;
-    }>;
-  };
-}
-
-export function LegalInfo({ company }: LegalInfoProps) {
-  return (
-    <Text>
-      {`Capital € ${company.capital} i.v • ${company.locations[0].street} - ${company.locations[0].cap} ${company.locations[0].city} • VAT Number ${company.vatId} • ${company.additionalLegalInfo}`}
-    </Text>
-  );
-}
-
 export function FooterDescription({ children }: PropsWithChildren<unknown>) {
   return (
-    <Box
-      className="caption"
-      mb="6"
-      fontSize="sm"
-      maxW="500px"
-      lineHeight="1.8em"
-    >
+    <Box maxW="500px" lineHeight="1.8em">
       <Box as="span">{children}</Box>
     </Box>
   );
@@ -109,7 +81,7 @@ export function FooterEmail({ children }: PropsWithChildren<unknown>) {
             left: "50%",
             pos: "absolute",
             w: "0%",
-            transition: "all 300ms ease 0s",
+            transition: "all 300ms ease",
             transform: "translateX(-50%) translateY(0px)",
           }}
           _hover={{
@@ -137,7 +109,6 @@ export function LocationsBlocks() {
         sm: "row",
       }}
       direction="horizontal"
-      fontSize="sm"
       lineHeight="1.4em"
       w="full"
       max={3}

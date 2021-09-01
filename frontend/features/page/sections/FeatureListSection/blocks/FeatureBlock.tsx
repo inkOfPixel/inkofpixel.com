@@ -1,5 +1,6 @@
-import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
+import { Box, chakra, Container, Flex, Img } from "@chakra-ui/react";
 import Bubble from "@components/Bubble";
+import NextLink from "next/link";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -126,18 +127,13 @@ export function FeatureBlock({
           >
             <StyledInlineTextarea name="title" />
           </Box>
-          <Box fontWeight="subtitle" lineHeight="subtitle" color="description">
-            <StyledInlineTextarea
-              color="description"
-              height="auto"
-              name="description"
-            />
+          <Box fontWeight="subtitle" lineHeight="subtitle" color="subdudeText">
+            <StyledInlineTextarea height="auto" name="description" />
           </Box>
           <Box
             display="inline-block"
             textDecoration="none"
-            transition="all 0.4s ease 0s"
-            color="dark"
+            transition="all 0.4s ease"
             _after={{
               content: "'→'",
               display: "inline-block",
@@ -147,28 +143,26 @@ export function FeatureBlock({
               fontWeight: "thin",
             }}
             _hover={{
-              color: "rgb(5, 195, 182)",
+              color: "emerald.500",
               _after: {
-                color: "rgb(5, 195, 182)",
                 paddingLeft: "5",
               },
             }}
             mt="5"
           >
-            <Box as="span">
-              <Link
-                color="dark"
+            <NextLink href={url ? url : "/"}>
+              <Box
+                as="a"
                 fontWeight="light"
                 userSelect="none"
                 _hover={{
-                  color: "rgb(5, 195, 182)",
+                  color: "emerald.500",
                   textDecorationLine: "none",
                 }}
-                href={url ? url : "/"}
               >
                 {label ? label : "Learn more"}
-              </Link>
-            </Box>
+              </Box>
+            </NextLink>
           </Box>
         </Flex>
       </Box>

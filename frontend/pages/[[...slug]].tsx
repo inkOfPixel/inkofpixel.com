@@ -17,7 +17,14 @@ import {
   GlobalData,
 } from "@plugins/usePagePlugin";
 import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
-import { Box, chakra, Flex, useColorMode, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Flex,
+  Text,
+  useColorMode,
+  VStack,
+} from "@chakra-ui/react";
 import { SectionBlockData, SECTION_PAGE_BLOCKS } from "@features/page";
 import { assertNever, filterListNullableItems } from "@utils";
 import { FeatureBlockData } from "@features/page/sections/FeatureListSection/blocks/FeatureBlock";
@@ -48,10 +55,8 @@ import {
   FooterDescription,
   FooterEmail,
   FooterHomeLink,
-  LegalInfo,
-} from "@features/Footer/Footer";
-
-import { LocationBlockData } from "@features/Footer/blocks/LocationBlock";
+} from "@features/footer";
+import { LocationBlockData } from "@features/footer/blocks/LocationBlock";
 
 interface DynamicPageProps {
   path: string[];
@@ -80,80 +85,96 @@ export default function DynamicPage({ data, preview }: DynamicPageProps) {
 
   return (
     <SiteLayout title="inkOfPixel">
-      <InlineForm form={form}>
-        <NavBar>
-          <MobileNavDrawer>
-            <NavMenuMobile />
-          </MobileNavDrawer>
-          <Link href="/" passHref>
-            <Box as="a">
-              <WordmarkLogo color="rgb(19,22,57)" width="52" height="36" />
-            </Box>
-          </Link>
-          <NavMenuDesktop />
-          <LocaleMenu>
-            <LocaleMenuButton>{router.locale!.toUpperCase()}</LocaleMenuButton>
-            <LocaleMenuList>
-              <LocaleMenuLink href={router.asPath} locale={router.locale!}>
-                {router.locale?.toUpperCase()}
-              </LocaleMenuLink>
-              {data ? (
-                data.page.localizations?.map((pageLocale) => {
-                  return (
-                    <LocaleMenuLink
-                      key={pageLocale.locale}
-                      href={pageLocale.path!}
-                      locale={pageLocale.locale!}
-                    >
-                      {pageLocale.locale?.toUpperCase()}
-                    </LocaleMenuLink>
-                  );
-                })
-              ) : (
-                <LocaleMenuLink
-                  key="1"
-                  href={router.pathname}
-                  locale={router.locale!}
-                ></LocaleMenuLink>
-              )}
-            </LocaleMenuList>
-          </LocaleMenu>
-        </NavBar>
-        <Main>
-          <StyledInlineBlocks
-            color={colorMode == "light" ? "dark" : "white"}
-            name="page.sections"
-            itemProps={itemProps}
-            blocks={SECTION_PAGE_BLOCKS}
-          />
-        </Main>
-        <Footer>
-          <Flex
-            flexDirection={{
-              base: "column",
-              md: "row",
-            }}
-            alignItems="start"
-          >
-            <FooterHomeLink>
-              <WordmarkLogo width="200px" height="100%" color="white" />
-            </FooterHomeLink>
-            <VStack align="flex-start" w="full" pl="24">
-              <FooterDescription>
-                {values.global.footer.description}
-              </FooterDescription>
-              <FooterEmail>
-                {values.global.companyData.primaryEmail}
-              </FooterEmail>
-              <LocationsBlocks />
+      <Box color="primaryText">
+        <InlineForm form={form}>
+          <NavBar>
+            <MobileNavDrawer>
+              <NavMenuMobile />
+            </MobileNavDrawer>
+            <Link href="/" passHref>
+              <Box as="a">
+                <WordmarkLogo fill="primaryText" width="52" height="36" />
+              </Box>
+            </Link>
+            <NavMenuDesktop />
+            <LocaleMenu>
+              <LocaleMenuButton>
+                {router.locale!.toUpperCase()}
+              </LocaleMenuButton>
+              <LocaleMenuList>
+                <LocaleMenuLink href={router.asPath} locale={router.locale!}>
+                  {router.locale?.toUpperCase()}
+                </LocaleMenuLink>
+                {data ? (
+                  data.page.localizations?.map((pageLocale) => {
+                    return (
+                      <LocaleMenuLink
+                        key={pageLocale.locale}
+                        href={pageLocale.path!}
+                        locale={pageLocale.locale!}
+                      >
+                        {pageLocale.locale?.toUpperCase()}
+                      </LocaleMenuLink>
+                    );
+                  })
+                ) : (
+                  <LocaleMenuLink
+                    key="1"
+                    href={router.pathname}
+                    locale={router.locale!}
+                  ></LocaleMenuLink>
+                )}
+              </LocaleMenuList>
+            </LocaleMenu>
+          </NavBar>
+          <Main>
+            <StyledInlineBlocks
+              color={colorMode == "light" ? "dark" : "white"}
+              name="page.sections"
+              itemProps={itemProps}
+              blocks={SECTION_PAGE_BLOCKS}
+            />
+          </Main>
+          <Footer>
+            <Flex
+              flexDirection={{
+                base: "column",
+                md: "row",
+              }}
+              alignItems="start"
+            >
+              <FooterHomeLink>
+                <WordmarkLogo width="200px" height="100%" color="white" />
+              </FooterHomeLink>
+              <VStack align="flex-start" w="full" pl="24">
+                <FooterDescription>
+                  {values.global.footer.description}
+                </FooterDescription>
+                <FooterEmail>
+                  {values.global.companyData.primaryEmail}
+                </FooterEmail>
+                <LocationsBlocks />
+              </VStack>
+            </Flex>
+            <VStack
+              align="flex-start"
+              pt="12"
+              fontSize="13px"
+              lineHeight="1.4em"
+            >
+              <Copyright>{values.global.companyData.copyright}</Copyright>
+              <Text>
+                Capital € {data.global.companyData.capital} i.v •{" "}
+                {data.global.companyData.locations[0].street} -{" "}
+                {data.global.companyData.locations[0].cap}{" "}
+                {data.global.companyData.locations[0].city} • VAT Number{" "}
+                {data.global.companyData.vatId} •{" "}
+                {data.global.companyData.additionalLegalInfo}
+              </Text>
             </VStack>
-          </Flex>
-          <VStack align="flex-start" pt="12" fontSize="13px" lineHeight="1.4em">
-            <Copyright>{values.global.companyData.copyright}</Copyright>
-            <LegalInfo company={values.global.companyData}></LegalInfo>
-          </VStack>
-        </Footer>
-      </InlineForm>
+          </Footer>
+        </InlineForm>
+      </Box>
     </SiteLayout>
   );
 }

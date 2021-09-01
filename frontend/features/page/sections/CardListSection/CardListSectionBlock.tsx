@@ -57,7 +57,7 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
       >
         <Box
           as="h2"
-          color="emerald.300"
+          color="emerald.500"
           textTransform="uppercase"
           letterSpacing="0.1em"
           w="full"
@@ -74,7 +74,7 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
                   pos: "absolute",
                   top: "7px",
                   left: "-68px",
-                  backgroundColor: "emerald.300",
+                  backgroundColor: "emerald.500",
                 }
               : undefined
           }

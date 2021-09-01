@@ -94,13 +94,13 @@ export function usePagePlugin(data: Data): [Data, Form] {
     initialValues: data,
     onSubmit: async (data) => {
       const pageInput = getPageInput(data.page);
-      const footerInput = getFooterInput(data.global);
+      const globalInput = getGlobalSettingsInput(data.global);
       const topbarInput = getTopbarInput(data.global.topbar);
 
       try {
         const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
           pageInput,
-          footerInput,
+          globalInput,
           topbarInput,
         });
 
@@ -342,7 +342,7 @@ function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
   };
 }
 
-function getFooterInput(data: GlobalData): UpdateGlobalInput {
+function getGlobalSettingsInput(data: GlobalData): UpdateGlobalInput {
   return {
     data: {
       companyData: {

@@ -42,17 +42,20 @@ const overrides: ThemeOverride = {
     subtitle: "1.8em",
   },
   colors: {
-    dark: "rgb(22,19,56)",
-    description: "rgb(92,92,92)",
+    primaryText: "#161338",
+    subdudeText: "#5C5C5C",
     emerald: {
       50: "#E6FFFA",
-      300: "#4FD1C5",
+      500: "#4FD1C5",
     },
   },
-  components: {
-    /*
-        Define custom components
-    */
+  styles: {
+    global: {
+      body: {
+        fontSize: "sm",
+        letterSpacing: "body",
+      },
+    },
   },
 };
 

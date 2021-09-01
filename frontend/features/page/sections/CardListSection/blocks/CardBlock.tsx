@@ -149,7 +149,6 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
           <Box
             pb="5"
             fontFamily="Europa"
-            color="dark"
             fontSize="xl"
             name="title"
             letterSpacing="0.06em"
@@ -158,41 +157,33 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
             <StyledInlineTextarea
               pb="5"
               fontFamily="Europa"
-              color="dark"
               fontSize="xl"
               name="title"
               letterSpacing="0.06em"
               fontWeight="bold"
             />
           </Box>
-          <Box lineHeight="1.6em" color="cardDescription" name="description">
-            <StyledInlineTextarea
-              lineHeight="1.6em"
-              color="cardDescription"
-              name="description"
-            />
+          <Box lineHeight="1.6em" color="subdudeText" name="description">
+            <StyledInlineTextarea lineHeight="1.6em" name="description" />
           </Box>
         </Flex>
       </Flex>
       <Box
         display="inline-block"
         textDecoration="none"
-        transition="all 0.4s ease 0s"
-        color="dark"
+        transition="all 0.4s ease"
         _after={{
           content: "'→'",
           display: "inline-block",
           fontSize: "md",
           paddingLeft: "2.5",
           transition: "0.4s",
-          color: "dark",
           fontWeight: "thin",
         }}
         _hover={{
-          color: " rgb(5, 195, 182)",
+          color: "emerald.500",
           _after: {
             paddingLeft: "5",
-            color: " rgb(5, 195, 182)",
           },
         }}
         mx="8"

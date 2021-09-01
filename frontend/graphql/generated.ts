@@ -1899,7 +1899,7 @@ export type GetGlobalQuery = (
 
 export type SaveChangesMutationVariables = Exact<{
   pageInput?: Maybe<UpdatePageInput>;
-  footerInput?: Maybe<UpdateGlobalInput>;
+  globalInput?: Maybe<UpdateGlobalInput>;
   topbarInput?: Maybe<UpdateMenuInput>;
 }>;
 
@@ -2086,13 +2086,13 @@ export const GetGlobal = `
 }
     `;
 export const SaveChanges = `
-    mutation saveChanges($pageInput: updatePageInput, $footerInput: updateGlobalInput, $topbarInput: updateMenuInput) {
+    mutation saveChanges($pageInput: updatePageInput, $globalInput: updateGlobalInput, $topbarInput: updateMenuInput) {
   updatePage(input: $pageInput) {
     page {
       id
     }
   }
-  updateGlobal(input: $footerInput) {
+  updateGlobal(input: $globalInput) {
     global {
       companyData {
         id

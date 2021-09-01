@@ -134,7 +134,7 @@ export function FeatureListSectionBlock({
               pt="5"
               fontWeight="subtitle"
               lineHeight="subtitle"
-              color="description"
+              color="subdudeText"
               letterSpacing="0.04em"
             >
               <StyledInlineTextarea
@@ -142,7 +142,6 @@ export function FeatureListSectionBlock({
                 pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
-                color="description"
                 name="subtitle"
               />
             </Box>

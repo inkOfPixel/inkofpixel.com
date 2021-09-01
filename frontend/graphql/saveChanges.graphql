@@ -1,6 +1,6 @@
 mutation saveChanges(
   $pageInput: updatePageInput
-  $footerInput: updateGlobalInput
+  $globalInput: updateGlobalInput
   $topbarInput: updateMenuInput
 ) {
   updatePage(input: $pageInput) {
@@ -9,7 +9,7 @@ mutation saveChanges(
     }
   }
 
-  updateGlobal(input: $footerInput) {
+  updateGlobal(input: $globalInput) {
     global {
       companyData {
         id
