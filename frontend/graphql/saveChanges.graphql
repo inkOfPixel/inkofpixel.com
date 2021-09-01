@@ -4,6 +4,7 @@ mutation saveChanges($pageInput: updatePageInput, $menuInput: updateMenuInput) {
       id
     }
   }
+
   updateMenu(input: $menuInput) {
     menu {
       id

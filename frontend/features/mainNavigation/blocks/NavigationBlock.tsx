@@ -31,7 +31,6 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
         px="2.5"
         py="3"
         letterSpacing="0.08em"
-        color="dark"
         position="relative"
         transition="all 0.3s"
         fontSize="sm"
@@ -53,7 +52,8 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
             opacity: "1",
             w: "full",
           },
-        }}>
+        }}
+      >
         <InlineTextarea name="label" />
       </Box>
     </Link>

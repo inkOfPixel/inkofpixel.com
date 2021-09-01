@@ -1,0 +1,16 @@
+mutation updateProject(
+  $projectInput: updateProjectInput
+  $menuInput: updateMenuInput
+) {
+  updateProject(input: $projectInput) {
+    project {
+      id
+    }
+  }
+
+  updateMenu(input: $menuInput) {
+    menu {
+      id
+    }
+  }
+}

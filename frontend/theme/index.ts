@@ -48,6 +48,14 @@ const overrides: ThemeOverride = {
         Define custom components
     */
   },
+  styles: {
+    global: {
+      body: {
+        fontSize: "sm",
+        letterSpacing: "0.02em",
+      },
+    },
+  },
 };
 
 const customTheme = extendTheme(overrides);
