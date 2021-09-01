@@ -372,7 +372,7 @@ function getProjectInput(data: ProjectData): UpdateProjectInput {
     data: {
       companyName: data.companyName,
       description: data.description,
-      projectType: data.projectType,
+      projectType: data.projectType?.toUpperCase(),
       linkLabel: data.linkLabel,
       linkPath: data.linkPath,
       path: data.path,
