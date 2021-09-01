@@ -43,7 +43,7 @@ const overrides: ThemeOverride = {
   },
   colors: {
     primaryText: "#161338",
-    subdudeText: "#5C5C5C",
+    subduedText: "#5C5C5C",
     emerald: {
       50: "#E6FFFA",
       500: "#4FD1C5",

@@ -127,7 +127,7 @@ export function FeatureBlock({
           >
             <StyledInlineTextarea name="title" />
           </Box>
-          <Box fontWeight="subtitle" lineHeight="subtitle" color="subdudeText">
+          <Box fontWeight="subtitle" lineHeight="subtitle" color="subduedText">
             <StyledInlineTextarea height="auto" name="description" />
           </Box>
           <Box

@@ -33,7 +33,6 @@ export const StyledInlineBlocks = chakra(InlineBlocks);
 export function FeatureListSectionBlock({
   sectionTitle,
   preview,
-  index,
 }: FeatureListSectionProps) {
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
@@ -46,7 +45,7 @@ export function FeatureListSectionBlock({
   }
 
   return (
-    <Box as="section" pt={index === 0 ? "44" : "0"}>
+    <Box as="section">
       <Box
         m={{
           base: "0px",
@@ -134,7 +133,7 @@ export function FeatureListSectionBlock({
               pt="5"
               fontWeight="subtitle"
               lineHeight="subtitle"
-              color="subdudeText"
+              color="subduedText"
               letterSpacing="0.04em"
             >
               <StyledInlineTextarea
@@ -166,7 +165,7 @@ export function FeatureListSectionBlock({
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
     <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
-      <FeatureListSectionBlock index={index} {...data} />
+      <FeatureListSectionBlock {...data} />
     </BlocksControls>
   );
 }

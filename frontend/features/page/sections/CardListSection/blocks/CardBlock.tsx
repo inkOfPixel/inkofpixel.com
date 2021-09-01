@@ -163,7 +163,7 @@ export function CardBlock({ link: { url, label }, image }: CardBlockProps) {
               fontWeight="bold"
             />
           </Box>
-          <Box lineHeight="1.6em" color="subdudeText" name="description">
+          <Box lineHeight="1.6em" color="subduedText" name="description">
             <StyledInlineTextarea lineHeight="1.6em" name="description" />
           </Box>
         </Flex>

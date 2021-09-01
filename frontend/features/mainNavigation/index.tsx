@@ -97,7 +97,7 @@ export function NavMenuMobile() {
       textAlign="center"
     >
       <NextLink href={router.locale!} passHref>
-        <Box as="a" href={router.locale} ml="1" mb="8">
+        <Box as="a" ml="1" mb="8">
           <Logo width="10" height="10" color="primaryText" />
         </Box>
       </NextLink>

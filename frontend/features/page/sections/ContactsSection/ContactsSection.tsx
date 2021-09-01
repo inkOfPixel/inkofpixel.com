@@ -124,7 +124,7 @@ export function ContactsSectionBlock({
             >
               <InlineTextarea name="title" />
             </Box>
-            <Box pt="5" color="subdudeText">
+            <Box pt="5" color="subduedText">
               <InlineTextarea name="subtitle" />
             </Box>
             <Link href={`mailto:${email}`} passHref>
@@ -132,7 +132,7 @@ export function ContactsSectionBlock({
                 as="a"
                 pt="14"
                 lineHeight="1.8em"
-                color="subdudeText"
+                color="subduedText"
                 textDecoration="none"
               >
                 <InlineTextarea name="email" />
@@ -426,7 +426,7 @@ export function ContactsForm() {
           >
             Thank you!
           </Text>
-          <Text as="p" color="subdudeText">
+          <Text as="p" color="subduedText">
             We&apos;ll get in touch soon.
           </Text>
         </Box>
