@@ -111,10 +111,12 @@ export type ComponentProjectBlockquoteBlock = {
   __typename?: 'ComponentProjectBlockquoteBlock';
   id: Scalars['ID'];
   text?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
 };
 
 export type ComponentProjectBlockquoteBlockInput = {
   text?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
 };
 
 export type ComponentProjectImageBlock = {
@@ -1579,6 +1581,7 @@ export type EditComponentMenuPageLinkInput = {
 export type EditComponentProjectBlockquoteBlockInput = {
   id?: Maybe<Scalars['ID']>;
   text?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
 };
 
 export type EditComponentProjectImageBlockInput = {
@@ -1892,12 +1895,9 @@ export type GetProjectsQuery = (
     )>>>, image?: Maybe<(
       { __typename?: 'UploadFile' }
       & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
-    )>, blocks?: Maybe<Array<Maybe<(
-      { __typename: 'ComponentProjectTitleBlock' }
-      & Pick<ComponentProjectTitleBlock, 'id' | 'title'>
-    ) | (
+    )>, blocks?: Maybe<Array<Maybe<{ __typename?: 'ComponentProjectTitleBlock' } | (
       { __typename: 'ComponentProjectBlockquoteBlock' }
-      & Pick<ComponentProjectBlockquoteBlock, 'id' | 'text'>
+      & Pick<ComponentProjectBlockquoteBlock, 'id' | 'text' | 'author'>
     ) | (
       { __typename: 'ComponentProjectImageBlock' }
       & Pick<ComponentProjectImageBlock, 'id'>
@@ -2095,15 +2095,11 @@ export const GetProjects = `
       alternativeText
     }
     blocks {
-      ... on ComponentProjectTitleBlock {
-        __typename
-        id
-        title
-      }
       ... on ComponentProjectBlockquoteBlock {
         __typename
         id
         text
+        author
       }
       ... on ComponentProjectImageBlock {
         __typename
