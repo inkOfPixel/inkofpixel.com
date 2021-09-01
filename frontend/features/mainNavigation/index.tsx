@@ -20,7 +20,7 @@ const NavigationInlineBlocks = chakra(InlineBlocks);
 
 export function NavBar({ children }: React.PropsWithChildren<unknown>) {
   return (
-    <Box as="header" w="full" pos="absolute" top="0px" zIndex="1" h="40">
+    <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
       <Box
         h="full"
         px={{
@@ -39,7 +39,7 @@ export function NavBar({ children }: React.PropsWithChildren<unknown>) {
           {children}
         </Flex>
       </Box>
-    </Box>
+    </Flex>
   );
 }
 
