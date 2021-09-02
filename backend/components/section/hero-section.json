@@ -15,7 +15,7 @@
     },
     "areBubblesActive": {
       "type": "boolean",
-      "required": true,
+      "required": false,
       "default": true
     }
   }

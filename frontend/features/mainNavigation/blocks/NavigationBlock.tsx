@@ -71,11 +71,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const NavLinkBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "nav",
-    defaultItem: {
-      label: "Link",
-      url: "/",
-    },
+    label: "Link",
     fields: [
       {
         name: "url",
@@ -88,5 +84,9 @@ export const NavLinkBlock: Block = {
         component: "text",
       },
     ],
+    defaultItem: {
+      label: "Link",
+      url: "/",
+    },
   },
 };
