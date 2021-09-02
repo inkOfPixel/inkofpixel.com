@@ -14,5 +14,29 @@ query getGlobal {
         }
       }
     }
+
+    companyData {
+      id
+      primaryEmail
+      companyName
+      copyright
+      vatId
+      capital
+      additionalLegalInfo
+      locations {
+        __typename
+        id
+        province
+        provinceInitials
+        type
+        street
+        city
+        cap
+      }
+    }
+    footer {
+      id
+      description
+    }
   }
 }
