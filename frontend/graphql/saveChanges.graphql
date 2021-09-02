@@ -1,13 +1,34 @@
-mutation saveChanges($pageInput: updatePageInput, $menuInput: updateMenuInput) {
+mutation saveChanges(
+  $pageInput: updatePageInput
+  $globalInput: updateGlobalInput
+  $topbarInput: updateMenuInput
+) {
   updatePage(input: $pageInput) {
     page {
       id
     }
   }
 
-  updateMenu(input: $menuInput) {
+  updateGlobal(input: $globalInput) {
+    global {
+      companyData {
+        id
+      }
+      footer {
+        id
+      }
+    }
+  }
+
+  updateMenu(input: $topbarInput) {
     menu {
       id
+      title
+      links {
+        id
+        url
+        label
+      }
     }
   }
 }

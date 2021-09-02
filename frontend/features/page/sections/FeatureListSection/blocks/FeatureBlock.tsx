@@ -1,5 +1,6 @@
-import { Box, chakra, Container, Flex, Img, Link } from "@chakra-ui/react";
+import { Box, chakra, Container, Flex, Img } from "@chakra-ui/react";
 import Bubble from "@components/Bubble";
+import NextLink from "next/link";
 import { STRAPI_URL } from "@config/env";
 import React from "react";
 import {
@@ -63,7 +64,8 @@ export function FeatureBlock({
           <Bubble
             pos="relative"
             boxSize="24"
-            backgroundColor={bubbleColor ? bubbleColor : "rgb(248, 241, 255)"}>
+            backgroundColor={bubbleColor ? bubbleColor : "rgb(248, 241, 255)"}
+          >
             {cms.enabled ? (
               <InlineImage
                 name="image"
@@ -77,7 +79,8 @@ export function FeatureBlock({
                 }}
                 parse={(media) => {
                   return media as any;
-                }}>
+                }}
+              >
                 {(imageProps: any) => {
                   const { src } = imageProps as ImageRenderProps;
                   let imageSrc: string = src.previewSrc || src.url || "";
@@ -90,7 +93,8 @@ export function FeatureBlock({
                     <Flex
                       justifyContent="center"
                       alignItems="center"
-                      boxSize="24">
+                      boxSize="24"
+                    >
                       <Img
                         width="20"
                         height="20"
@@ -108,38 +112,28 @@ export function FeatureBlock({
                   height="20"
                   src={
                     image ? STRAPI_URL + image.url : "/images/default-image.png"
-                  }></Img>
+                  }
+                ></Img>
               </Flex>
             )}
           </Bubble>
           <Box
             fontSize="xl"
-            fontFamily="Roboto Mono"
             fontWeight="bold"
             lineHeight="hero"
             letterSpacing="0.04em"
             py="5"
-            px="0">
+            px="0"
+          >
             <StyledInlineTextarea name="title" />
           </Box>
-          <Box
-            fontFamily="Roboto Mono"
-            fontSize="sm"
-            fontWeight="subtitle"
-            lineHeight="subtitle"
-            letterSpacing="0.02em"
-            color="description">
-            <StyledInlineTextarea
-              color="description"
-              height="auto"
-              name="description"
-            />
+          <Box fontWeight="subtitle" lineHeight="subtitle" color="subduedText">
+            <StyledInlineTextarea height="auto" name="description" />
           </Box>
           <Box
             display="inline-block"
             textDecoration="none"
-            transition="all 0.4s ease 0s"
-            color="dark"
+            transition="all 0.4s ease"
             _after={{
               content: "'→'",
               display: "inline-block",
@@ -149,29 +143,26 @@ export function FeatureBlock({
               fontWeight: "thin",
             }}
             _hover={{
-              color: "rgb(5, 195, 182)",
+              color: "emerald.500",
               _after: {
-                color: "rgb(5, 195, 182)",
                 paddingLeft: "5",
               },
             }}
-            mt="5">
-            <Box as="span">
-              <Link
-                fontFamily="Roboto Mono"
-                color="dark"
+            mt="5"
+          >
+            <NextLink href={url ? url : "/"}>
+              <Box
+                as="a"
                 fontWeight="light"
-                fontSize="sm"
                 userSelect="none"
-                letterSpacing="0.02em"
                 _hover={{
-                  color: "rgb(5, 195, 182)",
+                  color: "emerald.500",
                   textDecorationLine: "none",
                 }}
-                href={url ? url : "/"}>
+              >
                 {label ? label : "Learn more"}
-              </Link>
-            </Box>
+              </Box>
+            </NextLink>
           </Box>
         </Flex>
       </Box>

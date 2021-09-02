@@ -22,7 +22,9 @@ export default function AppProviders({
   const cms = React.useMemo(
     () =>
       new TinaCMS({
-        sidebar: false,
+        sidebar: {
+          position: "displace",
+        },
         enabled: preview,
         toolbar: preview,
         apis: {
