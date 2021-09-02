@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/form-messages",
+      "handler": "form-messages.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/form-messages/count",
+      "handler": "form-messages.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/form-messages/:id",
+      "handler": "form-messages.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/form-messages",
+      "handler": "form-messages.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/form-messages/:id",
+      "handler": "form-messages.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/form-messages/:id",
+      "handler": "form-messages.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

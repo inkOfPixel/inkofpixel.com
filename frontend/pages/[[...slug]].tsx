@@ -153,7 +153,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     };
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
 function wrap<T>(value: T | T[]): T[] {
@@ -369,6 +369,17 @@ function getPageData(
                 : [],
             };
           }
+          case "ComponentSectionContactsSection": {
+            return {
+              _template: "contactsSection",
+              id: section.id,
+              title: section.title || null,
+              subtitle: section.subtitle || null,
+              email: section.email || null,
+              sectionTitle: section.sectionTitle || null,
+            };
+          }
+
           case "ComponentSectionSimpleSection": {
             return {
               _template: "simpleSection",

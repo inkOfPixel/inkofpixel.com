@@ -85,6 +85,76 @@ export type ComponentBlocksSingleFeatureInput = {
   label: Scalars['String'];
 };
 
+export type ComponentBlocksSocialBubble = {
+  __typename?: 'ComponentBlocksSocialBubble';
+  id: Scalars['ID'];
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<UploadFile>;
+};
+
+export type ComponentBlocksSocialBubbleInput = {
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentGlobalCompanyData = {
+  __typename?: 'ComponentGlobalCompanyData';
+  id: Scalars['ID'];
+  primaryEmail?: Maybe<Scalars['String']>;
+  companyName?: Maybe<Scalars['String']>;
+  additionalLegalInfo?: Maybe<Scalars['String']>;
+  locations?: Maybe<Array<Maybe<ComponentGlobalHeadquarter>>>;
+  capital?: Maybe<Scalars['Long']>;
+  vatId?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  legalCompanyName?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGlobalCompanyDatumInput = {
+  primaryEmail?: Maybe<Scalars['String']>;
+  companyName?: Maybe<Scalars['String']>;
+  additionalLegalInfo?: Maybe<Scalars['String']>;
+  locations?: Maybe<Array<Maybe<ComponentGlobalHeadquarterInput>>>;
+  capital?: Maybe<Scalars['Long']>;
+  vatId?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  legalCompanyName?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGlobalFooter = {
+  __typename?: 'ComponentGlobalFooter';
+  id: Scalars['ID'];
+  description?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGlobalFooterInput = {
+  description?: Maybe<Scalars['String']>;
+};
+
+export type ComponentGlobalHeadquarter = {
+  __typename?: 'ComponentGlobalHeadquarter';
+  id: Scalars['ID'];
+  province?: Maybe<Scalars['String']>;
+  provinceInitials?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Long']>;
+};
+
+export type ComponentGlobalHeadquarterInput = {
+  province?: Maybe<Scalars['String']>;
+  provinceInitials?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Long']>;
+};
+
 export type ComponentGlobalTopbar = {
   __typename?: 'ComponentGlobalTopbar';
   id: Scalars['ID'];
@@ -163,6 +233,24 @@ export type ComponentSectionCardSectionInput = {
   sectionTitle?: Maybe<Scalars['String']>;
 };
 
+export type ComponentSectionContactsSection = {
+  __typename?: 'ComponentSectionContactsSection';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<ComponentBlocksSocialBubble>>>;
+};
+
+export type ComponentSectionContactsSectionInput = {
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<ComponentBlocksSocialBubbleInput>>>;
+};
+
 export type ComponentSectionFooterSection = {
   __typename?: 'ComponentSectionFooterSection';
   id: Scalars['ID'];
@@ -177,7 +265,7 @@ export type ComponentSectionHeroSection = {
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
-  areBubblesActive: Scalars['Boolean'];
+  areBubblesActive?: Maybe<Scalars['Boolean']>;
 };
 
 export type ComponentSectionHeroSectionInput = {
@@ -258,12 +346,100 @@ export type FileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type FormMessageInput = {
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type FormMessages = {
+  __typename?: 'FormMessages';
+  id: Scalars['ID'];
+  created_at: Scalars['DateTime'];
+  updated_at: Scalars['DateTime'];
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+};
+
+export type FormMessagesAggregator = {
+  __typename?: 'FormMessagesAggregator';
+  count?: Maybe<Scalars['Int']>;
+  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type FormMessagesConnection = {
+  __typename?: 'FormMessagesConnection';
+  values?: Maybe<Array<Maybe<FormMessages>>>;
+  groupBy?: Maybe<FormMessagesGroupBy>;
+  aggregate?: Maybe<FormMessagesAggregator>;
+};
+
+export type FormMessagesConnectionCreated_At = {
+  __typename?: 'FormMessagesConnectionCreated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionEmail = {
+  __typename?: 'FormMessagesConnectionEmail';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionId = {
+  __typename?: 'FormMessagesConnectionId';
+  key?: Maybe<Scalars['ID']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionMessage = {
+  __typename?: 'FormMessagesConnectionMessage';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionName = {
+  __typename?: 'FormMessagesConnectionName';
+  key?: Maybe<Scalars['String']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionPublished_At = {
+  __typename?: 'FormMessagesConnectionPublished_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesConnectionUpdated_At = {
+  __typename?: 'FormMessagesConnectionUpdated_at';
+  key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<FormMessagesConnection>;
+};
+
+export type FormMessagesGroupBy = {
+  __typename?: 'FormMessagesGroupBy';
+  id?: Maybe<Array<Maybe<FormMessagesConnectionId>>>;
+  created_at?: Maybe<Array<Maybe<FormMessagesConnectionCreated_At>>>;
+  updated_at?: Maybe<Array<Maybe<FormMessagesConnectionUpdated_At>>>;
+  email?: Maybe<Array<Maybe<FormMessagesConnectionEmail>>>;
+  name?: Maybe<Array<Maybe<FormMessagesConnectionName>>>;
+  message?: Maybe<Array<Maybe<FormMessagesConnectionMessage>>>;
+  published_at?: Maybe<Array<Maybe<FormMessagesConnectionPublished_At>>>;
+};
+
 export type Global = {
   __typename?: 'Global';
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
   topbar?: Maybe<ComponentGlobalTopbar>;
+  companyData?: Maybe<ComponentGlobalCompanyData>;
+  footer?: Maybe<ComponentGlobalFooter>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<Array<Maybe<Global>>>;
@@ -279,6 +455,8 @@ export type GlobalLocalizationsArgs = {
 
 export type GlobalInput = {
   topbar?: Maybe<ComponentGlobalTopbarInput>;
+  companyData?: Maybe<ComponentGlobalCompanyDatumInput>;
+  footer?: Maybe<ComponentGlobalFooterInput>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -378,10 +556,13 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentProjectTitleBlock | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | FormMessages | FormMessagesConnection | FormMessagesAggregator | FormMessagesGroupBy | FormMessagesConnectionId | FormMessagesConnectionCreated_At | FormMessagesConnectionUpdated_At | FormMessagesConnectionEmail | FormMessagesConnectionName | FormMessagesConnectionMessage | FormMessagesConnectionPublished_At | CreateFormMessagePayload | UpdateFormMessagePayload | DeleteFormMessagePayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentBlocksSocialBubble | ComponentGlobalCompanyData | ComponentGlobalFooter | ComponentGlobalHeadquarter | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentProjectTitleBlock | ComponentSectionCardSection | ComponentSectionContactsSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createFormMessage?: Maybe<CreateFormMessagePayload>;
+  updateFormMessage?: Maybe<UpdateFormMessagePayload>;
+  deleteFormMessage?: Maybe<DeleteFormMessagePayload>;
   updateGlobal?: Maybe<UpdateGlobalPayload>;
   deleteGlobal?: Maybe<DeleteGlobalPayload>;
   createMenu?: Maybe<CreateMenuPayload>;
@@ -418,6 +599,21 @@ export type Mutation = {
   forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+};
+
+
+export type MutationCreateFormMessageArgs = {
+  input?: Maybe<CreateFormMessageInput>;
+};
+
+
+export type MutationUpdateFormMessageArgs = {
+  input?: Maybe<UpdateFormMessageInput>;
+};
+
+
+export type MutationDeleteFormMessageArgs = {
+  input?: Maybe<DeleteFormMessageInput>;
 };
 
 
@@ -676,7 +872,7 @@ export type PagesGroupBy = {
   published_at?: Maybe<Array<Maybe<PagesConnectionPublished_At>>>;
 };
 
-export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionSimpleSection;
+export type PagesSectionsDynamicZone = ComponentSectionCardSection | ComponentSectionHeroSection | ComponentSectionSingleFeatureSection | ComponentSectionContactsSection | ComponentSectionSimpleSection;
 
 
 export type Project = {
@@ -832,6 +1028,9 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  formMessage?: Maybe<FormMessages>;
+  formMessages?: Maybe<Array<Maybe<FormMessages>>>;
+  formMessagesConnection?: Maybe<FormMessagesConnection>;
   global?: Maybe<Global>;
   menu?: Maybe<Menu>;
   menus?: Maybe<Array<Maybe<Menu>>>;
@@ -852,6 +1051,29 @@ export type Query = {
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
   me?: Maybe<UsersPermissionsMe>;
+};
+
+
+export type QueryFormMessageArgs = {
+  id: Scalars['ID'];
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryFormMessagesArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryFormMessagesConnectionArgs = {
+  sort?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  where?: Maybe<Scalars['JSON']>;
 };
 
 
@@ -1436,6 +1658,15 @@ export type UsersPermissionsUserGroupBy = {
   role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
 };
 
+export type CreateFormMessageInput = {
+  data?: Maybe<FormMessageInput>;
+};
+
+export type CreateFormMessagePayload = {
+  __typename?: 'createFormMessagePayload';
+  formMessage?: Maybe<FormMessages>;
+};
+
 export type CreateMenuInput = {
   data?: Maybe<MenuInput>;
 };
@@ -1488,6 +1719,15 @@ export type DeleteFileInput = {
 export type DeleteFilePayload = {
   __typename?: 'deleteFilePayload';
   file?: Maybe<UploadFile>;
+};
+
+export type DeleteFormMessageInput = {
+  where?: Maybe<InputId>;
+};
+
+export type DeleteFormMessagePayload = {
+  __typename?: 'deleteFormMessagePayload';
+  formMessage?: Maybe<FormMessages>;
 };
 
 export type DeleteGlobalPayload = {
@@ -1565,6 +1805,41 @@ export type EditComponentBlocksSingleFeatureInput = {
   label?: Maybe<Scalars['String']>;
 };
 
+export type EditComponentBlocksSocialBubbleInput = {
+  id?: Maybe<Scalars['ID']>;
+  url?: Maybe<Scalars['String']>;
+  bubbleColor?: Maybe<Scalars['String']>;
+  bubbleHoverColor?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
+};
+
+export type EditComponentGlobalCompanyDatumInput = {
+  id?: Maybe<Scalars['ID']>;
+  primaryEmail?: Maybe<Scalars['String']>;
+  companyName?: Maybe<Scalars['String']>;
+  additionalLegalInfo?: Maybe<Scalars['String']>;
+  locations?: Maybe<Array<Maybe<EditComponentGlobalHeadquarterInput>>>;
+  capital?: Maybe<Scalars['Long']>;
+  vatId?: Maybe<Scalars['String']>;
+  copyright?: Maybe<Scalars['String']>;
+  legalCompanyName?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentGlobalFooterInput = {
+  id?: Maybe<Scalars['ID']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentGlobalHeadquarterInput = {
+  id?: Maybe<Scalars['ID']>;
+  province?: Maybe<Scalars['String']>;
+  provinceInitials?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  cap?: Maybe<Scalars['Long']>;
+};
+
 export type EditComponentGlobalTopbarInput = {
   id?: Maybe<Scalars['ID']>;
   menu?: Maybe<Scalars['ID']>;
@@ -1602,6 +1877,15 @@ export type EditComponentSectionCardSectionInput = {
   subtitle?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<EditComponentBlocksCardInput>>>;
   sectionTitle?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentSectionContactsSectionInput = {
+  id?: Maybe<Scalars['ID']>;
+  title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  sectionTitle?: Maybe<Scalars['String']>;
+  socialBubbles?: Maybe<Array<Maybe<EditComponentBlocksSocialBubbleInput>>>;
 };
 
 export type EditComponentSectionFooterSectionInput = {
@@ -1657,8 +1941,19 @@ export type EditFileInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
+export type EditFormMessageInput = {
+  email?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  message?: Maybe<Scalars['String']>;
+  published_at?: Maybe<Scalars['DateTime']>;
+  created_by?: Maybe<Scalars['ID']>;
+  updated_by?: Maybe<Scalars['ID']>;
+};
+
 export type EditGlobalInput = {
   topbar?: Maybe<EditComponentGlobalTopbarInput>;
+  companyData?: Maybe<EditComponentGlobalCompanyDatumInput>;
+  footer?: Maybe<EditComponentGlobalFooterInput>;
   localizations?: Maybe<Array<Maybe<Scalars['ID']>>>;
   locale?: Maybe<Scalars['String']>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -1730,6 +2025,16 @@ export type EditUserInput = {
   role?: Maybe<Scalars['ID']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
+};
+
+export type UpdateFormMessageInput = {
+  where?: Maybe<InputId>;
+  data?: Maybe<EditFormMessageInput>;
+};
+
+export type UpdateFormMessagePayload = {
+  __typename?: 'updateFormMessagePayload';
+  formMessage?: Maybe<FormMessages>;
 };
 
 export type UpdateGlobalInput = {
@@ -1831,10 +2136,29 @@ export type GetPagesQuery = (
         )> }
       )>>> }
     ) | (
+      { __typename: 'ComponentSectionContactsSection' }
+      & Pick<ComponentSectionContactsSection, 'id' | 'title' | 'subtitle' | 'email' | 'sectionTitle'>
+    ) | (
       { __typename: 'ComponentSectionSimpleSection' }
       & Pick<ComponentSectionSimpleSection, 'id' | 'sectionTitle' | 'sectionTitleColor' | 'title' | 'subtitle'>
     )>>> }
   )>>> }
+);
+
+export type InsertFormMessageMutationVariables = Exact<{
+  input?: Maybe<CreateFormMessageInput>;
+}>;
+
+
+export type InsertFormMessageMutation = (
+  { __typename?: 'Mutation' }
+  & { createFormMessage?: Maybe<(
+    { __typename?: 'createFormMessagePayload' }
+    & { formMessage?: Maybe<(
+      { __typename?: 'FormMessages' }
+      & Pick<FormMessages, 'id' | 'name' | 'email' | 'message'>
+    )> }
+  )> }
 );
 
 export type CreatePageMutationVariables = Exact<{
@@ -1872,6 +2196,16 @@ export type GetGlobalQuery = (
           & Pick<ComponentBlocksNavigationBlock, 'id' | 'label' | 'url'>
         )>>> }
       )> }
+    )>, companyData?: Maybe<(
+      { __typename?: 'ComponentGlobalCompanyData' }
+      & Pick<ComponentGlobalCompanyData, 'id' | 'primaryEmail' | 'companyName' | 'copyright' | 'vatId' | 'capital' | 'additionalLegalInfo'>
+      & { locations?: Maybe<Array<Maybe<(
+        { __typename: 'ComponentGlobalHeadquarter' }
+        & Pick<ComponentGlobalHeadquarter, 'id' | 'province' | 'provinceInitials' | 'type' | 'street' | 'city' | 'cap'>
+      )>>> }
+    )>, footer?: Maybe<(
+      { __typename?: 'ComponentGlobalFooter' }
+      & Pick<ComponentGlobalFooter, 'id' | 'description'>
     )> }
   )> }
 );
@@ -2032,6 +2366,14 @@ export const GetPages = `
           label
         }
       }
+      ... on ComponentSectionContactsSection {
+        __typename
+        id
+        title
+        subtitle
+        email
+        sectionTitle
+      }
       ... on ComponentSectionSimpleSection {
         __typename
         id
@@ -2040,6 +2382,18 @@ export const GetPages = `
         title
         subtitle
       }
+    }
+  }
+}
+    `;
+export const InsertFormMessage = `
+    mutation insertFormMessage($input: createFormMessageInput) {
+  createFormMessage(input: $input) {
+    formMessage {
+      id
+      name
+      email
+      message
     }
   }
 }
@@ -2069,6 +2423,29 @@ export const GetGlobal = `
           url
         }
       }
+    }
+    companyData {
+      id
+      primaryEmail
+      companyName
+      copyright
+      vatId
+      capital
+      additionalLegalInfo
+      locations {
+        __typename
+        id
+        province
+        provinceInitials
+        type
+        street
+        city
+        cap
+      }
+    }
+    footer {
+      id
+      description
     }
   }
 }
