@@ -24,6 +24,7 @@ export type FeatureListSectionBlockData = BlockTemplateData<
 type FeatureListSectionProps = {
   sectionTitle: string;
   preview: boolean;
+  index: number;
 };
 
 export const StyledInlineTextarea = chakra(InlineTextarea);
@@ -44,7 +45,7 @@ export function FeatureListSectionBlock({
   }
 
   return (
-    <Box as="section" pt="44">
+    <Box as="section">
       <Box
         m={{
           base: "0px",
@@ -62,14 +63,12 @@ export function FeatureListSectionBlock({
       >
         <Box
           color="rgb(129, 82, 188)"
-          fontSize="sm"
           textTransform="uppercase"
           letterSpacing="0.1em"
           pos="relative"
           w="full"
           pb="8"
           as="h2"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -117,7 +116,6 @@ export function FeatureListSectionBlock({
               fontWeight="bold"
               lineHeight="hero"
               fontFamily="Europa"
-              letterSpacing="0.02em"
             >
               <StyledInlineTextarea
                 fontSize="5xl"
@@ -126,29 +124,23 @@ export function FeatureListSectionBlock({
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
-                letterSpacing="0.02em"
                 name="title"
               />
             </Box>
             <Box
-              fontSize="sm"
               m="0"
               w="full"
               pt="5"
               fontWeight="subtitle"
               lineHeight="subtitle"
-              color="description"
+              color="subduedText"
               letterSpacing="0.04em"
-              fontFamily="Roboto Mono"
             >
               <StyledInlineTextarea
-                fontSize="sm"
                 m="0"
                 pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
-                letterSpacing="0.02em"
-                color="description"
                 name="subtitle"
               />
             </Box>

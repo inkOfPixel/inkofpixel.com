@@ -31,13 +31,11 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
         px="2.5"
         py="3"
         letterSpacing="0.08em"
-        color="dark"
         position="relative"
         transition="all 0.3s"
-        fontSize="sm"
         fontWeight="subtitle"
         _before={{
-          background: "rgb(22,19,56)",
+          background: "primaryText",
           bottom: "-1px",
           content: "' '",
           height: "0.5",
@@ -63,7 +61,16 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
 
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
-    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+    <BlocksControls
+      index={index}
+      focusRing={{
+        offset: {
+          x: 0,
+          y: 50,
+        },
+      }}
+      insetControls
+    >
       <NavigationBlock {...data} />
     </BlocksControls>
   );

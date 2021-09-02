@@ -70,15 +70,13 @@ export function ContactsSectionBlock({
         flexDir="column"
       >
         <Box
-          color="rgb(129, 82, 188)"
-          fontSize="sm"
+          color="emerald.500"
           textTransform="uppercase"
           letterSpacing="0.1em"
           pos="relative"
           w="full"
           pb="30px"
           as="h2"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -90,7 +88,7 @@ export function ContactsSectionBlock({
                   pos: "absolute",
                   top: "7px",
                   left: "-68px",
-                  backgroundColor: "rgb(129, 82, 188)",
+                  backgroundColor: "emerald.500",
                 }
               : undefined
           }
@@ -126,15 +124,15 @@ export function ContactsSectionBlock({
             >
               <InlineTextarea name="title" />
             </Box>
-            <Box fontSize="sm" pt="5" color="description">
+            <Box pt="5" color="subduedText">
               <InlineTextarea name="subtitle" />
             </Box>
             <Link href={`mailto:${email}`} passHref>
               <Box
                 as="a"
-                fontSize="sm"
                 pt="14"
                 lineHeight="1.8em"
+                color="subduedText"
                 textDecoration="none"
               >
                 <InlineTextarea name="email" />
@@ -397,7 +395,6 @@ export function ContactsForm() {
   return (
     <Box
       flexWrap="wrap"
-      fontFamily="Roboto Mono"
       id="contact"
       mt={{
         base: "20",
@@ -429,7 +426,7 @@ export function ContactsForm() {
           >
             Thank you!
           </Text>
-          <Text as="p" fontSize="sm" color="#5c5c5c">
+          <Text as="p" color="subduedText">
             We&apos;ll get in touch soon.
           </Text>
         </Box>
@@ -458,7 +455,6 @@ export function ContactsForm() {
           <FormControl isInvalid={state.validationErrors.name != null}>
             <FormLabel
               fontWeight="400"
-              fontSize="sm"
               textTransform="uppercase"
               letterSpacing="0.1em"
               pos="relative"
@@ -483,7 +479,6 @@ export function ContactsForm() {
               py="2.5"
               px="0"
               boxSizing="border-box"
-              fontSize="sm"
               resize="none"
               display="inline-block"
               lineHeight="1.4em"
@@ -506,7 +501,7 @@ export function ContactsForm() {
               left="0"
               w="0"
               h="1px"
-              backgroundColor="dark"
+              backgroundColor="primaryText"
               transition="all 0.4s ease 0s"
             ></Box>
           </FormControl>
@@ -527,7 +522,6 @@ export function ContactsForm() {
             <FormLabel
               mb="0"
               fontWeight="400"
-              fontSize="sm"
               textTransform="uppercase"
               letterSpacing="0.1em"
               pos="relative"
@@ -552,7 +546,6 @@ export function ContactsForm() {
               py="2.5"
               px="0"
               boxSizing="border-box"
-              fontSize="sm"
               resize="none"
               display="block"
               lineHeight="1.4em"
@@ -574,7 +567,7 @@ export function ContactsForm() {
               left="0"
               w="0"
               h="1px"
-              backgroundColor="dark"
+              backgroundColor="primaryText"
               transition="all 0.4s ease 0s"
             ></Box>
           </FormControl>
@@ -591,7 +584,6 @@ export function ContactsForm() {
             <FormLabel
               mb="0"
               fontWeight="400"
-              fontSize="sm"
               textTransform="uppercase"
               letterSpacing="0.1em"
               pos="relative"
@@ -615,7 +607,6 @@ export function ContactsForm() {
               py="2.5"
               px="0"
               boxSizing="border-box"
-              fontSize="sm"
               resize="none"
               display="block"
               lineHeight="1.4em"
@@ -638,7 +629,7 @@ export function ContactsForm() {
               left="0"
               w="0"
               h="1px"
-              backgroundColor="dark"
+              backgroundColor="primaryText"
               transition="all 0.4s ease 0s"
             ></Box>
           </FormControl>
@@ -648,10 +639,8 @@ export function ContactsForm() {
           type="submit"
           userSelect="none"
           borderRadius="0"
-          border="1px solid black"
-          color="dark"
+          border="1px solid"
           backgroundColor="transparent"
-          fontSize="sm"
           fontWeight="normal"
           letterSpacing="0.06em"
           overflow="hidden"

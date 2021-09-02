@@ -1,7 +1,6 @@
-query getGlobal {
+query GetGlobal {
   global {
     id
-    __typename
     topbar {
       id
       menu {
@@ -14,7 +13,6 @@ query getGlobal {
         }
       }
     }
-
     companyData {
       id
       primaryEmail
