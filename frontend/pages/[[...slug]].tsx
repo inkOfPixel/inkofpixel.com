@@ -57,9 +57,6 @@ const StyledInlineBlocks = chakra(InlineBlocks);
 
 export default function DynamicPage({ data: data, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-
-  console.log("data slug", data);
-
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,

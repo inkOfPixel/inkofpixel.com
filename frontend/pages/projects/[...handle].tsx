@@ -54,7 +54,7 @@ interface ProjectData {
   projectType: Nullable<string>;
   image: Nullable<ProjectImage>;
   localizations?: LocalizationsData[];
-  blocks: string;
+  blocks: null;
 }
 
 interface ProjectImage {
@@ -73,7 +73,6 @@ interface DynamicPageProps {
 }
 
 export default function DynamicPage({ data: data }: DynamicPageProps) {
-  console.log("data", JSON.stringify(data, null, " "));
   const [_, form] = useProjectPlugin(data);
   const router = useRouter();
 
@@ -237,8 +236,6 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
     const slugArray: any =
       pagePath.length > 0 ? pagePath.split("/") : undefined;
 
-    console.log("slugArray", slugArray);
-
     return {
       params: { handle: slugArray },
       locale: page.locale!,
@@ -258,8 +255,6 @@ export const getStaticProps: GetStaticProps<
     throw new Error(`Path "${pathParts.join("/")}" has no locale!`);
   }
   const preview = context.preview === true;
-
-  console.log("path", path);
 
   const availableProjects = await fetchGraphQL<
     GetProjectsQuery,
@@ -349,7 +344,7 @@ function getProjectData(
     linkPath: project.linkPath || null,
     path: project.path,
     locale: project.locale || null,
-    blocks: "aa",
+    blocks: null,
     image: project.image
       ? {
           id: project.image.id,
