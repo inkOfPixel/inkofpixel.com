@@ -55,7 +55,7 @@ export function LocaleMenuButton({
         fontFamily="Roboto Mono"
         fontSize="xs"
         pos="relative"
-        backgroundColor="dark"
+        backgroundColor="primaryText"
         borderRadius="100%"
         display="block"
         zIndex="1"
@@ -93,9 +93,10 @@ export function LocaleMenuButton({
             h: "98%",
             w: "98%",
             borderRadius: "100%",
-            backgroundColor: "dark",
+            backgroundColor: "primaryText",
           },
-        }}>
+        }}
+      >
         {children}
       </FormLabel>
     </Box>
@@ -115,7 +116,8 @@ export function LocaleMenuList(props: React.PropsWithChildren<unknown>) {
       pos="absolute"
       color="white"
       transition="transform ease-out 2000ms"
-      backgroundColor="transparent">
+      backgroundColor="transparent"
+    >
       {children}
     </Box>
   );
@@ -146,7 +148,7 @@ export function LocaleMenuLink({
         h="44px"
         userSelect="none"
         fontFamily="Roboto Mono"
-        backgroundColor="dark"
+        backgroundColor="primaryText"
         mt="5"
         left="1"
         color="white"
@@ -163,7 +165,8 @@ export function LocaleMenuLink({
           value.isOpen
             ? "translate3d(0, 0, 0)"
             : `translate3d(0, ${-64 * (index + 1)}px, 0)`
-        }>
+        }
+      >
         {children}
       </Box>
     </Link>

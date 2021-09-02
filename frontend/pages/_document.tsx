@@ -16,7 +16,8 @@ export default class Document extends NextDocument {
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-            rel="stylesheet"></link>
+            rel="stylesheet"
+          />
         </Head>
 
         <body>

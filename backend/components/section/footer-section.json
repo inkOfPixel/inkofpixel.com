@@ -2,9 +2,34 @@
   "collectionName": "components_section_footer_sections",
   "info": {
     "name": "footerSection",
-    "icon": "arrow-alt-circle-right",
+    "icon": "adjust",
     "description": ""
   },
   "options": {},
-  "attributes": {}
+  "attributes": {
+    "description": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "sharedCapital": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "vatNumber": {
+      "type": "integer"
+    },
+    "cap": {
+      "type": "integer"
+    }
+  }
 }

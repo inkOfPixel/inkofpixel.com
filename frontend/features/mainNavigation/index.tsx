@@ -6,6 +6,7 @@ import { NavBlockData } from "@features/mainNavigation/blocks/NavigationBlock";
 import { useCMS } from "tinacms";
 import Logo from "@components/Logo";
 import { useRouter } from "next/router";
+import NextLink from "next/link";
 
 export type NavigationSectionBlockData = BlockTemplateData<
   "navigationSection",
@@ -20,7 +21,7 @@ const NavigationInlineBlocks = chakra(InlineBlocks);
 
 export function NavBar({ children }: React.PropsWithChildren<unknown>) {
   return (
-    <Flex as="header" w="full" pos="absolute" zIndex="1" h="40">
+    <Flex as="header" pos="absolute" zIndex="1" h="40" w="full">
       <Box
         h="full"
         px={{
@@ -33,7 +34,8 @@ export function NavBar({ children }: React.PropsWithChildren<unknown>) {
           xl: "1200px",
         }}
         my="0"
-        mx="auto">
+        mx="auto"
+      >
         <Flex h="full" justifyContent="space-between" alignItems="center">
           {children}
         </Flex>
@@ -57,7 +59,8 @@ export function NavMenuDesktop() {
         base: "none",
         lg: "block",
       }}
-      textAlign={cms.enabled ? "right" : "left"}>
+      textAlign={cms.enabled ? "right" : "left"}
+    >
       <NavigationInlineBlocks
         sx={{
           "& > div": {
@@ -91,10 +94,14 @@ export function NavMenuMobile() {
       flexDir="column"
       mt="16"
       alignItems="center"
-      textAlign="center">
-      <Box as="a" href={router.locale} ml="1" mb="8">
-        <Logo width="10" height="10" color={"rgb(22, 19, 56)"} />
-      </Box>
+      textAlign="center"
+    >
+      <NextLink href={router.locale!} passHref>
+        <Box as="a" ml="1" mb="8">
+          <Logo width="10" height="10" color="primaryText" />
+        </Box>
+      </NextLink>
+
       <NavigationInlineBlocks
         name="global.topbar.menu.links"
         blocks={NAV_BLOCK}
