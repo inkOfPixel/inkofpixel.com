@@ -504,27 +504,70 @@ function getGlobalData(
   if (global == null) {
     return undefined;
   }
-  if (global.topbar?.menu?.links) {
-    let filteredLinks = filterListNullableItems(global.topbar.menu.links);
-    return {
-      id: global.id,
-      topbar: {
-        id: global.topbar.id,
-        menu: {
-          id: global.topbar.menu.id,
-          title: global.topbar.menu.title,
-          links: filteredLinks.map<NavBlockData>((link) => {
-            return {
-              _template: "navigationLink",
-              id: link.id,
-              label: link.label || null,
-              url: link.url || null,
-            };
-          }),
-        },
-      },
-    };
+
+  if (global.topbar == null) {
+    return undefined;
   }
+
+  if (global.footer == null) {
+    return undefined;
+  }
+
+  if (global.companyData == null) {
+    return undefined;
+  }
+
+  if (global.topbar.menu?.links == null) {
+    return undefined;
+  }
+
+  let filteredLinks = filterListNullableItems(global.topbar.menu.links);
+  return {
+    id: global.id,
+    topbar: {
+      id: global.topbar.id,
+      menu: {
+        id: global.topbar.menu?.id,
+        title: global.topbar.menu?.title,
+        links: filteredLinks.map<NavBlockData>((link) => {
+          return {
+            _template: "navigationLink",
+            id: link.id,
+            label: link.label || null,
+            url: link.url || null,
+          };
+        }),
+      },
+    },
+    footer: {
+      id: global.footer?.id,
+      description: global.footer?.description || null,
+    },
+    companyData: {
+      id: global.companyData.id,
+      companyName: global.companyData.companyName || null,
+      additionalLegalInfo: global.companyData.additionalLegalInfo || null,
+      vatId: global.companyData.vatId || null,
+      capital: global.companyData.capital || null,
+      copyright: global.companyData.copyright || null,
+      primaryEmail: global.companyData.primaryEmail || null,
+      locations: global.companyData.locations
+        ? filterListNullableItems(global.companyData.locations).map(
+            (location) => {
+              return {
+                id: location.id,
+                province: location.province || null,
+                provinceInitials: location.provinceInitials || null,
+                type: location.type || null,
+                street: location.street || null,
+                city: location.city || null,
+                cap: location.cap || null,
+              };
+            }
+          )
+        : [],
+    },
+  };
 }
 
 function getProjectsData(

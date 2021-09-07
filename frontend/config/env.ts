@@ -1,5 +1,5 @@
 export const STRAPI_URL = checkEnv(
-  "http://localhost:1337",
+  "http://strapi.inkofpixel.com",
   "NEXT_PUBLIC_STRAPI_URL"
 );
 
