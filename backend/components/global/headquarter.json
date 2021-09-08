@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_global_headquarters",
+  "info": {
+    "name": "headquarter",
+    "icon": "building"
+  },
+  "options": {},
+  "attributes": {
+    "province": {
+      "type": "string"
+    },
+    "provinceInitials": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "cap": {
+      "type": "biginteger"
+    }
+  }
+}

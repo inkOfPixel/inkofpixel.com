@@ -1,5 +1,5 @@
-query getProjects($locale: String) {
-  projects(locale: $locale) {
+query getProjects($where: JSON, $locale: String) {
+  projects(where: $where, locale: $locale) {
     id
     linkPath
     linkLabel

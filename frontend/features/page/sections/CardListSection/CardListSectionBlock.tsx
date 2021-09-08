@@ -31,7 +31,6 @@ const StyledInlineBlocks = chakra(InlineBlocks);
 export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
   return (
     <Box
-      pt="52"
       bg="rgb(234, 247, 247)"
       as="section"
       w={{
@@ -40,7 +39,8 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
       m="0 auto"
       py="36"
       px="0"
-      backgroundColor="cardSectionBg">
+      backgroundColor="emerald.50"
+    >
       <Box
         zIndex="10"
         py="0"
@@ -52,19 +52,17 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
         m="0 auto"
         w={{
           base: "full",
-          xl: "1200px",
+          xl: "container.xl",
         }}
-        letterSpacing="0.02em">
+      >
         <Box
           as="h2"
-          color="rgb(5, 195, 182)"
-          fontSize="sm"
+          color="emerald.500"
           textTransform="uppercase"
           letterSpacing="0.1em"
           w="full"
           pb="8"
           pos="relative"
-          fontFamily="Roboto Mono"
           lineHeight="1.15em"
           _before={
             sectionTitle
@@ -76,10 +74,11 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
                   pos: "absolute",
                   top: "7px",
                   left: "-68px",
-                  backgroundColor: "rgb(5, 195, 182)",
+                  backgroundColor: "emerald.500",
                 }
               : undefined
-          }>
+          }
+        >
           <InlineTextarea name="sectionTitle" />
         </Box>
 
@@ -90,7 +89,7 @@ export function CardListSectionBlock(sectionTitle: CardListSectionBlockProps) {
           m="0"
           fontWeight="bold"
           lineHeight="hero"
-          letterSpacing="0.02em">
+        >
           <StyledInlineTextarea name="title" />
         </Box>
 

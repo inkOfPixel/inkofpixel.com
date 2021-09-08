@@ -1,12 +1,12 @@
 overwrite: true
-schema: "http://localhost:1337/graphql"
+schema: "https://strapi.inkofpixel.com/graphql"
 documents: "./graphql/**/*.graphql"
 generates:
   ./graphql/generated.ts:
     plugins:
       - "typescript"
       - "typescript-operations"
-      - "typescript-document-nodes"
+      - typescript-document-nodes
     config:
       documentMode: "string"
   ./graphql.schema.json:

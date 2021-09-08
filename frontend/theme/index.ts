@@ -34,22 +34,28 @@ const overrides: ThemeOverride = {
     "5xl": "46px",
     "6xl": "64px",
   },
+  letterSpacings: {
+    body: "0.02em",
+  },
   lineHeights: {
     hero: "1.1em",
     subtitle: "1.8em",
   },
   colors: {
-    dark: "rgb(22,19,56)",
-    description: "rgb(92,92,92)",
-    cardSectionBg: "rgb(234, 247, 247)",
+    primaryText: "#161338",
+    subduedText: "#5C5C5C",
     emerald: {
-      700: "rgb(3, 99, 93)",
+      50: "#E6FFFA",
+      500: "#4FD1C5",
     },
   },
-  components: {
-    /*
-        Define custom components
-    */
+  styles: {
+    global: {
+      body: {
+        fontSize: "sm",
+        letterSpacing: "0.02em",
+      },
+    },
   },
 };
 
