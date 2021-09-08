@@ -12,6 +12,8 @@ import { NavBar, NavMenuMobile } from "@features/mainNavigation";
 import { NAV_BLOCK } from "@features/mainNavigation/blocks";
 import { NavBlockData } from "@features/mainNavigation/blocks/NavigationBlock";
 import {
+  CreateProject,
+  CreateProjectInput,
   GetGlobal,
   GetGlobalQuery,
   GetGlobalQueryVariables,
@@ -27,6 +29,7 @@ import {
   getPageCreatorPlugin,
   GlobalData,
   LocalizationsData,
+  ProjectDataCreateInput,
 } from "@plugins/usePagePlugin";
 import { filterListNullableItems } from "@utils";
 import { GetStaticProps } from "next";
@@ -34,7 +37,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { InlineBlocks, InlineForm } from "react-tinacms-inline";
-import { Form, FormOptions, useCMS, useForm, usePlugin } from "tinacms";
+import {
+  ContentCreatorPlugin,
+  Form,
+  FormOptions,
+  useCMS,
+  useForm,
+  usePlugin,
+} from "tinacms";
 
 interface Project {
   id: string;
@@ -72,6 +82,14 @@ interface DynamicPageProps {
   };
 }
 
+export interface PreviewImageProps {
+  id: string;
+  type: string;
+  directory: string;
+  fileName: string;
+  previewSrc: string;
+}
+
 function wrap<T>(value: T | T[]): T[] {
   if (Array.isArray(value)) {
     return value;
@@ -100,13 +118,7 @@ export default function Index({ data }: DynamicPageProps) {
   availableLocales.splice(index, 1);
 
   return (
-    <SiteLayout
-      title={
-        router.locale === "it"
-          ? "Progetti | inkOfPixel"
-          : "Projects | inkOfPixel"
-      }
-    >
+    <SiteLayout title="Projects | inkOfPixel">
       <InlineForm form={form}>
         <NavBar>
           <MobileNavDrawer>
@@ -479,6 +491,12 @@ function useProjectPlugin(data: GlobalData): [GlobalData, Form] {
   });
   usePlugin(creatorPlugin);
 
+  const projectCreatorPlugin = getProjectCreatorPlugin({
+    locales: router.locales || [],
+  });
+
+  usePlugin(projectCreatorPlugin);
+
   return [formData, form];
 }
 
@@ -574,4 +592,135 @@ function getProjectsData(
   projects: GetProjectsQuery["projects"]
 ): Project[] | undefined {
   return projects as Project[];
+}
+
+interface ProjectCreatorPluginOptions {
+  locales: string[];
+}
+
+export function getProjectCreatorPlugin(
+  options: ProjectCreatorPluginOptions
+): ContentCreatorPlugin<ProjectDataCreateInput> {
+  return {
+    __type: "content-creator",
+    name: "Add new project",
+    fields: [
+      {
+        label: "Company name",
+        name: "companyName",
+        component: "text",
+        validate(name: string) {
+          if (!name) return "Required.";
+        },
+      },
+      {
+        label: "Path",
+        name: "path",
+        component: "text",
+        defaultValue: "/projects/",
+        description: "The path to the page ( e.g. /projects/something )",
+        validate(path: string) {
+          if (!path.startsWith("/projects/")) {
+            return "Path must start with /projects/";
+          }
+          if (!path.charAt(10)) {
+            return "Path must contain something after /projects/";
+          }
+        },
+      },
+      {
+        label: "Project type",
+        name: "projectType",
+        component: "text",
+        validate(type: string) {
+          if (!type) return "Required.";
+        },
+      },
+      {
+        label: "Description",
+        name: "description",
+        component: "textarea",
+        validate(description: string) {
+          if (!description) return "Required.";
+        },
+      },
+      {
+        label: "Locale",
+        name: "locale",
+        component: "select",
+        defaultValue: "en",
+        description: "Select a locale for this page",
+        // @ts-ignore
+        options: options.locales,
+      },
+      {
+        label: "Link path",
+        name: "linkPath",
+        component: "text",
+        validate(linkPath: string) {
+          if (!linkPath) return "Required.";
+          if (!linkPath.startsWith("/")) {
+            return "Path should start with /";
+          }
+        },
+      },
+      {
+        label: "Link label",
+        name: "linkLabel",
+        component: "text",
+      },
+      {
+        label: "Image",
+        name: "image",
+        component: "image",
+        parse: (media) => media,
+        // @ts-ignore
+        uploadDir: () => "/",
+        previewSrc: (imageSrc: PreviewImageProps) => {
+          if (imageSrc.previewSrc === "") {
+            return "/images/default-image.png";
+          }
+          return imageSrc.previewSrc;
+        },
+      },
+    ],
+    onSubmit: async (values, cms) => {
+      const input = getProjectCreateInput(values);
+
+      try {
+        const response = await cms.api.strapi.fetchGraphql(CreateProject, {
+          input,
+        });
+
+        if (response.data) {
+          // @ts-ignore
+          cms.alerts.success("Changes saved!");
+          window.location.href = `/${values.locale}${values.path}`;
+        } else {
+          // @ts-ignore
+          cms.alerts.error("Error while saving changes");
+        }
+      } catch (error) {
+        console.log(error);
+        // @ts-ignore
+        cms.alerts.error("Error while saving changes");
+      }
+    },
+  };
+}
+
+export function getProjectCreateInput(
+  input: ProjectDataCreateInput
+): CreateProjectInput {
+  return {
+    data: {
+      companyName: input.companyName,
+      projectType: input.projectType,
+      linkLabel: input.linkLabel || "Discover more",
+      linkPath: input.linkPath,
+      description: input.description,
+      path: input.path,
+      image: input.image.id,
+    },
+  };
 }

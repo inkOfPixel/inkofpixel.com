@@ -2056,6 +2056,22 @@ export type CreatePageMutationVariables = Exact<{
 
 export type CreatePageMutation = { __typename?: 'Mutation', createPage?: Maybe<{ __typename?: 'createPagePayload', page?: Maybe<{ __typename?: 'Page', id: string }> }> };
 
+export type CreateProjectMutationVariables = Exact<{
+  input?: Maybe<CreateProjectInput>;
+}>;
+
+
+export type CreateProjectMutation = (
+  { __typename?: 'Mutation' }
+  & { createProject?: Maybe<(
+    { __typename?: 'createProjectPayload' }
+    & { project?: Maybe<(
+      { __typename?: 'Project' }
+      & Pick<Project, 'id'>
+    )> }
+  )> }
+);
+
 export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2185,6 +2201,15 @@ export const CreatePage = `
     mutation CreatePage($input: createPageInput) {
   createPage(input: $input) {
     page {
+      id
+    }
+  }
+}
+    `;
+export const CreateProject = `
+    mutation CreateProject($input: createProjectInput) {
+  createProject(input: $input) {
+    project {
       id
     }
   }
