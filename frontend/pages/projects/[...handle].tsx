@@ -54,7 +54,7 @@ interface ProjectData {
   projectType: Nullable<string>;
   image: Nullable<ProjectImage>;
   localizations?: LocalizationsData[];
-  blocks: string;
+  blocks: null;
 }
 
 interface ProjectImage {
@@ -344,7 +344,7 @@ function getProjectData(
     linkPath: project.linkPath || null,
     path: project.path,
     locale: project.locale || null,
-    blocks: "aa",
+    blocks: null,
     image: project.image
       ? {
           id: project.image.id,
