@@ -14,7 +14,7 @@ export type HeroSectionBlockData = BlockTemplateData<
     id: string;
     title: Nullable<string>;
     subtitle: Nullable<string>;
-    areBubblesActive: boolean;
+    areBubblesActive: Nullable<boolean>;
   }
 >;
 
@@ -34,7 +34,8 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
         base: "52",
         lg: "80",
       }}
-      as="section">
+      as="section"
+    >
       <Flex
         flexDir="column"
         w={{
@@ -42,7 +43,8 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
         }}
         m={{
           base: "0 auto",
-        }}>
+        }}
+      >
         <Flex
           w={{
             base: "full",
@@ -55,7 +57,8 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
             xl: "0",
           }}
           m="0 auto"
-          pos="relative">
+          pos="relative"
+        >
           {areBubblesActive === true && (
             <Box
               w="full"
@@ -63,7 +66,8 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
               zIndex="-1"
               left="0"
               top="0"
-              className="HeroIllustrator">
+              className="HeroIllustrator"
+            >
               <Bubble
                 top={{
                   base: "-60",
@@ -131,9 +135,10 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
           <Box
             w={{
               base: "full",
-              xl: "1200px",
+              xl: "container.xl",
             }}
-            height="fit-content">
+            height="fit-content"
+          >
             <Flex flexDirection="column">
               <Box
                 fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
@@ -146,13 +151,10 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                 fontWeight="bold"
                 lineHeight="hero"
                 fontFamily="Europa"
-                letterSpacing="0.02em">
+              >
                 <StyledInlineTextarea name="title" />
               </Box>
               <Box
-                fontSize={{
-                  base: "sm",
-                }}
                 w={{
                   base: "full",
                   sm: "75%",
@@ -162,15 +164,13 @@ export function HeroSectionBlock({ areBubblesActive }: HeroSectionBlockData) {
                 pt="5"
                 fontWeight="subtitle"
                 lineHeight="subtitle"
-                fontFamily="Roboto Mono"
-                letterSpacing="0.02em">
+              >
                 <StyledInlineTextarea
                   w={{
                     base: "full",
                     sm: "75%",
                     md: "50%",
                   }}
-                  fontFamily="Roboto Mono"
                   name="subtitle"
                 />
               </Box>
