@@ -22,7 +22,9 @@ export default function AppProviders({
   const cms = React.useMemo(
     () =>
       new TinaCMS({
-        sidebar: false,
+        sidebar: {
+          position: "displace",
+        },
         enabled: preview,
         toolbar: preview,
         apis: {
@@ -66,7 +68,8 @@ const EditButton = () => {
       position="fixed"
       right="4"
       bottom="4"
-      onClick={() => (cms.enabled ? cms.disable() : cms.enable())}>
+      onClick={() => (cms.enabled ? cms.disable() : cms.enable())}
+    >
       {cms.enabled ? `Stop Editing ` : `Edit this Site `}
     </Button>
   );

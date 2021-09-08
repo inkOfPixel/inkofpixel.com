@@ -4,6 +4,7 @@ import {
   CreatePage,
   CreatePageInput,
   SaveChanges,
+  UpdateGlobalInput,
   UpdateMenuInput,
   UpdatePageInput,
 } from "@graphql/generated";
@@ -61,12 +62,38 @@ export interface GlobalData {
     id: string;
     menu: MenuData;
   };
+  companyData: CompanyData;
+  footer: {
+    id: string;
+    description: Nullable<string>;
+  };
 }
 
 export interface MenuData {
   id: string;
   title: string;
   links: NavBlockData[];
+}
+
+export interface CompanyData {
+  id: string;
+  primaryEmail: Nullable<string>;
+  companyName: Nullable<string>;
+  copyright: Nullable<string>;
+  vatId: Nullable<string>;
+  capital: Nullable<number>;
+  additionalLegalInfo: Nullable<string>;
+  locations: LocationsData[];
+}
+
+export interface LocationsData {
+  id: string;
+  province: Nullable<string>;
+  provinceInitials: Nullable<string>;
+  type: Nullable<string>;
+  street: Nullable<string>;
+  city: Nullable<string>;
+  cap: Nullable<number>;
 }
 
 export interface Data {
@@ -82,14 +109,16 @@ export function usePagePlugin(data: Data): [Data, Form] {
     id: data.page.id,
     label: "Page settings",
     initialValues: data,
-    onSubmit: async (allData) => {
-      const pageInput = getPageInput(allData.page);
-      const menuInput = getMenuInput(allData.global.topbar.menu);
+    onSubmit: async (data) => {
+      const pageInput = getPageInput(data.page);
+      const globalInput = getGlobalSettingsInput(data.global);
+      const topbarInput = getTopbarInput(data.global.topbar);
 
       try {
         const response = await cms.api.strapi.fetchGraphql(SaveChanges, {
           pageInput,
-          menuInput,
+          globalInput,
+          topbarInput,
         });
 
         if (response.errors != null) {
@@ -106,7 +135,41 @@ export function usePagePlugin(data: Data): [Data, Form] {
         cms.alerts.error("Error while saving changes");
       }
     },
-    fields: [],
+    fields: [
+      {
+        name: "global",
+        component: "group",
+        label: "Footer",
+        fields: [
+          {
+            name: "companyData.primaryEmail",
+            component: "text",
+            label: "Email",
+          },
+          {
+            name: "footer.description",
+            component: "textarea",
+            label: "Description",
+          },
+          {
+            name: "companyData.copyright",
+            component: "textarea",
+            label: "Copyright",
+          },
+          {
+            name: "companyData.capital",
+            component: "number",
+            label: "Capital",
+          },
+
+          {
+            name: "companyData.vatId",
+            component: "text",
+            label: "VAT",
+          },
+        ],
+      },
+    ],
   };
 
   const [formData, form] = useForm<Data>(formConfig, { values: data });
@@ -145,7 +208,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sections: section.blocks?.map((card) => {
                 return {
                   id: card.id,
@@ -172,7 +235,7 @@ function getPageInput(data: PageData): UpdatePageInput {
               id: section.id,
               title: section.title,
               subtitle: section.subtitle,
-              sectionTitle: section.sectionTitle || null,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sections: section.blocks?.map((feature) => {
                 return {
                   id: feature.id,
@@ -198,13 +261,22 @@ function getPageInput(data: PageData): UpdatePageInput {
             return {
               __typename: "ComponentSectionSimpleSection",
               id: section.id,
-              sectionTitle: section.sectionTitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
               sectionTitleColor: section.sectionTitleColor,
               title: section.title,
               subtitle: section.subtitle,
             };
           }
-
+          case "contactsSection": {
+            return {
+              __typename: "ComponentSectionContactsSection",
+              id: section.id,
+              title: section.title,
+              email: section.email,
+              subtitle: section.subtitle,
+              sectionTitle: section.sectionTitle?.toUpperCase(),
+            };
+          }
           default:
             return assertNever(section);
         }
@@ -291,16 +363,49 @@ export function getPageCreateInput(
   };
 }
 
-function getMenuInput(data: MenuData): UpdateMenuInput {
+function getGlobalSettingsInput(data: GlobalData): UpdateGlobalInput {
   return {
-    where: { id: data.id },
     data: {
-      title: data.title,
-      links: data.links.map((link) => {
+      companyData: {
+        id: data.id,
+        companyName: data.companyData.companyName,
+        primaryEmail: data.companyData.primaryEmail,
+        copyright: data.companyData.copyright,
+        capital: data.companyData.capital,
+        vatId: data.companyData.vatId,
+        additionalLegalInfo: data.companyData.additionalLegalInfo,
+        locations: data.companyData.locations.map((location) => {
+          return {
+            id: location.id,
+            cap: location.cap,
+            street: location.street,
+            city: location.city,
+            provinceInitials: location.provinceInitials,
+            type: location.type,
+            province: location.province,
+          };
+        }),
+      },
+      footer: {
+        id: data.footer.id,
+        description: data.footer.description,
+      },
+    },
+  };
+}
+
+function getTopbarInput(data: GlobalData["topbar"]): UpdateMenuInput {
+  return {
+    where: {
+      id: data.id,
+    },
+    data: {
+      title: data.menu.title,
+      links: data.menu.links.map((link) => {
         return {
           id: link.id,
-          label: link.label || null,
-          url: link.url || null,
+          label: link.label,
+          url: link.url,
         };
       }),
     },

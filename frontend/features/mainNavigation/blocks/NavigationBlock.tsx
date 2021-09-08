@@ -31,13 +31,11 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
         px="2.5"
         py="3"
         letterSpacing="0.08em"
-        color="dark"
         position="relative"
         transition="all 0.3s"
-        fontSize="sm"
         fontWeight="subtitle"
         _before={{
-          background: "rgb(22,19,56)",
+          background: "primaryText",
           bottom: "-1px",
           content: "' '",
           height: "0.5",
@@ -53,7 +51,8 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
             opacity: "1",
             w: "full",
           },
-        }}>
+        }}
+      >
         <InlineTextarea name="label" />
       </Box>
     </Link>
@@ -62,7 +61,16 @@ export function NavigationBlock({ url }: NavigationBlockProps) {
 
 function BlockComponent({ index, data }: BlockComponentProps) {
   return (
-    <BlocksControls index={index} focusRing={{ offset: 0 }} insetControls>
+    <BlocksControls
+      index={index}
+      focusRing={{
+        offset: {
+          x: 0,
+          y: 50,
+        },
+      }}
+      insetControls
+    >
       <NavigationBlock {...data} />
     </BlocksControls>
   );
@@ -71,11 +79,7 @@ function BlockComponent({ index, data }: BlockComponentProps) {
 export const NavLinkBlock: Block = {
   Component: BlockComponent,
   template: {
-    label: "nav",
-    defaultItem: {
-      label: "Link",
-      url: "/",
-    },
+    label: "Link",
     fields: [
       {
         name: "url",
@@ -88,5 +92,9 @@ export const NavLinkBlock: Block = {
         component: "text",
       },
     ],
+    defaultItem: {
+      label: "Link",
+      url: "/",
+    },
   },
 };
