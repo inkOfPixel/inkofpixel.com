@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_global_company_data",
+  "info": {
+    "name": "companyData",
+    "icon": "align-center",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "primaryEmail": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "additionalLegalInfo": {
+      "type": "string"
+    },
+    "locations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "global.headquarter"
+    },
+    "capital": {
+      "type": "biginteger"
+    },
+    "vatId": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    },
+    "legalCompanyName": {
+      "type": "string"
+    }
+  }
+}

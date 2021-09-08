@@ -1,7 +1,0 @@
-mutation UpdateGlobal($input: updateGlobalInput) {
-  updateGlobal(input: $input) {
-    global {
-      id
-    }
-  }
-}
