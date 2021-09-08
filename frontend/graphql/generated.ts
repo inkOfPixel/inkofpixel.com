@@ -2062,6 +2062,7 @@ export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetGlobalQuery = { __typename?: 'Query', global?: Maybe<{ __typename?: 'Global', id: string, topbar?: Maybe<{ __typename?: 'ComponentGlobalTopbar', id: string, menu?: Maybe<{ __typename?: 'Menu', id: string, title: string, links?: Maybe<Array<Maybe<{ __typename?: 'ComponentBlocksLink', id: string, label?: Maybe<string>, url?: Maybe<string> }>>> }> }>, companyData?: Maybe<{ __typename?: 'ComponentGlobalCompanyData', id: string, primaryEmail?: Maybe<string>, companyName?: Maybe<string>, copyright?: Maybe<string>, vatId?: Maybe<string>, capital?: Maybe<any>, additionalLegalInfo?: Maybe<string>, locations?: Maybe<Array<Maybe<{ __typename: 'ComponentGlobalHeadquarter', id: string, province?: Maybe<string>, provinceInitials?: Maybe<string>, type?: Maybe<string>, street?: Maybe<string>, city?: Maybe<string>, cap?: Maybe<any> }>>> }>, footer?: Maybe<{ __typename?: 'ComponentGlobalFooter', id: string, description?: Maybe<string> }> }> };
 
 export type GetProjectsQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
   locale?: Maybe<Scalars['String']>;
 }>;
 
@@ -2083,6 +2084,29 @@ export type UpdateMenuMutationVariables = Exact<{
 
 
 export type UpdateMenuMutation = { __typename?: 'Mutation', updateMenu?: Maybe<{ __typename?: 'updateMenuPayload', menu?: Maybe<{ __typename?: 'Menu', id: string }> }> };
+
+export type UpdateProjectMutationVariables = Exact<{
+  projectInput?: Maybe<UpdateProjectInput>;
+  menuInput?: Maybe<UpdateMenuInput>;
+}>;
+
+
+export type UpdateProjectMutation = (
+  { __typename?: 'Mutation' }
+  & { updateProject?: Maybe<(
+    { __typename?: 'updateProjectPayload' }
+    & { project?: Maybe<(
+      { __typename?: 'Project' }
+      & Pick<Project, 'id'>
+    )> }
+  )>, updateMenu?: Maybe<(
+    { __typename?: 'updateMenuPayload' }
+    & { menu?: Maybe<(
+      { __typename?: 'Menu' }
+      & Pick<Menu, 'id'>
+    )> }
+  )> }
+);
 
 
 export const GetPages = `
@@ -2233,8 +2257,8 @@ export const GetGlobal = `
 }
     `;
 export const GetProjects = `
-    query getProjects($locale: String) {
-  projects(locale: $locale) {
+    query getProjects($where: JSON, $locale: String) {
+  projects(where: $where, locale: $locale) {
     id
     linkPath
     linkLabel
@@ -2310,6 +2334,20 @@ export const SaveChanges = `
 export const UpdateMenu = `
     mutation updateMenu($input: updateMenuInput) {
   updateMenu(input: $input) {
+    menu {
+      id
+    }
+  }
+}
+    `;
+export const UpdateProject = `
+    mutation updateProject($projectInput: updateProjectInput, $menuInput: updateMenuInput) {
+  updateProject(input: $projectInput) {
+    project {
+      id
+    }
+  }
+  updateMenu(input: $menuInput) {
     menu {
       id
     }

@@ -498,7 +498,7 @@ function getMenuInput(data: GlobalData): UpdateMenuInput {
   };
 }
 
-function getGlobalData(
+export function getGlobalData(
   global: GetGlobalQuery["global"]
 ): GlobalData | undefined {
   if (global == null) {

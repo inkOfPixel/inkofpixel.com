@@ -73,7 +73,6 @@ const StyledInlineBlocks = chakra(InlineBlocks);
 
 export default function DynamicPage({ data, preview }: DynamicPageProps) {
   const { colorMode } = useColorMode();
-
   const itemProps = React.useMemo<BlockItemProps>(() => {
     return {
       isPreview: preview,
@@ -214,7 +213,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   return { paths, fallback: false };
 };
 
-function wrap<T>(value: T | T[]): T[] {
+export function wrap<T>(value: T | T[]): T[] {
   if (Array.isArray(value)) {
     return value;
   }
@@ -504,7 +503,7 @@ function getPageData(
       path: page.path ? page.path : undefined,
       localizations: page.localizations
         ? filterListNullableItems(
-            page.localizations?.map<LocalizationsData>((localization) => {
+            page.localizations.map<LocalizationsData>((localization) => {
               return {
                 id: localization?.id,
                 locale: localization?.locale,
