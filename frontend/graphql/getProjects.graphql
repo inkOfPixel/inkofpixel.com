@@ -1,0 +1,43 @@
+query getProjects($locale: String) {
+  projects(locale: $locale) {
+    id
+    linkPath
+    linkLabel
+    projectType
+    companyName
+    description
+    path
+    locale
+    localizations {
+      id
+      path
+      locale
+    }
+    image {
+      id
+      url
+      alternativeText
+    }
+    blocks {
+      ... on ComponentProjectBlockquoteBlock {
+        __typename
+        id
+        text
+      }
+      ... on ComponentProjectImageBlock {
+        __typename
+        id
+        image {
+          id
+          url
+          alternativeText
+        }
+      }
+      ... on ComponentProjectParagraphBlock {
+        __typename
+        id
+        text
+      }
+    }
+  }
+}

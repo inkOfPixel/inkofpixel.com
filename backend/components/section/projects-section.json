@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_section_projects_sections",
+  "info": {
+    "name": "projectsSection",
+    "icon": "air-freshener",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "string"
+    },
+    "sectionTitleColor": {
+      "type": "string"
+    }
+  }
+}

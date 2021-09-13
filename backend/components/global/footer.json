@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_global_footers",
+  "info": {
+    "name": "footer",
+    "icon": "angle-down"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

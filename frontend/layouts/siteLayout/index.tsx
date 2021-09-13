@@ -2,7 +2,7 @@ import { Box, useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 
-export function DefaultLayout({ children, title }: any) {
+export function SiteLayout({ children, title }: any) {
   const { colorMode } = useColorMode();
 
   return (

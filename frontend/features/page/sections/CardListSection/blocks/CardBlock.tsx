@@ -15,8 +15,8 @@ export type CardBlockData = BlockTemplateData<
   {
     id: string;
     image?: Nullable<CardImage>;
-    title: string;
-    description: string;
+    title: Nullable<string>;
+    description: Nullable<string>;
     link: LinkData;
   }
 >;

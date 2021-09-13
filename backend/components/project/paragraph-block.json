@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_project_paragraph_blocks",
+  "info": {
+    "name": "paragraphBlock",
+    "icon": "align-center"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

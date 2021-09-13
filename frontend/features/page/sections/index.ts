@@ -1,6 +1,10 @@
 import { cardBlock, CardBlockData } from "./CardListSection/blocks/CardBlock";
 
 import {
+  projectBlock,
+  ProjectBlockData,
+} from "./ProjectsListSection/block/ProjectBlock";
+import {
   featureBlock,
   FeatureBlockData,
 } from "./FeatureListSection/blocks/FeatureBlock";
@@ -13,4 +17,8 @@ export const CARD_BLOCK = {
   card: cardBlock,
 };
 
-export type BlockData = CardBlockData | FeatureBlockData;
+export const PROJECT_BLOCK = {
+  project: projectBlock,
+};
+
+export type BlockData = CardBlockData | FeatureBlockData | ProjectBlockData;

@@ -11,12 +11,12 @@ import {
   GetPagesQueryVariables,
 } from "@graphql/generated";
 import {
-  LocalizationsData,
   PageData,
   usePagePlugin,
   GlobalData,
+  LocalizationsData,
 } from "@plugins/usePagePlugin";
-import { DefaultLayout as SiteLayout } from "@layouts/siteLayout";
+import { SiteLayout } from "@layouts/siteLayout";
 import {
   Box,
   chakra,
@@ -451,8 +451,8 @@ function getPageData(
                       return {
                         _template: "card",
                         id: card.id,
-                        title: card.title,
-                        description: card.description,
+                        title: card.title || null,
+                        description: card.description || null,
                         image:
                           card.image == null
                             ? null

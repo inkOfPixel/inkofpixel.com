@@ -39,6 +39,23 @@ export interface PageDataCreateInput {
   locale: string;
 }
 
+export interface ProjectDataCreateInput {
+  companyName: string;
+  projectType: string;
+  description: string;
+  linkPath: string;
+  linkLabel: string;
+  path: string;
+  image: ImageProps;
+  locale: string;
+}
+
+interface ImageProps {
+  id: string;
+  url: string;
+  alternativeText: string;
+}
+
 export interface GlobalData {
   id: string;
   topbar: {
@@ -158,10 +175,11 @@ export function usePagePlugin(data: Data): [Data, Form] {
   const [formData, form] = useForm<Data>(formConfig, { values: data });
   usePlugin(form);
 
-  const creatorPlugin = getPageCreatorPlugin({
+  const pageCreatorPlugin = getPageCreatorPlugin({
     locales: router.locales || [],
   });
-  usePlugin(creatorPlugin);
+
+  usePlugin(pageCreatorPlugin);
 
   return [formData, form];
 }
@@ -170,6 +188,7 @@ function getPageInput(data: PageData): UpdatePageInput {
   return {
     where: { id: data.id },
     data: {
+      title: data.title,
       path: data.path,
       sections: data.sections.map((section) => {
         switch (section._template) {
@@ -270,7 +289,7 @@ interface PageCreatorPluginOptions {
   locales: string[];
 }
 
-function getPageCreatorPlugin(
+export function getPageCreatorPlugin(
   options: PageCreatorPluginOptions
 ): ContentCreatorPlugin<PageDataCreateInput> {
   return {
@@ -332,7 +351,9 @@ function getPageCreatorPlugin(
   };
 }
 
-function getPageCreateInput(input: PageDataCreateInput): CreatePageInput {
+export function getPageCreateInput(
+  input: PageDataCreateInput
+): CreatePageInput {
   return {
     data: {
       title: input.title || "Default",
