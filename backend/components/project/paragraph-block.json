@@ -2,11 +2,15 @@
   "collectionName": "components_project_paragraph_blocks",
   "info": {
     "name": "paragraphBlock",
-    "icon": "align-center"
+    "icon": "align-center",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
+      "type": "string"
+    },
+    "title": {
       "type": "string"
     }
   }
