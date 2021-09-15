@@ -450,8 +450,8 @@ function getPageData(
                       return {
                         _template: "card",
                         id: card.id,
-                        title: card.title,
-                        description: card.description,
+                        title: card.title || null,
+                        description: card.description || null,
                         image:
                           card.image == null
                             ? null

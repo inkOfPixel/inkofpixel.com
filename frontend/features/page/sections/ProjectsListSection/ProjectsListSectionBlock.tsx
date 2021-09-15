@@ -48,7 +48,7 @@ export function ProjectListSection({
         flexDir="column"
         w={{
           base: "full",
-          xl: "1200px",
+          xl: "container.xl",
         }}
         px={{
           base: "10",

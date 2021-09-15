@@ -19,15 +19,11 @@ query getProjects($where: JSON, $locale: String) {
       alternativeText
     }
     blocks {
-      ... on ComponentProjectTitleBlock {
-        __typename
-        id
-        title
-      }
       ... on ComponentProjectBlockquoteBlock {
         __typename
         id
         text
+        author
       }
       ... on ComponentProjectImageBlock {
         __typename

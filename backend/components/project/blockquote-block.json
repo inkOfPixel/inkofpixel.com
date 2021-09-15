@@ -2,11 +2,15 @@
   "collectionName": "components_project_blockquote_blocks",
   "info": {
     "name": "blockquoteBlock",
-    "icon": "align-right"
+    "icon": "align-right",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
+      "type": "string"
+    },
+    "author": {
       "type": "string"
     }
   }

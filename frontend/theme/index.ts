@@ -53,14 +53,6 @@ const overrides: ThemeOverride = {
     global: {
       body: {
         fontSize: "sm",
-        letterSpacing: "body",
-      },
-    },
-  },
-  styles: {
-    global: {
-      body: {
-        fontSize: "sm",
         letterSpacing: "0.02em",
       },
     },
