@@ -53,8 +53,18 @@ export type ComponentBlocksCardInput = {
   url: Scalars['String'];
 };
 
-export type ComponentBlocksLink = {
-  __typename?: 'ComponentBlocksLink';
+export type ComponentBlocksListItem = {
+  __typename?: 'ComponentBlocksListItem';
+  id: Scalars['ID'];
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksListItemInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentBlocksNavigationBlock = {
+  __typename?: 'ComponentBlocksNavigationBlock';
   id: Scalars['ID'];
   label?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
@@ -183,6 +193,16 @@ export type ComponentProjectImageBlock = {
 
 export type ComponentProjectImageBlockInput = {
   image?: Maybe<Scalars['ID']>;
+};
+
+export type ComponentProjectListBlock = {
+  __typename?: 'ComponentProjectListBlock';
+  id: Scalars['ID'];
+  items?: Maybe<Array<Maybe<ComponentBlocksListItem>>>;
+};
+
+export type ComponentProjectListBlockInput = {
+  items?: Maybe<Array<Maybe<ComponentBlocksListItemInput>>>;
 };
 
 export type ComponentProjectParagraphBlock = {
@@ -520,7 +540,7 @@ export type MenuInput = {
   updated_by?: Maybe<Scalars['ID']>;
 };
 
-export type Morph = ComponentBlocksCard | ComponentBlocksLink | ComponentBlocksSingleFeature | ComponentBlocksSocialBubble | ComponentGlobalCompanyData | ComponentGlobalFooter | ComponentGlobalHeadquarter | ComponentGlobalTopbar | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentSectionCardSection | ComponentSectionContactsSection | ComponentSectionHeroSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection | FormMessages | FormMessagesAggregator | FormMessagesConnection | FormMessagesConnectionCreated_At | FormMessagesConnectionEmail | FormMessagesConnectionId | FormMessagesConnectionMessage | FormMessagesConnectionName | FormMessagesConnectionPublished_At | FormMessagesConnectionUpdated_At | FormMessagesGroupBy | Global | I18NLocale | Menu | MenuAggregator | MenuConnection | MenuConnectionCreated_At | MenuConnectionId | MenuConnectionLocale | MenuConnectionPublished_At | MenuConnectionTitle | MenuConnectionUpdated_At | MenuGroupBy | Page | PageAggregator | PageConnection | PageConnectionCreated_At | PageConnectionId | PageConnectionLocale | PageConnectionPath | PageConnectionPublished_At | PageConnectionTitle | PageConnectionUpdated_At | PageGroupBy | Project | ProjectAggregator | ProjectConnection | ProjectConnectionCompanyName | ProjectConnectionCreated_At | ProjectConnectionDescription | ProjectConnectionId | ProjectConnectionImage | ProjectConnectionLinkLabel | ProjectConnectionLinkPath | ProjectConnectionLocale | ProjectConnectionPath | ProjectConnectionProjectType | ProjectConnectionPublished_At | ProjectConnectionUpdated_At | ProjectGroupBy | UploadFile | UploadFileAggregator | UploadFileAggregatorAvg | UploadFileAggregatorMax | UploadFileAggregatorMin | UploadFileAggregatorSum | UploadFileConnection | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionCreated_At | UploadFileConnectionExt | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionHeight | UploadFileConnectionId | UploadFileConnectionMime | UploadFileConnectionName | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | UploadFileConnectionSize | UploadFileConnectionUpdated_At | UploadFileConnectionUrl | UploadFileConnectionWidth | UploadFileGroupBy | UserPermissionsPasswordPayload | UsersPermissionsLoginPayload | UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleAggregator | UsersPermissionsRoleConnection | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionType | UsersPermissionsRoleGroupBy | UsersPermissionsUser | UsersPermissionsUserAggregator | UsersPermissionsUserConnection | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserGroupBy | CreateFormMessagePayload | CreateMenuPayload | CreatePagePayload | CreateProjectPayload | CreateRolePayload | CreateUserPayload | DeleteFilePayload | DeleteFormMessagePayload | DeleteGlobalPayload | DeleteMenuPayload | DeletePagePayload | DeleteProjectPayload | DeleteRolePayload | DeleteUserPayload | UpdateFormMessagePayload | UpdateGlobalPayload | UpdateMenuPayload | UpdatePagePayload | UpdateProjectPayload | UpdateRolePayload | UpdateUserPayload;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Global | UpdateGlobalPayload | DeleteGlobalPayload | Menu | MenuConnection | MenuAggregator | MenuGroupBy | MenuConnectionId | MenuConnectionCreated_At | MenuConnectionUpdated_At | MenuConnectionTitle | MenuConnectionPublished_At | CreateMenuPayload | UpdateMenuPayload | DeleteMenuPayload | Pages | PagesConnection | PagesAggregator | PagesGroupBy | PagesConnectionId | PagesConnectionCreated_At | PagesConnectionUpdated_At | PagesConnectionTitle | PagesConnectionPath | PagesConnectionLocale | PagesConnectionPublished_At | CreatePagePayload | UpdatePagePayload | DeletePagePayload | Project | ProjectConnection | ProjectAggregator | ProjectGroupBy | ProjectConnectionId | ProjectConnectionCreated_At | ProjectConnectionUpdated_At | ProjectConnectionProjectType | ProjectConnectionLinkPath | ProjectConnectionLinkLabel | ProjectConnectionDescription | ProjectConnectionPath | ProjectConnectionCompanyName | ProjectConnectionImage | ProjectConnectionLocale | ProjectConnectionPublished_At | CreateProjectPayload | UpdateProjectPayload | DeleteProjectPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload | ComponentBlocksCard | ComponentBlocksListItem | ComponentBlocksNavigationBlock | ComponentBlocksSingleFeature | ComponentGlobalTopbar | ComponentMenuPageLink | ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectListBlock | ComponentProjectParagraphBlock | ComponentSectionCardSection | ComponentSectionFooterSection | ComponentSectionHeroSection | ComponentSectionProjectsSection | ComponentSectionSimpleSection | ComponentSectionSingleFeatureSection;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -865,7 +885,7 @@ export type ProjectAggregator = {
   totalCount?: Maybe<Scalars['Int']>;
 };
 
-export type ProjectBlocksDynamicZone = ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock;
+export type ProjectBlocksDynamicZone = ComponentProjectBlockquoteBlock | ComponentProjectImageBlock | ComponentProjectParagraphBlock | ComponentProjectListBlock;
 
 
 export type ProjectConnection = {
@@ -1748,7 +1768,12 @@ export type EditComponentBlocksCardInput = {
   url?: Maybe<Scalars['String']>;
 };
 
-export type EditComponentBlocksLinkInput = {
+export type EditComponentBlocksListItemInput = {
+  id?: Maybe<Scalars['ID']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type EditComponentBlocksNavigationBlockInput = {
   id?: Maybe<Scalars['ID']>;
   label?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
@@ -1812,6 +1837,11 @@ export type EditComponentProjectBlockquoteBlockInput = {
 export type EditComponentProjectImageBlockInput = {
   id?: Maybe<Scalars['ID']>;
   image?: Maybe<Scalars['ID']>;
+};
+
+export type EditComponentProjectListBlockInput = {
+  id?: Maybe<Scalars['ID']>;
+  items?: Maybe<Array<Maybe<EditComponentBlocksListItemInput>>>;
 };
 
 export type EditComponentProjectParagraphBlockInput = {
@@ -2062,11 +2092,45 @@ export type GetGlobalQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetGlobalQuery = { __typename?: 'Query', global?: Maybe<{ __typename?: 'Global', id: string, topbar?: Maybe<{ __typename?: 'ComponentGlobalTopbar', id: string, menu?: Maybe<{ __typename?: 'Menu', id: string, title: string, links?: Maybe<Array<Maybe<{ __typename?: 'ComponentBlocksLink', id: string, label?: Maybe<string>, url?: Maybe<string> }>>> }> }>, companyData?: Maybe<{ __typename?: 'ComponentGlobalCompanyData', id: string, primaryEmail?: Maybe<string>, companyName?: Maybe<string>, copyright?: Maybe<string>, vatId?: Maybe<string>, capital?: Maybe<any>, additionalLegalInfo?: Maybe<string>, locations?: Maybe<Array<Maybe<{ __typename: 'ComponentGlobalHeadquarter', id: string, province?: Maybe<string>, provinceInitials?: Maybe<string>, type?: Maybe<string>, street?: Maybe<string>, city?: Maybe<string>, cap?: Maybe<any> }>>> }>, footer?: Maybe<{ __typename?: 'ComponentGlobalFooter', id: string, description?: Maybe<string> }> }> };
 
 export type GetProjectsQueryVariables = Exact<{
+  where?: Maybe<Scalars['JSON']>;
   locale?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects?: Maybe<Array<Maybe<{ __typename?: 'Project', id: string, linkPath?: Maybe<string>, linkLabel?: Maybe<string>, projectType?: Maybe<string>, companyName?: Maybe<string>, description?: Maybe<string>, path?: Maybe<string>, locale?: Maybe<string>, localizations?: Maybe<Array<Maybe<{ __typename?: 'Project', id: string, path?: Maybe<string>, locale?: Maybe<string> }>>>, image?: Maybe<{ __typename?: 'UploadFile', id: string, url: string, alternativeText?: Maybe<string> }>, blocks?: Maybe<Array<Maybe<{ __typename: 'ComponentProjectBlockquoteBlock', id: string, text?: Maybe<string> } | { __typename: 'ComponentProjectImageBlock', id: string, image?: Maybe<{ __typename?: 'UploadFile', id: string, url: string, alternativeText?: Maybe<string> }> } | { __typename: 'ComponentProjectParagraphBlock', id: string, text?: Maybe<string> }>>> }>>> };
+export type GetProjectsQuery = (
+  { __typename?: 'Query' }
+  & { projects?: Maybe<Array<Maybe<(
+    { __typename?: 'Project' }
+    & Pick<Project, 'id' | 'linkPath' | 'linkLabel' | 'projectType' | 'companyName' | 'description' | 'path' | 'locale'>
+    & { localizations?: Maybe<Array<Maybe<(
+      { __typename?: 'Project' }
+      & Pick<Project, 'id' | 'path' | 'locale'>
+    )>>>, image?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+    )>, blocks?: Maybe<Array<Maybe<(
+      { __typename: 'ComponentProjectBlockquoteBlock' }
+      & Pick<ComponentProjectBlockquoteBlock, 'id' | 'text'>
+    ) | (
+      { __typename: 'ComponentProjectImageBlock' }
+      & Pick<ComponentProjectImageBlock, 'id'>
+      & { image?: Maybe<(
+        { __typename?: 'UploadFile' }
+        & Pick<UploadFile, 'id' | 'url' | 'alternativeText'>
+      )> }
+    ) | (
+      { __typename: 'ComponentProjectParagraphBlock' }
+      & Pick<ComponentProjectParagraphBlock, 'id' | 'text'>
+    ) | (
+      { __typename?: 'ComponentProjectListBlock' }
+      & Pick<ComponentProjectListBlock, 'id'>
+      & { items?: Maybe<Array<Maybe<(
+        { __typename?: 'ComponentBlocksListItem' }
+        & Pick<ComponentBlocksListItem, 'id' | 'text'>
+      )>>> }
+    )>>> }
+  )>>> }
+);
 
 export type SaveChangesMutationVariables = Exact<{
   pageInput?: Maybe<UpdatePageInput>;
@@ -2083,6 +2147,29 @@ export type UpdateMenuMutationVariables = Exact<{
 
 
 export type UpdateMenuMutation = { __typename?: 'Mutation', updateMenu?: Maybe<{ __typename?: 'updateMenuPayload', menu?: Maybe<{ __typename?: 'Menu', id: string }> }> };
+
+export type UpdateProjectMutationVariables = Exact<{
+  projectInput?: Maybe<UpdateProjectInput>;
+  menuInput?: Maybe<UpdateMenuInput>;
+}>;
+
+
+export type UpdateProjectMutation = (
+  { __typename?: 'Mutation' }
+  & { updateProject?: Maybe<(
+    { __typename?: 'updateProjectPayload' }
+    & { project?: Maybe<(
+      { __typename?: 'Project' }
+      & Pick<Project, 'id'>
+    )> }
+  )>, updateMenu?: Maybe<(
+    { __typename?: 'updateMenuPayload' }
+    & { menu?: Maybe<(
+      { __typename?: 'Menu' }
+      & Pick<Menu, 'id'>
+    )> }
+  )> }
+);
 
 
 export const GetPages = `
@@ -2233,8 +2320,8 @@ export const GetGlobal = `
 }
     `;
 export const GetProjects = `
-    query getProjects($locale: String) {
-  projects(locale: $locale) {
+    query getProjects($where: JSON, $locale: String) {
+  projects(where: $where, locale: $locale) {
     id
     linkPath
     linkLabel
@@ -2273,6 +2360,13 @@ export const GetProjects = `
         id
         text
       }
+      ... on ComponentProjectListBlock {
+        id
+        items {
+          id
+          text
+        }
+      }
     }
   }
 }
@@ -2310,6 +2404,20 @@ export const SaveChanges = `
 export const UpdateMenu = `
     mutation updateMenu($input: updateMenuInput) {
   updateMenu(input: $input) {
+    menu {
+      id
+    }
+  }
+}
+    `;
+export const UpdateProject = `
+    mutation updateProject($projectInput: updateProjectInput, $menuInput: updateMenuInput) {
+  updateProject(input: $projectInput) {
+    project {
+      id
+    }
+  }
+  updateMenu(input: $menuInput) {
     menu {
       id
     }

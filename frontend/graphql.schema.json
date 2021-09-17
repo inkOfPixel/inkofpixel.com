@@ -265,7 +265,69 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ComponentBlocksLink",
+        "name": "ComponentBlocksListItem",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ComponentBlocksListItemInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "text",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ComponentBlocksNavigationBlock",
         "description": null,
         "fields": [
           {
@@ -861,7 +923,17 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ComponentProjectListBlock",
+        "description": null,
+        "fields": [
           {
             "name": "legalCompanyName",
             "description": null,
@@ -891,24 +963,44 @@
             "deprecationReason": null
           },
           {
-            "name": "primaryEmail",
+            "name": "items",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ComponentBlocksListItem",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ComponentProjectListBlockInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
           {
-            "name": "vatId",
+            "name": "items",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "ComponentBlocksListItemInput",
+                "ofType": null
+              }
             },
             "defaultValue": null,
             "isDeprecated": false,
@@ -921,7 +1013,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ComponentGlobalFooter",
+        "name": "ComponentProjectParagraphBlock",
         "description": null,
         "fields": [
           {
@@ -937,7 +1029,7 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
+            "name": "text",
             "description": null,
             "args": [],
             "type": {
@@ -960,12 +1052,12 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ComponentGlobalFooterInput",
+        "name": "ComponentProjectParagraphBlockInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "description",
+            "name": "text",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -4794,7 +4886,12 @@
           },
           {
             "kind": "OBJECT",
-            "name": "deleteGlobalPayload",
+            "name": "ComponentBlocksListItem",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ComponentBlocksNavigationBlock",
             "ofType": null
           },
           {
@@ -4824,12 +4921,12 @@
           },
           {
             "kind": "OBJECT",
-            "name": "updateFormMessagePayload",
+            "name": "ComponentProjectListBlock",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "updateGlobalPayload",
+            "name": "ComponentProjectParagraphBlock",
             "ofType": null
           },
           {
@@ -7355,6 +7452,47 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "UNION",
+        "name": "ProjectBlocksDynamicZone",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "ComponentProjectBlockquoteBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ComponentProjectImageBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ComponentProjectParagraphBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ComponentProjectListBlock",
+            "ofType": null
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ProjectBlocksDynamicZoneInput",
+        "description": "Input type for dynamic zone blocks of Project",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -13769,7 +13907,172 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "createRoleInput",
+        "name": "editComponentBlocksCardInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "label",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "editComponentBlocksListItemInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "editComponentBlocksNavigationBlockInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "label",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "editComponentBlocksSingleFeatureInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -14114,7 +14417,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "deleteRoleInput",
+        "name": "editComponentProjectListBlockInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -14141,13 +14444,17 @@
         "description": null,
         "fields": [
           {
-            "name": "role",
+            "name": "items",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "UsersPermissionsRole",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "editComponentBlocksListItemInput",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -14160,7 +14467,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "deleteUserInput",
+        "name": "editComponentProjectParagraphBlockInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -14187,7 +14494,7 @@
         "description": null,
         "fields": [
           {
-            "name": "user",
+            "name": "text",
             "description": null,
             "args": [],
             "type": {

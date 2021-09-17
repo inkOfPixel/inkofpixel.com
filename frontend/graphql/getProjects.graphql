@@ -1,5 +1,5 @@
-query getProjects($locale: String) {
-  projects(locale: $locale) {
+query getProjects($where: JSON, $locale: String) {
+  projects(where: $where, locale: $locale) {
     id
     linkPath
     linkLabel
@@ -37,6 +37,13 @@ query getProjects($locale: String) {
         __typename
         id
         text
+      }
+      ... on ComponentProjectListBlock {
+        id
+        items {
+          id
+          text
+        }
       }
     }
   }

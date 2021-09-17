@@ -57,6 +57,14 @@ const overrides: ThemeOverride = {
       },
     },
   },
+  styles: {
+    global: {
+      body: {
+        fontSize: "sm",
+        letterSpacing: "0.02em",
+      },
+    },
+  },
 };
 
 const customTheme = extendTheme(overrides);

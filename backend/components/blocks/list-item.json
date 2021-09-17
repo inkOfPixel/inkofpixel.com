@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_list_items",
+  "info": {
+    "name": "listItem",
+    "icon": "ban"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}
