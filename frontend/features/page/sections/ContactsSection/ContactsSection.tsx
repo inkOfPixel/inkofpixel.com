@@ -240,7 +240,7 @@ enum FormActionType {
   Success = "success",
   Failed = "failed",
   Submit = "submit",
-  ValidationFailed = "validation - failed",
+  ValidationFailed = "validation-failed",
 }
 
 interface ValidationFailedAction {
@@ -382,6 +382,10 @@ export function ContactsForm() {
         >(InsertFormMessage, { input });
 
         if (response.createFormMessage) {
+          fetch(`api/send`, {
+            method: "POST",
+            body: JSON.stringify({ data: state.values }),
+          });
           dispatch({ type: FormActionType.Success });
         } else {
           dispatch({ type: FormActionType.Failed });
@@ -634,7 +638,7 @@ export function ContactsForm() {
             ></Box>
           </FormControl>
         </Box>
-        <Text color="red">{state.submitError}</Text>
+        <Box color="red">{state.submitError}</Box>
         <Button
           type="submit"
           userSelect="none"
