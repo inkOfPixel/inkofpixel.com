@@ -24,7 +24,7 @@
     "gatsby-source-filesystem": "2.0.4",
     "gatsby-source-iubenda": "1.0.0",
     "gatsby-transformer-json": "2.1.4",
-    "gatsby-transformer-remark": "2.1.7",
+    "gatsby-transformer-remark": "5.25.1",
     "gatsby-transformer-sharp": "2.1.4",
     "lodash": "4.17.11",
     "marked": "0.6.3",
