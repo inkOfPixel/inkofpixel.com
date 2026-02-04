@@ -65,20 +65,24 @@ class GooeyMenu extends React.Component<IProps, IState> {
         <GooeySVGDefs />
         <Menu className={className}>
           <Checkbox
-            itemCount={itemCount}
+            $itemCount={itemCount}
             onChange={this.handleToggleMenu}
             checked={open}
           />
           <Items
-            itemCount={itemCount}
-            size={size}
-            spacing={spacing}
-            color={color}
-            backgroundColor={backgroundColor}
+            $itemCount={itemCount}
+            $size={size}
+            $spacing={spacing}
+            $color={color}
+            $backgroundColor={backgroundColor}
           >
             {children}
           </Items>
-          <Label size={size} color={color} backgroundColor={backgroundColor}>
+          <Label
+            $size={size}
+            $color={color}
+            $backgroundColor={backgroundColor}
+          >
             <div className="toggleButtonContent">
               {renderLabel && renderLabel()}
             </div>
@@ -90,20 +94,20 @@ class GooeyMenu extends React.Component<IProps, IState> {
 }
 
 interface IButtonProps {
-  color: string;
-  backgroundColor: string;
-  size: number;
+  $color: string;
+  $backgroundColor: string;
+  $size: number;
 }
 
 const buttonStyles = css<IButtonProps>`
-  background: ${({ backgroundColor }) => backgroundColor};
+  background: ${({ $backgroundColor }) => $backgroundColor};
   border-radius: 100%;
   display: block;
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
-  color: ${({ color }) => color};
+  width: ${({ $size }) => $size}px;
+  height: ${({ $size }) => $size}px;
+  color: ${({ $color }) => $color};
   text-align: center;
-  line-height: ${({ size }) => size}px;
+  line-height: ${({ $size }) => $size}px;
   transform: translate3d(0, 0, 0);
   transition: transform ease-out 200ms;
 `;
@@ -114,13 +118,7 @@ const Menu = styled.div`
   overflow: visible;
 `;
 
-interface ILabelProps {
-  color: string;
-  backgroundColor: string;
-  htmlFor?: string;
-}
-
-const Label = styled<ILabelProps & IButtonProps, "label">("label").attrs({
+const Label = styled<IButtonProps, "label">("label").attrs({
   htmlFor: "gooey-menu-open"
 })`
   position: relative;
@@ -141,36 +139,38 @@ const Label = styled<ILabelProps & IButtonProps, "label">("label").attrs({
     opacity: 0;
     content: "✕";
     font-size: 25px;
-    color: ${({ color }) => color};
+    color: ${({ $color }) => $color};
     left: 50%;
     transform: translate3d(-50%, 0, 0);
     top: 1%;
     height: 98%;
     width: 98%;
     border-radius: 100%;
-    background: ${({ backgroundColor }) => backgroundColor};
+    background: ${({ $backgroundColor }) => $backgroundColor};
   }
 `;
 
 interface IItemsProps {
-  size: number;
-  spacing: number;
-  itemCount: number;
+  $size: number;
+  $spacing: number;
+  $itemCount: number;
+  $color: string;
+  $backgroundColor: string;
 }
 
 const Items = styled.div`
   position: absolute;
-  padding-top: ${(props: IItemsProps) => props.size}px;
+  padding-top: ${(props: IItemsProps) => props.$size}px;
   & > * {
-    margin-top: ${(props: IItemsProps) => props.spacing}px;
+    margin-top: ${(props: IItemsProps) => props.$spacing}px;
     ${buttonStyles};
     ${(props: IItemsProps) =>
-      Array.apply(null, Array(props.itemCount)).map(
+      Array.apply(null, Array(props.$itemCount)).map(
         (_: number, i: number) => css`
           &:nth-child(${i + 1}) {
             transform: translate3d(
               0,
-              ${({ size, spacing }) => -(size + spacing) * (i + 1)}px,
+              ${({ $size, $spacing }) => -($size + $spacing) * (i + 1)}px,
               0
             );
           }
@@ -180,7 +180,7 @@ const Items = styled.div`
 `;
 
 interface ICheckboxProps {
-  itemCount: number;
+  $itemCount: number;
 }
 
 const Checkbox = styled.input.attrs({
@@ -204,7 +204,7 @@ const Checkbox = styled.input.attrs({
     & ~ ${Items} > * {
       transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
       ${(props: ICheckboxProps) =>
-        Array.apply(null, Array(props.itemCount)).map(
+        Array.apply(null, Array(props.$itemCount)).map(
           (_: number, i: number) => css`
             &:nth-child(${i + 1}) {
               transition-duration: ${300 + 100 * i}ms;

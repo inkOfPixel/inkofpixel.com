@@ -1,97 +1,57 @@
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
 import styled from "types/styled-components";
-import { injectIntl, InjectedIntlProps } from "react-intl";
 import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
+import SimpleIcon from "components/SimpleIcon";
 import Wrapper from "components/Wrapper";
 import ContactForm from "./ContactForm";
 
-type Props = InjectedIntlProps;
-
-interface IQueryData {
+interface ContactsProps {
   contacts: {
     email: string;
-    socials: {
+    socials: Array<{
       title: string;
       link: string;
       iconHandle: string;
-    };
+    }>;
   };
-  section: any;
+  section: {
+    title: string;
+    intro: string;
+    subtitle: string;
+    path?: string;
+  };
 }
 
-const Contacts = injectIntl(({ intl }: Props) => {
+const Contacts = ({ contacts, section }: ContactsProps) => {
   return (
-    <StaticQuery
-      query={graphql`
-        query ContactsQuery {
-          contacts: settingsJson(fields: { name: { eq: "contacts" } }) {
-            email
-            socials {
-              title
-              link
-              iconHandle
-            }
-          }
-          section: staticPagesJson(fields: { name: { eq: "contacts" } }) {
-            fields {
-              name
-              locales {
-                language
-                path
-                title
-                seo {
-                  description
-                  image
-                }
-                intro
-                subtitle
-              }
-            }
-          }
-        }
-      `}
-    >
-      {(data: IQueryData) => {
-        const localizedSection = data.section.fields.locales.find(
-          locale => locale.language === intl.locale
-        );
-        return (
-          <Wrapper>
-            <Flexbox>
-              <Info>
-                <SectionTitle>{localizedSection.title}</SectionTitle>
-                <Intro>{localizedSection.intro}</Intro>
-                <Subtitle>{localizedSection.subtitle}</Subtitle>
-                <Mail
-                  href={`mailto:${data.contacts.email}`}
-                  data-rel="external"
-                >
-                  {data.contacts.email}
-                </Mail>
-              </Info>
-              <ContactForm />
-            </Flexbox>
-            <Socials>
-              {data.contacts.socials.map(social => (
-                <SocialLink
-                  key={social.title}
-                  href={social.link}
-                  aria-label={`${social.title} account of inkOfPixel`}
-                >
-                  <Splash className={social.iconHandle} size="60px">
-                    <Icon name={social.iconHandle} />
-                  </Splash>
-                </SocialLink>
-              ))}
-            </Socials>
-          </Wrapper>
-        );
-      }}
-    </StaticQuery>
+    <Wrapper>
+      <Flexbox>
+        <Info>
+          <SectionTitle>{section.title}</SectionTitle>
+          <Intro>{section.intro}</Intro>
+          <Subtitle>{section.subtitle}</Subtitle>
+          <Mail href={`mailto:${contacts.email}`} data-rel="external">
+            {contacts.email}
+          </Mail>
+        </Info>
+        <ContactForm redirectTo={section.path} />
+      </Flexbox>
+      <Socials>
+        {contacts.socials.map((social) => (
+          <SocialLink
+            key={social.title}
+            href={social.link}
+            aria-label={`${social.title} account of inkOfPixel`}
+          >
+            <Splash className={social.iconHandle} size="60px">
+              <SimpleIcon name={social.iconHandle} fill="#fff" />
+            </Splash>
+          </SocialLink>
+        ))}
+      </Socials>
+    </Wrapper>
   );
-});
+};
 
 const Flexbox = styled.div`
   display: flex;
@@ -188,9 +148,6 @@ const SocialLink = styled.a`
   margin: 5px;
 `;
 
-const Icon = styled(BaseIcon)`
-  fill: #fff;
-`;
 
 const Splash = styled(BaseSplash)`
   transition: 0.3s all;

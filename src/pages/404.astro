@@ -1,0 +1,41 @@
+---
+import NotFound from "../templates/not-found";
+import { getContent, getCookiePolicyByLocale } from "../lib/content";
+import { SITE } from "../lib/site";
+
+const content = await getContent();
+const defaultLocale = content.settings.general.defaultLanguage;
+const navigationLinks =
+  content.settings.navigation.locales.find(
+    (locale) => locale.language === defaultLocale
+  )?.main?.links || [];
+const cookiePolicy = await getCookiePolicyByLocale();
+const shell = {
+  locale: defaultLocale,
+  defaultLocale,
+  pageLocales: [{ code: defaultLocale, url: "/" }],
+  navigationLinks,
+  cookiePolicyPath: cookiePolicy.get(defaultLocale)
+};
+const title = `Page not found | ${SITE.title}`;
+const description = "The page you are looking for does not exist";
+const canonical = `${SITE.origin}/404`;
+---
+<!doctype html>
+<html lang={defaultLocale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:description" content={description} />
+    <link rel="canonical" href={canonical} />
+  </head>
+  <body>
+    <NotFound shell={shell} client:load />
+  </body>
+</html>

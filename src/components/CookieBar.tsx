@@ -1,77 +1,39 @@
 import React from "react";
-import styled from "styled-components";
-import { Link, StaticQuery, graphql } from "gatsby";
+import styled from "types/styled-components";
+import Link from "components/Link";
 import { FormattedMessage } from "react-intl";
 import Cookie from "./Cookie";
 
-interface ICookieQueryData {
-  cookiePolicy: {
-    fields: {
-      frontmatter: {
-        locales: Array<{
-          language: string;
-          path: string;
-        }>;
-      };
-    };
-  };
-}
-
 interface IProps {
   locale: string;
+  cookiePolicyPath?: string;
 }
 
-const CookierBar = (props: IProps) => (
-  <StaticQuery
-    query={graphql`
-      query CookieQuery {
-        cookiePolicy: markdownRemark(fields: { slug: { eq: "/cookies/" } }) {
-          fields {
-            frontmatter {
-              locales {
-                language
-                path
-              }
-            }
-          }
-        }
-      }
-    `}
-  >
-    {(data: ICookieQueryData) => {
-      const localizedPolicy = data.cookiePolicy.fields.frontmatter.locales.find(
-        locale => locale.language === props.locale
-      );
-      if (!localizedPolicy) {
-        throw new Error(`Localized policy for ${props.locale} not found`);
-      }
-      return (
-        <Cookie>
-          {answer => (
-            <Bar>
-              <Text>
-                <FormattedMessage
-                  id="cookie.message"
-                  defaultMessage="We use cookies to ensure that we give you the best experience
-          on our website. Read our"
-                />
-                <StyledLink to={localizedPolicy.path}>
-                  {" "}
-                  cookies policy{" "}
-                </StyledLink>
-                <Button onClick={() => answer(true)}>OK</Button>
-              </Text>
-              <CloseButton
-                onClick={() => answer(false)}
-                aria-label="Close cookie policy message banner"
-              />
-            </Bar>
-          )}
-        </Cookie>
-      );
-    }}
-  </StaticQuery>
-);
+const CookierBar = ({ cookiePolicyPath }: IProps) => {
+  if (!cookiePolicyPath) {
+    return null;
+  }
+  return (
+    <Cookie>
+      {(answer) => (
+        <Bar>
+          <Text>
+            <FormattedMessage
+              id="cookie.message"
+              defaultMessage="We use cookies to ensure that we give you the best experience\n          on our website. Read our"
+            />
+            <StyledLink to={cookiePolicyPath}> cookies policy </StyledLink>
+            <Button onClick={() => answer(true)}>OK</Button>
+          </Text>
+          <CloseButton
+            onClick={() => answer(false)}
+            aria-label="Close cookie policy message banner"
+          />
+        </Bar>
+      )}
+    </Cookie>
+  );
+};
 
 const Bar = styled.div`
   background-color: #fff;

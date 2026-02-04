@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "types/styled-components";
 import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
+import SimpleIcon from "components/SimpleIcon";
 
 interface Props {
   text: string;
@@ -56,7 +56,7 @@ function SharePost({ text, url }: Props) {
           onClick={e => handleShare(e, social.title)}
         >
           <Splash className={social.iconHandle} size="60px">
-            <Icon name={social.iconHandle} />
+            <SimpleIcon name={social.iconHandle} fill="#fff" />
           </Splash>
         </SocialLink>
       ))}
@@ -67,10 +67,6 @@ function SharePost({ text, url }: Props) {
 const SocialLink = styled.a`
   display: inline-block;
   margin: 5px;
-`;
-
-const Icon = styled(BaseIcon)`
-  fill: #fff;
 `;
 
 const Splash = styled(BaseSplash)`

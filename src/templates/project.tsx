@@ -1,114 +1,58 @@
 import React from "react";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import Image from "components/Image";
 import styled from "types/styled-components";
 import Markdown from "react-markdown";
 import Wrapper from "components/Wrapper";
 import projectTheme from "themes/project.json";
 import Page from "components/Page";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    slug: string;
-    locale: string;
-  };
+  project: any;
+  shell: PageShell;
 }
 
-export default ({ data, pathContext }: IProps) => {
-  const currentProject = data.project.fields.frontmatter.locales.find(
-    (locale) => locale.language === pathContext.locale
+export default ({ project, shell }: IProps) => {
+  const currentProject = project.fields.frontmatter.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
 
   return (
     <Page
-      title={currentProject.seoTitle}
-      description={currentProject.seoDescription}
-      localeCode={pathContext.locale}
-      pageLocales={data.project.fields.frontmatter.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path,
-        })
-      )}
-      headerTheme={data.project.fields.frontmatter.headerTheme}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      headerTheme={project.fields.frontmatter.headerTheme}
       theme={projectTheme}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
-      <Helmet>
-        <meta
-          property="og:image"
-          content={currentProject.heroImage.publicURL}
-        />
-      </Helmet>
       <Hero>
-        <Img fluid={currentProject.heroImage.childImageSharp.fluid} />
+        <Image
+          src={currentProject.heroImage}
+          alt={project.fields.frontmatter.title}
+        />
         <HeroContent>
           <Wrapper>
-            <Heading headerTheme={data.project.fields.frontmatter.headerTheme}>
+            <Heading headerTheme={project.fields.frontmatter.headerTheme}>
               <ProjectType
-                headerTheme={data.project.fields.frontmatter.headerTheme}
+                headerTheme={project.fields.frontmatter.headerTheme}
               >
                 {currentProject.type}
               </ProjectType>
-              <Title>{data.project.fields.frontmatter.title}</Title>
+              <Title>{project.fields.frontmatter.title}</Title>
             </Heading>
           </Wrapper>
         </HeroContent>
       </Hero>
       <Wrapper>
-        <RichText source={currentProject.body} />
+        <RichText>
+          <Markdown>{currentProject.body}</Markdown>
+        </RichText>
       </Wrapper>
     </Page>
   );
 };
-
-export const query = graphql`
-  query DefaultPageQuery($slug: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    project: markdownRemark(fields: { slug: { eq: $slug } }) {
-      fields {
-        slug
-        frontmatter {
-          title
-          headerTheme
-          locales {
-            language
-            path
-            body
-            heroImage {
-              publicURL
-              childImageSharp {
-                fluid(maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            type
-            seoTitle
-            seoDescription
-          }
-        }
-      }
-    }
-  }
-`;
 
 const Hero = styled.div`
   height: 480px;
@@ -177,7 +121,7 @@ const Title = styled.h1`
   }
 `;
 
-const RichText = styled(Markdown)`
+const RichText = styled.div`
   padding: 50px 0;
   p {
     line-height: 1.8em;

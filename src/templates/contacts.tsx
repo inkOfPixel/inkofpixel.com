@@ -1,60 +1,94 @@
 import React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+import styled from "types/styled-components";
 import { default as BaseSplash } from "components/Splash";
-import { default as BaseIcon } from "react-simple-icons";
-import TextareaAutosize from "react-autosize-textarea";
+import SimpleIcon from "components/SimpleIcon";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import ContactForm from "components/ContactForm";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  contacts: any;
+  shell: PageShell;
+  flash?: { contactSuccess?: boolean };
 }
 
-const ContactsPage = ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.locales.find(
-    locale => locale.language === pathContext.locale
+const ContactsPage = ({ page, contacts, shell, flash }: IProps) => {
+  const currentPage = page.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
+      
       <Wrapper>
         <Spacer />
-        <Flexbox>
-          <Info>
-            <PageTitle>{currentPage.title}</PageTitle>
-            <Intro>{currentPage.intro}</Intro>
-            <Subtitle>{currentPage.subtitle}</Subtitle>
-            <Mail href={`mailto:${data.contacts.email}`} data-rel="external">
-              {data.contacts.email}
-            </Mail>
-          </Info>
-          <ContactForm />
-        </Flexbox>
+        <FeedbackContainer
+          data-contact-feedback
+          data-sent={
+            flash?.contactSuccess === true
+              ? "1"
+              : flash?.contactSuccess === false
+                ? "0"
+                : ""
+          }
+        >
+          <Flexbox>
+            <Info>
+              <PageTitle>{currentPage.title}</PageTitle>
+              <Intro>{currentPage.intro}</Intro>
+              <Subtitle>{currentPage.subtitle}</Subtitle>
+              <Mail href={`mailto:${contacts.email}`} data-rel="external">
+                {contacts.email}
+              </Mail>
+            </Info>
+            <div className="form-wrapper">
+              <ContactForm
+                forceSuccess={flash?.contactSuccess}
+                redirectTo={currentPage?.path}
+              />
+            </div>
+            <div className="feedback-wrapper">
+              <FeedbackBanner>
+                <div className="success">
+                  <h3>{shell.locale === "it" ? "Grazie!" : "Thank you!"}</h3>
+                  <p>
+                    {shell.locale === "it"
+                      ? "Ti contatteremo presto."
+                      : "We'll get in touch soon."}
+                  </p>
+                </div>
+                <div className="error">
+                  <h3>
+                    {shell.locale === "it"
+                      ? "Ops, si è verificato un errore!"
+                      : "Ops, an error occurred!"}
+                  </h3>
+                  <p>
+                    {shell.locale === "it"
+                      ? "Riprova più tardi."
+                      : "Please try again."}
+                  </p>
+                </div>
+              </FeedbackBanner>
+            </div>
+          </Flexbox>
+        </FeedbackContainer>
         <Socials>
-          {data.contacts.socials.map(social => (
+          {contacts.socials.map((social: any) => (
             <SocialLink
               key={social.title}
               href={social.link}
               aria-label={`${social.title} account of inkOfPixel`}
             >
               <Splash className={social.iconHandle} size="60px">
-                <Icon name={social.iconHandle} />
+                <SimpleIcon name={social.iconHandle} fill="#fff" />
               </Splash>
             </SocialLink>
           ))}
@@ -63,35 +97,6 @@ const ContactsPage = ({ data, pathContext }: IProps) => {
     </Page>
   );
 };
-
-export const query = graphql`
-  query ContactsPageQuery($name: String!) {
-    contacts: settingsJson(fields: { name: { eq: "contacts" } }) {
-      email
-      socials {
-        title
-        link
-        iconHandle
-      }
-    }
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          seo {
-            description
-            image
-          }
-          intro
-          subtitle
-        }
-      }
-    }
-  }
-`;
 
 const Spacer = styled.div`
   width: 100%;
@@ -102,6 +107,51 @@ const Flexbox = styled.div`
   display: flex;
   @media (max-width: 800px) {
     flex-direction: column;
+  }
+`;
+
+const FeedbackContainer = styled.div`
+  .feedback-wrapper {
+    display: none;
+  }
+  &[data-sent="1"] .form-wrapper,
+  &[data-sent="0"] .form-wrapper {
+    display: none;
+  }
+  &[data-sent="1"] .feedback-wrapper,
+  &[data-sent="0"] .feedback-wrapper {
+    display: block;
+  }
+`;
+
+const FeedbackBanner = styled.div`
+  display: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: Europa;
+    line-height: 1.2em;
+    padding-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+    color: #5c5c5c;
+  }
+  .success,
+  .error {
+    display: none;
+  }
+  ${FeedbackContainer}[data-sent="1"] &,
+  ${FeedbackContainer}[data-sent="0"] & {
+    display: block;
+  }
+  ${FeedbackContainer}[data-sent="1"] & .success {
+    display: block;
+  }
+  ${FeedbackContainer}[data-sent="0"] & .error {
+    display: block;
   }
 `;
 
@@ -189,10 +239,6 @@ const Socials = styled.div`
 const SocialLink = styled.a`
   display: inline-block;
   margin: 5px;
-`;
-
-const Icon = styled(BaseIcon)`
-  fill: #fff;
 `;
 
 const Splash = styled(BaseSplash)`

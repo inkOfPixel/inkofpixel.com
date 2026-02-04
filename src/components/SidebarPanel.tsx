@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled, { css } from "types/styled-components";
 
 // class Mask extends React.Component {
 //   // useEffect(() => {
@@ -14,7 +14,16 @@ import styled, { css } from "styled-components";
 //     )
 //   }
 // }
-class Mask extends React.Component {
+interface MaskProps {
+  handleClose: () => void;
+}
+
+interface Props extends MaskProps {
+  isOpen: boolean;
+  children?: React.ReactNode;
+}
+
+class Mask extends React.Component<MaskProps> {
   componentDidMount() {
     document.body.classList.add("no-scroll");
   }
@@ -48,13 +57,15 @@ export default function SideBarPanel({ handleClose, isOpen, children }: Props) {
   return (
     <>
       {isOpen && <Mask handleClose={handleClose} />}
-      <SideBarPanelContainer isOpen={isOpen}>{children}</SideBarPanelContainer>
+      <SideBarPanelContainer $isOpen={isOpen}>
+        {children}
+      </SideBarPanelContainer>
     </>
   );
 }
 
 interface SideBarPanelContainerProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 const SideBarPanelContainer = styled.div<SideBarPanelContainerProps>`
@@ -70,8 +81,8 @@ const SideBarPanelContainer = styled.div<SideBarPanelContainerProps>`
   z-index: 200;
   transform: translate(-100%);
   transition: transform 0.3s;
-  ${({ isOpen }) =>
-    isOpen &&
+  ${({ $isOpen }) =>
+    $isOpen &&
     css`
       transform: translate(0);
       transition: transform 0.3s;

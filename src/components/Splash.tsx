@@ -57,6 +57,7 @@ const Splash = styled<IProps>(({ children, className }) => (
 )).attrs({
   speed: () => `${random(5, 12).toFixed(2)}s`
 })`
+  --splash-rotate: ${(props: IProps) => props.speed};
   position: relative;
   width: ${(props: IProps) => props.size};
   height: ${props => props.size};
@@ -65,14 +66,15 @@ const Splash = styled<IProps>(({ children, className }) => (
     ${() => random(3, 6)}s linear infinite ${bordertr},
     ${() => random(3, 6)}s linear infinite ${borderbl},
     ${() => random(3, 6)}s linear infinite ${borderbr},
-    ${props => props.speed} linear infinite ${rotate};
+    var(--splash-rotate) linear infinite ${rotate};
   & > .content {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    animation: ${props => props.speed} ${rotateInverse} linear infinite;
+    animation: var(--splash-rotate) ${rotateInverse} linear infinite;
+    transform-origin: 50% 50%;
   }
 `;
 

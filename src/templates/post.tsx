@@ -1,31 +1,27 @@
 import React from "react";
-import Helmet from "react-helmet";
-import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import Image from "components/Image";
 import styled from "types/styled-components";
-import Markdown, { ReactMarkdownProps } from "react-markdown";
 import Wrapper from "components/Wrapper";
 
 import Page from "components/Page";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 import SharePost from "components/SharePost";
 import { FormattedMessage, FormattedDate } from "react-intl";
-import marked from "marked";
+import { marked } from "marked";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    slug: string;
-    locale: string;
-  };
+  post: any;
+  shell: PageShell;
 }
 
 // Get reference
-var renderer = new marked.Renderer();
+const renderer = new marked.Renderer();
 
 // Override function
 renderer.paragraph = function(text) {
-  if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(text)) {
+  const rawText =
+    typeof text === "string" ? text : (text as { text?: string }).text || "";
+  if (/^start-custom-image(([\S\s])*)end-custom-image$/.test(rawText)) {
     const attributes = {
       src: "",
       size: "",
@@ -35,7 +31,7 @@ renderer.paragraph = function(text) {
       description: "",
       shadow: "",
     };
-    const attributesString = text.match(/\((.*?)\)/);
+    const attributesString = rawText.match(/\((.*?)\)/);
     if (attributesString) {
       const attributesSplitted = attributesString[1].split("|");
       attributesSplitted.forEach((a) => {
@@ -67,12 +63,12 @@ renderer.paragraph = function(text) {
     }
     </div>
     `;
-  } else if (/^start-important-text(([\S\s])*)end-important-text$/.test(text)) {
+  } else if (/^start-important-text(([\S\s])*)end-important-text$/.test(rawText)) {
     const attributes = {
       text: "",
       align: "",
     };
-    const attributesString = text.match(/\((.*?)\)/);
+    const attributesString = rawText.match(/\((.*?)\)/);
     if (attributesString) {
       const attributesSplitted = attributesString[1].split("|");
       attributesSplitted.forEach((a) => {
@@ -93,52 +89,40 @@ renderer.paragraph = function(text) {
 
   return `
   <p>
-    ${text}
+    ${rawText}
   </p>
   `;
 };
 
 // Run marked
 
-export default ({ data, pathContext }: IProps) => {
-  const currentPost = data.post.fields.frontmatter.locales.find(
-    (locale) => locale.language === pathContext.locale
+export default ({ post, shell }: IProps) => {
+  const currentPost = post.fields.frontmatter.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
 
   const html = marked(currentPost.body, { renderer: renderer });
   return (
     <Page
-      title={currentPost.seoTitle}
-      description={currentPost.seoDescription}
-      localeCode={pathContext.locale}
-      pageLocales={data.post.fields.frontmatter.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path,
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
-      <Helmet>
-        <meta
-          property="og:image"
-          content={`${data.site.siteMetadata.origin}${
-            currentPost.featuredImage.publicURL
-          }`}
-        />
-      </Helmet>
       <Hero>
         <Wrapper size="small">
           <Title>{currentPost.title}</Title>
-          <Date>
+          <PostDate>
             <FormattedDate
               day="2-digit"
               month="long"
               year="numeric"
-              value={data.post.fields.frontmatter.date}
+              value={new Date(post.fields.frontmatter.date)}
             />
-          </Date>
-          <Author>{data.post.fields.frontmatter.author}</Author>
-          <Img fluid={currentPost.heroImage.childImageSharp.fluid} />
+          </PostDate>
+          <Author>{post.fields.frontmatter.author}</Author>
+          <Image src={currentPost.heroImage} alt={currentPost.title} />
         </Wrapper>
       </Hero>
 
@@ -154,55 +138,6 @@ export default ({ data, pathContext }: IProps) => {
     </Page>
   );
 };
-
-export const query = graphql`
-  query DefaultPageQueryMarketing($slug: String!) {
-    site {
-      siteMetadata {
-        origin
-      }
-    }
-    navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-      locales {
-        language
-        main {
-          links {
-            label
-            url
-          }
-        }
-      }
-    }
-    post: markdownRemark(fields: { slug: { eq: $slug } }) {
-      fields {
-        slug
-        frontmatter {
-          date
-          author
-          locales {
-            language
-            title
-            path
-            body
-            featuredImage {
-              publicURL
-            }
-            heroImage {
-              publicURL
-              childImageSharp {
-                fluid(maxWidth: 1200) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            seoTitle
-            seoDescription
-          }
-        }
-      }
-    }
-  }
-`;
 
 const Title = styled.h1`
   font-size: 46px;
@@ -221,7 +156,7 @@ const Title = styled.h1`
   }
 `;
 
-const Date = styled.p`
+const PostDate = styled.p`
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -310,6 +245,8 @@ const Post = styled.div`
     display: flex;
     img {
       display: block;
+      max-width: 100%;
+      height: auto;
       box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
     }
     &[shadow="false"] {
@@ -410,8 +347,9 @@ const Post = styled.div`
       }
     }
     img {
-      width: 100%;
       display: block;
+      max-width: 100%;
+      height: auto;
       width: 860px;
       margin-top: 40px;
       margin-bottom: 40px;
@@ -541,7 +479,7 @@ const Post = styled.div`
     }
   }
 `;
-const RichText = styled(Markdown)`
+const RichText = styled.div`
   padding: 50px 0;
   .image-container {
     display: flex;

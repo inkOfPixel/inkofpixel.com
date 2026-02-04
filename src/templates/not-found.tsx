@@ -1,21 +1,26 @@
 import React from "react";
-import { Link } from "gatsby";
-import styled from "styled-components";
+import Link from "components/Link";
+import styled from "types/styled-components";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
+import { PageShell } from "types/shell";
 
-const NotFoundPage = () => (
+interface Props {
+  shell: PageShell;
+}
+
+const NotFoundPage = ({ shell }: Props) => (
   <Page
-    title="Page not found"
-    description="The page you are looking for does not exist"
-    localeCode="en"
+    localeCode={shell.locale}
+    defaultLocaleCode={shell.defaultLocale}
+    pageLocales={shell.pageLocales}
+    navigationLinks={shell.navigationLinks}
+    cookiePolicyPath={shell.cookiePolicyPath}
   >
     <NotFoundWrapper>
       <Spacer />
       <Title>Page not found</Title>
-      <Description>
-        Ops! The page you are looking for does not exist
-      </Description>
+      <Description>Ops! The page you are looking for does not exist</Description>
       <CallToAction to="/">Rescue me!</CallToAction>
     </NotFoundWrapper>
   </Page>
@@ -42,8 +47,8 @@ const Spacer = styled.div`
 `;
 
 const CallToAction = styled(Link)`
-  border: 1px solid ${props => props.theme.colors.darkBlue};
-  color: ${props => props.theme.colors.darkBlue};
+  border: 1px solid ${(props) => props.theme.colors.darkBlue};
+  color: ${(props) => props.theme.colors.darkBlue};
   background-color: transparent;
   font-size: 14px;
   font-weight: 400;
@@ -63,7 +68,7 @@ const CallToAction = styled(Link)`
     color: #fff;
   }
   &::after {
-    background: ${props => props.theme.colors.darkBlue};
+    background: ${(props) => props.theme.colors.darkBlue};
     content: "";
     position: absolute;
     z-index: -1;
