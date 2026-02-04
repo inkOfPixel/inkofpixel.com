@@ -44,13 +44,25 @@ if (!Template) {
   throw new Error(`Unknown template: ${route.template}`);
 }
 
+const sentParam = Astro.url?.searchParams?.get("sent");
+const flash =
+  sentParam === "1"
+    ? { contactSuccess: true }
+    : sentParam === "0"
+      ? { contactSuccess: false }
+      : undefined;
+
 const sheet = new ServerStyleSheet();
 let html = "";
 let styledCss = "";
 try {
   html = renderToString(
     sheet.collectStyles(
-      React.createElement(Template, { ...route.data, shell: route.shell })
+      React.createElement(Template, {
+        ...route.data,
+        shell: route.shell,
+        flash
+      })
     )
   );
   styledCss = sheet
@@ -101,5 +113,15 @@ const ogImage = route.meta.image
     ))}
     <link rel="canonical" href={canonical} />
   </head>
-  <body set:html={html} />
+  <body>
+    <Fragment set:html={html} />
+    <script is:inline>
+      (() => {
+        const sent = new URLSearchParams(window.location.search).get("sent");
+        if (!sent) return;
+        const banner = document.querySelector("[data-contact-feedback]");
+        if (banner) banner.setAttribute("data-sent", sent);
+      })();
+    </script>
+  </body>
 </html>

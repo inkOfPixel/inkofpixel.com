@@ -11,9 +11,10 @@ interface IProps {
   page: any;
   contacts: any;
   shell: PageShell;
+  flash?: { contactSuccess?: boolean };
 }
 
-const ContactsPage = ({ page, contacts, shell }: IProps) => {
+const ContactsPage = ({ page, contacts, shell, flash }: IProps) => {
   const currentPage = page.locales.find(
     (locale: any) => locale.language === shell.locale
   );
@@ -27,17 +28,57 @@ const ContactsPage = ({ page, contacts, shell }: IProps) => {
     >
       <Wrapper>
         <Spacer />
-        <Flexbox>
-          <Info>
-            <PageTitle>{currentPage.title}</PageTitle>
-            <Intro>{currentPage.intro}</Intro>
-            <Subtitle>{currentPage.subtitle}</Subtitle>
-            <Mail href={`mailto:${contacts.email}`} data-rel="external">
-              {contacts.email}
-            </Mail>
-          </Info>
-          <ContactForm />
-        </Flexbox>
+        <FeedbackContainer
+          data-contact-feedback
+          data-sent={
+            flash?.contactSuccess === true
+              ? "1"
+              : flash?.contactSuccess === false
+                ? "0"
+                : ""
+          }
+        >
+          <Flexbox>
+            <Info>
+              <PageTitle>{currentPage.title}</PageTitle>
+              <Intro>{currentPage.intro}</Intro>
+              <Subtitle>{currentPage.subtitle}</Subtitle>
+              <Mail href={`mailto:${contacts.email}`} data-rel="external">
+                {contacts.email}
+              </Mail>
+            </Info>
+            <div className="form-wrapper">
+              <ContactForm
+                forceSuccess={flash?.contactSuccess}
+                redirectTo={currentPage?.path}
+              />
+            </div>
+            <div className="feedback-wrapper">
+              <FeedbackBanner>
+                <div className="success">
+                  <h3>{shell.locale === "it" ? "Grazie!" : "Thank you!"}</h3>
+                  <p>
+                    {shell.locale === "it"
+                      ? "Ti contatteremo presto."
+                      : "We'll get in touch soon."}
+                  </p>
+                </div>
+                <div className="error">
+                  <h3>
+                    {shell.locale === "it"
+                      ? "Ops, si è verificato un errore!"
+                      : "Ops, an error occurred!"}
+                  </h3>
+                  <p>
+                    {shell.locale === "it"
+                      ? "Riprova più tardi."
+                      : "Please try again."}
+                  </p>
+                </div>
+              </FeedbackBanner>
+            </div>
+          </Flexbox>
+        </FeedbackContainer>
         <Socials>
           {contacts.socials.map((social: any) => (
             <SocialLink
@@ -65,6 +106,51 @@ const Flexbox = styled.div`
   display: flex;
   @media (max-width: 800px) {
     flex-direction: column;
+  }
+`;
+
+const FeedbackContainer = styled.div`
+  .feedback-wrapper {
+    display: none;
+  }
+  &[data-sent="1"] .form-wrapper,
+  &[data-sent="0"] .form-wrapper {
+    display: none;
+  }
+  &[data-sent="1"] .feedback-wrapper,
+  &[data-sent="0"] .feedback-wrapper {
+    display: block;
+  }
+`;
+
+const FeedbackBanner = styled.div`
+  display: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: Europa;
+    line-height: 1.2em;
+    padding-bottom: 10px;
+  }
+  p {
+    font-size: 14px;
+    color: #5c5c5c;
+  }
+  .success,
+  .error {
+    display: none;
+  }
+  ${FeedbackContainer}[data-sent="1"] &,
+  ${FeedbackContainer}[data-sent="0"] & {
+    display: block;
+  }
+  ${FeedbackContainer}[data-sent="1"] & .success {
+    display: block;
+  }
+  ${FeedbackContainer}[data-sent="0"] & .error {
+    display: block;
   }
 `;
 

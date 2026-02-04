@@ -18,6 +18,7 @@ interface ContactsProps {
     title: string;
     intro: string;
     subtitle: string;
+    path?: string;
   };
 }
 
@@ -33,7 +34,7 @@ const Contacts = ({ contacts, section }: ContactsProps) => {
             {contacts.email}
           </Mail>
         </Info>
-        <ContactForm />
+        <ContactForm redirectTo={section.path} />
       </Flexbox>
       <Socials>
         {contacts.socials.map((social) => (

@@ -14,41 +14,75 @@ const jsonResponse = (body: Record<string, any>, status = 200) =>
     }
   });
 
+const redirectResponse = (location: string, status = 303) =>
+  new Response(null, {
+    status,
+    headers: {
+      Location: location,
+      "Cache-Control": "no-store"
+    }
+  });
+
 export async function POST({ request }: { request: Request }) {
-  let payload: any;
-  try {
-    payload = await request.json();
-  } catch {
-    return jsonResponse({ error: "Invalid payload" }, 400);
+  let payload: Record<string, any> = {};
+  const contentType = request.headers.get("content-type") || "";
+  const wantsJson = contentType.includes("application/json");
+  if (wantsJson) {
+    try {
+      payload = await request.json();
+    } catch {
+      return jsonResponse({ error: "Invalid payload" }, 400);
+    }
+  } else {
+    try {
+      const form = await request.formData();
+      payload = Object.fromEntries(form.entries());
+    } catch {
+      return jsonResponse({ error: "Invalid payload" }, 400);
+    }
   }
 
   const name = String(payload?.name || "").trim();
   const email = String(payload?.email || "").trim();
   const message = String(payload?.message || "").trim();
-  const botField = String(payload?.["bot-field"] || "").trim();
-  const formStart = Number(payload?.formStart || 0);
+  const botField = String(payload?.["bot-field"] || payload?.hp || "").trim();
+  const formStart = Number(payload?.formStart || payload?.ts || 0);
+  const redirectTarget =
+    typeof payload?.redirect === "string" && payload.redirect.trim()
+      ? payload.redirect.trim()
+      : "/contacts";
 
   if (botField) {
-    return jsonResponse({ ok: true });
+    return wantsJson
+      ? jsonResponse({ ok: true })
+      : redirectResponse(`${redirectTarget}?sent=1`);
   }
 
   if (
     !Number.isFinite(formStart) ||
     Date.now() - formStart < MINIMUM_FORM_TIME_MS
   ) {
-    return jsonResponse({ error: "Bot verification failed" }, 400);
+    return wantsJson
+      ? jsonResponse({ error: "Bot verification failed" }, 400)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
   if (!name || !email || !message) {
-    return jsonResponse({ error: "Missing required fields" }, 400);
+    return wantsJson
+      ? jsonResponse({ error: "Missing required fields" }, 400)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return jsonResponse({ error: "Invalid email" }, 400);
+    return wantsJson
+      ? jsonResponse({ error: "Invalid email" }, 400)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
   if (message.length > MAX_MESSAGE_LENGTH) {
-    return jsonResponse({ error: "Message too long" }, 400);
+    return wantsJson
+      ? jsonResponse({ error: "Message too long" }, 400)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
   const apiKey = import.meta.env.RESEND_API_KEY ?? process.env.RESEND_API_KEY;
@@ -56,7 +90,9 @@ export async function POST({ request }: { request: Request }) {
   const to = import.meta.env.CONTACT_TO ?? process.env.CONTACT_TO;
 
   if (!apiKey || !from || !to) {
-    return jsonResponse({ error: "Missing email configuration" }, 500);
+    return wantsJson
+      ? jsonResponse({ error: "Missing email configuration" }, 500)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
   const resend = new Resend(apiKey);
@@ -69,8 +105,12 @@ export async function POST({ request }: { request: Request }) {
   });
 
   if (error) {
-    return jsonResponse({ error: error.message }, 500);
+    return wantsJson
+      ? jsonResponse({ error: error.message }, 500)
+      : redirectResponse(`${redirectTarget}?sent=0`);
   }
 
-  return jsonResponse({ ok: true, id: data?.id });
+  return wantsJson
+    ? jsonResponse({ ok: true, id: data?.id })
+    : redirectResponse(`${redirectTarget}?sent=1`);
 }

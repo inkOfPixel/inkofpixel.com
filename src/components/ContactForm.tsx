@@ -3,7 +3,10 @@ import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import TextareaAutosize from "react-textarea-autosize";
 
-interface IProps {}
+interface IProps {
+  forceSuccess?: boolean;
+  redirectTo?: string;
+}
 
 enum FormState {
   Normal = "normal",
@@ -59,6 +62,24 @@ class ContactForm extends React.Component<IProps, IState> {
   };
 
   render() {
+    if (this.props.forceSuccess) {
+      return (
+        <Feedback ref={this.feedbackRef}>
+          <h3>
+            <FormattedMessage
+              id="contacts.form.thankYou"
+              defaultMessage="Thank you!"
+            />
+          </h3>
+          <p>
+            <FormattedMessage
+              id="contacts.form.thankYouDetails"
+              defaultMessage="We'll get in touch soon."
+            />
+          </p>
+        </Feedback>
+      );
+    }
     const { state } = this.state;
     if (state === FormState.Success) {
       return (
@@ -100,6 +121,7 @@ class ContactForm extends React.Component<IProps, IState> {
       <Form
         name="contact"
         method="post"
+        action="/api/contact"
         onSubmit={this.handleSubmit}
       >
         <FormField className="hidden">
@@ -109,6 +131,9 @@ class ContactForm extends React.Component<IProps, IState> {
           </label>
         </FormField>
         <input type="hidden" name="formStart" value={this.state.formStart} />
+        {this.props.redirectTo && (
+          <input type="hidden" name="redirect" value={this.props.redirectTo} />
+        )}
         <FormField className="half">
           <label htmlFor="name">
             <FormattedMessage id="contacts.form.name" defaultMessage="Name" />
