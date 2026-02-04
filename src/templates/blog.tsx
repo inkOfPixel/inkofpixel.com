@@ -6,18 +6,12 @@ import { FormattedMessage, FormattedDate } from "react-intl";
 import Page from "components/Page";
 import { PageShell } from "types/shell";
 import Wrapper from "components/Wrapper";
-import Masonry from "react-masonry-css";
 
 interface IProps {
   page: any;
   posts: any[];
   shell: PageShell;
 }
-
-const masonryBreakpoints = {
-  default: 2,
-  800: 1
-};
 
 const BlogPage = ({ page, posts, shell }: IProps) => {
   const currentPage = page.locales.find(
@@ -36,11 +30,7 @@ const BlogPage = ({ page, posts, shell }: IProps) => {
         <PageTitle>{currentPage.title}</PageTitle>
         <Subtitle>{currentPage.subtitle}</Subtitle>
         <Container>
-          <Masonry
-            breakpointCols={masonryBreakpoints}
-            className="masonry-grid"
-            columnClassName="masonry-grid-column"
-          >
+          <PostsGrid>
             {posts.map((post) => {
               const currentItem = post.fields.frontmatter.locales.find(
                 (locale: any) => locale.language === shell.locale
@@ -79,7 +69,7 @@ const BlogPage = ({ page, posts, shell }: IProps) => {
                 </PostListItem>
               );
             })}
-          </Masonry>
+          </PostsGrid>
         </Container>
       </Wrapper>
     </Page>
@@ -142,14 +132,13 @@ const Container = styled.div`
     width: 100%;
     margin: 0;
   }
-  .masonry-grid {
-    display: flex;
-    margin-left: 0;
-    width: auto;
-  }
-  .masonry-grid-column {
-    padding-left: 0;
-    background-clip: padding-box;
+`;
+
+const PostsGrid = styled.ul`
+  column-count: 2;
+  column-gap: 0;
+  @media (max-width: 800px) {
+    column-count: 1;
   }
 `;
 
@@ -159,6 +148,7 @@ const PostListItem = styled.li`
   padding: 60px;
   box-sizing: border-box;
   width: 100%;
+  break-inside: avoid;
   @media (max-width: 1260px) {
     padding: 40px;
   }
