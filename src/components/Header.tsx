@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
+import Link from "components/Link";
 import styled, { withTheme } from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Logo from "components/Logo";
@@ -10,7 +10,7 @@ import { IPageLocale } from "types";
 import ThemeInterface from "themes/theme";
 import Menu from "icons/Menu";
 import SideBarPanel from "./SidebarPanel";
-import { css } from "styled-components";
+import { css } from "types/styled-components";
 
 interface IProps {
   theme: ThemeInterface;
@@ -18,24 +18,12 @@ interface IProps {
   defaultLocale: string;
   pageLocales?: IPageLocale[];
   headerTheme: string;
+  navigationLinks: Array<{ label: string; url: string }>;
 }
 
 interface IState {
   languageMenuOpen: boolean;
   isMobileNavOpen: boolean;
-}
-
-interface IHeaderQueryData {
-  navigation: {
-    locales: INavigationLocale[];
-  };
-}
-
-interface INavigationLocale {
-  language: string;
-  main: {
-    links: Array<{ label: string; url: string }>;
-  };
 }
 
 class Header extends React.Component<IProps, IState> {
@@ -75,135 +63,101 @@ class Header extends React.Component<IProps, IState> {
       pageLocales,
       theme,
       headerTheme,
+      navigationLinks,
     } = this.props;
     return (
-      <StaticQuery
-        query={graphql`
-          query HeaderQuery {
-            navigation: settingsJson(fields: { name: { eq: "navigation" } }) {
-              locales {
-                language
-                main {
-                  links {
-                    label
-                    url
-                  }
-                }
-              }
-            }
-          }
-        `}
-        render={({ navigation }: IHeaderQueryData) => {
-          const localizedNavigation = navigation.locales.find(
-            (navLocale) => navLocale.language === locale
-          );
-
-          if (!localizedNavigation) {
-            throw new Error(
-              `Didn't found any navigation with locale ${locale}`
-            );
-          }
-          return (
-            <>
-              <DesktopMenuContainer>
-                <Wrapper style={{ height: "100%" }}>
-                  <NavContainer headerTheme={headerTheme}>
-                    <MenuIcon onClick={this.handleOpenSidenav} />
-                    <LogoContainer>
-                      <LogoLink
-                        to={locale === defaultLocale ? "" : `/${locale}`}
+      <>
+        <DesktopMenuContainer>
+          <Wrapper style={{ height: "100%" }}>
+            <NavContainer $headerTheme={headerTheme}>
+              <MenuIcon onClick={this.handleOpenSidenav} />
+              <LogoContainer>
+                <LogoLink to={locale === defaultLocale ? "/" : `/${locale}`}>
+                  <Logo />
+                  <AssistiveText>
+                    <FormattedMessage
+                      id="header.logo.assistiveText"
+                      defaultMessage="Link to home page"
+                    />
+                  </AssistiveText>
+                </LogoLink>
+              </LogoContainer>
+              <RightBarItems>
+                <List>
+                  {navigationLinks.map((link) => (
+                    <ListItem key={link.label}>
+                      <Link to={link.url}>{link.label}</Link>
+                    </ListItem>
+                  ))}
+                </List>
+                {pageLocales && pageLocales.length > 1 && (
+                  <LanguageSelector
+                    renderLabel={() => (
+                      <span className="selected">{locale}</span>
+                    )}
+                    color={
+                      headerTheme === "dark"
+                        ? theme.languageSelectorDark.color
+                        : theme.languageSelector.color
+                    }
+                    backgroundColor={
+                      headerTheme === "dark"
+                        ? theme.languageSelectorDark.backgroundColor
+                        : theme.languageSelector.backgroundColor
+                    }
+                    size={44}
+                    open={languageMenuOpen}
+                    onToggle={this.handleToggleLanguageMenu}
+                  >
+                    {pageLocales.map((pageLocale) => (
+                      <Link
+                        key={pageLocale.code}
+                        onClick={() =>
+                          this.handleToggleLanguageMenu(false)
+                        }
+                        to={pageLocale.url}
+                        className={
+                          pageLocale.code === locale ? "selected" : ""
+                        }
                       >
-                        <Logo />
-                        <AssistiveText>
-                          <FormattedMessage
-                            id="header.logo.assistiveText"
-                            defaultMessage="Link to home page"
-                          />
-                        </AssistiveText>
-                      </LogoLink>
-                    </LogoContainer>
-                    <RightBarItems>
-                      <List>
-                        {localizedNavigation.main &&
-                          localizedNavigation.main.links.map((link) => (
-                            <ListItem key={link.label}>
-                              <Link to={link.url}>{link.label}</Link>
-                            </ListItem>
-                          ))}
-                      </List>
-                      {pageLocales &&
-                        pageLocales.length > 1 && (
-                          <LanguageSelector
-                            renderLabel={() => (
-                              <span className="selected">{locale}</span>
-                            )}
-                            color={
-                              headerTheme === "dark"
-                                ? theme.languageSelectorDark.color
-                                : theme.languageSelector.color
-                            }
-                            backgroundColor={
-                              headerTheme === "dark"
-                                ? theme.languageSelectorDark.backgroundColor
-                                : theme.languageSelector.backgroundColor
-                            }
-                            size={44}
-                            open={languageMenuOpen}
-                            onToggle={this.handleToggleLanguageMenu}
-                          >
-                            {pageLocales.map((pageLocale) => (
-                              <Link
-                                key={pageLocale.code}
-                                onClick={() =>
-                                  this.handleToggleLanguageMenu(false)
-                                }
-                                to={pageLocale.url}
-                                className={
-                                  pageLocale.code === locale ? "selected" : ""
-                                }
-                              >
-                                {pageLocale.code}
-                              </Link>
-                            ))}
-                          </LanguageSelector>
-                        )}
-                    </RightBarItems>
-                  </NavContainer>
-                </Wrapper>
-              </DesktopMenuContainer>
-              <SideBarPanel
-                isOpen={this.state.isMobileNavOpen}
-                handleClose={this.handleCloseSidenav}
-              >
-                <LinkMobileContainer>
-                  <IconContainer>
-                    <IconLink to={locale === defaultLocale ? "" : `/${locale}`}>
-                      <Icon />
-                      <AssistiveText>
-                        <FormattedMessage
-                          id="header.logo.assistiveText"
-                          defaultMessage="Link to home page"
-                        />
-                      </AssistiveText>
-                    </IconLink>
-                  </IconContainer>
-                  {localizedNavigation.main &&
-                    localizedNavigation.main.links.map((link) => (
-                      <MobileListItem key={link.label}>
-                        <Link
-                          to={link.url}
-                          onClick={() => this.handleCloseSidenav()}
-                        >
-                          {link.label}
-                        </Link>
-                      </MobileListItem>
+                        {pageLocale.code}
+                      </Link>
                     ))}
-                </LinkMobileContainer>
-              </SideBarPanel>
-            </>
-          );
-        }}
-      />
+                  </LanguageSelector>
+                )}
+              </RightBarItems>
+            </NavContainer>
+          </Wrapper>
+        </DesktopMenuContainer>
+        <SideBarPanel
+          isOpen={this.state.isMobileNavOpen}
+          handleClose={this.handleCloseSidenav}
+        >
+          <LinkMobileContainer>
+            <IconContainer>
+              <IconLink to={locale === defaultLocale ? "/" : `/${locale}`}>
+                <Icon />
+                <AssistiveText>
+                  <FormattedMessage
+                    id="header.logo.assistiveText"
+                    defaultMessage="Link to home page"
+                  />
+                </AssistiveText>
+              </IconLink>
+            </IconContainer>
+            {navigationLinks.map((link) => (
+              <MobileListItem key={link.label}>
+                <Link
+                  to={link.url}
+                  onClick={() => this.handleCloseSidenav()}
+                >
+                  {link.label}
+                </Link>
+              </MobileListItem>
+            ))}
+          </LinkMobileContainer>
+        </SideBarPanel>
+      </>
     );
   }
 }
@@ -358,12 +312,12 @@ const MobileListItem = styled.li`
   }
 `;
 
-const NavContainer = styled.div<{ headerTheme: string }>`
+const NavContainer = styled.div<{ $headerTheme: string }>`
   display: flex;
   height: 100%;
   align-items: center;
-  ${({ headerTheme }) =>
-    headerTheme === "dark" &&
+  ${({ $headerTheme }) =>
+    $headerTheme === "dark" &&
     css`
       ${ListItem} {
         a {

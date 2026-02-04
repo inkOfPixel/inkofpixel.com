@@ -1,64 +1,37 @@
 import React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
+import styled from "types/styled-components";
 import Markdown from "react-markdown";
 import Page from "components/Page";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    slug: string;
-    locale: string;
-  };
+  page: any;
+  shell: PageShell;
 }
 
-export default ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.frontmatter.locales.find(
-    locale => locale.language === pathContext.locale
+export default ({ page, shell }: IProps) => {
+  const currentPage = page.fields.frontmatter.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.frontmatter.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
       <OuterWrapper>
         <Wrapper>
-          <Title>{data.page.fields.frontmatter.title}</Title>
-          <RichText source={currentPage.body} />
+          <Title>{page.fields.frontmatter.title}</Title>
+          <RichText>
+            <Markdown>{currentPage.body}</Markdown>
+          </RichText>
         </Wrapper>
       </OuterWrapper>
     </Page>
   );
 };
-
-export const query = graphql`
-  query PageQuery($slug: String!) {
-    page: markdownRemark(fields: { slug: { eq: $slug } }) {
-      fields {
-        frontmatter {
-          title
-          locales {
-            language
-            path
-            seo {
-              title
-              description
-            }
-            body
-          }
-        }
-      }
-    }
-  }
-`;
 
 const OuterWrapper = styled.div`
   padding-bottom: 100px;
@@ -88,7 +61,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const RichText = styled(Markdown)`
+const RichText = styled.div`
   overflow: hidden;
   p {
     line-height: 1.6em;

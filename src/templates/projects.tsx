@@ -1,50 +1,42 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import Img from "gatsby-image";
+import Link from "components/Link";
+import Image from "components/Image";
 import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Page from "components/Page";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 import Wrapper from "components/Wrapper";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  projects: any[];
+  shell: PageShell;
 }
 
-const ProjectsPage = ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.locales.find(
-    locale => locale.language === pathContext.locale
-  );
-  const projects = data.projects.edges.map(
-    ({ node }) => node.fields.frontmatter
+const ProjectsPage = ({ page, projects, shell }: IProps) => {
+  const currentPage = page.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
         <ProjectsList>
           {projects.map(project => {
-            const currentItem = project.locales.find(
-              locale => locale.language === pathContext.locale
+            const currentItem = project.fields.frontmatter.locales.find(
+              (locale: any) => locale.language === shell.locale
             );
             return (
               <ProjectListItem key={currentItem.path}>
                 <ProjectDescription>
-                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectTitle>{project.fields.frontmatter.title}</ProjectTitle>
                   <ProjectType>{currentItem.type}</ProjectType>
                   <ProjectExcerpt>{currentItem.excerpt}</ProjectExcerpt>
                   <ProjectLink>
@@ -59,8 +51,9 @@ const ProjectsPage = ({ data, pathContext }: IProps) => {
 
                 <ProjectFeaturedImageWrapper>
                   <Link to={currentItem.path}>
-                    <Img
-                      fluid={currentItem.featuredImage.childImageSharp.fluid}
+                    <Image
+                      src={currentItem.featuredImage}
+                      alt={project.fields.frontmatter.title}
                     />
                   </Link>
                 </ProjectFeaturedImageWrapper>
@@ -72,57 +65,6 @@ const ProjectsPage = ({ data, pathContext }: IProps) => {
     </Page>
   );
 };
-
-export const query = graphql`
-  query ProjectsPageQuery($name: String!) {
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          seo {
-            description
-            image
-          }
-        }
-      }
-    }
-    projects: allMarkdownRemark(
-      sort: { fields: [frontmatter___priority], order: ASC }
-      filter: {
-        fields: {
-          collection: { eq: "projects" }
-          frontmatter: { published: { eq: true } }
-        }
-      }
-    ) {
-      edges {
-        node {
-          fields {
-            frontmatter {
-              title
-              locales {
-                language
-                path
-                type
-                excerpt
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const Spacer = styled.div`
   width: 100%;

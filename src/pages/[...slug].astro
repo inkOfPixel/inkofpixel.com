@@ -1,0 +1,105 @@
+---
+import Home from "../templates/home";
+import Services from "../templates/services";
+import Projects from "../templates/projects";
+import Blog from "../templates/blog";
+import Contacts from "../templates/contacts";
+import Privacy from "../templates/privacy";
+import PageTemplate from "../templates/page";
+import Post from "../templates/post";
+import Project from "../templates/project";
+import { getAllRoutes } from "../lib/routes";
+import { SITE } from "../lib/site";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { ServerStyleSheet } from "styled-components";
+
+export async function getStaticPaths() {
+  const routes = await getAllRoutes();
+  return routes.map((route) => ({
+    params: {
+      // Astro expects rest params as a string, not an array.
+      slug: route.path === "/" ? undefined : route.path.replace(/^\//, "")
+    },
+    props: route
+  }));
+}
+
+const route = Astro.props;
+
+const templates = {
+  home: Home,
+  services: Services,
+  projects: Projects,
+  blog: Blog,
+  contacts: Contacts,
+  privacy: Privacy,
+  page: PageTemplate,
+  post: Post,
+  project: Project
+} as const;
+
+const Template = templates[route.template];
+if (!Template) {
+  throw new Error(`Unknown template: ${route.template}`);
+}
+
+const sheet = new ServerStyleSheet();
+let html = "";
+let styledCss = "";
+try {
+  html = renderToString(
+    sheet.collectStyles(
+      React.createElement(Template, { ...route.data, shell: route.shell })
+    )
+  );
+  styledCss = sheet
+    .getStyleTags()
+    .replace(/<style[^>]*>/g, "")
+    .replace(/<\/style>/g, "");
+} finally {
+  sheet.seal();
+}
+
+const title = /inkofpixel/i.test(route.meta.title)
+  ? route.meta.title
+  : `${route.meta.title} | ${SITE.title}`;
+const description = route.meta.description || SITE.description;
+const canonical = `${SITE.origin}${route.path === "/" ? "" : route.path}`;
+const ogImage = route.meta.image
+  ? route.meta.image.startsWith("http")
+    ? route.meta.image
+    : `${SITE.origin}${route.meta.image}`
+  : undefined;
+---
+<!doctype html>
+<html lang={route.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={SITE.keywords} />
+    <link rel="stylesheet" href="https://use.typekit.net/zrn4omm.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500"
+    />
+    <style set:html={styledCss} />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {route.pageLocales.map((pageLocale) => (
+      <link
+        rel="alternate"
+        hrefLang={pageLocale.code}
+        href={`${SITE.origin}${pageLocale.url}`}
+      />
+    ))}
+    <link rel="canonical" href={canonical} />
+  </head>
+  <body set:html={html} />
+</html>

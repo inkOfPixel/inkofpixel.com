@@ -1,32 +1,25 @@
 import React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
+import styled from "types/styled-components";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  shell: PageShell;
 }
 
-const PrivacyPage = ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.locales.find(
-    (locale) => locale.language === pathContext.locale
+const PrivacyPage = ({ page, shell }: IProps) => {
+  const currentPage = page.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path,
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
       <Wrapper>
         <Spacer />
@@ -42,34 +35,6 @@ const PrivacyPage = ({ data, pathContext }: IProps) => {
     </Page>
   );
 };
-
-export const query = graphql`
-  query PrivacyPageQuery($name: String!) {
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          seo {
-            description
-            image
-          }
-          intro
-          subtitle
-        }
-      }
-    }
-    allIubendaDocument {
-      edges {
-        node {
-          content
-        }
-      }
-    }
-  }
-`;
 
 const Spacer = styled.div`
   width: 100%;

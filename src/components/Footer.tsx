@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
 import Logo from "components/Logo";

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent } from "react";
 import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
-import TextareaAutosize from "react-autosize-textarea";
+import TextareaAutosize from "react-textarea-autosize";
 
 interface IProps {}
 
@@ -17,16 +17,11 @@ interface IState {
   [name: string]: any;
 }
 
-function encode(data: any) {
-  return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-    .join("&");
-}
-
 class ContactForm extends React.Component<IProps, IState> {
   state = {
     state: FormState.Normal,
-    "bot-field": ""
+    "bot-field": "",
+    formStart: Date.now()
   };
 
   feedbackRef = React.createRef<HTMLElement>();
@@ -37,18 +32,18 @@ class ContactForm extends React.Component<IProps, IState> {
 
   handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const form = event.target;
     try {
       this.setState({ state: FormState.Submitting });
       const { state: ignoreState, ...formData } = this.state;
-      await fetch("/?no-cache=1", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({
-          "form-name": form.getAttribute("name"),
-          ...formData
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
       });
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.error || "Request failed");
+      }
       this.setState({ state: FormState.Success }, () => {
         this.feedbackRef.current && this.feedbackRef.current.scrollIntoView();
       });
@@ -105,17 +100,15 @@ class ContactForm extends React.Component<IProps, IState> {
       <Form
         name="contact"
         method="post"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
         onSubmit={this.handleSubmit}
       >
-        <input type="hidden" name="form-name" value="contact" />
         <FormField className="hidden">
           <label>
             Don’t fill this out if you're human:{" "}
             <input name="bot-field" onChange={this.handleChange} />
           </label>
         </FormField>
+        <input type="hidden" name="formStart" value={this.state.formStart} />
         <FormField className="half">
           <label htmlFor="name">
             <FormattedMessage id="contacts.form.name" defaultMessage="Name" />

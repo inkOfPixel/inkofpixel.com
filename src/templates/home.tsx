@@ -1,39 +1,32 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import Img from "gatsby-image";
+import Link from "components/Link";
+import Image from "components/Image";
 import styled from "types/styled-components";
 import { FormattedMessage } from "react-intl";
 import Wrapper from "components/Wrapper";
 import Splash from "components/Splash";
 import Page from "components/Page";
-import { IPageLocale } from "types";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  featuredProjects: any[];
+  shell: PageShell;
 }
 
 export default class Home extends React.Component<IProps> {
   render() {
-    const { data, pathContext } = this.props;
-    const home = data.page;
-    const currentHome = home.fields.locales.find(
-      locale => locale.language === pathContext.locale
+    const { page, featuredProjects, shell } = this.props;
+    const currentHome = page.locales.find(
+      (locale: any) => locale.language === shell.locale
     );
-    const { featuredProjects } = home.fields;
     return (
       <Page
-        title={currentHome.title}
-        description={currentHome.seo.description}
-        localeCode={pathContext.locale}
-        pageLocales={data.page.fields.locales.map(
-          (locale: any): IPageLocale => ({
-            code: locale.language,
-            url: locale.path
-          })
-        )}
+        localeCode={shell.locale}
+        defaultLocaleCode={shell.defaultLocale}
+        pageLocales={shell.pageLocales}
+        navigationLinks={shell.navigationLinks}
+        cookiePolicyPath={shell.cookiePolicyPath}
       >
         <Section className="Hero">
           <Wrapper>
@@ -113,19 +106,18 @@ export default class Home extends React.Component<IProps> {
             </SectionTitle>
             <DisplayText>{currentHome.projects.title}</DisplayText>
             <ul className="featuredProjectsList">
-              {featuredProjects.map(item => {
+              {featuredProjects.map((item) => {
                 const frontmatter = item.fields.frontmatter;
                 const currentItem = frontmatter.locales.find(
-                  locale => locale.language === pathContext.locale
+                  (locale: any) => locale.language === shell.locale
                 );
                 return (
                   <li key={frontmatter.title}>
                     <Link to={currentItem.path}>
                       <div className="content">
-                        <Img
-                          fluid={
-                            currentItem.featuredImage.childImageSharp.fluid
-                          }
+                        <Image
+                          src={currentItem.featuredImage}
+                          alt={frontmatter.title}
                         />
                         <div className="info">
                           <p className="title">{frontmatter.title}</p>
@@ -172,61 +164,6 @@ export default class Home extends React.Component<IProps> {
     );
   }
 }
-
-export const query = graphql`
-  query HomeQuery($name: String!) {
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          seo {
-            description
-          }
-          hero {
-            title
-            subtitle
-          }
-          services {
-            groupTitle
-            groupDescription
-            serviceList {
-              title
-              image
-              description
-              link
-            }
-          }
-          projects {
-            title
-            description
-          }
-        }
-        featuredProjects {
-          fields {
-            frontmatter {
-              title
-              locales {
-                language
-                path
-                excerpt
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const Slogan = styled.h2`
   font-size: 46px;

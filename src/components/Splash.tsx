@@ -50,13 +50,22 @@ const borderbl = keyframes`
   75% { border-bottom-left-radius: 45%;}
 `;
 
-const Splash = styled<IProps>(({ children, className }) => (
+const SplashBase = ({
+  className,
+  children
+}: Pick<IProps, "className"> & { children?: React.ReactNode }) => (
   <div className={className}>
     <div className="content">{children}</div>
   </div>
-)).attrs({
-  speed: () => `${random(5, 12).toFixed(2)}s`
-})`
+);
+
+const Splash = styled(SplashBase)
+  .withConfig({
+    shouldForwardProp: (prop) => !["speed", "size", "color"].includes(prop)
+  })
+  .attrs({
+    speed: () => `${random(5, 12).toFixed(2)}s`
+  })<IProps>`
   position: relative;
   width: ${(props: IProps) => props.size};
   height: ${props => props.size};

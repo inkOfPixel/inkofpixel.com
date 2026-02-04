@@ -1,37 +1,35 @@
 import React from "react";
-import { graphql } from "gatsby";
 import styled from "types/styled-components";
-import { kebabCase } from "lodash";
+import kebabCase from "lodash/kebabCase";
 import Splash from "components/Splash";
 import Markdown from "react-markdown";
 import { Check } from "react-feather";
 import Page from "components/Page";
 import Wrapper from "components/Wrapper";
 import Contacts from "components/Contacts";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  contacts: any;
+  contactsPage?: any;
+  shell: PageShell;
 }
 
-const ServicesPage = ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.locales.find(
-    locale => locale.language === pathContext.locale
+const ServicesPage = ({ page, contacts, contactsPage, shell }: IProps) => {
+  const currentPage = page.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
+  const localizedContacts = contactsPage
+    ? contactsPage.locales.find((locale: any) => locale.language === shell.locale)
+    : undefined;
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
       <Wrapper>
         <Spacer />
@@ -56,7 +54,9 @@ const ServicesPage = ({ data, pathContext }: IProps) => {
               </ServiceIcon>
               <ServiceText>
                 <ServiceTitle className="title">{item.title}</ServiceTitle>
-                <RichText source={item.description} />
+                <RichText>
+                  <Markdown>{item.description}</Markdown>
+                </RichText>
                 <ServicePoints>
                   {item.points &&
                     item.points.map((subitem, pointIndex) => (
@@ -81,7 +81,9 @@ const ServicesPage = ({ data, pathContext }: IProps) => {
                           />
                         </CheckContainer>
                         <PointTitle>
-                          <RichText source={subitem.title} />
+                          <RichText>
+                            <Markdown>{subitem.title}</Markdown>
+                          </RichText>
                         </PointTitle>
                       </Point>
                     ))}
@@ -90,40 +92,13 @@ const ServicesPage = ({ data, pathContext }: IProps) => {
             </Service>
           ))}
         </ServiceList>
-        <Contacts />
+        {localizedContacts && (
+          <Contacts contacts={contacts} section={localizedContacts} />
+        )}
       </Wrapper>
     </Page>
   );
 };
-
-export const query = graphql`
-  query ServicesPageQuery($name: String!) {
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          seo {
-            description
-            image
-          }
-          intro
-          subtitle
-          servicesList {
-            title
-            image
-            description
-            points {
-              title
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const Spacer = styled.div`
   width: 100%;
@@ -240,7 +215,7 @@ const ServiceTitle = styled.h3`
   padding-bottom: 20px;
   letter-spacing: 0.04em;
 `;
-const RichText = styled(Markdown)`
+const RichText = styled.div`
   font-size: 14px;
   line-height: 1.8em;
   color: ${props => props.theme.colors.gray};

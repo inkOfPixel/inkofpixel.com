@@ -1,57 +1,57 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
-import Img from "gatsby-image";
+import Link from "components/Link";
+import Image from "components/Image";
 import styled from "types/styled-components";
 import { FormattedMessage, FormattedDate } from "react-intl";
 import Page from "components/Page";
-import { IPageLocale } from "types/index";
+import { PageShell } from "types/shell";
 import Wrapper from "components/Wrapper";
-import Masonry from "react-masonry-component";
+import Masonry from "react-masonry-css";
 
 interface IProps {
-  data: any;
-  pathContext: {
-    locale: string;
-  };
+  page: any;
+  posts: any[];
+  shell: PageShell;
 }
 
-const masonryOptions = {
-  transitionDuration: 0
+const masonryBreakpoints = {
+  default: 2,
+  800: 1
 };
 
-const BlogPage = ({ data, pathContext }: IProps) => {
-  const currentPage = data.page.fields.locales.find(
-    locale => locale.language === pathContext.locale
+const BlogPage = ({ page, posts, shell }: IProps) => {
+  const currentPage = page.locales.find(
+    (locale: any) => locale.language === shell.locale
   );
-  const posts = data.posts.edges.map(({ node }) => node.fields.frontmatter);
   return (
     <Page
-      title={currentPage.title}
-      description={currentPage.seo.description}
-      localeCode={pathContext.locale}
-      pageLocales={data.page.fields.locales.map(
-        (locale: any): IPageLocale => ({
-          code: locale.language,
-          url: locale.path
-        })
-      )}
+      localeCode={shell.locale}
+      defaultLocaleCode={shell.defaultLocale}
+      pageLocales={shell.pageLocales}
+      navigationLinks={shell.navigationLinks}
+      cookiePolicyPath={shell.cookiePolicyPath}
     >
       <Wrapper>
         <Spacer />
         <PageTitle>{currentPage.title}</PageTitle>
         <Subtitle>{currentPage.subtitle}</Subtitle>
         <Container>
-          <Masonry elementType={"ul"} options={masonryOptions}>
-            {posts.map(post => {
-              const currentItem = post.locales.find(
-                locale => locale.language === pathContext.locale
+          <Masonry
+            breakpointCols={masonryBreakpoints}
+            className="masonry-grid"
+            columnClassName="masonry-grid-column"
+          >
+            {posts.map((post) => {
+              const currentItem = post.fields.frontmatter.locales.find(
+                (locale: any) => locale.language === shell.locale
               );
               return (
                 <PostListItem key={currentItem.path}>
                   <PostFeaturedImageWrapper>
                     <Link to={currentItem.path}>
-                      <Img
-                        fluid={currentItem.featuredImage.childImageSharp.fluid}
+                      <Image
+                        src={currentItem.featuredImage}
+                        alt={currentItem.title}
                       />
                     </Link>
                   </PostFeaturedImageWrapper>
@@ -61,11 +61,11 @@ const BlogPage = ({ data, pathContext }: IProps) => {
                         day="2-digit"
                         month="long"
                         year="numeric"
-                        value={post.date}
+                        value={new Date(post.fields.frontmatter.date)}
                       />
                     </PostDate>
                     <PostTitle>{currentItem.title}</PostTitle>
-                    <PostAuthor>{post.author}</PostAuthor>
+                    <PostAuthor>{post.fields.frontmatter.author}</PostAuthor>
                     <PostExcerpt>{currentItem.excerpt}</PostExcerpt>
                     <PostLink>
                       <Link to={currentItem.path}>
@@ -85,59 +85,6 @@ const BlogPage = ({ data, pathContext }: IProps) => {
     </Page>
   );
 };
-
-export const query = graphql`
-  query BlogPageQuery($name: String!) {
-    page: staticPagesJson(fields: { name: { eq: $name } }) {
-      fields {
-        name
-        locales {
-          language
-          path
-          title
-          subtitle
-          seo {
-            description
-            image
-          }
-        }
-      }
-    }
-    posts: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        fields: {
-          collection: { eq: "posts" }
-          frontmatter: { published: { eq: true } }
-        }
-      }
-    ) {
-      edges {
-        node {
-          fields {
-            frontmatter {
-              date
-              author
-              locales {
-                title
-                language
-                path
-                excerpt
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 1200, maxHeight: 600) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const PageTitle = styled.h1`
   font-size: 14px;
@@ -195,6 +142,15 @@ const Container = styled.div`
     width: 100%;
     margin: 0;
   }
+  .masonry-grid {
+    display: flex;
+    margin-left: 0;
+    width: auto;
+  }
+  .masonry-grid-column {
+    padding-left: 0;
+    background-clip: padding-box;
+  }
 `;
 
 const PostListItem = styled.li`
@@ -202,7 +158,7 @@ const PostListItem = styled.li`
   flex-direction: column;
   padding: 60px;
   box-sizing: border-box;
-  width: 50%;
+  width: 100%;
   @media (max-width: 1260px) {
     padding: 40px;
   }
