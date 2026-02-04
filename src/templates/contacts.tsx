@@ -26,6 +26,7 @@ const ContactsPage = ({ page, contacts, shell, flash }: IProps) => {
       navigationLinks={shell.navigationLinks}
       cookiePolicyPath={shell.cookiePolicyPath}
     >
+      
       <Wrapper>
         <Spacer />
         <FeedbackContainer
