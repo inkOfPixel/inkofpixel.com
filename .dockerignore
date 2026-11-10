@@ -1,0 +1,9 @@
+.git
+.github
+.claude
+.kamal
+node_modules
+dist
+.build
+config
+*.md

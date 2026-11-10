@@ -1,0 +1,40 @@
+# Kamal deploy: a small Caddy container with the built site, behind kamal-proxy.
+service: inkofpixel
+image: inkofpixel/inkofpixel
+
+servers:
+  web:
+    - 157.180.16.51 # multi-apps-2, shared with other projects
+
+proxy:
+  ssl: true
+  hosts:
+    - inkofpixel.com
+    - www.inkofpixel.com
+  app_port: 80
+  healthcheck:
+    path: /up
+
+registry:
+  server: localhost:5555
+
+# Contact form: messages are forwarded by email through SMTP (AWS SES).
+env:
+  clear:
+    CONTACT_TO: hello@inkofpixel.com
+    CONTACT_FROM: "inkOfPixel <no-reply@inkofpixel.com>" # same SES sender domain as the other apps
+    SMTP_HOST: email-smtp.us-east-2.amazonaws.com
+    SMTP_PORT: 587
+  secret:
+    - SMTP_USERNAME
+    - SMTP_PASSWORD
+
+aliases:
+  shell: app exec --interactive --reuse "sh"
+  logs: app logs -f
+
+builder:
+  arch: amd64
+  cache:
+    type: gha
+    options: mode=max

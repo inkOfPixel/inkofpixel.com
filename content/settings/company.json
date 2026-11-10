@@ -1,0 +1,24 @@
+{
+  "name": "inkOfPixel Srl",
+  "vat": "09287730965",
+  "registry": "MI-2081233",
+  "shareCapital": 10200,
+  "offices": [
+    {
+      "kind": "operating",
+      "city": "Treviso",
+      "lines": [
+        "Via Leonardo da Vinci 2",
+        "31010 Godega di Sant'Urbano (TV)"
+      ]
+    },
+    {
+      "kind": "legal",
+      "city": "Milano",
+      "lines": [
+        "Piazza Castello 26",
+        "20121 Milano (MI)"
+      ]
+    }
+  ]
+}
