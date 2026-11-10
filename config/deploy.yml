@@ -11,6 +11,7 @@ proxy:
   hosts:
     - inkofpixel.com
     - www.inkofpixel.com
+    - inkofpixel.deploy.ink # preview address, usable before the main domain points here
   app_port: 80
   healthcheck:
     path: /up
@@ -25,6 +26,7 @@ env:
     CONTACT_FROM: "inkOfPixel <no-reply@inkofpixel.com>" # same SES sender domain as the other apps
     SMTP_HOST: email-smtp.us-east-2.amazonaws.com
     SMTP_PORT: 587
+    SITE_HOSTS: inkofpixel.com,www.inkofpixel.com,inkofpixel.deploy.ink
   secret:
     - SMTP_USERNAME
     - SMTP_PASSWORD
@@ -35,6 +37,9 @@ aliases:
 
 builder:
   arch: amd64
+<% if ENV["GITHUB_ACTIONS"] %>
+  # The GitHub Actions build cache only exists there; a deploy from a laptop builds without it.
   cache:
     type: gha
     options: mode=max
+<% end %>
