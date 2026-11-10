@@ -47,6 +47,7 @@ function navLinks(ctx) {
   return [
     ['services', url(lang, 'services')],
     ['projects', url(lang, 'projects')],
+    ['products', `${url(lang)}#${t.tags.products}`],
     ['about', `${url(lang)}#${t.tags.about}`],
     ['blog', url(lang, 'blog')],
   ].map(([key, href]) => ({ key, href, label: t.nav[key], current: page.active === key }));

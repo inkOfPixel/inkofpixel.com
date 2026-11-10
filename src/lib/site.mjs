@@ -43,7 +43,7 @@ export const T = {
   en: {
     skip: 'Skip to content',
     homeLabel: 'inkOfPixel, home',
-    nav: { services: 'Services', projects: 'Projects', about: 'About', blog: 'Blog', contacts: 'Contacts' },
+    nav: { services: 'Services', projects: 'Projects', products: 'Products', about: 'About', blog: 'Blog', contacts: 'Contacts' },
     navLabel: 'Main',
     menu: 'Menu',
     close: 'Close',
@@ -96,7 +96,7 @@ export const T = {
   it: {
     skip: 'Salta al contenuto',
     homeLabel: 'inkOfPixel, home',
-    nav: { services: 'Servizi', projects: 'Progetti', about: 'Chi siamo', blog: 'Blog', contacts: 'Contatti' },
+    nav: { services: 'Servizi', projects: 'Progetti', products: 'Prodotti', about: 'Chi siamo', blog: 'Blog', contacts: 'Contatti' },
     navLabel: 'Principale',
     menu: 'Menu',
     close: 'Chiudi',

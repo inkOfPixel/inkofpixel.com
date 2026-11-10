@@ -173,7 +173,7 @@ button { font: inherit; }
 .menu-btn { display: none; }
 .burger { display: flex; flex-direction: column; gap: 5px; }
 .burger i { display: block; width: 18px; height: 2px; background: var(--bg); }
-@media (max-width: 860px) {
+@media (max-width: 940px) {
   .nav, .nav-cta { display: none; }
   .menu-btn { display: inline-flex; }
 }
