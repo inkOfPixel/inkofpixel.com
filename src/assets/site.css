@@ -280,6 +280,17 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .rows { display: flex; flex-direction: column; gap: 10px; }
 .cards--stagger > :nth-child(3n + 2) { margin-top: clamp(0px, 5vw, 72px); }
 
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px; }
+.product { height: 100%; }
+.product-in { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 14px; height: 100%; min-height: 300px; padding: clamp(22px, 2.4vw, 32px); }
+.product-top, .product-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.product .tag { color: #9a9a9a; }
+.product-name { margin-top: 18px; font-size: clamp(34px, 3.6vw, 52px); font-weight: 500; line-height: 1; letter-spacing: -.04em; transition: transform .6s var(--ease); }
+.product:hover .product-name { transform: translateX(8px); }
+.product .row-text { flex: 1 1 auto; max-width: none; }
+.product-foot { margin-top: 8px; }
+.product-url { font-family: var(--mono); font-size: 14px; }
+
 .about { gap: clamp(28px, 3.4vw, 48px); }
 .statement { view-timeline-name: --about; max-width: 1180px; font-size: clamp(28px, 4.4vw, 64px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; text-wrap: pretty; }
 .about-grid { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px clamp(32px, 6vw, 96px); margin-top: clamp(8px, 2vw, 24px); }

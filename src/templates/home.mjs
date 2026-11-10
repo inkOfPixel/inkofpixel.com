@@ -106,6 +106,33 @@ function clients(ctx, home) {
 </section>`;
 }
 
+// Software we build and run ourselves. Each tile fills with ink like the service rows.
+function products(ctx, home) {
+  const { t } = ctx;
+  const tiles = home.products.items
+    .map(
+      (product) => `<a class="row product rv" href="${esc(product.url)}" rel="noopener" data-ink-origin>
+      <span class="row-in product-in">
+        <span class="product-top"><span class="tag">// ${esc(product.kind)}</span><span class="tag">${t.since} ${esc(product.since)}</span></span>
+        <span class="product-name">${esc(product.name)}</span>
+        <span class="row-text">${esc(product.description)}</span>
+        <span class="product-foot"><span class="product-url">${esc(product.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</span><span class="go" aria-hidden="true">${ARROW}</span></span>
+      </span>
+    </a>`
+    )
+    .join('\n    ');
+  return `<section class="section" id="${t.tags.products}">
+  <div class="section-head rv">
+    <div class="section-head-main">${tag(t.tags.products)}${sectionTitle(t.productsTitle, 0)}</div>
+    <p class="section-lead">${esc(home.products.lead)}</p>
+  </div>
+  <div class="products">
+    ${tiles}
+  </div>
+  <span class="tag tag--end rv">&lt;/${t.tags.products}&gt;</span>
+</section>`;
+}
+
 function about(ctx, home) {
   const { t } = ctx;
   const a = home.about;
@@ -147,6 +174,7 @@ ${marquee(ctx, home.clients.marquee)}
   <div class="dots-soft dots--fade-both" aria-hidden="true"></div>
   ${services(ctx, home)}
   ${clients(ctx, home)}
+  ${home.products ? products(ctx, home) : ''}
   ${about(ctx, home)}
 </div>`;
   return document(ctx, { main });

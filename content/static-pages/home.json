@@ -90,6 +90,53 @@
           }
         ]
       },
+      "products": {
+        "lead": "We don't only work for clients: we also design, launch and maintain software of our own.",
+        "items": [
+          {
+            "name": "YSMS",
+            "kind": "Shopify app",
+            "since": "2020",
+            "url": "https://ysms.me",
+            "description": "Text marketing for Shopify stores: campaigns and advanced filters to reach the right audience."
+          },
+          {
+            "name": "Amplius",
+            "kind": "Shopify app",
+            "since": "2022",
+            "url": "https://amplius.app",
+            "description": "Custom fields for Shopify customers, stored in metafields and editable by customers themselves."
+          },
+          {
+            "name": "Sortby",
+            "kind": "Shopify app",
+            "since": "2025",
+            "url": "https://sortby.app",
+            "description": "Sorts the products of a collection with rules on metafields, inventory, prices and dates, every night or on demand."
+          },
+          {
+            "name": "Valuta EX",
+            "kind": "Web and mobile app",
+            "since": "2016",
+            "url": "https://valuta.exchange",
+            "description": "A simple, immediate currency converter with live rates for over 160 currencies and more than 25 cryptocurrencies."
+          },
+          {
+            "name": "Pienotto",
+            "kind": "Web app",
+            "since": "2026",
+            "url": "https://pienotto.it",
+            "description": "Fuel prices for every service station in Italy, on a map or as a list, with price trends."
+          },
+          {
+            "name": "Gnam",
+            "kind": "Web app",
+            "since": "2026",
+            "url": "https://gnam.menu",
+            "description": "Group orders from a restaurant starting from its menu: one link to share, no account, a single summary."
+          }
+        ]
+      },
       "about": {
         "statement": "We are a software company. We build innovative digital solutions and never stop learning. If you're looking for new ideas and talented people to bring them to life, this is the right place.",
         "principles": [
@@ -209,6 +256,53 @@
             "image": "/assets/stimm-photo.jpg",
             "alt": "STIMM: due modelle in un vecchio archivio",
             "project": "stimm"
+          }
+        ]
+      },
+      "products": {
+        "lead": "Non lavoriamo solo per i clienti: progettiamo, lanciamo e manteniamo anche software nostro.",
+        "items": [
+          {
+            "name": "YSMS",
+            "kind": "App Shopify",
+            "since": "2020",
+            "url": "https://ysms.me",
+            "description": "SMS marketing per gli store Shopify: campagne e filtri avanzati per parlare al pubblico giusto."
+          },
+          {
+            "name": "Amplius",
+            "kind": "App Shopify",
+            "since": "2022",
+            "url": "https://amplius.app",
+            "description": "Campi personalizzati per i clienti Shopify, salvati nei metafield e modificabili anche dal cliente."
+          },
+          {
+            "name": "Sortby",
+            "kind": "App Shopify",
+            "since": "2025",
+            "url": "https://sortby.app",
+            "description": "Ordina i prodotti di una collezione con regole su metafield, giacenze, prezzi e date, ogni notte o quando vuoi."
+          },
+          {
+            "name": "Valuta EX",
+            "kind": "Web e app mobile",
+            "since": "2016",
+            "url": "https://valuta.exchange",
+            "description": "Convertitore di valute semplice e immediato, con tassi aggiornati per oltre 160 valute e più di 25 criptovalute."
+          },
+          {
+            "name": "Pienotto",
+            "kind": "Web app",
+            "since": "2026",
+            "url": "https://pienotto.it",
+            "description": "I prezzi dei carburanti di ogni distributore d'Italia, su mappa o in elenco, con l'andamento nel tempo."
+          },
+          {
+            "name": "Gnam",
+            "kind": "Web app",
+            "since": "2026",
+            "url": "https://gnam.menu",
+            "description": "Ordini di gruppo dal locale partendo dal suo menu: un link da condividere, nessun account, un solo riepilogo."
           }
         ]
       },
