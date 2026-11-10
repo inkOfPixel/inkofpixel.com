@@ -9,12 +9,16 @@ locales:
     seoTitle: "SIXS"
     seoDescription: "Since 2024 we have been building the Shopify store of SIXS, technical sportswear for motorcycling and cycling: size calculator, store locator and two stores for Italy and Poland."
     excerpt: "Since 2024 we have been building the Shopify store of SIXS, technical sportswear for motorcycling and cycling: size calculator, store locator and two stores for Italy and Poland."
+    featuredImage: /assets/sixs-photo.jpg
+    heroImage: /assets/sixs-photo.jpg
     body: |
       SIXS makes technical sportswear: base layers and protective clothing for motorcycling, cycling and outdoor sports. Since 2024 we have been building and evolving their Shopify store.
 
       ## A custom theme
 
       We built the theme on our own base, derived from Shopify's Dawn: Liquid, Alpine.js, Tailwind CSS and TypeScript, with a cart written in React. It serves two stores, one of them dedicated to Poland.
+
+      ![SIXS protective clothing for motorcycling](/assets/sixs-rider.jpg)
 
       ## The right size
 
@@ -23,6 +27,8 @@ locales:
       ## Finding a shop
 
       SIXS is also sold by retailers. We built the store locator, with a map, address search and directions, and a separate page for distributors.
+
+      ![SIXS clothing for cycling](/assets/sixs-cycling.jpg)
 
       ## Two warehouses
 
@@ -40,12 +46,16 @@ locales:
     seoTitle: "SIXS"
     seoDescription: "Dal 2024 sviluppiamo l'e-commerce Shopify di SIXS, abbigliamento tecnico sportivo per moto e ciclismo: calcolatore taglie, store locator e due store per Italia e Polonia."
     excerpt: "Dal 2024 sviluppiamo l'e-commerce Shopify di SIXS, abbigliamento tecnico sportivo per moto e ciclismo: calcolatore taglie, store locator e due store per Italia e Polonia."
+    featuredImage: /assets/sixs-photo.jpg
+    heroImage: /assets/sixs-photo.jpg
     body: |
       SIXS produce abbigliamento tecnico sportivo: intimo e protezioni per moto, ciclismo e sport outdoor. Dal 2024 sviluppiamo e facciamo evolvere il loro e-commerce Shopify.
 
       ## Un tema su misura
 
       Abbiamo costruito il tema sulla nostra base, derivata da Dawn di Shopify: Liquid, Alpine.js, Tailwind CSS e TypeScript, con un carrello scritto in React. Serve due store, uno dei quali dedicato alla Polonia.
+
+      ![Abbigliamento protettivo SIXS per la moto](/assets/sixs-rider.jpg)
 
       ## La taglia giusta
 
@@ -54,6 +64,8 @@ locales:
       ## Trovare un negozio
 
       SIXS è venduto anche dai rivenditori. Abbiamo realizzato lo store locator, con mappa, ricerca per indirizzo e indicazioni stradali, e una pagina separata per i distributori.
+
+      ![Abbigliamento SIXS per il ciclismo](/assets/sixs-cycling.jpg)
 
       ## Due magazzini
 

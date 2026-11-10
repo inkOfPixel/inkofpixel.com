@@ -9,8 +9,8 @@ locales:
     seoTitle: "Acetaia Guerzoni"
     seoDescription: "For Acetaia Guerzoni, makers of organic and biodynamic Balsamic Vinegar of Modena, we set up the Shopify store in 2023 and added product pages that explain each vinegar."
     excerpt: "For Acetaia Guerzoni, makers of organic and biodynamic Balsamic Vinegar of Modena, we set up the Shopify store in 2023 and added product pages that explain each vinegar."
-    featuredImage: /assets/guerzoni-home.jpg
-    heroImage: /assets/guerzoni-home.jpg
+    featuredImage: /assets/acetaia-guerzoni-photo.jpg
+    heroImage: /assets/acetaia-guerzoni-photo.jpg
     body: |
       Guerzoni makes organic and biodynamic Balsamic Vinegar of Modena, the work of three generations of farmers. In 2023 we set up their Shopify store.
 
@@ -34,8 +34,8 @@ locales:
     seoTitle: "Acetaia Guerzoni"
     seoDescription: "Per Acetaia Guerzoni, produttori di Aceto Balsamico di Modena biologico e biodinamico, nel 2023 abbiamo avviato lo store Shopify con pagine prodotto che spiegano ogni aceto."
     excerpt: "Per Acetaia Guerzoni, produttori di Aceto Balsamico di Modena biologico e biodinamico, nel 2023 abbiamo avviato lo store Shopify con pagine prodotto che spiegano ogni aceto."
-    featuredImage: /assets/guerzoni-home.jpg
-    heroImage: /assets/guerzoni-home.jpg
+    featuredImage: /assets/acetaia-guerzoni-photo.jpg
+    heroImage: /assets/acetaia-guerzoni-photo.jpg
     body: |
       Guerzoni produce Aceto Balsamico di Modena biologico e biodinamico, frutto del lavoro di tre generazioni di agricoltori. Nel 2023 abbiamo avviato il loro store Shopify.
 

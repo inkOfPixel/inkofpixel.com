@@ -178,9 +178,9 @@ export function contact(ctx, { asPage = false, text } = {}) {
   const h = asPage ? 'h1' : 'h2';
   return `<section class="contact${asPage ? ' contact--page' : ''}" id="${t.tags.contacts}" data-pool>
   ${contactInk()}
-  <div class="dots dots--fade-top" aria-hidden="true"></div>
-  <div class="dots-lit" aria-hidden="true"></div>
   <div class="blend contact-in">
+    <div class="dots dots--fade-top" aria-hidden="true"></div>
+    <div class="dots-lit" aria-hidden="true"></div>
     ${asPage ? header(ctx) : ''}
     <div class="contact-main${asPage ? '' : ' rv'}">
       ${tag(t.tags.contacts)}

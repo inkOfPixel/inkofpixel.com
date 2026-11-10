@@ -9,8 +9,8 @@ locales:
     seoTitle: "Acetaia Giusti"
     seoDescription: "Since 2023 we have been looking after the Shopify stores of Acetaia Giusti, makers of Balsamic Vinegar of Modena since 1605: two stores, personalised gifts and accessibility."
     excerpt: "Since 2023 we have been looking after the Shopify stores of Acetaia Giusti, makers of Balsamic Vinegar of Modena since 1605: two stores, personalised gifts and accessibility."
-    featuredImage: /assets/giusti-home.jpg
-    heroImage: /assets/giusti-home.jpg
+    featuredImage: /assets/acetaia-giusti-photo.jpg
+    heroImage: /assets/acetaia-giusti-photo.jpg
     body: |
       Giusti has been making Balsamic Vinegar of Modena since 1605. Since 2023 we have been looking after their online stores on Shopify, evolving the theme together with their team.
 
@@ -48,8 +48,8 @@ locales:
     seoTitle: "Acetaia Giusti"
     seoDescription: "Dal 2023 seguiamo gli store Shopify di Acetaia Giusti, produttori di Aceto Balsamico di Modena dal 1605: due store, regali personalizzati e accessibilità."
     excerpt: "Dal 2023 seguiamo gli store Shopify di Acetaia Giusti, produttori di Aceto Balsamico di Modena dal 1605: due store, regali personalizzati e accessibilità."
-    featuredImage: /assets/giusti-home.jpg
-    heroImage: /assets/giusti-home.jpg
+    featuredImage: /assets/acetaia-giusti-photo.jpg
+    heroImage: /assets/acetaia-giusti-photo.jpg
     body: |
       Giusti produce Aceto Balsamico di Modena dal 1605. Dal 2023 seguiamo i loro store online su Shopify, facendo evolvere il tema insieme al loro team.
 

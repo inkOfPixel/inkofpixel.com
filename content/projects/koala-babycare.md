@@ -9,8 +9,8 @@ locales:
     seoTitle: "Koala Babycare"
     seoDescription: "From 2021 to 2023 we built and grew the Shopify theme of Koala Babycare, products for mums and babies: bundles, a custom cart and pages that explain each product."
     excerpt: "From 2021 to 2023 we built and grew the Shopify theme of Koala Babycare, products for mums and babies: bundles, a custom cart and pages that explain each product."
-    featuredImage: /assets/koala-home.jpg
-    heroImage: /assets/koala-home.jpg
+    featuredImage: /assets/koala-babycare-photo.jpg
+    heroImage: /assets/koala-babycare-photo.jpg
     body: |
       Koala Babycare designs products that make life easier for mums and babies: baby carriers, pillows, muslins. From 2021 to 2023 we built their Shopify theme and kept it growing.
 
@@ -44,8 +44,8 @@ locales:
     seoTitle: "Koala Babycare"
     seoDescription: "Dal 2021 al 2023 abbiamo costruito e fatto crescere il tema Shopify di Koala Babycare, prodotti per mamme e bambini: bundle, carrello su misura e pagine che spiegano ogni prodotto."
     excerpt: "Dal 2021 al 2023 abbiamo costruito e fatto crescere il tema Shopify di Koala Babycare, prodotti per mamme e bambini: bundle, carrello su misura e pagine che spiegano ogni prodotto."
-    featuredImage: /assets/koala-home.jpg
-    heroImage: /assets/koala-home.jpg
+    featuredImage: /assets/koala-babycare-photo.jpg
+    heroImage: /assets/koala-babycare-photo.jpg
     body: |
       Koala Babycare progetta prodotti che semplificano la vita di mamme e bambini: marsupi, cuscini, mussole. Dal 2021 al 2023 abbiamo costruito il loro tema Shopify e lo abbiamo fatto crescere.
 

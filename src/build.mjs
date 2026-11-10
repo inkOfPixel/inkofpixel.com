@@ -14,7 +14,10 @@ import { contactsPage, legalPage, notFoundPage } from './templates/pages.mjs';
 import { projectPage, projectsPage } from './templates/projects.mjs';
 import { servicesPage } from './templates/services.mjs';
 
-const DIST = path.join(ROOT, 'dist');
+const OUT = path.join(ROOT, 'dist');
+// The site is built in a scratch folder and swapped in at the end, so a half-built site is
+// never served and two builds running at once (dev server and a manual build) cannot clash.
+const DIST = path.join(ROOT, `.build/dist-${process.pid}`);
 const IUBENDA_POLICY_ID = '57888804';
 const started = Date.now();
 
@@ -31,6 +34,7 @@ const hash = (content) => crypto.createHash('sha256').update(content).digest('he
 
 // ---------------------------------------------------------------- assets
 fs.rmSync(DIST, { recursive: true, force: true });
+fs.mkdirSync(DIST, { recursive: true });
 fs.cpSync(path.join(ROOT, 'static'), DIST, { recursive: true });
 
 // Fonts are served from our own domain: no third-party request, no cookie banner needed.
@@ -229,5 +233,19 @@ write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml
 // Old addresses that changed. The web server (Caddyfile) imports this file.
 fs.mkdirSync(path.join(ROOT, '.build'), { recursive: true });
 fs.writeFileSync(path.join(ROOT, '.build/redirects.caddy'), redirects.map(([from, to]) => `redir "${from}" ${to} 301`).join('\n') + '\n');
+
+// Swap the finished build in. If another build swaps at the same moment, try again.
+for (let attempt = 1; ; attempt += 1) {
+  try {
+    fs.rmSync(OUT, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+    fs.renameSync(DIST, OUT);
+    break;
+  } catch (error) {
+    if (attempt === 5) {
+      fs.rmSync(DIST, { recursive: true, force: true });
+      throw error;
+    }
+  }
+}
 
 console.log(`Built ${pages.length} pages in ${Date.now() - started} ms -> dist/`);

@@ -9,8 +9,8 @@ locales:
     seoTitle: "Park Associati"
     seoDescription: "Since 2021 we have been developing the website of Park Associati, an architecture practice in Milan: a project archive with search and filters, in Italian and English."
     excerpt: "Since 2021 we have been developing the website of Park Associati, an architecture practice in Milan: a project archive with search and filters, in Italian and English."
-    featuredImage: /assets/park-associati-home.jpg
-    heroImage: /assets/park-associati-home.jpg
+    featuredImage: /assets/park-associati-photo.jpg
+    heroImage: /assets/park-associati-photo.jpg
     body: |
       Park Associati is an architecture practice based in Milan. We have been developing their website since 2021, and in 2025 we rebuilt it from scratch.
 
@@ -48,8 +48,8 @@ locales:
     seoTitle: "Park Associati"
     seoDescription: "Dal 2021 sviluppiamo il sito di Park Associati, studio di architettura di Milano: un archivio progetti con ricerca e filtri, in italiano e inglese."
     excerpt: "Dal 2021 sviluppiamo il sito di Park Associati, studio di architettura di Milano: un archivio progetti con ricerca e filtri, in italiano e inglese."
-    featuredImage: /assets/park-associati-home.jpg
-    heroImage: /assets/park-associati-home.jpg
+    featuredImage: /assets/park-associati-photo.jpg
+    heroImage: /assets/park-associati-photo.jpg
     body: |
       Park Associati è uno studio di architettura con sede a Milano. Sviluppiamo il loro sito dal 2021, e nel 2025 lo abbiamo ricostruito da zero.
 

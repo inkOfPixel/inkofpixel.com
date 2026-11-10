@@ -126,26 +126,20 @@ button { font: inherit; }
 .pop { animation: pop 1.5s cubic-bezier(.2, 1.25, .4, 1) .15s both; }
 
 .dots, .dots-lit, .dots-soft { position: absolute; inset: 0; pointer-events: none; background-size: 24px 24px; }
-.dots { background-image: radial-gradient(circle, #3d3d3d 1.6px, transparent 2.2px); mix-blend-mode: difference; }
 .dots-soft { background-image: radial-gradient(circle, var(--dot) 1.6px, transparent 2.2px); }
-/* Stronger dots in a spotlight that follows the cursor (--mx / --my set by site.js).
-   Dots and text share a difference blend, so dots under small text eat into the letters:
-   the dot layers fade out before the paragraphs, the form and the footer. */
+/* In ink sections the dots live inside .blend, behind the text (z-index -1): the whole
+   group is inverted against the ink, so dots show on paper and on ink alike, while the
+   letters painted over them stay solid. */
+.dots, .dots-lit { z-index: -1; }
+.dots { background-image: radial-gradient(circle, #3d3d3d 1.6px, transparent 2.2px); }
+/* Stronger dots in a spotlight that follows the cursor (--mx / --my set by site.js). */
 .dots-lit {
   background-image: radial-gradient(circle, #9c9c9c 2px, transparent 2.6px);
-  mix-blend-mode: difference;
-  /* Two masks intersected: the spotlight, and the area where dots are allowed (--zone). */
-  --spot: radial-gradient(200px circle at var(--mx, -500px) var(--my, -500px), #000 0%, transparent 100%);
-  --zone: linear-gradient(#000, #000);
-  -webkit-mask-image: var(--spot), var(--zone);
-  mask-image: var(--spot), var(--zone);
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
+  -webkit-mask-image: radial-gradient(200px circle at var(--mx, -500px) var(--my, -500px), #000 0%, transparent 100%);
+  mask-image: radial-gradient(200px circle at var(--mx, -500px) var(--my, -500px), #000 0%, transparent 100%);
 }
-.hero .dots-lit { --zone: linear-gradient(to bottom, #000 45%, transparent 78%); }
-.contact .dots-lit { --zone: linear-gradient(to bottom, transparent 0%, #000 22%, #000 38%, transparent 62%); }
 .dots--fade-bottom { -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); }
-.dots--fade-top { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 38%, transparent 62%); mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 38%, transparent 62%); }
+.dots--fade-top { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%); mask-image: linear-gradient(to bottom, transparent 0%, #000 30%); }
 .dots--fade-both { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%); }
 
 .blend { position: relative; mix-blend-mode: difference; color: #ffffff; --fg: #ffffff; --bg: #000000; --soft: #ffffff; }
@@ -250,7 +244,7 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .shot img, .shot video { display: block; width: 100%; height: auto; filter: grayscale(1); transition: filter .7s; }
 .shot:hover img, .shot:hover video { filter: none; }
 .shot--hero { aspect-ratio: 2 / 1; }
-.shot--hero img { height: 100%; object-fit: cover; }
+.shot--hero img { height: 100%; object-fit: cover; object-position: 50% 28%; }
 .figure { display: flex; flex-direction: column; gap: 12px; }
 .figure--portrait .shot { max-width: 340px; }
 .figure figcaption { font-family: var(--mono); font-size: 13px; line-height: 1.5; color: var(--soft); }
@@ -415,9 +409,6 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .contact--page { min-height: 100svh; border-radius: 0; background: var(--paper-pure); }
 .contact--page .ink, .contact--page .hole { background: var(--paper-pure); }
 .contact--page .drop { background: var(--ink-pure); }
-/* Here the dots stay around the title only: the form needs a clean background. */
-.contact--page .dots { height: 380px; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 100%); }
-.contact--page .dots-lit { --zone: linear-gradient(to bottom, #000 0, #000 130px, transparent 380px); }
 .contact--page .contact-in { padding-top: 0; }
 .contact--page .header { padding-inline: 0; }
 .contact--page .contact-main { padding-top: clamp(48px, 7vw, 104px); }

@@ -56,10 +56,12 @@
         "marquee": [
           "iFixit",
           "Dolly Noire",
-          "STIMM",
           "Acetaia Giusti",
-          "Koala Babycare",
-          "Bud Spencer"
+          "STIMM",
+          "Park Associati",
+          "SIXS",
+          "Amici Caffè",
+          "Bud Power"
         ],
         "featured": [
           {
@@ -81,9 +83,9 @@
           {
             "name": "STIMM",
             "type": "E-commerce, integrations, consulting",
-            "description": "From Magento to a new custom Shopify site, more flexible and functional.",
-            "image": "/assets/inkofpixel_stimm_featured_image.jpg",
-            "alt": "STIMM: a model sitting on a green armchair",
+            "description": "Together since 2016: from Magento to Shopify, up to the new store rebuilt in 2025.",
+            "image": "/assets/stimm-photo.jpg",
+            "alt": "STIMM: two models in an old archive room",
             "project": "stimm"
           }
         ]
@@ -176,10 +178,12 @@
         "marquee": [
           "iFixit",
           "Dolly Noire",
-          "STIMM",
           "Acetaia Giusti",
-          "Koala Babycare",
-          "Bud Spencer"
+          "STIMM",
+          "Park Associati",
+          "SIXS",
+          "Amici Caffè",
+          "Bud Power"
         ],
         "featured": [
           {
@@ -201,9 +205,9 @@
           {
             "name": "STIMM",
             "type": "E-commerce, integrazioni, consulenza",
-            "description": "Da Magento a un nuovo sito Shopify personalizzato, più flessibile e funzionale.",
-            "image": "/assets/inkofpixel_stimm_featured_image.jpg",
-            "alt": "STIMM: modella seduta su una poltrona verde",
+            "description": "Insieme dal 2016: da Magento a Shopify, fino al nuovo store ricostruito nel 2025.",
+            "image": "/assets/stimm-photo.jpg",
+            "alt": "STIMM: due modelle in un vecchio archivio",
             "project": "stimm"
           }
         ]

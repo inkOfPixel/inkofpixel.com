@@ -9,8 +9,8 @@ locales:
     seoTitle: "Amici Caffè"
     seoDescription: "In 2026 we moved Amici Caffè, a Swiss family coffee company, from PrestaShop to a new custom Shopify store in four languages, with subscriptions and a dealer locator."
     excerpt: "In 2026 we moved Amici Caffè, a Swiss family coffee company, from PrestaShop to a new custom Shopify store in four languages, with subscriptions and a dealer locator."
-    featuredImage: /assets/amici-home.jpg
-    heroImage: /assets/amici-home.jpg
+    featuredImage: /assets/amici-caffe-photo.jpg
+    heroImage: /assets/amici-caffe-photo.jpg
     body: |
       Amici is a family company from central Switzerland that has been roasting espresso since 1979. In 2026 we moved their e-commerce from PrestaShop to Shopify and built a new store from scratch. It went live in October 2026.
 
@@ -50,8 +50,8 @@ locales:
     seoTitle: "Amici Caffè"
     seoDescription: "Nel 2026 abbiamo portato Amici Caffè, azienda svizzera di famiglia, da PrestaShop a un nuovo e-commerce Shopify su misura in quattro lingue, con abbonamenti e mappa dei rivenditori."
     excerpt: "Nel 2026 abbiamo portato Amici Caffè, azienda svizzera di famiglia, da PrestaShop a un nuovo e-commerce Shopify su misura in quattro lingue, con abbonamenti e mappa dei rivenditori."
-    featuredImage: /assets/amici-home.jpg
-    heroImage: /assets/amici-home.jpg
+    featuredImage: /assets/amici-caffe-photo.jpg
+    heroImage: /assets/amici-caffe-photo.jpg
     body: |
       Amici è un'azienda di famiglia della Svizzera centrale che tosta caffè espresso dal 1979. Nel 2026 abbiamo portato il loro e-commerce da PrestaShop a Shopify e costruito un nuovo store da zero. È online da ottobre 2026.
 

@@ -12,9 +12,9 @@ function hero(ctx, home) {
   const last = (0.05 + home.hero.titleLines.length * 0.11).toFixed(2);
   return `<div class="hero" data-pool>
   ${heroInk()}
-  <div class="dots dots--fade-bottom" aria-hidden="true"></div>
-  <div class="dots-lit" aria-hidden="true"></div>
   <div class="blend">
+    <div class="dots dots--fade-bottom" aria-hidden="true"></div>
+    <div class="dots-lit" aria-hidden="true"></div>
     ${header(ctx)}
     <div class="hero-in">
       <h1 class="hero-title">

@@ -9,8 +9,8 @@ locales:
     seoTitle: "Bud Power"
     seoDescription: "We have worked with Bud Power, the food brand created by Bud Spencer's grandsons, since 2020. In 2025 we rebuilt the Shopify store and prepared it for AI search."
     excerpt: "We have worked with Bud Power, the food brand created by Bud Spencer's grandsons, since 2020. In 2025 we rebuilt the Shopify store and prepared it for AI search."
-    featuredImage: /assets/bud-power-home.jpg
-    heroImage: /assets/bud-power-home.jpg
+    featuredImage: /assets/bud-power-photo.jpg
+    heroImage: /assets/bud-power-photo.jpg
     body: |
       Bud Power is the food brand created by the grandsons of Bud Spencer: the famous beans, beer, pasta and snacks. We have worked with them since 2020, and in 2025 we rebuilt the store from scratch.
 
@@ -46,8 +46,8 @@ locales:
     seoTitle: "Bud Power"
     seoDescription: "Lavoriamo con Bud Power, il marchio alimentare creato dai nipoti di Bud Spencer, dal 2020. Nel 2025 abbiamo ricostruito lo store Shopify e lo abbiamo preparato per la ricerca AI."
     excerpt: "Lavoriamo con Bud Power, il marchio alimentare creato dai nipoti di Bud Spencer, dal 2020. Nel 2025 abbiamo ricostruito lo store Shopify e lo abbiamo preparato per la ricerca AI."
-    featuredImage: /assets/bud-power-home.jpg
-    heroImage: /assets/bud-power-home.jpg
+    featuredImage: /assets/bud-power-photo.jpg
+    heroImage: /assets/bud-power-photo.jpg
     body: |
       Bud Power è il marchio alimentare creato dai nipoti di Bud Spencer: i celebri fagioli, la birra, la pasta e gli snack. Lavoriamo con loro dal 2020, e nel 2025 abbiamo ricostruito lo store da zero.
 

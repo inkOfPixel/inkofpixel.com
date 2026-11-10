@@ -9,8 +9,8 @@ locales:
     seoTitle: "Bonacchi Caffè"
     seoDescription: "For Bonacchi Caffè, a Tuscan roaster of single-origin coffee, we redesigned the way customers choose a coffee: by brewing method and by aroma."
     excerpt: "For Bonacchi Caffè, a Tuscan roaster of single-origin coffee, we redesigned the way customers choose a coffee: by brewing method and by aroma."
-    featuredImage: /assets/bonacchi-home.jpg
-    heroImage: /assets/bonacchi-home.jpg
+    featuredImage: /assets/bonacchi-caffe-photo.jpg
+    heroImage: /assets/bonacchi-caffe-photo.jpg
     body: |
       Bonacchi roasts "terroir" coffee in Tuscany: single origins sold as beans, ground coffee and pods. In 2026 we worked on their Shopify store to make choosing a coffee easier.
 
@@ -38,8 +38,8 @@ locales:
     seoTitle: "Bonacchi Caffè"
     seoDescription: "Per Bonacchi Caffè, torrefazione toscana di caffè monorigine, abbiamo ripensato il modo in cui il cliente sceglie un caffè: per metodo di preparazione e per aroma."
     excerpt: "Per Bonacchi Caffè, torrefazione toscana di caffè monorigine, abbiamo ripensato il modo in cui il cliente sceglie un caffè: per metodo di preparazione e per aroma."
-    featuredImage: /assets/bonacchi-home.jpg
-    heroImage: /assets/bonacchi-home.jpg
+    featuredImage: /assets/bonacchi-caffe-photo.jpg
+    heroImage: /assets/bonacchi-caffe-photo.jpg
     body: |
       Bonacchi tosta in Toscana caffè "di terroir": monorigini venduti in grani, macinato e cialde. Nel 2026 abbiamo lavorato sul loro store Shopify per rendere più semplice la scelta del caffè.
 

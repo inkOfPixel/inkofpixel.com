@@ -9,8 +9,8 @@ locales:
     seoTitle: "Kuro Denim"
     seoDescription: "For KURO, a Japanese denim brand, we refined the Shopify store in 2024: a new home page, redesigned collection pages and a smoother purchase on mobile."
     excerpt: "For KURO, a Japanese denim brand, we refined the Shopify store in 2024: a new home page, redesigned collection pages and a smoother purchase on mobile."
-    featuredImage: /assets/kuro-denim-home.jpg
-    heroImage: /assets/kuro-denim-home.jpg
+    featuredImage: /assets/kuro-denim-photo.jpg
+    heroImage: /assets/kuro-denim-photo.jpg
     body: |
       KURO is a Japanese denim brand: its garments are made by local artisans, in the tradition of Japanese denim. In 2024 we worked on their Shopify store, in English and Japanese.
 
@@ -42,8 +42,8 @@ locales:
     seoTitle: "Kuro Denim"
     seoDescription: "Per KURO, marchio giapponese di denim, nel 2024 abbiamo rifinito lo store Shopify: nuova home, pagine collezione ridisegnate e acquisto più semplice da mobile."
     excerpt: "Per KURO, marchio giapponese di denim, nel 2024 abbiamo rifinito lo store Shopify: nuova home, pagine collezione ridisegnate e acquisto più semplice da mobile."
-    featuredImage: /assets/kuro-denim-home.jpg
-    heroImage: /assets/kuro-denim-home.jpg
+    featuredImage: /assets/kuro-denim-photo.jpg
+    heroImage: /assets/kuro-denim-photo.jpg
     body: |
       KURO è un marchio giapponese di denim: i suoi capi sono realizzati da artigiani locali, nella tradizione del denim giapponese. Nel 2024 abbiamo lavorato sul loro store Shopify, in inglese e giapponese.
 
