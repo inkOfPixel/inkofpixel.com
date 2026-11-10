@@ -37,10 +37,11 @@
 	# Fingerprinted files never change; images may be replaced under the same name.
 	header /_/* Cache-Control "public, max-age=31536000, immutable"
 	header /assets/* Cache-Control "public, max-age=604800"
-	# Pages are always revalidated, so a CDN or browser never shows a page from before the
-	# last deploy (which would point at stylesheets that no longer exist).
+	# Pages are never stored by a CDN ("private") and browsers must revalidate them
+	# ("no-cache"), so nobody sees a page from before the last deploy. "no-cache" alone was
+	# not enough: Cloudflare kept pages at the edge and told browsers to keep them for hours.
 	@pages not path /_/* /assets/* /api/*
-	header @pages Cache-Control "no-cache"
+	header @pages Cache-Control "private, no-cache"
 	header {
 		X-Content-Type-Options nosniff
 		Referrer-Policy strict-origin-when-cross-origin
