@@ -119,21 +119,39 @@
             "kind": "Web and mobile app",
             "since": "2016",
             "url": "https://valuta.exchange",
-            "description": "A simple, immediate currency converter with live rates for over 160 currencies and more than 25 cryptocurrencies."
+            "description": "A simple, immediate currency converter, with rates updated every hour for over 160 currencies and more than 25 cryptocurrencies.",
+            "stats": [
+              {
+                "value": "18.8M",
+                "label": "impressions a month on Google"
+              },
+              {
+                "value": "69,000",
+                "label": "clicks a month from Google"
+              },
+              {
+                "value": "50,000+",
+                "label": "downloads on Google Play"
+              }
+            ]
           },
           {
-            "name": "Pienotto",
-            "kind": "Web app",
-            "since": "2026",
-            "url": "https://pienotto.it",
-            "description": "Fuel prices for every service station in Italy, on a map or as a list, with price trends."
-          },
-          {
-            "name": "Gnam",
-            "kind": "Web app",
-            "since": "2026",
-            "url": "https://gnam.menu",
-            "description": "Group orders from a restaurant starting from its menu: one link to share, no account, a single summary."
+            "name": "Calc 2M",
+            "kind": "iOS app",
+            "since": "2012",
+            "url": "https://apps.apple.com/app/calc-2m/id492563960",
+            "urlLabel": "App Store",
+            "description": "A scientific calculator for iPhone, iPad and Apple Watch: expressions you can fix on the fly, a history you reuse with drag & drop, and custom themes.",
+            "stats": [
+              {
+                "value": "500,000+",
+                "label": "users"
+              },
+              {
+                "value": "3",
+                "label": "devices: iPhone, iPad, Apple Watch"
+              }
+            ]
           }
         ]
       },
@@ -288,21 +306,39 @@
             "kind": "Web e app mobile",
             "since": "2016",
             "url": "https://valuta.exchange",
-            "description": "Convertitore di valute semplice e immediato, con tassi aggiornati per oltre 160 valute e più di 25 criptovalute."
+            "description": "Convertitore di valute semplice e immediato, con tassi aggiornati ogni ora per oltre 160 valute e più di 25 criptovalute.",
+            "stats": [
+              {
+                "value": "18,8 mln",
+                "label": "impressioni al mese su Google"
+              },
+              {
+                "value": "69.000",
+                "label": "clic al mese da Google"
+              },
+              {
+                "value": "50.000+",
+                "label": "download su Google Play"
+              }
+            ]
           },
           {
-            "name": "Pienotto",
-            "kind": "Web app",
-            "since": "2026",
-            "url": "https://pienotto.it",
-            "description": "I prezzi dei carburanti di ogni distributore d'Italia, su mappa o in elenco, con l'andamento nel tempo."
-          },
-          {
-            "name": "Gnam",
-            "kind": "Web app",
-            "since": "2026",
-            "url": "https://gnam.menu",
-            "description": "Ordini di gruppo dal locale partendo dal suo menu: un link da condividere, nessun account, un solo riepilogo."
+            "name": "Calc 2M",
+            "kind": "App iOS",
+            "since": "2012",
+            "url": "https://apps.apple.com/app/calc-2m/id492563960",
+            "urlLabel": "App Store",
+            "description": "Calcolatrice scientifica per iPhone, iPad e Apple Watch: espressioni da correggere al volo, cronologia riutilizzabile con il drag & drop e temi personalizzati.",
+            "stats": [
+              {
+                "value": "500.000+",
+                "label": "utenti"
+              },
+              {
+                "value": "3",
+                "label": "dispositivi: iPhone, iPad, Apple Watch"
+              }
+            ]
           }
         ]
       },

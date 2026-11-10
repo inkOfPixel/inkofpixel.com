@@ -111,12 +111,13 @@ function products(ctx, home) {
   const { t } = ctx;
   const tiles = home.products.items
     .map(
-      (product) => `<a class="row product rv" href="${esc(product.url)}" rel="noopener" data-ink-origin>
+      (product) => `<a class="row product${product.stats ? ' product--wide' : ''} rv" href="${esc(product.url)}" rel="noopener" data-ink-origin>
       <span class="row-in product-in">
         <span class="product-top"><span class="tag">// ${esc(product.kind)}</span><span class="tag">${t.since} ${esc(product.since)}</span></span>
         <span class="product-name">${esc(product.name)}</span>
         <span class="row-text">${esc(product.description)}</span>
-        <span class="product-foot"><span class="product-url">${esc(product.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</span><span class="go" aria-hidden="true">${ARROW}</span></span>
+        ${product.stats ? `<span class="product-stats">${product.stats.map((s) => `<span class="product-stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></span>`).join('')}</span>` : ''}
+        <span class="product-foot"><span class="product-url">${esc(product.urlLabel || product.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</span><span class="go" aria-hidden="true">${ARROW}</span></span>
       </span>
     </a>`
     )

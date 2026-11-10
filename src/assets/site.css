@@ -280,8 +280,21 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .rows { display: flex; flex-direction: column; gap: 10px; }
 .cards--stagger > :nth-child(3n + 2) { margin-top: clamp(0px, 5vw, 72px); }
 
-.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px; }
-.product { height: 100%; }
+/* Six tracks: a plain tile takes two (three per row), a tile with numbers takes three (two per row). */
+.products { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.product { grid-column: span 2; height: 100%; }
+.product--wide { grid-column: span 3; }
+@media (max-width: 1000px) {
+  .product { grid-column: span 3; }
+  .product--wide { grid-column: span 6; }
+}
+@media (max-width: 640px) {
+  .product { grid-column: span 6; }
+}
+.product-stats { display: flex; flex-wrap: wrap; gap: 16px 36px; margin-top: 6px; padding-top: 18px; border-top: 1px solid #5c5c5c; }
+.product-stat { display: flex; flex-direction: column; gap: 4px; max-width: 180px; }
+.product-stat strong { font-size: clamp(28px, 2.8vw, 40px); font-weight: 500; line-height: 1; letter-spacing: -.035em; }
+.product-stat span { font-family: var(--mono); font-size: 12px; line-height: 1.4; color: #9a9a9a; }
 .product-in { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 14px; height: 100%; min-height: 300px; padding: clamp(22px, 2.4vw, 32px); }
 .product-top, .product-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .product .tag { color: #9a9a9a; }
