@@ -94,7 +94,7 @@ function menu(ctx) {
       ${links}
     </nav>
     <div class="menu-foot">
-      <a class="pill" href="mailto:${site.email}">${site.email}</a>
+      <a class="pill" href="${url(lang, 'contacts')}">${t.contactCta}<span class="arrow">${ARROW}</span></a>
       <span class="tag">${langSwitch(ctx, 'link')} · &lt;/${t.tags.menu}&gt;</span>
     </div>
   </div>`;
@@ -174,7 +174,7 @@ function contactForm(ctx) {
 // The closing black section: the call to get in touch, with the footer inside.
 // On the contacts page it carries the page's <h1>.
 export function contact(ctx, { asPage = false, text } = {}) {
-  const { t, site } = ctx;
+  const { lang, t, site } = ctx;
   const [before, word] = t.contactTitle;
   const h = asPage ? 'h1' : 'h2';
   return `<section class="contact${asPage ? ' contact--page' : ''}" id="${t.tags.contacts}" data-pool>
@@ -187,7 +187,14 @@ export function contact(ctx, { asPage = false, text } = {}) {
       ${tag(t.tags.contacts)}
       <${h} class="display">${before}<br>${accent(word, { now: asPage })}</${h}>
       <p class="lead">${esc(text || site.contactText[ctx.lang])}</p>
-      ${asPage ? contactForm(ctx) : `<a class="pill pill--xl" href="mailto:${site.email}">${site.email}<span class="arrow">${ARROW}</span></a>`}
+      ${
+        asPage
+          ? contactForm(ctx)
+          : `<div class="contact-actions">
+        <a class="pill pill--xl" href="${url(lang, 'contacts')}">${t.contactCta}<span class="arrow">${ARROW}</span></a>
+        <span class="contact-mail">${t.contactOr} <a class="link" href="mailto:${site.email}">${site.email}</a></span>
+      </div>`
+      }
     </div>
     ${footer(ctx)}
   </div>

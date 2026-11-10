@@ -428,7 +428,10 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .contact-in { padding: clamp(72px, 9vw, 136px) var(--pad) 36px; }
 .contact-main { display: flex; flex-direction: column; align-items: flex-start; gap: clamp(22px, 2.6vw, 36px); }
 .contact .lead { max-width: 520px; }
-.contact .pill--xl { margin-top: 8px; }
+.contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 8px; }
+.contact-mail { font-family: var(--mono); font-size: 14px; }
+.contact-mail .link { min-height: 0; text-decoration: underline; text-underline-offset: 3px; }
+.contact-mail .link::after { display: none; }
 /* As a whole page it follows the theme instead of inverting it. */
 .contact--page { min-height: 100svh; border-radius: 0; background: var(--paper-pure); }
 .contact--page .ink, .contact--page .hole { background: var(--paper-pure); }
