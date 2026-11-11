@@ -28,6 +28,17 @@ export function img(src, alt, { eager = false, className = '' } = {}) {
   return `<img${cls} src="${esc(encodeURI(decodeURI(src)))}" alt="${esc(alt)}"${dims}${loading} decoding="async">`;
 }
 
+// Each word turns from grey to ink as its paragraph (class "statement") scrolls through the viewport.
+export function inkWords(text) {
+  return text
+    .split(/\s+/)
+    .map((word, i, all) => {
+      const step = Math.min(1.3, 50 / all.length);
+      return `<span class="w" style="animation-range:cover ${(12 + i * step).toFixed(1)}% cover ${(22 + i * step).toFixed(1)}%">${esc(word)}</span>`;
+    })
+    .join(' ');
+}
+
 export const tag = (name, close = false) => `<span class="tag">&lt;${close ? '/' : ''}${esc(name)}&gt;</span>`;
 
 export const ARROW =

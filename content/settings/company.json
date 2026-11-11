@@ -10,7 +10,8 @@
       "lines": [
         "Via Leonardo da Vinci 2",
         "31010 Godega di Sant'Urbano (TV)"
-      ]
+      ],
+      "coords": "45.93° N · 12.40° E"
     },
     {
       "kind": "legal",
@@ -18,7 +19,8 @@
       "lines": [
         "Piazza Castello 26",
         "20121 Milano (MI)"
-      ]
+      ],
+      "coords": "45.47° N · 9.18° E"
     }
   ]
 }

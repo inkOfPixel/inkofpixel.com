@@ -7,6 +7,7 @@ import path from 'node:path';
 import { ROOT, localized, readCollection, readJson, readPage } from './lib/content.mjs';
 import { readingMinutes, renderMarkdown } from './lib/markdown.mjs';
 import { DEFAULT_LANG, LANGS, SITE_URL, T, slugify, url } from './lib/site.mjs';
+import { aboutPage } from './templates/about.mjs';
 import { blogPage, postPage } from './templates/blog.mjs';
 import { homePage } from './templates/home.mjs';
 import { context } from './templates/layout.mjs';
@@ -141,6 +142,13 @@ for (const lang of LANGS) {
     title: services.title, description: services.seo.description, image: services.seo.image,
     jsonLd: [crumbs(lang, [[services.title, url(lang, 'services')]])],
   }, (ctx) => servicesPage(ctx, services, home.services[1]));
+
+  const about = readPage('about', lang);
+  add(lang, {
+    path: url(lang, 'about'), alternates: both((l) => url(l, 'about')), active: 'about',
+    title: about.title, description: about.seo.description, image: about.seo.image,
+    jsonLd: [crumbs(lang, [[about.title, url(lang, 'about')]]), { '@context': 'https://schema.org', '@type': 'AboutPage', name: about.title, url: SITE_URL + url(lang, 'about'), about: { '@type': 'Organization', name: 'inkOfPixel', url: SITE_URL } }],
+  }, (ctx) => aboutPage(ctx, about));
 
   const projectsIndex = readPage('projects', lang);
   const localProjects = projects.map((project) => localized(project, lang));

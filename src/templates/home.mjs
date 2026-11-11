@@ -1,5 +1,5 @@
 // Home page: ink hero, client marquee, services, featured clients, about.
-import { ARROW, accent, esc, img, tag } from '../lib/html.mjs';
+import { ARROW, accent, esc, img, inkWords, tag } from '../lib/html.mjs';
 import { heroInk } from '../lib/brand.mjs';
 import { slugify, url } from '../lib/site.mjs';
 import { document, header, inkRow, sectionTitle } from './layout.mjs';
@@ -135,13 +135,9 @@ function products(ctx, home) {
 }
 
 function about(ctx, home) {
-  const { t } = ctx;
+  const { lang, t } = ctx;
   const a = home.about;
-  // Each word turns from grey to ink as the paragraph scrolls through the viewport.
-  const words = a.statement
-    .split(/\s+/)
-    .map((word, i) => `<span class="w" style="animation-range:cover ${(12 + i * 1.3).toFixed(1)}% cover ${(22 + i * 1.3).toFixed(1)}%">${esc(word)}</span>`)
-    .join(' ');
+  const words = inkWords(a.statement);
   const principles = a.principles
     .map(
       (p, i) => `<li class="point">
@@ -164,7 +160,10 @@ function about(ctx, home) {
   <dl class="facts rv">
     ${facts}
   </dl>
-  <span class="tag tag--end rv">&lt;/${t.tags.about}&gt;</span>
+  <div class="about-foot rv">
+    <a class="pill pill--lg" href="${url(lang, 'about')}">${t.aboutMore}<span class="arrow">${ARROW}</span></a>
+    <span class="tag">&lt;/${t.tags.about}&gt;</span>
+  </div>
 </section>`;
 }
 

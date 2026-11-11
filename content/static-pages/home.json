@@ -156,25 +156,25 @@
         ]
       },
       "about": {
-        "statement": "We are a software company. We build innovative digital solutions and never stop learning. If you're looking for new ideas and talented people to bring them to life, this is the right place.",
+        "statement": "We are a small software studio. We work like a craft workshop: a few projects at a time, made to measure, and you always talk to the people who design and build them.",
         "principles": [
           {
-            "title": "Partners, not suppliers",
-            "text": "As your digital partner we guide you through the choices, we don't just execute."
+            "title": "You talk to the people who build",
+            "text": "Whoever listens to you on the first call is who then designs and writes the code. No go-betweens."
           },
           {
-            "title": "Fast for real",
-            "text": "Light, optimized pages, because your customers shouldn't have to wait to buy."
+            "title": "Made to measure",
+            "text": "We start from how you work and build what is needed, not a package to adapt."
           },
           {
-            "title": "Never stop learning",
-            "text": "We keep studying and experimenting, to bring you new ideas and better tools."
+            "title": "We stay",
+            "text": "A site or an app does not end at delivery. We have worked with many clients for years."
           }
         ],
         "facts": [
           {
-            "label": "operating office",
-            "value": "Treviso, Italy"
+            "label": "where we are",
+            "value": "Treviso and Milan"
           },
           {
             "label": "partner",
@@ -343,25 +343,25 @@
         ]
       },
       "about": {
-        "statement": "Siamo una software company. Costruiamo soluzioni digitali innovative e non smettiamo mai di imparare. Se cerchi nuove idee e persone di talento per realizzarle, sei nel posto giusto.",
+        "statement": "Siamo un piccolo studio di sviluppo software. Lavoriamo come una bottega artigiana: pochi progetti alla volta, fatti su misura, e parli sempre con chi li progetta e li costruisce.",
         "principles": [
           {
-            "title": "Partner, non fornitori",
-            "text": "Agiamo come il tuo partner digitale: ti guidiamo nelle scelte, non ci limitiamo a eseguire."
+            "title": "Parli con chi lo fa",
+            "text": "Chi ti ascolta alla prima chiamata è chi poi progetta e scrive il codice. Nessun intermediario."
           },
           {
-            "title": "Veloce per davvero",
-            "text": "Pagine leggere e ottimizzate, perché i tuoi clienti non devono aspettare per acquistare."
+            "title": "Su misura",
+            "text": "Partiamo da come lavori tu e costruiamo quello che serve, non un pacchetto da adattare."
           },
           {
-            "title": "Mai smettere di imparare",
-            "text": "Studiamo e sperimentiamo di continuo, per portarti idee nuove e strumenti migliori."
+            "title": "Restiamo",
+            "text": "Un sito o un'app non finiscono con la consegna. Con molti clienti lavoriamo da anni."
           }
         ],
         "facts": [
           {
-            "label": "sede operativa",
-            "value": "Treviso"
+            "label": "dove siamo",
+            "value": "Treviso e Milano"
           },
           {
             "label": "partner",

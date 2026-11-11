@@ -96,6 +96,8 @@ button { font: inherit; }
 @keyframes floaty { from { transform: translateY(-8px) rotate(0deg); } to { transform: translateY(10px) rotate(24deg); } }
 @keyframes menu { from { clip-path: circle(0px at calc(100% - 64px) 45px); } to { clip-path: circle(160% at calc(100% - 64px) 45px); } }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes measure { from { left: 0; } to { left: calc(100% - 12px); } }
+@keyframes ping { from { box-shadow: 0 0 0 0 rgba(255, 255, 255, .55); } to { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); } }
 
 /* Entrance on load. `--d` staggers the delay. */
 .in { animation: in 1s var(--ease) var(--d, 0s) both; }
@@ -316,7 +318,53 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
 .point:hover .point-text { transform: translateX(8px); }
 .point-text strong { font-size: clamp(22px, 2.2vw, 30px); font-weight: 500; line-height: 1.15; letter-spacing: -.03em; }
 .point-text span { max-width: 440px; color: var(--soft); text-wrap: pretty; }
-.about .tag--end { margin-top: 0; }
+.about-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+
+/* About page */
+.block { display: flex; flex-direction: column; padding-top: clamp(72px, 9vw, 128px); }
+.points--lg { grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 0 clamp(32px, 5vw, 72px); border-bottom: 1px solid var(--ink); }
+.points--lg .point-text span { max-width: 520px; font-size: 18px; line-height: 1.5; }
+/* The clients we have worked with the longest, as one line of names that wraps. */
+.spans { display: flex; flex-wrap: wrap; align-items: center; gap: 10px clamp(18px, 2.2vw, 32px); padding: clamp(24px, 3vw, 40px) 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.span { display: flex; align-items: center; gap: clamp(18px, 2.2vw, 32px); font-size: clamp(28px, 3.8vw, 56px); font-weight: 500; line-height: 1.1; letter-spacing: -.04em; }
+.span:nth-child(even) { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; }
+.span .link { min-height: 0; margin: 0 -.14em; padding: 0 .14em; border-radius: .18em; background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 50% / 0 100%; transition: background-size .5s var(--ease), color .35s; }
+.span .link::after { display: none; }
+.span .link:hover { background-size: 100% 100%; color: var(--paper); }
+.span:last-child .sep { display: none; }
+.places { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 14px; }
+.place-in { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 12px; min-height: 300px; padding: clamp(22px, 2.4vw, 32px); }
+.place-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.place .tag { display: inline-flex; align-items: center; gap: 12px; color: #9a9a9a; }
+.pin { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #ffffff; animation: ping 2.4s ease-out infinite; }
+.place-city { margin-top: auto; font-size: clamp(48px, 6vw, 96px); font-weight: 500; line-height: .95; letter-spacing: -.05em; transition: transform .6s var(--ease); }
+.place:hover .place-city { transform: translateX(10px); }
+.place address { display: flex; flex-direction: column; font-style: normal; color: #9a9a9a; }
+
+/* "Made to measure": a ruler under the opening statement, with a marker that slides as you scroll. */
+.ruler-row { display: flex; align-items: flex-end; gap: 20px; max-width: 1180px; margin-top: clamp(28px, 3.4vw, 48px); }
+.ruler-row .tag { flex: none; }
+.ruler { position: relative; flex: 1 1 auto; height: 18px; border-bottom: 1px solid var(--ink); background: repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 50px) 0 100% / 100% 16px no-repeat, repeating-linear-gradient(to right, var(--ink) 0 1px, transparent 1px 10px) 0 100% / 100% 7px no-repeat; }
+.ruler-mark { position: absolute; left: 0; bottom: -6px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
+
+/* Numbered statements, one per row. */
+.manifesto { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--ink); }
+.tenet { position: relative; display: grid; grid-template-columns: 76px minmax(0, 1fr) minmax(0, 1.15fr); align-items: baseline; gap: 8px clamp(20px, 3vw, 48px); padding: clamp(20px, 2.4vw, 30px) 0; }
+.tenet::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ink); transform-origin: 0 50%; }
+.tenet-num { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; align-self: center; }
+.tenet-num em { position: relative; font-size: 22px; color: var(--soft); transition: color .35s; }
+.tenet-drop { position: absolute; inset: 0; background: var(--ink); transform: scale(0); animation: morph 6s ease-in-out infinite; transition: transform .5s var(--spring); }
+.tenet:hover .tenet-drop { transform: scale(1); }
+.tenet:hover .tenet-num em { color: var(--paper); }
+.tenet-title { margin: 0; font-size: clamp(26px, 3vw, 44px); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; text-wrap: balance; transition: transform .6s var(--ease); }
+.tenet:hover .tenet-title { transform: translateX(10px); }
+.tenet-text { max-width: 560px; font-size: 18px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+@media (max-width: 760px) {
+  .tenet { grid-template-columns: 60px minmax(0, 1fr); align-items: start; }
+  .tenet-num { grid-row: 1 / span 2; align-self: start; margin-top: -8px; }
+  .tenet-text { grid-column: 2; }
+}
+.page-body > .statement { margin-top: clamp(8px, 2vw, 24px); }
 
 /* ------------------------------------------------------------ inner pages */
 .page-top { position: relative; }
@@ -486,6 +534,8 @@ a.card:hover .name, .post:hover .name { background-size: 100% 2px; }
   .draw-rv path { animation: draw linear both; animation-timeline: view(); animation-range: entry 40% cover 32%; }
   .w { animation: wink linear both; animation-timeline: --about; }
   .progress { animation: grow linear both; animation-timeline: scroll(root); }
+  .tenet::before { animation: grow linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+  .ruler-mark { animation: measure linear both; animation-timeline: view(); animation-range: entry 60% exit 20%; }
 }
 
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
