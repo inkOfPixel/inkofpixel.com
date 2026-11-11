@@ -1,0 +1,203 @@
+{
+  "template": "about",
+  "locales": [
+    {
+      "language": "en",
+      "title": "About",
+      "path": "/about",
+      "seo": {
+        "description": "inkOfPixel is a small software studio based in Treviso and Milan. We work like craftspeople: a few projects at a time, made to measure, with no go-betweens.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "headline": [
+        "Software,",
+        "made to",
+        "measure"
+      ],
+      "lead": "inkOfPixel is a small studio based in Treviso and Milan. We design and build e-commerce, apps and digital products, a few at a time.",
+      "statement": "If you want a pair of shoes made to measure, you don't go to a shopping centre: you go to a shoemaker. They take your measurements, ask where you will be walking, and make the shoes themselves. We work the same way, with software.",
+      "principlesTitle": [
+        "How we",
+        "work"
+      ],
+      "principles": [
+        {
+          "title": "We are not a big agency",
+          "text": "No account managers, no departments, no floors to fill. We are a small group and we like it that way: it is a choice, not a phase."
+        },
+        {
+          "title": "You talk to the people who build",
+          "text": "Whoever listens to you on the first call is who then designs and writes the code. No go-betweens, nothing lost along the way."
+        },
+        {
+          "title": "Made to measure",
+          "text": "We don't start from a package to adapt. We start from how you work and build what is needed. Sometimes that is less than you asked for."
+        },
+        {
+          "title": "A few jobs at a time",
+          "text": "A shoemaker cannot make a hundred pairs of shoes a month. Neither can we: we take on a few projects, so we can really follow them."
+        },
+        {
+          "title": "We know how to say no",
+          "text": "If a feature is not needed, we say so. If we are not the right people for a job, we say that too. It costs everyone less."
+        },
+        {
+          "title": "We stay",
+          "text": "A site or an app does not end at delivery. We have worked with many clients for years, and we keep fixing, improving, removing."
+        },
+        {
+          "title": "We use what we build",
+          "text": "We have products of our own, online for years. We bring the same tools and habits to our client work."
+        }
+      ],
+      "spansTitle": [
+        "Collaborations that",
+        "last"
+      ],
+      "spansLead": "Some of the companies we have worked with the longest.",
+      "placesTitle": [
+        "Where we",
+        "are"
+      ],
+      "placesLead": "From here we work with companies in Italy, Switzerland, the United States and Japan.",
+      "productsRow": {
+        "title": "Our own products",
+        "text": "YSMS, Amplius, Sortby, Valuta EX and Calc 2M."
+      },
+      "spans": [
+        {
+          "name": "STIMM",
+          "project": "stimm"
+        },
+        {
+          "name": "Bud Power",
+          "project": "bud-power"
+        },
+        {
+          "name": "iFixit",
+          "project": "ifixit"
+        },
+        {
+          "name": "Park Associati",
+          "project": "park-associati"
+        },
+        {
+          "name": "Koala Babycare",
+          "project": "koala-babycare"
+        },
+        {
+          "name": "Dolly Noire",
+          "project": "dolly-noire"
+        },
+        {
+          "name": "Acetaia Giusti",
+          "project": "acetaia-giusti"
+        },
+        {
+          "name": "SIXS",
+          "project": "sixs"
+        }
+      ],
+      "rulerLabel": "made to measure"
+    },
+    {
+      "language": "it",
+      "title": "Chi siamo",
+      "path": "/chi-siamo",
+      "seo": {
+        "description": "inkOfPixel è un piccolo studio di sviluppo software con base a Treviso e Milano. Lavoriamo come artigiani: pochi progetti alla volta, su misura, senza intermediari.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "headline": [
+        "Software",
+        "fatto su",
+        "misura"
+      ],
+      "lead": "inkOfPixel è un piccolo studio con base a Treviso e Milano. Progettiamo e costruiamo e-commerce, app e prodotti digitali, pochi alla volta.",
+      "statement": "Se vuoi un paio di scarpe su misura non vai in un centro commerciale: vai da un calzolaio. Ti prende le misure, ti chiede dove camminerai, e le scarpe le fa lui. Noi lavoriamo così, con il software.",
+      "principlesTitle": [
+        "Come",
+        "lavoriamo"
+      ],
+      "principles": [
+        {
+          "title": "Non siamo una grande agenzia",
+          "text": "Niente account manager, niente reparti, niente piani da riempire. Siamo un gruppo piccolo e ci va bene così: è una scelta, non una fase."
+        },
+        {
+          "title": "Parli con chi lo fa",
+          "text": "Chi ti ascolta alla prima chiamata è chi poi progetta e scrive il codice. Nessun intermediario, niente che si perde per strada."
+        },
+        {
+          "title": "Su misura",
+          "text": "Non partiamo da un pacchetto da adattare. Partiamo da come lavori tu e costruiamo quello che serve. A volte è meno di quello che avevi chiesto."
+        },
+        {
+          "title": "Pochi lavori alla volta",
+          "text": "Un calzolaio non può fare cento paia di scarpe al mese. Nemmeno noi: prendiamo pochi progetti, per poterli seguire davvero."
+        },
+        {
+          "title": "Sappiamo dire di no",
+          "text": "Se una funzione non serve, lo diciamo. Se non siamo le persone giuste per un lavoro, diciamo anche quello. Costa meno a tutti."
+        },
+        {
+          "title": "Restiamo",
+          "text": "Un sito o un'app non finiscono con la consegna. Con molti clienti lavoriamo da anni, e continuiamo a sistemare, migliorare, togliere."
+        },
+        {
+          "title": "Usiamo quello che costruiamo",
+          "text": "Abbiamo prodotti nostri, online da anni. Gli stessi attrezzi e le stesse abitudini li portiamo nei lavori per i clienti."
+        }
+      ],
+      "spansTitle": [
+        "Collaborazioni che",
+        "durano"
+      ],
+      "spansLead": "Alcune delle aziende con cui abbiamo lavorato più a lungo.",
+      "placesTitle": [
+        "Dove",
+        "siamo"
+      ],
+      "placesLead": "Da qui lavoriamo con aziende in Italia, Svizzera, Stati Uniti e Giappone.",
+      "productsRow": {
+        "title": "I nostri prodotti",
+        "text": "YSMS, Amplius, Sortby, Valuta EX e Calc 2M."
+      },
+      "spans": [
+        {
+          "name": "STIMM",
+          "project": "stimm"
+        },
+        {
+          "name": "Bud Power",
+          "project": "bud-power"
+        },
+        {
+          "name": "iFixit",
+          "project": "ifixit"
+        },
+        {
+          "name": "Park Associati",
+          "project": "park-associati"
+        },
+        {
+          "name": "Koala Babycare",
+          "project": "koala-babycare"
+        },
+        {
+          "name": "Dolly Noire",
+          "project": "dolly-noire"
+        },
+        {
+          "name": "Acetaia Giusti",
+          "project": "acetaia-giusti"
+        },
+        {
+          "name": "SIXS",
+          "project": "sixs"
+        }
+      ],
+      "rulerLabel": "su misura"
+    }
+  ]
+}
