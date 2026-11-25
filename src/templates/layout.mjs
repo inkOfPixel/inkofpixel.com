@@ -71,9 +71,10 @@ export function header(ctx) {
       ${langSwitch(ctx, 'link')}
     </nav>
     <div class="header-actions">
+      ${langSwitch(ctx, 'link lang-btn')}
       <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="${t.theme}">${THEME_ICON}</button>
       <a class="pill pill--sm nav-cta" href="${url(lang, 'contacts')}">${t.nav.contacts}</a>
-      <button class="pill pill--sm menu-btn" type="button" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" aria-label="${t.openMenu}">${t.menu}<span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+      <button class="pill pill--sm menu-btn" type="button" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" aria-label="${t.openMenu}"><span class="menu-btn-label">${t.menu}</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
     </div>
   </header>`;
 }

@@ -156,7 +156,7 @@ button { font: inherit; }
   .header { column-gap: 14px; }
   .logo-serif { width: auto; height: 34px; }
 }
-@media (max-width: 400px) {
+@media (max-width: 350px) {
   .logo-mark, .logo-word { width: auto; height: 30px; }
 }
 .logo:hover .logo-mark { transform: rotate(90deg); }
@@ -181,12 +181,22 @@ button { font: inherit; }
 .theme-btn:hover svg { transform: rotate(180deg); }
 [data-theme="dark"] .theme-btn svg { transform: rotate(180deg); }
 [data-theme="dark"] .theme-btn:hover svg { transform: rotate(360deg); }
-.menu-btn { display: none; }
+.menu-btn, .lang-btn { display: none; }
+.lang-btn { padding: 0 4px; font-weight: 500; }
 .burger { display: flex; flex-direction: column; gap: 5px; }
 .burger i { display: block; width: 18px; height: 2px; background: var(--bg); }
 @media (max-width: 1080px) {
   .nav, .nav-cta { display: none; }
-  .menu-btn { display: inline-flex; }
+  .menu-btn, .lang-btn { display: inline-flex; }
+}
+/* On phones the menu button is a round burger, like the theme switch: it leaves room for the language link. */
+@media (max-width: 480px) {
+  .header-actions { gap: 8px; }
+  .menu-btn { justify-content: center; width: 46px; padding: 0; }
+  .menu-btn-label { display: none; }
+}
+@media (max-width: 350px) {
+  .header-actions { gap: 6px; }
 }
 
 .menu { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; gap: 36px; overflow-y: auto; padding: 22px 20px 28px; background: var(--ink); color: var(--paper); --fg: var(--paper); --bg: var(--ink); --soft: var(--inverse-soft); animation: menu .7s var(--ease) both; }
