@@ -1,6 +1,6 @@
 // The page shell and the pieces every page shares: header, mobile menu, contact section, footer.
 import { ARROW, accent, esc, tag } from '../lib/html.mjs';
-import { contactInk, logo } from '../lib/brand.mjs';
+import { contactInk, favicons, logo } from '../lib/brand.mjs';
 import { LANGS, SITE_URL, T, url } from '../lib/site.mjs';
 
 const absolute = (path) => SITE_URL + path;
@@ -34,7 +34,7 @@ ${alternates}
 <meta property="og:locale" content="${lang === 'it' ? 'it_IT' : 'en_US'}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" type="image/png" href="/favicon.png">
+${favicons()}
 ${assets.fonts.map((font) => `<link rel="preload" href="${font}" as="font" type="font/woff2" crossorigin>`).join('\n')}
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
 <link rel="stylesheet" href="${assets.css}">

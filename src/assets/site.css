@@ -150,6 +150,15 @@ button { font: inherit; }
 .header { position: relative; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px; padding: 22px var(--pad); }
 .logo { display: flex; align-items: center; gap: 7px; min-height: 44px; }
 .logo-mark { transition: transform .7s var(--ease); }
+/* The text-only logo is wider than the old one: tighten the header on phones so it stays on one row. */
+.logo-serif { display: block; }
+@media (max-width: 480px) {
+  .header { column-gap: 14px; }
+  .logo-serif { width: auto; height: 34px; }
+}
+@media (max-width: 400px) {
+  .logo-mark, .logo-word { width: auto; height: 30px; }
+}
 .logo:hover .logo-mark { transform: rotate(90deg); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 32px; font-weight: 500; }
 
@@ -175,7 +184,7 @@ button { font: inherit; }
 .menu-btn { display: none; }
 .burger { display: flex; flex-direction: column; gap: 5px; }
 .burger i { display: block; width: 18px; height: 2px; background: var(--bg); }
-@media (max-width: 940px) {
+@media (max-width: 1080px) {
   .nav, .nav-cta { display: none; }
   .menu-btn { display: inline-flex; }
 }
