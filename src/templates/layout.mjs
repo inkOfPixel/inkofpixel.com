@@ -8,11 +8,12 @@ const absolute = (path) => SITE_URL + path;
 const THEME_ICON =
   '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>';
 
-// A wireframe globe that fills the language button: the equator and three meridians 60 degrees
-// apart. At rest the first lies on the outline and the other two overlap, so it reads as one
-// ellipse; site.js turns them while the pointer is over the button.
+// A wireframe globe that fills the language button: the equator and four meridians 45 degrees
+// apart. At rest the first lies on the outline, the third is the straight line down the middle
+// and the other two overlap, so it reads as one ellipse and one line; site.js turns them while
+// the pointer is over the button.
 const GLOBE_ICON =
-  '<svg class="lang-globe" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M.75 23h44.5"/><ellipse cx="23" cy="23" rx="22.25" ry="22.25"/><ellipse cx="23" cy="23" rx="11.13" ry="22.25"/><ellipse cx="23" cy="23" rx="11.13" ry="22.25"/></svg>';
+  '<svg class="lang-globe" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M.75 23h44.5"/><ellipse cx="23" cy="23" rx="22.25" ry="22.25"/><ellipse cx="23" cy="23" rx="15.73" ry="22.25"/><ellipse cx="23" cy="23" rx=".1" ry="22.25"/><ellipse cx="23" cy="23" rx="15.73" ry="22.25"/></svg>';
 
 function head(ctx) {
   const { page, lang, assets } = ctx;

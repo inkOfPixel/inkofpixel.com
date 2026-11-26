@@ -203,16 +203,16 @@
   }
 
   // ---------------------------------------------------------------- language globe
-  // The globe in the header has three meridians, 60 degrees apart. Seen from the side a
+  // The globe in the header has a few meridians, evenly spaced. Seen from the side a
   // meridian is an ellipse as wide as the cosine of its angle, so turning the globe means
-  // changing three widths. It turns while the pointer is over it; when the pointer leaves
-  // it rolls on to the next 60 degrees, where it looks exactly as it did at rest.
+  // changing their widths. It turns while the pointer is over it; when the pointer leaves
+  // it rolls on to the next meridian's place, where it looks exactly as it did at rest.
   if (!reducedMotion) {
-    const STEP = Math.PI / 3;
     const TOP_SPEED = 2.4; // radians per second
     for (const button of all('.lang-btn')) {
       const meridians = all('ellipse', button);
       if (!meridians.length) continue;
+      const STEP = Math.PI / meridians.length;
       const radius = Number(meridians[0].getAttribute('ry'));
       let angle = 0;
       let speed = 0;
