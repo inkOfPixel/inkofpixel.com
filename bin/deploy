@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+abort() {
+  echo "bin/deploy: $1" >&2
+  exit 1
+}
+
+[ "$#" -eq 0 ] || abort "usage: bin/deploy"
+
+[ "$(git symbolic-ref --short HEAD)" = "master" ] || abort "production deploys run from master."
+[ -z "$(git status --porcelain)" ] || abort "tree is dirty — commit or stash first."
+git fetch --quiet origin master
+[ "$(git rev-parse HEAD)" = "$(git rev-parse origin/master)" ] ||
+  abort "master is not in sync with origin/master — pull or push first."
+
+if [ -f .env ]; then
+  set -a
+  source .env
+  set +a
+fi
+
+for name in SMTP_USERNAME SMTP_PASSWORD; do
+  [ -n "${!name:-}" ] || abort "$name is not set — add it to .env."
+done
+
+bin/kamal deploy

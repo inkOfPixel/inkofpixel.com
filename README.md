@@ -37,8 +37,10 @@ The site ships as a Docker image (build stage on Node, then Caddy serving `dist/
 
 ```sh
 docker build -t inkofpixel . && docker run --rm -p 8080:80 inkofpixel   # try the production image locally
-kamal deploy                                                            # deploy to the server in config/deploy.yml
+bin/deploy                                                              # deploy master to the server in config/deploy.yml
 ```
+
+`bin/deploy` reads `SMTP_USERNAME` and `SMTP_PASSWORD` from a gitignored `.env` file, and `bin/kamal` runs the pinned Kamal version for any other command (`bin/kamal logs`, `bin/kamal rollback`).
 
 The `Deploy` GitHub Actions workflow runs `kamal deploy` on demand. It needs the `KAMAL_DEPLOY_SSH_PRIVATE_KEY`, `SMTP_USERNAME` and `SMTP_PASSWORD` repository secrets.
 
