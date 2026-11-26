@@ -8,6 +8,12 @@ const absolute = (path) => SITE_URL + path;
 const THEME_ICON =
   '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.75"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>';
 
+// A wireframe globe that fills the language button: the equator and three meridians 60 degrees
+// apart. At rest the first lies on the outline and the other two overlap, so it reads as one
+// ellipse; site.js turns them while the pointer is over the button.
+const GLOBE_ICON =
+  '<svg class="lang-globe" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M.75 23h44.5"/><ellipse cx="23" cy="23" rx="22.25" ry="22.25"/><ellipse cx="23" cy="23" rx="11.13" ry="22.25"/><ellipse cx="23" cy="23" rx="11.13" ry="22.25"/></svg>';
+
 function head(ctx) {
   const { page, lang, assets } = ctx;
   const canonical = absolute(page.path);
@@ -53,10 +59,14 @@ function navLinks(ctx) {
   ].map(([key, href]) => ({ key, href, label: t.nav[key], current: page.active === key }));
 }
 
-function langSwitch(ctx, className) {
+// Link to the same page in the other language. In the header it is a globe (`globe: true`)
+// that shows the language code on hover; in the menu it is the plain code.
+function langSwitch(ctx, className, { globe = false } = {}) {
   const other = LANGS.find((l) => l !== ctx.lang);
   const href = ctx.page.alternates[other] || url(other);
-  return `<a class="${className}" href="${href}" lang="${other}" hreflang="${other}" aria-label="${ctx.t.otherLang.label}">${ctx.t.otherLang.code}</a>`;
+  const code = ctx.t.otherLang.code;
+  const content = globe ? `${GLOBE_ICON}<span class="lang-code" aria-hidden="true">${code}</span>` : code;
+  return `<a class="${className}" href="${href}" lang="${other}" hreflang="${other}" aria-label="${ctx.t.otherLang.label}">${content}</a>`;
 }
 
 export function header(ctx) {
@@ -68,10 +78,9 @@ export function header(ctx) {
     <a class="logo" href="${url(lang)}" aria-label="${t.homeLabel}">${logo(30)}</a>
     <nav class="nav" aria-label="${t.navLabel}">
       ${links}
-      ${langSwitch(ctx, 'link')}
     </nav>
     <div class="header-actions">
-      ${langSwitch(ctx, 'link lang-btn')}
+      ${langSwitch(ctx, 'lang-btn', { globe: true })}
       <button class="theme-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="${t.theme}">${THEME_ICON}</button>
       <a class="pill pill--sm nav-cta" href="${url(lang, 'contacts')}">${t.nav.contacts}</a>
       <button class="pill pill--sm menu-btn" type="button" data-menu-open aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" aria-label="${t.openMenu}"><span class="menu-btn-label">${t.menu}</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button>

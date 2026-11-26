@@ -1,6 +1,7 @@
 // inkOfPixel: the page works without this file. It adds the ink that parts under the
 // cursor, the cursor-driven details (dot spotlight, ink fills, bubbles), the theme switch,
-// clips that play while on screen, the contact form sent without a reload and the mobile menu.
+// the turning language globe, clips that play while on screen, the contact form sent without
+// a reload and the mobile menu.
 (() => {
   'use strict';
 
@@ -199,6 +200,69 @@
         );
       });
     });
+  }
+
+  // ---------------------------------------------------------------- language globe
+  // The globe in the header has three meridians, 60 degrees apart. Seen from the side a
+  // meridian is an ellipse as wide as the cosine of its angle, so turning the globe means
+  // changing three widths. It turns while the pointer is over it; when the pointer leaves
+  // it rolls on to the next 60 degrees, where it looks exactly as it did at rest.
+  if (!reducedMotion) {
+    const STEP = Math.PI / 3;
+    const TOP_SPEED = 2.4; // radians per second
+    for (const button of all('.lang-btn')) {
+      const meridians = all('ellipse', button);
+      if (!meridians.length) continue;
+      const radius = Number(meridians[0].getAttribute('ry'));
+      let angle = 0;
+      let speed = 0;
+      let landing = null; // the roll to the next rest position, once the pointer has left
+      let turning = false;
+      let last = 0;
+      const draw = () => {
+        meridians.forEach((meridian, i) => {
+          meridian.setAttribute('rx', Math.max(0.1, radius * Math.abs(Math.cos(angle + i * STEP))).toFixed(2));
+        });
+      };
+      const rest = () => { angle = 0; speed = 0; landing = null; turning = false; draw(); };
+      const tick = (now) => {
+        if (!turning) return;
+        const dt = Math.max(0.001, Math.min(0.05, (now - last) / 1000));
+        last = now;
+        if (landing) {
+          // A curve that leaves at the current speed and arrives with none.
+          const s = Math.min(1, Math.max(0, now - landing.since) / landing.time);
+          const before = angle;
+          angle = landing.from + landing.push * (s - 2 * s * s + s * s * s) + landing.distance * (3 * s * s - 2 * s * s * s);
+          speed = (angle - before) / dt;
+          if (s === 1) { rest(); return; }
+        } else {
+          speed += (TOP_SPEED - speed) * Math.min(1, dt * 5);
+          angle = (angle + speed * dt) % Math.PI;
+        }
+        draw();
+        requestAnimationFrame(tick);
+      };
+      const start = () => {
+        landing = null;
+        if (turning) return;
+        turning = true;
+        last = performance.now();
+        requestAnimationFrame(tick);
+      };
+      const stop = () => {
+        if (!turning || landing) return;
+        // Land on the first rest position far enough ahead to slow down without a jolt.
+        const distance = Math.ceil((angle + speed * 0.2) / STEP) * STEP - angle;
+        const seconds = Math.max(0.45, (1.5 * distance) / TOP_SPEED);
+        landing = { from: angle, distance, push: speed * seconds, time: seconds * 1000, since: performance.now() };
+      };
+      button.addEventListener('pointerenter', (event) => { if (event.pointerType === 'mouse') start(); });
+      button.addEventListener('pointerleave', stop);
+      button.addEventListener('focus', () => { if (button.matches(':focus-visible')) start(); });
+      button.addEventListener('blur', stop);
+      window.addEventListener('pagehide', rest);
+    }
   }
 
   // ---------------------------------------------------------------- clips

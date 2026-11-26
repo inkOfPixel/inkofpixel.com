@@ -155,9 +155,10 @@ button { font: inherit; }
 @media (max-width: 480px) {
   .header { column-gap: 14px; }
   .logo-serif { width: auto; height: 34px; }
+  .logo-mark, .logo-word { width: auto; height: 36px; }
 }
 @media (max-width: 350px) {
-  .logo-mark, .logo-word { width: auto; height: 30px; }
+  .logo-mark, .logo-word { width: auto; height: 26px; }
 }
 .logo:hover .logo-mark { transform: rotate(90deg); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 32px; font-weight: 500; }
@@ -181,13 +182,24 @@ button { font: inherit; }
 .theme-btn:hover svg { transform: rotate(180deg); }
 [data-theme="dark"] .theme-btn svg { transform: rotate(180deg); }
 [data-theme="dark"] .theme-btn:hover svg { transform: rotate(360deg); }
-.menu-btn, .lang-btn { display: none; }
-.lang-btn { padding: 0 4px; font-weight: 500; }
+/* Language switch: a wireframe globe, twin of the theme switch. With the pointer over it the globe
+   fades and the code of the other language shows through, while site.js turns the meridians. */
+.lang-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; font-size: 14px; font-weight: 500; letter-spacing: .02em; box-shadow: inset 0 0 0 1.5px currentColor; }
+.lang-globe { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .4s var(--ease); }
+.lang-code { position: relative; opacity: 0; transition: opacity .4s var(--ease); }
+.lang-btn:hover .lang-globe, .lang-btn:focus-visible .lang-globe { opacity: .3; }
+.lang-btn:hover .lang-code, .lang-btn:focus-visible .lang-code { opacity: 1; }
+/* Without a pointer there is no hover: the code stays on, over a faint globe. */
+@media (hover: none) {
+  .lang-globe { opacity: .3; }
+  .lang-code { opacity: 1; }
+}
+.menu-btn { display: none; }
 .burger { display: flex; flex-direction: column; gap: 5px; }
 .burger i { display: block; width: 18px; height: 2px; background: var(--bg); }
 @media (max-width: 1080px) {
   .nav, .nav-cta { display: none; }
-  .menu-btn, .lang-btn { display: inline-flex; }
+  .menu-btn { display: inline-flex; }
 }
 /* On phones the menu button is a round burger, like the theme switch: it leaves room for the language link. */
 @media (max-width: 480px) {
@@ -195,7 +207,8 @@ button { font: inherit; }
   .menu-btn { justify-content: center; width: 46px; padding: 0; }
   .menu-btn-label { display: none; }
 }
-@media (max-width: 350px) {
+@media (max-width: 400px) {
+  .header { column-gap: 10px; }
   .header-actions { gap: 6px; }
 }
 

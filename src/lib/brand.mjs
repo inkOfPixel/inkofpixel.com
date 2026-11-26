@@ -26,8 +26,9 @@ export function logo(size = 30) {
   }
   if (LOGO === 'v07') {
     // The wordmark is heavier than the classic one and has no dots on the "i": a little more
-    // height keeps its x-height readable. It takes the page colour, not the navy of the guidelines.
-    const height = Math.round(size * 1.2);
+    // height keeps its x-height readable (site.css brings it back down on phones).
+    // It takes the page colour, not the navy of the guidelines.
+    const height = Math.round((size * 4) / 3);
     const width = Math.round((height * 606.66) / 200);
     return `<svg class="logo-mark" width="${height}" height="${height}" viewBox="0 0 200 200" fill="currentColor" aria-hidden="true"><path d="${MARK_07}"/></svg><svg class="logo-word" width="${width}" height="${height}" viewBox="242.68 0 606.66 200" fill="currentColor" aria-hidden="true"><path d="${WORD_07}"/></svg>`;
   }
