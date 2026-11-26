@@ -1,0 +1,379 @@
+{
+  "template": "home",
+  "locales": [
+    {
+      "language": "en",
+      "title": "inkOfPixel",
+      "path": "/",
+      "seo": {
+        "description": "We are software company. We build innovative digital solutions and never stop learning. If you’re looking for new ideas and talented people to bring them to life, this is the right place.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "hero": {
+        "titleLines": [
+          "Great websites",
+          "for great"
+        ],
+        "titleAccent": "entrepreneurs",
+        "subtitle": "We design, build and deploy websites that sell and help you grow your business worldwide."
+      },
+      "servicesLead": "We are Shopify partners that help ambitious entrepreneurs sell more using Shopify.",
+      "services": [
+        {
+          "groupTitle": "New e-commerces, replatforming, consulting",
+          "groupDescription": "",
+          "serviceList": [
+            {
+              "title": "Setup",
+              "description": "We will help you launch your online business or seamlessly migrate your shop from another platform and provide support for installing apps that simplify your work."
+            },
+            {
+              "title": "Custom themes",
+              "description": "We will tweak an existing template or craft a new design from scratch to create your beautiful online store."
+            },
+            {
+              "title": "Custom Shopify apps",
+              "description": "We build custom Shopify Apps to improve your workflow and to integrate your store with third parties."
+            }
+          ]
+        },
+        {
+          "groupTitle": "...and more",
+          "groupDescription": "Whether you have an idea, or you need a custom software we can make it happen.",
+          "serviceList": [
+            {
+              "title": "Mobile App",
+              "description": "We design and build cross platform mobile apps to offer unique native experiences."
+            },
+            {
+              "title": "Web App",
+              "description": "Thanks to our expertise in full-stack web development we create custom platform using modern technologies. Whether you need to build a custom ERP or your startup idea we got you covered."
+            }
+          ]
+        }
+      ],
+      "clients": {
+        "marquee": [
+          "iFixit",
+          "Dolly Noire",
+          "Acetaia Giusti",
+          "STIMM",
+          "Park Associati",
+          "SIXS",
+          "Amici Caffè",
+          "Bud Power"
+        ],
+        "featured": [
+          {
+            "name": "iFixit",
+            "type": "E-commerce, apps",
+            "description": "The global platform to repair anything: we work on e-commerce, apps and prototypes.",
+            "image": "/assets/ifixit-xray.jpg",
+            "alt": "iFixit: colour x-ray of the inside of an iPhone 15",
+            "project": "ifixit"
+          },
+          {
+            "name": "Dolly Noire",
+            "type": "E-commerce",
+            "description": "Shopify theme and custom tools for a streetwear brand from Milan.",
+            "image": "/assets/dolly-noire.jpg",
+            "alt": "Dolly Noire: a person seen from behind in a black tracksuit facing the New York skyline",
+            "project": "dolly-noire"
+          },
+          {
+            "name": "STIMM",
+            "type": "E-commerce, integrations, consulting",
+            "description": "Together since 2016: from Magento to Shopify, up to the new store rebuilt in 2025.",
+            "image": "/assets/stimm-photo.jpg",
+            "alt": "STIMM: two models in an old archive room",
+            "project": "stimm"
+          }
+        ]
+      },
+      "products": {
+        "lead": "We don't only work for clients: we also design, launch and maintain software of our own.",
+        "items": [
+          {
+            "name": "YSMS",
+            "kind": "Shopify app",
+            "since": "2020",
+            "url": "https://ysms.me",
+            "description": "Text marketing for Shopify stores: campaigns and advanced filters to reach the right audience."
+          },
+          {
+            "name": "Amplius",
+            "kind": "Shopify app",
+            "since": "2022",
+            "url": "https://amplius.app",
+            "description": "Custom fields for Shopify customers, stored in metafields and editable by customers themselves."
+          },
+          {
+            "name": "Sortby",
+            "kind": "Shopify app",
+            "since": "2025",
+            "url": "https://sortby.app",
+            "description": "Sorts the products of a collection with rules on metafields, inventory, prices and dates, every night or on demand."
+          },
+          {
+            "name": "Valuta EX",
+            "kind": "Web and mobile app",
+            "since": "2016",
+            "url": "https://valuta.exchange",
+            "description": "A simple, immediate currency converter, with rates updated every hour for over 160 currencies and more than 25 cryptocurrencies.",
+            "stats": [
+              {
+                "value": "18.8M",
+                "label": "impressions a month on Google"
+              },
+              {
+                "value": "69,000",
+                "label": "clicks a month from Google"
+              },
+              {
+                "value": "50,000+",
+                "label": "downloads on Google Play"
+              }
+            ]
+          },
+          {
+            "name": "Calc 2M",
+            "kind": "iOS app",
+            "since": "2012",
+            "url": "https://apps.apple.com/app/calc-2m/id492563960",
+            "urlLabel": "App Store",
+            "description": "A scientific calculator for iPhone, iPad and Apple Watch: expressions you can fix on the fly, a history you reuse with drag & drop, and custom themes.",
+            "stats": [
+              {
+                "value": "500,000+",
+                "label": "users"
+              },
+              {
+                "value": "3",
+                "label": "devices: iPhone, iPad, Apple Watch"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "statement": "We are a small software studio. We work like a craft workshop: a few projects at a time, made to measure, and you always talk to the people who design and build them.",
+        "principles": [
+          {
+            "title": "You talk to the people who build",
+            "text": "Whoever listens to you on the first call is who then designs and writes the code. No go-betweens."
+          },
+          {
+            "title": "Made to measure",
+            "text": "We start from how you work and build what is needed, not a package to adapt."
+          },
+          {
+            "title": "We stay",
+            "text": "A site or an app does not end at delivery. We have worked with many clients for years."
+          }
+        ],
+        "facts": [
+          {
+            "label": "where we are",
+            "value": "Treviso and Milan"
+          },
+          {
+            "label": "partner",
+            "value": "Shopify Partner"
+          }
+        ],
+        "image": null
+      },
+      "contacts": {
+        "title": "Contacts",
+        "description": "Whether you have a project or an idea, you need someone to help you grow your business through a digital product or you just want to say hi."
+      }
+    },
+    {
+      "language": "it",
+      "title": "inkOfPixel",
+      "path": "/",
+      "seo": {
+        "description": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale.",
+        "image": "/assets/inkofpixel-featured-image.jpg"
+      },
+      "hero": {
+        "titleLines": [
+          "E-commerce",
+          "per imprenditori"
+        ],
+        "titleAccent": "ambiziosi",
+        "subtitle": "Progettiamo e costruiamo siti per aiutarti a vendere online e crescere il tuo business nel mercato globale."
+      },
+      "servicesLead": "Siamo partner Shopify e aiutiamo commercianti e imprenditori ambiziosi a vendere di più tramite Shopify.",
+      "services": [
+        {
+          "groupTitle": "Nuovi e-commerce, cambio di piattaforma, consulenza",
+          "groupDescription": "",
+          "serviceList": [
+            {
+              "title": "Configurazione",
+              "description": "Ti aiuteremo a lanciare e ottimizzare il tuo business online tramite Shopify."
+            },
+            {
+              "title": "Temi personalizzati",
+              "description": "Lavoriamo assieme per creare l'esperienza utente che più rispecchia il tuo brand."
+            },
+            {
+              "title": "Applicazioni Shopify personalizzate",
+              "description": "Creiamo applicazioni Shopify su misura per migliorare il tuo flusso di lavoro."
+            }
+          ]
+        },
+        {
+          "groupTitle": "...e molto altro",
+          "groupDescription": "Che tu abbia soltanto un'idea, o la necessità di costruire un software su misura, possiamo aiutarti nella progettazione e realizzazione.",
+          "serviceList": [
+            {
+              "title": "Applicazioni mobile",
+              "description": "Progettiamo e costruiamo applicazioni mobile sia per Android che per iOS."
+            },
+            {
+              "title": "Applicazioni web",
+              "description": "Grazie alla nostra esperienza nello sviluppo full-stack creiamo piattaforme su misura per te."
+            }
+          ]
+        }
+      ],
+      "clients": {
+        "marquee": [
+          "iFixit",
+          "Dolly Noire",
+          "Acetaia Giusti",
+          "STIMM",
+          "Park Associati",
+          "SIXS",
+          "Amici Caffè",
+          "Bud Power"
+        ],
+        "featured": [
+          {
+            "name": "iFixit",
+            "type": "E-commerce, app",
+            "description": "La piattaforma globale per riparare qualsiasi cosa: lavoriamo su e-commerce, app e prototipi.",
+            "image": "/assets/ifixit-xray.jpg",
+            "alt": "iFixit: radiografia a colori dell'interno di un iPhone 15",
+            "project": "ifixit"
+          },
+          {
+            "name": "Dolly Noire",
+            "type": "E-commerce",
+            "description": "Tema Shopify e strumenti su misura per un marchio streetwear di Milano.",
+            "image": "/assets/dolly-noire.jpg",
+            "alt": "Dolly Noire: ragazzo di spalle in tuta nera davanti allo skyline di New York",
+            "project": "dolly-noire"
+          },
+          {
+            "name": "STIMM",
+            "type": "E-commerce, integrazioni, consulenza",
+            "description": "Insieme dal 2016: da Magento a Shopify, fino al nuovo store ricostruito nel 2025.",
+            "image": "/assets/stimm-photo.jpg",
+            "alt": "STIMM: due modelle in un vecchio archivio",
+            "project": "stimm"
+          }
+        ]
+      },
+      "products": {
+        "lead": "Non lavoriamo solo per i clienti: progettiamo, lanciamo e manteniamo anche software nostro.",
+        "items": [
+          {
+            "name": "YSMS",
+            "kind": "App Shopify",
+            "since": "2020",
+            "url": "https://ysms.me",
+            "description": "SMS marketing per gli store Shopify: campagne e filtri avanzati per parlare al pubblico giusto."
+          },
+          {
+            "name": "Amplius",
+            "kind": "App Shopify",
+            "since": "2022",
+            "url": "https://amplius.app",
+            "description": "Campi personalizzati per i clienti Shopify, salvati nei metafield e modificabili anche dal cliente."
+          },
+          {
+            "name": "Sortby",
+            "kind": "App Shopify",
+            "since": "2025",
+            "url": "https://sortby.app",
+            "description": "Ordina i prodotti di una collezione con regole su metafield, giacenze, prezzi e date, ogni notte o quando vuoi."
+          },
+          {
+            "name": "Valuta EX",
+            "kind": "Web e app mobile",
+            "since": "2016",
+            "url": "https://valuta.exchange",
+            "description": "Convertitore di valute semplice e immediato, con tassi aggiornati ogni ora per oltre 160 valute e più di 25 criptovalute.",
+            "stats": [
+              {
+                "value": "18,8 mln",
+                "label": "impressioni al mese su Google"
+              },
+              {
+                "value": "69.000",
+                "label": "clic al mese da Google"
+              },
+              {
+                "value": "50.000+",
+                "label": "download su Google Play"
+              }
+            ]
+          },
+          {
+            "name": "Calc 2M",
+            "kind": "App iOS",
+            "since": "2012",
+            "url": "https://apps.apple.com/app/calc-2m/id492563960",
+            "urlLabel": "App Store",
+            "description": "Calcolatrice scientifica per iPhone, iPad e Apple Watch: espressioni da correggere al volo, cronologia riutilizzabile con il drag & drop e temi personalizzati.",
+            "stats": [
+              {
+                "value": "500.000+",
+                "label": "utenti"
+              },
+              {
+                "value": "3",
+                "label": "dispositivi: iPhone, iPad, Apple Watch"
+              }
+            ]
+          }
+        ]
+      },
+      "about": {
+        "statement": "Siamo un piccolo studio di sviluppo software. Lavoriamo come una bottega artigiana: pochi progetti alla volta, fatti su misura, e parli sempre con chi li progetta e li costruisce.",
+        "principles": [
+          {
+            "title": "Parli con chi lo fa",
+            "text": "Chi ti ascolta alla prima chiamata è chi poi progetta e scrive il codice. Nessun intermediario."
+          },
+          {
+            "title": "Su misura",
+            "text": "Partiamo da come lavori tu e costruiamo quello che serve, non un pacchetto da adattare."
+          },
+          {
+            "title": "Restiamo",
+            "text": "Un sito o un'app non finiscono con la consegna. Con molti clienti lavoriamo da anni."
+          }
+        ],
+        "facts": [
+          {
+            "label": "dove siamo",
+            "value": "Treviso e Milano"
+          },
+          {
+            "label": "partner",
+            "value": "Shopify Partner"
+          }
+        ],
+        "image": null
+      },
+      "contacts": {
+        "title": "Contatti",
+        "description": "Se hai un'idea, hai bisogno di qualcuno che ti aiuti a crescere il tuo business, oppure vuoi soltanto salutarci."
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: Deploy
+
+# Manual for now: run it from the Actions tab once DNS points to the server.
+# To deploy on every merge, add:  push: { branches: [master] }
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx for cache
+        uses: docker/setup-buildx-action@v4
+
+      - name: Expose GitHub Runtime for cache
+        uses: crazy-max/ghaction-github-runtime@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install Kamal
+        run: gem install kamal -v 2.12.0
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.10.0
+        with:
+          ssh-private-key: ${{ secrets.KAMAL_DEPLOY_SSH_PRIVATE_KEY }}
+
+      - name: Deploy
+        run: kamal deploy
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
