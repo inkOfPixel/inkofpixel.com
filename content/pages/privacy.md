@@ -43,7 +43,7 @@ locales:
 
       ### Cookies and browser storage
 
-      The site sets no cookies and uses no advertising or profiling tools. Fonts, images and scripts are served from our own domain, with the only exception of the statistics script described above.
+      The site sets no cookies and uses no advertising or profiling tools. Fonts, images and scripts are served from our own domain, with the only exception of the statistics script described above. The [Cookie Policy](/cookie-policy) has the details.
 
       If you switch between the light and the dark theme, your choice is saved in your browser (local storage) so the site looks the same on your next visit. It stays on your device and is never sent to us.
 
@@ -121,7 +121,7 @@ locales:
 
       ### Cookie e memoria del browser
 
-      Il sito non imposta cookie e non usa strumenti di pubblicità o di profilazione. Caratteri, immagini e script sono serviti dal nostro dominio, con la sola eccezione dello script delle statistiche descritto sopra.
+      Il sito non imposta cookie e non usa strumenti di pubblicità o di profilazione. Caratteri, immagini e script sono serviti dal nostro dominio, con la sola eccezione dello script delle statistiche descritto sopra. I dettagli sono nella [Cookie Policy](/it/cookie-policy).
 
       Se passi dal tema chiaro a quello scuro, la scelta viene salvata nel tuo browser (local storage) per ritrovare il sito uguale alla visita successiva. Resta sul tuo dispositivo e non ci viene mai inviata.
 
