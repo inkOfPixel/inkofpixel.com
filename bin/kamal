@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+version = "2.12.0"
+
+begin
+  gem "kamal", version
+rescue Gem::MissingSpecError
+  system("gem", "install", "kamal", "--version", version, exception: true)
+  Gem.clear_paths
+  gem "kamal", version
+end
+
+load Gem.bin_path("kamal", "kamal", version)
