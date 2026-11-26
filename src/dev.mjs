@@ -19,7 +19,7 @@ const TYPES = {
 
 function build() {
   // A fresh process each time, so edited templates are picked up.
-  spawnSync(process.execPath, [path.join(ROOT, 'src/build.mjs')], { stdio: 'inherit', env: { ...process.env, SKIP_REMOTE: '1' } });
+  spawnSync(process.execPath, [path.join(ROOT, 'src/build.mjs')], { stdio: 'inherit' });
 }
 
 // Same lookup order as the production server: the file, then .html, then the folder index.

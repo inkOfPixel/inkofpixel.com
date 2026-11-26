@@ -1,6 +1,5 @@
 // Builds the whole site into /dist as plain HTML, CSS and JS.
-//   node src/build.mjs            full build (refreshes the privacy policy from iubenda)
-//   SKIP_REMOTE=1 node src/build.mjs   offline build, uses the cached privacy policy
+//   node src/build.mjs
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,7 +18,6 @@ const OUT = path.join(ROOT, 'dist');
 // The site is built in a scratch folder and swapped in at the end, so a half-built site is
 // never served and two builds running at once (dev server and a manual build) cannot clash.
 const DIST = path.join(ROOT, `.build/dist-${process.pid}`);
-const IUBENDA_POLICY_ID = '57888804';
 const started = Date.now();
 
 function write(file, content) {
@@ -70,32 +68,15 @@ const site = {
   email: contacts.email,
   socials: contacts.socials,
   company: readJson('settings/company.json'),
+  analytics: readJson('settings/analytics.json'),
   contactText: Object.fromEntries(LANGS.map((lang) => [lang, readPage('home', lang).contacts.description])),
 };
 
 const projects = readCollection('projects').sort((a, b) => Number(a.priority ?? 99) - Number(b.priority ?? 99) || a.title.localeCompare(b.title));
 const posts = readCollection('posts').sort((a, b) => String(b.date).localeCompare(String(a.date)));
-const cookies = readCollection('pages').find((page) => page.slug === 'cookies');
-
-// The privacy policy is written and kept up to date on iubenda. A copy is cached in the
-// repository so the site still builds when iubenda cannot be reached.
-async function privacyPolicy() {
-  const cache = path.join(ROOT, 'content/legal/privacy.html');
-  if (!process.env.SKIP_REMOTE) {
-    try {
-      const response = await fetch(`https://www.iubenda.com/api/privacy-policy/${IUBENDA_POLICY_ID}/no-markup`, { signal: AbortSignal.timeout(15000) });
-      const data = await response.json();
-      if (!data.success || !data.content) throw new Error('unexpected response');
-      fs.mkdirSync(path.dirname(cache), { recursive: true });
-      fs.writeFileSync(cache, data.content.trim() + '\n');
-    } catch (error) {
-      console.warn(`  ! could not refresh the privacy policy from iubenda (${error.message}), using the cached copy`);
-    }
-  }
-  // The page template prints its own <h1>.
-  return fs.readFileSync(cache, 'utf8').replace(/<h1[\s\S]*?<\/h1>/, '');
-}
-const privacyHtml = await privacyPolicy();
+// The privacy and cookie policies are our own texts, in content/pages.
+const legalTexts = readCollection('pages');
+const legalText = (slug, lang) => renderMarkdown(localized(legalTexts.find((page) => page.slug === slug), lang).body);
 
 // ---------------------------------------------------------------- pages
 const crumbs = (lang, items) => ({
@@ -208,13 +189,12 @@ for (const lang of LANGS) {
   add(lang, {
     path: url(lang, 'privacy'), alternates: both((l) => url(l, 'privacy')),
     title: t.footer.privacy, description: `${t.footer.privacy}, inkOfPixel.`,
-  }, (ctx) => legalPage(ctx, { title: t.footer.privacy, html: privacyHtml }));
+  }, (ctx) => legalPage(ctx, { title: t.footer.privacy, html: legalText('privacy', lang) }));
 
-  const cookiePage = localized(cookies, lang);
   add(lang, {
     path: url(lang, 'cookies'), alternates: both((l) => url(l, 'cookies')),
     title: t.footer.cookies, description: `${t.footer.cookies}, inkOfPixel.`,
-  }, (ctx) => legalPage(ctx, { title: t.footer.cookies, html: renderMarkdown(cookiePage.body) }));
+  }, (ctx) => legalPage(ctx, { title: t.footer.cookies, html: legalText('cookies', lang) }));
 
   add(lang, {
     path: lang === DEFAULT_LANG ? '/404' : `/${lang}/404`, alternates: {}, noindex: true,

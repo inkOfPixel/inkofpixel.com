@@ -13,15 +13,14 @@ npm run build   # writes the site to dist/
 npm run images  # shrinks new images in static/assets (needs ffmpeg for GIFs)
 ```
 
-`npm run build` also refreshes the privacy policy from iubenda and stores a copy in `content/legal/privacy.html`, so the site still builds offline (`SKIP_REMOTE=1 npm run build`).
-
 ## Where things are
 
 | Path | What it holds |
 | --- | --- |
 | `content/static-pages/*.json` | Copy of the home, services, projects, blog and contacts pages, one entry per language |
 | `content/projects/*.md`, `content/posts/*.md` | Case studies and blog posts, one `locales` entry per language |
-| `content/settings/*.json` | Email, socials, company details shown in the footer |
+| `content/pages/*.md` | Privacy and cookie policy, one `locales` entry per language |
+| `content/settings/*.json` | Email, socials, company details shown in the footer, and the Cloudflare Web Analytics token (`analytics.json`; empty means no statistics script) |
 | `static/` | Files copied as they are: images in `static/assets`, favicon |
 | `src/templates/` | One file per page type, plus `layout.mjs` (header, menu, contact section, footer) |
 | `src/assets/site.css`, `src/assets/site.js` | All the styles and all the scripts |

@@ -15,6 +15,14 @@ const THEME_ICON =
 const GLOBE_ICON =
   '<svg class="lang-globe" viewBox="0 0 46 46" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M.75 23h44.5"/><ellipse cx="23" cy="23" rx="22.25" ry="22.25"/><ellipse cx="23" cy="23" rx="15.73" ry="22.25"/><ellipse cx="23" cy="23" rx=".1" ry="22.25"/><ellipse cx="23" cy="23" rx="15.73" ry="22.25"/></svg>';
 
+// Visit statistics: Cloudflare Web Analytics, which sets no cookies. The script is added only
+// when `cloudflareToken` in content/settings/analytics.json holds the token of the site.
+function analytics(site) {
+  const token = site.analytics?.cloudflareToken;
+  if (!token) return '';
+  return `<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="${esc(JSON.stringify({ token }))}"></script>`;
+}
+
 function head(ctx) {
   const { page, lang, assets } = ctx;
   const canonical = absolute(page.path);
@@ -46,6 +54,7 @@ ${assets.fonts.map((font) => `<link rel="preload" href="${font}" as="font" type=
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
 <link rel="stylesheet" href="${assets.css}">
 <script src="${assets.js}" defer></script>
+${analytics(ctx.site)}
 ${jsonLd}`;
 }
 
